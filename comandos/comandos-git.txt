@@ -1,0 +1,53 @@
+CLONAR PROYECTO
+
+en cualquier carpeta abre git bash y pon:
+
+git clone https://github.com/Cris223511/tesis.git
+
+y en la carpeta generada, abres git bash y vas a tu rama:
+
+git fetch
+git checkout jafet
+
+SUBIR CAMBIOS A TU RAMA Y COMBINAR EN MASTER
+
+cuando hagas cambios en tu rama, pon:
+
+git add .
+git commit -m "cambios"
+git push origin jafet
+
+y luego subir los cambios de tu rama a master, con:
+
+git checkout master
+git pull origin master
+git merge jafet
+git push origin master
+
+y vuelve a tu rama
+
+git checkout jafet
+
+OBTENER CAMBIOS DE MASTER
+
+2 casos:
+
+1) si no tienes cambios en tu rama y yo suba cambios a master, obtén y combina los últimos cambios de master a tu rama con:
+
+git checkout jafet
+git pull origin master
+git merge master
+git push origin jafet
+
+2) pero si tienes cambios, sube primero a tu rama
+
+git add .
+git commit -m "cambios"
+git push origin jafet
+
+y luego lo mismo, obtén y combina los últimos cambios de master en tu rama:
+
+git checkout jafet
+git pull origin master
+git merge master
+git push origin jafet
