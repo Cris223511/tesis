@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="?android:attr/colorBackground">
 
     <!-- Logo Area -->
     <LinearLayout
@@ -43,7 +43,7 @@
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="24dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="@android:color/white">
+        app:cardBackgroundColor="?attr/colorSurface">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="Bienvenido(a), ingrese su datos"
-                android:textColor="#1F2937"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Usuario"
-                android:textColor="#374151"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                app:boxStrokeColor="#E5E7EB"
+                app:boxStrokeColor="?attr/colorControlNormal"
                 app:boxStrokeWidth="1dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +85,7 @@
                     android:hint="Ingrese su usuario"
                     android:inputType="text"
                     android:padding="16dp"
-                    android:textColor="#1F2937"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Clave"
-                android:textColor="#374151"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="#E5E7EB"
+                    app:boxStrokeColor="?attr/colorControlNormal"
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -120,7 +120,7 @@
                         android:inputType="textPassword"
                         android:padding="16dp"
                         android:paddingEnd="48dp"
-                        android:textColor="#1F2937"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +135,7 @@
                     android:focusable="true"
                     android:padding="4dp"
                     android:src="@drawable/ic_eye_closed"
-                    app:tint="#6B7280"
+                    app:tint="?android:attr/textColorSecondary"
                     android:contentDescription="Toggle password visibility" />
 
             </FrameLayout>
@@ -145,9 +145,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="#3B82F6"
+                android:backgroundTint="?attr/colorPrimary"
                 android:text="Ingresar"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp" />
@@ -159,7 +159,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="12dp"
                 android:text="¿Olvidaste tu contraseña?"
-                android:textColor="#6B7280"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
                 android:clickable="true"
                 android:focusable="true"
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¿No tienes una cuenta? "
-                    android:textColor="#6B7280"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -183,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="regístrate."
-                    android:textColor="#3B82F6"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:clickable="true"

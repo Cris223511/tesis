@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <style name="Theme.Serious_game_usil" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="Theme.Serious_game_usil" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Colores primarios para modo claro -->
+        <item name="colorPrimary">#3B82F6</item>
+        <item name="colorPrimaryVariant">#2563EB</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Colores secundarios -->
+        <item name="colorSecondary">#4A90E2</item>
+        <item name="colorSecondaryVariant">#42A5F5</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+
+        <!-- Colores de fondo y superficie -->
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorSurface">@android:color/white</item>
+        <item name="colorOnSurface">@android:color/black</item>
+
+        <!-- Colores de error -->
+        <item name="colorError">#B00020</item>
+        <item name="colorOnError">@android:color/white</item>
+
+        <!-- Configuración de la barra de estado -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

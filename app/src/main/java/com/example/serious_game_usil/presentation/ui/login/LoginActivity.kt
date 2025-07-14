@@ -1,12 +1,15 @@
 package com.example.serious_game_usil.presentation.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
@@ -29,6 +32,24 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var registerText: TextView
 
     private var isPasswordVisible = false
+    private var loginAttempts = 0
+    private val MAX_LOGIN_ATTEMPTS = 3
+
+    // Mock users database
+    private val validUsers = mapOf(
+        "admin@test.com" to UserData("123456", true),
+        "user@test.com" to UserData("password", true),
+        "blocked@test.com" to UserData("123456", false)
+    )
+
+    data class UserData(val password: String, val isActive: Boolean)
+
+    companion object {
+        private const val PREFS_NAME = "LoginPrefs"
+        private const val KEY_LOGIN_ATTEMPTS = "login_attempts"
+        private const val KEY_LAST_ATTEMPT_TIME = "last_attempt_time"
+        private const val BLOCK_DURATION = 30 * 60 * 1000L // 30 minutos
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +57,11 @@ class LoginActivity : AppCompatActivity() {
 
         initViews()
         setupUI()
+        checkIntentExtras()
+        checkLoginAttempts()
     }
 
     private fun initViews() {
-        // Inicializar todas las vistas
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         passwordToggle = findViewById(R.id.passwordToggle)
@@ -49,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        // Configurar listeners
         loginButton.setOnClickListener {
             performLogin()
         }
@@ -67,19 +88,49 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkIntentExtras() {
+        intent.getStringExtra("registered_email")?.let {
+            emailEditText.setText(it)
+        }
+    }
+
+    private fun checkLoginAttempts() {
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        loginAttempts = prefs.getInt(KEY_LOGIN_ATTEMPTS, 0)
+        val lastAttemptTime = prefs.getLong(KEY_LAST_ATTEMPT_TIME, 0)
+
+        if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+            val currentTime = System.currentTimeMillis()
+            val timePassed = currentTime - lastAttemptTime
+
+            if (timePassed < BLOCK_DURATION) {
+                val remainingTime = (BLOCK_DURATION - timePassed) / 1000 / 60
+                showErrorDialog(
+                    "Cuenta bloqueada temporalmente",
+                    "Has excedido el número de intentos. Intenta nuevamente en $remainingTime minutos.",
+                    ErrorType.ACCOUNT_BLOCKED
+                )
+                loginButton.isEnabled = false
+            } else {
+                // Reset attempts after block duration
+                resetLoginAttempts()
+            }
+        }
+    }
+
     private fun performLogin() {
-        val username = emailEditText.text.toString().trim()
+        val email = emailEditText.text.toString().trim()
         val password = passwordEditText.text.toString().trim()
 
-        // Validaciones
+        // Validaciones básicas
         when {
-            username.isEmpty() -> {
-                emailEditText.error = "Ingresa tu usuario"
+            email.isEmpty() -> {
+                emailEditText.error = "Ingresa su usuario"
                 emailEditText.requestFocus()
                 return
             }
             password.isEmpty() -> {
-                passwordEditText.error = "Ingresa tu contraseña"
+                passwordEditText.error = "Ingrese su credenciales"
                 passwordEditText.requestFocus()
                 return
             }
@@ -91,24 +142,126 @@ class LoginActivity : AppCompatActivity() {
 
         // Simular proceso de login
         lifecycleScope.launch {
-            try {
-                // Aquí iría la lógica real de autenticación
-                delay(2000) // Simular llamada a servidor
+            delay(1500) // Simular llamada a servidor
 
-                // Login exitoso
-                navigateToMain()
+            validateCredentials(email, password)
+        }
+    }
 
-            } catch (e: Exception) {
-                // Error en login
-                Toast.makeText(
-                    this@LoginActivity,
-                    "Error al iniciar sesión",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                loginButton.isEnabled = true
-                loginButton.text = "Iniciar sesión"
+    private fun validateCredentials(email: String, password: String) {
+        when {
+            !validUsers.containsKey(email) -> {
+                handleLoginError(ErrorType.USER_NOT_FOUND)
             }
+            validUsers[email]?.isActive == false -> {
+                handleLoginError(ErrorType.ACCOUNT_DISABLED)
+            }
+            validUsers[email]?.password != password -> {
+                handleLoginError(ErrorType.INCORRECT_PASSWORD)
+            }
+            else -> {
+                handleLoginSuccess()
+            }
+        }
+    }
+
+    private fun handleLoginError(errorType: ErrorType) {
+        loginAttempts++
+        saveLoginAttempt()
+
+        loginButton.isEnabled = true
+        loginButton.text = "Iniciar sesión"
+
+        when (errorType) {
+            ErrorType.USER_NOT_FOUND -> {
+                showErrorDialog(
+                    "Usuario no encontrado",
+                    "El usuario ingresado no existe en nuestro sistema.",
+                    errorType
+                )
+            }
+            ErrorType.INCORRECT_PASSWORD -> {
+                val remainingAttempts = MAX_LOGIN_ATTEMPTS - loginAttempts
+                if (remainingAttempts > 0) {
+                    showErrorDialog(
+                        "Contraseña incorrecta",
+                        "Contraseña y/o usuario incorrectos.\nIntentos restantes: $remainingAttempts",
+                        errorType
+                    )
+                } else {
+                    showErrorDialog(
+                        "Cuenta bloqueada temporalmente",
+                        "Has excedido el número de intentos permitidos. Tu cuenta ha sido bloqueada por 30 minutos.",
+                        ErrorType.ACCOUNT_BLOCKED
+                    )
+                    loginButton.isEnabled = false
+                }
+            }
+            ErrorType.ACCOUNT_DISABLED -> {
+                showErrorDialog(
+                    "Cuenta inhabilitada",
+                    "Su cuenta está inhabilitada, comuníquese con el administrador.",
+                    errorType
+                )
+            }
+            ErrorType.ACCOUNT_BLOCKED -> {
+                // Ya manejado arriba
+            }
+        }
+    }
+
+    private fun handleLoginSuccess() {
+        resetLoginAttempts()
+        navigateToMain()
+    }
+
+    private fun showErrorDialog(title: String, message: String, errorType: ErrorType) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_login_error, null)
+
+        val errorTitle = dialogView.findViewById<TextView>(R.id.errorTitle)
+        val errorMessage = dialogView.findViewById<TextView>(R.id.errorMessage)
+        val errorIcon = dialogView.findViewById<ImageView>(R.id.errorIcon)
+        val acceptButton = dialogView.findViewById<MaterialButton>(R.id.acceptButton)
+
+        errorTitle.text = title
+        errorMessage.text = message
+
+        // Cambiar icono según el tipo de error
+        when (errorType) {
+            ErrorType.ACCOUNT_BLOCKED -> errorIcon.setImageResource(R.drawable.ic_lock)
+            ErrorType.ACCOUNT_DISABLED -> errorIcon.setImageResource(R.drawable.ic_block)
+            else -> errorIcon.setImageResource(R.drawable.ic_sad_face)
+        }
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        acceptButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    private fun saveLoginAttempt() {
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putInt(KEY_LOGIN_ATTEMPTS, loginAttempts)
+            putLong(KEY_LAST_ATTEMPT_TIME, System.currentTimeMillis())
+            apply()
+        }
+    }
+
+    private fun resetLoginAttempts() {
+        loginAttempts = 0
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putInt(KEY_LOGIN_ATTEMPTS, 0)
+            putLong(KEY_LAST_ATTEMPT_TIME, 0)
+            apply()
         }
     }
 
@@ -116,16 +269,13 @@ class LoginActivity : AppCompatActivity() {
         isPasswordVisible = !isPasswordVisible
 
         if (isPasswordVisible) {
-            // Mostrar contraseña
             passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             passwordToggle.setImageResource(R.drawable.ic_visibility)
         } else {
-            // Ocultar contraseña
             passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             passwordToggle.setImageResource(R.drawable.ic_eye_closed)
         }
 
-        // Mantener el cursor al final del texto
         passwordEditText.setSelection(passwordEditText.text?.length ?: 0)
     }
 
@@ -134,8 +284,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleRegister() {
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     private fun navigateToMain() {
@@ -145,5 +294,12 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()
+    }
+
+    enum class ErrorType {
+        USER_NOT_FOUND,
+        INCORRECT_PASSWORD,
+        ACCOUNT_DISABLED,
+        ACCOUNT_BLOCKED
     }
 }
