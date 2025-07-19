@@ -1,0 +1,18 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Esta es una API de ejemplo para la gestión de la rutas.",
+        "title": "Mi API",
+        "termsOfService": "http://mi-sitio.com/terminos",
+        "contact": {
+            "email": "jafetcanepa@outlook.es"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api",
+    "paths": {}
+}

@@ -1,0 +1,13 @@
+basePath: /api
+info:
+  contact:
+    email: jafetcanepa@outlook.es
+  description: Esta es una API de ejemplo para la gestión de la rutas.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://mi-sitio.com/terminos
+  title: Mi API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
