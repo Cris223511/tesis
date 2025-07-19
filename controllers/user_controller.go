@@ -81,7 +81,7 @@ func (ctrl *UserController) Login(c *gin.Context) {
 		return
 	}
 
-	otp := generateOTP(8)
+	otp := generateOTP(6)
 	otpCache.Lock()
 	otpCache.data[user.ID] = &otpSession{
 		UserID:         user.ID,
