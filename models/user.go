@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/duo-labs/webauthn/webauthn"
+	"gorm.io/gorm"
 )
 
 
@@ -17,40 +18,45 @@ const (
 	TipoDocumentoNinguno = "NINGUNO"
 )
 
-type User struct {
-	ID                uint      `gorm:"primaryKey"`
-	Nombre_Apellidos  string    `gorm:"type:varchar(100);not null" json:"nombre_apellidos"`
-	FechaNacimiento   time.Time `gorm:"type:date;not null" json:"fecha_nacimiento"`
-	Tipo_Documento    string    `gorm:"type:varchar(50);not null" json:"tipo_documento"`
-	Numero_Documento  string    `gorm:"type:varchar(50);unique;not null" json:"numero_documento"`
-	Sexo              string    `gorm:"type:varchar(20);not null" json:"sexo"`
-	Celular           string    `gorm:"type:varchar(20);not null" json:"celular"`
-	Correo            string    `gorm:"type:varchar(100);unique;not null" json:"correo"`
-	Activo            bool      `gorm:"default:false" json:"activo"`
-	Foto              string    `gorm:"type:mediumtext" json:"foto"`
-	NombreUsuario     string    `gorm:"type:varchar(50);unique;not null" json:"nombre_usuario"`
-	Contrasena        string    `gorm:"type:varchar(255);not null" json:"password"`
-	RoleIDs           []uint    `gorm:"-" json:"role_ids"`
-	Roles             []Role    `gorm:"many2many:user_roles;" json:"roles"`
-	Intentos          int       `gorm:"default:0" json:"intentos"`
-	CreatedAt         time.Time `json:"created_at,omitempty"`
-	UpdatedAt         time.Time `json:"updated_at,omitempty"`
-	PasswordExpiresAt time.Time `json:"password_expires_at"`
-	ActivationToken   string    `gorm:"type:varchar(255);index"`
-	ActivationExpiry  time.Time `gorm:"index"`
-	LastLoginAt       *time.Time `json:"last_login_at,omitempty"`
-	LastLoginIP       string    `gorm:"type:varchar(45)" json:"-"`
-	LastUserAgent     string    `gorm:"type:varchar(255)" json:"-"`
-	PasswordChangedAt *time.Time `json:"-"`
-	BiometricCreds    []BiometricCredential `gorm:"foreignKey:UserID"`
+type Usuarios struct {
+		ID                uint                  `gorm:"primaryKey;autoIncrement;column:idusuario" json:"id"`
+	Nombre_Apellidos   string                `gorm:"size:100;not null;index" json:"nombre_apellidos"`
+	FechaNacimiento   time.Time             `gorm:"type:date;not null" json:"fecha_nacimiento"`
+	Tipo_Documento     string                `gorm:"size:50;not null;index" json:"tipo_documento"`
+	Numero_Documento   string                `gorm:"size:50;uniqueIndex;not null" json:"numero_documento"`
+	Sexo              string                `gorm:"size:20;not null" json:"sexo"`
+	Celular           string                `gorm:"size:20;not null;index" json:"celular"`
+	Correo            string                `gorm:"size:100;uniqueIndex;not null" json:"correo"`
+	Activo            bool                  `gorm:"default:false;index" json:"activo"`
+	Foto              string                `gorm:"type:mediumtext" json:"foto"`
+	NombreUsuario     string                `gorm:"size:50;uniqueIndex;not null" json:"nombre_usuario"`
+	Contrasena        string                `gorm:"size:255;not null" json:"-"`
+	Intentos          int                   `gorm:"default:0" json:"intentos"`
+	CreatedAt         time.Time             `gorm:"index" json:"created_at,omitempty"`
+	UpdatedAt         time.Time             `json:"updated_at,omitempty"`
+	PasswordExpiresAt time.Time             `gorm:"index" json:"password_expires_at"`
+	ActivationToken   string                `gorm:"size:255;index"`
+	ActivationExpiry  time.Time             `gorm:"index"`
+	LastLoginAt       *time.Time            `gorm:"index" json:"last_login_at,omitempty"`
+	LastLoginIP       string                `gorm:"size:45" json:"-"`
+	LastUserAgent     string                `gorm:"size:255" json:"-"`
+	PasswordChangedAt *time.Time            `json:"-"`
+	Roles             []Role                `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
+	BiometricCreds    []BiometricCredential `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"-"`
+	RoleIDs           []uint                `gorm:"-" json:"role_ids,omitempty"`
 }
 
-func (u *User) WebAuthnID() []byte          { return []byte(u.NombreUsuario) }
-func (u *User) WebAuthnName() string        { return u.Nombre_Apellidos }
-func (u *User) WebAuthnDisplayName() string { return u.Nombre_Apellidos }
-func (u *User) WebAuthnIcon() string        { return "" }
 
-func (u *User) WebAuthnCredentials() []webauthn.Credential {
+
+
+func (UserRole) TableName() string                 { return "user_roles" }
+func (u *Usuarios) TableName() string              { return "usuarios" }
+func (u *Usuarios) WebAuthnID() []byte             { return []byte(u.NombreUsuario) }
+func (u *Usuarios) WebAuthnName() string           { return u.Nombre_Apellidos }
+func (u *Usuarios) WebAuthnDisplayName() string    { return u.Nombre_Apellidos }
+func (u *Usuarios) WebAuthnIcon() string           { return "" }
+
+func (u *Usuarios) WebAuthnCredentials() []webauthn.Credential {
 	cs := make([]webauthn.Credential, len(u.BiometricCreds))
 	for i, c := range u.BiometricCreds {
 		cs[i] = webauthn.Credential{
@@ -64,7 +70,7 @@ func (u *User) WebAuthnCredentials() []webauthn.Credential {
 	return cs
 }
 
-func (u *User) ValidateTipoDocumento() error {
+func (u *Usuarios) ValidateTipoDocumento() error {
 	switch u.Tipo_Documento {
 	case TipoDocumentoDNI, TipoDocumentoCE, TipoDocumentoNinguno:
 		return nil
@@ -73,6 +79,6 @@ func (u *User) ValidateTipoDocumento() error {
 	}
 }
 
-func (u *User) BeforeSave() error {
+func (u *Usuarios) BeforeSave(tx *gorm.DB) error {
 	return u.ValidateTipoDocumento()
 }

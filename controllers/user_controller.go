@@ -251,7 +251,7 @@ func (ctrl *UserController) ResendOTP(c *gin.Context) {
 }
 
 func (ctrl *UserController) Register(c *gin.Context) {
-	var user models.User
+	var user models.Usuarios
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
 		return

@@ -27,13 +27,13 @@ import (
 
 
 type UserService interface {
-	CreateUser(user *models.User) (tempPassword string, err error)
-	GetUserByID(id uint) (*models.User, error)
+	CreateUser(user *models.Usuarios) (tempPassword string, err error)
+	GetUserByID(id uint) (*models.Usuarios, error)
 	UpdateUser(id uint, updates map[string]interface{}) error
 	DeleteUser(id uint) error
-	LoginUser(username, password, clientIP, userAgent string) (*models.User, error)
-	ListUsers() ([]models.User, error)
-	SearchUserByField(field, value string) ([]models.User, error)
+	LoginUser(username, password, clientIP, userAgent string) (*models.Usuarios, error)
+	ListUsers() ([]models.Usuarios, error)
+	SearchUserByField(field, value string) ([]models.Usuarios, error)
 	CheckUserExists(field, value string) (bool, error)
 	UpdateUserPassword(userID uint, newPassword string) error
 	SetAccountStatus(id uint, status bool) error
@@ -94,7 +94,7 @@ func NewSecurityMonitor() *SecurityMonitor {
 	}
 }
 
-func (s *userService) LoginUser(username, password, clientIP, userAgent string) (*models.User, error) {
+func (s *userService) LoginUser(username, password, clientIP, userAgent string) (*models.Usuarios, error) {
 	normalizedIP := normalizeIP(clientIP)
 	
 	if err := s.checkIPRateLimit(normalizedIP); err != nil {
@@ -113,7 +113,7 @@ func (s *userService) LoginUser(username, password, clientIP, userAgent string) 
 		return nil, errors.New("solicitud inválida")
 	}
 
-	var user models.User
+	var user models.Usuarios
 	err := s.db.Preload("Roles").Preload("BiometricCreds").
 		Where("(nombre_usuario = ? OR correo = ? OR numero_documento = ?) AND activo = ?",
 			username, username, username, true).
@@ -177,7 +177,7 @@ func (s *userService) checkIPRateLimit(ip string) error {
 	return nil
 }
 
-func (s *userService) checkAccountLockStatus(user *models.User) error {
+func (s *userService) checkAccountLockStatus(user *models.Usuarios) error {
 	if !user.Activo {
 		return errors.New("cuenta desactivada")
 	}
@@ -194,7 +194,7 @@ func (s *userService) checkAccountLockStatus(user *models.User) error {
 	return nil
 }
 
-func (s *userService) handleFailedLogin(user *models.User, ip string) {
+func (s *userService) handleFailedLogin(user *models.Usuarios, ip string) {
 	key := fmt.Sprintf("user_%d", user.ID)
 	val, _ := s.loginAttempts.LoadOrStore(key, &loginAttempt{})
 	attempt := val.(*loginAttempt)
@@ -225,7 +225,7 @@ func (s *userService) handleFailedLogin(user *models.User, ip string) {
 	s.loginAttempts.Store(key, attempt)
 }
 
-func (s *userService) recordSuccessfulLogin(user *models.User, ip, userAgent string) {
+func (s *userService) recordSuccessfulLogin(user *models.Usuarios, ip, userAgent string) {
 	key := fmt.Sprintf("user_%d", user.ID)
 	s.loginAttempts.Delete(key)
 
@@ -243,7 +243,7 @@ func (s *userService) recordSuccessfulLogin(user *models.User, ip, userAgent str
 	s.logSecurityEvent("LOGIN_SUCCESS", user.NombreUsuario, ip, "Login exitoso")
 }
 
-func (s *userService) detectAnomalousLogin(user *models.User, ip, userAgent string) error {
+func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent string) error {
 	var knownDevices []models.UserDeviceIP
 	s.db.Where("user_id = ? AND is_trusted = ?", user.ID, true).Find(&knownDevices)
 
@@ -270,7 +270,7 @@ func (s *userService) detectAnomalousLogin(user *models.User, ip, userAgent stri
 	return nil
 }
 
-func (s *userService) CreateUser(user *models.User) (string, error) {
+func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
 	if err := s.validateUserData(user); err != nil {
 		return "", err
 	}
@@ -311,7 +311,7 @@ func (s *userService) CreateUser(user *models.User) (string, error) {
 	return tempPassword, nil
 }
 
-func (s *userService) validateUserData(user *models.User) error {
+func (s *userService) validateUserData(user *models.Usuarios) error {
 	if err := user.ValidateTipoDocumento(); err != nil {
 		return err
 	}
@@ -341,7 +341,7 @@ func (s *userService) validateUserData(user *models.User) error {
 	return nil
 }
 
-func(s *userService) validateRoles(tx *gorm.DB, user *models.User) error {
+func(s *userService) validateRoles(tx *gorm.DB, user *models.Usuarios) error {
 	if len(user.RoleIDs) == 0 {
 		return errors.New("debe asignar al menos un rol")
 	}
@@ -380,22 +380,22 @@ func (s *userService) validateNameQuality(fullName string) error {
 	return nil
 }
 
-func (s *userService) checkDuplicateUser(tx *gorm.DB, user *models.User) error {
+func (s *userService) checkDuplicateUser(tx *gorm.DB, user *models.Usuarios) error {
 	var count int64
 	
-	tx.Model(&models.User{}).Where("numero_documento = ? AND tipo_documento = ?", 
+	tx.Model(&models.Usuarios{}).Where("numero_documento = ? AND tipo_documento = ?", 
 		user.Numero_Documento, user.Tipo_Documento).Count(&count)
 	if count > 0 {
 		return errors.New("ya existe un usuario con este documento")
 	}
 
-	tx.Model(&models.User{}).Where("correo = ?", user.Correo).Count(&count)
+	tx.Model(&models.Usuarios{}).Where("correo = ?", user.Correo).Count(&count)
 	if count > 0 {
 		return errors.New("el correo ya está registrado")
 	}
 
 	fullName := strings.ToLower(strings.TrimSpace(user.Nombre_Apellidos))
-	tx.Model(&models.User{}).Where("LOWER(TRIM(nombre_apellidos)) = ?", fullName).Count(&count)
+	tx.Model(&models.Usuarios{}).Where("LOWER(TRIM(nombre_apellidos)) = ?", fullName).Count(&count)
 	if count > 0 {
 		s.logSecurityEvent("DUPLICATE_NAME_ATTEMPT", user.NombreUsuario, "", 
 			"Intento de registro con nombre duplicado")
@@ -413,7 +413,7 @@ func (s *userService) UpdateUserPassword(userID uint, newPassword string) error 
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
-	var user models.User
+	var user models.Usuarios
 	if err := tx.First(&user, userID).Error; err != nil {
 		return errors.New("usuario no encontrado")
 	}
@@ -491,14 +491,14 @@ func (s *userService) validatePasswordStrength(password string) error {
 	return nil
 }
 
-func (s *userService) ListUsers() ([]models.User, error) {
-	var users []models.User
+func (s *userService) ListUsers() ([]models.Usuarios, error) {
+	var users []models.Usuarios
 	err := s.db.Preload("Roles").Find(&users).Error
 	return users, err
 }
 
-func (s *userService) GetUserByID(id uint) (*models.User, error) {
-	var user models.User
+func (s *userService) GetUserByID(id uint) (*models.Usuarios, error) {
+	var user models.Usuarios
 	err := s.db.Preload("Roles").First(&user, id).Error
 	if err != nil {
 		return nil, errors.New("usuario no encontrado")
@@ -507,7 +507,7 @@ func (s *userService) GetUserByID(id uint) (*models.User, error) {
 }
 
 func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error {
-	var user models.User
+	var user models.Usuarios
 	if err := s.db.First(&user, id).Error; err != nil {
 		return errors.New("usuario no encontrado")
 	}
@@ -550,7 +550,7 @@ func (s *userService) DeleteUser(id uint) error {
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
-	var user models.User
+	var user models.Usuarios
 	if err := tx.First(&user, id).Error; err != nil {
 		return errors.New("usuario no encontrado")
 	}
@@ -574,7 +574,7 @@ func (s *userService) DeleteUser(id uint) error {
 }
 
 func (s *userService) SetAccountStatus(id uint, status bool) error {
-	var user models.User
+	var user models.Usuarios
 	if err := s.db.First(&user, id).Error; err != nil {
 		return errors.New("usuario no encontrado")
 	}
@@ -599,7 +599,7 @@ func (s *userService) SetAccountStatus(id uint, status bool) error {
 }
 
 func (s *userService) UnlockAccount(userID uint, adminID uint) error {
-	var user models.User
+	var user models.Usuarios
 	if err := s.db.First(&user, userID).Error; err != nil {
 		return errors.New("usuario no encontrado")
 	}
@@ -631,12 +631,12 @@ func (s *userService) GetLoginAttempts(userID uint) (int, time.Time, error) {
 	return 0, time.Time{}, nil
 }
 
-func (s *userService) SearchUserByField(field, value string) ([]models.User, error) {
+func (s *userService) SearchUserByField(field, value string) ([]models.Usuarios, error) {
 	if s.detectSQLInjection(value) {
 		return nil, errors.New("búsqueda inválida")
 	}
 
-	var users []models.User
+	var users []models.Usuarios
 	searchPattern := "%" + strings.ToLower(value) + "%"
 	
 	err := s.db.Preload("Roles").
@@ -649,7 +649,7 @@ func (s *userService) SearchUserByField(field, value string) ([]models.User, err
 
 func (s *userService) CheckUserExists(field, value string) (bool, error) {
 	var count int64
-	err := s.db.Model(&models.User{}).Where(field+" = ?", value).Count(&count).Error
+	err := s.db.Model(&models.Usuarios{}).Where(field+" = ?", value).Count(&count).Error
 	return count > 0, err
 }
 
@@ -693,7 +693,7 @@ func (s *userService) generateUniqueUsername(fullName string) string {
 
 	for {
 		var count int64
-		s.db.Model(&models.User{}).Where("nombre_usuario = ?", username).Count(&count)
+		s.db.Model(&models.Usuarios{}).Where("nombre_usuario = ?", username).Count(&count)
 		if count == 0 {
 			break
 		}
@@ -837,7 +837,7 @@ func (s *userService) sendActivationEmail(email, tempPassword, username, token s
 }
 
 func (s *userService) sendAccountLockNotification(email, name, ip string) {
-	subject := "Cuenta Bloqueada - Serious Game"
+	subject := "Cuenta Bloqueada - UNTUMBES"
 	body := fmt.Sprintf(`
 	<html>
 	<body>
@@ -853,7 +853,7 @@ func (s *userService) sendAccountLockNotification(email, name, ip string) {
 }
 
 func (s *userService) sendPasswordUpdateNotification(email, name, ip string) {
-	subject := "Actualización de Contraseña - Serious Game"
+	subject := "Actualización de Contraseña - SERIOUS GAME"
 	body := fmt.Sprintf(`
 	<html>
 	<head><meta charset="UTF-8"/></head>
@@ -873,7 +873,7 @@ func (s *userService) sendPasswordUpdateNotification(email, name, ip string) {
 				<p style="color: #d32f2f; font-weight: bold;">Si no realizaste este cambio, contacta inmediatamente con soporte.</p>
 			</div>
 			<div style="background-color: #f5f5f5; padding: 15px; text-align: center; font-size: 12px; color: #666;">
-				© %d Soporte Serious Game- Todos los derechos reservados
+				© %d Soporte Serious Game - Todos los derechos reservados
 			</div>
 		</div>
 	</body>
@@ -986,7 +986,7 @@ func (s *userService) sendAccountDeactivatedEmail(email, name string) {
 }
 
 func (s *userService) sendAccountDeletionNotification(email, name string) {
-	subject := "Cuenta Eliminada - Serious Game"
+	subject := "Cuenta Eliminada - Serius Game"
 	body := fmt.Sprintf(`
 	<html>
 	<head><meta charset="UTF-8"/></head>
@@ -1014,8 +1014,8 @@ func (s *userService) sendAccountDeletionNotification(email, name string) {
 	sendEmail(email, subject, body)
 }
 
-func (s *userService) sendSecurityAlert(user *models.User, ip, reason string) {
-	subject := "Alerta de Seguridad - Serious Game"
+func (s *userService) sendSecurityAlert(user *models.Usuarios, ip, reason string) {
+	subject := "Alerta de Seguridad - UNTUMBES"
 	body := fmt.Sprintf(`
 	<html>
 	<body>

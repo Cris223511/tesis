@@ -36,7 +36,7 @@ func NewBioService(db *gorm.DB, userService UserService, origin, rpID, rpName st
 		UserRepo: userService,
 	}, nil
 }
-func (s *BioService) GetUserForWebAuthn(id uint) (*models.User, error) {
+func (s *BioService) GetUserForWebAuthn(id uint) (*models.Usuarios, error) {
 	user, err := s.UserRepo.GetUserByID(id)
 	if err != nil {
 		return nil, err
@@ -100,7 +100,7 @@ func (s *BioService) UpdateLastUsed(credentialID []byte) error {
 }
 
 
-func (s *BioService) SaveCredential(u *models.User, cred *webauthn.Credential, deviceName, deviceType, transports string) error {
+func (s *BioService) SaveCredential(u *models.Usuarios, cred *webauthn.Credential, deviceName, deviceType, transports string) error {
 	// Si no se proporciona un nombre, generar uno automático
 	if deviceName == "" {
 		var count int64

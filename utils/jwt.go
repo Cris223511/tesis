@@ -34,7 +34,7 @@ type Claims struct {
 
 // GenerateToken genera el token principal (20 min) y el refresh token (7 días)
 // Se asigna el userID en el campo Id y los roles en el Subject del refresh token.
-func GenerateToken(user *models.User) (string, string, error) {
+func GenerateToken(user *models.Usuarios) (string, string, error) {
 	// Convertir roles a una cadena separada por comas
 	var roleNames []string
 	for _, role := range user.Roles {

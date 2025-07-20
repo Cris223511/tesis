@@ -6,7 +6,7 @@ import (
 
 type BiometricCredential struct {
     ID              uint      `gorm:"primaryKey"`
-    UserID          uint      `gorm:"index;not null"`
+	UserID       uint   `gorm:"column:usuarios_id_usuario;not null;index"`
     CredentialID    []byte    `gorm:"type:varbinary(255);uniqueIndex;not null"`
     PublicKey       []byte    `gorm:"type:longblob;not null"`
     SignCount       uint32    `gorm:"not null"`
@@ -16,3 +16,4 @@ type BiometricCredential struct {
     LastUsed        time.Time
     CreatedAt       time.Time
 }
+

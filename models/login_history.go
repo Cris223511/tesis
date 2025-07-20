@@ -5,7 +5,7 @@ import "time"
 
 type LoginHistory struct {
 	ID         uint      `gorm:"primaryKey"`
-	UserID     uint      `gorm:"not null;index"`
+		UserID       uint   `gorm:"column:usuarios_id_usuario;not null;index"`
 	IPAddress  string    `gorm:"type:varchar(45);not null"`
 	UserAgent  string    `gorm:"type:varchar(255)"`
 	LoginType  string    `gorm:"type:varchar(20)"` 
@@ -14,5 +14,5 @@ type LoginHistory struct {
 	Location   string    `gorm:"type:varchar(100)"`
 	DeviceInfo string    `gorm:"type:text"`
 	CreatedAt  time.Time `gorm:"index"`
-	User       User      `gorm:"foreignKey:UserID"`
+	Usuarios       Usuarios      `gorm:"foreignKey:UserID"`
 }

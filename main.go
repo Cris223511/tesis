@@ -159,7 +159,7 @@ func initializeApp() (*gin.Engine, error) {
 
 func migrateDatabase() error {
 	return config.DB.AutoMigrate(
-		&models.User{},
+		&models.Usuarios{},
 		&models.Role{},
 		&models.UserUnblockCooldown{},
 		&models.BiometricCredential{},
@@ -167,6 +167,7 @@ func migrateDatabase() error {
 		&models.LoginHistory{},
 		&models.SecurityLog{},
 		&models.PasswordHistory{},
+		&models.UserRole{},
 	)
 }
 
@@ -272,7 +273,7 @@ func main() {
 }
 
 func generateDemoTokens() {
-	demoUser := &models.User{
+	demoUser := &models.Usuarios{
 		ID:               1,
 		Nombre_Apellidos: "Demo",
 		NombreUsuario:    "demo_user",
