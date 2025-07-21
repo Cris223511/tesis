@@ -9,27 +9,33 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Patterns
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
+import com.example.serious_game_usil.data.RegisterRequest
+import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.databinding.ActivityRegisterBinding
+import com.example.serious_game_usil.`interface`.ApiService
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
+import kotlinx.coroutines.launch
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
+
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private var selectedDate: Calendar? = null
+    private val apiService by lazy { RetrofitClient.getApiService() }
 
     companion object {
-        private const val MIN_PASSWORD_LENGTH = 8
-        private const val MIN_AGE = 13
-        private const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$"
+        private const val MIN_AGE = 1
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,55 +44,49 @@ class RegisterActivity : AppCompatActivity() {
 
         setupUI()
         setupValidations()
+        setupDropdowns()
     }
 
-
     private fun setupUI() {
-        // Configurar listeners
         binding.backButton.setOnClickListener { finish() }
-
         binding.birthDateEditText.setOnClickListener { showDatePicker() }
-
         binding.termsCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) showTermsDialog()
+            binding.registerButton.isEnabled = isChecked
         }
-
         binding.registerButton.setOnClickListener { performRegistration() }
     }
 
+    private fun setupDropdowns() {
+        val documentTypes = arrayOf("DNI", "CE", "NINGUNO")
+        val documentAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, documentTypes)
+        binding.documentTypeDropdown.setAdapter(documentAdapter)
+
+        val genderTypes = arrayOf("M", "F")
+        val genderAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, genderTypes)
+        binding.genderDropdown.setAdapter(genderAdapter)
+    }
+
     private fun setupValidations() {
-        // Validación en tiempo real para nombres
         binding.namesEditText.doAfterTextChanged { text ->
             validateName(text.toString())
         }
 
-        // Validación en tiempo real para usuario
-        binding.usernameEditText.doAfterTextChanged { text ->
-            validateUsername(text.toString())
+        binding.documentNumberEditText.doAfterTextChanged { text ->
+            val documentType = binding.documentTypeDropdown.text.toString()
+            validateDocument(documentType, text.toString())
         }
 
-        // Validación en tiempo real para teléfono
+        binding.documentTypeDropdown.doAfterTextChanged {
+            val documentNumber = binding.documentNumberEditText.text.toString()
+            validateDocument(it.toString(), documentNumber)
+        }
+
         binding.phoneEditText.doAfterTextChanged { text ->
             validatePhone(text.toString())
         }
 
-        // Validación en tiempo real para email
         binding.emailEditText.doAfterTextChanged { text ->
             validateEmail(text.toString())
-        }
-
-        // Validación en tiempo real para contraseña
-        binding.passwordEditText.doAfterTextChanged { text ->
-            validatePassword(text.toString())
-            // También validar confirmación si ya hay texto
-            if (binding.confirmPasswordEditText.text?.isNotEmpty() == true) {
-                validatePasswordMatch()
-            }
-        }
-
-        // Validación en tiempo real para confirmar contraseña
-        binding.confirmPasswordEditText.doAfterTextChanged {
-            validatePasswordMatch()
         }
     }
 
@@ -96,8 +96,8 @@ class RegisterActivity : AppCompatActivity() {
                 binding.namesInputLayout.error = "Este campo es requerido"
                 false
             }
-            name.length < 3 -> {
-                binding.namesInputLayout.error = "Ingresa al menos 3 caracteres"
+            name.split(" ").size < 2 -> {
+                binding.namesInputLayout.error = "Ingresa nombres y apellidos completos"
                 false
             }
             !name.matches(Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) -> {
@@ -111,22 +111,27 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateUsername(username: String): Boolean {
+    private fun validateDocument(type: String, number: String): Boolean {
         return when {
-            username.isEmpty() -> {
-                binding.usernameInputLayout.error = "Este campo es requerido"
+            type.isEmpty() -> {
+                binding.documentTypeInputLayout.error = "Selecciona un tipo"
                 false
             }
-            username.length < 4 -> {
-                binding.usernameInputLayout.error = "Mínimo 4 caracteres"
+            type == "DNI" && number.length != 8 -> {
+                binding.documentNumberInputLayout.error = "DNI debe tener 8 dígitos"
                 false
             }
-            !username.matches(Regex("^[a-zA-Z0-9._]+$")) -> {
-                binding.usernameInputLayout.error = "Solo letras, números, . y _"
+            type == "CE" && number.length < 9 -> {
+                binding.documentNumberInputLayout.error = "CE debe tener al menos 9 caracteres"
+                false
+            }
+            type != "NINGUNO" && number.isEmpty() -> {
+                binding.documentNumberInputLayout.error = "Este campo es requerido"
                 false
             }
             else -> {
-                binding.usernameInputLayout.error = null
+                binding.documentTypeInputLayout.error = null
+                binding.documentNumberInputLayout.error = null
                 true
             }
         }
@@ -138,12 +143,12 @@ class RegisterActivity : AppCompatActivity() {
                 binding.phoneInputLayout.error = "Este campo es requerido"
                 false
             }
-            phone.length < 9 -> {
-                binding.phoneInputLayout.error = "Número inválido"
+            phone.length != 9 -> {
+                binding.phoneInputLayout.error = "Debe tener 9 dígitos"
                 false
             }
-            !phone.matches(Regex("^[0-9]+$")) -> {
-                binding.phoneInputLayout.error = "Solo números"
+            !phone.startsWith("9") -> {
+                binding.phoneInputLayout.error = "Debe empezar con 9"
                 false
             }
             else -> {
@@ -160,13 +165,23 @@ class RegisterActivity : AppCompatActivity() {
                 false
             }
             !isOldEnough() -> {
-                binding.birthDateInputLayout.error = "Debes tener al menos $MIN_AGE años"
+                binding.birthDateInputLayout.error = "Debes tener al menos $MIN_AGE año"
                 false
             }
             else -> {
                 binding.birthDateInputLayout.error = null
                 true
             }
+        }
+    }
+
+    private fun validateGender(): Boolean {
+        return if (binding.genderDropdown.text.toString().isEmpty()) {
+            binding.genderInputLayout.error = "Selecciona tu sexo"
+            false
+        } else {
+            binding.genderInputLayout.error = null
+            true
         }
     }
 
@@ -187,236 +202,133 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validatePassword(password: String): Boolean {
-        return when {
-            password.isEmpty() -> {
-                binding.passwordInputLayout.error = "Este campo es requerido"
-                false
-            }
-            password.length < MIN_PASSWORD_LENGTH -> {
-                binding.passwordInputLayout.error = "Mínimo 8 caracteres"
-                false
-            }
-            !password.matches(Regex(PASSWORD_PATTERN)) -> {
-                binding.passwordInputLayout.error = "Debe contener mayúsculas, minúsculas, números y caracteres especiales"
-                false
-            }
-            else -> {
-                binding.passwordInputLayout.error = null
-                true
-            }
-        }
-    }
-
-    private fun validatePasswordMatch(): Boolean {
-        val password = binding.passwordEditText.text.toString()
-        val confirmPassword = binding.confirmPasswordEditText.text.toString()
-
-        return when {
-            confirmPassword.isEmpty() -> {
-                binding.confirmPasswordInputLayout.error = "Este campo es requerido"
-                false
-            }
-            password != confirmPassword -> {
-                binding.confirmPasswordInputLayout.error = "Las contraseñas no coinciden"
-                false
-            }
-            else -> {
-                binding.confirmPasswordInputLayout.error = null
-                true
-            }
-        }
-    }
-
-    private fun validateTerms(): Boolean {
-        return if (!binding.termsCheckBox.isChecked) {
-            Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show()
-            false
-        } else {
-            true
-        }
-    }
-
     private fun isOldEnough(): Boolean {
         selectedDate?.let { birthDate ->
             val today = Calendar.getInstance()
             var age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR)
-
             if (today.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
                 age--
             }
-
             return age >= MIN_AGE
         }
         return false
     }
 
-
     private fun showDatePicker() {
         val calendar = selectedDate ?: Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        // Configurar locale español
-        val locale = Locale("es", "ES")
-        Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        createConfigurationContext(config)
-
         val datePickerDialog = DatePickerDialog(
             this,
-            { _, selectedYear, selectedMonth, selectedDay ->
+            { _, year, month, day ->
                 selectedDate = Calendar.getInstance().apply {
-                    set(selectedYear, selectedMonth, selectedDay)
+                    set(year, month, day)
                 }
                 updateBirthDateField()
                 validateBirthDate()
             },
-            year,
-            month,
-            day
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
         )
-
-        // Establecer fecha máxima (hoy)
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
-
-        // Establecer fecha mínima (100 años atrás)
-        val minDate = Calendar.getInstance().apply {
-            add(Calendar.YEAR, -100)
-        }
-        datePickerDialog.datePicker.minDate = minDate.timeInMillis
-
         datePickerDialog.show()
     }
 
     private fun updateBirthDateField() {
         selectedDate?.let {
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale("es", "ES"))
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             binding.birthDateEditText.setText(dateFormat.format(it.time))
         }
     }
 
-    private fun showTermsDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Términos y Condiciones")
-            .setMessage("""
-                1. Uso del Servicio
-                Al registrarte, aceptas usar Serious Game de manera responsable y de acuerdo con todas las leyes aplicables.
-                
-                2. Privacidad
-                Respetamos tu privacidad. Tus datos personales serán tratados conforme a nuestra Política de Privacidad.
-                
-                3. Contenido del Usuario
-                Eres responsable del contenido que compartas en la plataforma.
-                
-                4. Seguridad
-                Debes mantener tu contraseña segura y no compartirla con terceros.
-                
-                5. Edad Mínima
-                Debes tener al menos 5 años para usar este servicio.
-                
-                6. Modificaciones
-                Nos reservamos el derecho de modificar estos términos en cualquier momento.
-                
-                7. Terminación
-                Podemos suspender o terminar tu cuenta si violas estos términos.
-                
-                Al hacer clic en "Aceptar", confirmas que has leído y aceptas estos términos y condiciones.
-            """.trimIndent())
-            .setPositiveButton("Aceptar") { dialog, _ ->
-                binding.termsCheckBox.isChecked = true
-                dialog.dismiss()
+    private fun performRegistration() {
+        val isValid = validateAllFields()
+
+        if (isValid && binding.termsCheckBox.isChecked) {
+            binding.registerButton.isEnabled = false
+            binding.registerButton.text = "Registrando..."
+
+            val registerRequest = RegisterRequest(
+                nombreApellidos = binding.namesEditText.text.toString(),
+                fechaNacimiento = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    .format(selectedDate?.time ?: Date()),
+                tipoDocumento = binding.documentTypeDropdown.text.toString(),
+                numeroDocumento = binding.documentNumberEditText.text.toString(),
+                sexo = binding.genderDropdown.text.toString(),
+                celular = binding.phoneEditText.text.toString(),
+                correo = binding.emailEditText.text.toString(),
+                roleIds = listOf(2)
+            )
+
+            lifecycleScope.launch {
+                try {
+                    val response = apiService.register(registerRequest)
+                    if (response.isSuccessful) {
+                        response.body()?.let { registerResponse: RegisterResponse ->
+                            showSuccessDialog(registerResponse.user.passwordTemporal)
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        showErrorDialog(parseError(errorBody))
+                        resetButton()
+                    }
+                } catch (e: Exception) {
+                    showErrorDialog("Error de conexión: ${e.message}")
+                    resetButton()
+                }
             }
-            .setNegativeButton("Cancelar") { dialog, _ ->
-                binding.termsCheckBox.isChecked = false
-                dialog.dismiss()
+        } else if (!binding.termsCheckBox.isChecked) {
+            Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun parseError(errorBody: String?): String {
+        return try {
+            val regex = "\"error\":\"(.+?)\"".toRegex()
+            regex.find(errorBody ?: "")?.groupValues?.get(1) ?: "Error al registrar"
+        } catch (e: Exception) {
+            "Error al registrar"
+        }
+    }
+
+    private fun validateAllFields(): Boolean {
+        val isNameValid = validateName(binding.namesEditText.text.toString())
+        val documentType = binding.documentTypeDropdown.text.toString()
+        val documentNumber = binding.documentNumberEditText.text.toString()
+        val isDocumentValid = validateDocument(documentType, documentNumber)
+        val isBirthDateValid = validateBirthDate()
+        val isGenderValid = validateGender()
+        val isPhoneValid = validatePhone(binding.phoneEditText.text.toString())
+        val isEmailValid = validateEmail(binding.emailEditText.text.toString())
+
+        return isNameValid && isDocumentValid && isBirthDateValid &&
+                isGenderValid && isPhoneValid && isEmailValid
+    }
+
+    private fun resetButton() {
+        binding.registerButton.isEnabled = true
+        binding.registerButton.text = "Registrarse"
+    }
+
+    private fun showSuccessDialog(tempPassword: String) {
+        AlertDialog.Builder(this)
+            .setTitle("¡Registro exitoso!")
+            .setMessage("Se ha enviado una contraseña temporal a tu correo: $tempPassword\n\nRevisa tu bandeja de entrada.")
+            .setPositiveButton("Ir a Login") { _, _ ->
+                val intent = Intent(this, LoginActivity::class.java).apply {
+                    putExtra("registered_email", binding.emailEditText.text.toString())
+                }
+                startActivity(intent)
+                finish()
             }
             .setCancelable(false)
             .show()
     }
 
-
-    private fun showSuccessDialog() {
-        AlertDialog.Builder(this)
-            .setView(layoutInflater.inflate(R.layout.dialog_succes, null))
-            .setCancelable(false)
-            .create()
-            .apply {
-                show()
-                window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-                // Auto cerrar después de 2 segundos y navegar
-                Handler(Looper.getMainLooper()).postDelayed({
-                    dismiss()
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        putExtra("registered_email", binding.emailEditText.text.toString())
-                    }
-                    startActivity(intent)
-                    finish()
-                }, 2000)
-            }
-    }
-
     private fun showErrorDialog(message: String) {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_error, null)
-        dialogView.findViewById<TextView>(R.id.errorMessage).text = message
-
         AlertDialog.Builder(this)
-            .setView(dialogView)
+            .setTitle("Error")
+            .setMessage(message)
             .setPositiveButton("Entendido", null)
-            .create()
-            .apply {
-                show()
-                window?.setBackgroundDrawableResource(android.R.color.transparent)
-            }
+            .show()
     }
-
-    private fun performRegistration() {
-        // Validar todos los campos
-        val isNameValid = validateName(binding.namesEditText.text.toString())
-        val isUsernameValid = validateUsername(binding.usernameEditText.text.toString())
-        val isPhoneValid = validatePhone(binding.phoneEditText.text.toString())
-        val isBirthDateValid = validateBirthDate()
-        val isEmailValid = validateEmail(binding.emailEditText.text.toString())
-        val isPasswordValid = validatePassword(binding.passwordEditText.text.toString())
-        val isPasswordMatchValid = validatePasswordMatch()
-        val areTermsAccepted = validateTerms()
-
-        if (isNameValid && isUsernameValid && isPhoneValid && isBirthDateValid &&
-            isEmailValid && isPasswordValid && isPasswordMatchValid && areTermsAccepted) {
-
-            // Deshabilitar botón durante el proceso
-            binding.registerButton.isEnabled = false
-            binding.registerButton.text = "Registrando..."
-
-            // Simular registro
-            binding.root.postDelayed({
-                showSuccessDialog()
-
-                // Navegar al login
-                val intent = Intent(this, LoginActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    putExtra("registered_email", binding.emailEditText.text.toString())
-                }
-                startActivity(intent)
-                finish()
-            }, 2000)
-        } else {
-            // Hacer scroll al primer error
-            when {
-                !isNameValid -> binding.namesEditText.requestFocus()
-                !isUsernameValid -> binding.usernameEditText.requestFocus()
-                !isPhoneValid -> binding.phoneEditText.requestFocus()
-                !isBirthDateValid -> binding.birthDateEditText.performClick()
-                !isEmailValid -> binding.emailEditText.requestFocus()
-                !isPasswordValid -> binding.passwordEditText.requestFocus()
-                !isPasswordMatchValid -> binding.confirmPasswordEditText.requestFocus()
-            }
-        }
-    }
-
-
 }
