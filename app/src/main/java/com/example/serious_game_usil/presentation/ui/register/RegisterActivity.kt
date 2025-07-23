@@ -4,20 +4,24 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog.show
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
+import com.example.serious_game_usil.data.TokenManager
 import com.example.serious_game_usil.databinding.ActivityRegisterBinding
 import com.example.serious_game_usil.`interface`.ApiService
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
@@ -51,15 +55,59 @@ class RegisterActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener { finish() }
         binding.birthDateEditText.setOnClickListener { showDatePicker() }
         binding.termsCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            binding.registerButton.isEnabled = isChecked
+            binding.registerButton.isEnabled = isChecked && validateAllFields()
         }
         binding.registerButton.setOnClickListener { performRegistration() }
+
+        // Configurar campo de teléfono para solo números y 9 dígitos
+        binding.phoneEditText.filters = arrayOf(
+            android.text.InputFilter.LengthFilter(9),
+            android.text.InputFilter { source, _, _, _, _, _ ->
+                if (source.toString().matches(Regex("[0-9]*"))) source else ""
+            }
+        )
+        binding.phoneEditText.inputType = android.text.InputType.TYPE_CLASS_NUMBER
     }
 
     private fun setupDropdowns() {
         val documentTypes = arrayOf("DNI", "CE", "NINGUNO")
         val documentAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, documentTypes)
         binding.documentTypeDropdown.setAdapter(documentAdapter)
+
+        // Configurar el input del número según el tipo de documento
+        binding.documentTypeDropdown.doAfterTextChanged { text ->
+            when (text.toString()) {
+                "DNI" -> {
+                    binding.documentNumberEditText.isEnabled = true
+                    binding.documentNumberEditText.filters = arrayOf(
+                        android.text.InputFilter.LengthFilter(8),
+                        android.text.InputFilter { source, _, _, _, _, _ ->
+                            if (source.toString().matches(Regex("[0-9]*"))) source else ""
+                        }
+                    )
+                    binding.documentNumberEditText.inputType = android.text.InputType.TYPE_CLASS_NUMBER
+                    binding.documentNumberInputLayout.hint = "Número de DNI (8 dígitos)"
+                }
+                "CE" -> {
+                    binding.documentNumberEditText.isEnabled = true
+                    binding.documentNumberEditText.filters = arrayOf(
+                        android.text.InputFilter.LengthFilter(12)
+                    )
+                    binding.documentNumberEditText.inputType = android.text.InputType.TYPE_CLASS_TEXT
+                    binding.documentNumberInputLayout.hint = "Número de CE (9-12 caracteres)"
+                }
+                "NINGUNO" -> {
+                    binding.documentNumberEditText.setText("")
+                    binding.documentNumberEditText.isEnabled = false
+                    binding.documentNumberInputLayout.hint = "No aplica"
+                    binding.documentNumberInputLayout.error = null
+                }
+                else -> {
+                    binding.documentNumberEditText.isEnabled = true
+                    binding.documentNumberInputLayout.hint = "Número de documento"
+                }
+            }
+        }
 
         val genderTypes = arrayOf("M", "F")
         val genderAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, genderTypes)
@@ -79,6 +127,35 @@ class RegisterActivity : AppCompatActivity() {
         binding.documentTypeDropdown.doAfterTextChanged {
             val documentNumber = binding.documentNumberEditText.text.toString()
             validateDocument(it.toString(), documentNumber)
+
+            // Configurar el input según el tipo
+            when (it.toString()) {
+                "DNI" -> {
+                    binding.documentNumberEditText.isEnabled = true
+                    binding.documentNumberEditText.filters = arrayOf(
+                        android.text.InputFilter.LengthFilter(8),
+                        android.text.InputFilter { source, _, _, _, _, _ ->
+                            if (source.toString().matches(Regex("[0-9]*"))) source else ""
+                        }
+                    )
+                    binding.documentNumberEditText.inputType = android.text.InputType.TYPE_CLASS_NUMBER
+                    binding.documentNumberInputLayout.hint = "Número de DNI (8 dígitos)"
+                }
+                "CE" -> {
+                    binding.documentNumberEditText.isEnabled = true
+                    binding.documentNumberEditText.filters = arrayOf(
+                        android.text.InputFilter.LengthFilter(12)
+                    )
+                    binding.documentNumberEditText.inputType = android.text.InputType.TYPE_CLASS_TEXT
+                    binding.documentNumberInputLayout.hint = "Número de CE (9-12 caracteres)"
+                }
+                "NINGUNO" -> {
+                    binding.documentNumberEditText.setText("")
+                    binding.documentNumberEditText.isEnabled = false
+                    binding.documentNumberInputLayout.hint = "No aplica"
+                    binding.documentNumberInputLayout.error = null
+                }
+            }
         }
 
         binding.phoneEditText.doAfterTextChanged { text ->
@@ -117,17 +194,45 @@ class RegisterActivity : AppCompatActivity() {
                 binding.documentTypeInputLayout.error = "Selecciona un tipo"
                 false
             }
-            type == "DNI" && number.length != 8 -> {
-                binding.documentNumberInputLayout.error = "DNI debe tener 8 dígitos"
-                false
+            type == "DNI" -> {
+                when {
+                    number.isEmpty() -> {
+                        binding.documentNumberInputLayout.error = "DNI es requerido"
+                        false
+                    }
+                    number.length != 8 -> {
+                        binding.documentNumberInputLayout.error = "DNI debe tener exactamente 8 dígitos"
+                        false
+                    }
+                    !number.all { it.isDigit() } -> {
+                        binding.documentNumberInputLayout.error = "DNI solo debe contener números"
+                        false
+                    }
+                    else -> {
+                        binding.documentNumberInputLayout.error = null
+                        true
+                    }
+                }
             }
-            type == "CE" && number.length < 9 -> {
-                binding.documentNumberInputLayout.error = "CE debe tener al menos 9 caracteres"
-                false
+            type == "CE" -> {
+                when {
+                    number.isEmpty() -> {
+                        binding.documentNumberInputLayout.error = "CE es requerido"
+                        false
+                    }
+                    number.length < 9 || number.length > 12 -> {
+                        binding.documentNumberInputLayout.error = "CE debe tener entre 9 y 12 caracteres"
+                        false
+                    }
+                    else -> {
+                        binding.documentNumberInputLayout.error = null
+                        true
+                    }
+                }
             }
-            type != "NINGUNO" && number.isEmpty() -> {
-                binding.documentNumberInputLayout.error = "Este campo es requerido"
-                false
+            type == "NINGUNO" -> {
+                binding.documentNumberInputLayout.error = null
+                true
             }
             else -> {
                 binding.documentTypeInputLayout.error = null
@@ -216,6 +321,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showDatePicker() {
         val calendar = selectedDate ?: Calendar.getInstance()
+
+        // Configurar locale en español
+        val locale = Locale("es", "ES")
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+
         val datePickerDialog = DatePickerDialog(
             this,
             { _, year, month, day ->
@@ -235,49 +347,80 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun updateBirthDateField() {
         selectedDate?.let {
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale("es", "ES"))
             binding.birthDateEditText.setText(dateFormat.format(it.time))
         }
     }
 
     private fun performRegistration() {
-        val isValid = validateAllFields()
+        if (!validateAllFields() || !binding.termsCheckBox.isChecked) {
+            if (!binding.termsCheckBox.isChecked) {
+                Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show()
+            }
+            return
+        }
 
-        if (isValid && binding.termsCheckBox.isChecked) {
-            binding.registerButton.isEnabled = false
-            binding.registerButton.text = "Registrando..."
+        binding.registerButton.isEnabled = false
+        binding.registerButton.text = "Registrando..."
 
-            val registerRequest = RegisterRequest(
-                nombreApellidos = binding.namesEditText.text.toString(),
-                fechaNacimiento = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                    .format(selectedDate?.time ?: Date()),
-                tipoDocumento = binding.documentTypeDropdown.text.toString(),
-                numeroDocumento = binding.documentNumberEditText.text.toString(),
-                sexo = binding.genderDropdown.text.toString(),
-                celular = binding.phoneEditText.text.toString(),
-                correo = binding.emailEditText.text.toString(),
-                roleIds = listOf(2)
-            )
+        val registerRequest = RegisterRequest(
+            nombresApellidos = binding.namesEditText.text.toString().trim(),
+            fechaNacimiento = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                .format(selectedDate?.time ?: Date()),
+            tipoDocumento = binding.documentTypeDropdown.text.toString(),
+            numeroDocumento = if (binding.documentTypeDropdown.text.toString() == "NINGUNO") ""
+            else binding.documentNumberEditText.text.toString().trim(),
+            sexo = binding.genderDropdown.text.toString(),
+            telefono = binding.phoneEditText.text.toString().trim(),
+            correo = binding.emailEditText.text.toString().trim(),
+            roleIds = listOf(2)
+        )
 
-            lifecycleScope.launch {
-                try {
-                    val response = apiService.register(registerRequest)
-                    if (response.isSuccessful) {
-                        response.body()?.let { registerResponse: RegisterResponse ->
-                            showSuccessDialog(registerResponse.user.passwordTemporal)
-                        }
-                    } else {
-                        val errorBody = response.errorBody()?.string()
-                        showErrorDialog(parseError(errorBody))
+        lifecycleScope.launch {
+            try {
+                val token = TokenManager.ensureToken()
+                if (token == null) {
+                    showErrorDialog("No se pudo obtener el token de autenticación")
+                    resetButton()
+                    return@launch
+                }
+
+
+
+                val response = apiService.register(registerRequest)
+                if (response.isSuccessful) {
+                    response.body()?.let { registerResponse ->
+                        showSuccessDialog(registerResponse.user.passwordTemporal)
+                    } ?: run {
+                        showErrorDialog("Respuesta vacía del servidor")
                         resetButton()
                     }
-                } catch (e: Exception) {
-                    showErrorDialog("Error de conexión: ${e.message}")
+                } else {
+                    val errorCode = response.code()
+                    val errorBody = response.errorBody()?.string()
+
+                    val errorMsg = when (errorCode) {
+                        400 -> parseError(errorBody)
+                        401 -> "No autorizado. Token inválido."
+                        403 -> "Acceso denegado."
+                        404 -> "Servicio no encontrado."
+                        409 -> "El correo ya está registrado."
+                        500 -> "Error del servidor."
+                        else -> parseError(errorBody)
+                    }
+                    showErrorDialog(errorMsg)
                     resetButton()
                 }
+            } catch (e: Exception) {
+                val errorMsg = when (e) {
+                    is java.net.UnknownHostException -> "Sin conexión a internet"
+                    is java.net.SocketTimeoutException -> "Tiempo de espera agotado"
+                    is java.net.ConnectException -> "No se pudo conectar al servidor"
+                    else -> "Error: ${e.localizedMessage}"
+                }
+                showErrorDialog(errorMsg)
+                resetButton()
             }
-        } else if (!binding.termsCheckBox.isChecked) {
-            Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -312,7 +455,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun showSuccessDialog(tempPassword: String) {
         AlertDialog.Builder(this)
             .setTitle("¡Registro exitoso!")
-            .setMessage("Se ha enviado una contraseña temporal a tu correo: $tempPassword\n\nRevisa tu bandeja de entrada.")
+            .setMessage("Revisa tu bandeja de entrada.")
             .setPositiveButton("Ir a Login") { _, _ ->
                 val intent = Intent(this, LoginActivity::class.java).apply {
                     putExtra("registered_email", binding.emailEditText.text.toString())

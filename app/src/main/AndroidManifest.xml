@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.serious_game_usil">
+
+    <!-- Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Serious_game_usil"
+        android:theme="@style/Theme.SeriousGameUSIL"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
-        <service
-            android:name=".interface.com.example.serious_game_ApiService"
-            android:enabled="true"
-            android:exported="true"></service>
 
         <activity
             android:name=".presentation.ui.splash.PreloaderActivity"
             android:exported="true"
-            android:theme="@style/Theme.Serious_game_usil">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Login Activity -->
         <activity
             android:name=".presentation.ui.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Register Activity -->
         <activity
             android:name=".presentation.ui.register.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Main Activity -->
         <activity
             android:name=".presentation.ui.main.MainActivity"
-            android:exported="false" />
-        <activity android:name=".presentation.ui.recuperation.ForgotPasswordActivity" />
-        <activity android:name=".presentation.ui.recuperation.OtpVerificationActivity" />
-        <activity android:name=".presentation.ui.recuperation.PasswordResetSuccessActivity" />
-        <activity android:name=".presentation.ui.recuperation.ResetPasswordActivity" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL" />
+
+        <!-- Password Recovery Activities -->
+        <activity
+            android:name=".presentation.ui.recuperation.ForgotPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.recuperation.OtpVerificationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.recuperation.ResetPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.recuperation.PasswordResetSuccessActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Metadata -->
+        <!-- Elimina esta línea si no usas fuentes precargadas -->
+        <!-- <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" /> -->
+
     </application>
 
 </manifest>

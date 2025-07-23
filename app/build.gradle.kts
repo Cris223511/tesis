@@ -17,83 +17,91 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Variables de entorno para desarrollo
-        buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080\"")
+        buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
         buildConfigField("String", "RP_ORIGIN", "\"http://10.0.2.2:8080\"")
         buildConfigField("String", "RP_ID", "\"localhost\"")
         buildConfigField("String", "RP_NAME", "\"SERIOUS_GAME\"")
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
         debug {
-            // Configuración para desarrollo local
-            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080\"")
-            buildConfigField("String", "RP_ORIGIN", "\"http://10.0.2.2:8080\"")
-            buildConfigField("String", "RP_ID", "\"localhost\"")
-            buildConfigField("String", "RP_NAME", "\"SERIOUS_GAME\"")
+            isDebuggable = true
         }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Configuración para producción
-            buildConfigField("String", "API_BASE_URL", "\"https://b2hbqaai8d5tyfpljuoi-mysql.services.clever-cloud.com\"")
-            buildConfigField("String", "RP_ORIGIN", "\"https://b2hbqaai8d5tyfpljuoi-mysql.services.clever-cloud.com\"")
-            buildConfigField("String", "RP_ID", "\"b2hbqaai8d5tyfpljuoi-mysql.services.clever-cloud.com\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://api.production.com\"")
+            buildConfigField("String", "RP_ORIGIN", "\"https://api.production.com\"")
+            buildConfigField("String", "RP_ID", "\"api.production.com\"")
             buildConfigField("String", "RP_NAME", "\"SERIOUS_GAME\"")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
         viewBinding = true
-        buildConfig = true  // Importante: habilitar BuildConfig
+        buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "/META-INF/INDEX.LIST"
-            excludes += "/META-INF/DEPENDENCIES"
-            excludes += "/META-INF/io.netty.versions.properties"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/INDEX.LIST",
+                "/META-INF/DEPENDENCIES",
+                "/META-INF/io.netty.versions.properties"
+            )
         }
     }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.material3)
+    implementation("com.google.android.material:material:1.11.0")
+
+    implementation(libs.androidx.constraintlayout)
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.material)
-    implementation("com.mikepenz:iconics-core:5.4.0")
-    implementation("com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar")
 
-    // Dependencias adicionales recomendadas para API calls
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-    implementation(libs.firebase.appdistribution.gradle)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
