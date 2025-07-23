@@ -172,14 +172,14 @@ func (bc *BioController) FinishRegister(c *gin.Context) {
 
 func (bc *BioController) BeginLogin(c *gin.Context) {
     var req struct {
-        NombreUsuario string `json:"nombre_usuario" binding:"required"`
+        NombreUsuario string `json:"usuario" binding:"required"`
     }
     if err := c.ShouldBindJSON(&req); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "datos inválidos"})
         return
     }
 
-    users, err := bc.svc.UserRepo.SearchUserByField("nombre_usuario", req.NombreUsuario)
+    users, err := bc.svc.UserRepo.SearchUserByField("usuario", req.NombreUsuario)
     if err != nil || len(users) == 0 {
         c.JSON(http.StatusNotFound, gin.H{"error": "usuario no encontrado"})
         return
@@ -261,7 +261,7 @@ func (bc *BioController) FinishLogin(c *gin.Context) {
         "refresh_token": refresh,
         "user": gin.H{
             "id": user.ID,
-            "nombre_aellidos": user.Nombre_Apellidos,
+            "nombre_aellidos": user.Nombres_Apellidos,
             
         },
     })

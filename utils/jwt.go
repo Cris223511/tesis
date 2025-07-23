@@ -139,20 +139,22 @@ func ValidateToken(tokenString string) (*Claims, error) {
 }
 
 func GenerateInitialAuthToken() (string, error) {
-	testSecret := []byte(os.Getenv("JWT_SECRET"))
-
-	claims := jwt.MapClaims{
-		"userId":  1,
-		"nombre":  "Sistema",
-		"apellido": "Admin",
-		"email":   "admin@sistema.com",
-		"roles":   []string{"AD"},
-		"exp":     time.Now().Add(24 * time.Hour).Unix(),
+	expirationTime := time.Now().Add(24 * time.Hour)
+	claims := &Claims{
+		UserID: 1,
+		Roles:  "AD",
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(testSecret)
-
+	tokenString, err := token.SignedString(jwtKey)
+	
+	if err != nil {
+		return "", err
+	}
+	
 	fmt.Println("Generated token (first 20 chars):", tokenString[:20])
 	return tokenString, err
 }

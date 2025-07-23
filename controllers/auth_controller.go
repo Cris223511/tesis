@@ -20,5 +20,5 @@ func (ac *AuthController) GetToken(c *gin.Context) {
         c.JSON(http.StatusInternalServerError, gin.H{"error": "Error generando token inicial"})
         return
     }
-    c.JSON(http.StatusOK, gin.H{"chatAuthToken": token})
+    c.JSON(http.StatusOK, gin.H{"token": token})
 }

@@ -275,8 +275,8 @@ func main() {
 func generateDemoTokens() {
 	demoUser := &models.Usuarios{
 		ID:               1,
-		Nombre_Apellidos: "Demo",
-		NombreUsuario:    "demo_user",
+		Nombres_Apellidos: "Demo",
+		Usuario:    "demo_user",
 		Roles:            []models.Role{{Name: "admin"}},
 	}
 

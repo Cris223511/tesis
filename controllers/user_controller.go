@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"crypto/rand"
+	"database/sql"
 	"fmt"
 	"log"
 	"math/big"
@@ -10,6 +11,7 @@ import (
 
 	"time"
 
+	"usuarios/dto"
 	"usuarios/models"
 	"usuarios/service"
 	"usuarios/utils"
@@ -46,7 +48,7 @@ func NewUserController(userService services.UserService) *UserController {
 
 func (ctrl *UserController) Login(c *gin.Context) {
 	var loginRequest struct {
-		NombreUsuario string `json:"nombre_usuario" binding:"required"`
+		NombreUsuario string `json:"usuario" binding:"required"`
 		Password      string `json:"password" binding:"required"`
 	}
 	
@@ -99,7 +101,7 @@ func (ctrl *UserController) Login(c *gin.Context) {
 		"message": "Credenciales válidas. Se envió un código OTP a tu correo.",
 		"user": gin.H{
 			"user_id":          user.ID,
-			"nombre_apellidos": user.Nombre_Apellidos,
+			"nombres_apellidos": user.Nombres_Apellidos,
 			"correo":          user.Correo,
 			"roles":           user.Roles,
 		},
@@ -150,7 +152,7 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 			
 			user, _ := ctrl.UserService.GetUserByID(req.UserID)
 			if user != nil {
-				go utils.SendSecurityAlert(user.Correo, user.Nombre_Apellidos, 
+				go utils.SendSecurityAlert(user.Correo, user.Nombres_Apellidos, 
 					"Múltiples intentos fallidos de OTP", getClientIP(c))
 			}
 			
@@ -250,28 +252,63 @@ func (ctrl *UserController) ResendOTP(c *gin.Context) {
 	})
 }
 
+
 func (ctrl *UserController) Register(c *gin.Context) {
-	var user models.Usuarios
-	if err := c.ShouldBindJSON(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
-		return
-	}
+    var req dto.RegisterRequest
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos: " + err.Error()})
+        return
+    }
+
+	log.Printf("RegisterRequest recibido: %+v", req)
+
+    // Convertir a models.Usuarios
+    user := models.Usuarios{
+        Nombres_Apellidos: req.NombresApellidos,
+        FechaNacimiento:  parseFecha(req.FechaNacimiento), 
+        Tipo_Documento:   req.TipoDocumento,
+        Num_Documento:    req.NumDocumento,
+        Sexo:             req.Sexo,
+        Telefono:         req.Telefono,
+        Correo:           req.Correo,
+        RoleIDs:          req.RoleIDs,
+    }
+
+	log.Printf("Usuario antes de CreateUser: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
+    log.Printf("Usuario completo: %+v", user)
 
 	tempPassword, err := ctrl.UserService.CreateUser(&user)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+    if err != nil {
+        log.Printf("Error detallado al crear usuario: %v", err)
+        c.JSON(http.StatusBadRequest, gin.H{
+            "error": err.Error(),
+            "debug": fmt.Sprintf("%+v", err), 
+        })
+        return
+    }
 
-	c.JSON(http.StatusCreated, gin.H{
-		"message": "Usuario registrado exitosamente",
-		"user": gin.H{
-			"id":               user.ID,
-			"nombre_usuario":   user.NombreUsuario,
-			"correo":          user.Correo,
-			"password_temporal": tempPassword,
-		},
-	})
+    c.JSON(http.StatusCreated, gin.H{
+        "message": "Usuario registrado exitosamente",
+        "user": gin.H{
+            "id":               user.ID,
+            "usuario":          user.Usuario,
+            "correo":           user.Correo,
+            "password_temporal": tempPassword,
+        },
+    })
+}
+
+
+func parseFecha(fechaStr string) sql.NullTime {
+    layout := "2006-01-02"
+    fecha, err := time.Parse(layout, fechaStr)
+    if err != nil {
+        return sql.NullTime{Valid: false}
+    }
+    return sql.NullTime{
+        Time:  fecha,
+        Valid: true,
+    }
 }
 
 func (ctrl *UserController) List(c *gin.Context) {

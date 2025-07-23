@@ -115,7 +115,7 @@ func (s *userService) LoginUser(username, password, clientIP, userAgent string) 
 
 	var user models.Usuarios
 	err := s.db.Preload("Roles").Preload("BiometricCreds").
-		Where("(nombre_usuario = ? OR correo = ? OR numero_documento = ?) AND activo = ?",
+		Where("(usuario = ? OR correo = ? OR numero_documento = ?) AND activo = ?",
 			username, username, username, true).
 		First(&user).Error
 
@@ -216,10 +216,10 @@ func (s *userService) handleFailedLogin(user *models.Usuarios, ip string) {
 		user.Activo = false
 		s.db.Model(user).Update("activo", false)
 		
-		s.logSecurityEvent("ACCOUNT_LOCKED", user.NombreUsuario, ip, 
+		s.logSecurityEvent("ACCOUNT_LOCKED", user.Usuario, ip, 
 			fmt.Sprintf("Cuenta bloqueada después de %d intentos", attempt.count))
 		
-		go s.sendAccountLockNotification(user.Correo, user.Nombre_Apellidos, ip)
+		go s.sendAccountLockNotification(user.Correo, user.Nombres_Apellidos, ip)
 	}
 
 	s.loginAttempts.Store(key, attempt)
@@ -240,7 +240,7 @@ func (s *userService) recordSuccessfulLogin(user *models.Usuarios, ip, userAgent
 	s.db.Model(user).Updates(updates)
 
 	s.recordDeviceIP(user.ID, ip, userAgent)
-	s.logSecurityEvent("LOGIN_SUCCESS", user.NombreUsuario, ip, "Login exitoso")
+	s.logSecurityEvent("LOGIN_SUCCESS", user.Usuario, ip, "Login exitoso")
 }
 
 func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent string) error {
@@ -271,6 +271,8 @@ func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent 
 }
 
 func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
+	log.Printf("CreateUser recibido: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
+    log.Printf("Usuario completo en CreateUser: %+v", user)
 	if err := s.validateUserData(user); err != nil {
 		return "", err
 	}
@@ -292,21 +294,30 @@ func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
 	user.Contrasena = string(hashedPassword)
 	user.PasswordExpiresAt = time.Now().Add(48 * time.Hour)
 	user.Activo = false
+	user.DobleFactor = false
 	user.Intentos = 0
-	user.NombreUsuario = s.generateUniqueUsername(user.Nombre_Apellidos)
+	user.Usuario = s.generateUniqueUsername(user.Nombres_Apellidos)
 
 	activationToken := s.generateActivationToken()
 	user.ActivationToken = activationToken
 	user.ActivationExpiry = time.Now().Add(24 * time.Hour)
 
-	if err := tx.Create(user).Error; err != nil {
-		return "", errors.New("error al crear usuario")
-	}
+	log.Printf("Usuario ANTES de tx.Create: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
+log.Printf("Usuario completo antes de insert: %+v", user)
+
+if err := tx.Select("nombres_apellidos", "fecha_nacimiento", "tipo_documento", 
+    "num_documento", "sexo", "telefono", "correo", "usuario", 
+    "contrasena", "intentos", "doble_factor", "activo", 
+    "password_expires_at", "activation_token", "activation_expiry").Create(user).Error; err != nil {
+    log.Printf("Error al insertar en BD: %v", err)
+    return "", fmt.Errorf("error al crear usuario: %v", err) 
+}
+
 
 	tx.Commit()
 	
-	go s.sendActivationEmail(user.Correo, tempPassword, user.NombreUsuario, activationToken)
-	s.logSecurityEvent("USER_CREATED", user.NombreUsuario, "", "Usuario creado exitosamente")
+	go s.sendActivationEmail(user.Correo, tempPassword, user.Usuario, activationToken)
+	s.logSecurityEvent("USER_CREATED", user.Usuario, "", "Usuario creado exitosamente")
 	
 	return tempPassword, nil
 }
@@ -317,7 +328,7 @@ func (s *userService) validateUserData(user *models.Usuarios) error {
 	}
 
 	if user.Tipo_Documento == models.TipoDocumentoDNI {
-		if !s.isValidDNI(user.Numero_Documento) {
+		if !s.isValidDNI(user.Num_Documento) {
 			return errors.New("DNI inválido")
 		}
 	}
@@ -326,15 +337,15 @@ func (s *userService) validateUserData(user *models.Usuarios) error {
 		return errors.New("formato de correo inválido")
 	}
 
-	if err := s.validateNameQuality(user.Nombre_Apellidos); err != nil {
+	if err := s.validateNameQuality(user.Nombres_Apellidos); err != nil {
 		return err
 	}
 
-	if user.FechaNacimiento.After(time.Now().AddDate(-1, 0, 0)) {
+	if user.FechaNacimiento.Time.After(time.Now().AddDate(-1, 0, 0)) {
 		return errors.New("debe ser mayor de 1 año")
 	}
 
-	if !s.isValidPhone(user.Celular) {
+	if !s.isValidPhone(user.Telefono) {
 		return errors.New("número de celular inválido")
 	}
 
@@ -384,7 +395,7 @@ func (s *userService) checkDuplicateUser(tx *gorm.DB, user *models.Usuarios) err
 	var count int64
 	
 	tx.Model(&models.Usuarios{}).Where("numero_documento = ? AND tipo_documento = ?", 
-		user.Numero_Documento, user.Tipo_Documento).Count(&count)
+		user.Num_Documento, user.Tipo_Documento).Count(&count)
 	if count > 0 {
 		return errors.New("ya existe un usuario con este documento")
 	}
@@ -394,10 +405,10 @@ func (s *userService) checkDuplicateUser(tx *gorm.DB, user *models.Usuarios) err
 		return errors.New("el correo ya está registrado")
 	}
 
-	fullName := strings.ToLower(strings.TrimSpace(user.Nombre_Apellidos))
-	tx.Model(&models.Usuarios{}).Where("LOWER(TRIM(nombre_apellidos)) = ?", fullName).Count(&count)
+	fullName := strings.ToLower(strings.TrimSpace(user.Nombres_Apellidos))
+	tx.Model(&models.Usuarios{}).Where("LOWER(TRIM(nombres_apellidos)) = ?", fullName).Count(&count)
 	if count > 0 {
-		s.logSecurityEvent("DUPLICATE_NAME_ATTEMPT", user.NombreUsuario, "", 
+		s.logSecurityEvent("DUPLICATE_NAME_ATTEMPT", user.Usuario, "", 
 			"Intento de registro con nombre duplicado")
 		return errors.New("ya existe un usuario con este nombre")
 	}
@@ -447,8 +458,8 @@ func (s *userService) UpdateUserPassword(userID uint, newPassword string) error 
 	tx.Commit()
 	
 	clientIP := "Sistema"
-	go s.sendPasswordUpdateNotification(user.Correo, user.Nombre_Apellidos, clientIP)
-	s.logSecurityEvent("PASSWORD_CHANGED", user.NombreUsuario, "", "Contraseña actualizada")
+	go s.sendPasswordUpdateNotification(user.Correo, user.Nombres_Apellidos, clientIP)
+	s.logSecurityEvent("PASSWORD_CHANGED", user.Usuario, "", "Contraseña actualizada")
 	
 	return nil
 }
@@ -539,7 +550,7 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 		return errors.New("error al actualizar usuario")
 	}
 
-	go s.sendProfileUpdateNotification(user.Correo, user.Nombre_Apellidos, updatedFields, "")
+	go s.sendProfileUpdateNotification(user.Correo, user.Nombres_Apellidos, updatedFields, "")
 	s.logSecurityEvent("USER_UPDATED", fmt.Sprintf("user_id_%d", id), "", 
 		fmt.Sprintf("Campos actualizados: %v", filteredUpdates))
 	
@@ -567,8 +578,8 @@ func (s *userService) DeleteUser(id uint) error {
 
 	tx.Commit()
 	
-	go s.sendAccountDeletionNotification(user.Correo, user.Nombre_Apellidos)
-	s.logSecurityEvent("USER_DELETED", user.NombreUsuario, "", "Usuario eliminado")
+	go s.sendAccountDeletionNotification(user.Correo, user.Nombres_Apellidos)
+	s.logSecurityEvent("USER_DELETED", user.Usuario, "", "Usuario eliminado")
 	
 	return nil
 }
@@ -591,8 +602,8 @@ func (s *userService) SetAccountStatus(id uint, status bool) error {
 		emailFunc = s.sendAccountActivatedEmail
 	}
 	
-	go emailFunc(user.Correo, user.Nombre_Apellidos)
-	s.logSecurityEvent("ACCOUNT_STATUS_CHANGED", user.NombreUsuario, "", 
+	go emailFunc(user.Correo, user.Nombres_Apellidos)
+	s.logSecurityEvent("ACCOUNT_STATUS_CHANGED", user.Usuario, "", 
 		fmt.Sprintf("Cuenta %s", action))
 	
 	return nil
@@ -616,7 +627,7 @@ func (s *userService) UnlockAccount(userID uint, adminID uint) error {
 		return errors.New("error al desbloquear cuenta")
 	}
 
-	s.logSecurityEvent("ACCOUNT_UNLOCKED", user.NombreUsuario, "", 
+	s.logSecurityEvent("ACCOUNT_UNLOCKED", user.Usuario, "", 
 		fmt.Sprintf("Desbloqueada por admin_id: %d", adminID))
 	
 	return nil
@@ -640,7 +651,7 @@ func (s *userService) SearchUserByField(field, value string) ([]models.Usuarios,
 	searchPattern := "%" + strings.ToLower(value) + "%"
 	
 	err := s.db.Preload("Roles").
-		Where("LOWER(nombre_apellidos) LIKE ? OR LOWER(correo) LIKE ? OR numero_documento LIKE ?",
+		Where("LOWER(nombres_apellidos) LIKE ? OR LOWER(correo) LIKE ? OR numero_documento LIKE ?",
 			searchPattern, searchPattern, searchPattern).
 		Find(&users).Error
 		
@@ -693,7 +704,7 @@ func (s *userService) generateUniqueUsername(fullName string) string {
 
 	for {
 		var count int64
-		s.db.Model(&models.Usuarios{}).Where("nombre_usuario = ?", username).Count(&count)
+		s.db.Model(&models.Usuarios{}).Where("usuario = ?", username).Count(&count)
 		if count == 0 {
 			break
 		}
@@ -1027,7 +1038,7 @@ func (s *userService) sendSecurityAlert(user *models.Usuarios, ip, reason string
 		<strong>Fecha:</strong> %s</p>
 		<p>Si no fuiste tú, cambia tu contraseña inmediatamente.</p>
 	</body>
-	</html>`, user.Nombre_Apellidos, reason, ip, time.Now().Format("02/01/2006 15:04"))
+	</html>`, user.Nombres_Apellidos, reason, ip, time.Now().Format("02/01/2006 15:04"))
 	
 	sendEmail(user.Correo, subject, body)
 }

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"errors"
 	"time"
 
@@ -19,41 +20,41 @@ const (
 )
 
 type Usuarios struct {
-		ID                uint                  `gorm:"primaryKey;autoIncrement;column:idusuario" json:"id"`
-	Nombre_Apellidos   string                `gorm:"size:100;not null;index" json:"nombre_apellidos"`
-	FechaNacimiento   time.Time             `gorm:"type:date;not null" json:"fecha_nacimiento"`
-	Tipo_Documento     string                `gorm:"size:50;not null;index" json:"tipo_documento"`
-	Numero_Documento   string                `gorm:"size:50;uniqueIndex;not null" json:"numero_documento"`
-	Sexo              string                `gorm:"size:20;not null" json:"sexo"`
-	Celular           string                `gorm:"size:20;not null;index" json:"celular"`
-	Correo            string                `gorm:"size:100;uniqueIndex;not null" json:"correo"`
-	Activo            bool                  `gorm:"default:false;index" json:"activo"`
-	Foto              string                `gorm:"type:mediumtext" json:"foto"`
-	NombreUsuario     string                `gorm:"size:50;uniqueIndex;not null" json:"nombre_usuario"`
-	Contrasena        string                `gorm:"size:255;not null" json:"-"`
-	Intentos          int                   `gorm:"default:0" json:"intentos"`
-	CreatedAt         time.Time             `gorm:"index" json:"created_at,omitempty"`
-	UpdatedAt         time.Time             `json:"updated_at,omitempty"`
-	PasswordExpiresAt time.Time             `gorm:"index" json:"password_expires_at"`
-	ActivationToken   string                `gorm:"size:255;index"`
-	ActivationExpiry  time.Time             `gorm:"index"`
-	LastLoginAt       *time.Time            `gorm:"index" json:"last_login_at,omitempty"`
-	LastLoginIP       string                `gorm:"size:45" json:"-"`
-	LastUserAgent     string                `gorm:"size:255" json:"-"`
-	PasswordChangedAt *time.Time            `json:"-"`
-	Roles             []Role                `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
-	BiometricCreds    []BiometricCredential `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"-"`
-	RoleIDs           []uint                `gorm:"-" json:"role_ids,omitempty"`
+    ID                 uint                  `gorm:"primaryKey;autoIncrement;column:idusuario" json:"id"`
+    Nombres_Apellidos  string     `gorm:"column:nombres_apellidos;size:100;not null;index" json:"nombres_apellidos"`
+    FechaNacimiento    sql.NullTime          `gorm:"type:date" json:"fecha_nacimiento"`
+    Tipo_Documento     string                `gorm:"size:50;not null;index" json:"tipo_documento"`
+    Num_Documento      string                `gorm:"size:50;uniqueIndex;not null" json:"num_documento"`
+    Descripcion        string                `gorm:"type:text" json:"descripcion"`
+    Sexo               string                `gorm:"size:20;not null" json:"sexo"`
+    Telefono           string                `gorm:"size:20;not null;index" json:"telefono"`
+    Correo             string                `gorm:"size:100;uniqueIndex;not null" json:"correo"`
+    Activo             bool                  `gorm:"default:false;index" json:"activo"`
+    Foto               string                `gorm:"type:mediumtext" json:"foto"`
+    Usuario            string                `gorm:"size:50;uniqueIndex;not null" json:"usuario"`
+    Contrasena         string                `gorm:"size:255;not null" json:"-"`
+    Intentos           int                   `gorm:"default:0" json:"intentos"`
+    DobleFactor        bool                  `gorm:"column:doble_factor;default:false" json:"doble_factor"` 
+    CreatedAt          time.Time             `gorm:"index" json:"created_at,omitempty"`
+    UpdatedAt          time.Time             `json:"updated_at,omitempty"`
+    PasswordExpiresAt  time.Time             `gorm:"index" json:"password_expires_at"`
+    ActivationToken    string                `gorm:"size:255;index" json:"-"`
+    ActivationExpiry   time.Time             `gorm:"index" json:"-"`
+    LastLoginAt        *time.Time            `gorm:"index" json:"last_login_at,omitempty"`
+    LastLoginIP        string                `gorm:"size:45" json:"-"`
+    LastUserAgent      string                `gorm:"size:255" json:"-"`
+    PasswordChangedAt  *time.Time            `json:"-"`
+    Roles              []Role                `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
+    BiometricCreds     []BiometricCredential `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"-"`
+    RoleIDs            []uint                `gorm:"-" json:"role_ids,omitempty"`
 }
-
-
 
 
 func (UserRole) TableName() string                 { return "user_roles" }
 func (u *Usuarios) TableName() string              { return "usuarios" }
-func (u *Usuarios) WebAuthnID() []byte             { return []byte(u.NombreUsuario) }
-func (u *Usuarios) WebAuthnName() string           { return u.Nombre_Apellidos }
-func (u *Usuarios) WebAuthnDisplayName() string    { return u.Nombre_Apellidos }
+func (u *Usuarios) WebAuthnID() []byte             { return []byte(u.Usuario) }
+func (u *Usuarios) WebAuthnName() string           { return u.Nombres_Apellidos }
+func (u *Usuarios) WebAuthnDisplayName() string    { return u.Nombres_Apellidos }
 func (u *Usuarios) WebAuthnIcon() string           { return "" }
 
 func (u *Usuarios) WebAuthnCredentials() []webauthn.Credential {

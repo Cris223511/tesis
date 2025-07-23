@@ -14,5 +14,5 @@ type LoginHistory struct {
 	Location   string    `gorm:"type:varchar(100)"`
 	DeviceInfo string    `gorm:"type:text"`
 	CreatedAt  time.Time `gorm:"index"`
-	Usuarios       Usuarios      `gorm:"foreignKey:UserID"`
+	Usuarios       Usuarios     `gorm:"foreignKey:UserID"`
 }
