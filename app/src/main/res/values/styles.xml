@@ -27,6 +27,11 @@
         <item name="android:statusBarColor">@color/primary</item>
     </style>
 
+
+    <style name="CircularImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
     <!-- Custom TextInputLayout Style -->
     <style name="Widget.App.TextInputLayout.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/primary</item>
