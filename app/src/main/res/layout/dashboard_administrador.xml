@@ -6,68 +6,74 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <!-- ScrollView PRINCIPAL que contiene TODO -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_gradient"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/userAvatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_person"
+                android:background="@drawable/avatar_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CircularImageView"
+                app:strokeColor="@color/on_primary"
+                app:strokeWidth="2dp" />
+
+            <TextView
+                android:id="@+id/greetingText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="¡Bienvenido,"
+                android:textColor="@color/on_primary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/userAvatar"
+                app:layout_constraintTop_toTopOf="@+id/userAvatar" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Usuario!"
+                android:textColor="@color/on_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/greetingText"
+                app:layout_constraintTop_toBottomOf="@+id/greetingText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
-            <!-- Header sin AppBarLayout para simplificar -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/header_gradient"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="24dp"
-                android:paddingBottom="16dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/userAvatar"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/avatar_background"
-                    android:padding="2dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_person"
-                    app:shapeAppearanceOverlay="@style/CircularImageView"
-                    app:strokeColor="@color/on_primary"
-                    app:strokeWidth="2dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/greetingText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="¡Bienvenido,"
-                        android:textColor="@color/on_primary"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/userName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Usuario!"
-                        android:textColor="@color/on_primary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Card de Hoy -->
+            <!-- Card de Hoy - Más compacto -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/todayCard"
                 android:layout_width="match_parent"
@@ -98,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:alpha="0.87"
-                        android:text="24 de Julio del 2025, a las 9:29 p.m."
+                        android:text="24 de Julio del 2025, a las 9 p.m."
                         android:textColor="@color/on_secondary"
                         android:textSize="13sp" />
 
@@ -106,7 +112,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Navegación -->
+            <!-- Navegación - Más compacta -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/navigationCard"
                 android:layout_width="match_parent"
@@ -236,34 +242,13 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/activitiesViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="12dp" />
 
-            <!-- Indicadores -->
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/pageIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                app:tabBackground="@drawable/tab_selector"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                app:tabMaxWidth="8dp"
-                app:tabMinWidth="8dp"
-                app:tabMode="fixed"
-                app:tabPaddingEnd="4dp"
-                app:tabPaddingStart="4dp" />
-
-            <!-- Título estadísticas -->
             <TextView
                 android:id="@+id/monthTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:text="Este mes se registró"
                 android:textColor="@color/on_background"
                 android:textSize="16sp"
@@ -279,18 +264,18 @@
                 android:textColor="@color/on_surface_variant"
                 android:textSize="13sp" />
 
-            <!-- Estadísticas -->
+            <!-- Estadísticas más compactas -->
             <LinearLayout
                 android:id="@+id/statsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="120dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/primary"
@@ -315,7 +300,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -325,12 +310,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="20"
                                 android:textColor="@color/on_primary"
-                                android:textSize="26sp"
+                                android:textSize="28sp"
                                 android:textStyle="bold" />
 
                             <View
                                 android:layout_width="1dp"
-                                android:layout_height="26dp"
+                                android:layout_height="28dp"
                                 android:layout_marginHorizontal="8dp"
                                 android:alpha="0.5"
                                 android:background="@color/on_primary" />
@@ -341,7 +326,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="08"
                                 android:textColor="@color/on_primary"
-                                android:textSize="26sp"
+                                android:textSize="28sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -361,7 +346,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="120dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/error"
@@ -386,7 +371,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -396,12 +381,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="00"
                                 android:textColor="@color/on_error"
-                                android:textSize="26sp"
+                                android:textSize="28sp"
                                 android:textStyle="bold" />
 
                             <View
                                 android:layout_width="1dp"
-                                android:layout_height="26dp"
+                                android:layout_height="28dp"
                                 android:layout_marginHorizontal="8dp"
                                 android:alpha="0.5"
                                 android:background="@color/on_error" />
@@ -412,7 +397,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="00"
                                 android:textColor="@color/on_error"
-                                android:textSize="26sp"
+                                android:textSize="28sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -423,15 +408,38 @@
 
             </LinearLayout>
 
-            <!-- SECCIÓN VISIBLE: Últimos 3 meses -->
+            <!-- Últimos 3 meses más cerca -->
+            <TextView
+                android:id="@+id/lastMonthsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Los últimos 3 meses"
+                android:textColor="@color/on_background"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lastMonthsSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="2dp"
+                android:text="Comparativa entre niño(a)s sobre la estimulación"
+                android:textColor="@color/on_surface_variant"
+                android:textSize="13sp" />
+
+            <!-- Gráfico de comparativa de 3 meses -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/comparisonCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
                 app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
@@ -440,40 +448,170 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/lastMonthsTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Los últimos 3 meses"
-                        android:textColor="@color/on_surface"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lastMonthsSubtitle"
+                    <!-- Mes Agosto -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Comparativa entre niño(a)s sobre la estimulación"
-                        android:textColor="@color/on_surface_variant"
-                        android:textSize="13sp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="12dp">
 
-                    <!-- Gráfico placeholder -->
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="32dp"
+                            android:text="Ago"
+                            android:textColor="@color/on_surface"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:background="@drawable/month_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Niños"
+                                    android:textColor="@color/on_surface_variant"
+                                    android:textSize="12sp" />
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="16dp"
+                                    android:layout_weight="1"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:background="@drawable/progress_background">
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="20dp"
+                                        android:background="@drawable/progress_pink" />
+
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:textColor="@color/on_surface"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:gravity="end" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="80 / 98 niños revisado"
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="10sp"
+                                android:layout_marginStart="50dp"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Separador -->
                     <View
-                        android:id="@+id/chartPlaceholder"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="12dp"
-                        android:background="@color/surface_variant" />
+                        android:layout_height="0.5dp"
+                        android:background="@color/outline"
+                        android:layout_marginVertical="4dp" />
+
+                    <!-- Mes Julio -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="32dp"
+                            android:text="Jul"
+                            android:textColor="@color/on_surface"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:background="@drawable/month_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Niñas"
+                                    android:textColor="@color/on_surface_variant"
+                                    android:textSize="12sp" />
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="16dp"
+                                    android:layout_weight="1"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:background="@drawable/progress_background">
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="20dp"
+                                        android:background="@drawable/progress_pink" />
+
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:textColor="@color/on_surface"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:gravity="end" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="80 / 98 niñas"
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="10sp"
+                                android:layout_marginStart="50dp"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
-
-            <!-- Espacio extra al final para asegurar que todo sea visible -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
 
         </LinearLayout>
 
