@@ -84,11 +84,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
-        <!-- Metadata -->
-        <!-- Elimina esta línea si no usas fuentes precargadas -->
-        <!-- <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" /> -->
+        <activity
+            android:name=".guards.UnauthorizedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.administrador.DashboardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
     </application>
 

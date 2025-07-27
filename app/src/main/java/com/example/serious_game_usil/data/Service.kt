@@ -31,7 +31,7 @@ data class UserResponse(
 
 data class LoginRequest(
     @SerializedName("usuario") val usuario: String,
-    val password: String
+    @SerializedName("contrasena") val contrasena: String
 )
 
 data class LoginResponse(

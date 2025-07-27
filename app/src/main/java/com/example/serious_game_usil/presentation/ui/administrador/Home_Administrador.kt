@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.databinding.DashboardAdministradorBinding
+import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
 import com.example.serious_game_usil.utils.ActivitiesAdapter
 import com.google.android.material.card.MaterialCardView
 
 import com.google.android.material.tabs.TabLayoutMediator
+import com.seriousgame.app.navigation.RouteNavigator
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -30,6 +32,13 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Verificar autenticación
+        if (!AuthManager.isAuthenticated()) {
+            RouteNavigator.navigateToLogin(this)
+            return
+        }
+
         binding = DashboardAdministradorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -46,34 +55,13 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        setupViewPager()
         setupNavigation()
+
+        // Usar el nombre del usuario autenticado
+        binding.userName.text = AuthManager.getNombresApellidos()
     }
 
-    private fun setupViewPager() {
-        activitiesAdapter = ActivitiesAdapter(emptyList()) { activity ->
-            viewModel.onActivitySelected(activity)
-        }
 
-        binding.activitiesViewPager.adapter = activitiesAdapter
-        binding.activitiesViewPager.offscreenPageLimit = 1
-
-        // Usar valores directos en lugar de dimens
-        val pageMargin = 16 // pixels
-        val pageOffset = 32 // pixels
-
-        binding.activitiesViewPager.setPageTransformer { page, position ->
-            val offset = position * -(2 * pageOffset + pageMargin)
-            page.translationX = offset
-
-            val scaleFactor = 0.85f + (1 - kotlin.math.abs(position)) * 0.15f
-            page.scaleY = scaleFactor
-
-            page.alpha = 0.5f + (1 - kotlin.math.abs(position)) * 0.5f
-        }
-
-        TabLayoutMediator(binding.pageIndicator, binding.activitiesViewPager) { _, _ -> }.attach()
-    }
 
     private fun setupNavigation() {
         binding.navChildren.setOnClickListener {
@@ -98,7 +86,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.user.observe(this) { user ->
             user?.let {
-                binding.userName.text = it.name
+                // Usar el nombre de AuthManager
+                binding.userName.text = AuthManager.getNombresApellidos()
                 // Sin Glide, solo usar el placeholder
                 binding.userAvatar.setImageResource(R.drawable.ic_person)
             }
@@ -109,7 +98,7 @@ class DashboardActivity : AppCompatActivity() {
                 activitiesAdapter = ActivitiesAdapter(it) { activity ->
                     viewModel.onActivitySelected(activity)
                 }
-                binding.activitiesViewPager.adapter = activitiesAdapter
+
             }
         }
 
@@ -202,5 +191,13 @@ class DashboardActivity : AppCompatActivity() {
         val todayCardContent = binding.todayCard.getChildAt(0) as LinearLayout
         val dateTextView = todayCardContent.getChildAt(1) as TextView
         dateTextView.text = dateFormat.format(currentDate)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Re-verificar autenticación cuando la activity vuelve a estar activa
+        if (!AuthManager.isAuthenticated()) {
+            RouteNavigator.navigateToLogin(this)
+        }
     }
 }

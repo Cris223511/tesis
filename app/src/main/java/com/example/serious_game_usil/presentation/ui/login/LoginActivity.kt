@@ -13,17 +13,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
+import com.example.serious_game_usil.data.LoginRequest
 import com.example.serious_game_usil.presentation.ui.main.MainActivity
 import com.example.serious_game_usil.presentation.ui.recuperation.ForgotPasswordActivity
+import com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity
 import com.example.serious_game_usil.presentation.ui.register.RegisterActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 class LoginActivity : AppCompatActivity() {
 
-    // Views
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var passwordToggle: ImageView
@@ -35,20 +37,11 @@ class LoginActivity : AppCompatActivity() {
     private var loginAttempts = 0
     private val MAX_LOGIN_ATTEMPTS = 3
 
-    // Mock users database
-    private val validUsers = mapOf(
-        "admin@test.com" to UserData("123456", true),
-        "user@test.com" to UserData("password", true),
-        "blocked@test.com" to UserData("123456", false)
-    )
-
-    data class UserData(val password: String, val isActive: Boolean)
-
     companion object {
         private const val PREFS_NAME = "LoginPrefs"
         private const val KEY_LOGIN_ATTEMPTS = "login_attempts"
         private const val KEY_LAST_ATTEMPT_TIME = "last_attempt_time"
-        private const val BLOCK_DURATION = 30 * 60 * 1000L // 30 minutos
+        private const val BLOCK_DURATION = 30 * 60 * 1000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,58 +105,82 @@ class LoginActivity : AppCompatActivity() {
                 )
                 loginButton.isEnabled = false
             } else {
-                // Reset attempts after block duration
                 resetLoginAttempts()
             }
         }
     }
 
     private fun performLogin() {
-        val email = emailEditText.text.toString().trim()
-        val password = passwordEditText.text.toString().trim()
+        val usuario = emailEditText.text.toString().trim()
+        val contrasena = passwordEditText.text.toString().trim()
 
-        // Validaciones básicas
         when {
-            email.isEmpty() -> {
+            usuario.isEmpty() -> {
                 emailEditText.error = "Ingresa su usuario"
                 emailEditText.requestFocus()
                 return
             }
-            password.isEmpty() -> {
-                passwordEditText.error = "Ingrese su credenciales"
+            contrasena.isEmpty() -> {
+                passwordEditText.error = "Ingrese su contraseña"
                 passwordEditText.requestFocus()
                 return
             }
         }
 
-        // Deshabilitar botón durante el proceso
         loginButton.isEnabled = false
         loginButton.text = "Iniciando sesión..."
 
-        // Simular proceso de login
         lifecycleScope.launch {
-            delay(1500) // Simular llamada a servidor
+            try {
+                val apiService = RetrofitClient.getApiServiceNoAuth()
+                val response = apiService.login(
+                    LoginRequest(
+                        usuario = usuario,
+                        contrasena = contrasena
+                    )
+                )
 
-            validateCredentials(email, password)
+                if (response.isSuccessful) {
+                    response.body()?.let { loginResponse ->
+                        val prefs = getSharedPreferences("TempUserData", Context.MODE_PRIVATE)
+                        prefs.edit().apply {
+                            putInt("user_id", loginResponse.user.userId)
+                            putString("email", loginResponse.user.correo)
+                            putString("nombres", loginResponse.user.nombresApellidos)
+                            putString("protected_route", "/dashboard")
+                            apply()
+                        }
+
+                        navigateToOTP(
+                            userId = loginResponse.user.userId,
+                            correo = loginResponse.user.correo
+                        )
+                    }
+                } else {
+                    when (response.code()) {
+                        401 -> handleLoginError(ErrorType.INCORRECT_PASSWORD)
+                        403 -> handleLoginError(ErrorType.ACCOUNT_DISABLED)
+                        429 -> handleLoginError(ErrorType.TOO_MANY_ATTEMPTS)
+                        else -> handleLoginError(ErrorType.SERVER_ERROR)
+                    }
+                }
+            } catch (e: Exception) {
+                handleLoginError(ErrorType.SERVER_ERROR)
+            }
         }
     }
 
-    private fun validateCredentials(email: String, password: String) {
-        when {
-            !validUsers.containsKey(email) -> {
-                handleLoginError(ErrorType.USER_NOT_FOUND)
-            }
-            validUsers[email]?.isActive == false -> {
-                handleLoginError(ErrorType.ACCOUNT_DISABLED)
-            }
-            validUsers[email]?.password != password -> {
-                handleLoginError(ErrorType.INCORRECT_PASSWORD)
-            }
-            else -> {
-                handleLoginSuccess()
-            }
+    private fun navigateToOTP(userId: Int, correo: String) {  // Cambié 'correo' por 'email' para consistencia
+        startActivity(Intent(this, OtpVerificationActivity::class.java).apply {
+            putExtra("user_id", userId)
+            putExtra("email", correo)  // Cambié a "email" para que coincida con OtpVerificationActivity
+        })
+        loginButton.apply {
+            isEnabled = true
+            text = "Iniciar sesión"
         }
     }
+
 
     private fun handleLoginError(errorType: ErrorType) {
         loginAttempts++
@@ -204,15 +221,24 @@ class LoginActivity : AppCompatActivity() {
                     errorType
                 )
             }
+            ErrorType.TOO_MANY_ATTEMPTS -> {
+                showErrorDialog(
+                    "Demasiados intentos",
+                    "Has realizado demasiados intentos. Intenta más tarde.",
+                    errorType
+                )
+            }
+            ErrorType.SERVER_ERROR -> {
+                showErrorDialog(
+                    "Error de conexión",
+                    "No se pudo conectar con el servidor. Verifica tu conexión a internet.",
+                    errorType
+                )
+            }
             ErrorType.ACCOUNT_BLOCKED -> {
                 // Ya manejado arriba
             }
         }
-    }
-
-    private fun handleLoginSuccess() {
-        resetLoginAttempts()
-        navigateToMain()
     }
 
     private fun showErrorDialog(title: String, message: String, errorType: ErrorType) {
@@ -226,7 +252,6 @@ class LoginActivity : AppCompatActivity() {
         errorTitle.text = title
         errorMessage.text = message
 
-        // Cambiar icono según el tipo de error
         when (errorType) {
             ErrorType.ACCOUNT_BLOCKED -> errorIcon.setImageResource(R.drawable.ic_lock)
             ErrorType.ACCOUNT_DISABLED -> errorIcon.setImageResource(R.drawable.ic_block)
@@ -287,19 +312,12 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
 
-    private fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        finish()
-    }
-
     enum class ErrorType {
         USER_NOT_FOUND,
         INCORRECT_PASSWORD,
         ACCOUNT_DISABLED,
-        ACCOUNT_BLOCKED
+        ACCOUNT_BLOCKED,
+        TOO_MANY_ATTEMPTS,
+        SERVER_ERROR
     }
 }

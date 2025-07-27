@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.serious_game_usil.app-mergeDebugResources-57:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/Users/jhafetcanepa/.gradle/caches/8.9/transforms/1ab8b373059626b6820f0932f38c310f/transformed/appcompat-1.7.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

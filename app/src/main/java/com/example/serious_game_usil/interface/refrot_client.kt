@@ -83,7 +83,12 @@ class AuthInterceptor(
     companion object {
         private val PUBLIC_ENDPOINTS = setOf(
             "/auth/gett",
-            "/api/refresh-token"
+            "/api/refresh-token",
+            "/api/login",
+            "/api/otp/validate",
+            "/api/otp/resend",
+            "/api/login/finish",
+            "/api/login/begin",
         )
     }
 

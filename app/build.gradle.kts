@@ -43,6 +43,16 @@ android {
         }
     }
 
+
+    tasks.withType<Delete> {
+        doFirst {
+            delete(fileTree(layout.buildDirectory) {
+                include("**/.DS_Store")
+            })
+        }
+    }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -104,4 +114,8 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    implementation("com.google.code.gson:gson:2.10.1")
 }

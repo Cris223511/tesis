@@ -80,9 +80,18 @@ class DashboardViewModel(
     }
 
     fun updateNavigationSelection(item: NavigationItem) {
-        // Guardar la selección actual si es necesario
-        viewModelScope.launch {
-            userRepository.updateLastNavigationItem(item.name)
+        // Solo manejar la selección localmente
+        // No necesita guardar en el repositorio
+        when (item) {
+            NavigationItem.CHILDREN -> {
+                // Lógica para mostrar vista de niños
+            }
+            NavigationItem.PROFILE -> {
+                // Lógica para mostrar perfil
+            }
+            NavigationItem.INFO -> {
+                // Lógica para mostrar información
+            }
         }
     }
 
