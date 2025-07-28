@@ -168,12 +168,15 @@ func migrateDatabase() error {
 		&models.SecurityLog{},
 		&models.PasswordHistory{},
 		&models.UserRole{},
+		&models.OTP{},
+		&models.OTPResend{},
 	)
 }
 
 func initializeServices() (*serviceContainer, error) {
 	userService := services.NewUserService(config.DB)
 	roleService := services.NewRoleService(config.DB)
+	otpService := services.NewOTPService(config.DB) 
 	
 	bioService, err := services.NewBioService(
 		config.DB,
@@ -190,15 +193,19 @@ func initializeServices() (*serviceContainer, error) {
 		user: userService,
 		role: roleService,
 		bio:  *bioService,
+		otp:  otpService,
+		
 	}, nil
 }
 
 func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
-		user: controllers.NewUserController(services.user),
+		user: controllers.NewUserController(services.user, services.otp), 
 		role: controllers.NewRoleController(services.role),
 		auth: controllers.NewAuthController(),
 		bio:  controllers.NewBioController(&services.bio),
+		
+		
 	}
 }
 
@@ -239,6 +246,7 @@ type serviceContainer struct {
 	user services.UserService
 	role services.RoleService
 	bio  services.BioService
+	otp  services.OTPService 
 }
 
 type controllerContainer struct {
@@ -270,6 +278,9 @@ func main() {
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
+
+
+
 }
 
 func generateDemoTokens() {

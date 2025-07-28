@@ -117,8 +117,8 @@ func (s *userService) LoginUser(username, password, clientIP, userAgent string) 
 
 	var user models.Usuarios
 	err := s.db.Preload("Roles").Preload("BiometricCreds").
-		Where("(usuario = ? OR correo = ? OR numero_documento = ?) AND activo = ?",
-			username, username, username, true).
+		Where("(usuario = ? OR correo = ? OR num_documento = ?) AND activo = ?",
+			username, username, username, false).
 		First(&user).Error
 
 	if err != nil {
@@ -180,22 +180,21 @@ func (s *userService) checkIPRateLimit(ip string) error {
 }
 
 func (s *userService) checkAccountLockStatus(user *models.Usuarios) error {
-	if !user.Activo {
-		return errors.New("cuenta desactivada")
-	}
+	if user.Activo {  
+        return errors.New("cuenta desactivada")
+    }
 
 	key := fmt.Sprintf("user_%d", user.ID)
-	if val, ok := s.loginAttempts.Load(key); ok {
-		attempt := val.(*loginAttempt)
-		if attempt.lockedAt != nil && time.Since(*attempt.lockedAt) < 30*time.Minute {
-			remainingTime := 30*time.Minute - time.Since(*attempt.lockedAt)
-			return fmt.Errorf("cuenta bloqueada, intente en %d minutos", int(remainingTime.Minutes()))
-		}
-	}
+    if val, ok := s.loginAttempts.Load(key); ok {
+        attempt := val.(*loginAttempt)
+        if attempt.lockedAt != nil && time.Since(*attempt.lockedAt) < 30*time.Minute {
+            remainingTime := 30*time.Minute - time.Since(*attempt.lockedAt)
+            return fmt.Errorf("cuenta bloqueada, intente en %d minutos", int(remainingTime.Minutes()))
+        }
+    }
 
-	return nil
+    return nil
 }
-
 func (s *userService) handleFailedLogin(user *models.Usuarios, ip string) {
 	key := fmt.Sprintf("user_%d", user.ID)
 	val, _ := s.loginAttempts.LoadOrStore(key, &loginAttempt{})
@@ -212,14 +211,13 @@ func (s *userService) handleFailedLogin(user *models.Usuarios, ip string) {
 	user.Intentos = attempt.count
 	s.db.Model(user).Update("intentos", attempt.count)
 
+
 	if attempt.count >= 3 {
 		now := time.Now()
 		attempt.lockedAt = &now
-		user.Activo = false
-		s.db.Model(user).Update("activo", false)
 		
 		s.logSecurityEvent("ACCOUNT_LOCKED", user.Usuario, ip, 
-			fmt.Sprintf("Cuenta bloqueada después de %d intentos", attempt.count))
+			fmt.Sprintf("Cuenta bloqueada temporalmente después de %d intentos", attempt.count))
 		
 		go s.sendAccountLockNotification(user.Correo, user.Nombres_Apellidos, ip)
 	}
@@ -343,9 +341,7 @@ func (s *userService) validateUserData(user *models.Usuarios) error {
 		return err
 	}
 
-	if user.FechaNacimiento.Time.After(time.Now().AddDate(-1, 0, 0)) {
-		return errors.New("debe ser mayor de 1 año")
-	}
+	
 
 	if !s.isValidPhone(user.Telefono) {
 		return errors.New("número de celular inválido")
@@ -396,7 +392,7 @@ func (s *userService) validateNameQuality(fullName string) error {
 func (s *userService) checkDuplicateUser(tx *gorm.DB, user *models.Usuarios) error {
 	var count int64
 	
-	tx.Model(&models.Usuarios{}).Where("numero_documento = ? AND tipo_documento = ?", 
+	tx.Model(&models.Usuarios{}).Where("num_documento = ? AND tipo_documento = ?", 
 		user.Num_Documento, user.Tipo_Documento).Count(&count)
 	if count > 0 {
 		return errors.New("ya existe un usuario con este documento")
@@ -653,7 +649,7 @@ func (s *userService) SearchUserByField(field, value string) ([]models.Usuarios,
 	searchPattern := "%" + strings.ToLower(value) + "%"
 	
 	err := s.db.Preload("Roles").
-		Where("LOWER(nombres_apellidos) LIKE ? OR LOWER(correo) LIKE ? OR numero_documento LIKE ?",
+		Where("LOWER(nombres_apellidos) LIKE ? OR LOWER(correo) LIKE ? OR num_documento LIKE ?",
 			searchPattern, searchPattern, searchPattern).
 		Find(&users).Error
 		

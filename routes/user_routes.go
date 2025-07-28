@@ -69,6 +69,7 @@ func SetupRouter(
 		protected.PATCH("/users/:id/status", userController.ChangeAccountStatus)
 		protected.POST("/users/:id/unlock", userController.UnlockAccount)
 		protected.GET("/users/:id/login-attempts", userController.GetLoginAttempts)
+		protected.GET("/users/:id", userController.GetByID) 
 	
 	
 		

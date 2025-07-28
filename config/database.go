@@ -64,6 +64,8 @@ func InitializeDatabase() {
 		&models.LoginHistory{},
 		&models.SecurityLog{},
 		&models.PasswordHistory{},
+		&models.OTP{},
+		&models.OTPResend{},
 	); err != nil {
 		log.Fatalf("Error al migrar tablas relacionadas: %v", err)
 	}

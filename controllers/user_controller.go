@@ -16,7 +16,6 @@ import (
 	"usuarios/service"
 	"usuarios/utils"
 
-	"sync"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,173 +23,127 @@ import (
 
 type UserController struct {
 	UserService services.UserService
+	OTPService  services.OTPService
 }
 
-type otpSession struct {
-	UserID         uint
-	OTP            string
-	FailedAttempts int
-	RequestedCount int
-	BlockedUntil   time.Time
-	ExpiresAt      time.Time
-}
 
-var otpCache = struct {
-	sync.RWMutex
-	data map[uint]*otpSession
-}{data: make(map[uint]*otpSession)}
 
-func NewUserController(userService services.UserService) *UserController {
-	return &UserController{
-		UserService: userService,
-	}
+func NewUserController(userService services.UserService, otpService services.OTPService) *UserController {
+    return &UserController{
+        UserService: userService,
+        OTPService:  otpService,  
+    }
 }
 
 func (ctrl *UserController) Login(c *gin.Context) {
-	var loginRequest struct {
-		NombreUsuario string `json:"usuario" binding:"required"`
-		Password      string `json:"password" binding:"required"`
-	}
-	
-	if err := c.ShouldBindJSON(&loginRequest); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Debe proporcionar nombre de usuario y contraseña"})
-		return
-	}
+    var loginRequest struct {
+        NombreUsuario string `json:"usuario" binding:"required"`
+        Password      string `json:"contrasena" binding:"required"`  
+    }
+    
+    if err := c.ShouldBindJSON(&loginRequest); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Debe proporcionar nombre de usuario y contraseña"})
+        return
+    }
 
-	clientIP := getClientIP(c)
-	userAgent := c.GetHeader("User-Agent")
+    clientIP := getClientIP(c)
+    userAgent := c.GetHeader("User-Agent")
 
-	user, err := ctrl.UserService.LoginUser(loginRequest.NombreUsuario, loginRequest.Password, clientIP, userAgent)
-	if err != nil {
-		switch err.Error() {
-		case "credenciales inválidas":
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario o contraseña incorrectos"})
-		case "cuenta desactivada":
-			c.JSON(http.StatusForbidden, gin.H{"error": "La cuenta se encuentra desactivada"})
-		case "cuenta bloqueada, intente en":
-			c.JSON(http.StatusForbidden, gin.H{"error": err.Error()})
-		case "contraseña expirada, debe actualizarla":
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Tu contraseña ha expirado, debes actualizarla"})
-		case "demasiados intentos, intente más tarde":
-			c.JSON(http.StatusTooManyRequests, gin.H{"error": "Demasiados intentos fallidos"})
-		case "acceso denegado desde esta ubicación":
-			c.JSON(http.StatusForbidden, gin.H{"error": "Acceso bloqueado desde esta ubicación"})
-		case "solicitud inválida":
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Solicitud inválida"})
-		default:
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error en el servidor"})
-		}
-		return
-	}
+    user, err := ctrl.UserService.LoginUser(loginRequest.NombreUsuario, loginRequest.Password, clientIP, userAgent)
 
-	otp := generateOTP(6)
-	otpCache.Lock()
-	otpCache.data[user.ID] = &otpSession{
-		UserID:         user.ID,
-		OTP:            otp,
-		FailedAttempts: 0,
-		RequestedCount: 1,
-		BlockedUntil:   time.Time{},
-		ExpiresAt:      time.Now().Add(5 * time.Minute),
-	}
-	otpCache.Unlock()
+    if err != nil {
+        errMsg := err.Error()
+        
+        switch {
+        case errMsg == "credenciales inválidas":
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario o contraseña incorrectos"})
+        case errMsg == "cuenta desactivada":
+            c.JSON(http.StatusForbidden, gin.H{"error": "La cuenta se encuentra desactivada"})
+        case strings.HasPrefix(errMsg, "cuenta bloqueada, intente en"):
+            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+        case errMsg == "contraseña expirada, debe actualizarla":
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Tu contraseña ha expirado, debes actualizarla"})
+        case errMsg == "demasiados intentos, intente más tarde":
+            c.JSON(http.StatusTooManyRequests, gin.H{"error": "Demasiados intentos fallidos"})
+        case errMsg == "acceso denegado desde esta ubicación":
+            c.JSON(http.StatusForbidden, gin.H{"error": "Acceso bloqueado desde esta ubicación"})
+        case errMsg == "solicitud inválida":
+            c.JSON(http.StatusBadRequest, gin.H{"error": "Solicitud inválida"})
+        default:
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Error en el servidor"})
+        }
+        return
+    }
 
-	go utils.SendOTPEmail(user.Correo, otp)
+    // Usar OTPService en lugar de otpCache
+    _, err = ctrl.OTPService.GenerateOTP(user.ID)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "error": "Error al generar código de verificación",
+        })
+        return
+    }
 
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Credenciales válidas. Se envió un código OTP a tu correo.",
-		"user": gin.H{
-			"user_id":          user.ID,
-			"nombres_apellidos": user.Nombres_Apellidos,
-			"correo":          user.Correo,
-			"roles":           user.Roles,
-		},
-	})
+    c.JSON(http.StatusOK, gin.H{
+        "message": "Credenciales válidas. Se envió un código OTP a tu correo.",
+        "user": gin.H{
+			"user_id":           user.ID,
+            "userId":           user.ID,
+            "usuario":          user.Usuario,
+            "correo":           user.Correo,
+            "nombresApellidos": user.Nombres_Apellidos,
+        },
+    })
 }
 
 func (ctrl *UserController) ValidateOTP(c *gin.Context) {
-	var req struct {
-		UserID uint   `json:"user_id" binding:"required"`
-		OTP    string `json:"otp" binding:"required"`
-	}
-	
-	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
-		return
-	}
+    var req struct {
+        UserID uint   `json:"user_id" binding:"required"`
+        OTP    string `json:"otp" binding:"required"`
+    }
+    
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+        return
+    }
 
-	otpCache.Lock()
-	session, exists := otpCache.data[req.UserID]
-	otpCache.Unlock()
-	
-	if !exists {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "No hay sesión OTP activa"})
-		return
-	}
+    // Usar OTPService para verificar
+    err := ctrl.OTPService.VerifyOTP(req.UserID, req.OTP)
+    if err != nil {
+        errMsg := err.Error()
+        
+        switch {
+        case strings.Contains(errMsg, "expirado"):
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "OTP expirado"})
+        case strings.Contains(errMsg, "incorrecto"):
+            c.JSON(http.StatusUnauthorized, gin.H{"error": errMsg})
+        case strings.Contains(errMsg, "bloqueado"):
+            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+        default:
+            c.JSON(http.StatusBadRequest, gin.H{"error": errMsg})
+        }
+        return
+    }
 
-	now := time.Now()
-	if now.Before(session.BlockedUntil) {
-		c.JSON(http.StatusForbidden, gin.H{"error": "Cuenta bloqueada temporalmente"})
-		return
-	}
+    // Obtener usuario para generar tokens
+    user, err := ctrl.UserService.GetUserByID(req.UserID)
+    if err != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+        return
+    }
 
-	if now.After(session.ExpiresAt) {
-		otpCache.Lock()
-		delete(otpCache.data, req.UserID)
-		otpCache.Unlock()
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "OTP expirado"})
-		return
-	}
+    // Generar tokens
+    token, refreshToken, err := utils.GenerateToken(user)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al generar token"})
+        return
+    }
 
-	if session.OTP != req.OTP {
-		session.FailedAttempts++
-		if session.FailedAttempts >= 3 {
-			session.BlockedUntil = now.Add(30 * time.Minute)
-			otpCache.Lock()
-			otpCache.data[req.UserID] = session
-			otpCache.Unlock()
-			
-			user, _ := ctrl.UserService.GetUserByID(req.UserID)
-			if user != nil {
-				go utils.SendSecurityAlert(user.Correo, user.Nombres_Apellidos, 
-					"Múltiples intentos fallidos de OTP", getClientIP(c))
-			}
-			
-			c.JSON(http.StatusForbidden, gin.H{"error": "OTP incorrecto. Cuenta bloqueada por 30 minutos"})
-			return
-		}
-		
-		otpCache.Lock()
-		otpCache.data[req.UserID] = session
-		otpCache.Unlock()
-		
-		remaining := 3 - session.FailedAttempts
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": fmt.Sprintf("OTP incorrecto. %d intento(s) restante(s)", remaining),
-		})
-		return
-	}
+    var roles []string
+    for _, role := range user.Roles {
+        roles = append(roles, role.Name)
+    }
 
-	otpCache.Lock()
-	delete(otpCache.data, req.UserID)
-	otpCache.Unlock()
-
-	user, err := ctrl.UserService.GetUserByID(req.UserID)
-	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
-		return
-	}
-
-	token, refreshToken, err := utils.GenerateToken(user)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al generar token"})
-		return
-	}
-
-	var roles []string
-	for _, role := range user.Roles {
-		roles = append(roles, role.Name)
-	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"message":       "Autenticación exitosa",
@@ -198,59 +151,74 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 		"roles":         roles,
 		"bearer_token":  token,
 		"refresh_token": refreshToken,
-	})
+        "user": gin.H{
+			"user_id":           user.ID,
+            "id":               user.ID,
+            "usuario":          user.Usuario,
+            "nombresApellidos": user.Nombres_Apellidos,
+            "correo":           user.Correo,
+            "telefono":         user.Telefono,
+            "tipoDocumento":    user.Tipo_Documento,
+            "numeroDocumento":  user.Num_Documento,
+            "sexo":             user.Sexo,
+            "activo":           user.Activo,
+			"foto":            user.Foto,
+			"fechaNacimiento": user.FechaNacimiento,
+
+        },
+    })
 }
 
 func (ctrl *UserController) ResendOTP(c *gin.Context) {
-	var req struct {
-		UserID uint `json:"user_id" binding:"required"`
-	}
-	
-	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
-		return
-	}
+    var req struct {
+        UserID uint `json:"user_id" binding:"required"`
+    }
+    
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+        return
+    }
 
-	otpCache.Lock()
-	session, exists := otpCache.data[req.UserID]
-	otpCache.Unlock()
-	
-	if !exists {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "No hay sesión OTP activa"})
-		return
-	}
+    // Verificar que el usuario existe
+    user, err := ctrl.UserService.GetUserByID(req.UserID)
+    if err != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+        return
+    }
 
-	if time.Now().Before(session.BlockedUntil) {
-		c.JSON(http.StatusForbidden, gin.H{"error": "Cuenta bloqueada temporalmente"})
-		return
-	}
+    // Usar OTPService para reenviar
+    err = ctrl.OTPService.ResendOTP(user.ID)
+    if err != nil {
+        errMsg := err.Error()
+        
+        switch {
+        case strings.Contains(errMsg, "bloqueado"):
+            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+        case strings.Contains(errMsg, "espera"):
+            c.JSON(http.StatusTooManyRequests, gin.H{"error": errMsg})
+        case strings.Contains(errMsg, "límite"):
+            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+        default:
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al reenviar código"})
+        }
+        return
+    }
 
-	session.RequestedCount++
-	if session.RequestedCount > 3 {
-		session.BlockedUntil = time.Now().Add(24 * time.Hour)
-		c.JSON(http.StatusForbidden, gin.H{"error": "Límite de reenvíos excedido. Cuenta bloqueada 24 horas"})
-		return
-	}
+    // Obtener información de reenvíos restantes
+    var resendRecord models.OTPResend
+    ctrl.UserService.DB().Where("user_id = ?", user.ID).First(&resendRecord)
+    reenviosRestantes := 3 - resendRecord.ResendCount
 
-	newOTP := generateOTP(8)
-	session.OTP = newOTP
-	session.ExpiresAt = time.Now().Add(5 * time.Minute)
-	session.FailedAttempts = 0
-	
-	otpCache.Lock()
-	otpCache.data[req.UserID] = session
-	otpCache.Unlock()
-
-	user, _ := ctrl.UserService.GetUserByID(req.UserID)
-	if user != nil {
-		go utils.SendOTPEmail(user.Correo, newOTP)
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Nuevo código OTP enviado",
-		"reenvios_restantes": 3 - session.RequestedCount,
-	})
+    c.JSON(http.StatusOK, gin.H{
+        "message": "Nuevo código OTP enviado",
+        "reenviosRestantes": reenviosRestantes,
+    })
 }
+
+
+
+
+
 
 
 func (ctrl *UserController) Register(c *gin.Context) {
@@ -265,13 +233,14 @@ func (ctrl *UserController) Register(c *gin.Context) {
     // Convertir a models.Usuarios
     user := models.Usuarios{
         Nombres_Apellidos: req.NombresApellidos,
-        FechaNacimiento:  parseFecha(req.FechaNacimiento), 
         Tipo_Documento:   req.TipoDocumento,
         Num_Documento:    req.NumDocumento,
         Sexo:             req.Sexo,
         Telefono:         req.Telefono,
         Correo:           req.Correo,
         RoleIDs:          req.RoleIDs,
+		
+		
     }
 
 	log.Printf("Usuario antes de CreateUser: Nombres_Apellidos='%s'", user.Nombres_Apellidos)

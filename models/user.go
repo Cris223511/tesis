@@ -1,7 +1,6 @@
 package models
 
 import (
-	"database/sql"
 	"errors"
 	"time"
 
@@ -22,7 +21,7 @@ const (
 type Usuarios struct {
     ID                 uint                  `gorm:"primaryKey;autoIncrement;column:idusuario" json:"id"`
     Nombres_Apellidos  string     `gorm:"column:nombres_apellidos;size:100;not null;index" json:"nombres_apellidos"`
-    FechaNacimiento    sql.NullTime          `gorm:"type:date" json:"fecha_nacimiento"`
+   FechaNacimiento FechaNacimiento `json:"fecha_nacimiento"`
     Tipo_Documento     string                `gorm:"size:50;not null;index" json:"tipo_documento"`
     Num_Documento      string                `gorm:"size:50;uniqueIndex;not null" json:"num_documento"`
     Descripcion        string                `gorm:"type:text" json:"descripcion"`
@@ -82,4 +81,11 @@ func (u *Usuarios) ValidateTipoDocumento() error {
 
 func (u *Usuarios) BeforeSave(tx *gorm.DB) error {
 	return u.ValidateTipoDocumento()
+}
+
+type FechaNacimiento time.Time
+
+func (f FechaNacimiento) MarshalJSON() ([]byte, error) {
+  s := time.Time(f).Format(`"2006-01-02"`)
+  return []byte(s), nil
 }
