@@ -1,12 +1,16 @@
 package controllers
 
 import (
+	"bytes"
 	"crypto/rand"
 	"database/sql"
 	"fmt"
 	"log"
 	"math/big"
 	"net/http"
+	"net/smtp"
+	"os"
+	"strconv"
 	"strings"
 
 	"time"
@@ -16,7 +20,6 @@ import (
 	"usuarios/service"
 	"usuarios/utils"
 
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,14 +27,16 @@ import (
 type UserController struct {
 	UserService services.UserService
 	OTPService  services.OTPService
+	 DeviceIPRepo services.DeviceIPRepo 
 }
 
 
 
-func NewUserController(userService services.UserService, otpService services.OTPService) *UserController {
+func NewUserController(userService services.UserService, otpService services.OTPService,  deviceIPRepo services.DeviceIPRepo) *UserController {
     return &UserController{
         UserService: userService,
         OTPService:  otpService,  
+		DeviceIPRepo: deviceIPRepo,
     }
 }
 
@@ -97,77 +102,98 @@ func (ctrl *UserController) Login(c *gin.Context) {
 }
 
 func (ctrl *UserController) ValidateOTP(c *gin.Context) {
-    var req struct {
-        UserID uint   `json:"user_id" binding:"required"`
-        OTP    string `json:"otp" binding:"required"`
-    }
-    
-    if err := c.ShouldBindJSON(&req); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
-        return
-    }
-
-    // Usar OTPService para verificar
-    err := ctrl.OTPService.VerifyOTP(req.UserID, req.OTP)
-    if err != nil {
-        errMsg := err.Error()
-        
-        switch {
-        case strings.Contains(errMsg, "expirado"):
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "OTP expirado"})
-        case strings.Contains(errMsg, "incorrecto"):
-            c.JSON(http.StatusUnauthorized, gin.H{"error": errMsg})
-        case strings.Contains(errMsg, "bloqueado"):
-            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
-        default:
-            c.JSON(http.StatusBadRequest, gin.H{"error": errMsg})
-        }
-        return
-    }
-
-    // Obtener usuario para generar tokens
-    user, err := ctrl.UserService.GetUserByID(req.UserID)
-    if err != nil {
-        c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
-        return
-    }
-
-    // Generar tokens
-    token, refreshToken, err := utils.GenerateToken(user)
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al generar token"})
-        return
-    }
-
-    var roles []string
-    for _, role := range user.Roles {
-        roles = append(roles, role.Name)
-    }
-
-
+	var req struct {
+		UserID uint   `json:"user_id" binding:"required"`
+		OTP    string `json:"otp" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
+	if err := ctrl.OTPService.VerifyOTP(req.UserID, req.OTP); err != nil {
+		switch {
+		case strings.Contains(err.Error(), "expirado"):
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "OTP expirado"})
+		case strings.Contains(err.Error(), "incorrecto"):
+			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		case strings.Contains(err.Error(), "bloqueado"):
+			c.JSON(http.StatusForbidden, gin.H{"error": err.Error()})
+		default:
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		}
+		return
+	}
+	user, err := ctrl.UserService.GetUserByID(req.UserID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+		return
+	}
+	token, refreshToken, err := utils.GenerateToken(user)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al generar token"})
+		return
+	}
+	ip := getClientIP(c)
+	device := c.GetHeader("User-Agent")
+	if known, _ := ctrl.DeviceIPRepo.GetIPSet(user.ID, device); known != nil {
+		if _, exists := known[ip]; !exists {
+			ctrl.DeviceIPRepo.AddIP(user.ID, device, ip)
+			ctrl.DeviceIPRepo.TrimOldest(user.ID, device)
+		}
+	}
+	go sendLoginNotificationEmail(user.Correo, user.Nombres_Apellidos, device, ip,(ip))
+	var roles []string
+	for _, r := range user.Roles {
+		roles = append(roles, r.Name)
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"message":       "Autenticación exitosa",
 		"user_id":       user.ID,
 		"roles":         roles,
 		"bearer_token":  token,
 		"refresh_token": refreshToken,
-        "user": gin.H{
-			"user_id":           user.ID,
-            "id":               user.ID,
-            "usuario":          user.Usuario,
-            "nombresApellidos": user.Nombres_Apellidos,
-            "correo":           user.Correo,
-            "telefono":         user.Telefono,
-            "tipoDocumento":    user.Tipo_Documento,
-            "numeroDocumento":  user.Num_Documento,
-            "sexo":             user.Sexo,
-            "activo":           user.Activo,
-			"foto":            user.Foto,
-			"fechaNacimiento": user.FechaNacimiento,
-
-        },
-    })
+		"user": gin.H{
+	
+			"id":                user.ID,
+			"usuario":           user.Usuario,
+			"nombresApellidos":  user.Nombres_Apellidos,
+			"correo":            user.Correo,
+			"telefono":          user.Telefono,
+			"tipo_documento":     user.Tipo_Documento,
+			"num_documento":   user.Num_Documento,
+			"sexo":              user.Sexo,
+			"activo":            user.Activo,
+			"foto":              user.Foto,
+			"fechaNacimiento":   user.FechaNacimiento,
+		},
+	})
 }
+
+func sendLoginNotificationEmail(to, name, device, ip, location string) {
+	subject := "Inicio de Sesión Exitoso - Serious Game"
+	body := fmt.Sprintf(`
+<!DOCTYPE html>
+<html><body>
+  <h1>Inicio de Sesión Exitoso</h1>
+  <p>Hola <strong>%s</strong>,</p>
+  <p>Acabas de iniciar sesión en Serious Game con estos datos:</p>
+  <ul>
+    <li><strong>Dispositivo:</strong> %s</li>
+    <li><strong>Ubicación:</strong> %s</li>
+    <li><strong>Dirección IP:</strong> %s</li>
+    <li><strong>Fecha y Hora:</strong> %s</li>
+  </ul>
+  <p>Si no reconoces esta actividad, contacta a soporte.</p>
+</body></html>`,
+		name,
+		device,
+		location,
+		ip,
+		time.Now().Format("02/01/2006 15:04:05"),
+	)
+	_ = sendEmail(to, subject, body)
+}
+
 
 func (ctrl *UserController) ResendOTP(c *gin.Context) {
     var req struct {
@@ -280,13 +306,43 @@ func parseFecha(fechaStr string) sql.NullTime {
     }
 }
 
+
 func (ctrl *UserController) List(c *gin.Context) {
-	users, err := ctrl.UserService.ListUsers()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener usuarios"})
-		return
-	}
-	c.JSON(http.StatusOK, users)
+    page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+    perPage, _ := strconv.Atoi(c.DefaultQuery("per_page", "10"))
+    
+    // Obtener todos los usuarios para contar
+    var total int64
+    ctrl.UserService.DB().Model(&models.Usuarios{}).Count(&total)
+    
+    // Calcular offset
+    offset := (page - 1) * perPage
+    
+    // Obtener usuarios paginados
+    var users []models.Usuarios
+    err := ctrl.UserService.DB().
+        Preload("Roles").
+        Limit(perPage).
+        Offset(offset).
+        Find(&users).Error
+        
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener usuarios"})
+        return
+    }
+    
+    totalPages := int(total) / perPage
+    if int(total)%perPage > 0 {
+        totalPages++
+    }
+    
+    c.JSON(http.StatusOK, gin.H{
+        "users":       users,
+        "total":       total,
+        "page":        page,
+        "per_page":    perPage,
+        "total_pages": totalPages,
+    })
 }
 
 func (ctrl *UserController) GetByID(c *gin.Context) {
@@ -453,20 +509,35 @@ func (ctrl *UserController) RefreshToken(c *gin.Context) {
 	})
 }
 
+
 func (ctrl *UserController) Search(c *gin.Context) {
-	term := c.Query("term")
-	if term == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Término de búsqueda requerido"})
-		return
-	}
-
-	users, err := ctrl.UserService.SearchUserByField("", term)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error en la búsqueda"})
-		return
-	}
-
-	c.JSON(http.StatusOK, users)
+    // Cambiar de "search" a "q"
+    q := c.Query("q")
+    limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+    
+    if q == "" {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Término de búsqueda requerido"})
+        return
+    }
+    
+    var users []models.Usuarios
+    searchPattern := "%" + q + "%"
+    
+    err := ctrl.UserService.DB().
+        Preload("Roles").
+        Where("nombres_apellidos LIKE ? OR num_documento LIKE ? OR correo LIKE ?", 
+            searchPattern, searchPattern, searchPattern).
+        Limit(limit).
+        Order("created_at DESC").
+        Find(&users).Error
+        
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al buscar usuarios"})
+        return
+    }
+    
+    // IMPORTANTE: Devolver solo el array de usuarios, no un objeto
+    c.JSON(http.StatusOK, users)
 }
 
 func (ctrl *UserController) GetCurrentUser(c *gin.Context) {
@@ -514,4 +585,81 @@ func getClientIP(c *gin.Context) string {
 	}
 	
 	return c.ClientIP()
+}
+
+
+func SendLoginNotificationEmail(to, name, device, ip string) error {
+	subject := "Inicio de Sesión Exitoso - Serious Game"
+	body := fmt.Sprintf(`
+<!DOCTYPE html>
+<html>
+<body style="font-family:Arial,sans-serif;background-color:#f5f5f5;padding:20px;">
+  <div style="max-width:600px;margin:auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+    <div style="background:#004165;color:#fff;padding:20px;text-align:center;">
+      <h1 style="margin:0;font-size:24px;">Inicio de Sesión Exitoso</h1>
+    </div>
+    <div style="padding:30px;color:#333;">
+      <p>Hola <strong>%s</strong>,</p>
+      <p>Acabas de iniciar sesión en Serious Game:</p>
+      <ul>
+        <li><strong>Dispositivo:</strong> %s</li>
+        <li><strong>Ubicación:</strong> %s</li>
+        <li><strong>Dirección IP:</strong> %s</li>
+        <li><strong>Fecha y Hora:</strong> %s</li>
+      </ul>
+      <p style="color:#d32f2f;font-weight:bold;">
+        Si no reconoces esta actividad, contacta con soporte inmediatamente.
+      </p>
+    </div>
+  </div>
+</body>
+</html>`,
+		name,
+		device,
+		getLocationFromIP(ip),
+		ip,
+		time.Now().Format("02/01/2006 15:04:05"),
+	)
+	return sendEmail(to, subject, body)
+}
+
+func sendEmail(to, subject, body string) error {
+	host := getEnv("SMTP_HOST", "smtp.gmail.com")
+	port := getEnv("SMTP_PORT", "587")
+	user := os.Getenv("SMTP_EMAIL")
+	pass := os.Getenv("SMTP_PASSWORD")
+	auth := smtp.PlainAuth("", user, pass, host)
+
+	headers := map[string]string{
+		"From":         fmt.Sprintf("Serious Game <%s>", user),
+		"To":           to,
+		"Subject":      subject,
+		"MIME-Version": "1.0",
+		"Content-Type": "text/html; charset=UTF-8",
+	}
+	var msg bytes.Buffer
+	for k, v := range headers {
+		msg.WriteString(fmt.Sprintf("%s: %s\r\n", k, v))
+	}
+	msg.WriteString("\r\n")
+	msg.WriteString(body)
+
+	return smtp.SendMail(host+":"+port, auth, user, []string{to}, msg.Bytes())
+}
+
+func getLocationFromIP(ip string) string {
+	if ip == "127.0.0.1" || ip == "::1" {
+		return "Servidor local"
+	}
+	if strings.HasPrefix(ip, "192.168.") || strings.HasPrefix(ip, "10.") {
+		return "Red local"
+	}
+	return "Ubicación desconocida"
+}
+
+func getEnv(key, def string) string {
+	if v := os.Getenv(key); v != "" {
+		return v
+	}
+	return def
 }

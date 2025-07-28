@@ -270,57 +270,61 @@ func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent 
 	return nil
 }
 
-func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
-	log.Printf("CreateUser recibido: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
-    log.Printf("Usuario completo en CreateUser: %+v", user)
-	if err := s.validateUserData(user); err != nil {
-		return "", err
-	}
 
+func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
-	if err := s.checkDuplicateUser(tx, user); err != nil {
-		return "", err
-	}
-
-	if err := s.validateRoles(tx, user); err != nil {
-		return "", err
-	}
-
 	tempPassword := s.generateSecurePassword()
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(tempPassword), bcrypt.DefaultCost)
-	
-	user.Contrasena = string(hashedPassword)
+	hashed, _ := bcrypt.GenerateFromPassword([]byte(tempPassword), bcrypt.DefaultCost)
+
+	user.Contrasena = string(hashed)
 	user.PasswordExpiresAt = time.Now().Add(48 * time.Hour)
 	user.Activo = false
 	user.DobleFactor = false
 	user.Intentos = 0
 	user.Usuario = s.generateUniqueUsername(user.Nombres_Apellidos)
-
-	activationToken := s.generateActivationToken()
-	user.ActivationToken = activationToken
+	user.ActivationToken = s.generateActivationToken()
 	user.ActivationExpiry = time.Now().Add(24 * time.Hour)
 
-	log.Printf("Usuario ANTES de tx.Create: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
-log.Printf("Usuario completo antes de insert: %+v", user)
+	columns := []string{
+		"nombres_apellidos",
+		"fecha_nacimiento",
+		"tipo_documento",
+		"num_documento",
+		"sexo",
+		"telefono",
+		"correo",
+		"usuario",
+		"contrasena",
+		"intentos",
+		"doble_factor",
+		"activo",
+		"password_expires_at",
+		"activation_token",
+		"activation_expiry",
+	}
+	if err := tx.Select(columns).Create(user).Error; err != nil {
+		return "", err
+	}
 
-if err := tx.Select("nombres_apellidos", "fecha_nacimiento", "tipo_documento", 
-    "num_documento", "sexo", "telefono", "correo", "usuario", 
-    "contrasena", "intentos", "doble_factor", "activo", 
-    "password_expires_at", "activation_token", "activation_expiry").Create(user).Error; err != nil {
-    log.Printf("Error al insertar en BD: %v", err)
-    return "", fmt.Errorf("error al crear usuario: %v", err) 
-}
+	if len(user.RoleIDs) == 0 {
+		user.RoleIDs = []uint{2}
+	}
 
+	var roles []models.Role
+	if err := tx.Where("id IN ?", user.RoleIDs).Find(&roles).Error; err != nil {
+		return "", err
+	}
+	if err := tx.Model(user).Association("Roles").Replace(roles); err != nil {
+		return "", err
+	}
 
 	tx.Commit()
-	
-	go s.sendActivationEmail(user.Correo, tempPassword, user.Usuario, activationToken)
-	s.logSecurityEvent("USER_CREATED", user.Usuario, "", "Usuario creado exitosamente")
-	
+	go s.sendActivationEmail(user.Correo, tempPassword, user.Usuario, user.ActivationToken)
 	return tempPassword, nil
 }
+
 
 func (s *userService) validateUserData(user *models.Usuarios) error {
 	if err := user.ValidateTipoDocumento(); err != nil {
@@ -502,18 +506,24 @@ func (s *userService) validatePasswordStrength(password string) error {
 
 func (s *userService) ListUsers() ([]models.Usuarios, error) {
 	var users []models.Usuarios
-	err := s.db.Preload("Roles").Find(&users).Error
+	err := s.db.Preload("Roles").
+		Limit(10).
+		Order("created_at DESC").
+		Find(&users).Error
 	return users, err
 }
 
 func (s *userService) GetUserByID(id uint) (*models.Usuarios, error) {
-	var user models.Usuarios
-	err := s.db.Preload("Roles").First(&user, id).Error
-	if err != nil {
-		return nil, errors.New("usuario no encontrado")
-	}
-	return &user, nil
+    var user models.Usuarios
+    if err := s.db.
+        Preload("Roles").
+        First(&user, id).
+        Error; err != nil {
+        return nil, errors.New("usuario no encontrado")
+    }
+    return &user, nil
 }
+
 
 func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error {
 	var user models.Usuarios

@@ -176,8 +176,9 @@ func migrateDatabase() error {
 func initializeServices() (*serviceContainer, error) {
 	userService := services.NewUserService(config.DB)
 	roleService := services.NewRoleService(config.DB)
-	otpService := services.NewOTPService(config.DB) 
-	
+	otpService := services.NewOTPService(config.DB)
+	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
+
 	bioService, err := services.NewBioService(
 		config.DB,
 		userService,
@@ -190,22 +191,20 @@ func initializeServices() (*serviceContainer, error) {
 	}
 
 	return &serviceContainer{
-		user: userService,
-		role: roleService,
-		bio:  *bioService,
-		otp:  otpService,
-		
+		user:      userService,
+		role:      roleService,
+		bio:       *bioService,
+		otp:       otpService,
+		deviceIP:  *deviceIPRepo,
 	}, nil
 }
 
 func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
-		user: controllers.NewUserController(services.user, services.otp), 
+		user: controllers.NewUserController(services.user, services.otp, services.deviceIP), 
 		role: controllers.NewRoleController(services.role),
 		auth: controllers.NewAuthController(),
 		bio:  controllers.NewBioController(&services.bio),
-		
-		
 	}
 }
 
@@ -215,7 +214,6 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.role,
 		controllers.auth,
 		controllers.bio,
-
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -243,10 +241,11 @@ func getPort() string {
 }
 
 type serviceContainer struct {
-	user services.UserService
-	role services.RoleService
-	bio  services.BioService
-	otp  services.OTPService 
+	user     services.UserService
+	role     services.RoleService
+	bio      services.BioService
+	otp      services.OTPService
+	deviceIP services.DeviceIPRepo
 }
 
 type controllerContainer struct {
@@ -278,17 +277,14 @@ func main() {
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
-
-
-
 }
 
 func generateDemoTokens() {
 	demoUser := &models.Usuarios{
-		ID:               1,
+		ID:                1,
 		Nombres_Apellidos: "Demo",
-		Usuario:    "demo_user",
-		Roles:            []models.Role{{Name: "admin"}},
+		Usuario:           "demo_user",
+		Roles:             []models.Role{{Name: "admin"}},
 	}
 
 	token, refreshToken, err := utils.GenerateToken(demoUser)

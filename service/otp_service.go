@@ -221,7 +221,7 @@ func (s *otpService) sendOTPEmail(email, name, otp string) {
                                     %s-%s
                                 </div>
                                 <p style="margin:16px 0 0;color:#6b7280;font-size:14px;">
-                                    Este código expira en 5 minutos
+                                    Este código expira en 1 minutos
                                 </p>
                             </div>
                             <div style="background-color:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:16px;margin:0 0 24px;">
@@ -245,7 +245,7 @@ func (s *otpService) sendOTPEmail(email, name, otp string) {
                     <tr>
                         <td style="background-color:#f9fafb;padding:24px 30px;border-radius:0 0 16px 16px;text-align:center;border-top:1px solid #e5e7eb;">
                             <p style="margin:0;color:#6b7280;font-size:13px;">
-                                © %d Serious Game - Universidad Nacional de Tumbes
+                                © %d Serious Game 
                             </p>
                         </td>
                     </tr>

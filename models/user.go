@@ -43,7 +43,7 @@ type Usuarios struct {
     LastLoginIP        string                `gorm:"size:45" json:"-"`
     LastUserAgent      string                `gorm:"size:255" json:"-"`
     PasswordChangedAt  *time.Time            `json:"-"`
-    Roles              []Role                `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
+    Roles []Role `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
     BiometricCreds     []BiometricCredential `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"-"`
     RoleIDs            []uint                `gorm:"-" json:"role_ids,omitempty"`
 }
