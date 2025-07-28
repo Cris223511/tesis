@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-  >
+    android:orientation="vertical">
 
     <!-- Header section -->
     <LinearLayout
@@ -14,8 +12,6 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:padding="24dp">
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,9 +23,6 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/logo"
                 android:scaleType="fitCenter" />
-
-
-
 
         </RelativeLayout>
 
@@ -53,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Recuperar contraseña"
+                android:text="Verificación OTP"
                 android:textColor="#333"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -103,7 +96,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -116,7 +109,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -129,7 +122,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -150,7 +143,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -163,7 +156,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -176,7 +169,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/otp_input_bg"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters"
                     android:maxLength="1"
                     android:textColor="#333"
                     android:textSize="24sp"
@@ -195,15 +188,39 @@
                 app:cornerRadius="28dp"
                 android:layout_marginBottom="16dp" />
 
+            <!-- Timer más visible y centrado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/timerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01:00"
+                    android:textColor="#4A90E2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:drawableStart="@drawable/ic_time"
+                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/resendText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Reenviar código"
-                android:textColor="#4A90E2"
+                android:textColor="#999"
                 android:textSize="16sp"
                 android:padding="8dp"
+                android:enabled="false"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackgroundBorderless" />

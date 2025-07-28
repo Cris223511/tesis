@@ -34,6 +34,7 @@
                 app:strokeColor="@color/on_primary"
                 app:strokeWidth="2dp" />
 
+
             <TextView
                 android:id="@+id/greetingText"
                 android:layout_width="0dp"
@@ -56,6 +57,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/greetingText"
                 app:layout_constraintTop_toBottomOf="@+id/greetingText" />
+            <ImageButton
+                android:id="@+id/logoutButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_logout"
+                android:tint="@color/background_light_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

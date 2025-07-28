@@ -23,13 +23,13 @@ interface ApiService {
     @POST("/api/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
-    @POST("/api/otp/validate")
+    @POST("api/otp/validate")
     suspend fun verifyOtp(@Body request: OTPRequest): Response<OTPResponse>
 
     @POST("/api/otp/resend")
     suspend fun resendOtp(@Body request: ResendOTPRequest): Response<BaseResponse>
 
-    @GET("/api/user/{id}")
+    @GET("/api/users/{id}")
     suspend fun getUserDetail(@Path("id") userId: Int): Response<UserDetailResponse>
 
     @GET("/auth/gett")

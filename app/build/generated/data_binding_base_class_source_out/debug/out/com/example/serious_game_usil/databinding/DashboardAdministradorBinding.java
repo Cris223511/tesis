@@ -4,6 +4,7 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -40,6 +41,9 @@ public final class DashboardAdministradorBinding implements ViewBinding {
 
   @NonNull
   public final TextView lastMonthsTitle;
+
+  @NonNull
+  public final ImageButton logoutButton;
 
   @NonNull
   public final TextView monthSubtitle;
@@ -87,13 +91,14 @@ public final class DashboardAdministradorBinding implements ViewBinding {
       @NonNull AppBarLayout appBarLayout, @NonNull MaterialCardView comparisonCard,
       @NonNull TextView dateText, @NonNull TextView greetingText,
       @NonNull TextView lastMonthsSubtitle, @NonNull TextView lastMonthsTitle,
-      @NonNull TextView monthSubtitle, @NonNull TextView monthTitle,
-      @NonNull LinearLayout navChildren, @NonNull LinearLayout navInfo,
-      @NonNull LinearLayout navProfile, @NonNull MaterialCardView navigationCard,
-      @NonNull TextView pendingHours, @NonNull TextView pendingMinutes,
-      @NonNull LinearLayout statsContainer, @NonNull TextView stimulusHours,
-      @NonNull TextView stimulusMinutes, @NonNull MaterialCardView todayCard,
-      @NonNull ShapeableImageView userAvatar, @NonNull TextView userName) {
+      @NonNull ImageButton logoutButton, @NonNull TextView monthSubtitle,
+      @NonNull TextView monthTitle, @NonNull LinearLayout navChildren,
+      @NonNull LinearLayout navInfo, @NonNull LinearLayout navProfile,
+      @NonNull MaterialCardView navigationCard, @NonNull TextView pendingHours,
+      @NonNull TextView pendingMinutes, @NonNull LinearLayout statsContainer,
+      @NonNull TextView stimulusHours, @NonNull TextView stimulusMinutes,
+      @NonNull MaterialCardView todayCard, @NonNull ShapeableImageView userAvatar,
+      @NonNull TextView userName) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.comparisonCard = comparisonCard;
@@ -101,6 +106,7 @@ public final class DashboardAdministradorBinding implements ViewBinding {
     this.greetingText = greetingText;
     this.lastMonthsSubtitle = lastMonthsSubtitle;
     this.lastMonthsTitle = lastMonthsTitle;
+    this.logoutButton = logoutButton;
     this.monthSubtitle = monthSubtitle;
     this.monthTitle = monthTitle;
     this.navChildren = navChildren;
@@ -177,6 +183,12 @@ public final class DashboardAdministradorBinding implements ViewBinding {
       id = R.id.lastMonthsTitle;
       TextView lastMonthsTitle = ViewBindings.findChildViewById(rootView, id);
       if (lastMonthsTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.logoutButton;
+      ImageButton logoutButton = ViewBindings.findChildViewById(rootView, id);
+      if (logoutButton == null) {
         break missingId;
       }
 
@@ -265,7 +277,7 @@ public final class DashboardAdministradorBinding implements ViewBinding {
       }
 
       return new DashboardAdministradorBinding((CoordinatorLayout) rootView, appBarLayout,
-          comparisonCard, dateText, greetingText, lastMonthsSubtitle, lastMonthsTitle,
+          comparisonCard, dateText, greetingText, lastMonthsSubtitle, lastMonthsTitle, logoutButton,
           monthSubtitle, monthTitle, navChildren, navInfo, navProfile, navigationCard, pendingHours,
           pendingMinutes, statsContainer, stimulusHours, stimulusMinutes, todayCard, userAvatar,
           userName);

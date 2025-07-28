@@ -1,5 +1,6 @@
 package com.example.serious_game_usil.data
 
+
 import com.google.gson.annotations.SerializedName
 
 data class TokenResponse(
@@ -41,9 +42,10 @@ data class LoginResponse(
 
 data class UserInfo(
     @SerializedName("user_id") val userId: Int,
+    @SerializedName("usuario") val usuario: String,
+    @SerializedName("correo") val correo: String,
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
-    val correo: String,
-    val roles: List<Role>
+    val roles: List<Role>? = null
 )
 
 data class Role(
@@ -58,10 +60,33 @@ data class OTPRequest(
 
 data class OTPResponse(
     val message: String,
-    @SerializedName("user_id") val userId: Int,
-    val roles: List<String>,
+    @SerializedName("user_id")      val userId: Int,
     @SerializedName("bearer_token") val bearerToken: String,
-    @SerializedName("refresh_token") val refreshToken: String
+    @SerializedName("refresh_token")val refreshToken: String,
+    val roles: List<String>,
+    val user: UserData
+)
+
+data class FechaNullable(
+    val Time: String,
+    val Valid: Boolean
+)
+
+data class UserData(
+    @SerializedName("user_id")         val userId: Int,
+    val id: Int,
+    val usuario: String,
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    val correo: String,
+    val telefono: String,
+    @SerializedName("tipo_documento")  val tipoDocumento: String,
+    @SerializedName("numero_documento")val numeroDocumento: String,
+    val sexo: String,
+    val activo: Boolean,
+    val foto: String,
+    @SerializedName("fecha_nacimiento")
+    val fechaNacimiento: FechaNullable
+
 )
 
 data class ResendOTPRequest(
@@ -92,6 +117,7 @@ data class UserDetailResponse(
     @SerializedName("num_documento") val numeroDocumento: String,
     val sexo: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
+    val foto: String,
     val activo: Boolean,
     val intentos: Int,
     val roles: List<Role>,

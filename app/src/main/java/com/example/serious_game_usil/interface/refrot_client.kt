@@ -1,3 +1,4 @@
+import android.util.Log
 import com.example.serious_game_usil.BuildConfig
 import com.example.serious_game_usil.`interface`.ApiService
 import com.google.gson.GsonBuilder
@@ -96,19 +97,32 @@ class AuthInterceptor(
         val request = chain.request()
         val path = request.url.encodedPath
 
+        Log.d("AuthInterceptor", "Interceptando request a: $path")
+
         if (PUBLIC_ENDPOINTS.any { path.contains(it) }) {
+            Log.d("AuthInterceptor", "Endpoint público, sin auth")
             return chain.proceed(request)
         }
 
         val token = tokenProvider()
-        return if (token != null) {
-            chain.proceed(
-                request.newBuilder()
-                    .header("Authorization", "Bearer $token")
-                    .build()
+
+        if (token != null) {
+            Log.d("AuthInterceptor", "Token disponible, longitud: ${token.length}")
+            Log.d("AuthInterceptor", "Token preview: ${token.take(20)}...${token.takeLast(10)}")
+
+            val newRequest = request.newBuilder()
+                .header("Authorization", "Bearer $token")
+                .build()
+
+            Log.d(
+                "AuthInterceptor",
+                "Header Authorization: ${newRequest.header("Authorization")?.take(50)}"
             )
+
+            return chain.proceed(newRequest)
         } else {
-            chain.proceed(request)
+            Log.d("AuthInterceptor", "No hay token disponible")
+            return chain.proceed(request)
         }
     }
 }

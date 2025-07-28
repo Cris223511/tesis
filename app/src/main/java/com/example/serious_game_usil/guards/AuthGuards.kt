@@ -125,14 +125,34 @@ object AuthManager {
 
     fun canAccessRoute(route: String): Boolean {
         val userRoles = getUserRoles()
+        val normalizedRoles = userRoles.map { it.lowercase() }
 
-        return when (route) {
-            "/admin", "/admin/dashboard" -> userRoles.contains("administrador")
-            "/parents", "/parents" -> userRoles.contains("padres") || userRoles.contains("administrador")
-            "/parent", "/parent/dashboard" -> userRoles.contains("parent") || userRoles.contains("padres")
-            "/student", "/student/dashboard" -> userRoles.contains("hijos") || userRoles.contains("administrador")
-            "/dashboard" -> isAuthenticated()
-            else -> true
+        return when {
+            // Rutas de admin
+            route.contains("/admin/dashboard") ->
+                normalizedRoles.any { it in listOf("admin", "administrador") }
+
+            // Rutas de padre
+            route.contains("/padre") || route.contains("/parent") ->
+                normalizedRoles.any { it in listOf("padre", "padres", "parent") }
+
+            // Rutas de hijo/estudiante
+            route.contains("/hijo") || route.contains("/student") ->
+                normalizedRoles.any { it in listOf("hijo", "hijos", "student", "estudiante") }
+
+            // Rutas de docente
+            route.contains("/docente") || route.contains("/teacher") ->
+                normalizedRoles.any { it in listOf("docente", "teacher", "profesor") }
+
+            // Rutas de especialista
+            route.contains("/especialista") || route.contains("/specialist") ->
+                normalizedRoles.any { it in listOf("especialista", "specialist") }
+
+
+            route == "/dashboard" -> isAuthenticated()
+
+            // Por defecto, permitir si está autenticado
+            else -> isAuthenticated()
         }
     }
 

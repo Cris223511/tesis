@@ -23,6 +23,8 @@
     <color name="primary_dark">#5A67D8</color>
     <color name="primary_light">#818CF8</color>
     <color name="primary_variant">#004BA0</color>
+    <color name="resend_disabled">#999999</color>
+    <color name="resend_enabled">#4A90E2</color>
     <color name="secondary">#039BE5</color>
     <color name="secondary_variant">#0277BD</color>
     <color name="stat_blue">#42A5F5</color>
@@ -32,6 +34,9 @@
     <color name="surface_variant">#F8F9FA</color>
     <color name="text_primary">#1A202C</color>
     <color name="text_secondary">#4A5568</color>
+    <color name="timer_danger">#FF0000</color>
+    <color name="timer_normal">#4A90E2</color>
+    <color name="timer_warning">#FFA500</color>
     <color name="warning_color">#FF5F15 </color>
     <color name="white">#FFFFFF</color>
     <color name="white_alpha_80">#CCFFFFFF</color>

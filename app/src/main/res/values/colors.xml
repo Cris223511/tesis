@@ -53,4 +53,10 @@
 
     <color name="success_color">#5cb85c </color>
     <color name="warning_color">#FF5F15 </color>
+
+    <color name="timer_normal">#4A90E2</color>
+    <color name="timer_warning">#FFA500</color>
+    <color name="timer_danger">#FF0000</color>
+    <color name="resend_enabled">#4A90E2</color>
+    <color name="resend_disabled">#999999</color>
 </resources>

@@ -46,12 +46,16 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
   public final TextView resendText;
 
   @NonNull
+  public final TextView timerText;
+
+  @NonNull
   public final MaterialButton verifyButton;
 
   private ActivityOtpVerificationBinding(@NonNull LinearLayout rootView,
       @NonNull TextView emailText, @NonNull EditText otp1, @NonNull EditText otp2,
       @NonNull EditText otp3, @NonNull EditText otp4, @NonNull EditText otp5,
-      @NonNull EditText otp6, @NonNull TextView resendText, @NonNull MaterialButton verifyButton) {
+      @NonNull EditText otp6, @NonNull TextView resendText, @NonNull TextView timerText,
+      @NonNull MaterialButton verifyButton) {
     this.rootView = rootView;
     this.emailText = emailText;
     this.otp1 = otp1;
@@ -61,6 +65,7 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
     this.otp5 = otp5;
     this.otp6 = otp6;
     this.resendText = resendText;
+    this.timerText = timerText;
     this.verifyButton = verifyButton;
   }
 
@@ -139,6 +144,12 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.timerText;
+      TextView timerText = ViewBindings.findChildViewById(rootView, id);
+      if (timerText == null) {
+        break missingId;
+      }
+
       id = R.id.verifyButton;
       MaterialButton verifyButton = ViewBindings.findChildViewById(rootView, id);
       if (verifyButton == null) {
@@ -146,7 +157,7 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
       }
 
       return new ActivityOtpVerificationBinding((LinearLayout) rootView, emailText, otp1, otp2,
-          otp3, otp4, otp5, otp6, resendText, verifyButton);
+          otp3, otp4, otp5, otp6, resendText, timerText, verifyButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

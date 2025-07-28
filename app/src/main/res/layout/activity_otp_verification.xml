@@ -188,16 +188,28 @@
                 app:cornerRadius="28dp"
                 android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/timerText"
-                android:layout_width="wrap_content"
+            <!-- Timer más visible y centrado -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="00:00"
-                android:textColor="#666"
-                android:textSize="14sp"
-                android:visibility="gone"
-                android:layout_marginBottom="8dp" />
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/timerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01:00"
+                    android:textColor="#4A90E2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:drawableStart="@drawable/ic_time"
+                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:visibility="visible" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/resendText"
@@ -205,9 +217,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Reenviar código"
-                android:textColor="#4A90E2"
+                android:textColor="#999"
                 android:textSize="16sp"
                 android:padding="8dp"
+                android:enabled="false"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackgroundBorderless" />

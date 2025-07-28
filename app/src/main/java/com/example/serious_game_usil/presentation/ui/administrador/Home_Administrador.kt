@@ -52,6 +52,13 @@ class DashboardActivity : AppCompatActivity() {
         setupViews()
         observeViewModel()
         updateDateTime()
+
+        binding.logoutButton.setOnClickListener {
+            AuthManager.clearSession()
+            RouteNavigator.navigateToLogin(this)
+            finishAffinity()
+        }
+
     }
 
     private fun setupViews() {

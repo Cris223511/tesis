@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.ImageView
@@ -142,6 +143,11 @@ class LoginActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     response.body()?.let { loginResponse ->
+                        // Agregar logs para depuración
+                        Log.d("LOGIN", "Respuesta completa: $loginResponse")
+                        Log.d("LOGIN", "User ID recibido: ${loginResponse.user.userId}")
+                        Log.d("LOGIN", "User object: ${loginResponse.user}")
+
                         val prefs = getSharedPreferences("TempUserData", Context.MODE_PRIVATE)
                         prefs.edit().apply {
                             putInt("user_id", loginResponse.user.userId)
@@ -152,7 +158,7 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         navigateToOTP(
-                            userId = loginResponse.user.userId,
+                            userId = loginResponse.user.userId,  // ← Asegúrate que sea 'userId' no 'user_id'
                             correo = loginResponse.user.correo
                         )
                     }
@@ -170,17 +176,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToOTP(userId: Int, correo: String) {  // Cambié 'correo' por 'email' para consistencia
+    private fun navigateToOTP(userId: Int, correo: String) {
         startActivity(Intent(this, OtpVerificationActivity::class.java).apply {
             putExtra("user_id", userId)
-            putExtra("email", correo)  // Cambié a "email" para que coincida con OtpVerificationActivity
+            putExtra("email", correo)
         })
+
+        // Log para depuración
+        Log.d("LOGIN", "Navegando a OTP con userId: $userId, email: $correo")
+
         loginButton.apply {
             isEnabled = true
             text = "Iniciar sesión"
         }
     }
-
 
     private fun handleLoginError(errorType: ErrorType) {
         loginAttempts++

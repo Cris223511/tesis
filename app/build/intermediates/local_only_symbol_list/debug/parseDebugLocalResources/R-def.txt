@@ -23,6 +23,8 @@ color primary
 color primary_dark
 color primary_light
 color primary_variant
+color resend_disabled
+color resend_enabled
 color secondary
 color secondary_variant
 color stat_blue
@@ -32,6 +34,9 @@ color surface
 color surface_variant
 color text_primary
 color text_secondary
+color timer_danger
+color timer_normal
+color timer_warning
 color warning_color
 color white
 color white_alpha_80
@@ -176,6 +181,7 @@ id stimulusHours
 id stimulusMinutes
 id subtitleText
 id termsCheckBox
+id timerText
 id titleText
 id todayCard
 id top_logo_area

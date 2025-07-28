@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setupUI()
     }
 
+
     private fun setupUI() {
         // Buscar el TextView sin ViewBinding
         val welcomeText = findViewById<TextView>(R.id.welcome_text)

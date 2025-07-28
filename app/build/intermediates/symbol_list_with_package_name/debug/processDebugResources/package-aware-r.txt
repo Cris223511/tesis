@@ -2112,6 +2112,8 @@ color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
 color primary_variant
+color resend_disabled
+color resend_enabled
 color ripple_material_dark
 color ripple_material_light
 color secondary
@@ -2133,6 +2135,9 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color text_primary
 color text_secondary
+color timer_danger
+color timer_normal
+color timer_warning
 color tooltip_background_dark
 color tooltip_background_light
 color vector_tint_color
@@ -3732,6 +3737,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id timerText
 id title
 id titleDividerNoCustom
 id titleText

@@ -12,6 +12,14 @@ object TokenManager {
 
     private val tokenLock = Any()
 
+    // ESTE MÉTODO DEBE ESTAR AQUÍ
+    fun setToken(token: String) {
+        synchronized(tokenLock) {
+            currentToken = token
+            RetrofitClient.setAuthToken(token)
+        }
+    }
+
     suspend fun ensureToken(): String? {
         synchronized(tokenLock) {
             currentToken?.let { return it }
