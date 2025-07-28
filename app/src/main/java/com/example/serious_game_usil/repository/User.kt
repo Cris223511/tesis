@@ -2,13 +2,27 @@ package com.example.serious_game_usil.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.serious_game_usil.data.ApiResult
+import com.example.serious_game_usil.data.BaseResponse
+import com.example.serious_game_usil.data.UpdateUserRequest
+import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.User
+import com.example.serious_game_usil.data.UserDetailResponse
+import com.example.serious_game_usil.data.UserListItem
+import com.example.serious_game_usil.data.UserSearchParams
+import com.example.serious_game_usil.data.UsersListResponse
 import com.example.serious_game_usil.guards.AuthManager
+import com.example.serious_game_usil.`interface`.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
-class UserRepository private constructor(private val context: Context) {
+class UserRepository private constructor(private val context: Context) : IUserRepository {
+
+    private val apiService: ApiService by lazy {
+        RetrofitClient.getApiService()
+    }
 
     companion object {
         @Volatile
@@ -21,8 +35,8 @@ class UserRepository private constructor(private val context: Context) {
         }
     }
 
-    fun getCurrentUser(): User {
-
+    // Método existente
+    override suspend fun getCurrentUser(): User {
         return User(
             id = AuthManager.getUserId(),
             nombresApellidos = AuthManager.getNombresApellidos(),
@@ -34,5 +48,186 @@ class UserRepository private constructor(private val context: Context) {
             foto = AuthManager.getFoto(),
             roles = AuthManager.getUserRoles()
         )
+    }
+
+    // IMPLEMENTACIÓN DE NUEVOS MÉTODOS
+
+    override suspend fun getUsers(params: UserSearchParams): ApiResult<UsersListResponse> {
+        return try {
+            val response = apiService.getUsers(
+                search = params.search,
+                page = params.page,
+                perPage = params.per_page,
+                active = params.active,
+                roleId = params.role_id,
+                orderBy = params.order_by,
+                orderDirection = params.order_direction
+            )
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun getUserById(userId: Int): ApiResult<UserDetailResponse> {
+        return try {
+            val response = apiService.getUserDetail(userId)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun searchUsers(query: String, limit: Int): ApiResult<List<UserListItem>> {
+        return try {
+            val response = apiService.searchUsers(query, limit)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun updateUserStatus(userId: Int, isActive: Boolean): ApiResult<BaseResponse> {
+        return try {
+            val response = apiService.updateUserStatus(
+                userId,
+                UpdateUserStatusRequest(isActive)
+            )
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun updateUserData(
+        userId: Int,
+        userData: UpdateUserRequest
+    ): ApiResult<UserDetailResponse> {
+        return try {
+            val response = apiService.updateUser(userId, userData)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun deleteUser(userId: Int): ApiResult<BaseResponse> {
+        return try {
+            val response = apiService.deleteUser(userId)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    // Implementación de los métodos existentes que faltan
+    override suspend fun updateUser(user: User): Boolean {
+        // Implementar según tu lógica
+        return true
+    }
+
+    override suspend fun updateLastNavigationItem(item: String) {
+        context.getSharedPreferences("nav_prefs", Context.MODE_PRIVATE)
+            .edit()
+            .putString("last_nav_item", item)
+            .apply()
+    }
+
+    override suspend fun getLastNavigationItem(): String? {
+        return context.getSharedPreferences("nav_prefs", Context.MODE_PRIVATE)
+            .getString("last_nav_item", null)
+    }
+
+    override suspend fun logout(): Boolean {
+        return try {
+            AuthManager.clearSession()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun isUserLoggedIn(): Boolean {
+        return AuthManager.isAuthenticated()
+    }
+
+    override suspend fun saveAuthToken(token: String) {
+        AuthManager.updateAccessToken(token)
+    }
+
+    override suspend fun getAuthToken(): String? {
+        return AuthManager.getAccessToken()
     }
 }

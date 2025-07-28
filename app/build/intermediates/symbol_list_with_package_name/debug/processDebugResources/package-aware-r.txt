@@ -294,6 +294,10 @@ attr circularflow_defaultAngle
 attr circularflow_defaultRadius
 attr circularflow_radiusInDP
 attr circularflow_viewCenter
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr clearsTag
 attr clickAction
 attr clockFaceBackgroundColor
@@ -1118,6 +1122,7 @@ attr suffixText
 attr suffixTextAppearance
 attr suffixTextColor
 attr suggestionRowLayout
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
@@ -1429,12 +1434,14 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color divider
 color error
 color error_color
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color info_color
@@ -2099,6 +2106,7 @@ color on_primary
 color on_secondary
 color on_surface
 color on_surface_variant
+color orange
 color outline
 color primary
 color primary_dark
@@ -2112,6 +2120,7 @@ color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
 color primary_variant
+color red
 color resend_disabled
 color resend_enabled
 color ripple_material_dark
@@ -2124,6 +2133,8 @@ color secondary_text_disabled_material_light
 color secondary_variant
 color stat_blue
 color stat_pink
+color status_active
+color status_inactive
 color success_color
 color surface
 color surface_variant
@@ -2143,6 +2154,7 @@ color tooltip_background_light
 color vector_tint_color
 color vector_tint_theme_color
 color warning_color
+color whatsapp_green
 color white
 color white_alpha_80
 color white_alpha_90
@@ -3060,6 +3072,7 @@ drawable help_bubble
 drawable ic_access_denied
 drawable ic_activity_default
 drawable ic_activity_placeholder
+drawable ic_add
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_badge
@@ -3072,14 +3085,19 @@ drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_card
+drawable ic_check
 drawable ic_check_circle
 drawable ic_child
 drawable ic_child_fun
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_close
+drawable ic_delete
 drawable ic_difficulty
 drawable ic_document
+drawable ic_edit
 drawable ic_email
+drawable ic_empty_users
 drawable ic_error
 drawable ic_eye_closed
 drawable ic_gender
@@ -3098,11 +3116,15 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_person
+drawable ic_person_placeholder
 drawable ic_phone
 drawable ic_sad_face
+drawable ic_search
 drawable ic_search_black_24
+drawable ic_search_off
 drawable ic_time
 drawable ic_visibility
+drawable ic_whatsapp
 drawable logo
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3299,6 +3321,10 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnDelete
+id btnEdit
+id btnToggleStatus
+id btnWhatsApp
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3319,6 +3345,7 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id clearSearchButton
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3395,6 +3422,10 @@ id emailEditText
 id emailInputLayout
 id emailText
 id embed
+id emptySearchLayout
+id emptySearchText
+id emptyStateLayout
+id emptyStateText
 id end
 id endToStart
 id enterAlways
@@ -3405,6 +3436,7 @@ id errorTitle
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabAddUser
 id fade
 id fill
 id fill_horizontal
@@ -3427,6 +3459,7 @@ id genderDropdown
 id genderInputLayout
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id goBackButton
 id goToLoginButton
 id gone
@@ -3598,6 +3631,8 @@ id outline
 id outward
 id overshoot
 id packed
+id paginationInfoText
+id paginationProgressBar
 id parallax
 id parent
 id parentPanel
@@ -3648,6 +3683,9 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchEditText
+id searchInputLayout
+id searchProgressBar
 id search_badge
 id search_bar
 id search_button
@@ -3705,6 +3743,7 @@ id submenuarrow
 id submit_area
 id subtitleText
 id supportScrollUp
+id swipeRefresh
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3744,6 +3783,7 @@ id titleText
 id title_template
 id todayCard
 id toggle
+id toolbar
 id top
 id topPanel
 id top_logo_area
@@ -3762,8 +3802,15 @@ id unlabeled
 id up
 id useLogo
 id userAvatar
+id userBirthDateTextView
+id userDocumentTextView
+id userGenderTextView
+id userImageView
 id userName
+id userNameTextView
 id userRolesText
+id userStatusChip
+id usersRecyclerView
 id verifyButton
 id vertical
 id vertical_only
@@ -3932,6 +3979,8 @@ layout dialog_succes
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_activity_pager
+layout item_users
+layout list_users
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -5404,6 +5453,7 @@ styleable Carousel carousel_alignment carousel_backwardTransition carousel_empty
 styleable CheckedTextView android_checkMark checkMarkCompat checkMarkTint checkMarkTintMode
 styleable Chip android_textAppearance android_textSize android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconTint checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical selectionRequired singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CircularProgressIndicator indicatorDirectionCircular indicatorInset indicatorSize
 styleable ClockFaceView clockFaceBackgroundColor clockNumberTextColor
 styleable ClockHandView clockHandColor materialCircleRadius selectorSize
@@ -5507,6 +5557,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text

@@ -55,218 +55,217 @@
 33-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:18:9-54
 34        android:supportsRtl="true"
 34-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:9-35
-35        android:testOnly="true"
-36        android:theme="@style/Theme.SeriousGameUSIL"
-36-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:20:9-53
-37        android:usesCleartextTraffic="true" >
-37-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:21:9-44
-38        <activity
-38-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:28:9-37:20
-39            android:name="com.example.serious_game_usil.presentation.ui.splash.PreloaderActivity"
-39-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:29:13-69
-40            android:exported="true"
-40-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:30:13-36
-41            android:screenOrientation="portrait"
-41-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:31:13-49
-42            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-42-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:32:13-69
-43            <intent-filter>
-43-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:33:13-36:29
-44                <action android:name="android.intent.action.MAIN" />
-44-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:17-69
-44-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:25-66
-45
-46                <category android:name="android.intent.category.LAUNCHER" />
-46-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:17-77
-46-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:27-74
-47            </intent-filter>
-48        </activity>
-49
-50        <!-- Login Activity -->
-51        <activity
-51-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:9-45:72
-52            android:name="com.example.serious_game_usil.presentation.ui.login.LoginActivity"
-52-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:13-64
-53            android:exported="false"
-53-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:42:13-37
-54            android:screenOrientation="portrait"
-54-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:43:13-49
-55            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-55-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:45:13-69
-56            android:windowSoftInputMode="adjustResize" />
-56-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:44:13-55
-57
-58        <!-- Register Activity -->
-59        <activity
-59-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:48:9-53:72
-60            android:name="com.example.serious_game_usil.presentation.ui.register.RegisterActivity"
-60-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:49:13-70
-61            android:exported="false"
-61-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:50:13-37
-62            android:screenOrientation="portrait"
-62-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:51:13-49
-63            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-63-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:53:13-69
-64            android:windowSoftInputMode="adjustResize" />
-64-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:52:13-55
-65
-66        <!-- Main Activity -->
-67        <activity
-67-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:56:9-60:60
-68            android:name="com.example.serious_game_usil.presentation.ui.main.MainActivity"
-68-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:57:13-62
-69            android:exported="false"
-69-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:58:13-37
-70            android:screenOrientation="portrait"
-70-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:59:13-49
-71            android:theme="@style/Theme.SeriousGameUSIL" />
-71-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:60:13-57
-72
-73        <!-- Password Recovery Activities -->
-74        <activity
-74-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:63:9-68:72
-75            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ForgotPasswordActivity"
-75-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:64:13-80
-76            android:exported="false"
-76-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:65:13-37
-77            android:screenOrientation="portrait"
-77-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:66:13-49
-78            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-78-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:68:13-69
-79            android:windowSoftInputMode="adjustResize" />
-79-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:67:13-55
-80        <activity
-80-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:70:9-75:72
-81            android:name="com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity"
-81-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:71:13-81
-82            android:exported="false"
-82-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:72:13-37
-83            android:screenOrientation="portrait"
-83-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:73:13-49
-84            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-84-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:75:13-69
-85            android:windowSoftInputMode="adjustResize" />
-85-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:74:13-55
-86        <activity
-86-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:77:9-82:72
-87            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ResetPasswordActivity"
-87-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:78:13-79
-88            android:exported="false"
-88-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:79:13-37
-89            android:screenOrientation="portrait"
-89-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:80:13-49
-90            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-90-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:82:13-69
-91            android:windowSoftInputMode="adjustResize" />
-91-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:81:13-55
-92        <activity
-92-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:84:9-88:72
-93            android:name="com.example.serious_game_usil.presentation.ui.recuperation.PasswordResetSuccessActivity"
-93-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:85:13-86
-94            android:exported="false"
-94-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:86:13-37
-95            android:screenOrientation="portrait"
-95-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:87:13-49
-96            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-96-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:88:13-69
-97        <activity
-97-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:90:9-94:72
-98            android:name="com.example.serious_game_usil.guards.UnauthorizedActivity"
-98-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:91:13-56
-99            android:exported="false"
-99-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:92:13-37
-100            android:screenOrientation="portrait"
-100-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:93:13-49
-101            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-101-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:94:13-69
-102        <activity
-102-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:96:9-100:72
-103            android:name="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-103-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:97:13-76
-104            android:exported="false"
-104-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:98:13-37
-105            android:screenOrientation="portrait"
-105-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:99:13-49
-106            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-106-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:100:13-69
-107        <activity
-107-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
-108            android:name="androidx.compose.ui.tooling.PreviewActivity"
-108-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-109            android:exported="true" />
-109-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
-110        <activity
-110-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:23:9-25:39
-111            android:name="androidx.activity.ComponentActivity"
-111-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:24:13-63
-112            android:exported="true" />
-112-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:25:13-36
-113
-114        <provider
-114-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-115            android:name="androidx.startup.InitializationProvider"
-115-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-116            android:authorities="com.example.serious_game_usil.androidx-startup"
-116-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-117            android:exported="false" >
-117-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-118            <meta-data
-118-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-119                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-119-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-120                android:value="androidx.startup" />
-120-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-121            <meta-data
-121-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-122                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-122-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
-123                android:value="androidx.startup" />
-123-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
-124            <meta-data
-124-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
-125                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-125-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
-126                android:value="androidx.startup" />
-126-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
-127        </provider>
-128
-129        <receiver
-129-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
-130            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-130-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
-131            android:directBootAware="false"
-131-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
-132            android:enabled="true"
-132-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
-133            android:exported="true"
-133-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
-134            android:permission="android.permission.DUMP" >
-134-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
-135            <intent-filter>
-135-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
-136                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-136-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
-136-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
-137            </intent-filter>
-138            <intent-filter>
-138-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
-139                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-139-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
-139-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
-140            </intent-filter>
-141            <intent-filter>
-141-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
-142                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-142-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
-142-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
-143            </intent-filter>
-144            <intent-filter>
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
-145                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-145-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
-145-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
-146            </intent-filter>
-147        </receiver>
-148    </application>
-149
-150</manifest>
+35        android:theme="@style/Theme.SeriousGameUSIL"
+35-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:20:9-53
+36        android:usesCleartextTraffic="true" >
+36-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:21:9-44
+37        <activity
+37-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:28:9-37:20
+38            android:name="com.example.serious_game_usil.presentation.ui.splash.PreloaderActivity"
+38-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:29:13-69
+39            android:exported="true"
+39-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:30:13-36
+40            android:screenOrientation="portrait"
+40-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:31:13-49
+41            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+41-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:32:13-69
+42            <intent-filter>
+42-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:33:13-36:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:17-69
+43-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:17-77
+45-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <!-- Login Activity -->
+50        <activity
+50-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:9-45:72
+51            android:name="com.example.serious_game_usil.presentation.ui.login.LoginActivity"
+51-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:13-64
+52            android:exported="false"
+52-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:42:13-37
+53            android:screenOrientation="portrait"
+53-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:43:13-49
+54            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+54-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:45:13-69
+55            android:windowSoftInputMode="adjustResize" />
+55-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:44:13-55
+56
+57        <!-- Register Activity -->
+58        <activity
+58-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:48:9-53:72
+59            android:name="com.example.serious_game_usil.presentation.ui.register.RegisterActivity"
+59-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:49:13-70
+60            android:exported="false"
+60-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:50:13-37
+61            android:screenOrientation="portrait"
+61-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:51:13-49
+62            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+62-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:53:13-69
+63            android:windowSoftInputMode="adjustResize" />
+63-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:52:13-55
+64
+65        <!-- Main Activity -->
+66        <activity
+66-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:56:9-60:60
+67            android:name="com.example.serious_game_usil.presentation.ui.main.MainActivity"
+67-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:57:13-62
+68            android:exported="false"
+68-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:58:13-37
+69            android:screenOrientation="portrait"
+69-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:59:13-49
+70            android:theme="@style/Theme.SeriousGameUSIL" />
+70-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:60:13-57
+71
+72        <!-- Password Recovery Activities -->
+73        <activity
+73-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:63:9-68:72
+74            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ForgotPasswordActivity"
+74-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:64:13-80
+75            android:exported="false"
+75-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:65:13-37
+76            android:screenOrientation="portrait"
+76-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:66:13-49
+77            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+77-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:68:13-69
+78            android:windowSoftInputMode="adjustResize" />
+78-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:67:13-55
+79        <activity
+79-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:70:9-75:72
+80            android:name="com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity"
+80-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:71:13-81
+81            android:exported="false"
+81-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:72:13-37
+82            android:screenOrientation="portrait"
+82-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:73:13-49
+83            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+83-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:75:13-69
+84            android:windowSoftInputMode="adjustResize" />
+84-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:74:13-55
+85        <activity
+85-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:77:9-82:72
+86            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ResetPasswordActivity"
+86-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:78:13-79
+87            android:exported="false"
+87-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:79:13-37
+88            android:screenOrientation="portrait"
+88-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:80:13-49
+89            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+89-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:82:13-69
+90            android:windowSoftInputMode="adjustResize" />
+90-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:81:13-55
+91        <activity
+91-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:84:9-88:72
+92            android:name="com.example.serious_game_usil.presentation.ui.recuperation.PasswordResetSuccessActivity"
+92-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:85:13-86
+93            android:exported="false"
+93-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:86:13-37
+94            android:screenOrientation="portrait"
+94-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:87:13-49
+95            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+95-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:88:13-69
+96        <activity
+96-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:90:9-94:72
+97            android:name="com.example.serious_game_usil.guards.UnauthorizedActivity"
+97-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:91:13-56
+98            android:exported="false"
+98-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:92:13-37
+99            android:screenOrientation="portrait"
+99-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:93:13-49
+100            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+100-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:94:13-69
+101        <activity
+101-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:96:9-100:72
+102            android:name="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+102-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:97:13-76
+103            android:exported="false"
+103-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:98:13-37
+104            android:screenOrientation="portrait"
+104-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:99:13-49
+105            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+105-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:100:13-69
+106        <activity
+106-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+107            android:name="androidx.compose.ui.tooling.PreviewActivity"
+107-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+108            android:exported="true" />
+108-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+109        <activity
+109-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:23:9-25:39
+110            android:name="androidx.activity.ComponentActivity"
+110-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:24:13-63
+111            android:exported="true" />
+111-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:25:13-36
+112
+113        <provider
+113-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+114            android:name="androidx.startup.InitializationProvider"
+114-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+115            android:authorities="com.example.serious_game_usil.androidx-startup"
+115-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+116            android:exported="false" >
+116-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+117            <meta-data
+117-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+118                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+118-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+119                android:value="androidx.startup" />
+119-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+120            <meta-data
+120-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+121                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+121-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+122                android:value="androidx.startup" />
+122-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+123            <meta-data
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+124                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+124-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+125                android:value="androidx.startup" />
+125-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+126        </provider>
+127
+128        <receiver
+128-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+129            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+129-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+130            android:directBootAware="false"
+130-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+131            android:enabled="true"
+131-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+132            android:exported="true"
+132-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+133            android:permission="android.permission.DUMP" >
+133-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+134            <intent-filter>
+134-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+135                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+135-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+135-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+136            </intent-filter>
+137            <intent-filter>
+137-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+138                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+138-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+138-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+139            </intent-filter>
+140            <intent-filter>
+140-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+141                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+141-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+141-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+142            </intent-filter>
+143            <intent-filter>
+143-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+144                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+144-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+144-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+145            </intent-filter>
+146        </receiver>
+147    </application>
+148
+149</manifest>

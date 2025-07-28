@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.serious_game_usil.app-mergeDebugResources-57:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.example.serious_game_usil.app-mergeDebugResources-60:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/Users/jhafetcanepa/.gradle/caches/8.9/transforms/1ab8b373059626b6820f0932f38c310f/transformed/appcompat-1.7.1/res/values-en-rAU/values-en-rAU.xml",

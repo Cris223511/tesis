@@ -1,4 +1,5 @@
 package com.example.serious_game_usil.presentation.ui.administrador
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.databinding.DashboardAdministradorBinding
 import com.example.serious_game_usil.guards.AuthManager
+import com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
 import com.example.serious_game_usil.utils.ActivitiesAdapter
@@ -70,10 +72,12 @@ class DashboardActivity : AppCompatActivity() {
 
 
 
+
     private fun setupNavigation() {
         binding.navChildren.setOnClickListener {
-            updateNavigationSelection(DashboardViewModel.NavigationItem.CHILDREN)
-            viewModel.updateNavigationSelection(DashboardViewModel.NavigationItem.CHILDREN)
+            // Navegar a la lista de usuarios
+            val intent = Intent(this, ListUserActivity::class.java)
+            startActivity(intent)
         }
 
         binding.navProfile.setOnClickListener {

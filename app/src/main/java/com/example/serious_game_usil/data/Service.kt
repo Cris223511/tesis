@@ -131,6 +131,60 @@ data class UpdatePasswordRequest(
     @SerializedName("confirm_password") val confirmPassword: String
 )
 
+
+
+data class UsersListResponse(
+    val users: List<UserListItem>,
+    val total: Int,
+    val page: Int,
+    val per_page: Int,
+    val total_pages: Int
+)
+
+data class UserListItem(
+    val id: Int,
+    @SerializedName("usuario") val nombreUsuario: String,
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    val correo: String,
+    val telefono: String?,
+    @SerializedName("tipo_documento") val tipoDocumento: String,
+    @SerializedName("num_documento") val numeroDocumento: String,
+    val sexo: String,
+    @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
+    val foto: String?,
+    val activo: Boolean,
+    val roles: List<Role>,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("updated_at") val updatedAt: String
+)
+
+
+data class UserSearchParams(
+    val search: String? = null,
+    val page: Int = 1,
+    val per_page: Int = 20,
+    val active: Boolean? = null,
+    val role_id: Int? = null,
+    val order_by: String = "created_at",
+    val order_direction: String = "desc"
+)
+
+
+data class UpdateUserStatusRequest(
+    val activo: Boolean
+)
+
+
+data class UpdateUserRequest(
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
+    @SerializedName("tipo_documento") val tipoDocumento: String,
+    @SerializedName("num_documento") val numeroDocumento: String,
+    val sexo: String,
+    val telefono: String,
+    val correo: String,
+    @SerializedName("role_ids") val roleIds: List<Int>
+)
 sealed class ApiResult<out T> {
     data class Success<out T>(val data: T) : ApiResult<T>()
     data class Error(val code: Int, val message: String) : ApiResult<Nothing>()
