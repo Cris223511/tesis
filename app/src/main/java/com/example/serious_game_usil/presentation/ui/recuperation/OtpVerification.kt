@@ -66,21 +66,12 @@ class OtpVerificationActivity : AppCompatActivity() {
 
         userId = intent.getIntExtra("user_id", 0)
         userEmail = intent.getStringExtra("email") ?: ""
-
-        if (userId == 0) {
-            Toast.makeText(this, "Error: No se recibió el ID de usuario", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
+        if (userId == 0) finish()
 
         checkResendStatus()
         checkOtpAttemptsStatus()
         setupUI()
         setupOtpFields()
-
-        if (canShowTimer()) {
-            startInitialTimer()
-        }
     }
 
     private fun setupUI() {
@@ -95,6 +86,8 @@ class OtpVerificationActivity : AppCompatActivity() {
                 resendCode()
             }
         }
+
+        startInitialTimer()
     }
 
     private fun setupOtpFields() {
@@ -215,27 +208,30 @@ class OtpVerificationActivity : AppCompatActivity() {
         return true
     }
 
+
+
     private fun startInitialTimer() {
+        // Deshabilita y atenúa el botón de reenvío
+        binding.resendText.isEnabled = false
+        binding.resendText.alpha = 0.5f
+
+
+        binding.timerText.visibility = View.VISIBLE
+
+
+        saveLastResendTime()
+
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val lastResend = prefs.getLong(KEY_LAST_RESEND + userEmail, 0)
-        val currentTime = System.currentTimeMillis()
-
-        if (lastResend == 0L) {
-            saveLastResendTime()
-            startCountDownTimer(RESEND_COOLDOWN)
+        val last = prefs.getLong(KEY_LAST_RESEND + userEmail, 0L)
+        val elapsed = System.currentTimeMillis() - last
+        val millisToCount = if (elapsed in 1 until RESEND_COOLDOWN) {
+            RESEND_COOLDOWN - elapsed
         } else {
-            val timePassed = currentTime - lastResend
-            if (timePassed < RESEND_COOLDOWN) {
-                val remainingTime = RESEND_COOLDOWN - timePassed
-                startCountDownTimer(remainingTime)
-            } else {
-                binding.timerText.visibility = View.GONE
-                binding.resendText.isEnabled = true
-                binding.resendText.alpha = 1.0f
-            }
+            RESEND_COOLDOWN
         }
-    }
 
+        startCountDownTimer(millisToCount)
+    }
     private fun startCountDownTimer(millisUntilFinished: Long) {
         countDownTimer?.cancel()
 
@@ -374,7 +370,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                                     sexo = userDetail.sexo,
                                     foto = userDetail.foto,
                                     roles = roleNames,
-                                    roleIds = userDetail.roles.map { it.id },
+                                    roleIds = emptyList(),
                                     protectedRoute = finalRoute
                                 )
 

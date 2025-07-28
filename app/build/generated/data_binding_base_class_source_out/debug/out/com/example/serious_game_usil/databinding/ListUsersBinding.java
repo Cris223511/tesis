@@ -33,6 +33,12 @@ public final class ListUsersBinding implements ViewBinding {
   public final AppBarLayout appBarLayout;
 
   @NonNull
+  public final MaterialButton btnNext;
+
+  @NonNull
+  public final MaterialButton btnPrevious;
+
+  @NonNull
   public final MaterialButton clearSearchButton;
 
   @NonNull
@@ -51,7 +57,13 @@ public final class ListUsersBinding implements ViewBinding {
   public final FloatingActionButton fabAddUser;
 
   @NonNull
+  public final TextView pageInfoText;
+
+  @NonNull
   public final TextView paginationInfoText;
+
+  @NonNull
+  public final LinearLayout paginationLayout;
 
   @NonNull
   public final ProgressBar paginationProgressBar;
@@ -78,23 +90,29 @@ public final class ListUsersBinding implements ViewBinding {
   public final RecyclerView usersRecyclerView;
 
   private ListUsersBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBarLayout,
+      @NonNull MaterialButton btnNext, @NonNull MaterialButton btnPrevious,
       @NonNull MaterialButton clearSearchButton, @NonNull LinearLayout emptySearchLayout,
       @NonNull TextView emptySearchText, @NonNull LinearLayout emptyStateLayout,
       @NonNull TextView emptyStateText, @NonNull FloatingActionButton fabAddUser,
-      @NonNull TextView paginationInfoText, @NonNull ProgressBar paginationProgressBar,
+      @NonNull TextView pageInfoText, @NonNull TextView paginationInfoText,
+      @NonNull LinearLayout paginationLayout, @NonNull ProgressBar paginationProgressBar,
       @NonNull ProgressBar progressBar, @NonNull TextInputEditText searchEditText,
       @NonNull TextInputLayout searchInputLayout, @NonNull ProgressBar searchProgressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull Toolbar toolbar,
       @NonNull RecyclerView usersRecyclerView) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
+    this.btnNext = btnNext;
+    this.btnPrevious = btnPrevious;
     this.clearSearchButton = clearSearchButton;
     this.emptySearchLayout = emptySearchLayout;
     this.emptySearchText = emptySearchText;
     this.emptyStateLayout = emptyStateLayout;
     this.emptyStateText = emptyStateText;
     this.fabAddUser = fabAddUser;
+    this.pageInfoText = pageInfoText;
     this.paginationInfoText = paginationInfoText;
+    this.paginationLayout = paginationLayout;
     this.paginationProgressBar = paginationProgressBar;
     this.progressBar = progressBar;
     this.searchEditText = searchEditText;
@@ -138,6 +156,18 @@ public final class ListUsersBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnNext;
+      MaterialButton btnNext = ViewBindings.findChildViewById(rootView, id);
+      if (btnNext == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPrevious;
+      MaterialButton btnPrevious = ViewBindings.findChildViewById(rootView, id);
+      if (btnPrevious == null) {
+        break missingId;
+      }
+
       id = R.id.clearSearchButton;
       MaterialButton clearSearchButton = ViewBindings.findChildViewById(rootView, id);
       if (clearSearchButton == null) {
@@ -174,9 +204,21 @@ public final class ListUsersBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.pageInfoText;
+      TextView pageInfoText = ViewBindings.findChildViewById(rootView, id);
+      if (pageInfoText == null) {
+        break missingId;
+      }
+
       id = R.id.paginationInfoText;
       TextView paginationInfoText = ViewBindings.findChildViewById(rootView, id);
       if (paginationInfoText == null) {
+        break missingId;
+      }
+
+      id = R.id.paginationLayout;
+      LinearLayout paginationLayout = ViewBindings.findChildViewById(rootView, id);
+      if (paginationLayout == null) {
         break missingId;
       }
 
@@ -228,10 +270,11 @@ public final class ListUsersBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ListUsersBinding((CoordinatorLayout) rootView, appBarLayout, clearSearchButton,
-          emptySearchLayout, emptySearchText, emptyStateLayout, emptyStateText, fabAddUser,
-          paginationInfoText, paginationProgressBar, progressBar, searchEditText, searchInputLayout,
-          searchProgressBar, swipeRefresh, toolbar, usersRecyclerView);
+      return new ListUsersBinding((CoordinatorLayout) rootView, appBarLayout, btnNext, btnPrevious,
+          clearSearchButton, emptySearchLayout, emptySearchText, emptyStateLayout, emptyStateText,
+          fabAddUser, pageInfoText, paginationInfoText, paginationLayout, paginationProgressBar,
+          progressBar, searchEditText, searchInputLayout, searchProgressBar, swipeRefresh, toolbar,
+          usersRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

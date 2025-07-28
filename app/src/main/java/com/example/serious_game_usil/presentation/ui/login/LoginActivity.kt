@@ -20,9 +20,12 @@ import com.example.serious_game_usil.presentation.ui.recuperation.ForgotPassword
 import com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity
 import com.example.serious_game_usil.presentation.ui.register.RegisterActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -31,8 +34,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var passwordToggle: ImageView
     private lateinit var loginButton: MaterialButton
-    private lateinit var forgotPasswordText: TextView
     private lateinit var registerText: TextView
+    private lateinit var rememberMeCheckBox: MaterialCheckBox
 
     private var isPasswordVisible = false
     private var loginAttempts = 0
@@ -42,6 +45,8 @@ class LoginActivity : AppCompatActivity() {
         private const val PREFS_NAME = "LoginPrefs"
         private const val KEY_LOGIN_ATTEMPTS = "login_attempts"
         private const val KEY_LAST_ATTEMPT_TIME = "last_attempt_time"
+        private const val KEY_REMEMBER_ME = "remember_me"
+        private const val KEY_SAVED_USERNAME = "saved_username"
         private const val BLOCK_DURATION = 30 * 60 * 1000L
     }
 
@@ -51,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
         initViews()
         setupUI()
+        loadSavedUsername()
         checkIntentExtras()
         checkLoginAttempts()
     }
@@ -60,8 +66,8 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
         passwordToggle = findViewById(R.id.passwordToggle)
         loginButton = findViewById(R.id.loginButton)
-        forgotPasswordText = findViewById(R.id.forgotPasswordText)
         registerText = findViewById(R.id.registerText)
+        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox)
     }
 
     private fun setupUI() {
@@ -73,12 +79,35 @@ class LoginActivity : AppCompatActivity() {
             togglePasswordVisibility()
         }
 
-        forgotPasswordText.setOnClickListener {
-            handleForgotPassword()
-        }
-
         registerText.setOnClickListener {
             handleRegister()
+        }
+    }
+
+    private fun loadSavedUsername() {
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val rememberMe = prefs.getBoolean(KEY_REMEMBER_ME, false)
+
+        if (rememberMe) {
+            val savedUsername = prefs.getString(KEY_SAVED_USERNAME, "")
+            if (!savedUsername.isNullOrEmpty()) {
+                emailEditText.setText(savedUsername)
+                rememberMeCheckBox.isChecked = true
+                passwordEditText.requestFocus()
+            }
+        }
+    }
+
+    private fun saveUsername(username: String) {
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putBoolean(KEY_REMEMBER_ME, rememberMeCheckBox.isChecked)
+            if (rememberMeCheckBox.isChecked) {
+                putString(KEY_SAVED_USERNAME, username)
+            } else {
+                remove(KEY_SAVED_USERNAME)
+            }
+            apply()
         }
     }
 
@@ -128,6 +157,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        saveUsername(usuario)
+
         loginButton.isEnabled = false
         loginButton.text = "Iniciando sesión..."
 
@@ -143,7 +174,6 @@ class LoginActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     response.body()?.let { loginResponse ->
-                        // Agregar logs para depuración
                         Log.d("LOGIN", "Respuesta completa: $loginResponse")
                         Log.d("LOGIN", "User ID recibido: ${loginResponse.user.userId}")
                         Log.d("LOGIN", "User object: ${loginResponse.user}")
@@ -158,7 +188,7 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         navigateToOTP(
-                            userId = loginResponse.user.userId,  // ← Asegúrate que sea 'userId' no 'user_id'
+                            userId = loginResponse.user.userId,
                             correo = loginResponse.user.correo
                         )
                     }
@@ -181,9 +211,6 @@ class LoginActivity : AppCompatActivity() {
             putExtra("user_id", userId)
             putExtra("email", correo)
         })
-
-        // Log para depuración
-        Log.d("LOGIN", "Navegando a OTP con userId: $userId, email: $correo")
 
         loginButton.apply {
             isEnabled = true
@@ -245,7 +272,6 @@ class LoginActivity : AppCompatActivity() {
                 )
             }
             ErrorType.ACCOUNT_BLOCKED -> {
-                // Ya manejado arriba
             }
         }
     }
@@ -311,10 +337,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         passwordEditText.setSelection(passwordEditText.text?.length ?: 0)
-    }
-
-    private fun handleForgotPassword() {
-        startActivity(Intent(this, ForgotPasswordActivity::class.java))
     }
 
     private fun handleRegister() {

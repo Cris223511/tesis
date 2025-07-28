@@ -7,6 +7,7 @@ import com.example.serious_game_usil.databinding.DashboardAdministradorBinding
 import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.guards.UnauthorizedActivity
 import com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity
+import com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
 
 object RouteNavigator {
@@ -25,6 +26,10 @@ object RouteNavigator {
         val intent = when (route) {
             "/admin", "/admin/dashboard" -> {
                 Intent(context, DashboardAdministradorBinding::class.java)
+
+            }
+            "/admin/list-user" -> {
+                Intent(context, ListUserActivity::class.java)
             }
 
             else -> {

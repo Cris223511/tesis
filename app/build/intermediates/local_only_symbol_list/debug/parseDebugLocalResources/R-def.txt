@@ -80,6 +80,8 @@ drawable ic_calendar
 drawable ic_card
 drawable ic_check
 drawable ic_check_circle
+drawable ic_chevron_left
+drawable ic_chevron_right
 drawable ic_child
 drawable ic_child_fun
 drawable ic_close
@@ -128,6 +130,8 @@ id birthDateEditText
 id birthDateInputLayout
 id btnDelete
 id btnEdit
+id btnNext
+id btnPrevious
 id btnToggleStatus
 id btnWhatsApp
 id cardContainer
@@ -156,7 +160,6 @@ id errorIcon
 id errorMessage
 id errorTitle
 id fabAddUser
-id forgotPasswordText
 id genderDropdown
 id genderInputLayout
 id goBackButton
@@ -188,7 +191,9 @@ id otp3
 id otp4
 id otp5
 id otp6
+id pageInfoText
 id paginationInfoText
+id paginationLayout
 id paginationProgressBar
 id passwordEditText
 id passwordInputLayout
@@ -201,6 +206,7 @@ id progressBar
 id progress_horizontal
 id registerButton
 id registerText
+id rememberMeCheckBox
 id resendText
 id resetButton
 id searchEditText

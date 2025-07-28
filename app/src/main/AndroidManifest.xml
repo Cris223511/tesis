@@ -99,6 +99,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
+        <activity
+            android:name=".presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
     </application>
 
 </manifest>

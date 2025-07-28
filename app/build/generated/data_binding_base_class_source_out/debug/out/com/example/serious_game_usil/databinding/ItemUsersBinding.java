@@ -4,6 +4,7 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +14,6 @@ import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
-import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -44,7 +44,7 @@ public final class ItemUsersBinding implements ViewBinding {
   public final TextView userGenderTextView;
 
   @NonNull
-  public final CircleImageView userImageView;
+  public final ImageView userImageView;
 
   @NonNull
   public final TextView userNameTextView;
@@ -56,7 +56,7 @@ public final class ItemUsersBinding implements ViewBinding {
       @NonNull MaterialButton btnEdit, @NonNull MaterialButton btnToggleStatus,
       @NonNull MaterialButton btnWhatsApp, @NonNull TextView userBirthDateTextView,
       @NonNull TextView userDocumentTextView, @NonNull TextView userGenderTextView,
-      @NonNull CircleImageView userImageView, @NonNull TextView userNameTextView,
+      @NonNull ImageView userImageView, @NonNull TextView userNameTextView,
       @NonNull Chip userStatusChip) {
     this.rootView = rootView;
     this.btnDelete = btnDelete;
@@ -141,7 +141,7 @@ public final class ItemUsersBinding implements ViewBinding {
       }
 
       id = R.id.userImageView;
-      CircleImageView userImageView = ViewBindings.findChildViewById(rootView, id);
+      ImageView userImageView = ViewBindings.findChildViewById(rootView, id);
       if (userImageView == null) {
         break missingId;
       }

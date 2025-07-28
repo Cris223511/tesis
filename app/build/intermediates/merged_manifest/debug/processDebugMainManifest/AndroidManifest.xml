@@ -32,6 +32,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/Theme.SeriousGameUSIL"
         android:usesCleartextTraffic="true" >
         <activity
@@ -102,6 +103,9 @@
             android:name="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"

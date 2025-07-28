@@ -15,6 +15,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -35,9 +36,6 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final TextInputLayout emailInputLayout;
 
   @NonNull
-  public final TextView forgotPasswordText;
-
-  @NonNull
   public final MaterialButton loginButton;
 
   @NonNull
@@ -56,25 +54,28 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final TextView registerText;
 
   @NonNull
+  public final MaterialCheckBox rememberMeCheckBox;
+
+  @NonNull
   public final LinearLayout topLogoArea;
 
   private ActivityLoginBinding(@NonNull RelativeLayout rootView, @NonNull ImageView appLogo,
       @NonNull TextInputEditText emailEditText, @NonNull TextInputLayout emailInputLayout,
-      @NonNull TextView forgotPasswordText, @NonNull MaterialButton loginButton,
-      @NonNull TextInputEditText passwordEditText, @NonNull TextInputLayout passwordInputLayout,
-      @NonNull ImageView passwordToggle, @NonNull ProgressBar progressBar,
-      @NonNull TextView registerText, @NonNull LinearLayout topLogoArea) {
+      @NonNull MaterialButton loginButton, @NonNull TextInputEditText passwordEditText,
+      @NonNull TextInputLayout passwordInputLayout, @NonNull ImageView passwordToggle,
+      @NonNull ProgressBar progressBar, @NonNull TextView registerText,
+      @NonNull MaterialCheckBox rememberMeCheckBox, @NonNull LinearLayout topLogoArea) {
     this.rootView = rootView;
     this.appLogo = appLogo;
     this.emailEditText = emailEditText;
     this.emailInputLayout = emailInputLayout;
-    this.forgotPasswordText = forgotPasswordText;
     this.loginButton = loginButton;
     this.passwordEditText = passwordEditText;
     this.passwordInputLayout = passwordInputLayout;
     this.passwordToggle = passwordToggle;
     this.progressBar = progressBar;
     this.registerText = registerText;
+    this.rememberMeCheckBox = rememberMeCheckBox;
     this.topLogoArea = topLogoArea;
   }
 
@@ -123,12 +124,6 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.forgotPasswordText;
-      TextView forgotPasswordText = ViewBindings.findChildViewById(rootView, id);
-      if (forgotPasswordText == null) {
-        break missingId;
-      }
-
       id = R.id.loginButton;
       MaterialButton loginButton = ViewBindings.findChildViewById(rootView, id);
       if (loginButton == null) {
@@ -165,6 +160,12 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.rememberMeCheckBox;
+      MaterialCheckBox rememberMeCheckBox = ViewBindings.findChildViewById(rootView, id);
+      if (rememberMeCheckBox == null) {
+        break missingId;
+      }
+
       id = R.id.top_logo_area;
       LinearLayout topLogoArea = ViewBindings.findChildViewById(rootView, id);
       if (topLogoArea == null) {
@@ -172,8 +173,8 @@ public final class ActivityLoginBinding implements ViewBinding {
       }
 
       return new ActivityLoginBinding((RelativeLayout) rootView, appLogo, emailEditText,
-          emailInputLayout, forgotPasswordText, loginButton, passwordEditText, passwordInputLayout,
-          passwordToggle, progressBar, registerText, topLogoArea);
+          emailInputLayout, loginButton, passwordEditText, passwordInputLayout, passwordToggle,
+          progressBar, registerText, rememberMeCheckBox, topLogoArea);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

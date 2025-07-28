@@ -6,13 +6,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.databinding.ItemUsersBinding
-import com.bumptech.glide.Glide
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class UsersAdapter(
     private val listener: OnUserActionListener

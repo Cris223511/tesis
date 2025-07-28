@@ -38,7 +38,7 @@ interface ApiService {
     suspend fun resendOtp(@Body request: ResendOTPRequest): Response<BaseResponse>
 
 
-    @GET("/api/users")
+    @GET("api/users")
     suspend fun getUsers(
         @Query("search") search: String? = null,
         @Query("page") page: Int = 1,

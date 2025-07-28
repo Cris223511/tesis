@@ -3087,6 +3087,8 @@ drawable ic_call_decline_low
 drawable ic_card
 drawable ic_check
 drawable ic_check_circle
+drawable ic_chevron_left
+drawable ic_chevron_right
 drawable ic_child
 drawable ic_child_fun
 drawable ic_clear_black_24
@@ -3323,6 +3325,8 @@ id bounceEnd
 id bounceStart
 id btnDelete
 id btnEdit
+id btnNext
+id btnPrevious
 id btnToggleStatus
 id btnWhatsApp
 id buttonPanel
@@ -3451,7 +3455,6 @@ id fixed
 id flip
 id floating
 id forever
-id forgotPasswordText
 id fragment_container_view_tag
 id frost
 id fullscreen_header
@@ -3631,7 +3634,9 @@ id outline
 id outward
 id overshoot
 id packed
+id pageInfoText
 id paginationInfoText
+id paginationLayout
 id paginationProgressBar
 id parallax
 id parent
@@ -3663,6 +3668,7 @@ id ratio
 id rectangles
 id registerButton
 id registerText
+id rememberMeCheckBox
 id report_drawn
 id resendText
 id resetButton

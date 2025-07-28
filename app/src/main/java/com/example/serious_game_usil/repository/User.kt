@@ -2,6 +2,7 @@ package com.example.serious_game_usil.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.BaseResponse
 import com.example.serious_game_usil.data.UpdateUserRequest
@@ -35,7 +36,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         }
     }
 
-    // Método existente
+
     override suspend fun getCurrentUser(): User {
         return User(
             id = AuthManager.getUserId(),
@@ -50,10 +51,11 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         )
     }
 
-    // IMPLEMENTACIÓN DE NUEVOS MÉTODOS
 
     override suspend fun getUsers(params: UserSearchParams): ApiResult<UsersListResponse> {
         return try {
+            Log.d("UserRepository", "Llamando a getUsers con params: $params")
+
             val response = apiService.getUsers(
                 search = params.search,
                 page = params.page,
@@ -64,20 +66,26 @@ class UserRepository private constructor(private val context: Context) : IUserRe
                 orderDirection = params.order_direction
             )
 
+            Log.d("UserRepository", "Response code: ${response.code()}")
+            Log.d("UserRepository", "Response body: ${response.body()}")
+
             if (response.isSuccessful) {
-                response.body()?.let {
-                    ApiResult.Success(it)
+                response.body()?.let { usersListResponse ->
+                    Log.d("UserRepository", "Response recibido: $usersListResponse")
+                    Log.d("UserRepository", "Usuarios recibidos: ${usersListResponse.users.size}")
+                    Log.d("UserRepository", "Total: ${usersListResponse.total}")
+                    Log.d("UserRepository", "Página: ${usersListResponse.page}")
+
+                    ApiResult.Success(usersListResponse)
                 } ?: ApiResult.Error(response.code(), "Response body is null")
             } else {
-                ApiResult.Error(
-                    response.code(),
-                    response.errorBody()?.string() ?: "Unknown error"
-                )
+                val errorBody = response.errorBody()?.string() ?: "Unknown error"
+                Log.e("UserRepository", "Error response: $errorBody")
+                ApiResult.Error(response.code(), errorBody)
             }
-        } catch (e: IOException) {
-            ApiResult.NetworkError(e)
         } catch (e: Exception) {
-            ApiResult.Error(-1, e.message ?: "Unknown error")
+            Log.e("UserRepository", "Exception en getUsers", e)
+            ApiResult.NetworkError(e)
         }
     }
 

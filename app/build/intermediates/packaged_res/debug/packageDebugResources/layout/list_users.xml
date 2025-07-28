@@ -102,7 +102,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="80dp"
+                    android:paddingBottom="8dp"
                     android:clipToPadding="false"
                     android:scrollbars="vertical"
                     tools:listitem="@layout/item_users" />
@@ -214,6 +214,53 @@
 
             </FrameLayout>
 
+            <LinearLayout
+                android:id="@+id/paginationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:background="@android:color/white"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPrevious"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Anterior"
+                    app:icon="@drawable/ic_chevron_left"
+                    app:iconGravity="start"
+                    android:enabled="false" />
+
+                <TextView
+                    android:id="@+id/pageInfoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    tools:text="Página 1 de 5" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNext"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Siguiente"
+                    app:icon="@drawable/ic_chevron_right"
+                    app:iconGravity="end"
+                    android:enabled="false" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -223,7 +270,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
         android:contentDescription="Agregar usuario"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/primary"
