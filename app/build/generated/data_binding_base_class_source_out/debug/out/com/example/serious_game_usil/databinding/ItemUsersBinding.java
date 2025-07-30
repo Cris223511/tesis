@@ -4,7 +4,7 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +14,7 @@ import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -23,28 +24,19 @@ public final class ItemUsersBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final MaterialButton btnDelete;
+  public final LinearLayout infoContainer;
 
   @NonNull
-  public final MaterialButton btnEdit;
-
-  @NonNull
-  public final MaterialButton btnToggleStatus;
-
-  @NonNull
-  public final MaterialButton btnWhatsApp;
-
-  @NonNull
-  public final TextView userBirthDateTextView;
+  public final MaterialButton menuButton;
 
   @NonNull
   public final TextView userDocumentTextView;
 
   @NonNull
-  public final TextView userGenderTextView;
+  public final TextView userEmailTextView;
 
   @NonNull
-  public final ImageView userImageView;
+  public final ShapeableImageView userImageView;
 
   @NonNull
   public final TextView userNameTextView;
@@ -52,20 +44,15 @@ public final class ItemUsersBinding implements ViewBinding {
   @NonNull
   public final Chip userStatusChip;
 
-  private ItemUsersBinding(@NonNull MaterialCardView rootView, @NonNull MaterialButton btnDelete,
-      @NonNull MaterialButton btnEdit, @NonNull MaterialButton btnToggleStatus,
-      @NonNull MaterialButton btnWhatsApp, @NonNull TextView userBirthDateTextView,
-      @NonNull TextView userDocumentTextView, @NonNull TextView userGenderTextView,
-      @NonNull ImageView userImageView, @NonNull TextView userNameTextView,
-      @NonNull Chip userStatusChip) {
+  private ItemUsersBinding(@NonNull MaterialCardView rootView, @NonNull LinearLayout infoContainer,
+      @NonNull MaterialButton menuButton, @NonNull TextView userDocumentTextView,
+      @NonNull TextView userEmailTextView, @NonNull ShapeableImageView userImageView,
+      @NonNull TextView userNameTextView, @NonNull Chip userStatusChip) {
     this.rootView = rootView;
-    this.btnDelete = btnDelete;
-    this.btnEdit = btnEdit;
-    this.btnToggleStatus = btnToggleStatus;
-    this.btnWhatsApp = btnWhatsApp;
-    this.userBirthDateTextView = userBirthDateTextView;
+    this.infoContainer = infoContainer;
+    this.menuButton = menuButton;
     this.userDocumentTextView = userDocumentTextView;
-    this.userGenderTextView = userGenderTextView;
+    this.userEmailTextView = userEmailTextView;
     this.userImageView = userImageView;
     this.userNameTextView = userNameTextView;
     this.userStatusChip = userStatusChip;
@@ -98,33 +85,15 @@ public final class ItemUsersBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btnDelete;
-      MaterialButton btnDelete = ViewBindings.findChildViewById(rootView, id);
-      if (btnDelete == null) {
+      id = R.id.infoContainer;
+      LinearLayout infoContainer = ViewBindings.findChildViewById(rootView, id);
+      if (infoContainer == null) {
         break missingId;
       }
 
-      id = R.id.btnEdit;
-      MaterialButton btnEdit = ViewBindings.findChildViewById(rootView, id);
-      if (btnEdit == null) {
-        break missingId;
-      }
-
-      id = R.id.btnToggleStatus;
-      MaterialButton btnToggleStatus = ViewBindings.findChildViewById(rootView, id);
-      if (btnToggleStatus == null) {
-        break missingId;
-      }
-
-      id = R.id.btnWhatsApp;
-      MaterialButton btnWhatsApp = ViewBindings.findChildViewById(rootView, id);
-      if (btnWhatsApp == null) {
-        break missingId;
-      }
-
-      id = R.id.userBirthDateTextView;
-      TextView userBirthDateTextView = ViewBindings.findChildViewById(rootView, id);
-      if (userBirthDateTextView == null) {
+      id = R.id.menuButton;
+      MaterialButton menuButton = ViewBindings.findChildViewById(rootView, id);
+      if (menuButton == null) {
         break missingId;
       }
 
@@ -134,14 +103,14 @@ public final class ItemUsersBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.userGenderTextView;
-      TextView userGenderTextView = ViewBindings.findChildViewById(rootView, id);
-      if (userGenderTextView == null) {
+      id = R.id.userEmailTextView;
+      TextView userEmailTextView = ViewBindings.findChildViewById(rootView, id);
+      if (userEmailTextView == null) {
         break missingId;
       }
 
       id = R.id.userImageView;
-      ImageView userImageView = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView userImageView = ViewBindings.findChildViewById(rootView, id);
       if (userImageView == null) {
         break missingId;
       }
@@ -158,9 +127,8 @@ public final class ItemUsersBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemUsersBinding((MaterialCardView) rootView, btnDelete, btnEdit, btnToggleStatus,
-          btnWhatsApp, userBirthDateTextView, userDocumentTextView, userGenderTextView,
-          userImageView, userNameTextView, userStatusChip);
+      return new ItemUsersBinding((MaterialCardView) rootView, infoContainer, menuButton,
+          userDocumentTextView, userEmailTextView, userImageView, userNameTextView, userStatusChip);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -3075,6 +3075,7 @@ drawable ic_activity_placeholder
 drawable ic_add
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
+drawable ic_auto_generate
 drawable ic_badge
 drawable ic_block
 drawable ic_calendar
@@ -3113,6 +3114,7 @@ drawable ic_logout
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_more_ver
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -3125,6 +3127,7 @@ drawable ic_search
 drawable ic_search_black_24
 drawable ic_search_off
 drawable ic_time
+drawable ic_toggle_off
 drawable ic_visibility
 drawable ic_whatsapp
 drawable logo
@@ -3272,9 +3275,12 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_change_password
 id action_container
 id action_context_bar
+id action_delete
 id action_divider
+id action_edit
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -3282,6 +3288,8 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
+id action_toggle_status
+id action_whatsapp
 id actions
 id activityIcon
 id activitySubtitle
@@ -3323,15 +3331,12 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id btnDelete
-id btnEdit
 id btnNext
 id btnPrevious
-id btnToggleStatus
-id btnWhatsApp
 id buttonPanel
 id cache_measures
 id callMeasure
+id cancelButton
 id cancel_button
 id cardContainer
 id carryVelocity
@@ -3494,6 +3499,7 @@ id immediateStop
 id included
 id indeterminate
 id info
+id infoContainer
 id inspection_slot_table_set
 id invisible
 id inward
@@ -3546,6 +3552,7 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id menuButton
 id message
 id messageText
 id middle
@@ -3677,6 +3684,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id rolesContainer
 id rounded
 id row_index_key
 id save_non_transition_alpha
@@ -3808,11 +3816,13 @@ id unlabeled
 id up
 id useLogo
 id userAvatar
-id userBirthDateTextView
 id userDocumentTextView
-id userGenderTextView
+id userEmailText
+id userEmailTextView
 id userImageView
+id userInfoCard
 id userName
+id userNameText
 id userNameTextView
 id userRolesText
 id userStatusChip
@@ -3953,6 +3963,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_admin_add_user
 layout activity_forgot_password
 layout activity_login
 layout activity_main
@@ -4048,6 +4059,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu menu_user_options
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

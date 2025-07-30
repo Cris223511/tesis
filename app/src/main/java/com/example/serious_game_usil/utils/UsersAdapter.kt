@@ -1,7 +1,9 @@
 package com.example.serious_game_usil.ui.admin.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,19 +13,19 @@ import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.databinding.ItemUsersBinding
 
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+
+
 
 class UsersAdapter(
     private val listener: OnUserActionListener
 ) : ListAdapter<UserListItem, UsersAdapter.UserViewHolder>(UserDiffCallback()) {
 
     interface OnUserActionListener {
-        fun onWhatsAppClick(user: UserListItem)
         fun onEditClick(user: UserListItem)
-        fun onToggleStatusClick(user: UserListItem)
         fun onDeleteClick(user: UserListItem)
+        fun onToggleStatusClick(user: UserListItem)
+        fun onChangePasswordClick(user: UserListItem)
+        fun onWhatsAppClick(user: UserListItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -45,58 +47,29 @@ class UsersAdapter(
 
         fun bind(user: UserListItem) {
             binding.apply {
-                // Información básica
+                // Información del usuario
                 userNameTextView.text = user.nombresApellidos
                 userDocumentTextView.text = "${user.tipoDocumento}: ${user.numeroDocumento}"
+                userEmailTextView.text = user.correo
 
-                // Género
-                userGenderTextView.text = when(user.sexo.uppercase()) {
-                    "M" -> "Masculino"
-                    "F" -> "Femenino"
-                    else -> user.sexo
-                }
-
-                // Fecha de nacimiento
-                userBirthDateTextView.text = formatDate(user.fechaNacimiento)
-
-                // Estado
+                // Estado del usuario
                 if (user.activo) {
                     userStatusChip.text = "Activo"
                     userStatusChip.chipBackgroundColor = ContextCompat.getColorStateList(
-                        binding.root.context,
+                        root.context,
                         R.color.status_active
-                    )
-                    userStatusChip.chipIcon = ContextCompat.getDrawable(
-                        binding.root.context,
-                        R.drawable.ic_check_circle
-                    )
-
-                    btnToggleStatus.setIconResource(R.drawable.ic_close)
-                    btnToggleStatus.backgroundTintList = ContextCompat.getColorStateList(
-                        binding.root.context,
-                        R.color.red
                     )
                 } else {
                     userStatusChip.text = "Inactivo"
                     userStatusChip.chipBackgroundColor = ContextCompat.getColorStateList(
-                        binding.root.context,
+                        root.context,
                         R.color.status_inactive
-                    )
-                    userStatusChip.chipIcon = ContextCompat.getDrawable(
-                        binding.root.context,
-                        R.drawable.ic_close
-                    )
-
-                    btnToggleStatus.setIconResource(R.drawable.ic_check)
-                    btnToggleStatus.backgroundTintList = ContextCompat.getColorStateList(
-                        binding.root.context,
-                        R.color.green
                     )
                 }
 
                 // Imagen de perfil
                 if (!user.foto.isNullOrEmpty()) {
-                    Glide.with(binding.root.context)
+                    Glide.with(root.context)
                         .load(user.foto)
                         .placeholder(R.drawable.ic_person_placeholder)
                         .error(R.drawable.ic_person_placeholder)
@@ -106,23 +79,59 @@ class UsersAdapter(
                     userImageView.setImageResource(R.drawable.ic_person_placeholder)
                 }
 
-                // Click listeners
-                btnWhatsApp.setOnClickListener { listener.onWhatsAppClick(user) }
-                btnEdit.setOnClickListener { listener.onEditClick(user) }
-                btnToggleStatus.setOnClickListener { listener.onToggleStatusClick(user) }
-                btnDelete.setOnClickListener { listener.onDeleteClick(user) }
+                // Click en toda la tarjeta para editar
+                root.setOnClickListener {
+                    listener.onEditClick(user)
+                }
+
+                // Menú de opciones
+                menuButton.setOnClickListener { view ->
+                    showPopupMenu(view, user)
+                }
             }
         }
 
-        private fun formatDate(dateString: String): String {
-            return try {
-                val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                val date = inputFormat.parse(dateString)
-                outputFormat.format(date ?: Date())
-            } catch (e: Exception) {
-                dateString
+        private fun showPopupMenu(view: View, user: UserListItem) {
+            val popup = PopupMenu(view.context, view)
+            popup.menuInflater.inflate(R.menu.menu_user_options, popup.menu)
+
+            // Configurar visibilidad y texto según el estado
+            popup.menu.findItem(R.id.action_toggle_status)?.apply {
+                title = if (user.activo) "Desactivar cuenta" else "Activar cuenta"
+                setIcon(if (user.activo) R.drawable.ic_toggle_off else R.drawable.ic_check)
             }
+
+            // Mostrar WhatsApp solo si tiene teléfono
+            popup.menu.findItem(R.id.action_whatsapp)?.isVisible =
+                !user.telefono.isNullOrEmpty()
+
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.action_edit -> {
+                        listener.onEditClick(user)
+                        true
+                    }
+                    R.id.action_change_password -> {
+                        listener.onChangePasswordClick(user)
+                        true
+                    }
+                    R.id.action_toggle_status -> {
+                        listener.onToggleStatusClick(user)
+                        true
+                    }
+                    R.id.action_whatsapp -> {
+                        listener.onWhatsAppClick(user)
+                        true
+                    }
+                    R.id.action_delete -> {
+                        listener.onDeleteClick(user)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popup.show()
         }
     }
 

@@ -8,6 +8,7 @@ import com.example.serious_game_usil.data.OTPResponse
 import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.ResendOTPRequest
+import com.example.serious_game_usil.data.Role
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.UserDetailResponse
@@ -75,6 +76,9 @@ interface ApiService {
         @Query("q") query: String,
         @Query("limit") limit: Int = 10
     ): Response<List<UserListItem>>
+
+    @GET("api/roles")
+    suspend fun getRoles(): Response<List<Role>>
 
     @GET("/auth/gett")
     suspend fun getToken(): Response<TokenResponse>

@@ -5,6 +5,10 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.BaseResponse
+import com.example.serious_game_usil.data.CreateUserRequest
+import com.example.serious_game_usil.data.RegisterRequest
+import com.example.serious_game_usil.data.RegisterResponse
+import com.example.serious_game_usil.data.Role
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.User
@@ -237,5 +241,48 @@ class UserRepository private constructor(private val context: Context) : IUserRe
 
     override suspend fun getAuthToken(): String? {
         return AuthManager.getAccessToken()
+    }
+
+
+    override suspend fun getRoles(): ApiResult<List<Role>> {
+        return try {
+            val response = apiService.getRoles()
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+    override suspend fun register(request: RegisterRequest): ApiResult<RegisterResponse> {
+        return try {
+            val response = apiService.register(request)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
     }
 }

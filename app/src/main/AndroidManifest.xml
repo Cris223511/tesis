@@ -103,6 +103,16 @@
             android:name=".presentation.ui.administrador.list.ListUserActivity"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
+        <activity
+            android:name=".presentation.ui.administrador.list.CreateUserActivity"
+            android:label="Registrar Usuario"
+            android:parentActivityName=".presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+
     </application>
 
 </manifest>

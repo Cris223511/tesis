@@ -108,6 +108,15 @@
             android:name="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
         <activity
+            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.CreateUserActivity"
+            android:label="Registrar Usuario"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+        <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />
         <activity

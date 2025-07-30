@@ -62,3 +62,4 @@ com.example.serious_game_usil.app-packageDebugResources-60 /Users/jhafetcanepa/D
 com.example.serious_game_usil.app-debug-61 /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/build/intermediates/merged_res/debug/mergeDebugResources
 com.example.serious_game_usil.app-debug-62 /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/debug/res
 com.example.serious_game_usil.app-main-63 /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/res
+com.example.serious_game_usil.app-res-64 /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/res/menu

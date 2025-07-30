@@ -6,20 +6,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.databinding.ListUsersBinding
 import com.example.serious_game_usil.guards.AuthManager
+import com.example.serious_game_usil.presentation.ui.recuperation.ResetPasswordActivity
 import com.example.serious_game_usil.repository.UserRepository
 import com.example.serious_game_usil.ui.admin.adapter.UsersAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.seriousgame.app.navigation.RouteNavigator
-
 
 
 
@@ -39,6 +38,7 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
 
     companion object {
         private const val PER_PAGE = 10
+        private  const val REQUEST_CREATE_USER = 1001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +63,21 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
         loadUsers()
     }
 
+
+    private val createUserLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            currentPage = 1
+            searchQuery = null
+            isSearching = false
+            binding.searchEditText.setText("")
+
+            loadUsers()
+            showSnackbar("Usuario creado exitosamente")
+        }
+    }
+
     private fun setupViewModel() {
         val repository = UserRepository.getInstance(this)
         val factory = UsersListViewModelFactory(repository)
@@ -81,7 +96,8 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
         }
 
         binding.fabAddUser.setOnClickListener {
-            showSnackbar("Función en desarrollo")
+            val intent = Intent(this, CreateUserActivity::class.java)
+            startActivityForResult(intent, REQUEST_CREATE_USER)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -319,6 +335,53 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
+    // OnUserActionListener implementation
+
+    override fun onEditClick(user: UserListItem) {
+        showSnackbar("Función en desarrollo")
+    }
+
+    override fun onDeleteClick(user: UserListItem) {
+        AlertDialog.Builder(this)
+            .setTitle("Eliminar usuario")
+            .setMessage("¿Estás seguro de eliminar al usuario ${user.nombresApellidos}?\n\nEsta acción no se puede deshacer.")
+            .setPositiveButton("Eliminar") { _, _ ->
+                viewModel.deleteUser(user.id)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    override fun onToggleStatusClick(user: UserListItem) {
+        val action = if (user.activo) "desactivar" else "activar"
+
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar acción")
+            .setMessage("¿Estás seguro de $action al usuario ${user.nombresApellidos}?")
+            .setPositiveButton("Sí") { _, _ ->
+                viewModel.toggleUserStatus(user)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    override fun onChangePasswordClick(user: UserListItem) {
+        AlertDialog.Builder(this)
+            .setTitle("Cambiar contraseña")
+            .setMessage("¿Deseas cambiar la contraseña del usuario ${user.nombresApellidos}?")
+            .setPositiveButton("Sí") { _, _ ->
+                val intent = Intent(this, ResetPasswordActivity::class.java).apply {
+                    putExtra("userId", user.id)
+                    putExtra("userEmail", user.correo)
+                    putExtra("userName", user.nombresApellidos)
+                    putExtra("isAdminReset", true)
+                }
+                startActivity(intent)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
     override fun onWhatsAppClick(user: UserListItem) {
         if (!user.telefono.isNullOrEmpty()) {
             val phoneNumber = user.telefono.replace(Regex("[^0-9]"), "")
@@ -338,33 +401,5 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
         } else {
             showSnackbar("El usuario no tiene número de teléfono")
         }
-    }
-
-    override fun onEditClick(user: UserListItem) {
-        showSnackbar("Función en desarrollo")
-    }
-
-    override fun onToggleStatusClick(user: UserListItem) {
-        val action = if (user.activo) "desactivar" else "activar"
-
-        AlertDialog.Builder(this)
-            .setTitle("Confirmar acción")
-            .setMessage("¿Estás seguro de $action al usuario ${user.nombresApellidos}?")
-            .setPositiveButton("Sí") { _, _ ->
-                viewModel.toggleUserStatus(user)
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
-
-    override fun onDeleteClick(user: UserListItem) {
-        AlertDialog.Builder(this)
-            .setTitle("Eliminar usuario")
-            .setMessage("¿Estás seguro de eliminar al usuario ${user.nombresApellidos}?\n\nEsta acción no se puede deshacer.")
-            .setPositiveButton("Eliminar") { _, _ ->
-                viewModel.deleteUser(user.id)
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
     }
 }

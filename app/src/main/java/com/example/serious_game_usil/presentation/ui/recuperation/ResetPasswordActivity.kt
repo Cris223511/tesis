@@ -3,14 +3,21 @@ package com.example.serious_game_usil.presentation.ui.recuperation
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import com.example.serious_game_usil.databinding.ActivityPasswordResetSuccessBinding
 import com.example.serious_game_usil.databinding.ActivityResetPasswordBinding
+
 
 class ResetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResetPasswordBinding
+    private var isAdminReset = false
+    private var userId: Int = 0
+    private var userEmail: String? = null
+    private var userName: String? = null
 
     companion object {
         private const val MIN_PASSWORD_LENGTH = 8
@@ -22,11 +29,28 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Obtener datos del intent
+        isAdminReset = intent.getBooleanExtra("isAdminReset", false)
+        userId = intent.getIntExtra("userId", 0)
+        userEmail = intent.getStringExtra("userEmail")
+        userName = intent.getStringExtra("userName")
+
         setupUI()
         setupValidations()
     }
 
     private fun setupUI() {
+        // Personalizar UI según el contexto
+        if (isAdminReset && userName != null) {
+            supportActionBar?.title = "Cambiar contraseña"
+            supportActionBar?.subtitle = "Usuario: $userName"
+
+            // Agregar información visual sobre qué usuario se está modificando
+            binding.userInfoCard?.visibility = View.VISIBLE
+            binding.userNameText?.text = userName
+            binding.userEmailText?.text = userEmail
+        }
+
         binding.resetButton.setOnClickListener {
             if (validatePasswords()) {
                 resetPassword()
@@ -78,7 +102,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                 false
             }
             password != confirmPassword -> {
-                binding.confirmPasswordInputLayout.error = "Las credenciales no coinciden"
+                binding.confirmPasswordInputLayout.error = "Las contraseñas no coinciden"
                 false
             }
             else -> {
@@ -109,10 +133,29 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding.resetButton.isEnabled = false
         binding.resetButton.text = "Actualizando..."
 
+        val newPassword = binding.passwordEditText.text.toString()
+
+        // TODO: Implementar llamada al API para cambiar contraseña
+        // Si es admin reset, usar userId
+        // Si no, usar el token del usuario actual
+
         binding.root.postDelayed({
-            Toast.makeText(this, "Credenciales actualizada exitosamente", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, PasswordResetSuccessActivity::class.java))
-            finish()
+            val successMessage = if (isAdminReset) {
+                "Contraseña actualizada para $userName"
+            } else {
+                "Contraseña actualizada exitosamente"
+            }
+
+            Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show()
+
+            if (isAdminReset) {
+                // Si es admin, volver a la lista
+                finish()
+            } else {
+                // Si es usuario normal, ir a success
+                startActivity(Intent(this, ActivityPasswordResetSuccessBinding::class.java))
+                finish()
+            }
         }, 1500)
     }
 }

@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -36,17 +38,30 @@ public final class ActivityResetPasswordBinding implements ViewBinding {
   @NonNull
   public final MaterialButton resetButton;
 
+  @NonNull
+  public final TextView userEmailText;
+
+  @NonNull
+  public final MaterialCardView userInfoCard;
+
+  @NonNull
+  public final TextView userNameText;
+
   private ActivityResetPasswordBinding(@NonNull LinearLayout rootView,
       @NonNull TextInputEditText confirmPasswordEditText,
       @NonNull TextInputLayout confirmPasswordInputLayout,
       @NonNull TextInputEditText passwordEditText, @NonNull TextInputLayout passwordInputLayout,
-      @NonNull MaterialButton resetButton) {
+      @NonNull MaterialButton resetButton, @NonNull TextView userEmailText,
+      @NonNull MaterialCardView userInfoCard, @NonNull TextView userNameText) {
     this.rootView = rootView;
     this.confirmPasswordEditText = confirmPasswordEditText;
     this.confirmPasswordInputLayout = confirmPasswordInputLayout;
     this.passwordEditText = passwordEditText;
     this.passwordInputLayout = passwordInputLayout;
     this.resetButton = resetButton;
+    this.userEmailText = userEmailText;
+    this.userInfoCard = userInfoCard;
+    this.userNameText = userNameText;
   }
 
   @Override
@@ -106,8 +121,27 @@ public final class ActivityResetPasswordBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.userEmailText;
+      TextView userEmailText = ViewBindings.findChildViewById(rootView, id);
+      if (userEmailText == null) {
+        break missingId;
+      }
+
+      id = R.id.userInfoCard;
+      MaterialCardView userInfoCard = ViewBindings.findChildViewById(rootView, id);
+      if (userInfoCard == null) {
+        break missingId;
+      }
+
+      id = R.id.userNameText;
+      TextView userNameText = ViewBindings.findChildViewById(rootView, id);
+      if (userNameText == null) {
+        break missingId;
+      }
+
       return new ActivityResetPasswordBinding((LinearLayout) rootView, confirmPasswordEditText,
-          confirmPasswordInputLayout, passwordEditText, passwordInputLayout, resetButton);
+          confirmPasswordInputLayout, passwordEditText, passwordInputLayout, resetButton,
+          userEmailText, userInfoCard, userNameText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

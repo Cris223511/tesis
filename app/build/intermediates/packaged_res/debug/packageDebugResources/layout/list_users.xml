@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
 
+    <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -23,51 +24,59 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+    <!-- Contenido principal -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <!-- Sección de búsqueda -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@android:color/white">
+                android:padding="16dp">
 
+                <!-- Campo de búsqueda -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/searchInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusBottomEnd="24dp"
-                    app:boxCornerRadiusBottomStart="24dp"
-                    app:boxCornerRadiusTopEnd="24dp"
-                    app:boxCornerRadiusTopStart="24dp"
+                    app:boxCornerRadiusBottomEnd="28dp"
+                    app:boxCornerRadiusBottomStart="28dp"
+                    app:boxCornerRadiusTopEnd="28dp"
+                    app:boxCornerRadiusTopStart="28dp"
+                    app:boxStrokeWidth="1dp"
                     app:startIconDrawable="@drawable/ic_search"
-                    app:endIconMode="clear_text">
+                    app:startIconTint="@color/text_secondary"
+                    app:endIconMode="clear_text"
+                    app:hintAnimationEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/searchEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Buscar por nombre o documento..."
+                        android:hint="Buscar por nombre, documento o email..."
                         android:inputType="text"
                         android:imeOptions="actionSearch"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Información de resultados -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="16dp">
 
                     <TextView
                         android:id="@+id/paginationInfoText"
@@ -76,7 +85,7 @@
                         android:layout_gravity="start|center_vertical"
                         android:textSize="14sp"
                         android:textColor="@color/text_secondary"
-                        tools:text="Mostrando 10 de 50 usuarios" />
+                        tools:text="Mostrando 1-10 de 43 usuarios" />
 
                     <ProgressBar
                         android:id="@+id/searchProgressBar"
@@ -90,23 +99,33 @@
 
             </LinearLayout>
 
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SwipeRefreshLayout con lista -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent">
 
+                <!-- RecyclerView -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/usersRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="80dp"
                     android:clipToPadding="false"
                     android:scrollbars="vertical"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:fadeScrollbars="true"
                     tools:listitem="@layout/item_users" />
 
+                <!-- Estado vacío - Sin usuarios -->
                 <LinearLayout
                     android:id="@+id/emptyStateLayout"
                     android:layout_width="match_parent"
@@ -121,8 +140,8 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:src="@drawable/ic_empty_users"
-                        android:tint="#000000"
-                        android:alpha="0.6" />
+                        android:tint="#4A5568"
+                        android:alpha="0.5" />
 
                     <TextView
                         android:id="@+id/emptyStateText"
@@ -131,7 +150,7 @@
                         android:layout_marginTop="24dp"
                         android:text="No hay usuarios registrados"
                         android:textColor="@color/text_primary"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:textAlignment="center" />
 
@@ -141,11 +160,12 @@
                         android:layout_marginTop="8dp"
                         android:text="Toca el botón + para agregar el primer usuario"
                         android:textColor="@color/text_secondary"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textAlignment="center" />
 
                 </LinearLayout>
 
+                <!-- Estado vacío - Sin resultados de búsqueda -->
                 <LinearLayout
                     android:id="@+id/emptySearchLayout"
                     android:layout_width="match_parent"
@@ -160,8 +180,8 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/ic_search_off"
-                        android:tint="#000000"
-                        android:alpha="0.6" />
+                        android:tint="#4A5568"
+                        android:alpha="0.5" />
 
                     <TextView
                         android:id="@+id/emptySearchText"
@@ -170,7 +190,7 @@
                         android:layout_marginTop="24dp"
                         android:text="No se encontraron coincidencias"
                         android:textColor="@color/text_primary"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:gravity="center" />
@@ -181,7 +201,7 @@
                         android:layout_marginTop="8dp"
                         android:text="Intenta con otros términos de búsqueda"
                         android:textColor="@color/text_secondary"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textAlignment="center" />
 
                     <com.google.android.material.button.MaterialButton
@@ -191,10 +211,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="Limpiar búsqueda"
-                        android:textColor="@color/primary" />
+                        android:textColor="@color/primary"
+                        android:textAllCaps="false" />
 
                 </LinearLayout>
 
+                <!-- Indicador de carga principal -->
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleLarge"
@@ -203,77 +225,96 @@
                     android:layout_gravity="center"
                     android:visibility="gone" />
 
-                <ProgressBar
-                    android:id="@+id/paginationProgressBar"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="8dp"
-                    android:visibility="gone" />
-
             </FrameLayout>
 
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Controles de paginación - FUERA del SwipeRefresh -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/paginationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:strokeWidth="0dp"
+            android:visibility="visible">
+
             <LinearLayout
-                android:id="@+id/paginationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="@android:color/white"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:visibility="gone">
+                android:padding="12dp"
+                android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPrevious"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
                     android:text="Anterior"
+                    android:textAllCaps="false"
                     app:icon="@drawable/ic_chevron_left"
                     app:iconGravity="start"
+                    app:cornerRadius="24dp"
                     android:enabled="false" />
 
-                <TextView
-                    android:id="@+id/pageInfoText"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    tools:text="Página 1 de 5" />
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="16dp">
+
+                    <TextView
+                        android:id="@+id/pageInfoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        tools:text="Página 1 de 5" />
+
+                    <ProgressBar
+                        android:id="@+id/paginationProgressBar"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="4dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnNext"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:text="Siguiente"
+                    android:textAllCaps="false"
                     app:icon="@drawable/ic_chevron_right"
                     app:iconGravity="end"
+                    app:cornerRadius="24dp"
                     android:enabled="false" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!-- FAB para agregar usuario - Posicionado arriba de la paginación -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
-        android:contentDescription="Agregar usuario"
-        android:src="@drawable/ic_add"
+        android:layout_marginBottom="90dp"
+        android:text="NUEVO USUARIO"
+        app:icon="@drawable/ic_add"
         app:backgroundTint="@color/primary"
         app:tint="@android:color/white" />
 

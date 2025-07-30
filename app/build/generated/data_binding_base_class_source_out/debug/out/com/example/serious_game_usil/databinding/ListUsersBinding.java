@@ -18,7 +18,8 @@ import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -54,7 +55,7 @@ public final class ListUsersBinding implements ViewBinding {
   public final TextView emptyStateText;
 
   @NonNull
-  public final FloatingActionButton fabAddUser;
+  public final ExtendedFloatingActionButton fabAddUser;
 
   @NonNull
   public final TextView pageInfoText;
@@ -63,7 +64,7 @@ public final class ListUsersBinding implements ViewBinding {
   public final TextView paginationInfoText;
 
   @NonNull
-  public final LinearLayout paginationLayout;
+  public final MaterialCardView paginationLayout;
 
   @NonNull
   public final ProgressBar paginationProgressBar;
@@ -93,9 +94,9 @@ public final class ListUsersBinding implements ViewBinding {
       @NonNull MaterialButton btnNext, @NonNull MaterialButton btnPrevious,
       @NonNull MaterialButton clearSearchButton, @NonNull LinearLayout emptySearchLayout,
       @NonNull TextView emptySearchText, @NonNull LinearLayout emptyStateLayout,
-      @NonNull TextView emptyStateText, @NonNull FloatingActionButton fabAddUser,
+      @NonNull TextView emptyStateText, @NonNull ExtendedFloatingActionButton fabAddUser,
       @NonNull TextView pageInfoText, @NonNull TextView paginationInfoText,
-      @NonNull LinearLayout paginationLayout, @NonNull ProgressBar paginationProgressBar,
+      @NonNull MaterialCardView paginationLayout, @NonNull ProgressBar paginationProgressBar,
       @NonNull ProgressBar progressBar, @NonNull TextInputEditText searchEditText,
       @NonNull TextInputLayout searchInputLayout, @NonNull ProgressBar searchProgressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull Toolbar toolbar,
@@ -199,7 +200,7 @@ public final class ListUsersBinding implements ViewBinding {
       }
 
       id = R.id.fabAddUser;
-      FloatingActionButton fabAddUser = ViewBindings.findChildViewById(rootView, id);
+      ExtendedFloatingActionButton fabAddUser = ViewBindings.findChildViewById(rootView, id);
       if (fabAddUser == null) {
         break missingId;
       }
@@ -217,7 +218,7 @@ public final class ListUsersBinding implements ViewBinding {
       }
 
       id = R.id.paginationLayout;
-      LinearLayout paginationLayout = ViewBindings.findChildViewById(rootView, id);
+      MaterialCardView paginationLayout = ViewBindings.findChildViewById(rootView, id);
       if (paginationLayout == null) {
         break missingId;
       }

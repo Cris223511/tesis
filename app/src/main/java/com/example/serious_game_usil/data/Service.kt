@@ -185,6 +185,23 @@ data class UpdateUserRequest(
     val correo: String,
     @SerializedName("role_ids") val roleIds: List<Int>
 )
+
+
+
+data class CreateUserRequest(
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
+    @SerializedName("tipo_documento") val tipoDocumento: String,
+    @SerializedName("num_documento") val numeroDocumento: String,
+    val sexo: String,
+    val telefono: String?,
+    val correo: String,
+    val password: String,
+    @SerializedName("role_ids") val roleIds: List<Int>,
+    val activo: Boolean = true,
+    @SerializedName("send_credentials") val sendCredentials: Boolean = false,
+    @SerializedName("require_password_change") val requirePasswordChange: Boolean = true
+)
 sealed class ApiResult<out T> {
     data class Success<out T>(val data: T) : ApiResult<T>()
     data class Error(val code: Int, val message: String) : ApiResult<Nothing>()

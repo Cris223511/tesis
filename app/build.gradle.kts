@@ -83,6 +83,13 @@ android {
             )
         }
     }
+    sourceSets {
+        getByName("main") {
+            res {
+                srcDirs("src/main/res", "src/main/res/menu")
+            }
+        }
+    }
 }
 
 dependencies {
