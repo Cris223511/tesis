@@ -9,6 +9,7 @@ import com.example.serious_game_usil.data.CreateUserRequest
 import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.Role
+import com.example.serious_game_usil.data.UpdatePasswordRequest
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.User
@@ -135,11 +136,12 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         }
     }
 
+
     override suspend fun updateUserStatus(userId: Int, isActive: Boolean): ApiResult<BaseResponse> {
         return try {
             val response = apiService.updateUserStatus(
                 userId,
-                UpdateUserStatusRequest(isActive)
+                UpdateUserStatusRequest(isActive)  // Solo envía el campo activo
             )
 
             if (response.isSuccessful) {
@@ -268,6 +270,31 @@ class UserRepository private constructor(private val context: Context) : IUserRe
     override suspend fun register(request: RegisterRequest): ApiResult<RegisterResponse> {
         return try {
             val response = apiService.register(request)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                ApiResult.Error(
+                    response.code(),
+                    response.errorBody()?.string() ?: "Unknown error"
+                )
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+
+
+    override suspend fun updateUserPassword(
+        userId: Int,
+        request: UpdatePasswordRequest
+    ): ApiResult<BaseResponse> {
+        return try {
+            val response = apiService.updateUserPassword(userId, request)
 
             if (response.isSuccessful) {
                 response.body()?.let {

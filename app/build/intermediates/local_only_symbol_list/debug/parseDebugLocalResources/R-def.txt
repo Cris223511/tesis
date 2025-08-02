@@ -106,8 +106,10 @@ drawable ic_person
 drawable ic_person_placeholder
 drawable ic_phone
 drawable ic_sad_face
+drawable ic_save
 drawable ic_search
 drawable ic_search_off
+drawable ic_security
 drawable ic_time
 drawable ic_toggle_off
 drawable ic_visibility
@@ -127,6 +129,8 @@ id action_change_password
 id action_delete
 id action_edit
 id action_toggle_status
+id action_view_permissions
+id action_view_users
 id action_whatsapp
 id activityIcon
 id activitySubtitle
@@ -141,6 +145,7 @@ id btnPrevious
 id cancelButton
 id cardContainer
 id categoryChip
+id changePasswordCheckbox
 id checkIcon
 id clearSearchButton
 id comparisonCard
@@ -164,9 +169,11 @@ id emptyStateText
 id errorIcon
 id errorMessage
 id errorTitle
+id fabAddRole
 id fabAddUser
 id genderDropdown
 id genderInputLayout
+id generatePasswordButton
 id goBackButton
 id goToLoginButton
 id gradientBackground
@@ -204,6 +211,7 @@ id paginationLayout
 id paginationProgressBar
 id passwordEditText
 id passwordInputLayout
+id passwordSection
 id passwordToggle
 id pendingHours
 id pendingMinutes
@@ -216,7 +224,11 @@ id registerText
 id rememberMeCheckBox
 id resendText
 id resetButton
+id roleDescriptionTextView
+id roleNameTextView
 id rolesContainer
+id rolesRecyclerView
+id saveButton
 id searchEditText
 id searchInputLayout
 id searchProgressBar
@@ -227,6 +239,7 @@ id stimulusHours
 id stimulusMinutes
 id subtitleText
 id swipeRefresh
+id systemRoleChip
 id termsCheckBox
 id timerText
 id titleText
@@ -234,6 +247,7 @@ id todayCard
 id toolbar
 id top_logo_area
 id userAvatar
+id userCountTextView
 id userDocumentTextView
 id userEmailText
 id userEmailTextView
@@ -248,6 +262,7 @@ id usersRecyclerView
 id verifyButton
 id welcome_text
 layout activity_admin_add_user
+layout activity_edit_user
 layout activity_forgot_password
 layout activity_login
 layout activity_main
@@ -256,14 +271,17 @@ layout activity_password_reset_success
 layout activity_preloader
 layout activity_register
 layout activity_reset_password
+layout activity_roles
 layout activity_unauthorized
 layout dashboard_administrador
 layout dialog_error
 layout dialog_login_error
 layout dialog_succes
 layout item_activity_pager
+layout item_roles
 layout item_users
 layout list_users
+menu menu_roles_options
 menu menu_user_options
 mipmap ic_launcher
 mipmap ic_launcher_round

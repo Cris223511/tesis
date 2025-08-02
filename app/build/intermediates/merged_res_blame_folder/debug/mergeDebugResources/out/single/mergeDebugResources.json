@@ -1,7 +1,15 @@
 [
     {
+        "merged": "com.example.serious_game_usil.app-debug-62:/drawable_ic_save.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/drawable/ic_save.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-62:/drawable_activity_gradient.xml.flat",
         "source": "com.example.serious_game_usil.app-main-64:/drawable/activity_gradient.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-62:/drawable_ic_security.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/drawable/ic_security.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/drawable_ic_document.xml.flat",
@@ -10,6 +18,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/drawable_btn_super_fun.xml.flat",
         "source": "com.example.serious_game_usil.app-main-64:/drawable/btn_super_fun.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-62:/layout_item_roles.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/layout/item_roles.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/mipmap-mdpi_ic_launcher.webp.flat",
@@ -316,8 +328,16 @@
         "source": "com.example.serious_game_usil.app-main-64:/drawable/ic_person_placeholder.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-62:/layout_activity_edit_user.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/layout/activity_edit_user.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-62:/xml_network_security_config.xml.flat",
         "source": "com.example.serious_game_usil.app-main-64:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-62:/layout_activity_roles.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/layout/activity_roles.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/mipmap-anydpi_ic_launcher.xml.flat",
@@ -418,6 +438,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/mipmap-hdpi_ic_launcher.webp.flat",
         "source": "com.example.serious_game_usil.app-main-64:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-62:/menu_menu_roles_options.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/menu/menu_roles_options.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-62:/layout_dashboard_administrador.xml.flat",

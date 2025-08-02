@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,7 @@ import com.example.serious_game_usil.R
 import com.example.serious_game_usil.databinding.DashboardAdministradorBinding
 import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity
+import com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
 import com.example.serious_game_usil.utils.ActivitiesAdapter
@@ -60,38 +62,67 @@ class DashboardActivity : AppCompatActivity() {
             RouteNavigator.navigateToLogin(this)
             finishAffinity()
         }
-
     }
 
     private fun setupViews() {
         setupNavigation()
-
         // Usar el nombre del usuario autenticado
         binding.userName.text = AuthManager.getNombresApellidos()
     }
 
-
-
-
     private fun setupNavigation() {
         binding.navChildren.setOnClickListener {
-            // Navegar a la lista de usuarios
-            val intent = Intent(this, ListUserActivity::class.java)
-            startActivity(intent)
+            // Ahora muestra "En desarrollo"
+            Toast.makeText(this, "Gestión de niños - En desarrollo", Toast.LENGTH_SHORT).show()
         }
 
         binding.navProfile.setOnClickListener {
-            updateNavigationSelection(DashboardViewModel.NavigationItem.PROFILE)
-            viewModel.updateNavigationSelection(DashboardViewModel.NavigationItem.PROFILE)
+            // Acción directa: mostrar menú de opciones de perfil
+            showProfileOptions()
         }
 
         binding.navInfo.setOnClickListener {
-            updateNavigationSelection(DashboardViewModel.NavigationItem.INFO)
-            viewModel.updateNavigationSelection(DashboardViewModel.NavigationItem.INFO)
+            // Acción directa: mostrar información/estadísticas
+            showInfoOptions()
         }
+    }
 
-        // Perfil seleccionado por defecto
-        updateNavigationSelection(DashboardViewModel.NavigationItem.PROFILE)
+    private fun showProfileOptions() {
+        val options = arrayOf("Ver Roles", "Gestionar Usuarios", "Mi Perfil", "Configuración")
+
+        AlertDialog.Builder(this)
+            .setTitle("Opciones del administrador")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> {
+                        val intent = Intent(this, ListRoles::class.java)
+                        startActivity(intent)
+                    }
+                    1 -> {
+                        // Gestionar Usuarios - ir a ListUserActivity
+                        val intent = Intent(this, ListUserActivity::class.java)
+                        startActivity(intent)
+                    }
+                    2 -> Toast.makeText(this, "Mi Perfil - En desarrollo", Toast.LENGTH_SHORT).show()
+                    3 -> Toast.makeText(this, "Configuración - En desarrollo", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .show()
+    }
+
+    private fun showInfoOptions() {
+        val options = arrayOf("Estadísticas del Sistema", "Logs de Actividad", "Acerca de")
+
+        AlertDialog.Builder(this)
+            .setTitle("Información")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> Toast.makeText(this, "Estadísticas - En desarrollo", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "Logs - En desarrollo", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(this, "Versión 1.0.0", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .show()
     }
 
     private fun observeViewModel() {
@@ -109,7 +140,6 @@ class DashboardActivity : AppCompatActivity() {
                 activitiesAdapter = ActivitiesAdapter(it) { activity ->
                     viewModel.onActivitySelected(activity)
                 }
-
             }
         }
 
@@ -142,57 +172,6 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateNavigationSelection(selectedItem: DashboardViewModel.NavigationItem) {
-        // Resetear todos
-        listOf(binding.navChildren, binding.navProfile, binding.navInfo).forEach { navItem ->
-            navItem.background = null
-            updateNavItemStyle(navItem, false)
-        }
-
-        // Aplicar estilo seleccionado
-        when (selectedItem) {
-            DashboardViewModel.NavigationItem.CHILDREN -> {
-                binding.navChildren.background = ContextCompat.getDrawable(this, R.drawable.nav_selected_bg)
-                updateNavItemStyle(binding.navChildren, true)
-            }
-            DashboardViewModel.NavigationItem.PROFILE -> {
-                binding.navProfile.background = ContextCompat.getDrawable(this, R.drawable.nav_selected_bg)
-                updateNavItemStyle(binding.navProfile, true)
-            }
-            DashboardViewModel.NavigationItem.INFO -> {
-                binding.navInfo.background = ContextCompat.getDrawable(this, R.drawable.nav_selected_bg)
-                updateNavItemStyle(binding.navInfo, true)
-            }
-        }
-    }
-
-    private fun updateNavItemStyle(navItem: LinearLayout, isSelected: Boolean) {
-        val cardView = navItem.getChildAt(0) as MaterialCardView
-        val textView = navItem.getChildAt(1) as TextView
-        val imageView = cardView.getChildAt(0) as ImageView
-
-        if (isSelected) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.primary))
-            imageView.imageTintList = ContextCompat.getColorStateList(this, R.color.on_primary)
-            textView.setTextColor(ContextCompat.getColor(this, R.color.on_primary))
-            textView.setTypeface(textView.typeface, android.graphics.Typeface.BOLD)
-        } else {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.nav_icon_bg_inactive))
-
-            // Aplicar tint según el elemento
-            when (navItem.id) {
-                R.id.navChildren, R.id.navProfile -> {
-                    imageView.imageTintList = ContextCompat.getColorStateList(this, R.color.primary)
-                }
-                R.id.navInfo -> {
-                    imageView.imageTintList = ContextCompat.getColorStateList(this, R.color.info_color)
-                }
-            }
-
-            textView.setTextColor(ContextCompat.getColor(this, R.color.on_surface_variant))
-            textView.setTypeface(textView.typeface, android.graphics.Typeface.NORMAL)
-        }
-    }
 
     private fun updateDateTime() {
         val currentDate = Date()

@@ -117,6 +117,24 @@
                 android:value=".presentation.ui.administrador.list.ListUserActivity" />
         </activity>
         <activity
+            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.EditUserActivity"
+            android:label="Editar Usuario"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
+            android:label="Gestión de Roles"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+        <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />
         <activity

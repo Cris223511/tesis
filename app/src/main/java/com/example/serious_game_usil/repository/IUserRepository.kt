@@ -6,6 +6,7 @@ import com.example.serious_game_usil.data.CreateUserRequest
 import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.Role
+import com.example.serious_game_usil.data.UpdatePasswordRequest
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.User
 import com.example.serious_game_usil.data.UserDetailResponse
@@ -33,4 +34,6 @@ interface IUserRepository {
 
     suspend fun getRoles(): ApiResult<List<Role>>
     suspend fun register(request: RegisterRequest): ApiResult<RegisterResponse>
+
+    suspend fun updateUserPassword(userId: Int, request: UpdatePasswordRequest): ApiResult<BaseResponse>
 }

@@ -187,7 +187,6 @@ data class UpdateUserRequest(
 )
 
 
-
 data class CreateUserRequest(
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String,

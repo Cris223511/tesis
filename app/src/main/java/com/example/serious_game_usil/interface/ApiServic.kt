@@ -9,6 +9,7 @@ import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.ResendOTPRequest
 import com.example.serious_game_usil.data.Role
+import com.example.serious_game_usil.data.UpdatePasswordRequest
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.UserDetailResponse
@@ -69,6 +70,13 @@ interface ApiService {
 
     @DELETE("api/users/{id}")
     suspend fun deleteUser(@Path("id") userId: Int): Response<BaseResponse>
+
+
+    @PUT("api/users/{userId}/password")
+    suspend fun updateUserPassword(
+        @Path("userId") userId: Int,
+        @Body request: UpdatePasswordRequest
+    ): Response<BaseResponse>
 
 
     @GET("api/users/search")

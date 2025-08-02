@@ -39,6 +39,7 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
     companion object {
         private const val PER_PAGE = 10
         private  const val REQUEST_CREATE_USER = 1001
+        private const val REQUEST_EDIT_USER = 1002
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -338,8 +339,12 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
     // OnUserActionListener implementation
 
     override fun onEditClick(user: UserListItem) {
-        showSnackbar("Función en desarrollo")
+        val intent = Intent(this, EditUserActivity::class.java).apply {
+            putExtra("userId", user.id)
+        }
+        startActivityForResult(intent, REQUEST_EDIT_USER)
     }
+
 
     override fun onDeleteClick(user: UserListItem) {
         AlertDialog.Builder(this)

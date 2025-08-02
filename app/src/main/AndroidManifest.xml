@@ -113,6 +113,28 @@
                 android:value=".presentation.ui.administrador.list.ListUserActivity" />
         </activity>
 
+
+        <activity
+            android:name=".presentation.ui.administrador.list.EditUserActivity"
+            android:label="Editar Usuario"
+            android:parentActivityName=".presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".presentation.ui.administrador.roles.ListRoles"
+            android:label="Gestión de Roles"
+            android:parentActivityName=".presentation.ui.administrador.roles.ListRoles"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+
     </application>
 
 </manifest>

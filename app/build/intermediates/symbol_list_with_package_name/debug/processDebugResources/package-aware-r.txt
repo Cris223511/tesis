@@ -3123,9 +3123,11 @@ drawable ic_person
 drawable ic_person_placeholder
 drawable ic_phone
 drawable ic_sad_face
+drawable ic_save
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_search_off
+drawable ic_security
 drawable ic_time
 drawable ic_toggle_off
 drawable ic_visibility
@@ -3289,6 +3291,8 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_text
 id action_toggle_status
+id action_view_permissions
+id action_view_users
 id action_whatsapp
 id actions
 id activityIcon
@@ -3349,6 +3353,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id changePasswordCheckbox
 id checkIcon
 id checkbox
 id checked
@@ -3445,6 +3450,7 @@ id errorTitle
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabAddRole
 id fabAddUser
 id fade
 id fill
@@ -3465,6 +3471,7 @@ id frost
 id fullscreen_header
 id genderDropdown
 id genderInputLayout
+id generatePasswordButton
 id ghost_view
 id ghost_view_holder
 id glide_custom_view_target_tag
@@ -3652,6 +3659,7 @@ id parentRelative
 id parent_matrix
 id passwordEditText
 id passwordInputLayout
+id passwordSection
 id passwordToggle
 id password_toggle
 id path
@@ -3684,9 +3692,13 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id roleDescriptionTextView
+id roleNameTextView
 id rolesContainer
+id rolesRecyclerView
 id rounded
 id row_index_key
+id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3758,6 +3770,7 @@ id submit_area
 id subtitleText
 id supportScrollUp
 id swipeRefresh
+id systemRoleChip
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3816,6 +3829,7 @@ id unlabeled
 id up
 id useLogo
 id userAvatar
+id userCountTextView
 id userDocumentTextView
 id userEmailText
 id userEmailTextView
@@ -3964,6 +3978,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_admin_add_user
+layout activity_edit_user
 layout activity_forgot_password
 layout activity_login
 layout activity_main
@@ -3972,6 +3987,7 @@ layout activity_password_reset_success
 layout activity_preloader
 layout activity_register
 layout activity_reset_password
+layout activity_roles
 layout activity_unauthorized
 layout custom_dialog
 layout dashboard_administrador
@@ -3996,6 +4012,7 @@ layout dialog_succes
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_activity_pager
+layout item_roles
 layout item_users
 layout list_users
 layout m3_alert_dialog
@@ -4059,6 +4076,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu menu_roles_options
 menu menu_user_options
 mipmap ic_launcher
 mipmap ic_launcher_round

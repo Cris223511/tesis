@@ -89,29 +89,28 @@ class UsersListViewModel(
         }
     }
 
+
     fun toggleUserStatus(user: UserListItem) {
         viewModelScope.launch {
-            when (val result = userRepository.updateUserStatus(user.id, !user.activo)) {
+            val newStatus = !user.activo
+
+            when (val result = userRepository.updateUserStatus(user.id, newStatus)) {
                 is ApiResult.Success -> {
-                    val action = if (!user.activo) "activado" else "desactivado"
                     _actionState.value = UserActionState.Success(
-                        "Usuario $action correctamente"
+                        if (newStatus) "Usuario activado" else "Usuario desactivado"
                     )
                 }
+
                 is ApiResult.Error -> {
-                    _actionState.value = UserActionState.Error(
-                        "Error al cambiar estado: ${result.message}"
-                    )
+                    _actionState.value = UserActionState.Error(result.message)
                 }
+
                 is ApiResult.NetworkError -> {
-                    _actionState.value = UserActionState.Error(
-                        "Sin conexión a internet"
-                    )
+                    _actionState.value = UserActionState.Error("Error de conexión")
                 }
             }
         }
     }
-
     fun deleteUser(userId: Int) {
         viewModelScope.launch {
             when (val result = userRepository.deleteUser(userId)) {
