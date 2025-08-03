@@ -135,6 +135,16 @@
                 android:value=".presentation.ui.administrador.DashboardActivity" />
         </activity>
 
+
+        <activity
+            android:name=".presentation.ui.administrador.roles.CreateRole"
+            android:label="Crear Rol"
+            android:parentActivityName=".presentation.ui.administrador.roles.CreateRole"
+            android:theme="@style/Theme.Serious_game_usil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.roles.ListRoles" />
+        </activity>
     </application>
 
 </manifest>

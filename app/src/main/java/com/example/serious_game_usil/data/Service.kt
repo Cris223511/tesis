@@ -201,6 +201,16 @@ data class CreateUserRequest(
     @SerializedName("send_credentials") val sendCredentials: Boolean = false,
     @SerializedName("require_password_change") val requirePasswordChange: Boolean = true
 )
+
+
+data class CreateRoleRequest(
+    val name: String
+)
+
+data class UpdateRoleRequest(
+    @SerializedName("new_name") val newName: String
+)
+
 sealed class ApiResult<out T> {
     data class Success<out T>(val data: T) : ApiResult<T>()
     data class Error(val code: Int, val message: String) : ApiResult<Nothing>()

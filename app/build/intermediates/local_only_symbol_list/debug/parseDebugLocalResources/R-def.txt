@@ -151,6 +151,7 @@ id clearSearchButton
 id comparisonCard
 id confirmPasswordEditText
 id confirmPasswordInputLayout
+id createButton
 id dateText
 id difficultyText
 id divider
@@ -181,6 +182,7 @@ id greetingText
 id headerBackground
 id iconDenied
 id infoContainer
+id infoLayout
 id lastMonthsSubtitle
 id lastMonthsTitle
 id loading_text
@@ -224,7 +226,10 @@ id registerText
 id rememberMeCheckBox
 id resendText
 id resetButton
+id resultInfoText
 id roleDescriptionTextView
+id roleNameEditText
+id roleNameInputLayout
 id roleNameTextView
 id rolesContainer
 id rolesRecyclerView
@@ -262,6 +267,7 @@ id usersRecyclerView
 id verifyButton
 id welcome_text
 layout activity_admin_add_user
+layout activity_creat_roles
 layout activity_edit_user
 layout activity_forgot_password
 layout activity_login

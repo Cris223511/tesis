@@ -36,4 +36,8 @@ interface IUserRepository {
     suspend fun register(request: RegisterRequest): ApiResult<RegisterResponse>
 
     suspend fun updateUserPassword(userId: Int, request: UpdatePasswordRequest): ApiResult<BaseResponse>
+
+    suspend fun createRole(name: String): ApiResult<Role>
+    suspend fun updateRole(roleId: Int, newName: String): ApiResult<BaseResponse>
+    suspend fun deleteRole(roleId: Int): ApiResult<BaseResponse>
 }

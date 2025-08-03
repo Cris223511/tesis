@@ -3383,6 +3383,7 @@ id coordinator
 id cos
 id counterclockwise
 id cradle
+id createButton
 id currentState
 id custom
 id customPanel
@@ -3507,6 +3508,7 @@ id included
 id indeterminate
 id info
 id infoContainer
+id infoLayout
 id inspection_slot_table_set
 id invisible
 id inward
@@ -3687,12 +3689,15 @@ id rememberMeCheckBox
 id report_drawn
 id resendText
 id resetButton
+id resultInfoText
 id reverseSawtooth
 id right
 id rightToLeft
 id right_icon
 id right_side
 id roleDescriptionTextView
+id roleNameEditText
+id roleNameInputLayout
 id roleNameTextView
 id rolesContainer
 id rolesRecyclerView
@@ -3978,6 +3983,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_admin_add_user
+layout activity_creat_roles
 layout activity_edit_user
 layout activity_forgot_password
 layout activity_login

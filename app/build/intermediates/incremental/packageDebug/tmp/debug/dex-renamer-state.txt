@@ -1,4 +1,4 @@
-#Sat Aug 02 13:45:48 PET 2025
+#Sat Aug 02 22:44:42 PET 2025
 base.0=/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.10=/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex

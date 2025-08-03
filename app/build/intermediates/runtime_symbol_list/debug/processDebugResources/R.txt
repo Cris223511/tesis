@@ -3382,6 +3382,7 @@ int id coordinator 0x7f0800a2
 int id cos 0x7f0800a3
 int id counterclockwise 0x7f0800a4
 int id cradle 0x7f0800a5
+int id createButton 0x7f080288
 int id currentState 0x7f0800a6
 int id custom 0x7f0800a7
 int id customPanel 0x7f0800a8
@@ -3506,6 +3507,7 @@ int id included 0x7f08011e
 int id indeterminate 0x7f08011f
 int id info 0x7f080120
 int id infoContainer 0x7f080121
+int id infoLayout 0x7f080286
 int id inspection_slot_table_set 0x7f080122
 int id invisible 0x7f080123
 int id inward 0x7f080124
@@ -3686,12 +3688,15 @@ int id rememberMeCheckBox 0x7f0801d2
 int id report_drawn 0x7f0801d3
 int id resendText 0x7f0801d4
 int id resetButton 0x7f0801d5
+int id resultInfoText 0x7f080287
 int id reverseSawtooth 0x7f0801d6
 int id right 0x7f0801d7
 int id rightToLeft 0x7f0801d8
 int id right_icon 0x7f0801d9
 int id right_side 0x7f0801da
 int id roleDescriptionTextView 0x7f0801db
+int id roleNameEditText 0x7f080289
+int id roleNameInputLayout 0x7f08028a
 int id roleNameTextView 0x7f0801dc
 int id rolesContainer 0x7f0801dd
 int id rolesRecyclerView 0x7f0801de
@@ -3977,6 +3982,7 @@ int layout abc_search_view 0x7f0b0019
 int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_admin_add_user 0x7f0b001c
+int layout activity_creat_roles 0x7f0b007f
 int layout activity_edit_user 0x7f0b001d
 int layout activity_forgot_password 0x7f0b001e
 int layout activity_login 0x7f0b001f

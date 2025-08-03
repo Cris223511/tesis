@@ -4,8 +4,10 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +17,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -25,16 +30,52 @@ public final class ActivityRolesBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
+  public final MaterialButton btnNext;
+
+  @NonNull
+  public final MaterialButton btnPrevious;
+
+  @NonNull
+  public final ImageButton clearSearchButton;
+
+  @NonNull
+  public final LinearLayout emptySearchLayout;
+
+  @NonNull
+  public final TextView emptySearchText;
+
+  @NonNull
   public final LinearLayout emptyStateLayout;
 
   @NonNull
   public final FloatingActionButton fabAddRole;
 
   @NonNull
+  public final LinearLayout infoLayout;
+
+  @NonNull
+  public final TextView pageInfoText;
+
+  @NonNull
+  public final LinearLayout paginationLayout;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
+  public final TextView resultInfoText;
+
+  @NonNull
   public final RecyclerView rolesRecyclerView;
+
+  @NonNull
+  public final TextInputEditText searchEditText;
+
+  @NonNull
+  public final TextInputLayout searchInputLayout;
+
+  @NonNull
+  public final ProgressBar searchProgressBar;
 
   @NonNull
   public final SwipeRefreshLayout swipeRefresh;
@@ -42,15 +83,33 @@ public final class ActivityRolesBinding implements ViewBinding {
   @NonNull
   public final Toolbar toolbar;
 
-  private ActivityRolesBinding(@NonNull CoordinatorLayout rootView,
+  private ActivityRolesBinding(@NonNull CoordinatorLayout rootView, @NonNull MaterialButton btnNext,
+      @NonNull MaterialButton btnPrevious, @NonNull ImageButton clearSearchButton,
+      @NonNull LinearLayout emptySearchLayout, @NonNull TextView emptySearchText,
       @NonNull LinearLayout emptyStateLayout, @NonNull FloatingActionButton fabAddRole,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rolesRecyclerView,
-      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull Toolbar toolbar) {
+      @NonNull LinearLayout infoLayout, @NonNull TextView pageInfoText,
+      @NonNull LinearLayout paginationLayout, @NonNull ProgressBar progressBar,
+      @NonNull TextView resultInfoText, @NonNull RecyclerView rolesRecyclerView,
+      @NonNull TextInputEditText searchEditText, @NonNull TextInputLayout searchInputLayout,
+      @NonNull ProgressBar searchProgressBar, @NonNull SwipeRefreshLayout swipeRefresh,
+      @NonNull Toolbar toolbar) {
     this.rootView = rootView;
+    this.btnNext = btnNext;
+    this.btnPrevious = btnPrevious;
+    this.clearSearchButton = clearSearchButton;
+    this.emptySearchLayout = emptySearchLayout;
+    this.emptySearchText = emptySearchText;
     this.emptyStateLayout = emptyStateLayout;
     this.fabAddRole = fabAddRole;
+    this.infoLayout = infoLayout;
+    this.pageInfoText = pageInfoText;
+    this.paginationLayout = paginationLayout;
     this.progressBar = progressBar;
+    this.resultInfoText = resultInfoText;
     this.rolesRecyclerView = rolesRecyclerView;
+    this.searchEditText = searchEditText;
+    this.searchInputLayout = searchInputLayout;
+    this.searchProgressBar = searchProgressBar;
     this.swipeRefresh = swipeRefresh;
     this.toolbar = toolbar;
   }
@@ -82,6 +141,36 @@ public final class ActivityRolesBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnNext;
+      MaterialButton btnNext = ViewBindings.findChildViewById(rootView, id);
+      if (btnNext == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPrevious;
+      MaterialButton btnPrevious = ViewBindings.findChildViewById(rootView, id);
+      if (btnPrevious == null) {
+        break missingId;
+      }
+
+      id = R.id.clearSearchButton;
+      ImageButton clearSearchButton = ViewBindings.findChildViewById(rootView, id);
+      if (clearSearchButton == null) {
+        break missingId;
+      }
+
+      id = R.id.emptySearchLayout;
+      LinearLayout emptySearchLayout = ViewBindings.findChildViewById(rootView, id);
+      if (emptySearchLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.emptySearchText;
+      TextView emptySearchText = ViewBindings.findChildViewById(rootView, id);
+      if (emptySearchText == null) {
+        break missingId;
+      }
+
       id = R.id.emptyStateLayout;
       LinearLayout emptyStateLayout = ViewBindings.findChildViewById(rootView, id);
       if (emptyStateLayout == null) {
@@ -94,15 +183,57 @@ public final class ActivityRolesBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.infoLayout;
+      LinearLayout infoLayout = ViewBindings.findChildViewById(rootView, id);
+      if (infoLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.pageInfoText;
+      TextView pageInfoText = ViewBindings.findChildViewById(rootView, id);
+      if (pageInfoText == null) {
+        break missingId;
+      }
+
+      id = R.id.paginationLayout;
+      LinearLayout paginationLayout = ViewBindings.findChildViewById(rootView, id);
+      if (paginationLayout == null) {
+        break missingId;
+      }
+
       id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
         break missingId;
       }
 
+      id = R.id.resultInfoText;
+      TextView resultInfoText = ViewBindings.findChildViewById(rootView, id);
+      if (resultInfoText == null) {
+        break missingId;
+      }
+
       id = R.id.rolesRecyclerView;
       RecyclerView rolesRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (rolesRecyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.searchEditText;
+      TextInputEditText searchEditText = ViewBindings.findChildViewById(rootView, id);
+      if (searchEditText == null) {
+        break missingId;
+      }
+
+      id = R.id.searchInputLayout;
+      TextInputLayout searchInputLayout = ViewBindings.findChildViewById(rootView, id);
+      if (searchInputLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.searchProgressBar;
+      ProgressBar searchProgressBar = ViewBindings.findChildViewById(rootView, id);
+      if (searchProgressBar == null) {
         break missingId;
       }
 
@@ -118,8 +249,11 @@ public final class ActivityRolesBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRolesBinding((CoordinatorLayout) rootView, emptyStateLayout, fabAddRole,
-          progressBar, rolesRecyclerView, swipeRefresh, toolbar);
+      return new ActivityRolesBinding((CoordinatorLayout) rootView, btnNext, btnPrevious,
+          clearSearchButton, emptySearchLayout, emptySearchText, emptyStateLayout, fabAddRole,
+          infoLayout, pageInfoText, paginationLayout, progressBar, resultInfoText,
+          rolesRecyclerView, searchEditText, searchInputLayout, searchProgressBar, swipeRefresh,
+          toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

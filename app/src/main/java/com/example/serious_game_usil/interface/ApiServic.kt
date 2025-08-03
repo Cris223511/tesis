@@ -1,6 +1,7 @@
 package com.example.serious_game_usil.`interface`
 
 import com.example.serious_game_usil.data.BaseResponse
+import com.example.serious_game_usil.data.CreateRoleRequest
 import com.example.serious_game_usil.data.LoginRequest
 import com.example.serious_game_usil.data.LoginResponse
 import com.example.serious_game_usil.data.OTPRequest
@@ -10,6 +11,7 @@ import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.ResendOTPRequest
 import com.example.serious_game_usil.data.Role
 import com.example.serious_game_usil.data.UpdatePasswordRequest
+import com.example.serious_game_usil.data.UpdateRoleRequest
 import com.example.serious_game_usil.data.UpdateUserRequest
 import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.UserDetailResponse
@@ -87,6 +89,18 @@ interface ApiService {
 
     @GET("api/roles")
     suspend fun getRoles(): Response<List<Role>>
+
+    @POST("api/roles")
+    suspend fun createRole(@Body request: CreateRoleRequest): Response<Role>
+
+    @PUT("api/roles/{id}")
+    suspend fun updateRole(
+        @Path("id") roleId: Int,
+        @Body request: UpdateRoleRequest
+    ): Response<BaseResponse>
+
+    @DELETE("api/roles/{id}")
+    suspend fun deleteRole(@Path("id") roleId: Int): Response<BaseResponse>
 
     @GET("/auth/gett")
     suspend fun getToken(): Response<TokenResponse>
