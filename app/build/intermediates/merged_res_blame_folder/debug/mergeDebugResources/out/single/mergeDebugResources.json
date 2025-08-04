@@ -12,6 +12,10 @@
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/item_roles.xml"
     },
     {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_warning.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_warning.xml"
+    },
+    {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_more_ver.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_more_ver.xml"
     },
@@ -76,12 +80,12 @@
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_home.xml.flat",
-        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_home.xml"
-    },
-    {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/menu_menu_roles_options.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/menu/menu_roles_options.xml"
+    },
+    {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_home.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_home.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_gradient_header_register.xml.flat",
@@ -146,6 +150,10 @@
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_edit.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_edit.xml"
+    },
+    {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_activity_user_role.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/activity_user_role.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_save.xml.flat",
@@ -260,6 +268,10 @@
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/cloud_2.xml"
     },
     {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_activity_edit_roles.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/activity_edit_roles.xml"
+    },
+    {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_gradient_forgot_password.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/gradient_forgot_password.xml"
     },
@@ -312,16 +324,16 @@
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/progress_pink.xml"
     },
     {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_activity_creat_roles.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/activity_creat_roles.xml"
+    },
+    {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_check_circle.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_check_circle.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_close.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_close.xml"
-    },
-    {
-        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_activity_creat_roles.xml.flat",
-        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/activity_creat_roles.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_arrow_back.xml.flat",
@@ -348,10 +360,6 @@
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_gender.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-debug-62:/layout_activity_creat_roles.xml.flat",
-        "source": "com.example.serious_game_usil.app-main-64:/layout/activity_creat_roles.xml"
-    },
-    {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_chevron_left.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_chevron_left.xml"
     },
@@ -366,6 +374,10 @@
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_badge.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/drawable/ic_badge.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-62:/layout_activity_user_role.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-64:/layout/activity_user_role.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_cloud_1.xml.flat",
@@ -426,6 +438,10 @@
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_activity_reset_password.xml.flat",
         "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/activity_reset_password.xml"
+    },
+    {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/layout_item_user_role.xml.flat",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-64:/layout/item_user_role.xml"
     },
     {
         "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-debug-62:/drawable_ic_sad_face.xml.flat",

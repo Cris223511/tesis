@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Toolbar -->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -21,24 +20,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/primary"
-                app:title="Crear Nuevo Rol"
+                app:title="Editar Rol"
                 app:titleTextColor="@android:color/white"
                 app:navigationIcon="@drawable/ic_arrow_back" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!-- Formulario -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Card de información básica -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -57,47 +54,65 @@
                         android:textColor="@color/text_primary"
                         android:layout_marginBottom="16dp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Rol actual:"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/currentRoleNameText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Cargando..."
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/roleNameInputLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        app:startIconDrawable="@drawable/ic_security"
+                        app:startIconDrawable="@drawable/ic_edit"
                         app:counterEnabled="true"
                         app:counterMaxLength="50"
                         app:errorEnabled="true"
-                        app:helperText="El nombre debe ser único y descriptivo">
+                        app:helperText="Ingresa el nuevo nombre para el rol">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/roleNameEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nombre del rol *"
+                            android:hint="Nuevo nombre del rol *"
                             android:inputType="textCapWords"
                             android:maxLength="50" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nota: Los roles solo pueden actualizarse 2 veces después de creados"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="8dp" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Card informativa -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/warningCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/background_light_secondary">
+                app:cardBackgroundColor="@color/warning_color">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -108,8 +123,8 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_info"
-                        app:tint="@color/info_color"
+                        android:src="@drawable/ic_warning"
+                        app:tint="@color/warning_color"
                         android:layout_marginEnd="12dp" />
 
                     <LinearLayout
@@ -121,18 +136,30 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Información importante"
+                            android:text="Importante"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="@color/info_color" />
+                            android:textColor="@color/warning_color" />
 
                         <TextView
+                            android:id="@+id/warningText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="• Los roles actuales del  sistema  no pueden ser modificados\n• Los roles eliminados no pueden volver a crearse\n• Los permisos se asignan desde el panel de administración"
+                            android:text="Los roles solo pueden actualizarse 2 veces"
                             android:textSize="12sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginTop="4dp" />
+
+                        <TextView
+                            android:id="@+id/updateCountText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Actualizaciones restantes: calculando..."
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/warning_color"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -140,13 +167,11 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Espacio vacío para empujar los botones hacia abajo -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <!-- Botones de acción -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,12 +191,12 @@
                     android:textSize="16sp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/createButton"
+                    android:id="@+id/updateButton"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    android:text="Crear Rol"
+                    android:text="Actualizar Rol"
                     android:textAllCaps="false"
                     android:textSize="16sp"
                     android:enabled="false"

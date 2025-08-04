@@ -3131,6 +3131,7 @@ drawable ic_security
 drawable ic_time
 drawable ic_toggle_off
 drawable ic_visibility
+drawable ic_warning
 drawable ic_whatsapp
 drawable logo
 drawable m3_avd_hide_password
@@ -3384,6 +3385,7 @@ id cos
 id counterclockwise
 id cradle
 id createButton
+id currentRoleNameText
 id currentState
 id custom
 id customPanel
@@ -3695,9 +3697,11 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id roleDescriptionText
 id roleDescriptionTextView
 id roleNameEditText
 id roleNameInputLayout
+id roleNameText
 id roleNameTextView
 id rolesContainer
 id rolesRecyclerView
@@ -3766,6 +3770,7 @@ id start_button
 id staticLayout
 id staticPostLayout
 id statsContainer
+id statusChip
 id stimulusHours
 id stimulusMinutes
 id stop
@@ -3832,8 +3837,12 @@ id unchecked
 id uniform
 id unlabeled
 id up
+id updateButton
+id updateCountText
 id useLogo
 id userAvatar
+id userAvatarText
+id userCountText
 id userCountTextView
 id userDocumentTextView
 id userEmailText
@@ -3845,6 +3854,7 @@ id userNameText
 id userNameTextView
 id userRolesText
 id userStatusChip
+id userUsernameText
 id usersRecyclerView
 id verifyButton
 id vertical
@@ -3857,6 +3867,8 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id warningCard
+id warningText
 id welcome_text
 id west
 id withText
@@ -3984,6 +3996,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_admin_add_user
 layout activity_creat_roles
+layout activity_edit_roles
 layout activity_edit_user
 layout activity_forgot_password
 layout activity_login
@@ -3995,6 +4008,7 @@ layout activity_register
 layout activity_reset_password
 layout activity_roles
 layout activity_unauthorized
+layout activity_user_role
 layout custom_dialog
 layout dashboard_administrador
 layout design_bottom_navigation_item
@@ -4019,6 +4033,7 @@ layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_activity_pager
 layout item_roles
+layout item_user_role
 layout item_users
 layout list_users
 layout m3_alert_dialog

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-150:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-150:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-150:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-150:12
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-170:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-170:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-170:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-170:12
 MERGED from [androidx.databinding:viewbinding:8.7.3] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/df8526dc9dc382855825d4d2a770947d/transformed/viewbinding-8.7.3/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/139614a3f4c81f646f0d4233a3d6207e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:2:1-9:12
@@ -108,8 +108,8 @@ ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/A
 	android:name
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:10:22-63
 application
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:13:5-148:19
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:13:5-148:19
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:13:5-168:19
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:13:5-168:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/139614a3f4c81f646f0d4233a3d6207e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
@@ -330,6 +330,26 @@ ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/A
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:143:13-59
 	android:name
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:140:13-75
+activity#com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:149:9-157:20
+	android:parentActivityName
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:152:13-87
+	android:label
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:151:13-39
+	android:theme
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:153:13-59
+	android:name
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:150:13-73
+activity#com.example.serious_game_usil.presentation.ui.administrador.roles.UserRole
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:159:9-167:20
+	android:parentActivityName
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:162:13-88
+	android:label
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:161:13-45
+	android:theme
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:163:13-59
+	android:name
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:160:13-73
 uses-sdk
 INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml

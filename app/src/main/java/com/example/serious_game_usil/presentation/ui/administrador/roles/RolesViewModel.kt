@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.Role
+import com.example.serious_game_usil.data.UserListItem
+import com.example.serious_game_usil.data.UserSearchParams
 import com.example.serious_game_usil.repository.IUserRepository
 import kotlinx.coroutines.launch
 
@@ -24,7 +26,11 @@ class RolesViewModel(
     private val _actionState = MutableLiveData<ActionState>()
     val actionState: LiveData<ActionState> = _actionState
 
+    private val _roleUsersState = MutableLiveData<RoleUsersState>()
+    val roleUsersState: LiveData<RoleUsersState> = _roleUsersState
+
     private var allRoles = listOf<Role>()
+    private var allUsers = listOf<UserListItem>()
     private var currentPage = 1
     private val rolesPerPage = 10
 
@@ -38,6 +44,8 @@ class RolesViewModel(
                     allRoles = result.data.filterNot { role ->
                         role.name.contains("DELETED_", ignoreCase = true)
                     }
+
+                    loadUsersForCounting()
 
                     val paginatedRoles = getPaginatedRoles(allRoles, page)
 
@@ -55,6 +63,43 @@ class RolesViewModel(
                     _rolesState.value = RolesState.Error("Error de conexión")
                 }
             }
+        }
+    }
+
+    private suspend fun loadUsersForCounting() {
+        val params = UserSearchParams(per_page = 100)
+        when (val result = repository.getUsers(params)) {
+            is ApiResult.Success -> {
+                allUsers = result.data.users
+            }
+            else -> {
+                allUsers = emptyList()
+            }
+        }
+    }
+
+    fun getUserCountForRole(roleName: String): Int {
+        return allUsers.count { user ->
+            user.roles.any { role ->
+                role.name.equals(roleName, ignoreCase = true)
+            }
+        }
+    }
+
+    fun getUsersWithRole(roleName: String) {
+        viewModelScope.launch {
+            _roleUsersState.value = RoleUsersState.Loading
+
+            val usersWithRole = allUsers.filter { user ->
+                user.roles.any { role ->
+                    role.name.equals(roleName, ignoreCase = true)
+                }
+            }
+
+            _roleUsersState.value = RoleUsersState.Success(
+                roleName = roleName,
+                users = usersWithRole
+            )
         }
     }
 
@@ -141,5 +186,14 @@ class RolesViewModel(
     sealed class ActionState {
         data class Success(val message: String) : ActionState()
         data class Error(val message: String) : ActionState()
+    }
+
+    sealed class RoleUsersState {
+        object Loading : RoleUsersState()
+        data class Success(
+            val roleName: String,
+            val users: List<UserListItem>
+        ) : RoleUsersState()
+        data class Error(val message: String) : RoleUsersState()
     }
 }

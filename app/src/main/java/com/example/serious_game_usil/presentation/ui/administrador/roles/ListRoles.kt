@@ -34,6 +34,7 @@ class ListRoles : AppCompatActivity(), RolesAdapter.OnRoleActionListener {
 
     companion object {
         private const val REQUEST_CREATE_ROLE = 2001
+        private const val REQUEST_EDIT_ROLE = 2002
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,6 @@ class ListRoles : AppCompatActivity(), RolesAdapter.OnRoleActionListener {
 
         viewModel.loadRoles()
     }
-
     private fun setupViewModel() {
         val repository = UserRepository.getInstance(this)
         val factory = RolesViewModelFactory(repository)
@@ -98,7 +98,7 @@ class ListRoles : AppCompatActivity(), RolesAdapter.OnRoleActionListener {
     }
 
     private fun setupRecyclerView() {
-        rolesAdapter = RolesAdapter(this)
+        rolesAdapter = RolesAdapter(this, viewModel)
         binding.rolesRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@ListRoles)
             adapter = rolesAdapter
@@ -236,7 +236,18 @@ class ListRoles : AppCompatActivity(), RolesAdapter.OnRoleActionListener {
     }
 
     override fun onEditClick(role: Role) {
-        showSnackbar("Editar rol ${role.name} - En desarrollo")
+        val isSystemRole = role.name.lowercase() in listOf("administrador", "estudiante", "docente", "admin")
+
+        if (isSystemRole) {
+            showError("Los roles del sistema no pueden ser editados")
+            return
+        }
+
+        val intent = Intent(this, EditRole::class.java).apply {
+            putExtra(EditRole.EXTRA_ROLE_ID, role.id)
+            putExtra(EditRole.EXTRA_ROLE_NAME, role.name)
+        }
+        startActivityForResult(intent, REQUEST_EDIT_ROLE)
     }
 
     override fun onDeleteClick(role: Role) {
@@ -258,26 +269,68 @@ class ListRoles : AppCompatActivity(), RolesAdapter.OnRoleActionListener {
     }
 
     override fun onViewPermissionsClick(role: Role) {
-        TODO("Not yet implemented")
+        val permissions = when (role.name.lowercase()) {
+            "administrador", "admin" -> listOf(
+                "Gestionar usuarios",
+                "Gestionar roles",
+                "Ver reportes completos",
+                "Configurar sistema",
+                "Acceso total"
+            )
+            "docente" -> listOf(
+                "Gestionar cursos",
+                "Calificar estudiantes",
+                "Ver reportes de curso",
+                "Subir material educativo"
+            )
+            "estudiante" -> listOf(
+                "Ver cursos",
+                "Realizar evaluaciones",
+                "Ver calificaciones",
+                "Descargar material"
+            )
+            else -> listOf("Permisos personalizados")
+        }
+
+        val permissionsText = permissions.joinToString("\n• ", "• ")
+
+        AlertDialog.Builder(this)
+            .setTitle("Permisos de ${role.name}")
+            .setMessage(permissionsText)
+            .setPositiveButton("Aceptar", null)
+            .show()
     }
 
-
     override fun onViewUsersClick(role: Role) {
-        showSnackbar("Ver usuarios con rol ${role.name} - En desarrollo")
+        val intent = Intent(this, UserRole::class.java).apply {
+            putExtra(UserRole.EXTRA_ROLE_ID, role.id)
+            putExtra(UserRole.EXTRA_ROLE_NAME, role.name)
+        }
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CREATE_ROLE && resultCode == RESULT_OK) {
-            currentPage = 1
-            searchQuery = null
-            isSearching = false
-            binding.searchEditText.setText("")
-            binding.clearSearchButton.visibility = View.GONE
+        when (requestCode) {
+            REQUEST_CREATE_ROLE -> {
+                if (resultCode == RESULT_OK) {
+                    currentPage = 1
+                    searchQuery = null
+                    isSearching = false
+                    binding.searchEditText.setText("")
+                    binding.clearSearchButton.visibility = View.GONE
 
-            viewModel.loadRoles(1)
-            showSnackbar("Rol creado exitosamente")
+                    viewModel.loadRoles(1)
+                    showSnackbar("Rol creado exitosamente")
+                }
+            }
+            REQUEST_EDIT_ROLE -> {
+                if (resultCode == RESULT_OK) {
+                    viewModel.loadRoles(currentPage)
+                    showSnackbar("Rol actualizado exitosamente")
+                }
+            }
         }
     }
 

@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.Role
 import com.example.serious_game_usil.databinding.ItemRolesBinding
-
-
-
+import com.example.serious_game_usil.presentation.ui.administrador.roles.RolesViewModel
 
 
 class RolesAdapter(
-    private val listener: OnRoleActionListener
+    private val listener: OnRoleActionListener,
+    private val viewModel: RolesViewModel
 ) : ListAdapter<Role, RolesAdapter.RoleViewHolder>(RoleDiffCallback()) {
 
     interface OnRoleActionListener {
@@ -49,10 +48,8 @@ class RolesAdapter(
             binding.apply {
                 roleNameTextView.text = role.name
 
-                // Determinar si es rol del sistema basado en el nombre
                 val isSystemRole = role.name.lowercase() in listOf("administrador", "estudiante", "docente", "admin")
 
-                // Mostrar descripción basada en el nombre del rol
                 roleDescriptionTextView.text = when (role.name.lowercase()) {
                     "administrador", "admin" -> "Acceso completo al sistema"
                     "estudiante" -> "Acceso a cursos y evaluaciones"
@@ -60,8 +57,8 @@ class RolesAdapter(
                     else -> "Rol personalizado"
                 }
 
-                // Por ahora mostrar 0 usuarios (se puede actualizar cuando tengas esa info)
-                userCountTextView.text = "0 usuarios"
+                val userCount = viewModel.getUserCountForRole(role.name)
+                userCountTextView.text = "$userCount usuarios"
 
                 if (isSystemRole) {
                     systemRoleChip.visibility = View.VISIBLE
@@ -76,7 +73,7 @@ class RolesAdapter(
                 }
 
                 root.setOnClickListener {
-                    listener.onViewPermissionsClick(role)
+                    listener.onViewUsersClick(role)
                 }
 
                 menuButton.setOnClickListener { view ->

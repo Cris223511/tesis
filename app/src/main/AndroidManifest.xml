@@ -145,6 +145,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
         </activity>
+
+        <activity
+            android:name=".presentation.ui.administrador.roles.EditRole"
+            android:label="Editar Rol"
+            android:parentActivityName=".presentation.ui.administrador.roles.EditRole"
+            android:theme="@style/Theme.Serious_game_usil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.roles.ListRoles" />
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.administrador.roles.UserRole"
+            android:label="Usuarios por Rol"
+            android:parentActivityName=".presentation.ui.administrador.roles.ListRoles"
+            android:theme="@style/Theme.Serious_game_usil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.roles.ListRoles" />
+        </activity>
     </application>
 
 </manifest>
