@@ -6,23 +6,18 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.LoginRequest
-import com.example.serious_game_usil.presentation.ui.main.MainActivity
-import com.example.serious_game_usil.presentation.ui.recuperation.ForgotPasswordActivity
-import com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity
+import com.example.serious_game_usil.presentation.ui.password.OtpVerificationActivity
 import com.example.serious_game_usil.presentation.ui.register.RegisterActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 

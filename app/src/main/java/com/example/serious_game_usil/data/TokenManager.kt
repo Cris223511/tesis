@@ -12,7 +12,6 @@ object TokenManager {
 
     private val tokenLock = Any()
 
-    // ESTE MÉTODO DEBE ESTAR AQUÍ
     fun setToken(token: String) {
         synchronized(tokenLock) {
             currentToken = token

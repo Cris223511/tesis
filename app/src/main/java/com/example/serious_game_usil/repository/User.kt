@@ -19,6 +19,9 @@ import com.example.serious_game_usil.data.UserDetailResponse
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.data.UserSearchParams
 import com.example.serious_game_usil.data.UsersListResponse
+import com.example.serious_game_usil.data.UserProfileResponse
+import com.example.serious_game_usil.data.ChildrenResponse
+import com.example.serious_game_usil.data.PasswordChangeOTPResponse
 import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.`interface`.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -358,6 +361,303 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         return try {
             val response = apiService.deleteRole(roleId)
 
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getCurrentUserProfile(): ApiResult<UserProfileResponse> {
+        return try {
+            val response = apiService.getCurrentUserProfile()
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getUserProfile(userId: Int): ApiResult<UserProfileResponse> {
+        return try {
+            val response = apiService.getUserProfile(userId)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getUserChildren(): ApiResult<ChildrenResponse> {
+        return try {
+            val response = apiService.getUserChildren()
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun uploadUserPhoto(base64Photo: String): ApiResult<com.example.serious_game_usil.`interface`.UploadPhotoResponse> {
+        return try {
+            val request = com.example.serious_game_usil.`interface`.UploadPhotoRequest(photo = base64Photo)
+            val response = apiService.uploadUserPhoto(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getPhotoChanges(): ApiResult<com.example.serious_game_usil.`interface`.PhotoChangesResponse> {
+        return try {
+            val response = apiService.getPhotoChanges()
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun uploadUserBanner(base64Banner: String): ApiResult<com.example.serious_game_usil.`interface`.UploadBannerResponse> {
+        return try {
+            val request = com.example.serious_game_usil.`interface`.UploadBannerRequest(banner = base64Banner)
+            val response = apiService.uploadUserBanner(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getBannerChanges(): ApiResult<com.example.serious_game_usil.`interface`.BannerChangesResponse> {
+        return try {
+            val response = apiService.getBannerChanges()
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                ApiResult.Error(response.code(), errorBody ?: "Unknown error")
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun validateEmailForPasswordChange(email: String): ApiResult<BaseResponse> {
+        return try {
+            val request = mapOf("correo" to email)
+            val response = apiService.validateEmailForPasswordChange(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(BaseResponse(it.message))
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = try {
+                    com.google.gson.Gson().fromJson(errorBody, com.google.gson.JsonObject::class.java)
+                        ?.get("error")?.asString ?: "Unknown error"
+                } catch (e: Exception) {
+                    errorBody ?: "Unknown error"
+                }
+                ApiResult.Error(response.code(), errorMessage)
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun sendPasswordChangeOTP(email: String): ApiResult<PasswordChangeOTPResponse> {
+        return try {
+            val request = mapOf("correo" to email)
+            val response = apiService.sendPasswordChangeOTP(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = try {
+                    com.google.gson.Gson().fromJson(errorBody, com.google.gson.JsonObject::class.java)
+                        ?.get("error")?.asString ?: "Unknown error"
+                } catch (e: Exception) {
+                    errorBody ?: "Unknown error"
+                }
+                ApiResult.Error(response.code(), errorMessage)
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun verifyPasswordOTP(email: String, otpCode: String): ApiResult<BaseResponse> {
+        return try {
+            val request = mapOf(
+                "correo" to email,
+                "codigo_otp" to otpCode
+            )
+            val response = apiService.verifyPasswordOTP(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(BaseResponse(it.message))
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = try {
+                    com.google.gson.Gson().fromJson(errorBody, com.google.gson.JsonObject::class.java)
+                        ?.get("error")?.asString ?: "Unknown error"
+                } catch (e: Exception) {
+                    errorBody ?: "Unknown error"
+                }
+                ApiResult.Error(response.code(), errorMessage)
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun changePasswordWithOTP(email: String, otpCode: String, newPassword: String, confirmPassword: String): ApiResult<BaseResponse> {
+        return try {
+            val request = mapOf(
+                "correo" to email,
+                "codigo_otp" to otpCode,
+                "nueva_contrasena" to newPassword,
+                "confirmar_contrasena" to confirmPassword
+            )
+            val response = apiService.changePasswordWithOTP(request)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(BaseResponse(it.message))
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = try {
+                    com.google.gson.Gson().fromJson(errorBody, com.google.gson.JsonObject::class.java)
+                        ?.get("error")?.asString ?: "Unknown error"
+                } catch (e: Exception) {
+                    errorBody ?: "Unknown error"
+                }
+                ApiResult.Error(response.code(), errorMessage)
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun updateProfile(correo: String, telefono: String): ApiResult<UserProfileResponse> {
+        return try {
+            val currentUserId = AuthManager.getUserId()
+            val updateData = mapOf(
+                "correo" to correo,
+                "celular" to telefono
+            )
+            
+            val response = apiService.updateProfileData(updateData)
+            
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(response.code(), "Response body is null")
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = try {
+                    com.google.gson.Gson().fromJson(errorBody, com.google.gson.JsonObject::class.java)
+                        ?.get("error")?.asString ?: "Unknown error"
+                } catch (e: Exception) {
+                    errorBody ?: "Unknown error"
+                }
+                ApiResult.Error(response.code(), errorMessage)
+            }
+        } catch (e: IOException) {
+            ApiResult.NetworkError(e)
+        } catch (e: Exception) {
+            ApiResult.Error(-1, e.message ?: "Unknown error")
+        }
+    }
+    
+    override suspend fun getProfileChanges(): ApiResult<com.example.serious_game_usil.`interface`.ProfileChangesResponse> {
+        return try {
+            val response = apiService.getProfileChanges()
+            
             if (response.isSuccessful) {
                 response.body()?.let {
                     ApiResult.Success(it)

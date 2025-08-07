@@ -17,7 +17,8 @@ import com.example.serious_game_usil.data.UpdateUserStatusRequest
 import com.example.serious_game_usil.data.UserDetailResponse
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.data.UsersListResponse
-import com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity
+import com.example.serious_game_usil.data.UserProfileResponse
+import com.example.serious_game_usil.data.ChildrenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -104,8 +105,83 @@ interface ApiService {
 
     @GET("/auth/gett")
     suspend fun getToken(): Response<TokenResponse>
+    
+    @GET("api/profile")
+    suspend fun getCurrentUserProfile(): Response<UserProfileResponse>
+    
+    @GET("api/profile/{id}")
+    suspend fun getUserProfile(@Path("id") userId: Int): Response<UserProfileResponse>
+    
+    @GET("api/profile/children")
+    suspend fun getUserChildren(): Response<ChildrenResponse>
+    
+    @POST("api/users/photo")
+    suspend fun uploadUserPhoto(@Body request: UploadPhotoRequest): Response<UploadPhotoResponse>
+    
+    @GET("api/users/photo/changes")
+    suspend fun getPhotoChanges(): Response<PhotoChangesResponse>
+    
+    @POST("api/users/banner")
+    suspend fun uploadUserBanner(@Body request: UploadBannerRequest): Response<UploadBannerResponse>
+    
+    @GET("api/users/banner/changes")
+    suspend fun getBannerChanges(): Response<BannerChangesResponse>
+    
+    @POST("api/password/validate-email")
+    suspend fun validateEmailForPasswordChange(@Body request: Map<String, String>): Response<BaseResponse>
+    
+    @POST("api/password/send-otp")
+    suspend fun sendPasswordChangeOTP(@Body request: Map<String, String>): Response<com.example.serious_game_usil.data.PasswordChangeOTPResponse>
+    
+    @POST("api/password/verify-otp")
+    suspend fun verifyPasswordOTP(@Body request: Map<String, String>): Response<BaseResponse>
+    
+    @POST("api/password/change-with-otp")
+    suspend fun changePasswordWithOTP(@Body request: Map<String, String>): Response<BaseResponse>
+    
+    @PUT("api/profile/update")
+    suspend fun updateProfileData(@Body request: Map<String, String>): Response<UserProfileResponse>
+    
+    @GET("api/profile/changes")
+    suspend fun getProfileChanges(): Response<ProfileChangesResponse>
 }
 
 data class TokenResponse(
     val token: String
+)
+
+data class UploadPhotoRequest(
+    val photo: String
+)
+
+data class UploadPhotoResponse(
+    val message: String,
+    val changes_remaining: Int
+)
+
+data class PhotoChangesResponse(
+    val changes_used: Int,
+    val changes_remaining: Int,
+    val max_changes: Int
+)
+
+data class UploadBannerRequest(
+    val banner: String
+)
+
+data class UploadBannerResponse(
+    val message: String,
+    val changes_remaining: Int
+)
+
+data class BannerChangesResponse(
+    val changes_used: Int,
+    val changes_remaining: Int,
+    val max_changes: Int
+)
+
+data class ProfileChangesResponse(
+    val changes_used: Int,
+    val changes_remaining: Int,
+    val max_changes: Int
 )

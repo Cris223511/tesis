@@ -104,7 +104,11 @@ class DashboardActivity : AppCompatActivity() {
                         val intent = Intent(this, ListUserActivity::class.java)
                         startActivity(intent)
                     }
-                    2 -> Toast.makeText(this, "Mi Perfil - En desarrollo", Toast.LENGTH_SHORT).show()
+                    2 -> {
+                        // Navegar a Mi Perfil (sin USER_ID para cargar perfil actual)
+                        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java)
+                        startActivity(intent)
+                    }
                     3 -> Toast.makeText(this, "Configuración - En desarrollo", Toast.LENGTH_SHORT).show()
                 }
             }

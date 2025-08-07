@@ -102,6 +102,8 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

@@ -13,6 +13,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <permission
         android:name="com.example.serious_game_usil.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -69,31 +81,43 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL" />
-
-        <!-- Password Recovery Activities -->
         <activity
-            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ForgotPasswordActivity"
+            android:name="com.example.serious_game_usil.presentation.ui.password.OtpVerificationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.serious_game_usil.presentation.ui.recuperation.OtpVerificationActivity"
+            android:name="com.example.serious_game_usil.presentation.ui.password.ResetPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.serious_game_usil.presentation.ui.recuperation.ResetPasswordActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.example.serious_game_usil.presentation.ui.recuperation.PasswordResetSuccessActivity"
+            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordResetSuccessActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Password Change Activities -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.password.ValidateEmailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordOTPActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.password.NewPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.serious_game_usil.guards.UnauthorizedActivity"
             android:exported="false"
@@ -119,6 +143,15 @@
         <activity
             android:name="com.example.serious_game_usil.presentation.ui.administrador.list.EditUserActivity"
             android:label="Editar Usuario"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity"
+            android:label="Perfil de Usuario"
             android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
             <meta-data
@@ -161,6 +194,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.serious_game_usil.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />

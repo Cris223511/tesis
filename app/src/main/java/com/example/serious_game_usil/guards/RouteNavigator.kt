@@ -8,6 +8,7 @@ import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.guards.UnauthorizedActivity
 import com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity
 import com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity
+import com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
 
 object RouteNavigator {
@@ -32,6 +33,10 @@ object RouteNavigator {
                 Intent(context, ListUserActivity::class.java)
             }
 
+
+            "/admin/list-roles" -> {
+                Intent(context, ListRoles::class.java)
+            }
             else -> {
                 Intent(context, DashboardActivity::class.java)
             }

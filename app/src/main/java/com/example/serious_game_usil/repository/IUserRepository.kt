@@ -2,6 +2,7 @@ package com.example.serious_game_usil.repository
 
 import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.BaseResponse
+import com.example.serious_game_usil.data.PasswordChangeOTPResponse
 import com.example.serious_game_usil.data.CreateUserRequest
 import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
@@ -13,6 +14,8 @@ import com.example.serious_game_usil.data.UserDetailResponse
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.data.UserSearchParams
 import com.example.serious_game_usil.data.UsersListResponse
+import com.example.serious_game_usil.data.UserProfileResponse
+import com.example.serious_game_usil.data.ChildrenResponse
 
 interface IUserRepository {
 
@@ -40,4 +43,19 @@ interface IUserRepository {
     suspend fun createRole(name: String): ApiResult<Role>
     suspend fun updateRole(roleId: Int, newName: String): ApiResult<BaseResponse>
     suspend fun deleteRole(roleId: Int): ApiResult<BaseResponse>
+    
+    suspend fun getCurrentUserProfile(): ApiResult<UserProfileResponse>
+    suspend fun getUserProfile(userId: Int): ApiResult<UserProfileResponse>
+    suspend fun getUserChildren(): ApiResult<ChildrenResponse>
+    suspend fun uploadUserPhoto(base64Photo: String): ApiResult<com.example.serious_game_usil.`interface`.UploadPhotoResponse>
+    suspend fun getPhotoChanges(): ApiResult<com.example.serious_game_usil.`interface`.PhotoChangesResponse>
+    suspend fun uploadUserBanner(base64Banner: String): ApiResult<com.example.serious_game_usil.`interface`.UploadBannerResponse>
+    suspend fun getBannerChanges(): ApiResult<com.example.serious_game_usil.`interface`.BannerChangesResponse>
+    
+    suspend fun validateEmailForPasswordChange(email: String): ApiResult<BaseResponse>
+    suspend fun sendPasswordChangeOTP(email: String): ApiResult<PasswordChangeOTPResponse>
+    suspend fun verifyPasswordOTP(email: String, otpCode: String): ApiResult<BaseResponse>
+    suspend fun changePasswordWithOTP(email: String, otpCode: String, newPassword: String, confirmPassword: String): ApiResult<BaseResponse>
+    suspend fun updateProfile(correo: String, telefono: String): ApiResult<UserProfileResponse>
+    suspend fun getProfileChanges(): ApiResult<com.example.serious_game_usil.`interface`.ProfileChangesResponse>
 }

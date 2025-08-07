@@ -146,15 +146,17 @@ object AuthManager {
             route.contains("/hijo") || route.contains("/student") ->
                 normalizedRoles.any { it in listOf("hijo", "hijos", "student", "estudiante") }
 
-            // Rutas de docente
-            route.contains("/docente") || route.contains("/teacher") ->
-                normalizedRoles.any { it in listOf("docente", "teacher", "profesor") }
+
 
             // Rutas de especialista
             route.contains("/especialista") || route.contains("/specialist") ->
                 normalizedRoles.any { it in listOf("especialista", "specialist") }
 
 
+            // ruta globales
+            route.contains("/profile") ->
+
+                normalizedRoles.any { it in listOf("admin", "administrador", "hijos", "padres") }
             route == "/dashboard" -> isAuthenticated()
 
             // Por defecto, permitir si está autenticado

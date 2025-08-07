@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.databinding.ListUsersBinding
 import com.example.serious_game_usil.guards.AuthManager
-import com.example.serious_game_usil.presentation.ui.recuperation.ResetPasswordActivity
+import com.example.serious_game_usil.presentation.ui.password.ResetPasswordActivity
 import com.example.serious_game_usil.repository.UserRepository
 import com.example.serious_game_usil.ui.admin.adapter.UsersAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -406,5 +406,12 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
         } else {
             showSnackbar("El usuario no tiene número de teléfono")
         }
+    }
+    
+    override fun onViewProfileClick(user: UserListItem) {
+        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java).apply {
+            putExtra("USER_ID", user.id)
+        }
+        startActivity(intent)
     }
 }

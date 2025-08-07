@@ -96,10 +96,7 @@ class RolesAdapter(
                         listener.onEditClick(role)
                         true
                     }
-                    R.id.action_view_permissions -> {
-                        listener.onViewPermissionsClick(role)
-                        true
-                    }
+
                     R.id.action_view_users -> {
                         listener.onViewUsersClick(role)
                         true

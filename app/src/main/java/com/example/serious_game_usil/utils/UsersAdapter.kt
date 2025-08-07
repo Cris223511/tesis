@@ -26,6 +26,7 @@ class UsersAdapter(
         fun onToggleStatusClick(user: UserListItem)
         fun onChangePasswordClick(user: UserListItem)
         fun onWhatsAppClick(user: UserListItem)
+        fun onViewProfileClick(user: UserListItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -107,6 +108,10 @@ class UsersAdapter(
 
             popup.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
+                    R.id.action_view_profile -> {
+                        listener.onViewProfileClick(user)
+                        true
+                    }
                     R.id.action_edit -> {
                         listener.onEditClick(user)
                         true

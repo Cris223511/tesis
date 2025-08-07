@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.serious_game_usil.app-mergeDebugResources-60:/values-my/values-my.xml",
+            "outputFile": "com.example.serious_game_usil.app-mergeDebugResources-61:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "/Users/jhafetcanepa/.gradle/caches/8.9/transforms/4e65b4371c2f823218f5c5db2d8fb1b1/transformed/material3-release/res/values-my/values-my.xml",

@@ -6,11 +6,6 @@
         android:title="Editar" />
 
     <item
-        android:id="@+id/action_view_permissions"
-        android:icon="@drawable/ic_lock"
-        android:title="Ver permisos" />
-
-    <item
         android:id="@+id/action_view_users"
         android:icon="@drawable/ic_person"
         android:title="Ver usuarios" />

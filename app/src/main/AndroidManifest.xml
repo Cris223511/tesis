@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
 
     <application
@@ -59,32 +65,48 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL" />
 
-        <!-- Password Recovery Activities -->
+
+
         <activity
-            android:name=".presentation.ui.recuperation.ForgotPasswordActivity"
+            android:name=".presentation.ui.password.OtpVerificationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <activity
-            android:name=".presentation.ui.recuperation.OtpVerificationActivity"
+            android:name=".presentation.ui.password.ResetPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <activity
-            android:name=".presentation.ui.recuperation.ResetPasswordActivity"
+            android:name=".presentation.ui.password.PasswordResetSuccessActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Password Change Activities -->
+        <activity
+            android:name=".presentation.ui.password.ValidateEmailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <activity
-            android:name=".presentation.ui.recuperation.PasswordResetSuccessActivity"
+            android:name=".presentation.ui.password.PasswordOTPActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.password.NewPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <activity
@@ -124,6 +146,16 @@
                 android:value=".presentation.ui.administrador.list.ListUserActivity" />
         </activity>
 
+        <activity
+            android:name=".presentation.ui.administrador.profile.ProfileActivity"
+            android:label="Perfil de Usuario"
+            android:parentActivityName=".presentation.ui.administrador.list.ListUserActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+        </activity>
+
 
         <activity
             android:name=".presentation.ui.administrador.roles.ListRoles"
@@ -134,6 +166,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.DashboardActivity" />
         </activity>
+
 
 
         <activity
@@ -165,6 +198,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
         </activity>
+        
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

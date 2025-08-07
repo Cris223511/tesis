@@ -98,6 +98,11 @@ data class BaseResponse(
     @SerializedName("reenvios_restantes") val reenviosRestantes: Int? = null
 )
 
+data class PasswordChangeOTPResponse(
+    val message: String,
+    @SerializedName("otp_code") val otpCode: String
+)
+
 data class RefreshTokenRequest(
     @SerializedName("refresh_token") val refreshToken: String
 )
@@ -216,3 +221,48 @@ sealed class ApiResult<out T> {
     data class Error(val code: Int, val message: String) : ApiResult<Nothing>()
     data class NetworkError(val exception: Exception) : ApiResult<Nothing>()
 }
+
+data class UserProfileResponse(
+    val id: Int,
+    val usuario: String,
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    val correo: String,
+    val telefono: String?,
+    @SerializedName("tipo_documento") val tipoDocumento: String,
+    @SerializedName("num_documento") val numDocumento: String,
+    val sexo: String,
+    @SerializedName("fecha_nacimiento") val fechaNacimiento: String?,
+    val descripcion: String?,
+    val foto: String?,
+    val banner: String?,
+    val activo: Boolean,
+    val roles: List<String>,
+    @SerializedName("children_count") val childrenCount: Int,
+    @SerializedName("parent_info") val parentInfo: List<ParentInfo>?,
+    @SerializedName("created_at") val createdAt: String?,
+    @SerializedName("last_login_at") val lastLoginAt: String?
+)
+
+data class ParentInfo(
+    val id: Int,
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    val correo: String,
+    val telefono: String
+)
+
+data class ChildrenResponse(
+    val total: Int,
+    val children: List<ChildInfo>
+)
+
+data class ChildInfo(
+    val id: Int,
+    val usuario: String,
+    @SerializedName("nombres_apellidos") val nombresApellidos: String,
+    val correo: String,
+    val telefono: String,
+    val sexo: String,
+    @SerializedName("fecha_nacimiento") val fechaNacimiento: String?,
+    val activo: Boolean,
+    val roles: List<String>
+)
