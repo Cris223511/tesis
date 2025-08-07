@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"crypto/tls"
 	"fmt"
 	"log"
 	"net/smtp"
@@ -26,8 +25,8 @@ func SendOTPEmail(toEmail, otp string) error {
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 30px;">
 			<tr>
 				<td style="background-color: #004165; color: #fff; padding: 20px; text-align: center;">
-					<h1 style="margin: 0; font-size: 24px;">Universidad Nacional De Tumbes</h1>
-					<p style="margin: 0; font-size: 14px;">Portal Institucional</p>
+					<h1 style="margin: 0; font-size: 24px;">SERIOUS GAME </h1>
+			
 				</td>
 			</tr>
 			<tr>
@@ -46,7 +45,7 @@ func SendOTPEmail(toEmail, otp string) error {
 			</tr>
 			<tr>
 				<td style="background-color: #f2f2f2; text-align: center; padding: 15px; font-size: 12px; color: #888;">
-					© %d Universidad Nacional De Tumbes - Todos los derechos reservados - Universidad licenciada por Sunedu.
+					© %d SERIOUS GAME - Todos los derechos reservados.
 				</td>
 			</tr>
 		</table>
@@ -86,41 +85,10 @@ func sendEmailWithTLS(toEmail, subject, body string) error {
 	addr := smtpHost + ":" + smtpPort
 	auth := smtp.PlainAuth("", senderEmail, senderPassword, smtpHost)
 
-	conn, err := tls.Dial("tcp", addr, &tls.Config{
-		InsecureSkipVerify: true,
-		ServerName:         smtpHost,
-	})
+	// Usar smtp.SendMail que maneja STARTTLS automáticamente
+	err := smtp.SendMail(addr, auth, senderEmail, []string{toEmail}, msg)
 	if err != nil {
-		return fmt.Errorf("error al conectar vía TLS: %v", err)
-	}
-	client, err := smtp.NewClient(conn, smtpHost)
-	if err != nil {
-		return fmt.Errorf("error al crear cliente SMTP: %v", err)
-	}
-	defer client.Close()
-
-	if err = client.Auth(auth); err != nil {
-		return fmt.Errorf("error en autenticación SMTP: %v", err)
-	}
-
-	if err = client.Mail(senderEmail); err != nil {
-		return fmt.Errorf("error al establecer remitente: %v", err)
-	}
-	if err = client.Rcpt(toEmail); err != nil {
-		return fmt.Errorf("error al establecer destinatario: %v", err)
-	}
-
-	wc, err := client.Data()
-	if err != nil {
-		return fmt.Errorf("error al iniciar envío de datos: %v", err)
-	}
-	_, err = wc.Write(msg)
-	if err != nil {
-		return fmt.Errorf("error al escribir mensaje: %v", err)
-	}
-	err = wc.Close()
-	if err != nil {
-		return fmt.Errorf("error al cerrar conexión de datos: %v", err)
+		return fmt.Errorf("error enviando email: %v", err)
 	}
 
 	log.Printf("Email enviado correctamente a %s", toEmail)

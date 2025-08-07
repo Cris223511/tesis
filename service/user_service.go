@@ -1,9 +1,9 @@
 package services
 
 import (
-	"bytes"
 	"crypto/rand"
 	"crypto/sha256"
+	"crypto/tls"
 	"encoding/base64"
 	"errors"
 	"fmt"
@@ -31,6 +31,7 @@ import (
 type UserService interface {
 	CreateUser(user *models.Usuarios) (tempPassword string, err error)
 	GetUserByID(id uint) (*models.Usuarios, error)
+	GetUserByEmail(email string) (*models.Usuarios, error)
 	UpdateUser(id uint, updates map[string]interface{}) error
 	DeleteUser(id uint) error
 	LoginUser(username, password, clientIP, userAgent string) (*models.Usuarios, error)
@@ -38,9 +39,17 @@ type UserService interface {
 	SearchUserByField(field, value string) ([]models.Usuarios, error)
 	CheckUserExists(field, value string) (bool, error)
 	UpdateUserPassword(userID uint, newPassword string) error
+	ChangePassword(userID uint, newPassword, reason, clientIP string) error
+	GetRecentPasswords(userID uint, limit int) ([]models.PasswordHistory, error)
 	SetAccountStatus(id uint, status bool) error
 	UnlockAccount(userID uint, adminID uint) error
 	GetLoginAttempts(userID uint) (int, time.Time, error)
+	UpdateUserPhoto(userID uint, photoData string) error
+	GetPhotoChangeCount(userID uint) (int, error)
+	UpdateUserBanner(userID uint, bannerData string) error
+	GetBannerChangeCount(userID uint) (int, error)
+	GetProfileChangeCount(userID uint) (int, error)
+	RecordProfileChange(userID uint, oldEmail, newEmail, oldPhone, newPhone, changeType string) error
 	DB() *gorm.DB
 }
 
@@ -542,7 +551,12 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 	
 	for key, value := range updates {
 		if allowedFields[key] {
-			filteredUpdates[key] = value
+			// Mapear nombres de campos según el modelo
+			if key == "celular" {
+				filteredUpdates["telefono"] = value // El modelo usa "Telefono"
+			} else {
+				filteredUpdates[key] = value
+			}
 			updatedFields = append(updatedFields, key)
 		}
 	}
@@ -550,6 +564,12 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 	if correo, ok := filteredUpdates["correo"]; ok {
 		if !s.isValidEmail(correo.(string)) {
 			return errors.New("formato de correo inválido")
+		}
+	}
+	
+	if telefono, ok := filteredUpdates["telefono"]; ok {
+		if telefono.(string) != "" && !s.isValidPhone(telefono.(string)) {
+			return errors.New("formato de teléfono inválido")
 		}
 	}
 
@@ -593,26 +613,40 @@ func (s *userService) DeleteUser(id uint) error {
 }
 
 func (s *userService) SetAccountStatus(id uint, status bool) error {
-	var user models.Usuarios
-	if err := s.db.First(&user, id).Error; err != nil {
+	// Actualizar directamente
+	result := s.db.Table("usuarios").Where("idusuario = ?", id).Update("activo", status)
+	
+	if result.Error != nil {
+		log.Printf("Error actualizando estado: %v", result.Error)
+		return fmt.Errorf("error al actualizar estado: %v", result.Error)
+	}
+	
+	if result.RowsAffected == 0 {
 		return errors.New("usuario no encontrado")
 	}
 
-	user.Activo = status
-	if err := s.db.Save(&user).Error; err != nil {
-		return errors.New("error al actualizar estado")
-	}
-
-	action := "desactivada"
-	emailFunc := s.sendAccountDeactivatedEmail
-	if status {
-		action = "activada"
-		emailFunc = s.sendAccountActivatedEmail
+	// Obtener datos del usuario para el email
+	var user struct {
+		Correo            string
+		Nombres_Apellidos string
+		Usuario           string
 	}
 	
-	go emailFunc(user.Correo, user.Nombres_Apellidos)
-	s.logSecurityEvent("ACCOUNT_STATUS_CHANGED", user.Usuario, "", 
-		fmt.Sprintf("Cuenta %s", action))
+	if err := s.db.Table("usuarios").Where("idusuario = ?", id).First(&user).Error; err != nil {
+		log.Printf("Error obteniendo usuario para email: %v", err)
+		// No fallar la operación si no podemos enviar el email
+	} else {
+		action := "desactivada"
+		emailFunc := s.sendAccountDeactivatedEmail
+		if status {
+			action = "activada"
+			emailFunc = s.sendAccountActivatedEmail
+		}
+		
+		go emailFunc(user.Correo, user.Nombres_Apellidos)
+		s.logSecurityEvent("ACCOUNT_STATUS_CHANGED", user.Usuario, "", 
+			fmt.Sprintf("Cuenta %s", action))
+	}
 	
 	return nil
 }
@@ -826,6 +860,93 @@ func (s *userService) isValidEmail(email string) bool {
 	return matched
 }
 
+func (s *userService) UpdateUserPhoto(userID uint, photoData string) error {
+	return s.db.Transaction(func(tx *gorm.DB) error {
+		var user models.Usuarios
+		if err := tx.First(&user, userID).Error; err != nil {
+			return errors.New("usuario no encontrado")
+		}
+
+		// Log antes de actualizar
+		log.Printf("UpdateUserPhoto - Usuario %d, foto actual: %d bytes, nueva foto: %d bytes", 
+			userID, len(user.Foto), len(photoData))
+
+		if err := tx.Model(&user).Update("foto", photoData).Error; err != nil {
+			log.Printf("Error al actualizar foto en DB: %v", err)
+			return err
+		}
+
+		// Registrar el cambio (incluyendo eliminación de foto)
+		photoChange := models.PhotoChange{
+			UserID:    userID,
+			ChangedAt: time.Now(),
+			PhotoData: photoData,
+		}
+		
+		if err := tx.Create(&photoChange).Error; err != nil {
+			log.Printf("Error al crear registro de cambio de foto: %v", err)
+			return err
+		}
+		
+		// Verificar que se guardó correctamente
+		var updatedUser models.Usuarios
+		if err := tx.First(&updatedUser, userID).Error; err == nil {
+			log.Printf("UpdateUserPhoto - Verificación: Usuario %d ahora tiene foto de %d bytes", 
+				userID, len(updatedUser.Foto))
+		}
+		
+		return nil
+	})
+}
+
+func (s *userService) GetPhotoChangeCount(userID uint) (int, error) {
+	var count int64
+	err := s.db.Model(&models.PhotoChange{}).Where("user_id = ?", userID).Count(&count).Error
+	return int(count), err
+}
+
+func (s *userService) UpdateUserBanner(userID uint, bannerData string) error {
+	return s.db.Transaction(func(tx *gorm.DB) error {
+		var user models.Usuarios
+		if err := tx.First(&user, userID).Error; err != nil {
+			return errors.New("usuario no encontrado")
+		}
+
+		log.Printf("UpdateUserBanner - Usuario %d, banner actual: %d bytes, nuevo banner: %d bytes", 
+			userID, len(user.Banner), len(bannerData))
+
+		if err := tx.Model(&user).Update("banner", bannerData).Error; err != nil {
+			log.Printf("Error al actualizar banner en DB: %v", err)
+			return err
+		}
+
+		bannerChange := models.BannerChange{
+			UserID:     userID,
+			ChangedAt:  time.Now(),
+			BannerData: bannerData,
+		}
+		
+		if err := tx.Create(&bannerChange).Error; err != nil {
+			log.Printf("Error al crear registro de cambio de banner: %v", err)
+			return err
+		}
+		
+		var updatedUser models.Usuarios
+		if err := tx.First(&updatedUser, userID).Error; err == nil {
+			log.Printf("UpdateUserBanner - Verificación: Usuario %d ahora tiene banner de %d bytes", 
+				userID, len(updatedUser.Banner))
+		}
+		
+		return nil
+	})
+}
+
+func (s *userService) GetBannerChangeCount(userID uint) (int, error) {
+	var count int64
+	err := s.db.Model(&models.BannerChange{}).Where("user_id = ?", userID).Count(&count).Error
+	return int(count), err
+}
+
 func (s *userService) isValidPhone(phone string) bool {
 	if len(phone) != 9 {
 		return false
@@ -907,7 +1028,7 @@ func (s *userService) sendActivationEmail(email, tempPassword, username, token s
                                 <tr>
                                     <td style="background-color:#f7fafc;padding:30px;border-radius:0 0 16px 16px;text-align:center;border-top:1px solid #e2e8f0;">
                                         <p style="margin:0 0 10px;color:#718096;font-size:13px;">
-                                            © 2024 Serious Game - Universidad Nacional de Tumbes
+                                            © 2025 Serious Game 
                                         </p>
                                         <p style="margin:0;color:#a0aec0;font-size:12px;">
                                             Este es un correo automático, por favor no responda a esta dirección.
@@ -1741,46 +1862,120 @@ func (s *userService) sendSecurityAlert(user *models.Usuarios, ip, reason string
 }
 
 func sendEmail(toEmail, subject, bodyHTML string) error {
-	cfg := &emailConfig{
-		host:     getEnvOrDefault("SMTP_HOST", "smtp.gmail.com"),
-		port:     getEnvOrDefault("SMTP_PORT", "587"),
-		email:    os.Getenv("SMTP_EMAIL"),
-		password: os.Getenv("SMTP_PASSWORD"),
+	// Por ahora solo mostrar en logs hasta que el email funcione
+	log.Printf("=== EMAIL SIMULADO ===")
+	log.Printf("Para: %s", toEmail)
+	log.Printf("Asunto: %s", subject)
+	log.Printf("=====================")
+	return nil
+}
+
+func sendEmailWithSTARTTLS(cfg *emailConfig, toEmail, subject, bodyHTML string) error {
+	// Usar TLS directo en puerto 465 como alternativa
+	if cfg.port == "587" {
+		return sendWithPort587(cfg, toEmail, subject, bodyHTML)
 	}
-	
-	if cfg.email == "" || cfg.password == "" {
-		return fmt.Errorf("credenciales SMTP no configuradas")
-	}
-	
+	return sendWithPort465(cfg, toEmail, subject, bodyHTML)
+}
+
+func sendWithPort587(cfg *emailConfig, toEmail, subject, bodyHTML string) error {
+	addr := net.JoinHostPort(cfg.host, cfg.port)
 	auth := smtp.PlainAuth("", cfg.email, cfg.password, cfg.host)
 	
-	headers := map[string]string{
-		"From":         fmt.Sprintf("Serious Game <%s>", cfg.email),
-		"To":           toEmail,
-		"Subject":      subject,
-		"MIME-Version": "1.0",
-		"Content-Type": "text/html; charset=UTF-8",
-		"X-Priority":   "3",
-		"X-Mailer":     "Serious Game Mailer",
-		"Date":         time.Now().Format(time.RFC1123Z),
+	// Usar TLS config más permisivo
+	tlsConfig := &tls.Config{
+		InsecureSkipVerify: true,
+		ServerName:         cfg.host,
 	}
 	
-	var msg bytes.Buffer
-	for k, v := range headers {
-		msg.WriteString(fmt.Sprintf("%s: %s\r\n", k, v))
+	// Conectar con TLS directo
+	conn, err := tls.Dial("tcp", addr, tlsConfig)
+	if err != nil {
+		return fmt.Errorf("error conectando con TLS: %w", err)
 	}
-	msg.WriteString("\r\n")
-	msg.WriteString(bodyHTML)
+	defer conn.Close()
 	
-	addr := fmt.Sprintf("%s:%s", cfg.host, cfg.port)
+	client, err := smtp.NewClient(conn, cfg.host)
+	if err != nil {
+		return fmt.Errorf("error creando cliente: %w", err)
+	}
+	defer client.Close()
 	
-	if err := smtp.SendMail(addr, auth, cfg.email, []string{toEmail}, msg.Bytes()); err != nil {
-		log.Printf("[EMAIL_ERROR] Fallo al enviar a %s: %v", toEmail, err)
-		return fmt.Errorf("error enviando email: %w", err)
+	if err = client.Auth(auth); err != nil {
+		return fmt.Errorf("error en autenticación: %w", err)
+	}
+	
+	if err = client.Mail(cfg.email); err != nil {
+		return fmt.Errorf("error configurando remitente: %w", err)
+	}
+	
+	if err = client.Rcpt(toEmail); err != nil {
+		return fmt.Errorf("error configurando destinatario: %w", err)
+	}
+	
+	wc, err := client.Data()
+	if err != nil {
+		return fmt.Errorf("error iniciando datos: %w", err)
+	}
+	
+	msg := fmt.Sprintf("From: %s\r\nTo: %s\r\nSubject: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n%s",
+		cfg.email, toEmail, subject, bodyHTML)
+	
+	if _, err = fmt.Fprint(wc, msg); err != nil {
+		return fmt.Errorf("error escribiendo mensaje: %w", err)
+	}
+	
+	if err = wc.Close(); err != nil {
+		return fmt.Errorf("error cerrando datos: %w", err)
 	}
 	
 	log.Printf("[EMAIL_SENT] Email enviado exitosamente a %s", toEmail)
 	return nil
+}
+
+func sendWithPort465(cfg *emailConfig, toEmail, subject, bodyHTML string) error {
+	// Puerto 465 con SSL/TLS directo
+	addr := net.JoinHostPort(cfg.host, "465")
+	auth := smtp.PlainAuth("", cfg.email, cfg.password, cfg.host)
+	
+	tlsConfig := &tls.Config{
+		InsecureSkipVerify: false,
+		ServerName:         cfg.host,
+	}
+	
+	conn, err := tls.Dial("tcp", addr, tlsConfig)
+	if err != nil {
+		return fmt.Errorf("error conectando SSL: %w", err)
+	}
+	defer conn.Close()
+	
+	client, err := smtp.NewClient(conn, cfg.host)
+	if err != nil {
+		return fmt.Errorf("error creando cliente SSL: %w", err)
+	}
+	defer client.Close()
+	
+	if err = client.Auth(auth); err != nil {
+		return fmt.Errorf("error autenticación SSL: %w", err)
+	}
+	
+	if err = client.Mail(cfg.email); err != nil {
+		return err
+	}
+	if err = client.Rcpt(toEmail); err != nil {
+		return err
+	}
+	
+	wc, err := client.Data()
+	if err != nil {
+		return err
+	}
+	
+	msg := fmt.Sprintf("From: %s\r\nTo: %s\r\nSubject: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n%s",
+		cfg.email, toEmail, subject, bodyHTML)
+	fmt.Fprint(wc, msg)
+	
+	return wc.Close()
 }
 
 type emailConfig struct {
@@ -1842,4 +2037,94 @@ func normalizeIP(ip string) string {
 
 func calculateIPDistance(ip1, ip2 string) float64 {
 	return 0
+}
+
+func (us *userService) GetUserByEmail(email string) (*models.Usuarios, error) {
+	var user models.Usuarios
+	result := us.db.Where("correo = ?", email).First(&user)
+	if result.Error != nil {
+		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+			return nil, errors.New("usuario no encontrado")
+		}
+		return nil, result.Error
+	}
+	return &user, nil
+}
+
+func (us *userService) ChangePassword(userID uint, newPassword, reason, clientIP string) error {
+	tx := us.db.Begin()
+	if tx.Error != nil {
+		return tx.Error
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+
+	var user models.Usuarios
+	if err := tx.First(&user, userID).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	passwordHistory := models.PasswordHistory{
+		UserID:       userID,
+		ChangeReason: reason,
+		IPAddress:    clientIP,
+		ChangedBy:    userID,
+	}
+	
+	if err := passwordHistory.SetPassword(user.Contrasena); err != nil {
+		tx.Rollback()
+		return err
+	}
+	
+	if err := tx.Create(&passwordHistory).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	if err := tx.Model(&user).Update("contrasena", string(hashedPassword)).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	return tx.Commit().Error
+}
+
+func (us *userService) GetRecentPasswords(userID uint, limit int) ([]models.PasswordHistory, error) {
+	var passwordHistory []models.PasswordHistory
+	err := us.db.Where("usuarios_id_usuario = ?", userID).
+		Order("created_at DESC").
+		Limit(limit).
+		Find(&passwordHistory).Error
+	
+	return passwordHistory, err
+}
+
+func (s *userService) GetProfileChangeCount(userID uint) (int, error) {
+	var count int64
+	err := s.db.Model(&models.ProfileChange{}).Where("user_id = ?", userID).Count(&count).Error
+	return int(count), err
+}
+
+func (s *userService) RecordProfileChange(userID uint, oldEmail, newEmail, oldPhone, newPhone, changeType string) error {
+	profileChange := models.ProfileChange{
+		UserID:     userID,
+		OldEmail:   oldEmail,
+		NewEmail:   newEmail,
+		OldPhone:   oldPhone,
+		NewPhone:   newPhone,
+		ChangeType: changeType,
+		ChangedAt:  time.Now(),
+	}
+	
+	return s.db.Create(&profileChange).Error
 }

@@ -422,6 +422,191 @@ func (ctrl *UserController) Delete(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Usuario eliminado exitosamente"})
 }
 
+
+func (ctrl *UserController) UploadPhoto(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token no proporcionado"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido o expirado"})
+		return
+	}
+
+	var req struct {
+		Photo string `json:"photo"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
+
+	if req.Photo != "" && len(req.Photo) > 5*1024*1024 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "La imagen excede el tamaño máximo de 5MB"})
+		return
+	}
+
+	changeCount, err := ctrl.UserService.GetPhotoChangeCount(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al verificar cambios de foto"})
+		return
+	}
+
+	if changeCount >= 2 {
+		c.JSON(http.StatusForbidden, gin.H{"error": "Has alcanzado el límite máximo de 2 cambios de foto"})
+		return
+	}
+
+	log.Printf("Actualizando foto para usuario %d, tamaño de datos: %d bytes", claims.UserID, len(req.Photo))
+	
+	if err := ctrl.UserService.UpdateUserPhoto(claims.UserID, req.Photo); err != nil {
+		log.Printf("Error al actualizar foto: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar la foto"})
+		return
+	}
+
+	log.Printf("Foto actualizada exitosamente para usuario %d", claims.UserID)
+	
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Foto actualizada correctamente",
+		"changes_remaining": 2 - (changeCount + 1),
+	})
+}
+
+func (ctrl *UserController) UploadBanner(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token no proporcionado"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido o expirado"})
+		return
+	}
+
+	var req struct {
+		Banner string `json:"banner"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
+
+	if req.Banner != "" && len(req.Banner) > 5*1024*1024 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "La imagen excede el tamaño máximo de 5MB"})
+		return
+	}
+
+	changeCount, err := ctrl.UserService.GetBannerChangeCount(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al verificar cambios de banner"})
+		return
+	}
+
+	if changeCount >= 2 {
+		c.JSON(http.StatusForbidden, gin.H{"error": "Has alcanzado el límite máximo de 2 cambios de banner"})
+		return
+	}
+
+	log.Printf("Actualizando banner para usuario %d, tamaño de datos: %d bytes", claims.UserID, len(req.Banner))
+	
+	if err := ctrl.UserService.UpdateUserBanner(claims.UserID, req.Banner); err != nil {
+		log.Printf("Error al actualizar banner: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar el banner"})
+		return
+	}
+
+	log.Printf("Banner actualizado exitosamente para usuario %d", claims.UserID)
+	
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Banner actualizado correctamente",
+		"changes_remaining": 2 - (changeCount + 1),
+	})
+}
+
+func (ctrl *UserController) GetBannerChanges(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token no proporcionado"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido o expirado"})
+		return
+	}
+
+	count, err := ctrl.UserService.GetBannerChangeCount(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener información"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"changes_used": count,
+		"changes_remaining": 2 - count,
+		"max_changes": 2,
+	})
+}
+
+func (ctrl *UserController) GetPhotoChanges(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token no proporcionado"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido o expirado"})
+		return
+	}
+
+	count, err := ctrl.UserService.GetPhotoChangeCount(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener información"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"changes_used": count,
+		"changes_remaining": 2 - count,
+		"max_changes": 2,
+	})
+}
+
 func (ctrl *UserController) ChangeAccountStatus(c *gin.Context) {
 	id, err := utils.ParseID(c.Param("id"))
 	if err != nil {
@@ -430,26 +615,31 @@ func (ctrl *UserController) ChangeAccountStatus(c *gin.Context) {
 	}
 
 	var req struct {
-		Active bool `json:"active"`
+		Activo bool `json:"activo"`
 	}
 	
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos: " + err.Error()})
 		return
 	}
 
-	if err := ctrl.UserService.SetAccountStatus(id, req.Active); err != nil {
+	// Log para debugging
+	log.Printf("Cambiando estado de usuario %d a %v", id, req.Activo)
+
+	if err := ctrl.UserService.SetAccountStatus(id, req.Activo); err != nil {
+		log.Printf("Error en SetAccountStatus: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	status := "desactivada"
-	if req.Active {
+	if req.Activo {
 		status = "activada"
 	}
 	
 	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("Cuenta %s exitosamente", status)})
 }
+
 
 func (ctrl *UserController) UnlockAccount(c *gin.Context) {
 	userID, err := utils.ParseID(c.Param("id"))
@@ -540,8 +730,152 @@ func (ctrl *UserController) Search(c *gin.Context) {
     c.JSON(http.StatusOK, users)
 }
 
+
+
+
+func (ctrl *UserController) GetUserProfile(c *gin.Context) {
+	var userID uint
+	var err error
+	
+	if idParam := c.Param("id"); idParam != "" {
+		userID, err = utils.ParseID(idParam)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "ID inválido"})
+			return
+		}
+		
+		claimsInterface, exists := c.Get("user")
+		if !exists {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
+			return
+		}
+		
+		claims, ok := claimsInterface.(*utils.Claims)
+		if !ok {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
+			return
+		}
+		
+		requesterID := claims.UserID
+		roles := strings.Split(claims.Roles, ",")
+		isAdmin := false
+		for _, role := range roles {
+			if role == "administrador" || role == "AD" {
+				isAdmin = true
+				break
+			}
+		}
+		
+		if requesterID != userID && !isAdmin {
+			c.JSON(http.StatusForbidden, gin.H{"error": "No tienes permisos para ver este perfil"})
+			return
+		}
+	} else {
+		claimsInterface, exists := c.Get("user")
+		if !exists {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
+			return
+		}
+		
+		claims, ok := claimsInterface.(*utils.Claims)
+		if !ok {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
+			return
+		}
+		
+		userID = claims.UserID
+		fmt.Printf("[DEBUG] GetUserProfile: userID extraído del token: %d\n", userID)
+	}
+	
+	fmt.Printf("[DEBUG] GetUserProfile: Buscando usuario con ID: %d\n", userID)
+	var user models.Usuarios
+	err = ctrl.UserService.DB().
+		Preload("Roles").
+		First(&user, userID).Error
+	
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+		return
+	}
+	
+	var childrenCount int64
+	var parentInfo []gin.H
+	var roleNames []string
+	
+	for _, role := range user.Roles {
+		roleNames = append(roleNames, role.Name)
+		
+		if role.Name == "Padre" {
+			ctrl.UserService.DB().
+				Model(&models.UserRelationship{}).
+				Where("parent_id = ?", userID).
+				Count(&childrenCount)
+		}
+		
+		if role.Name == "Hijo" {
+			var relationships []models.UserRelationship
+			ctrl.UserService.DB().
+				Preload("Parent").
+				Where("child_id = ?", userID).
+				Find(&relationships)
+			
+			for _, rel := range relationships {
+				parentInfo = append(parentInfo, gin.H{
+					"id":                rel.Parent.ID,
+					"nombres_apellidos": rel.Parent.Nombres_Apellidos,
+					"correo":            rel.Parent.Correo,
+					"telefono":          rel.Parent.Telefono,
+				})
+			}
+		}
+	}
+	
+	fotoSize := 0
+	if user.Foto != "" {
+		fotoSize = len(user.Foto)
+	}
+	log.Printf("GetUserProfile - Usuario %d: tiene foto? %v (tamaño: %d bytes)", user.ID, user.Foto != "", fotoSize)
+	
+	profileData := gin.H{
+		"id":                user.ID,
+		"usuario":           user.Usuario,
+		"nombres_apellidos": user.Nombres_Apellidos,
+		"correo":            user.Correo,
+		"telefono":          user.Telefono,
+		"tipo_documento":    user.Tipo_Documento,
+		"num_documento":     user.Num_Documento,
+		"sexo":              user.Sexo,
+		"fecha_nacimiento":  user.FechaNacimiento,
+		"descripcion":       user.Descripcion,
+		"foto":              user.Foto,
+		"banner":            user.Banner,
+		"activo":            user.Activo,
+		"children_count":    childrenCount,
+		"parent_info":       parentInfo,
+		"created_at":        user.CreatedAt,
+		"last_login_at":     user.LastLoginAt,
+		"roles":             roleNames,
+	}
+	
+	c.JSON(http.StatusOK, profileData)
+}
+
+
+
 func (ctrl *UserController) GetCurrentUser(c *gin.Context) {
-	userID := c.GetUint("userID")
+	claimsInterface, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
+		return
+	}
+	
+	claims, ok := claimsInterface.(*utils.Claims)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
+		return
+	}
+	
+	userID := claims.UserID
 	
 	user, err := ctrl.UserService.GetUserByID(userID)
 	if err != nil {
@@ -552,7 +886,58 @@ func (ctrl *UserController) GetCurrentUser(c *gin.Context) {
 	c.JSON(http.StatusOK, user)
 }
 
-// generateOTP genera un código OTP aleatorio de la longitud especificada
+func (ctrl *UserController) GetUserChildren(c *gin.Context) {
+	claimsInterface, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
+		return
+	}
+	
+	claims, ok := claimsInterface.(*utils.Claims)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
+		return
+	}
+	
+	userID := claims.UserID
+	
+	var relationships []models.UserRelationship
+	err := ctrl.UserService.DB().
+		Preload("Child").
+		Preload("Child.Roles").
+		Where("parent_id = ?", userID).
+		Find(&relationships).Error
+	
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener hijos"})
+		return
+	}
+	
+	var children []gin.H
+	for _, rel := range relationships {
+		var roleNames []string
+		for _, role := range rel.Child.Roles {
+			roleNames = append(roleNames, role.Name)
+		}
+		
+		children = append(children, gin.H{
+			"id":                rel.Child.ID,
+			"usuario":           rel.Child.Usuario,
+			"nombres_apellidos": rel.Child.Nombres_Apellidos,
+			"correo":            rel.Child.Correo,
+			"telefono":          rel.Child.Telefono,
+			"sexo":              rel.Child.Sexo,
+			"fecha_nacimiento":  rel.Child.FechaNacimiento,
+			"activo":            rel.Child.Activo,
+			"roles":             roleNames,
+		})
+	}
+	
+	c.JSON(http.StatusOK, gin.H{
+		"total":    len(children),
+		"children": children,
+	})
+}
 
 func generateOTP(length int) string {
 	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -662,4 +1047,365 @@ func getEnv(key, def string) string {
 		return v
 	}
 	return def
+}
+
+func (ctrl *UserController) ValidateEmailForPasswordChange(c *gin.Context) {
+	var request struct {
+		Email string `json:"correo" binding:"required,email"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Correo electrónico requerido"})
+		return
+	}
+
+	user, err := ctrl.UserService.GetUserByEmail(request.Email)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "No existe una cuenta asociada a este correo electrónico"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Correo válido",
+		"user_id": user.ID,
+	})
+}
+
+func (ctrl *UserController) SendPasswordChangeOTP(c *gin.Context) {
+	var request struct {
+		Email string `json:"correo" binding:"required,email"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Correo electrónico requerido"})
+		return
+	}
+
+	user, err := ctrl.UserService.GetUserByEmail(request.Email)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "No existe una cuenta asociada a este correo electrónico"})
+		return
+	}
+
+	otp := generateOTP(6)
+	err = ctrl.OTPService.SaveOTP(user.ID, otp)
+	if err != nil {
+		log.Printf("Error al guardar OTP: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error interno del servidor"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Código de verificación generado",
+		"otp_code": otp,
+	})
+}
+
+func (ctrl *UserController) VerifyPasswordOTP(c *gin.Context) {
+	var request struct {
+		Email   string `json:"correo" binding:"required,email"`
+		OTPCode string `json:"codigo_otp" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Email y código OTP requeridos"})
+		return
+	}
+
+	user, err := ctrl.UserService.GetUserByEmail(request.Email)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+		return
+	}
+
+	isValid, err := ctrl.OTPService.CheckOTP(user.ID, request.OTPCode)
+	if err != nil || !isValid {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Código de verificación inválido o expirado"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Código verificado correctamente",
+	})
+}
+
+func (ctrl *UserController) ChangePasswordWithOTP(c *gin.Context) {
+	var request struct {
+		Email           string `json:"correo" binding:"required,email"`
+		OTPCode         string `json:"codigo_otp" binding:"required,len=6"`
+		NewPassword     string `json:"nueva_contrasena" binding:"required,min=8"`
+		ConfirmPassword string `json:"confirmar_contrasena" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Todos los campos son requeridos"})
+		return
+	}
+
+	if request.NewPassword != request.ConfirmPassword {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Las contraseñas no coinciden"})
+		return
+	}
+
+	if !isValidPassword(request.NewPassword) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales"})
+		return
+	}
+
+	user, err := ctrl.UserService.GetUserByEmail(request.Email)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+		return
+	}
+
+	isValid, err := ctrl.OTPService.ValidateOTP(user.ID, request.OTPCode)
+	if err != nil || !isValid {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Código de verificación inválido o expirado"})
+		return
+	}
+
+	recentPasswords, err := ctrl.UserService.GetRecentPasswords(user.ID, 5)
+	if err != nil {
+		log.Printf("Error al obtener contraseñas recientes: %v", err)
+	}
+
+	for _, passHistory := range recentPasswords {
+		if passHistory.CheckPassword(request.NewPassword) {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "No puedes usar una de tus últimas 5 contraseñas"})
+			return
+		}
+	}
+
+	clientIP := c.ClientIP()
+	err = ctrl.UserService.ChangePassword(user.ID, request.NewPassword, "password_reset", clientIP)
+	if err != nil {
+		log.Printf("Error al cambiar contraseña: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al cambiar la contraseña"})
+		return
+	}
+
+	err = ctrl.OTPService.InvalidateUserOTPs(user.ID)
+	if err != nil {
+		log.Printf("Error al invalidar OTPs: %v", err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Contraseña cambiada exitosamente",
+	})
+}
+
+func sendPasswordChangeOTPEmail(to, name, otp string) error {
+	user := getEnv("EMAIL_USER", "")
+	password := getEnv("EMAIL_PASSWORD", "")
+	host := getEnv("EMAIL_HOST", "smtp.gmail.com")
+	port := getEnv("EMAIL_PORT", "587")
+
+	subject := "Código de verificación para cambio de contraseña"
+	body := fmt.Sprintf(`
+Hola %s,
+
+Has solicitado cambiar tu contraseña. Tu código de verificación es:
+
+%s
+
+Este código expira en 1 minuto.
+
+Si no solicitaste este cambio, ignora este correo.
+
+Saludos,
+Equipo de Seguridad
+`, name, otp)
+
+	auth := smtp.PlainAuth("", user, password, host)
+
+	var msg bytes.Buffer
+	msg.WriteString("To: " + to + "\r\n")
+	msg.WriteString("Subject: " + subject + "\r\n")
+	msg.WriteString("Content-Type: text/plain; charset=UTF-8\r\n")
+	msg.WriteString("\r\n")
+	msg.WriteString(body)
+
+	return smtp.SendMail(host+":"+port, auth, user, []string{to}, msg.Bytes())
+}
+
+func isValidPassword(password string) bool {
+	if len(password) < 8 {
+		return false
+	}
+
+	hasUpper := false
+	hasLower := false
+	hasNumber := false
+	hasSpecial := false
+
+	for _, char := range password {
+		switch {
+		case char >= 'A' && char <= 'Z':
+			hasUpper = true
+		case char >= 'a' && char <= 'z':
+			hasLower = true
+		case char >= '0' && char <= '9':
+			hasNumber = true
+		case strings.ContainsRune("!@#$%^&*()_+-=[]{}|;:,.<>?", char):
+			hasSpecial = true
+		}
+	}
+
+	return hasUpper && hasLower && hasNumber && hasSpecial
+}
+
+func (ctrl *UserController) UpdateProfile(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token de autorización requerido"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	userID := claims.UserID
+
+	// Verificar límite de cambios
+	changesUsed, err := ctrl.UserService.GetProfileChangeCount(userID)
+	if err != nil {
+		log.Printf("Error al verificar cambios de perfil: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error interno del servidor"})
+		return
+	}
+
+	maxChanges := 2
+	if changesUsed >= maxChanges {
+		c.JSON(http.StatusForbidden, gin.H{"error": "Has alcanzado el límite máximo de 2 cambios de perfil"})
+		return
+	}
+
+	var request struct {
+		Correo   string `json:"correo" binding:"required,email"`
+		Telefono string `json:"celular"` // Android envía "celular" pero lo mapeamos a Telefono
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
+
+	// Obtener datos actuales del usuario para comparar
+	currentUser, err := ctrl.UserService.GetUserByID(userID)
+	if err != nil {
+		log.Printf("Error al obtener usuario actual: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener usuario"})
+		return
+	}
+
+	// Determinar tipo de cambio
+	changeType := ""
+	if currentUser.Correo != request.Correo && currentUser.Telefono != request.Telefono {
+		changeType = "both"
+	} else if currentUser.Correo != request.Correo {
+		changeType = "email"
+	} else if currentUser.Telefono != request.Telefono {
+		changeType = "phone"
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No se detectaron cambios"})
+		return
+	}
+
+	updates := map[string]interface{}{
+		"correo":  request.Correo,
+		"celular": request.Telefono, // Mapear telefono a celular para el service
+	}
+
+	err = ctrl.UserService.UpdateUser(userID, updates)
+	if err != nil {
+		log.Printf("Error al actualizar usuario: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar el perfil"})
+		return
+	}
+
+	// Registrar el cambio
+	err = ctrl.UserService.RecordProfileChange(userID, currentUser.Correo, request.Correo, currentUser.Telefono, request.Telefono, changeType)
+	if err != nil {
+		log.Printf("Error al registrar cambio de perfil: %v", err)
+		// No fallar por esto, el update ya se realizó
+	}
+
+	updatedUser, err := ctrl.UserService.GetUserByID(userID)
+	if err != nil {
+		log.Printf("Error al obtener usuario actualizado: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener perfil actualizado"})
+		return
+	}
+
+	var roles []string
+	for _, role := range updatedUser.Roles {
+		roles = append(roles, role.Name)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"id":                 updatedUser.ID,
+		"usuario":            updatedUser.Usuario,
+		"nombres_apellidos":  updatedUser.Nombres_Apellidos,
+		"correo":             updatedUser.Correo,
+		"telefono":           updatedUser.Telefono,
+		"tipo_documento":     updatedUser.Tipo_Documento,
+		"num_documento":      updatedUser.Num_Documento,
+		"fecha_nacimiento":   updatedUser.FechaNacimiento,
+		"sexo":               updatedUser.Sexo,
+		"activo":             updatedUser.Activo,
+		"foto":               updatedUser.Foto,
+		"banner":             updatedUser.Banner,
+		"descripcion":        updatedUser.Descripcion,
+		"roles":              roles,
+	})
+}
+
+func (ctrl *UserController) GetProfileChanges(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token de autorización requerido"})
+		return
+	}
+
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Formato de token inválido"})
+		return
+	}
+
+	claims, err := utils.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	userID := claims.UserID
+
+	changesUsed, err := ctrl.UserService.GetProfileChangeCount(userID)
+	if err != nil {
+		log.Printf("Error al obtener cambios de perfil: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error interno del servidor"})
+		return
+	}
+
+	maxChanges := 2
+	changesRemaining := maxChanges - changesUsed
+	if changesRemaining < 0 {
+		changesRemaining = 0
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"changes_used":      changesUsed,
+		"changes_remaining": changesRemaining,
+		"max_changes":       maxChanges,
+	})
 }

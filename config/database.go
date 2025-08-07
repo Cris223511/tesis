@@ -56,6 +56,9 @@ func InitializeDatabase() {
 		log.Fatalf("Error al migrar usuarios: %v", err)
 	}
 	
+	// Fix temporal: eliminar tabla profile_changes si existe con estructura incorrecta
+	DB.Exec("DROP TABLE IF EXISTS profile_changes")
+	
 	if err := DB.AutoMigrate(
 		&models.UserRole{},
 		&models.UserUnblockCooldown{},
@@ -66,6 +69,10 @@ func InitializeDatabase() {
 		&models.PasswordHistory{},
 		&models.OTP{},
 		&models.OTPResend{},
+		&models.UserRelationship{},
+		&models.PhotoChange{},
+		&models.BannerChange{},
+		&models.ProfileChange{},
 	); err != nil {
 		log.Fatalf("Error al migrar tablas relacionadas: %v", err)
 	}

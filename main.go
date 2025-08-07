@@ -168,6 +168,10 @@ func migrateDatabase() error {
 		&models.SecurityLog{},
 		&models.PasswordHistory{},
 		&models.UserRole{},
+		&models.UserRelationship{},
+		&models.PhotoChange{},
+		&models.BannerChange{},
+		&models.ProfileChange{},
 		&models.OTP{},
 		&models.OTPResend{},
 	)

@@ -51,6 +51,12 @@ func SetupRouter(
 		public.POST("/otp/resend", userController.ResendOTP)
 		public.POST("/login/begin", bioController.BeginLogin)
 		public.POST("/login/finish", bioController.FinishLogin)
+		
+		// ---------- CAMBIO DE CONTRASEÑA ----------
+		public.POST("/password/validate-email", userController.ValidateEmailForPasswordChange)
+		public.POST("/password/send-otp", userController.SendPasswordChangeOTP)
+		public.POST("/password/verify-otp", userController.VerifyPasswordOTP)
+		public.POST("/password/change-with-otp", userController.ChangePasswordWithOTP)
 
 
 	}
@@ -69,9 +75,19 @@ func SetupRouter(
 		protected.PATCH("/users/:id/status", userController.ChangeAccountStatus)
 		protected.POST("/users/:id/unlock", userController.UnlockAccount)
 		protected.GET("/users/:id/login-attempts", userController.GetLoginAttempts)
-		protected.GET("/users/:id", userController.GetByID) 
-	
-	
+		protected.GET("/users/:id", userController.GetByID)
+		
+		protected.GET("/profile", userController.GetUserProfile)
+		protected.GET("/profile/:id", userController.GetUserProfile)
+		protected.GET("/profile/children", userController.GetUserChildren)
+		protected.PUT("/profile/update", userController.UpdateProfile)
+		protected.GET("/profile/changes", userController.GetProfileChanges) 
+		
+		protected.POST("/users/photo", userController.UploadPhoto)
+		protected.GET("/users/photo/changes", userController.GetPhotoChanges)
+		
+		protected.POST("/users/banner", userController.UploadBanner)
+		protected.GET("/users/banner/changes", userController.GetBannerChanges)
 		
 	
 
