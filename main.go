@@ -174,6 +174,9 @@ func migrateDatabase() error {
 		&models.ProfileChange{},
 		&models.OTP{},
 		&models.OTPResend{},
+
+		&models.TherapySession{},
+		&models.AutismProgressMetrics{},
 	)
 }
 
@@ -182,6 +185,7 @@ func initializeServices() (*serviceContainer, error) {
 	roleService := services.NewRoleService(config.DB)
 	otpService := services.NewOTPService(config.DB)
 	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
+	autismProgressService := services.NewAutismProgressService(config.DB)
 
 	bioService, err := services.NewBioService(
 		config.DB,
@@ -195,20 +199,22 @@ func initializeServices() (*serviceContainer, error) {
 	}
 
 	return &serviceContainer{
-		user:      userService,
-		role:      roleService,
-		bio:       *bioService,
-		otp:       otpService,
-		deviceIP:  *deviceIPRepo,
+		user:           userService,
+		role:           roleService,
+		bio:            *bioService,
+		otp:            otpService,
+		deviceIP:       *deviceIPRepo,
+		autismProgress: autismProgressService,
 	}, nil
 }
 
 func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
-		user: controllers.NewUserController(services.user, services.otp, services.deviceIP), 
-		role: controllers.NewRoleController(services.role),
-		auth: controllers.NewAuthController(),
-		bio:  controllers.NewBioController(&services.bio),
+		user:   controllers.NewUserController(services.user, services.otp, services.deviceIP), 
+		role:   controllers.NewRoleController(services.role),
+		auth:   controllers.NewAuthController(),
+		bio:    controllers.NewBioController(&services.bio),
+		autism: controllers.NewAutismController(services.autismProgress),
 	}
 }
 
@@ -218,6 +224,7 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.role,
 		controllers.auth,
 		controllers.bio,
+		controllers.autism,
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -245,18 +252,20 @@ func getPort() string {
 }
 
 type serviceContainer struct {
-	user     services.UserService
-	role     services.RoleService
-	bio      services.BioService
-	otp      services.OTPService
-	deviceIP services.DeviceIPRepo
+	user           services.UserService
+	role           services.RoleService
+	bio            services.BioService
+	otp            services.OTPService
+	deviceIP       services.DeviceIPRepo
+	autismProgress *services.AutismProgressService
 }
 
 type controllerContainer struct {
-	user *controllers.UserController
-	role *controllers.RoleController
-	auth *controllers.AuthController
-	bio  *controllers.BioController
+	user   *controllers.UserController
+	role   *controllers.RoleController
+	auth   *controllers.AuthController
+	bio    *controllers.BioController
+	autism *controllers.AutismController
 }
 
 func main() {

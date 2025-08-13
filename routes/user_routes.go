@@ -10,12 +10,9 @@ import (
 func SetupRouter(
 	userController *controllers.UserController,
 	roleController *controllers.RoleController,
-
 	authController *controllers.AuthController,
-
 	bioController *controllers.BioController,
-	
-
+	autismController *controllers.AutismController,
 ) *gin.Engine {
 
 	r := gin.Default()
@@ -110,6 +107,13 @@ func SetupRouter(
 		protected.GET("/devices", bioController.ListDevices)
 		protected.DELETE("/device", bioController.DeleteDevice)
 		protected.PUT("/device/rename", bioController.RenameDevice)
+
+		// ============== TERAPIA AUTISMO ==============
+		protected.GET("/autism/children/:child_id/progress/3months", autismController.GetThreeMonthComparison)
+		protected.POST("/autism/sessions", autismController.RecordTherapySession)
+		protected.GET("/autism/children/progress", autismController.GetChildrenProgress)
+		protected.GET("/autism/children/:child_id/sessions", autismController.GetRecentSessions)
+		protected.POST("/autism/sessions/start", autismController.StartTherapySession)
 	}
 
 	return r
