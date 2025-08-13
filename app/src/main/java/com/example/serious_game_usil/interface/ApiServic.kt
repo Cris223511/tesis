@@ -19,6 +19,7 @@ import com.example.serious_game_usil.data.UserListItem
 import com.example.serious_game_usil.data.UsersListResponse
 import com.example.serious_game_usil.data.UserProfileResponse
 import com.example.serious_game_usil.data.ChildrenResponse
+import com.example.serious_game_usil.data.ThreeMonthComparison
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -144,6 +145,13 @@ interface ApiService {
     
     @GET("api/profile/changes")
     suspend fun getProfileChanges(): Response<ProfileChangesResponse>
+    
+    // ============== AUTISM THERAPY ENDPOINTS ==============
+    @GET("api/autism/children/{child_id}/progress/3months")
+    suspend fun getThreeMonthComparison(@Path("child_id") childId: Int): Response<ThreeMonthComparison>
+    
+    @GET("api/autism/children/progress")
+    suspend fun getAllChildrenProgress(): Response<List<ThreeMonthComparison>>
 }
 
 data class TokenResponse(

@@ -48,8 +48,20 @@
         "source": "com.example.serious_game_usil.app-main-65:/menu/menu_roles_options.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_fragment_progress_stats.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_stats.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_fragment_progress_children_list.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_children_list.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-63:/layout_item_roles.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_roles.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/menu_activity_padres_drawer.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/menu/activity_padres_drawer.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_arrow_back.xml.flat",
@@ -88,6 +100,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/drawable/circle_error_bg.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_nav_header_admin.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_admin.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-63:/layout_activity_profile.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_profile.xml"
     },
@@ -122,6 +138,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_help_bubble.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/help_bubble.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/menu_activity_admin_drawer.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/menu/activity_admin_drawer.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_toggle_off.xml.flat",
@@ -176,6 +196,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/drawable/ic_error.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_item_monthly_progress.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_monthly_progress.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_cloud_2.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/cloud_2.xml"
     },
@@ -194,6 +218,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "com.example.serious_game_usil.app-main-65:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_nav_header_padres.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_padres.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_lock.xml.flat",
@@ -234,6 +262,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_gradient_header_register.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/gradient_header_register.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/drawable_rounded_corner_background.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/drawable/rounded_corner_background.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_circle_background.xml.flat",
@@ -308,8 +340,16 @@
         "source": "com.example.serious_game_usil.app-main-65:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_activity_padres_dashboard.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_padres_dashboard.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_tab_selector.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/tab_selector.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_item_child_ranking.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_child_ranking.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_badge.xml.flat",
@@ -342,6 +382,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_bg_fun_gradient.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/bg_fun_gradient.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_fragment_three_month_comparison.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_three_month_comparison.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_close.xml.flat",
@@ -420,6 +464,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_otp_verification.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_activity_progress_detail.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_progress_detail.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_save.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/ic_save.xml"
     },
@@ -446,6 +494,10 @@
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_search_off.xml.flat",
         "source": "com.example.serious_game_usil.app-main-65:/drawable/ic_search_off.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-debug-63:/layout_item_progress_area.xml.flat",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_progress_area.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-debug-63:/drawable_ic_access_denied.xml.flat",

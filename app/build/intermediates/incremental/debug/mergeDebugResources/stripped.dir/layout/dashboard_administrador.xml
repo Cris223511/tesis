@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -20,15 +25,28 @@
             android:paddingTop="24dp"
             android:paddingBottom="16dp">
 
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/rounded_corner_background"
+                android:src="@drawable/ic_more_ver"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                app:tint="@color/on_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/userAvatar"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:background="@drawable/avatar_background"
                 android:padding="2dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_person"
-                android:background="@drawable/avatar_background"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/menuButton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/CircularImageView"
                 app:strokeColor="@color/on_primary"
@@ -44,7 +62,8 @@
                 android:textColor="@color/on_primary"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/userAvatar"
-                app:layout_constraintTop_toTopOf="@+id/userAvatar" />
+                app:layout_constraintTop_toTopOf="@+id/userAvatar"
+                app:layout_constraintEnd_toStartOf="@+id/logoutButton" />
 
             <TextView
                 android:id="@+id/userName"
@@ -54,17 +73,17 @@
                 android:textColor="@color/on_primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/greetingText"
-                app:layout_constraintTop_toBottomOf="@+id/greetingText" />
+                app:layout_constraintTop_toBottomOf="@+id/greetingText"
+                app:layout_constraintEnd_toStartOf="@+id/logoutButton" />
+
             <ImageButton
                 android:id="@+id/logoutButton"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginEnd="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_logout"
-                android:tint="@color/background_light_secondary"
+                android:tint="@color/on_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -509,7 +528,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_marginEnd="20dp"
-                                        android:background="@drawable/progress_pink" />
+                                        android:background="@drawable/nav_selected_bg"
+                                        android:foregroundTint="#03A9F4" />
 
                                 </FrameLayout>
 
@@ -585,9 +605,9 @@
                                 <FrameLayout
                                     android:layout_width="0dp"
                                     android:layout_height="16dp"
-                                    android:layout_weight="1"
                                     android:layout_marginHorizontal="8dp"
-                                    android:background="@drawable/progress_background">
+                                    android:layout_weight="1"
+                                    android:background="@drawable/nav_selected_bg">
 
                                     <View
                                         android:layout_width="match_parent"
@@ -630,3 +650,15 @@
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!-- Navigation Drawer -->
+<com.google.android.material.navigation.NavigationView
+    android:id="@+id/nav_view"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true"
+    app:headerLayout="@layout/nav_header_admin"
+    app:menu="@menu/activity_admin_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

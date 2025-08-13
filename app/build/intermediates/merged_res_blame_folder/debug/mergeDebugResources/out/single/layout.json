@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_child_ranking.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_child_ranking.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_roles.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_roles.xml"
     },
@@ -20,6 +24,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_preloader.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_progress_area.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_progress_area.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_succes.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_succes.xml"
     },
@@ -28,8 +36,20 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_error.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_stats.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_stats.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_admin_add_user.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_admin_add_user.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_padres.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_padres.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_padres_dashboard.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_padres_dashboard.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_validate_email.xml",
@@ -56,12 +76,20 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_login_error.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_progress_detail.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_progress_detail.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_new_password.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_new_password.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/list_users.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/list_users.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_admin.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_admin.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_user.xml",
@@ -76,6 +104,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_password_otp.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_children_list.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_children_list.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_creat_roles.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_creat_roles.xml"
     },
@@ -86,6 +118,10 @@
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_reset_password.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_reset_password.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_monthly_progress.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_monthly_progress.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dashboard_administrador.xml",
@@ -104,11 +140,15 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_profile.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_profile.xml"
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_three_month_comparison.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_three_month_comparison.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_login.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_profile.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_profile.xml"
     }
 ]

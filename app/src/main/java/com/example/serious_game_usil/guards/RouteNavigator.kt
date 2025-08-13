@@ -9,6 +9,7 @@ import com.example.serious_game_usil.guards.UnauthorizedActivity
 import com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity
 import com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity
 import com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles
+import com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
 
 object RouteNavigator {
@@ -26,16 +27,16 @@ object RouteNavigator {
 
         val intent = when (route) {
             "/admin", "/admin/dashboard" -> {
-                Intent(context, DashboardAdministradorBinding::class.java)
-
+                Intent(context, DashboardActivity::class.java)
             }
             "/admin/list-user" -> {
                 Intent(context, ListUserActivity::class.java)
             }
-
-
             "/admin/list-roles" -> {
                 Intent(context, ListRoles::class.java)
+            }
+            "/padre", "/padre/dashboard", "/parent", "/parent/dashboard" -> {
+                Intent(context, PadresDashboardActivity::class.java)
             }
             else -> {
                 Intent(context, DashboardActivity::class.java)

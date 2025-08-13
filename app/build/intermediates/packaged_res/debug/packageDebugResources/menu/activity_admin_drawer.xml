@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_admin_dashboard"
+            android:icon="@drawable/ic_person"
+            android:title="Dashboard Administrador"
+            android:checked="true" />
+        
+        <item
+            android:id="@+id/nav_padres_dashboard"
+            android:icon="@drawable/ic_child"
+            android:title="Dashboard Padres" />
+            
+        <item
+            android:id="@+id/nav_children_list"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="Lista de Niños" />
+    </group>
+
+    <item android:title="Gestión">
+        <menu>
+            <item
+                android:id="@+id/nav_users"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Gestionar Usuarios" />
+                
+            <item
+                android:id="@+id/nav_roles"
+                android:icon="@drawable/ic_security"
+                android:title="Gestionar Roles" />
+                
+            <item
+                android:id="@+id/nav_reports"
+                android:icon="@android:drawable/ic_menu_view"
+                android:title="Reportes" />
+        </menu>
+    </item>
+
+    <item android:title="Configuración">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="Configuración" />
+                
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>

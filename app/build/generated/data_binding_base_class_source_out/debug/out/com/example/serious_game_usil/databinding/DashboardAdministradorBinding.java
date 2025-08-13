@@ -9,20 +9,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.navigation.NavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class DashboardAdministradorBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final DrawerLayout rootView;
 
   @NonNull
   public final AppBarLayout appBarLayout;
@@ -32,6 +33,9 @@ public final class DashboardAdministradorBinding implements ViewBinding {
 
   @NonNull
   public final TextView dateText;
+
+  @NonNull
+  public final DrawerLayout drawerLayout;
 
   @NonNull
   public final TextView greetingText;
@@ -44,6 +48,9 @@ public final class DashboardAdministradorBinding implements ViewBinding {
 
   @NonNull
   public final ImageButton logoutButton;
+
+  @NonNull
+  public final ImageButton menuButton;
 
   @NonNull
   public final TextView monthSubtitle;
@@ -59,6 +66,9 @@ public final class DashboardAdministradorBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout navProfile;
+
+  @NonNull
+  public final NavigationView navView;
 
   @NonNull
   public final MaterialCardView navigationCard;
@@ -87,31 +97,35 @@ public final class DashboardAdministradorBinding implements ViewBinding {
   @NonNull
   public final TextView userName;
 
-  private DashboardAdministradorBinding(@NonNull CoordinatorLayout rootView,
+  private DashboardAdministradorBinding(@NonNull DrawerLayout rootView,
       @NonNull AppBarLayout appBarLayout, @NonNull MaterialCardView comparisonCard,
-      @NonNull TextView dateText, @NonNull TextView greetingText,
-      @NonNull TextView lastMonthsSubtitle, @NonNull TextView lastMonthsTitle,
-      @NonNull ImageButton logoutButton, @NonNull TextView monthSubtitle,
+      @NonNull TextView dateText, @NonNull DrawerLayout drawerLayout,
+      @NonNull TextView greetingText, @NonNull TextView lastMonthsSubtitle,
+      @NonNull TextView lastMonthsTitle, @NonNull ImageButton logoutButton,
+      @NonNull ImageButton menuButton, @NonNull TextView monthSubtitle,
       @NonNull TextView monthTitle, @NonNull LinearLayout navChildren,
       @NonNull LinearLayout navInfo, @NonNull LinearLayout navProfile,
-      @NonNull MaterialCardView navigationCard, @NonNull TextView pendingHours,
-      @NonNull TextView pendingMinutes, @NonNull LinearLayout statsContainer,
-      @NonNull TextView stimulusHours, @NonNull TextView stimulusMinutes,
-      @NonNull MaterialCardView todayCard, @NonNull ShapeableImageView userAvatar,
-      @NonNull TextView userName) {
+      @NonNull NavigationView navView, @NonNull MaterialCardView navigationCard,
+      @NonNull TextView pendingHours, @NonNull TextView pendingMinutes,
+      @NonNull LinearLayout statsContainer, @NonNull TextView stimulusHours,
+      @NonNull TextView stimulusMinutes, @NonNull MaterialCardView todayCard,
+      @NonNull ShapeableImageView userAvatar, @NonNull TextView userName) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.comparisonCard = comparisonCard;
     this.dateText = dateText;
+    this.drawerLayout = drawerLayout;
     this.greetingText = greetingText;
     this.lastMonthsSubtitle = lastMonthsSubtitle;
     this.lastMonthsTitle = lastMonthsTitle;
     this.logoutButton = logoutButton;
+    this.menuButton = menuButton;
     this.monthSubtitle = monthSubtitle;
     this.monthTitle = monthTitle;
     this.navChildren = navChildren;
     this.navInfo = navInfo;
     this.navProfile = navProfile;
+    this.navView = navView;
     this.navigationCard = navigationCard;
     this.pendingHours = pendingHours;
     this.pendingMinutes = pendingMinutes;
@@ -125,7 +139,7 @@ public final class DashboardAdministradorBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public DrawerLayout getRoot() {
     return rootView;
   }
 
@@ -168,6 +182,8 @@ public final class DashboardAdministradorBinding implements ViewBinding {
         break missingId;
       }
 
+      DrawerLayout drawerLayout = (DrawerLayout) rootView;
+
       id = R.id.greetingText;
       TextView greetingText = ViewBindings.findChildViewById(rootView, id);
       if (greetingText == null) {
@@ -189,6 +205,12 @@ public final class DashboardAdministradorBinding implements ViewBinding {
       id = R.id.logoutButton;
       ImageButton logoutButton = ViewBindings.findChildViewById(rootView, id);
       if (logoutButton == null) {
+        break missingId;
+      }
+
+      id = R.id.menuButton;
+      ImageButton menuButton = ViewBindings.findChildViewById(rootView, id);
+      if (menuButton == null) {
         break missingId;
       }
 
@@ -219,6 +241,12 @@ public final class DashboardAdministradorBinding implements ViewBinding {
       id = R.id.navProfile;
       LinearLayout navProfile = ViewBindings.findChildViewById(rootView, id);
       if (navProfile == null) {
+        break missingId;
+      }
+
+      id = R.id.nav_view;
+      NavigationView navView = ViewBindings.findChildViewById(rootView, id);
+      if (navView == null) {
         break missingId;
       }
 
@@ -276,11 +304,11 @@ public final class DashboardAdministradorBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DashboardAdministradorBinding((CoordinatorLayout) rootView, appBarLayout,
-          comparisonCard, dateText, greetingText, lastMonthsSubtitle, lastMonthsTitle, logoutButton,
-          monthSubtitle, monthTitle, navChildren, navInfo, navProfile, navigationCard, pendingHours,
-          pendingMinutes, statsContainer, stimulusHours, stimulusMinutes, todayCard, userAvatar,
-          userName);
+      return new DashboardAdministradorBinding((DrawerLayout) rootView, appBarLayout,
+          comparisonCard, dateText, drawerLayout, greetingText, lastMonthsSubtitle, lastMonthsTitle,
+          logoutButton, menuButton, monthSubtitle, monthTitle, navChildren, navInfo, navProfile,
+          navView, navigationCard, pendingHours, pendingMinutes, statsContainer, stimulusHours,
+          stimulusMinutes, todayCard, userAvatar, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

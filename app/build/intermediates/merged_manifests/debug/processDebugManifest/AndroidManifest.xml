@@ -195,6 +195,25 @@
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
         </activity>
 
+        <!-- Progress/Therapy Activities -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity"
+            android:label="Progreso Terapéutico"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+
+        <!-- Parent Dashboard Activity -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+            android:exported="false"
+            android:label="Dashboard Padres"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.serious_game_usil.fileprovider"

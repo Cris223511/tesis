@@ -707,6 +707,7 @@
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="gray_400">#9E9E9E</color>
     <color name="green">#4CAF50</color>
     <color name="green_500">#4CAF50</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
@@ -1089,6 +1090,8 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
@@ -1781,6 +1784,8 @@
     <dimen name="mtrl_tooltip_minWidth">32dp</dimen>
     <dimen name="mtrl_tooltip_padding">12dp</dimen>
     <dimen name="mtrl_transition_shared_axis_slide_distance">30dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="notification_action_icon_size">32dp</dimen>
     <dimen name="notification_action_text_size">13sp</dimen>
     <dimen name="notification_big_circle_margin">12dp</dimen>

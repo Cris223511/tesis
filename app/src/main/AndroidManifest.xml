@@ -198,6 +198,25 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
         </activity>
+
+        <!-- Progress/Therapy Activities -->
+        <activity
+            android:name=".presentation.ui.progress.ProgressDetailActivity"
+            android:label="Progreso Terapéutico"
+            android:parentActivityName=".presentation.ui.administrador.DashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+
+        <!-- Parent Dashboard Activity -->
+        <activity
+            android:name=".presentation.ui.padres.PadresDashboardActivity"
+            android:label="Dashboard Padres"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
         
         <provider
             android:name="androidx.core.content.FileProvider"

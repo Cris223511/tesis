@@ -10,6 +10,7 @@
     <color name="divider">#E0E0E0</color>
     <color name="error">#B00020</color>
     <color name="error_color">#DC2626</color>
+    <color name="gray_400">#9E9E9E</color>
     <color name="green">#4CAF50</color>
     <color name="green_500">#4CAF50</color>
     <color name="info_color">#4CAF50</color>
@@ -50,6 +51,10 @@
     <color name="white">#FFFFFF</color>
     <color name="white_alpha_80">#CCFFFFFF</color>
     <color name="white_alpha_90">#E6FFFFFF</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <string name="app_name">serious_game_usil</string>
     <style name="CircleImageView" parent="">
         <item name="cornerFamily">rounded</item>

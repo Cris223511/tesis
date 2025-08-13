@@ -139,8 +139,8 @@ object AuthManager {
 
                 normalizedRoles.any { it in listOf("admin", "administrador") }
             // Rutas de padre
-            route.contains("/padre") || route.contains("/parent") ->
-                normalizedRoles.any { it in listOf("padre", "padres", "parent") }
+            route.contains("/padre/dashboard") || route.contains("/parent/dashboard") ->
+                normalizedRoles.any { it in listOf("padre", "padres", "parent", "admin", "administrador") }
 
             // Rutas de hijo/estudiante
             route.contains("/hijo") || route.contains("/student") ->
