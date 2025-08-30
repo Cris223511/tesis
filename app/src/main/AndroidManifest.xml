@@ -217,6 +217,17 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
+        <!-- Info Activity -->
+        <activity
+            android:name=".presentation.ui.administrador.info.InfoActivity"
+            android:label="Información"
+            android:parentActivityName=".presentation.ui.administrador.DashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
         
         <provider
             android:name="androidx.core.content.FileProvider"

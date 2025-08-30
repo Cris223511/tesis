@@ -110,7 +110,8 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         }
 
         binding.navContactar.setOnClickListener {
-            Toast.makeText(this, "Contactar soporte - Próximamente", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -160,7 +161,8 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
                 Toast.makeText(this, "Mi perfil - Próximamente", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_contacto -> {
-                Toast.makeText(this, "Contactar soporte - Próximamente", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_logout_padre -> {
                 AuthManager.clearSession()

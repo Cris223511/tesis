@@ -1,154 +1,162 @@
 [
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_child_ranking.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_child_ranking.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_child_ranking.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_child_ranking.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_roles.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_roles.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_roles.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_roles.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_activity_pager.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_activity_pager.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_activity_pager.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_activity_pager.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_edit_profile.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_edit_profile.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_main.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_otp_verification.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_otp_verification.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_admin_add_user.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_admin_add_user.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_preloader.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_preloader.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_preloader.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_preloader.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_progress_area.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_progress_area.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_edit_profile.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/dialog_edit_profile.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_succes.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_succes.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_profile.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_profile.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_error.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_error.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_reset_password.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_reset_password.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_stats.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_stats.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_error.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/dialog_error.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_admin_add_user.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_admin_add_user.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_validate_email.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_validate_email.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_padres.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_padres.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_user_role.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_user_role.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_padres_dashboard.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_padres_dashboard.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_user.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_edit_user.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_validate_email.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_validate_email.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_info.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_info.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_register.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_register.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_children_list.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/fragment_progress_children_list.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_unauthorized.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_unauthorized.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_unauthorized.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_unauthorized.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_users.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_users.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_login_error.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/dialog_login_error.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_user_role.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_user_role.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_users.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_users.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_login_error.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_login_error.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_progress_area.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_progress_area.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_progress_detail.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_progress_detail.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_new_password.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_new_password.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_new_password.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_new_password.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_user_role.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_user_role.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/list_users.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/list_users.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_succes.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/dialog_succes.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_admin.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/nav_header_admin.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/list_users.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/list_users.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_user.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_edit_user.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_password_reset_success.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_password_reset_success.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_user_role.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_user_role.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_roles.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_roles.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_password_otp.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_password_otp.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_stats.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/fragment_progress_stats.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_progress_children_list.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_progress_children_list.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_password_otp.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_password_otp.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_creat_roles.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_creat_roles.xml"
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_info.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_info.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_roles.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_edit_roles.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_three_month_comparison.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/fragment_three_month_comparison.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_reset_password.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_reset_password.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_register.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_register.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_monthly_progress.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/item_monthly_progress.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_roles.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_edit_roles.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dashboard_administrador.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/dashboard_administrador.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_padres.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/nav_header_padres.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_roles.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_roles.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_padres_dashboard.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_padres_dashboard.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_password_reset_success.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_password_reset_success.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_monthly_progress.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/item_monthly_progress.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_main.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_main.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/nav_header_admin.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/nav_header_admin.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/fragment_three_month_comparison.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/fragment_three_month_comparison.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_login.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_login.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_login.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_login.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_otp_verification.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_otp_verification.xml"
     },
     {
-        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_profile.xml",
-        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_profile.xml"
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_creat_roles.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_creat_roles.xml"
+    },
+    {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_progress_detail.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/activity_progress_detail.xml"
+    },
+    {
+        "merged": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dashboard_administrador.xml",
+        "source": "/Users/jhafetcanepa/.gradle/daemon/8.9/com.example.serious_game_usil.app-main-65:/layout/dashboard_administrador.xml"
     }
 ]

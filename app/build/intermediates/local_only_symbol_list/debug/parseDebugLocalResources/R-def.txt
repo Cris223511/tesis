@@ -102,9 +102,11 @@ drawable ic_email
 drawable ic_empty_users
 drawable ic_error
 drawable ic_eye_closed
+drawable ic_facebook
 drawable ic_gender
 drawable ic_home
 drawable ic_info
+drawable ic_instagram
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_lock
@@ -118,8 +120,10 @@ drawable ic_save
 drawable ic_search
 drawable ic_search_off
 drawable ic_security
+drawable ic_task_alt
 drawable ic_time
 drawable ic_toggle_off
+drawable ic_twitter
 drawable ic_visibility
 drawable ic_visibility_off
 drawable ic_warning
@@ -187,6 +191,7 @@ id confirmPasswordEditText
 id confirmPasswordInputLayout
 id confirmPasswordToggle
 id continueButton
+id copyrightText
 id createButton
 id currentRoleNameText
 id dateText
@@ -210,6 +215,8 @@ id editTelefono
 id editTipoDocumento
 id emailEditText
 id emailInputLayout
+id emailSupport
+id emailSupportText
 id emailText
 id emptySearchLayout
 id emptySearchText
@@ -407,6 +414,7 @@ layout activity_admin_add_user
 layout activity_creat_roles
 layout activity_edit_roles
 layout activity_edit_user
+layout activity_info
 layout activity_login
 layout activity_main
 layout activity_new_password

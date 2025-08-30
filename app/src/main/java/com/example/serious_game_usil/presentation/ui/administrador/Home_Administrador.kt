@@ -149,18 +149,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     private fun showInfoOptions() {
-        val options = arrayOf("Estadísticas del Sistema", "Logs de Actividad", "Acerca de")
-
-        AlertDialog.Builder(this)
-            .setTitle("Información")
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> Toast.makeText(this, "Estadísticas - En desarrollo", Toast.LENGTH_SHORT).show()
-                    1 -> Toast.makeText(this, "Logs - En desarrollo", Toast.LENGTH_SHORT).show()
-                    2 -> Toast.makeText(this, "Versión 1.0.0", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .show()
+        // Navegar directamente a la Activity de información
+        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity::class.java)
+        startActivity(intent)
     }
     
     private fun showTherapyProgressOptions() {
