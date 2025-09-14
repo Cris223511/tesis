@@ -219,25 +219,3 @@ class EmotionService {
 }
 ```
 
-### Con Backend Go (backend_usuarios)
-El servicio valida automáticamente tokens JWT generados por el backend Go usando el mismo `JWT_SECRET`.
-
-## 📄 Licencia
-
-MIT License - Ver archivo LICENSE para más detalles.
-
-## 👥 Contribuir
-
-1. Fork el proyecto
-2. Crear rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abrir Pull Request
-
-## 📞 Soporte
-
-Para soporte técnico, contactar al equipo de desarrollo.
-
----
-
-**Emotion ML Service** - Análisis de emociones inteligente con control de acceso empresarial.
