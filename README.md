@@ -63,7 +63,7 @@ MODEL_POOL_SIZE=3
 
 # Service settings
 PORT=5000
-JAVA_SERVICE_URL=http://localhost:8080
+GOLANG_SERVICE_URL=http://localhost:8080
 ```
 
 5. **Descargar/Entrenar modelo ML**
