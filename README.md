@@ -6,7 +6,7 @@ Servicio de análisis de emociones con machine learning usando CNN, integrado co
 
 - **Análisis de emociones en tiempo real** con modelo ML de alta precisión (95%+)
 - **Autenticación JWT** integrada con backend_usuarios (Go)
-- **Control de acceso basado en roles** (Padre/Admin)
+- **Control de acceso basado en roles** (Terapeuta/Admin/Cuidador)
 - **Rate limiting** con Redis (100 peticiones/día para usuarios)
 - **Sistema de ediciones limitadas** (2 ediciones/día para rol padre)
 - **Cache inteligente** para optimizar rendimiento
