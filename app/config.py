@@ -1,41 +1,53 @@
 from pydantic_settings import BaseSettings
+from pydantic import Field
 from typing import List
 from functools import lru_cache
 import os
 
 class Settings(BaseSettings):
 
-    db_host: str = os.getenv("DB_HOST", "localhost")
-    db_port: int = int(os.getenv("DB_PORT", 3306))
-    db_name: str = os.getenv("DB_NAME", "")
-    db_user: str = os.getenv("DB_USER", "")
-    db_password: str = os.getenv("DB_PASSWORD", "")
+    # Database
+    db_host: str = "localhost"
+    db_port: int = 3306
+    db_name: str = ""
+    db_user: str = ""
+    db_password: str = ""
 
     # Redis cache
-    redis_host: str = os.getenv("REDIS_HOST", "localhost")
-    redis_port: int = int(os.getenv("REDIS_PORT", 6379))
+    redis_host: str = "localhost"
+    redis_port: int = 6379
     redis_db: int = 0
 
-    jwt_secret: str = os.getenv("JWT_SECRET", "")
+    # JWT
+    jwt_secret: str = ""
 
-    # ML Model 
-    model_path: str = os.getenv("MODEL_PATH", "models/emotion_model.h5")
-    max_batch_size: int = int(os.getenv("MAX_BATCH_SIZE", 32))
-    model_pool_size: int = int(os.getenv("MODEL_POOL_SIZE", 3))
+    # ML Model
+    model_path: str = "models/emotion_model.h5"
+    max_batch_size: int = 32
+    model_pool_size: int = 3
 
-    service_port: int = int(os.getenv("PORT", 5000))
-    java_service_url: str = os.getenv("JAVA_SERVICE_URL", "http://localhost:8080")
+    # Service config - PORT del .env se lee como 'port'
+    port: int = Field(5000, alias='PORT')  # Acepta PORT del .env
+    service_port: int = 5000  # Para compatibilidad con el código existente
+    java_service_url: str = "http://localhost:8080"
 
     # Limitaciones de uso
     max_requests_per_day: int = 100
     max_edits_per_day: int = 2
 
-  
     emotions: List[str] = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
     bias_correction: List[float] = [1.1, 0.9, 0.95, 1.2, 1.05, 0.95, 1.0]
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Sincronizar port con service_port
+        if hasattr(self, 'port'):
+            self.service_port = self.port
+
     class Config:
         env_file = ".env"
+        env_file_encoding = 'utf-8'
+        extra = 'allow'  # Permitir campos extras del .env
 
 @lru_cache()
 def get_settings():

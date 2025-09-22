@@ -3,9 +3,51 @@ from typing import Optional, List, Dict
 from datetime import datetime
 
 class EmotionRequest(BaseModel):
-    image_base64: str
-    metadata: Optional[dict] = None
+    image: str  # Base64 encoded image - matches Android field name
+    description: Optional[str] = None
+    child_id: Optional[int] = None
 
+# Emotion scores matching Android format
+class EmotionScores(BaseModel):
+    angry: float
+    disgust: float
+    fear: float
+    happy: float
+    neutral: float
+    sad: float
+    surprise: float
+
+# Face location data
+class FaceLocation(BaseModel):
+    x: int
+    y: int
+    width: int
+    height: int
+
+# Individual emotion result
+class EmotionResult(BaseModel):
+    face_index: int
+    emotions: EmotionScores
+    dominant_emotion: str
+    face_location: Optional[FaceLocation] = None
+
+# Main response matching Android EmotionAnalysisResponse
+class EmotionAnalysisResponse(BaseModel):
+    id: str
+    user_id: int
+    child_id: Optional[int] = None
+    child_name: Optional[str] = None
+    image: str
+    description: Optional[str] = None
+    results: List[EmotionResult]
+    dominant_emotion: str
+    confidence_score: float
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    can_edit: bool = True
+    can_delete: bool = False
+
+# Legacy response for compatibility
 class EmotionResponse(BaseModel):
     success: bool
     emotions: Optional[dict] = None

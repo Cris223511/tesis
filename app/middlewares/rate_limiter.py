@@ -22,14 +22,30 @@ class RateLimiter:
         if not roles:
             return False
         role_list = roles.split(",") if "," in roles else [roles]
-        return "AD" in role_list
+        role_list_lower = [role.strip().lower() for role in role_list]
+        return any(role in ["admin", "administrador", "ad"] for role in role_list_lower)
 
     def is_padre(self, roles: str) -> bool:
-        """Verifica si el usuario tiene rol padre"""
+        """Verifica si el usuario tiene rol padre/cuidador"""
         if not roles:
             return False
         role_list = roles.split(",") if "," in roles else [roles]
-        return "PD" in role_list
+        role_list_lower = [role.strip().lower() for role in role_list]
+        return any(role in ["padre", "cuidador", "pd", "parent"] for role in role_list_lower)
+
+    def is_terapeuta(self, roles: str) -> bool:
+        """Verifica si el usuario tiene rol terapeuta"""
+        if not roles:
+            return False
+        role_list = roles.split(",") if "," in roles else [roles]
+        role_list_lower = [role.strip().lower() for role in role_list]
+        return any(role in ["terapeuta", "therapist", "specialist"] for role in role_list_lower)
+
+    def has_emotion_permissions(self, roles: str) -> bool:
+        """Verifica si el usuario tiene permisos para análisis de emociones"""
+        return (self.is_admin(roles) or
+                self.is_padre(roles) or
+                self.is_terapeuta(roles))
 
     async def check_rate_limit(self, user_id: int, client_ip: str, roles: str = "") -> dict:
         """
@@ -124,8 +140,8 @@ class RateLimiter:
                 "max_edits": -1
             }
 
-        # Si no es padre, no puede editar
-        if not self.is_padre(roles):
+        # Si no tiene permisos de emoción, no puede editar
+        if not self.has_emotion_permissions(roles):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="No tienes permisos para editar"
