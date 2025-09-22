@@ -1,6 +1,6 @@
 # Emotion ML Service
 
-Servicio de análisis de emociones con machine learning usando FastAPI, integrado con sistema de autenticación JWT y control de acceso basado en roles.
+Servicio de análisis de emociones con machine learning usando CNN, integrado con sistema de autenticación JWT y control de acceso basado en roles.
 
 ## 🚀 Características
 
