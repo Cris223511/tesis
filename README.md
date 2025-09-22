@@ -125,7 +125,9 @@ Authorization: Bearer <jwt_token>
 
 | Rol | Código | Permisos |
 |-----|--------|----------|
-| **Padre** | PD | Analizar emociones (100/día), ver sus análisis, editar sus análisis (2/día) |
+| **Terapeuta** | TP | Analizar emociones (100/día), ver sus análisis, editar sus análisis (2/día) |
+| **Cuidador** | CD |  ver analisis y reportes |,
+| **Paciente** | PC |  ver analisis y reportes |,
 | **Admin** | AD | Sin límites, acceso completo, puede eliminar cualquier análisis |
 
 ## 📊 Modelo de Machine Learning
