@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -24,6 +25,18 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
   private final DrawerLayout rootView;
 
   @NonNull
+  public final MaterialCardView cardManagePatients;
+
+  @NonNull
+  public final MaterialCardView cardProgressAnalysis;
+
+  @NonNull
+  public final MaterialCardView cardReports;
+
+  @NonNull
+  public final MaterialCardView cardSessionsManagement;
+
+  @NonNull
   public final DrawerLayout drawerLayout;
 
   @NonNull
@@ -33,13 +46,31 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
   public final ImageButton menuButton;
 
   @NonNull
-  public final MaterialCardView navPatients;
-
-  @NonNull
-  public final MaterialCardView navProgress;
-
-  @NonNull
   public final NavigationView navView;
+
+  @NonNull
+  public final TextView textActivePatients;
+
+  @NonNull
+  public final TextView textAvgProgress;
+
+  @NonNull
+  public final TextView textCompletedSessions;
+
+  @NonNull
+  public final TextView textDateTime;
+
+  @NonNull
+  public final TextView textTotalPatients;
+
+  @NonNull
+  public final TextView textWeeklyProgress;
+
+  @NonNull
+  public final TextView textWeeklySessions;
+
+  @NonNull
+  public final Toolbar toolbar;
 
   @NonNull
   public final ShapeableImageView userAvatar;
@@ -48,17 +79,32 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
   public final TextView userName;
 
   private DashboardTerapeutaBinding(@NonNull DrawerLayout rootView,
+      @NonNull MaterialCardView cardManagePatients, @NonNull MaterialCardView cardProgressAnalysis,
+      @NonNull MaterialCardView cardReports, @NonNull MaterialCardView cardSessionsManagement,
       @NonNull DrawerLayout drawerLayout, @NonNull ImageButton logoutButton,
-      @NonNull ImageButton menuButton, @NonNull MaterialCardView navPatients,
-      @NonNull MaterialCardView navProgress, @NonNull NavigationView navView,
+      @NonNull ImageButton menuButton, @NonNull NavigationView navView,
+      @NonNull TextView textActivePatients, @NonNull TextView textAvgProgress,
+      @NonNull TextView textCompletedSessions, @NonNull TextView textDateTime,
+      @NonNull TextView textTotalPatients, @NonNull TextView textWeeklyProgress,
+      @NonNull TextView textWeeklySessions, @NonNull Toolbar toolbar,
       @NonNull ShapeableImageView userAvatar, @NonNull TextView userName) {
     this.rootView = rootView;
+    this.cardManagePatients = cardManagePatients;
+    this.cardProgressAnalysis = cardProgressAnalysis;
+    this.cardReports = cardReports;
+    this.cardSessionsManagement = cardSessionsManagement;
     this.drawerLayout = drawerLayout;
     this.logoutButton = logoutButton;
     this.menuButton = menuButton;
-    this.navPatients = navPatients;
-    this.navProgress = navProgress;
     this.navView = navView;
+    this.textActivePatients = textActivePatients;
+    this.textAvgProgress = textAvgProgress;
+    this.textCompletedSessions = textCompletedSessions;
+    this.textDateTime = textDateTime;
+    this.textTotalPatients = textTotalPatients;
+    this.textWeeklyProgress = textWeeklyProgress;
+    this.textWeeklySessions = textWeeklySessions;
+    this.toolbar = toolbar;
     this.userAvatar = userAvatar;
     this.userName = userName;
   }
@@ -90,6 +136,30 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cardManagePatients;
+      MaterialCardView cardManagePatients = ViewBindings.findChildViewById(rootView, id);
+      if (cardManagePatients == null) {
+        break missingId;
+      }
+
+      id = R.id.cardProgressAnalysis;
+      MaterialCardView cardProgressAnalysis = ViewBindings.findChildViewById(rootView, id);
+      if (cardProgressAnalysis == null) {
+        break missingId;
+      }
+
+      id = R.id.cardReports;
+      MaterialCardView cardReports = ViewBindings.findChildViewById(rootView, id);
+      if (cardReports == null) {
+        break missingId;
+      }
+
+      id = R.id.cardSessionsManagement;
+      MaterialCardView cardSessionsManagement = ViewBindings.findChildViewById(rootView, id);
+      if (cardSessionsManagement == null) {
+        break missingId;
+      }
+
       DrawerLayout drawerLayout = (DrawerLayout) rootView;
 
       id = R.id.logoutButton;
@@ -104,21 +174,57 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.navPatients;
-      MaterialCardView navPatients = ViewBindings.findChildViewById(rootView, id);
-      if (navPatients == null) {
-        break missingId;
-      }
-
-      id = R.id.navProgress;
-      MaterialCardView navProgress = ViewBindings.findChildViewById(rootView, id);
-      if (navProgress == null) {
-        break missingId;
-      }
-
       id = R.id.navView;
       NavigationView navView = ViewBindings.findChildViewById(rootView, id);
       if (navView == null) {
+        break missingId;
+      }
+
+      id = R.id.textActivePatients;
+      TextView textActivePatients = ViewBindings.findChildViewById(rootView, id);
+      if (textActivePatients == null) {
+        break missingId;
+      }
+
+      id = R.id.textAvgProgress;
+      TextView textAvgProgress = ViewBindings.findChildViewById(rootView, id);
+      if (textAvgProgress == null) {
+        break missingId;
+      }
+
+      id = R.id.textCompletedSessions;
+      TextView textCompletedSessions = ViewBindings.findChildViewById(rootView, id);
+      if (textCompletedSessions == null) {
+        break missingId;
+      }
+
+      id = R.id.textDateTime;
+      TextView textDateTime = ViewBindings.findChildViewById(rootView, id);
+      if (textDateTime == null) {
+        break missingId;
+      }
+
+      id = R.id.textTotalPatients;
+      TextView textTotalPatients = ViewBindings.findChildViewById(rootView, id);
+      if (textTotalPatients == null) {
+        break missingId;
+      }
+
+      id = R.id.textWeeklyProgress;
+      TextView textWeeklyProgress = ViewBindings.findChildViewById(rootView, id);
+      if (textWeeklyProgress == null) {
+        break missingId;
+      }
+
+      id = R.id.textWeeklySessions;
+      TextView textWeeklySessions = ViewBindings.findChildViewById(rootView, id);
+      if (textWeeklySessions == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbar;
+      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
         break missingId;
       }
 
@@ -134,8 +240,11 @@ public final class DashboardTerapeutaBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DashboardTerapeutaBinding((DrawerLayout) rootView, drawerLayout, logoutButton,
-          menuButton, navPatients, navProgress, navView, userAvatar, userName);
+      return new DashboardTerapeutaBinding((DrawerLayout) rootView, cardManagePatients,
+          cardProgressAnalysis, cardReports, cardSessionsManagement, drawerLayout, logoutButton,
+          menuButton, navView, textActivePatients, textAvgProgress, textCompletedSessions,
+          textDateTime, textTotalPatients, textWeeklyProgress, textWeeklySessions, toolbar,
+          userAvatar, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

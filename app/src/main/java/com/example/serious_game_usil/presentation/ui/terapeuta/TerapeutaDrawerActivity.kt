@@ -75,16 +75,26 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
     }
 
     private fun setupQuickActions() {
-        // Botón de pacientes
-        binding.navPatients.setOnClickListener {
+        // Botón de gestionar pacientes
+        binding.cardManagePatients.setOnClickListener {
             val intent = Intent(this, PatientsListActivity::class.java)
             startActivity(intent)
         }
 
-        // Botón de progreso
-        binding.navProgress.setOnClickListener {
+        // Botón de análisis de progreso
+        binding.cardProgressAnalysis.setOnClickListener {
             val intent = Intent(this, ProgressDetailActivity::class.java)
             startActivity(intent)
+        }
+
+        // Botón de gestionar sesiones
+        binding.cardSessionsManagement.setOnClickListener {
+            Toast.makeText(this, "Gestión de Sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
+        }
+
+        // Botón de reportes
+        binding.cardReports.setOnClickListener {
+            Toast.makeText(this, "Reportes y Análisis - En desarrollo", Toast.LENGTH_SHORT).show()
         }
     }
 

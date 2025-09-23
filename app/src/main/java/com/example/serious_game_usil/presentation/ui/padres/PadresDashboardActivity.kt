@@ -122,7 +122,8 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         }
 
         binding.cardRegistrarSesion.setOnClickListener {
-            startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
+            val intent = Intent(this, MySessionsActivity::class.java)
+            startActivity(intent)
         }
 
         binding.cardProgreso.setOnClickListener {

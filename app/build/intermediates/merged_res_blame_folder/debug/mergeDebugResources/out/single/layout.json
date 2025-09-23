@@ -24,6 +24,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_succes.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_session.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_session.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_error.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_error.xml"
     },
@@ -144,6 +148,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_unauthorized.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_my_sessions.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_my_sessions.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_user_role.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_user_role.xml"
     },
@@ -170,6 +178,10 @@
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_password_otp.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/activity_password_otp.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_session_detail.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_session_detail.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_reset_password.xml",

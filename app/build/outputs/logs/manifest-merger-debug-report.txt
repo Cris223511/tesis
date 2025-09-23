@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:299:9-307:20
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:325:9-333:20
 	android:grantUriPermissions
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:303:13-47
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:329:13-47
 	android:authorities
 		INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:301:13-64
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:327:13-64
 	android:exported
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:302:13-37
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:328:13-37
 	android:name
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:300:13-62
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:326:13-62
 manifest
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-310:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-310:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-310:12
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-310:12
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-336:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-336:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-336:12
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:2:1-336:12
 MERGED from [androidx.databinding:viewbinding:8.7.3] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/df8526dc9dc382855825d4d2a770947d/transformed/viewbinding-8.7.3/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/139614a3f4c81f646f0d4233a3d6207e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:2:1-9:12
@@ -146,8 +146,8 @@ ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/A
 	android:name
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:16:19-67
 application
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-308:19
-INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-308:19
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-334:19
+INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-334:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b486ee0fa6d963791ee4c1f5eb2c547d/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/139614a3f4c81f646f0d4233a3d6207e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
@@ -524,24 +524,52 @@ ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/A
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:285:13-69
 	android:name
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:280:13-70
-activity#com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:292:9-297:72
+activity#com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:292:9-302:20
 	android:screenOrientation
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:296:13-49
+	android:parentActivityName
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:297:13-89
 	android:label
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:294:13-48
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:294:13-54
 	android:exported
 		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:295:13-37
 	android:theme
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:297:13-69
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:298:13-69
 	android:name
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:293:13-78
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:293:13-70
+activity#com.example.serious_game_usil.presentation.ui.padres.SessionDetailActivity
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:305:9-315:20
+	android:screenOrientation
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:309:13-49
+	android:parentActivityName
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:310:13-84
+	android:label
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:307:13-46
+	android:exported
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:308:13-37
+	android:theme
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:311:13-69
+	android:name
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:306:13-73
+activity#com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:318:9-323:72
+	android:screenOrientation
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:322:13-49
+	android:label
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:320:13-48
+	android:exported
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:321:13-37
+	android:theme
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:323:13-69
+	android:name
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:319:13-78
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:304:13-306:54
+ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:330:13-332:54
 	android:resource
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:306:17-51
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:332:17-51
 	android:name
-		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:305:17-67
+		ADDED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:331:17-67
 uses-sdk
 INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml

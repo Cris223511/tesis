@@ -16,6 +16,8 @@
     <color name="green">#4CAF50</color>
     <color name="green_500">#4CAF50</color>
     <color name="info_color">#4CAF50</color>
+    <color name="md_grey_300">#E0E0E0</color>
+    <color name="md_grey_600">#757575</color>
     <color name="nav_icon_bg_inactive">#E3F2FD</color>
     <color name="nav_selected_bg_color">#1976D2</color>
     <color name="on_background">#000000</color>
@@ -25,6 +27,7 @@
     <color name="on_surface">#000000</color>
     <color name="on_surface_variant">#666666</color>
     <color name="orange">#FF9800</color>
+    <color name="orange_500">#FF9800</color>
     <color name="outline">#E0E0E0</color>
     <color name="primary">#1976D2</color>
     <color name="primary_dark">#5A67D8</color>

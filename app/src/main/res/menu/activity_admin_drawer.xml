@@ -9,15 +9,20 @@
             android:icon="@drawable/ic_person"
             android:title="Dashboard Administrador"
             android:checked="true" />
-        
+
+        <item
+            android:id="@+id/nav_therapist_dashboard"
+            android:icon="@drawable/ic_therapist_small"
+            android:title="Dashboard Terapeuta" />
+
         <item
             android:id="@+id/nav_padres_dashboard"
             android:icon="@drawable/ic_child"
             android:title="Dashboard Cuidador" />
-            
+
         <item
             android:id="@+id/nav_children_list"
-            android:icon="@android:drawable/ic_menu_view"
+            android:icon="@drawable/ic_patients_empty"
             android:title="Lista de Pacientes" />
     </group>
 

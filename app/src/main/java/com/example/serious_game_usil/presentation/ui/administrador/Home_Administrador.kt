@@ -473,6 +473,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_admin_dashboard -> {
                 // Ya estamos en el dashboard admin
             }
+            R.id.nav_therapist_dashboard -> {
+                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity::class.java))
+            }
             R.id.nav_padres_dashboard -> {
                 startActivity(Intent(this, PadresDashboardActivity::class.java))
             }

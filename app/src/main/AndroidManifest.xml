@@ -288,6 +288,32 @@
                 android:value=".presentation.ui.padres.PadresDashboardActivity" />
         </activity>
 
+        <!-- My Sessions Activity (for Parents/Caregivers) -->
+        <activity
+            android:name=".presentation.ui.padres.MySessionsActivity"
+            android:label="Mis Sesiones Terapéuticas"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.padres.PadresDashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+        </activity>
+
+        <!-- Session Detail Activity (for Parents/Caregivers) -->
+        <activity
+            android:name=".presentation.ui.padres.SessionDetailActivity"
+            android:label="Detalle de Sesión"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.padres.MySessionsActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.MySessionsActivity" />
+        </activity>
+
         <!-- Therapist Dashboard Activity -->
         <activity
             android:name=".presentation.ui.terapeuta.TerapeutaDrawerActivity"
