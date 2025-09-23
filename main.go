@@ -174,9 +174,8 @@ func migrateDatabase() error {
 		&models.ProfileChange{},
 		&models.OTP{},
 		&models.OTPResend{},
-
+		&models.Patient{},
 		&models.TherapySession{},
-		&models.AutismProgressMetrics{},
 	)
 }
 
@@ -185,7 +184,7 @@ func initializeServices() (*serviceContainer, error) {
 	roleService := services.NewRoleService(config.DB)
 	otpService := services.NewOTPService(config.DB)
 	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
-	autismProgressService := services.NewAutismProgressService(config.DB)
+	patientService := services.NewPatientService(config.DB)
 
 	bioService, err := services.NewBioService(
 		config.DB,
@@ -199,22 +198,22 @@ func initializeServices() (*serviceContainer, error) {
 	}
 
 	return &serviceContainer{
-		user:           userService,
-		role:           roleService,
-		bio:            *bioService,
-		otp:            otpService,
-		deviceIP:       *deviceIPRepo,
-		autismProgress: autismProgressService,
+		user:    userService,
+		role:    roleService,
+		bio:     *bioService,
+		otp:     otpService,
+		deviceIP: *deviceIPRepo,
+		patient: patientService,
 	}, nil
 }
 
 func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
-		user:   controllers.NewUserController(services.user, services.otp, services.deviceIP), 
-		role:   controllers.NewRoleController(services.role),
-		auth:   controllers.NewAuthController(),
-		bio:    controllers.NewBioController(&services.bio),
-		autism: controllers.NewAutismController(services.autismProgress),
+		user:    controllers.NewUserController(services.user, services.otp, services.deviceIP),
+		role:    controllers.NewRoleController(services.role),
+		auth:    controllers.NewAuthController(),
+		bio:     controllers.NewBioController(&services.bio),
+		patient: controllers.NewPatientController(services.patient),
 	}
 }
 
@@ -224,7 +223,7 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.role,
 		controllers.auth,
 		controllers.bio,
-		controllers.autism,
+		controllers.patient,
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -252,20 +251,20 @@ func getPort() string {
 }
 
 type serviceContainer struct {
-	user           services.UserService
-	role           services.RoleService
-	bio            services.BioService
-	otp            services.OTPService
-	deviceIP       services.DeviceIPRepo
-	autismProgress *services.AutismProgressService
+	user     services.UserService
+	role     services.RoleService
+	bio      services.BioService
+	otp      services.OTPService
+	deviceIP services.DeviceIPRepo
+	patient  *services.PatientService
 }
 
 type controllerContainer struct {
-	user   *controllers.UserController
-	role   *controllers.RoleController
-	auth   *controllers.AuthController
-	bio    *controllers.BioController
-	autism *controllers.AutismController
+	user    *controllers.UserController
+	role    *controllers.RoleController
+	auth    *controllers.AuthController
+	bio     *controllers.BioController
+	patient *controllers.PatientController
 }
 
 func main() {

@@ -42,8 +42,8 @@ func GenerateToken(user *models.Usuarios) (string, string, error) {
 	}
 	rolesAsString := strings.Join(roleNames, ",")
 
-	// Token principal (expira en 20 min)
-	expirationTime := time.Now().Add(20 * time.Minute)
+	// Token principal (expira en 2 horas)
+	expirationTime := time.Now().Add(2 * time.Hour)
 	claims := &Claims{
 		UserID: user.ID,
 		Roles:  rolesAsString,
@@ -93,8 +93,8 @@ func RefreshToken(refreshTokenString string) (string, string, error) {
 		return "", "", errors.New("ID de usuario inválido en los claims")
 	}
 
-	// Generar un nuevo access token (expira en 20 minutos)
-	expirationTime := time.Now().Add(20 * time.Minute)
+	// Generar un nuevo access token (expira en 2 horas)
+	expirationTime := time.Now().Add(2 * time.Hour)
 	newClaims := &Claims{
 		UserID: uint(userID),
 		// Los roles se recuperan del campo Subject del refresh token

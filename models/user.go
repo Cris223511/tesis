@@ -1,7 +1,9 @@
 package models
 
 import (
+	"database/sql/driver"
 	"errors"
+	"strings"
 	"time"
 
 	"github.com/duo-labs/webauthn/webauthn"
@@ -89,4 +91,47 @@ type FechaNacimiento time.Time
 func (f FechaNacimiento) MarshalJSON() ([]byte, error) {
   s := time.Time(f).Format(`"2006-01-02"`)
   return []byte(s), nil
+}
+
+func (f *FechaNacimiento) UnmarshalJSON(data []byte) error {
+	str := string(data)
+	str = strings.Trim(str, `"`)
+	t, err := time.Parse("2006-01-02", str)
+	if err != nil {
+		return err
+	}
+	*f = FechaNacimiento(t)
+	return nil
+}
+
+// Scan implements the Scanner interface for database/sql
+func (f *FechaNacimiento) Scan(value interface{}) error {
+	if value == nil {
+		return nil
+	}
+
+	switch v := value.(type) {
+	case time.Time:
+		*f = FechaNacimiento(v)
+	case []byte:
+		t, err := time.Parse("2006-01-02 15:04:05", string(v))
+		if err != nil {
+			return err
+		}
+		*f = FechaNacimiento(t)
+	case string:
+		t, err := time.Parse("2006-01-02 15:04:05", v)
+		if err != nil {
+			return err
+		}
+		*f = FechaNacimiento(t)
+	default:
+		return errors.New("cannot scan FechaNacimiento")
+	}
+	return nil
+}
+
+// Value implements the driver Valuer interface
+func (f FechaNacimiento) Value() (driver.Value, error) {
+	return time.Time(f), nil
 }

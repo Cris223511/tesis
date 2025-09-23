@@ -704,19 +704,18 @@ func (ctrl *UserController) Search(c *gin.Context) {
     // Cambiar de "search" a "q"
     q := c.Query("q")
     limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
-    
-    if q == "" {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Término de búsqueda requerido"})
-        return
-    }
-    
+
     var users []models.Usuarios
-    searchPattern := "%" + q + "%"
-    
-    err := ctrl.UserService.DB().
-        Preload("Roles").
-        Where("nombres_apellidos LIKE ? OR num_documento LIKE ? OR correo LIKE ?", 
-            searchPattern, searchPattern, searchPattern).
+    query := ctrl.UserService.DB().Preload("Roles")
+
+    if q != "" {
+        // Si hay término de búsqueda, filtrar
+        searchPattern := "%" + q + "%"
+        query = query.Where("nombres_apellidos LIKE ? OR num_documento LIKE ? OR correo LIKE ?",
+            searchPattern, searchPattern, searchPattern)
+    }
+
+    err := query.
         Limit(limit).
         Order("created_at DESC").
         Find(&users).Error
