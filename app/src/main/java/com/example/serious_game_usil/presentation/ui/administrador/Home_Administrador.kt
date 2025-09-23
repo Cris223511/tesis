@@ -26,6 +26,7 @@ import com.example.serious_game_usil.presentation.ui.progress.ProgressViewModel
 import com.example.serious_game_usil.presentation.ui.progress.ThreeMonthComparisonFragment
 import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressAlertManager
+import com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity
 
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
@@ -106,8 +107,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private fun setupNavigation() {
         binding.navChildren.setOnClickListener {
-            // Navegar a vista de progreso terapéutico
-            showTherapyProgressOptions()
+            // Mostrar opciones de gestión de pacientes
+            showPatientManagementOptions()
         }
 
         binding.navProfile.setOnClickListener {
@@ -154,8 +155,34 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         startActivity(intent)
     }
     
+    private fun showPatientManagementOptions() {
+        val options = arrayOf("Gestionar Pacientes", "Ver progreso de todos los pacientes", "Registrar nueva sesión", "Estadísticas detalladas")
+
+        AlertDialog.Builder(this)
+            .setTitle("Gestión de Pacientes")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> {
+                        // Navegar a lista de pacientes
+                        val intent = Intent(this, PatientsListActivity::class.java)
+                        startActivity(intent)
+                    }
+                    1 -> {
+                        showDetailedProgressView()
+                    }
+                    2 -> {
+                        Toast.makeText(this, "Registro de sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
+                    }
+                    3 -> {
+                        Toast.makeText(this, "Estadísticas detalladas - En desarrollo", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .show()
+    }
+
     private fun showTherapyProgressOptions() {
-        val options = arrayOf("Ver progreso de todos los niños", "Registrar nueva sesión", "Estadísticas detalladas")
+        val options = arrayOf("Ver progreso de todos los pacientes", "Registrar nueva sesión", "Estadísticas detalladas")
 
         AlertDialog.Builder(this)
             .setTitle("Progreso Terapéutico")
@@ -263,8 +290,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     
     private fun updateProgressBars(progressList: List<com.example.serious_game_usil.data.ThreeMonthComparison>) {
         // Calcular estadísticas agregadas por mes
-        val ninosData = calculateMonthStats(progressList, "Niños")
-        val ninasData = calculateMonthStats(progressList, "Niñas")
+        val ninosData = calculateMonthStats(progressList, "Pacientes")
+        val ninasData = calculateMonthStats(progressList, "Pacientes")
         
         // Actualizar primera barra (Agosto - Niños)
         updateProgressBar(
@@ -450,7 +477,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(Intent(this, PadresDashboardActivity::class.java))
             }
             R.id.nav_children_list -> {
-                startActivity(Intent(this, ProgressDetailActivity::class.java))
+                startActivity(Intent(this, PatientsListActivity::class.java))
+            }
+            R.id.nav_emotion_analysis -> {
+                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
             }
             R.id.nav_users -> {
                 startActivity(Intent(this, ListUserActivity::class.java))

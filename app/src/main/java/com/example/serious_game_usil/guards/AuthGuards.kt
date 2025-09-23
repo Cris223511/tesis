@@ -6,6 +6,8 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.example.serious_game_usil.`interface`.EmotionRetrofitClient
+import com.example.serious_game_usil.network.RetrofitClient
 
 
 object AuthManager {
@@ -73,8 +75,9 @@ object AuthManager {
             apply()
         }
 
-        // Actualizar token en RetrofitClient
+        // Actualizar token en ambos clientes Retrofit
         RetrofitClient.setAuthToken(accessToken)
+        EmotionRetrofitClient.setAuthToken(accessToken)
     }
 
     fun getAccessToken(): String? = prefs.getString(KEY_ACCESS_TOKEN, null)
@@ -140,23 +143,26 @@ object AuthManager {
                 normalizedRoles.any { it in listOf("admin", "administrador") }
             // Rutas de padre
             route.contains("/padre/dashboard") || route.contains("/parent/dashboard") ->
-                normalizedRoles.any { it in listOf("padre", "padres", "parent", "admin", "administrador") }
+                normalizedRoles.any { it in listOf("cuidador", "cuidador", "parent", "admin", "administrador") }
 
             // Rutas de hijo/estudiante
-            route.contains("/hijo") || route.contains("/student") ->
-                normalizedRoles.any { it in listOf("hijo", "hijos", "student", "estudiante") }
+            route.contains("/paciente") || route.contains("/student") ->
+                normalizedRoles.any { it in listOf("paciente", "paciente", "student", "estudiante") }
 
 
 
             // Rutas de especialista
-            route.contains("/especialista") || route.contains("/specialist") ->
-                normalizedRoles.any { it in listOf("especialista", "specialist") }
+            route.contains("/terapeuta") || route.contains("/specialist") ->
+                normalizedRoles.any { it in listOf("terapeuta", "terapeuta") }
 
+
+            // Ruta de análisis de emociones - para cuidadores, terapeutas, administradores y pacientes con permisos
+            route.contains("/emotion-analysis") ->
+                normalizedRoles.any { it in listOf("admin", "administrador", "cuidador", "terapeuta", "paciente") }
 
             // ruta globales
             route.contains("/profile") ->
-
-                normalizedRoles.any { it in listOf("admin", "administrador", "hijos", "padres") }
+                normalizedRoles.any { it in listOf("admin", "administrador", "paciente", "cuidador") }
             route == "/dashboard" -> isAuthenticated()
 
             // Por defecto, permitir si está autenticado
@@ -167,11 +173,23 @@ object AuthManager {
     fun updateAccessToken(newToken: String) {
         prefs.edit().putString(KEY_ACCESS_TOKEN, newToken).apply()
         RetrofitClient.setAuthToken(newToken)
+        EmotionRetrofitClient.setAuthToken(newToken)
+    }
+
+    fun updateTokens(accessToken: String, refreshToken: String) {
+        prefs.edit().apply {
+            putString(KEY_ACCESS_TOKEN, accessToken)
+            putString(KEY_REFRESH_TOKEN, refreshToken)
+            apply()
+        }
+        RetrofitClient.setAuthToken(accessToken)
+        EmotionRetrofitClient.setAuthToken(accessToken)
     }
 
     fun clearSession() {
         prefs.edit().clear().apply()
         RetrofitClient.setAuthToken(null)
+        EmotionRetrofitClient.setAuthToken(null)
     }
 
     fun logout() {

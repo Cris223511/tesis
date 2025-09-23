@@ -13,13 +13,22 @@
         <item
             android:id="@+id/nav_padres_dashboard"
             android:icon="@drawable/ic_child"
-            android:title="Dashboard Padres" />
+            android:title="Dashboard Cuidador" />
             
         <item
             android:id="@+id/nav_children_list"
             android:icon="@android:drawable/ic_menu_view"
-            android:title="Lista de Niños" />
+            android:title="Lista de Pacientes" />
     </group>
+
+    <item android:title="Análisis">
+        <menu>
+            <item
+                android:id="@+id/nav_emotion_analysis"
+                android:icon="@drawable/ic_info"
+                android:title="Análisis de Emociones" />
+        </menu>
+    </item>
 
     <item android:title="Gestión">
         <menu>
@@ -27,12 +36,12 @@
                 android:id="@+id/nav_users"
                 android:icon="@android:drawable/ic_menu_manage"
                 android:title="Gestionar Usuarios" />
-                
+
             <item
                 android:id="@+id/nav_roles"
                 android:icon="@drawable/ic_security"
                 android:title="Gestionar Roles" />
-                
+
             <item
                 android:id="@+id/nav_reports"
                 android:icon="@android:drawable/ic_menu_view"

@@ -190,7 +190,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Niños"
+                            android:text="Pacientes"
                             android:textColor="@color/on_surface_variant"
                             android:textSize="11sp" />
 
@@ -513,7 +513,7 @@
                                 <TextView
                                     android:layout_width="50dp"
                                     android:layout_height="wrap_content"
-                                    android:text="Niños"
+                                    android:text="Pacientes"
                                     android:textColor="@color/on_surface_variant"
                                     android:textSize="12sp" />
 
@@ -598,7 +598,7 @@
                                 <TextView
                                     android:layout_width="50dp"
                                     android:layout_height="wrap_content"
-                                    android:text="Niñas"
+                                    android:text="Pacientes"
                                     android:textColor="@color/on_surface_variant"
                                     android:textSize="12sp" />
 

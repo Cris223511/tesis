@@ -108,9 +108,13 @@ data class RefreshTokenRequest(
 )
 
 data class RefreshTokenResponse(
-    @SerializedName("bearer_token") val bearerToken: String,
+    @SerializedName("bearer_token") val bearerToken: String? = null,
+    @SerializedName("token") val token: String? = null,
     @SerializedName("refresh_token") val refreshToken: String
-)
+) {
+    val accessToken: String
+        get() = bearerToken ?: token ?: ""
+}
 
 data class UserDetailResponse(
     val id: Int,

@@ -20,6 +20,14 @@ import com.example.serious_game_usil.data.UsersListResponse
 import com.example.serious_game_usil.data.UserProfileResponse
 import com.example.serious_game_usil.data.ChildrenResponse
 import com.example.serious_game_usil.data.ThreeMonthComparison
+import com.example.serious_game_usil.data.CreatePatientRequest
+import com.example.serious_game_usil.data.UpdatePatientRequest
+import com.example.serious_game_usil.data.Patient
+import com.example.serious_game_usil.data.PatientResponse
+import com.example.serious_game_usil.data.PatientsListResponse
+import com.example.serious_game_usil.data.DeletePatientResponse
+import com.example.serious_game_usil.data.RefreshTokenRequest
+import com.example.serious_game_usil.data.RefreshTokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -146,12 +154,41 @@ interface ApiService {
     @GET("api/profile/changes")
     suspend fun getProfileChanges(): Response<ProfileChangesResponse>
     
+    // ============== PATIENT MANAGEMENT ENDPOINTS ==============
+    @GET("api/patients")
+    suspend fun getPatients(
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10,
+        @Query("search") search: String? = null
+    ): Response<PatientsListResponse>
+
+    @GET("api/patients/{id}")
+    suspend fun getPatient(@Path("id") patientId: Int): Response<Patient>
+
+    @POST("api/patients")
+    suspend fun createPatient(@Body request: CreatePatientRequest): Response<PatientResponse>
+
+    @PUT("api/patients/{id}")
+    suspend fun updatePatient(
+        @Path("id") patientId: Int,
+        @Body request: UpdatePatientRequest
+    ): Response<PatientResponse>
+
+    @DELETE("api/patients/{id}")
+    suspend fun deletePatient(@Path("id") patientId: Int): Response<DeletePatientResponse>
+
     // ============== AUTISM THERAPY ENDPOINTS ==============
     @GET("api/autism/children/{child_id}/progress/3months")
     suspend fun getThreeMonthComparison(@Path("child_id") childId: Int): Response<ThreeMonthComparison>
-    
+
     @GET("api/autism/children/progress")
     suspend fun getAllChildrenProgress(): Response<List<ThreeMonthComparison>>
+
+
+    @POST("api/refresh-token")
+    suspend fun refreshToken(@Body request: RefreshTokenRequest): Response<RefreshTokenResponse>
+
+
 }
 
 data class TokenResponse(

@@ -171,7 +171,7 @@
             android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
             android:label="Crear Rol"
             android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
-            android:theme="@style/Theme.Serious_game_usil" >
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
@@ -180,7 +180,7 @@
             android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
             android:label="Editar Rol"
             android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
-            android:theme="@style/Theme.Serious_game_usil" >
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
@@ -189,7 +189,7 @@
             android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.UserRole"
             android:label="Usuarios por Rol"
             android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
-            android:theme="@style/Theme.Serious_game_usil" >
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.roles.ListRoles" />
@@ -224,6 +224,71 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.DashboardActivity" />
         </activity>
+
+        <!-- Emotion Analysis Activity -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity"
+            android:exported="false"
+            android:label="Análisis de Emociones"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL" />
+
+        <!-- Patient Management Activities -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+            android:exported="false"
+            android:label="Gestión de Pacientes"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.patients.CreateEditPatientActivity"
+            android:exported="false"
+            android:label="Agregar Paciente"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.patients.PatientsListActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientDetailActivity"
+            android:exported="false"
+            android:label="Detalle del Paciente"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.patients.PatientsListActivity" />
+        </activity>
+
+        <!-- My Patients Activity (for Parents/Caregivers) -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.padres.MyPatientsActivity"
+            android:exported="false"
+            android:label="Mis Pacientes Asignados"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+        </activity>
+
+        <!-- Therapist Dashboard Activity -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity"
+            android:exported="false"
+            android:label="Dashboard Terapeuta"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

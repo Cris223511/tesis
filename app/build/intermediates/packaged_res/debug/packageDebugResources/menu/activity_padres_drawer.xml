@@ -7,13 +7,13 @@
         <item
             android:id="@+id/nav_padres_dashboard"
             android:icon="@drawable/ic_home"
-            android:title="Mi Dashboard"
+            android:title="Inicio"
             android:checked="true" />
         
         <item
             android:id="@+id/nav_mis_hijos"
             android:icon="@drawable/ic_child"
-            android:title="Mis Hijos" />
+            android:title="Mi Apoderado" />
             
         <item
             android:id="@+id/nav_progreso"
@@ -24,15 +24,20 @@
     <item android:title="Herramientas">
         <menu>
             <item
+                android:id="@+id/nav_emotion_analysis_padre"
+                android:icon="@drawable/ic_info"
+                android:title="Análisis de Emociones" />
+
+            <item
                 android:id="@+id/nav_nueva_sesion"
                 android:icon="@drawable/ic_add"
                 android:title="Nueva Sesión" />
-                
+
             <item
                 android:id="@+id/nav_videos"
                 android:icon="@android:drawable/ic_media_play"
                 android:title="Videos Educativos" />
-                
+
             <item
                 android:id="@+id/nav_reportes_padre"
                 android:icon="@android:drawable/ic_menu_view"

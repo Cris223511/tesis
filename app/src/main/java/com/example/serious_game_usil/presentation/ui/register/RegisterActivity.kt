@@ -24,6 +24,7 @@ import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.TokenManager
 import com.example.serious_game_usil.databinding.ActivityRegisterBinding
 import com.example.serious_game_usil.`interface`.ApiService
+import com.example.serious_game_usil.network.RetrofitClient
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
 import kotlinx.coroutines.launch
 import java.util.Calendar

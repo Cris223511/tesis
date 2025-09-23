@@ -240,7 +240,7 @@ class ProfileActivity : AppCompatActivity() {
 
         viewModel.childrenData.observe(this) { children ->
             children?.let {
-                Toast.makeText(this, "Tiene ${it.total} niños registrados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tiene ${it.total} pacientes registrados", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -334,7 +334,7 @@ class ProfileActivity : AppCompatActivity() {
         if (isPadre && profile.childrenCount > 0) {
             childrenCountCard.visibility = View.VISIBLE
             viewChildrenButton.visibility = View.VISIBLE
-            childrenCountText.text = "Niños: ${profile.childrenCount}"
+            childrenCountText.text = "Pacientes: ${profile.childrenCount}"
         } else {
             childrenCountCard.visibility = View.GONE
             viewChildrenButton.visibility = View.GONE

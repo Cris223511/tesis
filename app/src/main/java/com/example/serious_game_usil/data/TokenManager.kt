@@ -1,5 +1,6 @@
 package com.example.serious_game_usil.data
 
+import com.example.serious_game_usil.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext

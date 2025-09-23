@@ -71,7 +71,7 @@
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Usuario Padre"
+                    android:text="Usuario Cuidador "
                     android:textColor="@color/on_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -168,7 +168,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Hijos"
+                                android:text="Apoderado"
                                 android:textAlignment="center"
                                 android:textColor="@color/on_primary"
                                 android:textSize="12sp" />
@@ -290,8 +290,9 @@
 
                 </LinearLayout>
 
-                <!-- Sección Hijo Destacado -->
+                <!-- Sección Mis Pacientes Slider -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPatientsSlider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -301,60 +302,216 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:padding="20dp">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@color/primary"
-                            android:padding="16dp"
-                            android:src="@drawable/ic_child"
-                            app:shapeAppearanceOverlay="@style/CircularImageView"
-                            app:tint="@color/white" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📊 Resumen de Paciente"
+                            android:textColor="@color/primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🌟 Mejor Progreso"
-                                android:textColor="@color/primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                            <ImageButton
+                                android:id="@+id/btnPreviousPatient"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/ic_chevron_left"
+                                app:tint="@color/primary" />
 
-                            <TextView
-                                android:id="@+id/textTopChildName"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Nombre del niño"
-                                android:textColor="@color/on_surface"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="16dp">
 
-                            <TextView
-                                android:id="@+id/textTopChildScore"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="0% progreso"
-                                android:textColor="@color/on_surface_variant"
-                                android:textSize="14sp" />
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/ivCurrentPatientPhoto"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginEnd="12dp"
+                                    android:background="@color/primary"
+                                    android:padding="12dp"
+                                    android:src="@drawable/ic_child"
+                                    app:shapeAppearanceOverlay="@style/CircularImageView"
+                                    app:tint="@color/white" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/textCurrentPatientName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Selecciona un paciente"
+                                        android:textColor="@color/on_surface"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/textCurrentPatientInfo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:text="Toca las flechas para navegar"
+                                        android:textColor="@color/on_surface_variant"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <ImageButton
+                                android:id="@+id/btnNextPatient"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/primary" />
 
                         </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@android:drawable/ic_menu_view"
-                            app:tint="@color/primary" />
+                        <!-- Resumen de sesiones del paciente actual -->
+                        <LinearLayout
+                            android:id="@+id/layoutSessionsSummary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rounded_corner_background"
+                                android:backgroundTint="@color/activity_green"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:layout_marginEnd="4dp">
+
+                                <TextView
+                                    android:id="@+id/textTotalSessions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sesiones"
+                                    android:textColor="@color/white"
+                                    android:textSize="11sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rounded_corner_background"
+                                android:backgroundTint="@color/stat_pink"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:layout_marginHorizontal="4dp">
+
+                                <TextView
+                                    android:id="@+id/textAvgProgress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0%"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Progreso"
+                                    android:textColor="@color/white"
+                                    android:textSize="11sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rounded_corner_background"
+                                android:backgroundTint="@color/orange"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:layout_marginStart="4dp">
+
+                                <TextView
+                                    android:id="@+id/textLastSession"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Última"
+                                    android:textColor="@color/white"
+                                    android:textSize="11sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Indicador de posición -->
+                        <LinearLayout
+                            android:id="@+id/layoutPatientIndicators"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
+
+                        <!-- Estado vacío -->
+                        <LinearLayout
+                            android:id="@+id/layoutNoPatientsSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No tienes pacientes asignados"
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="14sp"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -403,7 +560,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Mis Hijos"
+                                android:text="Mis Pacientes"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -589,14 +746,14 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:alpha="0.6"
-                    android:src="@drawable/ic_child"
+                    android:src="@drawable/ic_search"
                     app:tint="@color/on_surface_variant" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="¡Comienza el viaje terapéutico!"
+                    android:text="No tienes ningun paciente registrado"
                     android:textAlignment="center"
                     android:textColor="@color/on_surface"
                     android:textSize="18sp"
@@ -606,7 +763,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Registra la primera sesión de terapia para ver el progreso de tus hijos aquí."
+                    android:text="Registra tu paciente."
                     android:textAlignment="center"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="14sp" />
@@ -615,7 +772,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Registrar Primera Sesión"
+                    android:text="Registrar tu paciente"
                     app:cornerRadius="20dp" />
 
             </LinearLayout>
@@ -744,7 +901,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Contactar"
+                    android:text="Información"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="11sp" />
 

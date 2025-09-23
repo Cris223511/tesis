@@ -26,7 +26,16 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   private final DrawerLayout rootView;
 
   @NonNull
+  public final ImageButton btnNextPatient;
+
+  @NonNull
+  public final ImageButton btnPreviousPatient;
+
+  @NonNull
   public final MaterialCardView cardMisHijos;
+
+  @NonNull
+  public final MaterialCardView cardPatientsSlider;
 
   @NonNull
   public final MaterialCardView cardProgreso;
@@ -44,10 +53,22 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   public final DrawerLayout drawerLayout;
 
   @NonNull
+  public final ShapeableImageView ivCurrentPatientPhoto;
+
+  @NonNull
   public final LinearLayout layoutContent;
 
   @NonNull
   public final LinearLayout layoutEmptyState;
+
+  @NonNull
+  public final LinearLayout layoutNoPatientsSlider;
+
+  @NonNull
+  public final LinearLayout layoutPatientIndicators;
+
+  @NonNull
+  public final LinearLayout layoutSessionsSummary;
 
   @NonNull
   public final ImageButton logoutButton;
@@ -71,7 +92,19 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   public final ProgressBar progressIndicator;
 
   @NonNull
+  public final TextView textAvgProgress;
+
+  @NonNull
+  public final TextView textCurrentPatientInfo;
+
+  @NonNull
+  public final TextView textCurrentPatientName;
+
+  @NonNull
   public final TextView textDateTime;
+
+  @NonNull
+  public final TextView textLastSession;
 
   @NonNull
   public final TextView textMejorando;
@@ -86,13 +119,10 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   public final TextView textSesionesTotales;
 
   @NonNull
-  public final TextView textTopChildName;
-
-  @NonNull
-  public final TextView textTopChildScore;
-
-  @NonNull
   public final TextView textTotalHijos;
+
+  @NonNull
+  public final TextView textTotalSessions;
 
   @NonNull
   public final ShapeableImageView userAvatar;
@@ -101,28 +131,40 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   public final TextView userName;
 
   private ActivityPadresDashboardBinding(@NonNull DrawerLayout rootView,
-      @NonNull MaterialCardView cardMisHijos, @NonNull MaterialCardView cardProgreso,
-      @NonNull MaterialCardView cardRecommendations, @NonNull MaterialCardView cardRegistrarSesion,
-      @NonNull MaterialCardView cardVideos, @NonNull DrawerLayout drawerLayout,
+      @NonNull ImageButton btnNextPatient, @NonNull ImageButton btnPreviousPatient,
+      @NonNull MaterialCardView cardMisHijos, @NonNull MaterialCardView cardPatientsSlider,
+      @NonNull MaterialCardView cardProgreso, @NonNull MaterialCardView cardRecommendations,
+      @NonNull MaterialCardView cardRegistrarSesion, @NonNull MaterialCardView cardVideos,
+      @NonNull DrawerLayout drawerLayout, @NonNull ShapeableImageView ivCurrentPatientPhoto,
       @NonNull LinearLayout layoutContent, @NonNull LinearLayout layoutEmptyState,
-      @NonNull ImageButton logoutButton, @NonNull ImageButton menuButton,
-      @NonNull LinearLayout navContactar, @NonNull LinearLayout navInicio,
-      @NonNull LinearLayout navPerfil, @NonNull NavigationView navView,
-      @NonNull ProgressBar progressIndicator, @NonNull TextView textDateTime,
-      @NonNull TextView textMejorando, @NonNull TextView textProgresoPromedio,
-      @NonNull TextView textRecommendation, @NonNull TextView textSesionesTotales,
-      @NonNull TextView textTopChildName, @NonNull TextView textTopChildScore,
-      @NonNull TextView textTotalHijos, @NonNull ShapeableImageView userAvatar,
+      @NonNull LinearLayout layoutNoPatientsSlider, @NonNull LinearLayout layoutPatientIndicators,
+      @NonNull LinearLayout layoutSessionsSummary, @NonNull ImageButton logoutButton,
+      @NonNull ImageButton menuButton, @NonNull LinearLayout navContactar,
+      @NonNull LinearLayout navInicio, @NonNull LinearLayout navPerfil,
+      @NonNull NavigationView navView, @NonNull ProgressBar progressIndicator,
+      @NonNull TextView textAvgProgress, @NonNull TextView textCurrentPatientInfo,
+      @NonNull TextView textCurrentPatientName, @NonNull TextView textDateTime,
+      @NonNull TextView textLastSession, @NonNull TextView textMejorando,
+      @NonNull TextView textProgresoPromedio, @NonNull TextView textRecommendation,
+      @NonNull TextView textSesionesTotales, @NonNull TextView textTotalHijos,
+      @NonNull TextView textTotalSessions, @NonNull ShapeableImageView userAvatar,
       @NonNull TextView userName) {
     this.rootView = rootView;
+    this.btnNextPatient = btnNextPatient;
+    this.btnPreviousPatient = btnPreviousPatient;
     this.cardMisHijos = cardMisHijos;
+    this.cardPatientsSlider = cardPatientsSlider;
     this.cardProgreso = cardProgreso;
     this.cardRecommendations = cardRecommendations;
     this.cardRegistrarSesion = cardRegistrarSesion;
     this.cardVideos = cardVideos;
     this.drawerLayout = drawerLayout;
+    this.ivCurrentPatientPhoto = ivCurrentPatientPhoto;
     this.layoutContent = layoutContent;
     this.layoutEmptyState = layoutEmptyState;
+    this.layoutNoPatientsSlider = layoutNoPatientsSlider;
+    this.layoutPatientIndicators = layoutPatientIndicators;
+    this.layoutSessionsSummary = layoutSessionsSummary;
     this.logoutButton = logoutButton;
     this.menuButton = menuButton;
     this.navContactar = navContactar;
@@ -130,14 +172,17 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
     this.navPerfil = navPerfil;
     this.navView = navView;
     this.progressIndicator = progressIndicator;
+    this.textAvgProgress = textAvgProgress;
+    this.textCurrentPatientInfo = textCurrentPatientInfo;
+    this.textCurrentPatientName = textCurrentPatientName;
     this.textDateTime = textDateTime;
+    this.textLastSession = textLastSession;
     this.textMejorando = textMejorando;
     this.textProgresoPromedio = textProgresoPromedio;
     this.textRecommendation = textRecommendation;
     this.textSesionesTotales = textSesionesTotales;
-    this.textTopChildName = textTopChildName;
-    this.textTopChildScore = textTopChildScore;
     this.textTotalHijos = textTotalHijos;
+    this.textTotalSessions = textTotalSessions;
     this.userAvatar = userAvatar;
     this.userName = userName;
   }
@@ -169,9 +214,27 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnNextPatient;
+      ImageButton btnNextPatient = ViewBindings.findChildViewById(rootView, id);
+      if (btnNextPatient == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPreviousPatient;
+      ImageButton btnPreviousPatient = ViewBindings.findChildViewById(rootView, id);
+      if (btnPreviousPatient == null) {
+        break missingId;
+      }
+
       id = R.id.cardMisHijos;
       MaterialCardView cardMisHijos = ViewBindings.findChildViewById(rootView, id);
       if (cardMisHijos == null) {
+        break missingId;
+      }
+
+      id = R.id.cardPatientsSlider;
+      MaterialCardView cardPatientsSlider = ViewBindings.findChildViewById(rootView, id);
+      if (cardPatientsSlider == null) {
         break missingId;
       }
 
@@ -201,6 +264,12 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
 
       DrawerLayout drawerLayout = (DrawerLayout) rootView;
 
+      id = R.id.ivCurrentPatientPhoto;
+      ShapeableImageView ivCurrentPatientPhoto = ViewBindings.findChildViewById(rootView, id);
+      if (ivCurrentPatientPhoto == null) {
+        break missingId;
+      }
+
       id = R.id.layoutContent;
       LinearLayout layoutContent = ViewBindings.findChildViewById(rootView, id);
       if (layoutContent == null) {
@@ -210,6 +279,24 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
       id = R.id.layoutEmptyState;
       LinearLayout layoutEmptyState = ViewBindings.findChildViewById(rootView, id);
       if (layoutEmptyState == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutNoPatientsSlider;
+      LinearLayout layoutNoPatientsSlider = ViewBindings.findChildViewById(rootView, id);
+      if (layoutNoPatientsSlider == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutPatientIndicators;
+      LinearLayout layoutPatientIndicators = ViewBindings.findChildViewById(rootView, id);
+      if (layoutPatientIndicators == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutSessionsSummary;
+      LinearLayout layoutSessionsSummary = ViewBindings.findChildViewById(rootView, id);
+      if (layoutSessionsSummary == null) {
         break missingId;
       }
 
@@ -255,9 +342,33 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textAvgProgress;
+      TextView textAvgProgress = ViewBindings.findChildViewById(rootView, id);
+      if (textAvgProgress == null) {
+        break missingId;
+      }
+
+      id = R.id.textCurrentPatientInfo;
+      TextView textCurrentPatientInfo = ViewBindings.findChildViewById(rootView, id);
+      if (textCurrentPatientInfo == null) {
+        break missingId;
+      }
+
+      id = R.id.textCurrentPatientName;
+      TextView textCurrentPatientName = ViewBindings.findChildViewById(rootView, id);
+      if (textCurrentPatientName == null) {
+        break missingId;
+      }
+
       id = R.id.textDateTime;
       TextView textDateTime = ViewBindings.findChildViewById(rootView, id);
       if (textDateTime == null) {
+        break missingId;
+      }
+
+      id = R.id.textLastSession;
+      TextView textLastSession = ViewBindings.findChildViewById(rootView, id);
+      if (textLastSession == null) {
         break missingId;
       }
 
@@ -285,21 +396,15 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textTopChildName;
-      TextView textTopChildName = ViewBindings.findChildViewById(rootView, id);
-      if (textTopChildName == null) {
-        break missingId;
-      }
-
-      id = R.id.textTopChildScore;
-      TextView textTopChildScore = ViewBindings.findChildViewById(rootView, id);
-      if (textTopChildScore == null) {
-        break missingId;
-      }
-
       id = R.id.textTotalHijos;
       TextView textTotalHijos = ViewBindings.findChildViewById(rootView, id);
       if (textTotalHijos == null) {
+        break missingId;
+      }
+
+      id = R.id.textTotalSessions;
+      TextView textTotalSessions = ViewBindings.findChildViewById(rootView, id);
+      if (textTotalSessions == null) {
         break missingId;
       }
 
@@ -315,12 +420,14 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityPadresDashboardBinding((DrawerLayout) rootView, cardMisHijos, cardProgreso,
-          cardRecommendations, cardRegistrarSesion, cardVideos, drawerLayout, layoutContent,
-          layoutEmptyState, logoutButton, menuButton, navContactar, navInicio, navPerfil, navView,
-          progressIndicator, textDateTime, textMejorando, textProgresoPromedio, textRecommendation,
-          textSesionesTotales, textTopChildName, textTopChildScore, textTotalHijos, userAvatar,
-          userName);
+      return new ActivityPadresDashboardBinding((DrawerLayout) rootView, btnNextPatient,
+          btnPreviousPatient, cardMisHijos, cardPatientsSlider, cardProgreso, cardRecommendations,
+          cardRegistrarSesion, cardVideos, drawerLayout, ivCurrentPatientPhoto, layoutContent,
+          layoutEmptyState, layoutNoPatientsSlider, layoutPatientIndicators, layoutSessionsSummary,
+          logoutButton, menuButton, navContactar, navInicio, navPerfil, navView, progressIndicator,
+          textAvgProgress, textCurrentPatientInfo, textCurrentPatientName, textDateTime,
+          textLastSession, textMejorando, textProgresoPromedio, textRecommendation,
+          textSesionesTotales, textTotalHijos, textTotalSessions, userAvatar, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

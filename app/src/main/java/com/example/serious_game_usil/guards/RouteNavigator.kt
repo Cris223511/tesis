@@ -35,7 +35,10 @@ object RouteNavigator {
             "/admin/list-roles" -> {
                 Intent(context, ListRoles::class.java)
             }
-            "/padre", "/padre/dashboard", "/parent", "/parent/dashboard" -> {
+            "/emotion-analysis" -> {
+                Intent(context, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java)
+            }
+            "/terapeuta", "/terapeuta/dashboard", "/therapist", "/therapist/dashboard" -> {
                 Intent(context, PadresDashboardActivity::class.java)
             }
             else -> {
@@ -84,5 +87,9 @@ object RouteNavigator {
         }
 
         return true
+    }
+
+    fun navigateToEmotionAnalysis(context: Context) {
+        navigateToProtectedRoute(context, "/emotion-analysis")
     }
 }

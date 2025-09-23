@@ -8,9 +8,10 @@ import com.example.serious_game_usil.data.ThreeMonthComparison
 import com.example.serious_game_usil.data.MonthlyProgress
 import com.example.serious_game_usil.data.AutismProgressMetrics
 import com.example.serious_game_usil.`interface`.ApiService
-import RetrofitClient
+
 import kotlinx.coroutines.launch
 import android.util.Log
+import com.example.serious_game_usil.network.RetrofitClient
 
 class ProgressViewModel : ViewModel() {
     
