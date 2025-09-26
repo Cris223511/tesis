@@ -1,270 +1,705 @@
-# Backend Usuarios
+# 🔒 Backend Usuarios - API REST con Go + Gin
 
-Sistema de autenticación y gestión de usuarios desarrollado en Go con Gin Framework. Proporciona autenticación JWT, gestión de roles y middleware de seguridad para el ecosistema de análisis de emociones.
+Sistema completo de autenticación, gestión de usuarios y sesiones terapéuticas desarrollado en Go. Proporciona APIs REST seguras con autenticación JWT, autenticación biométrica, gestión de roles avanzada y análisis de estadísticas para el ecosistema de análisis de emociones.
+
+## 📋 Tabla de Contenidos
+- [🚀 Características](#-características)
+- [🏗️ Arquitectura](#%EF%B8%8F-arquitectura)
+- [🛠️ Tecnologías](#%EF%B8%8F-tecnologías)
+- [⚙️ Instalación](#%EF%B8%8F-instalación)
+- [🔧 Configuración](#-configuración)
+- [📡 API Endpoints](#-api-endpoints)
+- [🔐 Sistema de Autenticación](#-sistema-de-autenticación)
+- [👥 Roles y Permisos](#-roles-y-permisos)
+- [🏥 Gestión de Pacientes](#-gestión-de-pacientes)
+- [📊 Sesiones Terapéuticas](#-sesiones-terapéuticas)
+- [🛡️ Seguridad](#%EF%B8%8F-seguridad)
+- [🐳 Docker](#-docker)
 
 ## 🚀 Características
 
-- **Autenticación JWT** con tokens de acceso y refresh
-- **Sistema de roles** (Padre/Admin) con permisos diferenciados
-- **Rate limiting** personalizable por usuario
-- **Middleware de seguridad** (CORS, Auth, Admin)
-- **Base de datos MySQL** con ORM
-- **Validación OTP** para autenticación de dos factores
-- **Autenticación biométrica** (WebAuthn)
-- **API RESTful** completa para gestión de usuarios
+### 🔐 Autenticación Completa
+- **JWT Tokens** con acceso y refresh automático
+- **Autenticación biométrica** (WebAuthn/FIDO2)
+- **Sistema OTP** para verificación por email/SMS
+- **Recuperación de contraseña** segura
+- **Rate limiting avanzado** anti-spam
+- **Gestión de sesiones** con expiración
 
-## 📋 Requisitos
+### 👥 Gestión de Usuarios
+- **CRUD completo** de usuarios
+- **Sistema de roles** dinámico (Admin, Terapeuta, Padre)
+- **Perfiles de usuario** con fotos y banners
+- **Límites configurables** para cambios de perfil
+- **Activación/desactivación** de cuentas
+- **Búsqueda y filtrado** avanzado
 
-- Go 1.21+
-- MySQL 8.0+
-- Redis (opcional, para rate limiting)
+### 🏥 Gestión Médica
+- **Pacientes** con información médica completa
+- **Sesiones terapéuticas** con programación y seguimiento
+- **Estadísticas y métricas** de progreso
+- **Relaciones familiares** (terapeuta-paciente-padre)
+- **Exportación** de reportes (PDF/JPG)
+- **Validaciones médicas** específicas
 
-## 🛠️ Instalación
+### 🛡️ Seguridad Avanzada
+- **Rate limiting** personalizable (50/día por usuario)
+- **Protección CSRF** y headers de seguridad
+- **Validación robusta** de entradas
+- **Cifrado** de contraseñas con bcrypt
+- **Middleware de autorización** por roles
+- **Logs de auditoría** completos
+
+## 🏗️ Arquitectura
+
+### Clean Architecture
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PRESENTATION LAYER                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
+│  │ Controllers │  │ Middlewares │  │   Routes    │          │
+│  └─────────────┘  └─────────────┘  └─────────────┘          │
+└─────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────┐
+│                     BUSINESS LAYER                          │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
+│  │  Services   │  │     DTOs    │  │ Validations │          │
+│  └─────────────┘  └─────────────┘  └─────────────┘          │
+└─────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────┐
+│                      DATA LAYER                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
+│  │   Models    │  │  Database   │  │   Cache     │          │
+│  │   (GORM)    │  │   (MySQL)   │  │  (Redis)    │          │
+│  └─────────────┘  └─────────────┘  └─────────────┘          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Estructura del Proyecto
+```
+backend_usuarios/
+├── controllers/           # Controladores HTTP
+│   ├── auth_controller.go
+│   ├── user_controller.go
+│   ├── patient_controller.go
+│   ├── therapy_controller.go
+│   └── bio_controller.go
+├── middlewares/          # Middleware HTTP
+│   ├── auth_middleware.go
+│   ├── cors_middleware.go
+│   └── rate_limiter.go
+├── models/              # Modelos de datos (GORM)
+│   ├── user.go
+│   ├── patient.go
+│   ├── therapy_session.go
+│   └── biometric.go
+├── service/             # Lógica de negocio
+│   ├── user_service.go
+│   ├── patient_service.go
+│   ├── therapy_service.go
+│   └── email_service.go
+├── dto/                 # Data Transfer Objects
+│   ├── auth_dto.go
+│   ├── patient_dto.go
+│   └── therapy_dto.go
+├── routes/              # Definición de rutas
+│   └── user_routes.go
+├── utils/               # Utilidades
+│   ├── jwt.go
+│   ├── validation.go
+│   └── crypto.go
+├── config/              # Configuración
+│   └── database.go
+├── migrations/          # Migraciones DB
+├── public/              # Archivos estáticos
+├── main.go              # Punto de entrada
+├── go.mod               # Dependencias
+├── Dockerfile           # Container Docker
+└── .env.example         # Ejemplo de configuración
+```
+
+## 🛠️ Tecnologías
+
+### Core Framework
+- **Go 1.21+** - Lenguaje base
+- **Gin Framework** - Web framework HTTP
+- **GORM** - ORM para base de datos
+- **MySQL 8.0+** - Base de datos principal
+
+### Autenticación y Seguridad
+- **JWT** (golang-jwt/jwt/v4) - Tokens de autenticación
+- **WebAuthn** (duo-labs/webauthn) - Autenticación biométrica
+- **bcrypt** (golang.org/x/crypto) - Hash de contraseñas
+- **CORS** - Cross-Origin Resource Sharing
+
+### Cache y Performance
+- **Redis** - Cache y rate limiting
+- **Compression** - Compresión HTTP
+- **Connection pooling** - Pool de conexiones DB
+
+### Dependencias Principales
+```go
+require (
+    github.com/gin-gonic/gin v1.10.0
+    github.com/golang-jwt/jwt/v4 v4.5.0
+    github.com/joho/godotenv v1.5.1
+    gorm.io/gorm v1.25.12
+    gorm.io/driver/mysql v1.5.7
+    golang.org/x/crypto v0.26.0
+    github.com/duo-labs/webauthn v0.0.0-20220815211337-00c9fb5711f5
+    github.com/go-redis/redis/v8 v8.11.5
+)
+```
+
+## ⚙️ Instalación
+
+### Prerrequisitos
+- **Go 1.21+** instalado
+- **MySQL 8.0+** funcionando
+- **Redis** (opcional, para rate limiting)
+- **Git** para clonar el repositorio
+
+### Pasos de Instalación
 
 1. **Clonar el repositorio**
-```bash
-git clone <repo-url>
-cd backend_usuarios
-```
+   ```bash
+   git clone <repository-url>
+   cd backend_usuarios/
+   ```
 
 2. **Instalar dependencias**
-```bash
-go mod download
-```
+   ```bash
+   go mod download
+   go mod tidy
+   ```
 
-3. **Configurar variables de entorno**
-Crear archivo `.env`:
-```env
-# Base de datos
+3. **Configurar base de datos MySQL**
+   ```sql
+   CREATE DATABASE usuarios_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   CREATE USER 'api_user'@'localhost' IDENTIFIED BY 'secure_password';
+   GRANT ALL PRIVILEGES ON usuarios_db.* TO 'api_user'@'localhost';
+   FLUSH PRIVILEGES;
+   ```
+
+4. **Configurar variables de entorno**
+   ```bash
+   cp .env.example .env
+   # Editar .env con tus configuraciones
+   ```
+
+5. **Ejecutar migraciones**
+   ```bash
+   go run main.go migrate
+   ```
+
+6. **Ejecutar el servidor**
+   ```bash
+   # Desarrollo
+   go run main.go
+
+   # Producción
+   go build -o backend_usuarios
+   ./backend_usuarios
+   ```
+
+## 🔧 Configuración
+
+### Variables de Entorno (.env)
+```bash
+# Base de datos MySQL
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=usuarios_db
-DB_USER=root
-DB_PASSWORD=password
+DB_USER=api_user
+DB_PASSWORD=secure_password
 
-# JWT
-JWT_SECRET=mi_chiquete
+# Seguridad JWT
+JWT_SECRET=mi_secret_super_seguro_2024
+JWT_REFRESH_SECRET=mi_refresh_secret_2024
 
-# Servidor
+# Servidor HTTP
 PORT=8080
 GIN_MODE=release
+HOST=0.0.0.0
 
-# Rate Limiting (opcional)
+# Redis (Cache y Rate Limiting)
 REDIS_HOST=localhost
 REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_DAY=50
+RATE_LIMIT_MODULE_LIMIT=20
+RATE_LIMIT_MODULE_WINDOW=20m
+
+# Email (Opcional)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+
+# WebAuthn (Biometría)
+RP_DISPLAY_NAME=Serious Game USIL
+RP_ID=localhost
+RP_ORIGIN=http://localhost:8080
+
+# Límites de aplicación
+MAX_PATIENTS_PER_THERAPIST=20
+MAX_PATIENTS_PER_CAREGIVER=5
+MAX_SESSIONS_PER_PATIENT=8
+MAX_SESSION_UPDATES=3
 ```
 
-4. **Ejecutar migraciones**
-```bash
-go run main.go migrate
-```
-
-## 🚀 Ejecutar el servicio
-
+### Configuración de Desarrollo vs Producción
 ```bash
 # Desarrollo
-go run main.go
+GIN_MODE=debug
+JWT_SECRET=mi_chiquete
+LOG_LEVEL=debug
 
-# Compilar y ejecutar
-go build -o backend_usuarios
-./backend_usuarios
+# Producción
+GIN_MODE=release
+JWT_SECRET=complex_production_secret_256_bits
+LOG_LEVEL=info
 ```
-
-El servicio estará disponible en: `http://localhost:8080`
 
 ## 📡 API Endpoints
 
-### Autenticación
-- `POST /api/login` - Iniciar sesión
-- `POST /api/logout` - Cerrar sesión
-- `POST /api/refresh-token` - Renovar token JWT
+### 🔓 Endpoints Públicos
 
-### Gestión de usuarios
-- `GET /api/users` - Listar usuarios (admin)
-- `GET /api/users/:id` - Obtener usuario por ID
-- `POST /api/users` - Crear usuario (admin)
-- `PUT /api/users/:id` - Actualizar usuario
-- `DELETE /api/users/:id` - Eliminar usuario (admin)
+#### Autenticación
+```http
+POST   /api/login                      # Autenticación básica
+POST   /api/refresh-token              # Renovar JWT token
+POST   /otp/validate                   # Validar código OTP
+POST   /otp/resend                     # Reenviar OTP
+POST   /login/begin                    # Iniciar login biométrico
+POST   /login/finish                   # Completar login biométrico
 
-### OTP y Verificación
-- `POST /api/otp/validate` - Validar código OTP
-- `POST /api/otp/resend` - Reenviar código OTP
+# Recuperación de contraseña
+POST   /password/validate-email        # Validar email para cambio
+POST   /password/send-otp             # Enviar OTP para cambio
+POST   /password/verify-otp           # Verificar OTP
+POST   /password/change-with-otp      # Cambiar contraseña con OTP
+```
 
-### Autenticación Biométrica
-- `POST /api/biometric/login/begin` - Iniciar login biométrico
-- `POST /api/biometric/login/finish` - Completar login biométrico
+### 🔒 Endpoints Protegidos (Requieren JWT)
 
-### Endpoints sin autenticación
-- `GET /health` - Estado del servicio
-- `GET /un/*` - Recursos públicos
+#### Gestión de Usuarios
+```http
+GET    /api/users                     # Listar usuarios (paginado)
+POST   /api/register                  # Registrar usuario (admin)
+GET    /api/users/search              # Buscar usuarios
+GET    /api/users/{id}                # Obtener usuario por ID
+PUT    /api/users/{id}                # Actualizar usuario
+DELETE /api/users/{id}                # Eliminar usuario (admin)
+PATCH  /api/users/{id}/status         # Cambiar estado (admin)
+PUT    /api/users/{id}/password       # Cambiar contraseña
+```
 
-## 🔐 Sistema de autenticación
+#### Perfiles de Usuario
+```http
+GET    /api/profile                   # Perfil del usuario actual
+GET    /api/profile/{id}              # Perfil de usuario específico
+GET    /api/profile/children          # Hijos del usuario (padres)
+PUT    /api/profile/update            # Actualizar perfil
+GET    /api/profile/changes           # Límites de cambios restantes
 
-### Roles disponibles
+# Gestión de archivos
+POST   /api/users/photo               # Subir foto de perfil
+GET    /api/users/photo/changes       # Cambios de foto restantes
+POST   /api/users/banner              # Subir banner de perfil
+GET    /api/users/banner/changes      # Cambios de banner restantes
+```
 
-| Rol | Código | Descripción |
-|-----|--------|-------------|
-| **Admin** | AD | Acceso completo al sistema |
-| **Padre** | PD | Acceso limitado a funciones de usuario |
+#### Roles y Permisos
+```http
+GET    /api/roles                     # Listar roles disponibles
+POST   /api/roles                     # Crear rol (admin)
+PUT    /api/roles/{id}                # Actualizar rol (admin)
+DELETE /api/roles/{id}                # Eliminar rol (admin)
+```
 
-### Estructura del token JWT
+#### Gestión de Pacientes
+```http
+GET    /api/patients                  # Listar pacientes (filtrado por rol)
+POST   /api/patients                  # Crear paciente
+GET    /api/patients/{id}             # Obtener paciente por ID
+PUT    /api/patients/{id}             # Actualizar paciente
+DELETE /api/patients/{id}             # Eliminar paciente
+GET    /api/patients/{id}/stats       # Estadísticas del paciente
+```
 
+#### Sesiones Terapéuticas
+```http
+GET    /api/sessions                  # Listar sesiones
+POST   /api/sessions                  # Crear sesión terapéutica
+GET    /api/sessions/paginated        # Sesiones paginadas
+GET    /api/sessions/latest-patients  # Últimos 3 pacientes
+GET    /api/sessions/available-therapists # Terapeutas disponibles
+GET    /api/sessions/{id}             # Detalle de sesión
+PUT    /api/sessions/{id}             # Actualizar sesión
+PATCH  /api/sessions/{id}/reschedule  # Reprogramar sesión
+DELETE /api/sessions/{id}             # Eliminar sesión
+
+# Exportación
+GET    /api/sessions/{id}/export/pdf  # Exportar sesión a PDF
+GET    /api/sessions/{id}/export/jpg  # Exportar sesión a JPG
+```
+
+#### Autenticación Biométrica
+```http
+GET    /api/capabilities              # Verificar capacidades biométricas
+POST   /api/register/begin            # Iniciar registro biométrico
+POST   /api/register/finish           # Completar registro biométrico
+GET    /api/devices                   # Dispositivos registrados
+DELETE /api/device                    # Eliminar dispositivo
+PUT    /api/device/rename             # Renombrar dispositivo
+```
+
+### 📊 Parámetros de Consulta
+
+#### Paginación (Usuarios y Pacientes)
+```http
+GET /api/users?page=1&per_page=20&search=juan&active=true&role_id=2&order_by=created_at&order_direction=desc
+GET /api/patients?page=1&limit=10&search=maria
+```
+
+#### Filtros de Sesiones
+```http
+GET /api/sessions/paginated?page=1&limit=5&search=terapia&estado=programada&patient_id=123
+```
+
+## 🔐 Sistema de Autenticación
+
+### Flujo de Autenticación JWT
+```mermaid
+sequenceDiagram
+    participant C as Cliente
+    participant A as API
+    participant DB as Database
+
+    C->>A: POST /api/login (user, password)
+    A->>DB: Verificar credenciales
+    DB-->>A: Usuario válido
+    A-->>C: JWT Access Token + Refresh Token
+
+    C->>A: Petición con Authorization: Bearer <token>
+    A->>A: Validar JWT
+    A-->>C: Respuesta autorizada
+
+    Note over C,A: Cuando expira el token
+    C->>A: POST /api/refresh-token
+    A-->>C: Nuevo Access Token
+```
+
+### Estructura del JWT Token
 ```json
 {
-  "user_id": 123,
-  "roles": "PD,AD",
-  "exp": 1234567890
+  "header": {
+    "alg": "HS256",
+    "typ": "JWT"
+  },
+  "payload": {
+    "user_id": 123,
+    "roles": "TR,PD",
+    "email": "usuario@example.com",
+    "exp": 1695123456,
+    "iat": 1695120000
+  }
 }
 ```
 
-### Headers requeridos
+### Autenticación Biométrica (WebAuthn)
+```go
+// Registro de credencial biométrica
+POST /api/register/begin
+{
+  "display_name": "Mi iPhone 14",
+  "device_type": "platform"
+}
 
-```bash
-Authorization: Bearer <jwt_token>
+// Respuesta con challenge
+{
+  "credential_creation_options": {
+    "challenge": "base64_challenge",
+    "rp": {"id": "localhost", "name": "Serious Game USIL"},
+    "user": {"id": "user_123", "name": "usuario@example.com"},
+    "authenticatorSelection": {...}
+  }
+}
 ```
 
-## 🛡️ Middleware de seguridad
+## 👥 Roles y Permisos
 
-### AuthMiddleware
-- Valida tokens JWT en todas las rutas protegidas
-- Excluye rutas públicas (`/un/*`, `/api/login`, etc.)
-- Inyecta información del usuario en el contexto
+### Sistema de Roles Jerárquico
 
-### AdminMiddleware
-- Requiere rol de administrador (AD)
-- Protege endpoints administrativos
-
-### RateLimiter
-- Límite configurable por IP y usuario
-- 50 peticiones por día por defecto
-- Headers informativos de límite
-
-## 📊 Estructura de la base de datos
-
-### Tabla: usuarios
-```sql
-CREATE TABLE usuarios (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  nombre VARCHAR(255),
-  apellido VARCHAR(255),
-  telefono VARCHAR(20),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+#### 🛡️ Administrador (AD)
+```go
+Permisos Completos:
+✅ Gestión de usuarios (CRUD completo)
+✅ Gestión de roles y permisos
+✅ Acceso a todos los pacientes
+✅ Gestión de todas las sesiones terapéuticas
+✅ Configuración del sistema
+✅ Exportación de reportes
+✅ Gestión de dispositivos biométricos
+✅ Acceso a logs y auditoría
 ```
 
-### Tabla: roles
-```sql
-CREATE TABLE roles (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(50) UNIQUE NOT NULL,
-  description TEXT
-);
+#### 👨‍⚕️ Terapeuta (TR)
+```go
+Permisos Especializados:
+✅ Gestión de pacientes asignados
+✅ Creación y gestión de sesiones terapéuticas
+✅ Acceso a estadísticas de pacientes
+✅ Exportación de reportes de sesiones
+✅ Gestión de objetivos terapéuticos
+✅ Asignación de pacientes a padres
+❌ Gestión de otros usuarios
+❌ Cambio de roles
+❌ Configuración del sistema
 ```
 
-### Tabla: usuario_roles
-```sql
-CREATE TABLE usuario_roles (
-  usuario_id INT,
-  role_id INT,
-  PRIMARY KEY (usuario_id, role_id),
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-  FOREIGN KEY (role_id) REFERENCES roles(id)
-);
+#### 👨‍👩‍👧‍👦 Padres/Cuidadores (PD)
+```go
+Permisos Limitados:
+✅ Vista de pacientes asignados (hijos)
+✅ Seguimiento de progreso de hijos
+✅ Vista de sesiones programadas
+✅ Acceso a estadísticas básicas
+✅ Actualización de perfil propio
+❌ Creación/modificación de pacientes
+❌ Gestión de sesiones terapéuticas
+❌ Acceso a otros pacientes
+❌ Funciones administrativas
+```
+
+### Validación de Permisos
+
+
+### Encriptación
+```go
+// Contraseñas
+bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+
+// Datos sensibles en base de datos
+AES256-GCM para campos críticos
+
+// Tokens JWT
+HMAC-SHA256 con secret rotativo
 ```
 
 ## 🐳 Docker
 
-### Construir imagen
+### Dockerfile
+```dockerfile
+# Build stage
+FROM golang:1.21-alpine AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o backend_usuarios main.go
+
+# Production stage
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates tzdata
+WORKDIR /root/
+COPY --from=builder /app/backend_usuarios .
+COPY --from=builder /app/public ./public
+EXPOSE 8080
+CMD ["./backend_usuarios"]
+```
+
+### Docker Compose
+```yaml
+version: '3.8'
+services:
+  backend-usuarios:
+    build: ./backend_usuarios
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=mysql
+      - REDIS_HOST=redis
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: usuarios_db
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+```
+
+### Comandos Docker
 ```bash
+# Construir imagen
 docker build -t backend-usuarios .
-```
 
-### Ejecutar contenedor
-```bash
+# Ejecutar contenedor
 docker run -p 8080:8080 --env-file .env backend-usuarios
+
+# Con docker-compose (recomendado)
+docker-compose up -d
 ```
 
-### Con docker-compose
-```bash
-# Desde directorio raíz del proyecto
-docker-compose up backend-usuarios
+---
+
+## 📊 Monitoreo y Logging
+
+### Health Check
+```http
+GET /health
+```
+```json
+{
+  "status": "healthy",
+  "database": "connected",
+  "redis": "connected",
+  "uptime": "2h30m45s",
+  "timestamp": "2024-09-26T10:30:00Z"
+}
 ```
 
-## 🔧 Desarrollo
+### Métricas Disponibles
+- **Tiempo de respuesta** promedio por endpoint
+- **Rate limit status** en headers
+- **Conexiones activas** a base de datos
+- **Uso de memoria** y CPU
+- **Errores por tipo** y frecuencia
 
-### Estructura del proyecto
-```
-backend_usuarios/
-├── controllers/     # Controladores de endpoints
-├── middlewares/     # Middleware de autenticación y seguridad
-├── models/         # Modelos de datos
-├── routes/         # Definición de rutas
-├── service/        # Lógica de negocio
-├── utils/          # Utilidades (JWT, validaciones)
-├── config/         # Configuración de la aplicación
-├── public/         # Archivos estáticos
-├── main.go         # Punto de entrada
-├── go.mod          # Dependencias
-└── .env            # Variables de entorno
-```
-
-### Dependencias principales
+### Logs Estructurados
 ```go
-require (
-    github.com/gin-gonic/gin
-    github.com/golang-jwt/jwt/v4
-    github.com/joho/godotenv
-    gorm.io/gorm
-    gorm.io/driver/mysql
-    golang.org/x/crypto/bcrypt
-)
+log.WithFields(logrus.Fields{
+    "user_id": userID,
+    "endpoint": "/api/sessions",
+    "method": "POST",
+    "ip": clientIP,
+    "duration": responseTime,
+}).Info("Session created successfully")
 ```
 
-### Tests
+---
+
+## 🚀 Deployment y Producción
+
+### Configuración de Producción
 ```bash
-go test ./...
+# Variables críticas
+GIN_MODE=release
+JWT_SECRET=complex_production_secret_256_bits
+DB_HOST=production-mysql-host
+REDIS_HOST=production-redis-host
+
+# Certificados SSL
+SSL_CERT_PATH=/path/to/cert.pem
+SSL_KEY_PATH=/path/to/key.pem
+
+# Logging
+LOG_LEVEL=info
+LOG_FORMAT=json
 ```
 
-## 🔄 Integración con otros servicios
+### CI/CD Pipeline
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy Backend
+on:
+  push:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.21
+      - run: go test ./...
 
-### Emotion ML Service
-Este backend genera tokens JWT que son validados por el servicio de análisis de emociones:
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        run: |
+          docker build -t backend-usuarios .
+          docker push ${{ secrets.DOCKER_REGISTRY }}/backend-usuarios
+```
 
+---
+
+## 📚 Documentación Adicional
+
+### Swagger/OpenAPI
+- **URL**: `http://localhost:8080/swagger/index.html`
+- **Generación**: `swag init`
+- **Formato**: OpenAPI 3.0
+
+### Testing
 ```bash
-# Ejemplo de integración
-curl -H "Authorization: Bearer <jwt_token>" \
-     -X POST http://localhost:5000/api/v1/analyze-emotion \
-     -d '{"image_base64": "..."}'
+# Tests unitarios
+go test ./... -v
+
+# Tests de integración
+go test ./tests/integration/... -v
+
+# Coverage
+go test ./... -coverprofile=coverage.out
+go tool cover -html=coverage.out
 ```
 
-### Configuración compartida
-- **JWT_SECRET**: `mi_chiquete` (mismo en ambos servicios)
-- **Redis**: Compartido para rate limiting
-- **Roles**: PD y AD reconocidos por ambos servicios
-
-## 📈 Monitoreo
-
-### Health check
+### Performance
 ```bash
-curl http://localhost:8080/health
+# Benchmarks
+go test -bench=. ./...
+
+# Profiling
+go tool pprof http://localhost:8080/debug/pprof/profile
 ```
 
-### Métricas disponibles
-- Tiempo de respuesta
-- Rate limit status (headers `X-RateLimit-*`)
-- Estado de conexión a base de datos
+---
 
-## 🚨 Seguridad
+## 🤝 Contribución
 
-### Buenas prácticas implementadas
-- Contraseñas hasheadas con bcrypt
-- Tokens JWT con expiración
-- Rate limiting por IP y usuario
-- Validación de entrada en todos los endpoints
-- CORS configurado
-- Headers de seguridad
+1. **Fork** el proyecto
+2. **Crear rama** feature (`git checkout -b feature/AmazingFeature`)
+3. **Commit** cambios (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** a la rama (`git push origin feature/AmazingFeature`)
+5. **Abrir Pull Request**
+
+### Estándares de Código
+- **gofmt** para formateo
+- **golint** para linting
+- **go vet** para análisis estático
+- **Comentarios** en inglés para funciones públicas
+- **Tests** obligatorios para nuevas funcionalidades
+
+---
 
 
+
+## 👨‍💻 Desarrollado por
+
+**Jhafet Canepa** - Tesis de Titulación USIL
+- Backend API REST con Go + Gin
+- Autenticación JWT y biométrica
+- Sistema de gestión terapéutica
+- Arquitectura escalable y segura
+
+---
+
+*Última actualización: Septiembre 2025*
