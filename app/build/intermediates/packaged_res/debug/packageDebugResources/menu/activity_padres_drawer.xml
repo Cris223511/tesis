@@ -13,12 +13,9 @@
         <item
             android:id="@+id/nav_mis_hijos"
             android:icon="@drawable/ic_child"
-            android:title="Mi Apoderado" />
+            android:title="Mis Pacientes" />
             
-        <item
-            android:id="@+id/nav_progreso"
-            android:icon="@android:drawable/ic_menu_view"
-            android:title="Ver Progreso" />
+
     </group>
 
     <item android:title="Herramientas">
@@ -27,11 +24,6 @@
                 android:id="@+id/nav_emotion_analysis_padre"
                 android:icon="@drawable/ic_info"
                 android:title="Análisis de Emociones" />
-
-            <item
-                android:id="@+id/nav_nueva_sesion"
-                android:icon="@drawable/ic_add"
-                android:title="Nueva Sesión" />
 
             <item
                 android:id="@+id/nav_videos"

@@ -28,6 +28,8 @@ import com.example.serious_game_usil.data.PatientsListResponse
 import com.example.serious_game_usil.data.DeletePatientResponse
 import com.example.serious_game_usil.data.RefreshTokenRequest
 import com.example.serious_game_usil.data.RefreshTokenResponse
+import com.example.serious_game_usil.data.SessionDetailResponse
+import com.example.serious_game_usil.data.PatientStatsApiResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -177,7 +179,54 @@ interface ApiService {
     @DELETE("api/patients/{id}")
     suspend fun deletePatient(@Path("id") patientId: Int): Response<DeletePatientResponse>
 
-    // ============== AUTISM THERAPY ENDPOINTS ==============
+    @GET("api/patients/{id}/stats")
+    suspend fun getPatientStats(@Path("id") patientId: Int): Response<PatientStatsApiResponse>
+
+    // ============== THERAPY SESSION ENDPOINTS ==============
+    @GET("api/sessions/latest-patients")
+    suspend fun getLatestPatients(): Response<LatestPatientsResponse>
+
+    @GET("api/sessions")
+    suspend fun getSessions(): Response<SessionsListResponse>
+
+    @GET("api/sessions/paginated")
+    suspend fun getSessionsPaginated(
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 5,
+        @Query("search") search: String? = null,
+        @Query("estado") estado: String? = null
+    ): Response<PaginatedSessionsResponse>
+
+    @GET("api/sessions/{id}")
+    suspend fun getSession(@Path("id") sessionId: Int): Response<SessionDetailResponse>
+
+    @POST("api/sessions")
+    suspend fun createSession(@Body request: CreateSessionRequest): Response<SessionResponse>
+
+    @PUT("api/sessions/{id}")
+    suspend fun updateSession(
+        @Path("id") sessionId: Int,
+        @Body request: UpdateSessionRequest
+    ): Response<SessionResponse>
+
+    @PUT("api/sessions/{id}/reschedule")
+    suspend fun rescheduleSession(
+        @Path("id") sessionId: Int,
+        @Body request: RescheduleSessionRequest
+    ): Response<SessionResponse>
+
+    @DELETE("api/sessions/{id}")
+    suspend fun deleteSession(@Path("id") sessionId: Int): Response<BaseResponse>
+
+    @GET("api/sessions/{id}/export/pdf")
+    suspend fun exportSessionToPDF(@Path("id") sessionId: Int): Response<okhttp3.ResponseBody>
+
+    @GET("api/sessions/{id}/export/jpg")
+    suspend fun exportSessionToJPG(@Path("id") sessionId: Int): Response<okhttp3.ResponseBody>
+
+    @GET("api/sessions/available-therapists")
+    suspend fun getAvailableTherapists(): Response<TherapistsListResponse>
+
     @GET("api/autism/children/{child_id}/progress/3months")
     suspend fun getThreeMonthComparison(@Path("child_id") childId: Int): Response<ThreeMonthComparison>
 
@@ -229,4 +278,78 @@ data class ProfileChangesResponse(
     val changes_used: Int,
     val changes_remaining: Int,
     val max_changes: Int
+)
+
+data class LatestPatientsResponse(
+    val message: String,
+    val data: List<com.example.serious_game_usil.data.PatientListItem>
+)
+
+
+// TherapySession moved to separate file to avoid duplication
+
+data class PaginatedSessionsResponse(
+    val message: String,
+    val data: PaginatedSessionsData
+)
+
+data class PaginatedSessionsData(
+    val sessions: List<com.example.serious_game_usil.`interface`.TherapySession>,
+    val total: Int,
+    val total_pages: Int,
+    val current_page: Int,
+    val has_next: Boolean,
+    val has_previous: Boolean
+)
+
+data class SessionResponse(
+    val message: String,
+    val data: com.example.serious_game_usil.`interface`.TherapySession
+)
+
+data class CreateSessionRequest(
+    val paciente_id: Int,
+    val terapeuta_id: Int?,
+    val fecha_sesion: String,
+    val hora_inicio: String,
+    val hora_fin: String,
+    val ubicacion: String,
+    val direccion: String,
+    val descripcion: String,
+    val objetivos: List<String>,
+    val materiales: List<String>,
+    val tipo_sesion: String,
+    val modalidad: String
+)
+
+data class UpdateSessionRequest(
+    val fecha_sesion: String?,
+    val hora_inicio: String?,
+    val hora_fin: String?,
+    val ubicacion: String?,
+    val direccion: String?,
+    val descripcion: String?,
+    val objetivos: List<String>?,
+    val materiales: List<String>?,
+    val notas_terapeuta: String?,
+    val estado: String?,
+    val tipo_sesion: String?,
+    val modalidad: String?
+)
+
+data class RescheduleSessionRequest(
+    val fecha_sesion: String,
+    val hora_inicio: String,
+    val hora_fin: String,
+    val razon: String?
+)
+
+data class TherapistsListResponse(
+    val message: String,
+    val data: List<com.example.serious_game_usil.data.UserListItem>
+)
+
+data class SessionsListResponse(
+    val message: String,
+    val data: List<com.example.serious_game_usil.`interface`.TherapySession>
 )

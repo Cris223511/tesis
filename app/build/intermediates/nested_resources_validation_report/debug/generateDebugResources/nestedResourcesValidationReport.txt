@@ -1,16 +1,1 @@
-Nested resources detected.
-+ src/main/res
--- src/main/res/menu
-
-Nested resources means you have layout like this:
-res.srcDirs = [
-    'src/main/res/',
-    'src/main/res/category1'
-]
-However, you should use following structure instead:
-res.srcDirs = [
-    'src/main/res/common',
-    'src/main/res/category1',
-    'src/main/res/category2'
-]
-This Warning will be transformed into Error in version VERSION_9_0
+0 Warning/Error

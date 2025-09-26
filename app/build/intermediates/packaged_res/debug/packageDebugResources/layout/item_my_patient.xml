@@ -85,12 +85,15 @@
 
         </LinearLayout>
 
-        <!-- View Details Arrow -->
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+        <!-- Menu Button -->
+        <ImageButton
+            android:id="@+id/btnPatientMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_chevron_right"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Opciones del paciente"
+            android:src="@android:drawable/ic_menu_more"
             app:tint="@color/on_surface_variant" />
 
     </LinearLayout>

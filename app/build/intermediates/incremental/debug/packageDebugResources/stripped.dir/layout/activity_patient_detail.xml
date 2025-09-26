@@ -140,6 +140,34 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:text="ID Serial:"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/tvSerialId"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/accent"
+                            android:gravity="end"
+                            android:textIsSelectable="true"
+                            tools:text="1234567890123" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="Fecha de Nacimiento:"
                             android:textSize="14sp"
                             android:textColor="@color/text_secondary" />

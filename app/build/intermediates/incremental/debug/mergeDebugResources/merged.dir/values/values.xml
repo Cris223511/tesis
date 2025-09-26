@@ -7730,25 +7730,12 @@
     <item name="android:elevation" ns1:ignore="NewApi">@dimen/m3_bottom_sheet_modal_elevation</item>
   </style>
     <style name="Widget.Material3.Button" parent="Widget.MaterialComponents.Button">
-    <item name="enforceTextAppearance">false</item>
-    <item name="android:maxWidth">@dimen/m3_btn_max_width</item>
-    <item name="android:paddingLeft">@dimen/m3_btn_padding_left</item>
-    <item name="android:paddingRight">@dimen/m3_btn_padding_right</item>
-    <item name="android:paddingTop">@dimen/m3_btn_padding_top</item>
-    <item name="android:paddingBottom">@dimen/m3_btn_padding_bottom</item>
-    <item name="android:insetTop">@dimen/m3_btn_inset</item>
-    <item name="android:insetBottom">@dimen/m3_btn_inset</item>
-    <item name="android:textAppearance">@macro/m3_comp_filled_button_label_text_type</item>
-    <item name="shapeAppearance">@style/ShapeAppearance.M3.Comp.FilledButton.Container.Shape</item>
-    <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.Button</item>
-    <item name="android:stateListAnimator" ns1:ignore="NewApi">@animator/m3_btn_state_list_anim</item>
-    <item name="elevation">@dimen/m3_comp_filled_button_container_elevation</item>
-    <item name="android:textColor">@color/m3_button_foreground_color_selector</item>
-    <item name="iconTint">@color/m3_button_foreground_color_selector</item>
-    <item name="iconSize">@dimen/m3_comp_filled_button_with_icon_icon_size</item>
-    <item name="backgroundTint">@color/m3_button_background_color_selector</item>
-    <item name="rippleColor">@color/m3_button_ripple_color_selector</item>
-  </style>
+        <item name="cornerRadius">32dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
     <style name="Widget.Material3.Button.ElevatedButton">
     <item name="android:stateListAnimator" ns1:ignore="NewApi">
       @animator/m3_btn_elevated_btn_state_list_anim
@@ -7792,12 +7779,14 @@
     <item name="strokeColor">@color/m3_button_outline_color_selector</item>
     <item name="strokeWidth">@dimen/m3_comp_outlined_icon_button_unselected_outline_width</item>
   </style>
-    <style name="Widget.Material3.Button.OutlinedButton" parent="Widget.Material3.Button.TextButton">
-    <item name="android:paddingLeft">@dimen/m3_btn_padding_left</item>
-    <item name="android:paddingRight">@dimen/m3_btn_padding_right</item>
-    <item name="strokeColor">@color/m3_button_outline_color_selector</item>
-    <item name="strokeWidth">@dimen/m3_comp_outlined_button_outline_width</item>
-  </style>
+    <style name="Widget.Material3.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">32dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="strokeColor">@color/primary</item>
+    </style>
     <style name="Widget.Material3.Button.OutlinedButton.Icon">
     <item name="android:paddingLeft">@dimen/m3_btn_icon_btn_padding_left</item>
     <item name="android:paddingRight">@dimen/m3_btn_icon_btn_padding_right</item>
@@ -8585,39 +8574,13 @@
     <item name="endIconMode">dropdown_menu</item>
   </style>
     <style name="Widget.Material3.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-    <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox</item>
-
-    <item name="boxStrokeColor">@color/m3_textfield_stroke_color</item>
-    <item name="boxStrokeErrorColor">@macro/m3_comp_outlined_text_field_error_outline_color</item>
-    <item name="helperTextTextColor">@color/m3_textfield_indicator_text_color</item>
-    <item name="counterTextColor">@color/m3_textfield_indicator_text_color</item>
-    <item name="counterOverflowTextColor">@macro/m3_comp_outlined_text_field_error_supporting_text_color</item>
-    <item name="hintTextColor">@color/m3_textfield_label_color</item>
-    <item name="android:textColorHint">@color/m3_textfield_label_color</item>
-    <item name="placeholderTextColor">@color/m3_textfield_indicator_text_color</item>
-    <item name="prefixTextColor">@color/m3_textfield_indicator_text_color</item>
-    <item name="suffixTextColor">@color/m3_textfield_indicator_text_color</item>
-    <item name="errorTextColor">@macro/m3_comp_outlined_text_field_error_supporting_text_color</item>
-    <item name="errorIconTint">@macro/m3_comp_outlined_text_field_error_trailing_icon_color</item>
-    <item name="startIconTint">@color/m3_textfield_indicator_text_color</item>
-    <item name="endIconTint">@color/m3_textfield_indicator_text_color</item>
-    <item name="passwordToggleDrawable">@drawable/m3_password_eye</item>
-
-    <item name="counterTextAppearance">@macro/m3_comp_outlined_text_field_supporting_text_type</item>
-    <item name="counterOverflowTextAppearance">@macro/m3_comp_outlined_text_field_supporting_text_type</item>
-    <item name="errorTextAppearance">@macro/m3_comp_outlined_text_field_supporting_text_type</item>
-    <item name="helperTextTextAppearance">@macro/m3_comp_outlined_text_field_supporting_text_type</item>
-    <item name="hintTextAppearance">@macro/m3_comp_outlined_text_field_supporting_text_type</item>
-    
-    <item name="placeholderTextAppearance">@macro/m3_comp_outlined_text_field_input_text_type</item>
-    <item name="prefixTextAppearance">?attr/textAppearanceTitleMedium</item>
-    <item name="suffixTextAppearance">?attr/textAppearanceTitleMedium</item>
-    
-    <item name="cursorColor">@null</item>
-    <item name="cursorErrorColor">@macro/m3_comp_outlined_text_field_error_outline_color</item>
-    <item name="shapeAppearance">@macro/m3_comp_outlined_text_field_container_shape</item>
-    <item name="shapeAppearanceOverlay">@null</item>
-  </style>
+        <item name="boxStrokeColor">@color/primary</item>
+        <item name="hintTextColor">@color/primary</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    </style>
     <style name="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
     <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense</item>
   </style>
@@ -8625,10 +8588,15 @@
     <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox.Dense</item>
     <item name="endIconMode">dropdown_menu</item>
   </style>
-    <style name="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-    <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox</item>
-    <item name="endIconMode">dropdown_menu</item>
-  </style>
+    <style name="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/primary</item>
+        <item name="hintTextColor">@color/primary</item>
+        <item name="endIconTint">@color/primary</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    </style>
     <style name="Widget.Material3.Toolbar" parent="Widget.AppCompat.Toolbar">
     <item name="titleTextAppearance">@macro/m3_comp_top_app_bar_small_headline_type</item>
     <item name="subtitleTextAppearance">?attr/textAppearanceTitleMedium</item>

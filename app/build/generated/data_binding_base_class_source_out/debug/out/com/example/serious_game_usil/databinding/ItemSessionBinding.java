@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import java.lang.NullPointerException;
@@ -19,6 +20,12 @@ import java.lang.String;
 public final class ItemSessionBinding implements ViewBinding {
   @NonNull
   private final MaterialCardView rootView;
+
+  @NonNull
+  public final MaterialButton btnAnalyzeEmotions;
+
+  @NonNull
+  public final MaterialButton btnGenerateReport;
 
   @NonNull
   public final Chip chipStatus;
@@ -44,12 +51,15 @@ public final class ItemSessionBinding implements ViewBinding {
   @NonNull
   public final TextView textTherapistName;
 
-  private ItemSessionBinding(@NonNull MaterialCardView rootView, @NonNull Chip chipStatus,
-      @NonNull TextView textDuration, @NonNull TextView textLocation,
+  private ItemSessionBinding(@NonNull MaterialCardView rootView,
+      @NonNull MaterialButton btnAnalyzeEmotions, @NonNull MaterialButton btnGenerateReport,
+      @NonNull Chip chipStatus, @NonNull TextView textDuration, @NonNull TextView textLocation,
       @NonNull TextView textPatientName, @NonNull TextView textSessionDate,
       @NonNull TextView textSessionName, @NonNull TextView textSessionTime,
       @NonNull TextView textTherapistName) {
     this.rootView = rootView;
+    this.btnAnalyzeEmotions = btnAnalyzeEmotions;
+    this.btnGenerateReport = btnGenerateReport;
     this.chipStatus = chipStatus;
     this.textDuration = textDuration;
     this.textLocation = textLocation;
@@ -87,6 +97,18 @@ public final class ItemSessionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnAnalyzeEmotions;
+      MaterialButton btnAnalyzeEmotions = ViewBindings.findChildViewById(rootView, id);
+      if (btnAnalyzeEmotions == null) {
+        break missingId;
+      }
+
+      id = R.id.btnGenerateReport;
+      MaterialButton btnGenerateReport = ViewBindings.findChildViewById(rootView, id);
+      if (btnGenerateReport == null) {
+        break missingId;
+      }
+
       id = R.id.chipStatus;
       Chip chipStatus = ViewBindings.findChildViewById(rootView, id);
       if (chipStatus == null) {
@@ -135,9 +157,9 @@ public final class ItemSessionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemSessionBinding((MaterialCardView) rootView, chipStatus, textDuration,
-          textLocation, textPatientName, textSessionDate, textSessionName, textSessionTime,
-          textTherapistName);
+      return new ItemSessionBinding((MaterialCardView) rootView, btnAnalyzeEmotions,
+          btnGenerateReport, chipStatus, textDuration, textLocation, textPatientName,
+          textSessionDate, textSessionName, textSessionTime, textTherapistName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

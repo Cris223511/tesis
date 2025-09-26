@@ -28,10 +28,16 @@ public final class ItemPatientBinding implements ViewBinding {
   public final ImageButton btnEditPatient;
 
   @NonNull
+  public final ImageButton btnExportPatient;
+
+  @NonNull
   public final ImageView ivPatientPhoto;
 
   @NonNull
   public final View rippleOverlay;
+
+  @NonNull
+  public final TextView tvCaregiverName;
 
   @NonNull
   public final TextView tvPatientAge;
@@ -46,6 +52,9 @@ public final class ItemPatientBinding implements ViewBinding {
   public final TextView tvPatientName;
 
   @NonNull
+  public final TextView tvPatientSerialId;
+
+  @NonNull
   public final TextView tvPatientStatus;
 
   @NonNull
@@ -53,19 +62,24 @@ public final class ItemPatientBinding implements ViewBinding {
 
   private ItemPatientBinding(@NonNull MaterialCardView rootView,
       @NonNull ImageButton btnDeletePatient, @NonNull ImageButton btnEditPatient,
-      @NonNull ImageView ivPatientPhoto, @NonNull View rippleOverlay,
+      @NonNull ImageButton btnExportPatient, @NonNull ImageView ivPatientPhoto,
+      @NonNull View rippleOverlay, @NonNull TextView tvCaregiverName,
       @NonNull TextView tvPatientAge, @NonNull TextView tvPatientDocument,
       @NonNull TextView tvPatientGender, @NonNull TextView tvPatientName,
-      @NonNull TextView tvPatientStatus, @NonNull TextView tvTherapistName) {
+      @NonNull TextView tvPatientSerialId, @NonNull TextView tvPatientStatus,
+      @NonNull TextView tvTherapistName) {
     this.rootView = rootView;
     this.btnDeletePatient = btnDeletePatient;
     this.btnEditPatient = btnEditPatient;
+    this.btnExportPatient = btnExportPatient;
     this.ivPatientPhoto = ivPatientPhoto;
     this.rippleOverlay = rippleOverlay;
+    this.tvCaregiverName = tvCaregiverName;
     this.tvPatientAge = tvPatientAge;
     this.tvPatientDocument = tvPatientDocument;
     this.tvPatientGender = tvPatientGender;
     this.tvPatientName = tvPatientName;
+    this.tvPatientSerialId = tvPatientSerialId;
     this.tvPatientStatus = tvPatientStatus;
     this.tvTherapistName = tvTherapistName;
   }
@@ -109,6 +123,12 @@ public final class ItemPatientBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnExportPatient;
+      ImageButton btnExportPatient = ViewBindings.findChildViewById(rootView, id);
+      if (btnExportPatient == null) {
+        break missingId;
+      }
+
       id = R.id.ivPatientPhoto;
       ImageView ivPatientPhoto = ViewBindings.findChildViewById(rootView, id);
       if (ivPatientPhoto == null) {
@@ -118,6 +138,12 @@ public final class ItemPatientBinding implements ViewBinding {
       id = R.id.rippleOverlay;
       View rippleOverlay = ViewBindings.findChildViewById(rootView, id);
       if (rippleOverlay == null) {
+        break missingId;
+      }
+
+      id = R.id.tvCaregiverName;
+      TextView tvCaregiverName = ViewBindings.findChildViewById(rootView, id);
+      if (tvCaregiverName == null) {
         break missingId;
       }
 
@@ -145,6 +171,12 @@ public final class ItemPatientBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvPatientSerialId;
+      TextView tvPatientSerialId = ViewBindings.findChildViewById(rootView, id);
+      if (tvPatientSerialId == null) {
+        break missingId;
+      }
+
       id = R.id.tvPatientStatus;
       TextView tvPatientStatus = ViewBindings.findChildViewById(rootView, id);
       if (tvPatientStatus == null) {
@@ -158,8 +190,9 @@ public final class ItemPatientBinding implements ViewBinding {
       }
 
       return new ItemPatientBinding((MaterialCardView) rootView, btnDeletePatient, btnEditPatient,
-          ivPatientPhoto, rippleOverlay, tvPatientAge, tvPatientDocument, tvPatientGender,
-          tvPatientName, tvPatientStatus, tvTherapistName);
+          btnExportPatient, ivPatientPhoto, rippleOverlay, tvCaregiverName, tvPatientAge,
+          tvPatientDocument, tvPatientGender, tvPatientName, tvPatientSerialId, tvPatientStatus,
+          tvTherapistName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

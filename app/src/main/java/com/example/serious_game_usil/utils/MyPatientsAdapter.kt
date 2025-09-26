@@ -2,12 +2,17 @@ package com.example.serious_game_usil.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.PatientListItem
 import com.example.serious_game_usil.databinding.ItemMyPatientBinding
 
 class MyPatientsAdapter(
-    private val onItemClick: (PatientListItem) -> Unit
+    private val onItemClick: (PatientListItem) -> Unit,
+    private val onViewDetailsClick: (PatientListItem) -> Unit,
+    private val onViewSessionsClick: (PatientListItem) -> Unit,
+    private val onViewReportClick: (PatientListItem) -> Unit
 ) : RecyclerView.Adapter<MyPatientsAdapter.MyPatientViewHolder>() {
 
     private var patients = listOf<PatientListItem>()
@@ -48,6 +53,32 @@ class MyPatientsAdapter(
             // Click en toda la tarjeta para ver detalles
             binding.root.setOnClickListener {
                 onItemClick(patient)
+            }
+
+            // Configurar el menú de opciones
+            binding.btnPatientMenu.setOnClickListener { view ->
+                val popup = PopupMenu(view.context, view)
+                popup.menuInflater.inflate(R.menu.patient_menu, popup.menu)
+
+                popup.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.action_view_details -> {
+                            onViewDetailsClick(patient)
+                            true
+                        }
+                        R.id.action_view_sessions -> {
+                            onViewSessionsClick(patient)
+                            true
+                        }
+                        R.id.action_view_report -> {
+                            onViewReportClick(patient)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
+                popup.show()
             }
         }
     }

@@ -97,7 +97,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        // Observar pacientes del cuidador
+        // Observar los últimos 3 pacientes del cuidador
         lifecycleScope.launch {
             dashboardViewModel.myPatients.collect { patients ->
                 updatePatientsCount(patients.size)
@@ -113,6 +113,12 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
                 updateCurrentPatientDisplay()
             }
         }
+
+        lifecycleScope.launch {
+            dashboardViewModel.currentPatientStats.collect { stats ->
+                updatePatientSessionsSummaryWithRealData(stats)
+            }
+        }
     }
 
     private fun setupNavigation() {
@@ -121,14 +127,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             startActivity(intent)
         }
 
-        binding.cardRegistrarSesion.setOnClickListener {
-            val intent = Intent(this, MySessionsActivity::class.java)
-            startActivity(intent)
-        }
 
-        binding.cardProgreso.setOnClickListener {
-            startActivity(Intent(this, ProgressDetailActivity::class.java))
-        }
 
         binding.cardVideos.setOnClickListener {
             Toast.makeText(this, "Videos educativos - Próximamente", Toast.LENGTH_SHORT).show()
@@ -179,17 +178,9 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
                 // Ya estamos en el dashboard padres
             }
             R.id.nav_mis_hijos -> {
-                startActivity(Intent(this, ProgressDetailActivity::class.java))
+                startActivity(Intent(this, MyPatientsActivity::class.java))
             }
-            R.id.nav_progreso -> {
-                startActivity(Intent(this, ProgressDetailActivity::class.java))
-            }
-            R.id.nav_emotion_analysis_padre -> {
-                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
-            }
-            R.id.nav_nueva_sesion -> {
-                Toast.makeText(this, "Nueva sesión - Próximamente", Toast.LENGTH_SHORT).show()
-            }
+
             R.id.nav_videos -> {
                 Toast.makeText(this, "Videos educativos - Próximamente", Toast.LENGTH_SHORT).show()
             }
@@ -329,6 +320,17 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
                 startActivity(intent)
             }
         }
+
+        // Click en el botón Ver Sesiones para ir a las sesiones del paciente
+        binding.btnViewPatientSessions.setOnClickListener {
+            val currentPatient = dashboardViewModel.getCurrentPatient()
+            currentPatient?.let { patient ->
+                val intent = Intent(this, MySessionsActivity::class.java)
+                intent.putExtra("patient_id", patient.id)
+                intent.putExtra("patient_name", patient.nombresApellidos)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun updatePatientsCount(count: Int) {
@@ -342,7 +344,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             binding.btnPreviousPatient.visibility = View.GONE
             binding.btnNextPatient.visibility = View.GONE
             binding.layoutPatientIndicators.visibility = View.GONE
-            binding.textCurrentPatientName.text = "Sin pacientes asignados"
+            binding.textCurrentPatientName.text = "Sin pacientes recientes"
             binding.textCurrentPatientInfo.text = "Contacta a tu terapeuta"
         } else {
             // Mostrar slider
@@ -367,11 +369,19 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         val patients = dashboardViewModel.myPatients.value
 
         if (currentPatient != null) {
+            android.util.Log.d("PadresDashboard", "Current patient: ${currentPatient.nombresApellidos}")
+            android.util.Log.d("PadresDashboard", "Patient age: ${currentPatient.edad}")
+            android.util.Log.d("PadresDashboard", "Patient sex: ${currentPatient.sexo}")
+
             binding.textCurrentPatientName.text = currentPatient.nombresApellidos
             binding.textCurrentPatientInfo.text = "${currentPatient.edad} años • ${currentPatient.sexo}"
 
             // Cargar foto del paciente
             ImageUtils.loadUserPhoto(this, currentPatient.foto, binding.ivCurrentPatientPhoto)
+
+            // Mostrar botón Ver Sesiones
+            binding.btnViewPatientSessions.visibility = View.VISIBLE
+            binding.btnViewPatientSessions.text = "Ver Sesiones de ${currentPatient.nombresApellidos.split(" ")[0]}"
 
             // Mostrar resumen de sesiones
             binding.layoutSessionsSummary.visibility = View.VISIBLE
@@ -383,26 +393,48 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             }
         } else {
             binding.layoutSessionsSummary.visibility = View.GONE
+            binding.btnViewPatientSessions.visibility = View.GONE
         }
     }
 
     private fun updatePatientSessionsSummary(patient: com.example.serious_game_usil.data.PatientListItem) {
-        // Por ahora usar datos simulados hasta integrar con el backend de sesiones
-        // TODO: Integrar con el servicio real de sesiones
-        val totalSessions = (15..45).random() // Simular entre 15-45 sesiones
-        val avgProgress = (65..95).random() // Simular progreso entre 65-95%
-        val daysAgo = (1..30).random() // Última sesión hace X días
+        // Cargar estadísticas reales del paciente
+        dashboardViewModel.loadCurrentPatientStats()
+    }
 
-        binding.textTotalSessions.text = totalSessions.toString()
-        binding.textAvgProgress.text = "${avgProgress}%"
+    private fun updatePatientSessionsSummaryWithRealData(stats: com.example.serious_game_usil.data.PatientStatsResponse?) {
+        if (stats != null) {
+            android.util.Log.d("PadresDashboard", "Updating UI with real stats: ${stats}")
 
-        val lastSessionText = when {
-            daysAgo == 1 -> "Ayer"
-            daysAgo < 7 -> "${daysAgo}d"
-            daysAgo < 30 -> "${daysAgo / 7}sem"
-            else -> "1mes+"
+            // Actualizar cards superiores con datos reales
+            binding.textSesionesTotales.text = stats.totalSessions.toString()
+            binding.textProgresoPromedio.text = "${stats.progressPercentage}%"
+
+            // Para "Mejorando" podemos usar las sesiones completadas como indicador de mejora
+            binding.textMejorando.text = stats.completedSessions.toString()
+
+            // Actualizar resumen del paciente actual
+            binding.textTotalSessions.text = stats.totalSessions.toString()
+            binding.textAvgProgress.text = "${stats.progressPercentage}%"
+
+            val lastSessionText = when {
+                stats.daysSinceLastSession == 0 -> "Hoy"
+                stats.daysSinceLastSession == 1 -> "Ayer"
+                stats.daysSinceLastSession < 7 -> "${stats.daysSinceLastSession}d"
+                stats.daysSinceLastSession < 30 -> "${stats.daysSinceLastSession / 7}sem"
+                else -> "1mes+"
+            }
+            binding.textLastSession.text = lastSessionText
+        } else {
+            android.util.Log.d("PadresDashboard", "No stats available, using default values")
+            // Usar valores por defecto si no hay estadísticas
+            binding.textSesionesTotales.text = "0"
+            binding.textProgresoPromedio.text = "0%"
+            binding.textMejorando.text = "0"
+            binding.textTotalSessions.text = "0"
+            binding.textAvgProgress.text = "0%"
+            binding.textLastSession.text = "N/A"
         }
-        binding.textLastSession.text = lastSessionText
     }
 
     private fun createPatientIndicators(count: Int) {

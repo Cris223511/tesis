@@ -2,58 +2,106 @@ package com.example.serious_game_usil.presentation.ui.padres
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.serious_game_usil.R
-import com.example.serious_game_usil.data.TherapySession
+import com.example.serious_game_usil.guards.AuthManager
+import com.example.serious_game_usil.`interface`.TherapySession
 import com.example.serious_game_usil.databinding.ActivityMySessionsBinding
+import com.example.serious_game_usil.presentation.ui.therapy.TherapySessionViewModel
 import com.example.serious_game_usil.utils.MySessionsAdapter
+import com.seriousgame.app.navigation.RouteNavigator
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MySessionsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMySessionsBinding
     private lateinit var sessionsAdapter: MySessionsAdapter
+    private lateinit var viewModel: TherapySessionViewModel
     private var allSessions = listOf<TherapySession>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Verificar autenticación
+        AuthManager.init(this)
+        if (!AuthManager.isAuthenticated()) {
+            RouteNavigator.navigateToLogin(this)
+            return
+        }
+
+        // Configurar token
+        AuthManager.getAccessToken()?.let { token ->
+            com.example.serious_game_usil.network.RetrofitClient.setAuthToken(token)
+        } ?: run {
+            RouteNavigator.navigateToLogin(this)
+            return
+        }
+
         binding = ActivityMySessionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupUI()
+        setupViewModel()
         loadSessions()
     }
 
     private fun setupUI() {
         // Setup RecyclerView
-        sessionsAdapter = MySessionsAdapter { session ->
-            val intent = Intent(this, SessionDetailActivity::class.java)
-            intent.putExtra("session_id", session.id)
-            startActivity(intent)
-        }
+        sessionsAdapter = MySessionsAdapter(
+            onItemClick = { session ->
+                val intent = Intent(this, SessionDetailActivity::class.java)
+                intent.putExtra("session_id", session.id)
+                startActivity(intent)
+            },
+            onAnalyzeEmotionsClick = { session ->
+                analyzeEmotions(session)
+            },
+            onGenerateReportClick = { session ->
+                generateReport(session)
+            }
+        )
 
         binding.recyclerViewSessions.apply {
             layoutManager = LinearLayoutManager(this@MySessionsActivity)
             adapter = sessionsAdapter
         }
 
-        // Setup search
-        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                searchSessions(query)
-                return true
-            }
+        // Update adapter with any existing sessions data
+        if (allSessions.isNotEmpty()) {
+            sessionsAdapter.updateSessions(allSessions)
+            updateEmptyState(allSessions, isSearching = false)
+        }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrBlank()) {
-                    searchSessions(null)
-                } else if (newText.length >= 2) {
-                    searchSessions(newText)
+        // Setup search
+        binding.searchView.apply {
+            isIconified = false
+            isFocusable = true
+            isFocusableInTouchMode = true
+            requestFocusFromTouch()
+            clearFocus()
+
+            setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    searchSessions(query)
+                    clearFocus()
+                    return true
                 }
-                return true
-            }
-        })
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrBlank()) {
+                        searchSessions(null)
+                    } else if (newText.length >= 2) {
+                        searchSessions(newText)
+                    }
+                    return true
+                }
+            })
+        }
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -67,32 +115,26 @@ class MySessionsActivity : AppCompatActivity() {
 
     private fun loadSessions() {
         binding.swipeRefresh.isRefreshing = true
-
-        // Simular datos de sesiones hasta integrar con backend real
-        // TODO: Integrar con el servicio real de sesiones
-        val simulatedSessions = generateSimulatedSessions()
-
-        allSessions = simulatedSessions
-        sessionsAdapter.updateSessions(simulatedSessions)
-        updateEmptyState(simulatedSessions, isSearching = false)
-
-        binding.swipeRefresh.isRefreshing = false
+        android.util.Log.d("MySessionsActivity", "Loading caregiver sessions...")
+        viewModel.loadAllSessions()
     }
 
     private fun searchSessions(query: String?) {
         val filteredSessions = if (!query.isNullOrBlank()) {
             allSessions.filter { session ->
-                session.nombreSesion.contains(query, ignoreCase = true) ||
-                session.terapeutaNombre.contains(query, ignoreCase = true) ||
-                session.pacienteNombre.contains(query, ignoreCase = true) ||
+                session.tipoSesion?.contains(query, ignoreCase = true) == true ||
+                session.terapeuta.nombresApellidos.contains(query, ignoreCase = true) ||
+                session.paciente.nombresApellidos.contains(query, ignoreCase = true) ||
                 session.ubicacion?.contains(query, ignoreCase = true) == true
             }
         } else {
             allSessions
         }
 
-        sessionsAdapter.updateSessions(filteredSessions)
-        updateEmptyState(filteredSessions, isSearching = !query.isNullOrBlank())
+        if (::sessionsAdapter.isInitialized) {
+            sessionsAdapter.updateSessions(filteredSessions)
+            updateEmptyState(filteredSessions, isSearching = !query.isNullOrBlank())
+        }
     }
 
     private fun getCurrentSearchQuery(): String {
@@ -117,54 +159,57 @@ class MySessionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateSimulatedSessions(): List<TherapySession> {
-        val sessions = mutableListOf<TherapySession>()
-        val calendar = Calendar.getInstance()
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[TherapySessionViewModel::class.java]
 
-        // Generar sesiones para las próximas 2 semanas
-        for (i in 1..10) {
-            calendar.add(Calendar.DAY_OF_YEAR, if (i <= 5) 1 else 2)
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-
-            // Alternar horas (9:00 AM, 2:00 PM, 4:00 PM)
-            val hours = listOf(9, 14, 16)
-            calendar.set(Calendar.HOUR_OF_DAY, hours[i % 3])
-            calendar.set(Calendar.MINUTE, 0)
-            calendar.set(Calendar.SECOND, 0)
-
-            val session = TherapySession(
-                id = i,
-                nombreSesion = listOf(
-                    "Terapia de Comunicación Social",
-                    "Sesión de Habilidades Motoras",
-                    "Terapia Sensorial",
-                    "Desarrollo del Lenguaje",
-                    "Terapia Ocupacional"
-                )[i % 5],
-                fechaHora = dateFormat.format(calendar.time),
-                terapeutaNombre = listOf(
-                    "Dra. María González",
-                    "Dr. Carlos Mendoza",
-                    "Lic. Ana Rojas"
-                )[i % 3],
-                pacienteNombre = "Mi hijo ${listOf("Diego", "Sofía", "Mateo")[i % 3]}",
-                ubicacion = listOf(
-                    "Consultorio 101 - Centro Terapéutico",
-                    "Sala de Terapia A - USIL",
-                    "Consultorio Virtual - Zoom",
-                    "Domicilio - Visita a casa"
-                )[i % 4],
-                descripcion = "Sesión de terapia personalizada enfocada en el desarrollo de habilidades específicas",
-                estado = if (i <= 2) "completada" else if (i <= 7) "programada" else "pendiente",
-                duracionMinutos = 60,
-                notas = null,
-                createdAt = dateFormat.format(Date()),
-                updatedAt = dateFormat.format(Date())
-            )
-            sessions.add(session)
+        lifecycleScope.launch {
+            viewModel.isLoading.collect { isLoading ->
+                binding.swipeRefresh.isRefreshing = isLoading
+            }
         }
 
-        return sessions.sortedBy { it.fechaHora }
+        lifecycleScope.launch {
+            viewModel.error.collect { error ->
+                error?.let {
+                    Toast.makeText(this@MySessionsActivity, it, Toast.LENGTH_LONG).show()
+                    viewModel.clearError()
+                    binding.swipeRefresh.isRefreshing = false
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.sessions.collect { sessions ->
+                android.util.Log.d("MySessionsActivity", "Received ${sessions.size} sessions for caregiver")
+                allSessions = sessions
+                if (::sessionsAdapter.isInitialized) {
+                    sessionsAdapter.updateSessions(sessions)
+                    updateEmptyState(sessions, isSearching = false)
+                }
+                binding.swipeRefresh.isRefreshing = false
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.successMessage.collect { message ->
+                message?.let {
+                    Toast.makeText(this@MySessionsActivity, it, Toast.LENGTH_SHORT).show()
+                    viewModel.clearSuccessMessage()
+                }
+            }
+        }
+    }
+
+    private fun analyzeEmotions(session: TherapySession) {
+        Toast.makeText(this, "Analizando emociones para sesión #${session.id}...", Toast.LENGTH_SHORT).show()
+        // TODO: Implement emotion analysis functionality
+        android.util.Log.d("MySessionsActivity", "Analyze emotions requested for session ${session.id}")
+    }
+
+    private fun generateReport(session: TherapySession) {
+        Toast.makeText(this, "Generando reporte para sesión #${session.id}...", Toast.LENGTH_SHORT).show()
+        // TODO: Implement report generation functionality
+        android.util.Log.d("MySessionsActivity", "Generate report requested for session ${session.id}")
     }
 
     override fun onSupportNavigateUp(): Boolean {

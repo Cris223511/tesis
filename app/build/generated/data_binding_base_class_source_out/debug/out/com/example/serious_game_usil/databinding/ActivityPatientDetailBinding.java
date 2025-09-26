@@ -64,6 +64,9 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
   public final TextView tvPatientStatus;
 
   @NonNull
+  public final TextView tvSerialId;
+
+  @NonNull
   public final TextView tvTherapist;
 
   @NonNull
@@ -78,7 +81,8 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
       @NonNull TextView tvCaregiver, @NonNull TextView tvCreatedAt, @NonNull TextView tvDiagnosis,
       @NonNull TextView tvGender, @NonNull TextView tvHeight, @NonNull TextView tvPatientDocument,
       @NonNull TextView tvPatientName, @NonNull TextView tvPatientStatus,
-      @NonNull TextView tvTherapist, @NonNull TextView tvUpdatedAt, @NonNull TextView tvWeight) {
+      @NonNull TextView tvSerialId, @NonNull TextView tvTherapist, @NonNull TextView tvUpdatedAt,
+      @NonNull TextView tvWeight) {
     this.rootView = rootView;
     this.ivPatientPhoto = ivPatientPhoto;
     this.toolbar = toolbar;
@@ -94,6 +98,7 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
     this.tvPatientDocument = tvPatientDocument;
     this.tvPatientName = tvPatientName;
     this.tvPatientStatus = tvPatientStatus;
+    this.tvSerialId = tvSerialId;
     this.tvTherapist = tvTherapist;
     this.tvUpdatedAt = tvUpdatedAt;
     this.tvWeight = tvWeight;
@@ -210,6 +215,12 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvSerialId;
+      TextView tvSerialId = ViewBindings.findChildViewById(rootView, id);
+      if (tvSerialId == null) {
+        break missingId;
+      }
+
       id = R.id.tvTherapist;
       TextView tvTherapist = ViewBindings.findChildViewById(rootView, id);
       if (tvTherapist == null) {
@@ -230,8 +241,8 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
 
       return new ActivityPatientDetailBinding((ScrollView) rootView, ivPatientPhoto, toolbar, tvAge,
           tvBMI, tvBMICategory, tvBirthDate, tvCaregiver, tvCreatedAt, tvDiagnosis, tvGender,
-          tvHeight, tvPatientDocument, tvPatientName, tvPatientStatus, tvTherapist, tvUpdatedAt,
-          tvWeight);
+          tvHeight, tvPatientDocument, tvPatientName, tvPatientStatus, tvSerialId, tvTherapist,
+          tvUpdatedAt, tvWeight);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

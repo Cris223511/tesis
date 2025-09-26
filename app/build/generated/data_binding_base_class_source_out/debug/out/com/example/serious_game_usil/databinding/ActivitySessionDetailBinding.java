@@ -4,7 +4,9 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import java.lang.NullPointerException;
@@ -23,10 +26,28 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final MaterialButton btnDeleteSession;
+
+  @NonNull
+  public final MaterialButton btnEditSession;
+
+  @NonNull
+  public final MaterialButton btnExportPdf;
+
+  @NonNull
   public final Chip chipStatus;
 
   @NonNull
+  public final MaterialCardView layoutCaregiverCard;
+
+  @NonNull
+  public final LinearLayout layoutCaregiverEmail;
+
+  @NonNull
   public final MaterialCardView layoutCaregiverNotes;
+
+  @NonNull
+  public final LinearLayout layoutCaregiverPhone;
 
   @NonNull
   public final MaterialCardView layoutDescription;
@@ -53,10 +74,28 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
   public final LinearLayout layoutTherapistPhone;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
+  public final FrameLayout progressContainer;
+
+  @NonNull
   public final TextView textAddress;
 
   @NonNull
+  public final TextView textCaregiverEmail;
+
+  @NonNull
+  public final TextView textCaregiverName;
+
+  @NonNull
+  public final TextView textCaregiverNameDetail;
+
+  @NonNull
   public final TextView textCaregiverNotes;
+
+  @NonNull
+  public final TextView textCaregiverPhone;
 
   @NonNull
   public final TextView textDateLabel;
@@ -75,9 +114,6 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
 
   @NonNull
   public final TextView textObjectives;
-
-  @NonNull
-  public final TextView textPatientAge;
 
   @NonNull
   public final TextView textPatientName;
@@ -106,24 +142,36 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
   @NonNull
   public final Toolbar toolbar;
 
-  private ActivitySessionDetailBinding(@NonNull LinearLayout rootView, @NonNull Chip chipStatus,
-      @NonNull MaterialCardView layoutCaregiverNotes, @NonNull MaterialCardView layoutDescription,
-      @NonNull LinearLayout layoutDuration, @NonNull MaterialCardView layoutLocation,
-      @NonNull MaterialCardView layoutMaterials, @NonNull MaterialCardView layoutObjectives,
-      @NonNull LinearLayout layoutTherapistEmail, @NonNull MaterialCardView layoutTherapistNotes,
-      @NonNull LinearLayout layoutTherapistPhone, @NonNull TextView textAddress,
-      @NonNull TextView textCaregiverNotes, @NonNull TextView textDateLabel,
-      @NonNull TextView textDescription, @NonNull TextView textDuration,
-      @NonNull TextView textLocation, @NonNull TextView textMaterials,
-      @NonNull TextView textObjectives, @NonNull TextView textPatientAge,
+  private ActivitySessionDetailBinding(@NonNull LinearLayout rootView,
+      @NonNull MaterialButton btnDeleteSession, @NonNull MaterialButton btnEditSession,
+      @NonNull MaterialButton btnExportPdf, @NonNull Chip chipStatus,
+      @NonNull MaterialCardView layoutCaregiverCard, @NonNull LinearLayout layoutCaregiverEmail,
+      @NonNull MaterialCardView layoutCaregiverNotes, @NonNull LinearLayout layoutCaregiverPhone,
+      @NonNull MaterialCardView layoutDescription, @NonNull LinearLayout layoutDuration,
+      @NonNull MaterialCardView layoutLocation, @NonNull MaterialCardView layoutMaterials,
+      @NonNull MaterialCardView layoutObjectives, @NonNull LinearLayout layoutTherapistEmail,
+      @NonNull MaterialCardView layoutTherapistNotes, @NonNull LinearLayout layoutTherapistPhone,
+      @NonNull ProgressBar progressBar, @NonNull FrameLayout progressContainer,
+      @NonNull TextView textAddress, @NonNull TextView textCaregiverEmail,
+      @NonNull TextView textCaregiverName, @NonNull TextView textCaregiverNameDetail,
+      @NonNull TextView textCaregiverNotes, @NonNull TextView textCaregiverPhone,
+      @NonNull TextView textDateLabel, @NonNull TextView textDescription,
+      @NonNull TextView textDuration, @NonNull TextView textLocation,
+      @NonNull TextView textMaterials, @NonNull TextView textObjectives,
       @NonNull TextView textPatientName, @NonNull TextView textSessionDate,
       @NonNull TextView textSessionName, @NonNull TextView textSessionTime,
       @NonNull TextView textTherapistEmail, @NonNull TextView textTherapistName,
       @NonNull TextView textTherapistNotes, @NonNull TextView textTherapistPhone,
       @NonNull Toolbar toolbar) {
     this.rootView = rootView;
+    this.btnDeleteSession = btnDeleteSession;
+    this.btnEditSession = btnEditSession;
+    this.btnExportPdf = btnExportPdf;
     this.chipStatus = chipStatus;
+    this.layoutCaregiverCard = layoutCaregiverCard;
+    this.layoutCaregiverEmail = layoutCaregiverEmail;
     this.layoutCaregiverNotes = layoutCaregiverNotes;
+    this.layoutCaregiverPhone = layoutCaregiverPhone;
     this.layoutDescription = layoutDescription;
     this.layoutDuration = layoutDuration;
     this.layoutLocation = layoutLocation;
@@ -132,15 +180,20 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
     this.layoutTherapistEmail = layoutTherapistEmail;
     this.layoutTherapistNotes = layoutTherapistNotes;
     this.layoutTherapistPhone = layoutTherapistPhone;
+    this.progressBar = progressBar;
+    this.progressContainer = progressContainer;
     this.textAddress = textAddress;
+    this.textCaregiverEmail = textCaregiverEmail;
+    this.textCaregiverName = textCaregiverName;
+    this.textCaregiverNameDetail = textCaregiverNameDetail;
     this.textCaregiverNotes = textCaregiverNotes;
+    this.textCaregiverPhone = textCaregiverPhone;
     this.textDateLabel = textDateLabel;
     this.textDescription = textDescription;
     this.textDuration = textDuration;
     this.textLocation = textLocation;
     this.textMaterials = textMaterials;
     this.textObjectives = textObjectives;
-    this.textPatientAge = textPatientAge;
     this.textPatientName = textPatientName;
     this.textSessionDate = textSessionDate;
     this.textSessionName = textSessionName;
@@ -179,15 +232,51 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnDeleteSession;
+      MaterialButton btnDeleteSession = ViewBindings.findChildViewById(rootView, id);
+      if (btnDeleteSession == null) {
+        break missingId;
+      }
+
+      id = R.id.btnEditSession;
+      MaterialButton btnEditSession = ViewBindings.findChildViewById(rootView, id);
+      if (btnEditSession == null) {
+        break missingId;
+      }
+
+      id = R.id.btnExportPdf;
+      MaterialButton btnExportPdf = ViewBindings.findChildViewById(rootView, id);
+      if (btnExportPdf == null) {
+        break missingId;
+      }
+
       id = R.id.chipStatus;
       Chip chipStatus = ViewBindings.findChildViewById(rootView, id);
       if (chipStatus == null) {
         break missingId;
       }
 
+      id = R.id.layoutCaregiverCard;
+      MaterialCardView layoutCaregiverCard = ViewBindings.findChildViewById(rootView, id);
+      if (layoutCaregiverCard == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutCaregiverEmail;
+      LinearLayout layoutCaregiverEmail = ViewBindings.findChildViewById(rootView, id);
+      if (layoutCaregiverEmail == null) {
+        break missingId;
+      }
+
       id = R.id.layoutCaregiverNotes;
       MaterialCardView layoutCaregiverNotes = ViewBindings.findChildViewById(rootView, id);
       if (layoutCaregiverNotes == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutCaregiverPhone;
+      LinearLayout layoutCaregiverPhone = ViewBindings.findChildViewById(rootView, id);
+      if (layoutCaregiverPhone == null) {
         break missingId;
       }
 
@@ -239,15 +328,51 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
+      id = R.id.progressContainer;
+      FrameLayout progressContainer = ViewBindings.findChildViewById(rootView, id);
+      if (progressContainer == null) {
+        break missingId;
+      }
+
       id = R.id.textAddress;
       TextView textAddress = ViewBindings.findChildViewById(rootView, id);
       if (textAddress == null) {
         break missingId;
       }
 
+      id = R.id.textCaregiverEmail;
+      TextView textCaregiverEmail = ViewBindings.findChildViewById(rootView, id);
+      if (textCaregiverEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.textCaregiverName;
+      TextView textCaregiverName = ViewBindings.findChildViewById(rootView, id);
+      if (textCaregiverName == null) {
+        break missingId;
+      }
+
+      id = R.id.textCaregiverNameDetail;
+      TextView textCaregiverNameDetail = ViewBindings.findChildViewById(rootView, id);
+      if (textCaregiverNameDetail == null) {
+        break missingId;
+      }
+
       id = R.id.textCaregiverNotes;
       TextView textCaregiverNotes = ViewBindings.findChildViewById(rootView, id);
       if (textCaregiverNotes == null) {
+        break missingId;
+      }
+
+      id = R.id.textCaregiverPhone;
+      TextView textCaregiverPhone = ViewBindings.findChildViewById(rootView, id);
+      if (textCaregiverPhone == null) {
         break missingId;
       }
 
@@ -284,12 +409,6 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
       id = R.id.textObjectives;
       TextView textObjectives = ViewBindings.findChildViewById(rootView, id);
       if (textObjectives == null) {
-        break missingId;
-      }
-
-      id = R.id.textPatientAge;
-      TextView textPatientAge = ViewBindings.findChildViewById(rootView, id);
-      if (textPatientAge == null) {
         break missingId;
       }
 
@@ -347,13 +466,16 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivitySessionDetailBinding((LinearLayout) rootView, chipStatus,
-          layoutCaregiverNotes, layoutDescription, layoutDuration, layoutLocation, layoutMaterials,
-          layoutObjectives, layoutTherapistEmail, layoutTherapistNotes, layoutTherapistPhone,
-          textAddress, textCaregiverNotes, textDateLabel, textDescription, textDuration,
-          textLocation, textMaterials, textObjectives, textPatientAge, textPatientName,
-          textSessionDate, textSessionName, textSessionTime, textTherapistEmail, textTherapistName,
-          textTherapistNotes, textTherapistPhone, toolbar);
+      return new ActivitySessionDetailBinding((LinearLayout) rootView, btnDeleteSession,
+          btnEditSession, btnExportPdf, chipStatus, layoutCaregiverCard, layoutCaregiverEmail,
+          layoutCaregiverNotes, layoutCaregiverPhone, layoutDescription, layoutDuration,
+          layoutLocation, layoutMaterials, layoutObjectives, layoutTherapistEmail,
+          layoutTherapistNotes, layoutTherapistPhone, progressBar, progressContainer, textAddress,
+          textCaregiverEmail, textCaregiverName, textCaregiverNameDetail, textCaregiverNotes,
+          textCaregiverPhone, textDateLabel, textDescription, textDuration, textLocation,
+          textMaterials, textObjectives, textPatientName, textSessionDate, textSessionName,
+          textSessionTime, textTherapistEmail, textTherapistName, textTherapistNotes,
+          textTherapistPhone, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -33,7 +33,6 @@ import java.io.File
 import androidx.lifecycle.ViewModelProvider
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.UserProfileResponse
-import com.example.serious_game_usil.databinding.ActivityProfileBinding
 import com.example.serious_game_usil.presentation.ui.administrador.list.EditUserActivity
 import com.example.serious_game_usil.presentation.ui.login.LoginActivity
 import com.example.serious_game_usil.repository.UserRepository

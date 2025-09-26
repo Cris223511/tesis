@@ -45,7 +45,12 @@
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="false"
                     android:queryHint="Buscar sesiones, terapeuta, paciente..."
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:defaultQueryHint="Buscar sesiones, terapeuta, paciente..."
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Buscar sesiones, terapeuta, paciente..." />
 
             </com.google.android.material.card.MaterialCardView>
 

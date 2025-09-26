@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
@@ -32,19 +33,16 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
   public final ImageButton btnPreviousPatient;
 
   @NonNull
+  public final MaterialButton btnViewPatientSessions;
+
+  @NonNull
   public final MaterialCardView cardMisHijos;
 
   @NonNull
   public final MaterialCardView cardPatientsSlider;
 
   @NonNull
-  public final MaterialCardView cardProgreso;
-
-  @NonNull
   public final MaterialCardView cardRecommendations;
-
-  @NonNull
-  public final MaterialCardView cardRegistrarSesion;
 
   @NonNull
   public final MaterialCardView cardVideos;
@@ -132,31 +130,29 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
 
   private ActivityPadresDashboardBinding(@NonNull DrawerLayout rootView,
       @NonNull ImageButton btnNextPatient, @NonNull ImageButton btnPreviousPatient,
-      @NonNull MaterialCardView cardMisHijos, @NonNull MaterialCardView cardPatientsSlider,
-      @NonNull MaterialCardView cardProgreso, @NonNull MaterialCardView cardRecommendations,
-      @NonNull MaterialCardView cardRegistrarSesion, @NonNull MaterialCardView cardVideos,
-      @NonNull DrawerLayout drawerLayout, @NonNull ShapeableImageView ivCurrentPatientPhoto,
-      @NonNull LinearLayout layoutContent, @NonNull LinearLayout layoutEmptyState,
-      @NonNull LinearLayout layoutNoPatientsSlider, @NonNull LinearLayout layoutPatientIndicators,
-      @NonNull LinearLayout layoutSessionsSummary, @NonNull ImageButton logoutButton,
-      @NonNull ImageButton menuButton, @NonNull LinearLayout navContactar,
-      @NonNull LinearLayout navInicio, @NonNull LinearLayout navPerfil,
-      @NonNull NavigationView navView, @NonNull ProgressBar progressIndicator,
-      @NonNull TextView textAvgProgress, @NonNull TextView textCurrentPatientInfo,
-      @NonNull TextView textCurrentPatientName, @NonNull TextView textDateTime,
-      @NonNull TextView textLastSession, @NonNull TextView textMejorando,
-      @NonNull TextView textProgresoPromedio, @NonNull TextView textRecommendation,
-      @NonNull TextView textSesionesTotales, @NonNull TextView textTotalHijos,
-      @NonNull TextView textTotalSessions, @NonNull ShapeableImageView userAvatar,
-      @NonNull TextView userName) {
+      @NonNull MaterialButton btnViewPatientSessions, @NonNull MaterialCardView cardMisHijos,
+      @NonNull MaterialCardView cardPatientsSlider, @NonNull MaterialCardView cardRecommendations,
+      @NonNull MaterialCardView cardVideos, @NonNull DrawerLayout drawerLayout,
+      @NonNull ShapeableImageView ivCurrentPatientPhoto, @NonNull LinearLayout layoutContent,
+      @NonNull LinearLayout layoutEmptyState, @NonNull LinearLayout layoutNoPatientsSlider,
+      @NonNull LinearLayout layoutPatientIndicators, @NonNull LinearLayout layoutSessionsSummary,
+      @NonNull ImageButton logoutButton, @NonNull ImageButton menuButton,
+      @NonNull LinearLayout navContactar, @NonNull LinearLayout navInicio,
+      @NonNull LinearLayout navPerfil, @NonNull NavigationView navView,
+      @NonNull ProgressBar progressIndicator, @NonNull TextView textAvgProgress,
+      @NonNull TextView textCurrentPatientInfo, @NonNull TextView textCurrentPatientName,
+      @NonNull TextView textDateTime, @NonNull TextView textLastSession,
+      @NonNull TextView textMejorando, @NonNull TextView textProgresoPromedio,
+      @NonNull TextView textRecommendation, @NonNull TextView textSesionesTotales,
+      @NonNull TextView textTotalHijos, @NonNull TextView textTotalSessions,
+      @NonNull ShapeableImageView userAvatar, @NonNull TextView userName) {
     this.rootView = rootView;
     this.btnNextPatient = btnNextPatient;
     this.btnPreviousPatient = btnPreviousPatient;
+    this.btnViewPatientSessions = btnViewPatientSessions;
     this.cardMisHijos = cardMisHijos;
     this.cardPatientsSlider = cardPatientsSlider;
-    this.cardProgreso = cardProgreso;
     this.cardRecommendations = cardRecommendations;
-    this.cardRegistrarSesion = cardRegistrarSesion;
     this.cardVideos = cardVideos;
     this.drawerLayout = drawerLayout;
     this.ivCurrentPatientPhoto = ivCurrentPatientPhoto;
@@ -226,6 +222,12 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnViewPatientSessions;
+      MaterialButton btnViewPatientSessions = ViewBindings.findChildViewById(rootView, id);
+      if (btnViewPatientSessions == null) {
+        break missingId;
+      }
+
       id = R.id.cardMisHijos;
       MaterialCardView cardMisHijos = ViewBindings.findChildViewById(rootView, id);
       if (cardMisHijos == null) {
@@ -238,21 +240,9 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.cardProgreso;
-      MaterialCardView cardProgreso = ViewBindings.findChildViewById(rootView, id);
-      if (cardProgreso == null) {
-        break missingId;
-      }
-
       id = R.id.cardRecommendations;
       MaterialCardView cardRecommendations = ViewBindings.findChildViewById(rootView, id);
       if (cardRecommendations == null) {
-        break missingId;
-      }
-
-      id = R.id.cardRegistrarSesion;
-      MaterialCardView cardRegistrarSesion = ViewBindings.findChildViewById(rootView, id);
-      if (cardRegistrarSesion == null) {
         break missingId;
       }
 
@@ -421,8 +411,8 @@ public final class ActivityPadresDashboardBinding implements ViewBinding {
       }
 
       return new ActivityPadresDashboardBinding((DrawerLayout) rootView, btnNextPatient,
-          btnPreviousPatient, cardMisHijos, cardPatientsSlider, cardProgreso, cardRecommendations,
-          cardRegistrarSesion, cardVideos, drawerLayout, ivCurrentPatientPhoto, layoutContent,
+          btnPreviousPatient, btnViewPatientSessions, cardMisHijos, cardPatientsSlider,
+          cardRecommendations, cardVideos, drawerLayout, ivCurrentPatientPhoto, layoutContent,
           layoutEmptyState, layoutNoPatientsSlider, layoutPatientIndicators, layoutSessionsSummary,
           logoutButton, menuButton, navContactar, navInicio, navPerfil, navView, progressIndicator,
           textAvgProgress, textCurrentPatientInfo, textCurrentPatientName, textDateTime,

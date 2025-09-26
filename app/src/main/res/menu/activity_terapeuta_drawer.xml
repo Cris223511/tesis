@@ -10,39 +10,9 @@
             android:title="Dashboard Terapeuta"
             android:checked="true" />
 
-        <item
-            android:id="@+id/nav_patients_list"
-            android:icon="@android:drawable/ic_menu_view"
-            android:title="Mis Pacientes" />
 
-        <item
-            android:id="@+id/nav_patient_progress"
-            android:icon="@drawable/ic_info"
-            android:title="Progreso de Pacientes" />
     </group>
 
-    <item android:title="Análisis">
-        <menu>
-            <item
-                android:id="@+id/nav_emotion_analysis"
-                android:icon="@drawable/ic_info"
-                android:title="Análisis de Emociones" />
-        </menu>
-    </item>
-
-    <item android:title="Sesiones">
-        <menu>
-            <item
-                android:id="@+id/nav_register_session"
-                android:icon="@android:drawable/ic_input_add"
-                android:title="Registrar Sesión" />
-
-            <item
-                android:id="@+id/nav_session_history"
-                android:icon="@android:drawable/ic_menu_recent_history"
-                android:title="Historial de Sesiones" />
-        </menu>
-    </item>
 
     <item android:title="Configuración">
         <menu>

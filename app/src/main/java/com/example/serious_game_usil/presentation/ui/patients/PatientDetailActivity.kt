@@ -90,6 +90,9 @@ class PatientDetailActivity : AppCompatActivity() {
             tvPatientName.text = patient.nombresApellidos
             tvPatientDocument.text = "${patient.tipoDocumento}: ${patient.numDocumento}"
 
+            // Mostrar el Serial ID (solo lectura)
+            tvSerialId.text = patient.serialId
+
             val statusText = if (patient.activo) "Activo" else "Inactivo"
             val statusColor = if (patient.activo) R.color.success else R.color.error
             tvPatientStatus.text = statusText

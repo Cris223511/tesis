@@ -39,6 +39,7 @@ data class SessionDetail(
     @SerializedName("terapeuta_correo") val terapeutaCorreo: String? = null,
     @SerializedName("paciente_nombre") val pacienteNombre: String,
     @SerializedName("paciente_edad") val pacienteEdad: Int? = null,
+    @SerializedName("cuidador_nombre") val cuidadorNombre: String? = null,
     @SerializedName("ubicacion") val ubicacion: String? = null,
     @SerializedName("direccion") val direccion: String? = null,
     @SerializedName("descripcion") val descripcion: String? = null,

@@ -37,59 +37,116 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp"
+                    android:background="@drawable/gradient_background">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="12dp">
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical">
 
                         <TextView
                             android:id="@+id/textSessionName"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Terapia de Comunicación Social"
+                            android:text=""
                             android:textColor="@color/on_surface"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:maxLines="2"
+                            android:ellipsize="end" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Programada"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="12sp"
-                            app:chipBackgroundColor="@color/primary" />
+                            android:textStyle="bold"
+                            app:chipCornerRadius="16dp"
+                            app:chipBackgroundColor="@color/success"
+                            android:layout_marginStart="12dp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textPatientName"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="👤 Diego Martínez"
-                        android:textColor="@color/primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="4dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="@drawable/rounded_background"
+                        android:backgroundTint="@color/surface_variant">
 
-                    <TextView
-                        android:id="@+id/textPatientAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="8 años"
-                        android:textColor="@color/on_surface_variant"
-                        android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_person"
+                            android:background="@drawable/circle_background"
+                            android:backgroundTint="@color/primary"
+                            android:padding="12dp"
+                            android:tint="@color/white"
+                            android:layout_marginEnd="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Paciente"
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/textPatientName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/on_surface"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cuidador"
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/textCaregiverName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/on_surface_variant"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -122,7 +179,7 @@
                         android:id="@+id/textDateLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mañana"
+                        android:text=""
                         android:textColor="@color/activity_green"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -132,7 +189,7 @@
                         android:id="@+id/textSessionDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Martes, 15 de octubre de 2023"
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="16sp" />
 
@@ -147,7 +204,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="🕐 14:30"
+                            android:text=""
                             android:textColor="@color/on_surface_variant"
                             android:textSize="14sp" />
 
@@ -161,7 +218,7 @@
                                 android:id="@+id/textDuration"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⏱️ 1 hora"
+                                android:text=""
                                 android:textColor="@color/on_surface_variant"
                                 android:textSize="14sp" />
 
@@ -200,7 +257,7 @@
                         android:id="@+id/textTherapistName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dra. María González"
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -216,7 +273,7 @@
                             android:id="@+id/textTherapistPhone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="📞 +51 987654321"
+                            android:text=""
                             android:textColor="@color/on_surface_variant"
                             android:textSize="14sp" />
 
@@ -233,7 +290,7 @@
                             android:id="@+id/textTherapistEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="📧 maria.gonzalez@clinica.com"
+                            android:text=""
                             android:textColor="@color/on_surface_variant"
                             android:textSize="14sp" />
 
@@ -243,7 +300,79 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Location Card -->
+            <!-- Caregiver Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layoutCaregiverCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👨‍👩‍👧‍👦 Cuidador"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/textCaregiverNameDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/on_surface"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutCaregiverPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/textCaregiverPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/on_surface_variant"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutCaregiverEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/textCaregiverEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/on_surface_variant"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/layoutLocation"
                 android:layout_width="match_parent"
@@ -271,7 +400,7 @@
                         android:id="@+id/textLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Consultorio 101 - Centro Terapéutico"
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="16sp" />
 
@@ -279,7 +408,7 @@
                         android:id="@+id/textAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Av. La Fontana 550, La Molina"
+                        android:text=""
                         android:textColor="@color/on_surface_variant"
                         android:textSize="14sp"
                         android:layout_marginTop="4dp" />
@@ -316,7 +445,7 @@
                         android:id="@+id/textDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sesión enfocada en el desarrollo de habilidades específicas."
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="14sp" />
 
@@ -352,7 +481,7 @@
                         android:id="@+id/textObjectives"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="• Mejorar la comunicación verbal\n• Desarrollar habilidades sociales"
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="14sp" />
 
@@ -388,7 +517,7 @@
                         android:id="@+id/textMaterials"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="• Juegos de construcción\n• Material sensorial"
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="14sp" />
 
@@ -424,7 +553,7 @@
                         android:id="@+id/textTherapistNotes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="El paciente mostró excelente progreso en la sesión."
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="14sp" />
 
@@ -460,7 +589,7 @@
                         android:id="@+id/textCaregiverNotes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mi hijo llegó muy contento después de la sesión."
+                        android:text=""
                         android:textColor="@color/on_surface"
                         android:textSize="14sp" />
 
@@ -471,5 +600,92 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- Action Buttons -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:background="@color/surface">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditSession"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Editar"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawablePadding="8dp"
+                app:backgroundTint="@color/primary"
+                android:textColor="@color/white"
+                app:cornerRadius="16dp"
+                app:elevation="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDeleteSession"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="Eliminar"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/ic_delete"
+                android:drawablePadding="8dp"
+                app:backgroundTint="@color/error"
+                android:textColor="@color/white"
+                app:cornerRadius="16dp"
+                app:elevation="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExportPdf"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="PDF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/ic_download"
+                android:drawablePadding="8dp"
+                app:backgroundTint="@color/secondary"
+                android:textColor="@color/white"
+                app:cornerRadius="16dp"
+                app:elevation="4dp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Progress Bar Overlay -->
+    <FrameLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
 
 </LinearLayout>

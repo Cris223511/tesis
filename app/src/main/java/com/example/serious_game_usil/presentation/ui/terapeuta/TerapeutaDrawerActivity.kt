@@ -89,7 +89,8 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
 
         // Botón de gestionar sesiones
         binding.cardSessionsManagement.setOnClickListener {
-            Toast.makeText(this, "Gestión de Sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity::class.java)
+            startActivity(intent)
         }
 
         // Botón de reportes
@@ -102,21 +103,6 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
         when (item.itemId) {
             R.id.nav_terapeuta_dashboard -> {
                 // Ya estamos en el dashboard terapeuta
-            }
-            R.id.nav_patients_list -> {
-                startActivity(Intent(this, PatientsListActivity::class.java))
-            }
-            R.id.nav_patient_progress -> {
-                startActivity(Intent(this, ProgressDetailActivity::class.java))
-            }
-            R.id.nav_emotion_analysis -> {
-                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
-            }
-            R.id.nav_register_session -> {
-                Toast.makeText(this, "Registrar Sesión - En desarrollo", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_session_history -> {
-                Toast.makeText(this, "Historial de Sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_therapist_profile -> {
                 val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java)

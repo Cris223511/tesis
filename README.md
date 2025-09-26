@@ -1,0 +1,327 @@
+# Serious Game USIL - Android App
+
+Aplicación móvil Android para el sistema de análisis de emociones en terapias infantiles. Esta app forma parte de un proyecto de tesis que incluye machine learning para el reconocimiento de emociones y gestión terapéutica.
+
+## 🎯 Descripción del Proyecto
+
+La aplicación **Serious Game USIL** es una plataforma integral diseñada para profesionales de la salud mental que trabajan con adultos. Permite gestionar pacientes, realizar seguimiento de terapias y analizar emociones mediante inteligencia artificial.
+
+## ✨ Características Principales
+
+### 🔐 Sistema de Autenticación
+- Login seguro con JWT
+- Registro de usuarios
+- Recuperación de contraseña con OTP
+- Validación de email
+- Manejo de sesiones seguras
+
+### 👥 Gestión de Roles
+- **Administrador**: Gestión completa del sistema
+- **Terapeuta**: Manejo de pacientes y sesiones
+- **Padres/Cuidadores**: Seguimiento de sus hijos pacientes
+
+### 🏥 Funcionalidades por Rol
+
+#### Administrador
+- Dashboard administrativo completo
+- Gestión de usuarios y roles
+- Creación y edición de usuarios
+- Gestión de pacientes
+- Análisis de progreso terapéutico
+- Acceso a información del sistema
+
+#### Terapeuta
+- Dashboard especializado
+- Gestión de pacientes asignados
+- Seguimiento de sesiones terapéuticas
+- Análisis de emociones en tiempo real
+- Historial de progreso
+
+#### Padres/Cuidadores
+- Dashboard familiar
+- Visualización de pacientes asignados (hijos)
+- Seguimiento de sesiones terapéuticas
+- Estadísticas de progreso
+- Comparaciones de progreso mensual
+
+### 🎭 Análisis de Emociones
+- Captura de emociones mediante cámara
+- Procesamiento con IA (conecta con emotion-ml-service)
+- Análisis en tiempo real
+- Historial de emociones
+- Reportes visuales
+
+### 📊 Dashboard y Estadísticas
+- Gráficos de progreso terapéutico
+- Comparaciones temporales (3 meses)
+- Estadísticas detalladas
+- Visualización de datos intuitiva
+
+## 🛠 Tecnologías Utilizadas
+
+### Lenguaje y Framework
+- **Kotlin** - Lenguaje de programación principal
+- **Android SDK 34** (Target SDK 34, Min SDK 30)
+- **Jetpack Compose** - UI moderna declarativa
+- **View Binding** - Binding de vistas tradicional
+
+### Arquitectura y Patrones
+- **MVVM** (Model-View-ViewModel)
+- **Repository Pattern** - Abstracción de datos
+- **Clean Architecture** - Separación de capas
+
+### Librerías Principales
+
+#### Networking
+- **Retrofit 2.9.0** - Cliente HTTP
+- **OkHttp 3** - Interceptores y logging
+- **Gson** - Serialización JSON
+
+#### UI y Material Design
+- **Material Design 3** - Diseño moderno
+- **Jetpack Compose BOM** - Componentes modernos
+- **Constraint Layout** - Layouts flexibles
+- **Swipe Refresh Layout** - Pull to refresh
+- **RecyclerView** - Listas eficientes
+
+#### Multimedia y Cámara
+- **Glide 4.16.0** - Carga de imágenes
+- **OpenCV** (indirecto) - Procesamiento de imágenes
+
+#### Seguridad
+- **Security Crypto** - Encriptación de datos sensibles
+- **JWT** - Autenticación con tokens
+
+#### Otros
+- **CircleImageView** - Imágenes circulares
+- **Lifecycle Components** - Manejo del ciclo de vida
+
+## 📱 Estructura del Proyecto
+
+```
+app/src/main/java/com/example/serious_game_usil/
+├── presentation/ui/           # Capas de presentación
+│   ├── administrador/         # UI para administradores
+│   ├── emotion/              # Análisis de emociones
+│   ├── login/                # Autenticación
+│   ├── main/                 # Actividad principal
+│   ├── padres/               # UI para padres/cuidadores
+│   ├── password/             # Gestión de contraseñas
+│   ├── patients/             # Gestión de pacientes
+│   ├── progress/             # Seguimiento de progreso
+│   ├── register/             # Registro de usuarios
+│   ├── splash/               # Pantalla de carga
+│   └── terapeuta/            # UI para terapeutas
+├── repository/               # Capa de datos
+├── interface/                # APIs y servicios
+├── network/                  # Configuración de red
+├── utils/                    # Utilidades y adaptadores
+└── ui/theme/                 # Temas y diseño
+```
+
+### Recursos
+```
+app/src/main/res/
+├── drawable/                 # +99 recursos gráficos
+├── layout/                   # +54 layouts XML
+├── menu/                     # Menús de navegación
+├── values/                   # Strings, colores, dimensiones
+└── xml/                      # Configuraciones XML
+```
+
+## 🚀 Configuración y Instalación
+
+### Prerrequisitos
+- **Android Studio** Flamingo o superior
+- **JDK 11** o superior
+- **Android SDK 34**
+- **Gradle 8.0+**
+
+### Variables de Entorno
+La app está configurada para conectarse a los servicios backend:
+
+**Desarrollo:**
+```kotlin
+buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+buildConfigField("String", "RP_ORIGIN", "\"http://10.0.2.2:8080\"")
+```
+
+**Producción:**
+```kotlin
+buildConfigField("String", "API_BASE_URL", "\"https://api.production.com\"")
+buildConfigField("String", "RP_ORIGIN", "\"https://api.production.com\"")
+```
+
+### Pasos de Instalación
+
+1. **Clonar el repositorio**
+```bash
+git clone <repository-url>
+cd android/
+```
+
+2. **Abrir en Android Studio**
+```bash
+# Abrir Android Studio y seleccionar la carpeta android/
+```
+
+3. **Sincronizar dependencias**
+```bash
+# Android Studio sincronizará automáticamente las dependencias
+# O usar: ./gradlew build
+```
+
+4. **Configurar emulador/dispositivo**
+- Crear un AVD con API 30+
+- O conectar dispositivo físico con USB debugging
+
+5. **Ejecutar la aplicación**
+```bash
+./gradlew installDebug
+# O usar el botón Run en Android Studio
+```
+
+## 🔗 Integración con Servicios Backend
+
+### Backend de Usuarios (Go - Puerto 8080)
+- Autenticación y autorización
+- Gestión de usuarios y roles
+- Gestión de pacientes
+- APIs REST para CRUD operations
+
+### Emotion ML Service (Python - Puerto 5000)
+- Análisis de emociones con TensorFlow
+- Procesamiento de imágenes
+- APIs protegidas con JWT
+
+### Redis (Puerto 6379)
+- Cache de datos
+- Rate limiting
+- Gestión de sesiones
+
+## 📋 Funcionalidades Detalladas
+
+### 🔑 Autenticación
+- **LoginActivity**: Login principal con validación
+- **RegisterActivity**: Registro de nuevos usuarios
+- **OtpVerificationActivity**: Verificación OTP
+- **ResetPasswordActivity**: Recuperación de contraseña
+- **ValidateEmailActivity**: Validación de email
+
+### 👑 Panel de Administrador
+- **DashboardActivity**: Dashboard principal
+- **ListUserActivity**: Lista de usuarios
+- **CreateUserActivity**: Crear usuarios
+- **EditUserActivity**: Editar usuarios
+- **ListRoles**: Gestión de roles
+- **InfoActivity**: Información del sistema
+
+### 👨‍⚕️ Panel de Terapeuta
+- **TerapeutaDrawerActivity**: Dashboard con navegación
+- Gestión completa de pacientes
+- Análisis de emociones
+- Seguimiento de sesiones
+
+### 👨‍👩‍👧‍👦 Panel de Padres
+- **PadresDashboardActivity**: Dashboard familiar
+- **MyPatientsActivity**: Mis hijos pacientes
+- **MySessionsActivity**: Sesiones terapéuticas
+- **SessionDetailActivity**: Detalles de sesiones
+
+### 🎭 Análisis de Emociones
+- **EmotionAnalysisActivity**: Captura y análisis
+- Integración con cámara
+- Procesamiento en tiempo real
+- Visualización de resultados
+
+### 📊 Gestión de Pacientes
+- **PatientsListActivity**: Lista de pacientes
+- **CreateEditPatientActivity**: Crear/editar pacientes
+- **PatientDetailActivity**: Detalles del paciente
+- **ProgressDetailActivity**: Progreso terapéutico
+
+## 🔒 Seguridad
+
+- **JWT Tokens** para autenticación
+- **Security Crypto** para datos sensibles
+- **Network Security Config** personalizada
+- **Rate Limiting** en APIs
+- **Validación** de permisos por rol
+
+## 📱 Permisos Requeridos
+
+- `INTERNET` - Conexión a internet
+- `ACCESS_NETWORK_STATE` - Estado de la red
+- `ACCESS_WIFI_STATE` - Estado del WiFi
+- `CAMERA` - Acceso a cámara (para análisis de emociones)
+- `READ_EXTERNAL_STORAGE` - Lectura de archivos
+- `WRITE_EXTERNAL_STORAGE` - Escritura de archivos (API ≤28)
+- `VIBRATE` - Feedback háptico
+
+## 🎨 Diseño y UX
+
+- **Material Design 3** - Diseño moderno y consistente
+- **Orientación Portrait** - Todas las pantallas
+- **Temas personalizados** - Dark/Light mode compatible
+- **Navegación intuitiva** - Drawer navigation y back stack
+- **Responsive design** - Adaptable a diferentes pantallas
+
+## 🧪 Testing
+
+El proyecto incluye configuración para:
+- **Unit Tests** con JUnit
+- **Integration Tests** con AndroidJUnit
+- **UI Tests** con Espresso
+- **Compose Tests** con UI Test JUnit4
+
+```bash
+# Ejecutar tests
+./gradlew test
+./gradlew connectedAndroidTest
+```
+
+## 🚀 Build y Deploy
+
+### Debug Build
+```bash
+./gradlew assembleDebug
+```
+
+### Release Build
+```bash
+./gradlew assembleRelease
+```
+
+### APK Location
+```
+app/build/outputs/apk/debug/app-debug.apk
+app/build/outputs/apk/release/app-release.apk
+```
+
+## 📚 Documentación Adicional
+
+- **Swagger API Docs**: Disponible en el backend de usuarios
+- **Figma Design**: [Enlace al diseño si existe]
+- **Arquitectura**: Documentación técnica detallada
+- **Testing Strategy**: Guía de pruebas
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crear rama feature (`git checkout -b feature/AmazingFeature`)
+3. Commit cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir Pull Request
+
+## 📄 Licencia
+
+Este proyecto es parte de una tesis académica de la Universidad San Ignacio de Loyola (USIL).
+
+## 📞 Contacto
+
+**Proyecto**: Serious Game USIL - Sistema de Análisis de Emociones
+**Universidad**: Universidad San Ignacio de Loyola (USIL)
+**Tipo**: Proyecto de Tesis
+
+---
+

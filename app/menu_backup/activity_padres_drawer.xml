@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_padres_dashboard"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio"
+            android:checked="true" />
+        
+        <item
+            android:id="@+id/nav_mis_hijos"
+            android:icon="@drawable/ic_child"
+            android:title="Mi Apoderado" />
+            
+        <item
+            android:id="@+id/nav_progreso"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="Ver Progreso" />
+    </group>
+
+    <item android:title="Herramientas">
+        <menu>
+            <item
+                android:id="@+id/nav_emotion_analysis_padre"
+                android:icon="@drawable/ic_info"
+                android:title="Análisis de Emociones" />
+
+            <item
+                android:id="@+id/nav_nueva_sesion"
+                android:icon="@drawable/ic_add"
+                android:title="Nueva Sesión" />
+
+            <item
+                android:id="@+id/nav_videos"
+                android:icon="@android:drawable/ic_media_play"
+                android:title="Videos Educativos" />
+
+            <item
+                android:id="@+id/nav_reportes_padre"
+                android:icon="@android:drawable/ic_menu_view"
+                android:title="Mis Reportes" />
+        </menu>
+    </item>
+
+    <item android:title="Cuenta">
+        <menu>
+            <item
+                android:id="@+id/nav_perfil_padre"
+                android:icon="@drawable/ic_person"
+                android:title="Mi Perfil" />
+                
+            <item
+                android:id="@+id/nav_contacto"
+                android:icon="@drawable/ic_phone"
+                android:title="Contactar Soporte" />
+                
+            <item
+                android:id="@+id/nav_logout_padre"
+                android:icon="@drawable/ic_logout"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>

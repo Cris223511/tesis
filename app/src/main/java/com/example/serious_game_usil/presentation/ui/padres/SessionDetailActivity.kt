@@ -4,16 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.SessionDetail
 import com.example.serious_game_usil.databinding.ActivitySessionDetailBinding
+import com.example.serious_game_usil.presentation.ui.therapy.TherapySessionViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class SessionDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySessionDetailBinding
+    private lateinit var viewModel: TherapySessionViewModel
     private var sessionId: Int = -1
 
     companion object {
@@ -32,6 +38,7 @@ class SessionDetailActivity : AppCompatActivity() {
         sessionId = intent.getIntExtra("session_id", -1)
 
         setupUI()
+        setupViewModel()
         loadSessionDetail()
     }
 
@@ -41,11 +48,40 @@ class SessionDetailActivity : AppCompatActivity() {
         supportActionBar?.title = "Detalle de Sesión"
     }
 
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[TherapySessionViewModel::class.java]
+
+        lifecycleScope.launch {
+            viewModel.isLoading.collect { isLoading ->
+                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.error.collect { error ->
+                error?.let {
+                    Toast.makeText(this@SessionDetailActivity, it, Toast.LENGTH_LONG).show()
+                    viewModel.clearError()
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.sessionDetail.collect { sessionDetail ->
+                sessionDetail?.let {
+                    updateUI(it)
+                }
+            }
+        }
+    }
+
     private fun loadSessionDetail() {
-        // Simular datos de sesión detallada hasta integrar con backend real
-        // TODO: Integrar con el servicio real de sesiones
-        val sessionDetail = generateSimulatedSessionDetail(sessionId)
-        updateUI(sessionDetail)
+        if (sessionId != -1) {
+            viewModel.loadSessionDetail(sessionId)
+        } else {
+            Toast.makeText(this, "Error: ID de sesión inválido", Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     private fun updateUI(session: SessionDetail) {
@@ -53,12 +89,25 @@ class SessionDetailActivity : AppCompatActivity() {
         binding.textSessionName.text = session.nombreSesion
         binding.textPatientName.text = session.pacienteNombre
 
-        if (session.pacienteEdad != null && session.pacienteEdad > 0) {
-            binding.textPatientAge.text = "${session.pacienteEdad} años"
-            binding.textPatientAge.visibility = View.VISIBLE
+        // Mostrar cuidador si está disponible
+        if (session.cuidadorNombre != null && session.cuidadorNombre.isNotBlank()) {
+            // Actualizar ambos TextViews del cuidador
+            binding.textCaregiverName.text = session.cuidadorNombre
+            binding.textCaregiverName.visibility = View.VISIBLE
+            binding.textCaregiverNameDetail.text = session.cuidadorNombre
+            binding.textCaregiverNameDetail.visibility = View.VISIBLE
         } else {
-            binding.textPatientAge.visibility = View.GONE
+            binding.textCaregiverName.visibility = View.GONE
+            binding.textCaregiverNameDetail.visibility = View.GONE
         }
+
+        // Patient age removed from layout
+        // if (session.pacienteEdad != null && session.pacienteEdad > 0) {
+        //     binding.textPatientAge.text = "${session.pacienteEdad} años"
+        //     binding.textPatientAge.visibility = View.VISIBLE
+        // } else {
+        //     binding.textPatientAge.visibility = View.GONE
+        // }
 
         // Fecha y hora
         try {
@@ -195,49 +244,6 @@ class SessionDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateSimulatedSessionDetail(sessionId: Int): SessionDetail {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_YEAR, sessionId)
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-
-        val sessionNames = listOf(
-            "Terapia de Comunicación Social",
-            "Sesión de Habilidades Motoras",
-            "Terapia Sensorial",
-            "Desarrollo del Lenguaje",
-            "Terapia Ocupacional"
-        )
-
-        val therapists = listOf(
-            Triple("Dra. María González", "+51 987654321", "maria.gonzalez@clinica.com"),
-            Triple("Dr. Carlos Mendoza", "+51 976543210", "carlos.mendoza@clinica.com"),
-            Triple("Lic. Ana Rojas", "+51 965432109", "ana.rojas@clinica.com")
-        )
-
-        val therapist = therapists[sessionId % therapists.size]
-
-        return SessionDetail(
-            id = sessionId,
-            nombreSesion = sessionNames[sessionId % sessionNames.size],
-            fechaHora = dateFormat.format(calendar.time),
-            terapeutaNombre = therapist.first,
-            terapeutaTelefono = therapist.second,
-            terapeutaCorreo = therapist.third,
-            pacienteNombre = "Diego Martínez",
-            pacienteEdad = 8,
-            ubicacion = "Consultorio 101 - Centro Terapéutico USIL",
-            direccion = "Av. La Fontana 550, La Molina, Lima",
-            descripcion = "Sesión enfocada en el desarrollo de habilidades específicas mediante actividades lúdicas y ejercicios terapéuticos personalizados.",
-            objetivos = "• Mejorar la comunicación verbal\n• Desarrollar habilidades sociales\n• Fortalecer la coordinación motora\n• Reducir comportamientos repetitivos",
-            estado = if (sessionId <= 2) "completada" else "programada",
-            duracionMinutos = 60,
-            notasTerapeuta = if (sessionId <= 2) "El paciente mostró excelente progreso en la sesión. Respondió positivamente a los ejercicios de comunicación." else null,
-            notasCuidador = if (sessionId <= 2) "Mi hijo llegó muy contento después de la sesión. Noté mejoras en su comunicación en casa." else null,
-            materialesNecesarios = "• Juegos de construcción\n• Material sensorial\n• Tarjetas pictográficas\n• Ropa cómoda",
-            createdAt = dateFormat.format(Date()),
-            updatedAt = dateFormat.format(Date())
-        )
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

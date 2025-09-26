@@ -32,11 +32,22 @@ class MyPatientsActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        // Setup RecyclerView sin acciones de editar/eliminar
+        // Setup RecyclerView con menú de opciones
         patientsAdapter = MyPatientsAdapter(
             onItemClick = { patient ->
+                // Click en la tarjeta ya no hace nada, el menú maneja las acciones
+            },
+            onViewDetailsClick = { patient ->
                 val intent = PatientDetailActivity.newIntent(this, patient.id)
                 startActivity(intent)
+            },
+            onViewSessionsClick = { patient ->
+                // Navegar a vista de sesiones del paciente
+                navigateToPatientSessions(patient)
+            },
+            onViewReportClick = { patient ->
+                // Navegar a vista de reporte del paciente
+                navigateToPatientReport(patient)
             }
         )
 
@@ -133,6 +144,22 @@ class MyPatientsActivity : AppCompatActivity() {
             binding.emptyStateLayout.visibility = android.view.View.GONE
             binding.recyclerViewPatients.visibility = android.view.View.VISIBLE
         }
+    }
+
+    private fun navigateToPatientSessions(patient: PatientListItem) {
+        // Navegar a la actividad de sesiones filtrada por este paciente
+        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity::class.java)
+        intent.putExtra("patient_id", patient.id)
+        intent.putExtra("patient_name", patient.nombresApellidos)
+        startActivity(intent)
+    }
+
+    private fun navigateToPatientReport(patient: PatientListItem) {
+        // Navegar a la actividad de progreso/estadísticas del paciente
+        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity::class.java)
+        intent.putExtra("patient_id", patient.id)
+        intent.putExtra("patient_name", patient.nombresApellidos)
+        startActivity(intent)
     }
 
     override fun onSupportNavigateUp(): Boolean {

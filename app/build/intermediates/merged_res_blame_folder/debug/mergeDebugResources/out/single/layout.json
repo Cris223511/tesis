@@ -20,6 +20,10 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_my_patient.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_therapy_sessions.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_therapy_sessions.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/dialog_succes.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/dialog_succes.xml"
     },
@@ -112,8 +116,20 @@
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_child_ranking.xml"
     },
     {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_edit_session.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_edit_session.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_therapy_session.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/item_therapy_session.xml"
+    },
+    {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_activity_pager.xml",
         "source": "com.example.serious_game_usil.app-main-65:/layout/item_activity_pager.xml"
+    },
+    {
+        "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/activity_create_session.xml",
+        "source": "com.example.serious_game_usil.app-main-65:/layout/activity_create_session.xml"
     },
     {
         "merged": "com.example.serious_game_usil.app-mergeDebugResources-62:/layout/item_patient.xml",

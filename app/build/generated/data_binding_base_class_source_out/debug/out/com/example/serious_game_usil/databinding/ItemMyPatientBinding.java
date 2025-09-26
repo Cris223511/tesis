@@ -4,6 +4,7 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ public final class ItemMyPatientBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
+  public final ImageButton btnPatientMenu;
+
+  @NonNull
   public final ShapeableImageView ivPatientPhoto;
 
   @NonNull
@@ -36,10 +40,11 @@ public final class ItemMyPatientBinding implements ViewBinding {
   public final TextView textPatientName;
 
   private ItemMyPatientBinding(@NonNull MaterialCardView rootView,
-      @NonNull ShapeableImageView ivPatientPhoto, @NonNull TextView textPatientAge,
-      @NonNull TextView textPatientDocument, @NonNull TextView textPatientGender,
-      @NonNull TextView textPatientName) {
+      @NonNull ImageButton btnPatientMenu, @NonNull ShapeableImageView ivPatientPhoto,
+      @NonNull TextView textPatientAge, @NonNull TextView textPatientDocument,
+      @NonNull TextView textPatientGender, @NonNull TextView textPatientName) {
     this.rootView = rootView;
+    this.btnPatientMenu = btnPatientMenu;
     this.ivPatientPhoto = ivPatientPhoto;
     this.textPatientAge = textPatientAge;
     this.textPatientDocument = textPatientDocument;
@@ -74,6 +79,12 @@ public final class ItemMyPatientBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnPatientMenu;
+      ImageButton btnPatientMenu = ViewBindings.findChildViewById(rootView, id);
+      if (btnPatientMenu == null) {
+        break missingId;
+      }
+
       id = R.id.ivPatientPhoto;
       ShapeableImageView ivPatientPhoto = ViewBindings.findChildViewById(rootView, id);
       if (ivPatientPhoto == null) {
@@ -104,8 +115,8 @@ public final class ItemMyPatientBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemMyPatientBinding((MaterialCardView) rootView, ivPatientPhoto, textPatientAge,
-          textPatientDocument, textPatientGender, textPatientName);
+      return new ItemMyPatientBinding((MaterialCardView) rootView, btnPatientMenu, ivPatientPhoto,
+          textPatientAge, textPatientDocument, textPatientGender, textPatientName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -2,6 +2,7 @@ package com.example.serious_game_usil.repository
 
 import com.example.serious_game_usil.data.*
 import com.example.serious_game_usil.network.RetrofitClient
+import com.example.serious_game_usil.`interface`.LatestPatientsResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -116,6 +117,76 @@ class PatientRepository {
             }
         } catch (e: Exception) {
             android.util.Log.e("PatientRepository", "Exception: ${e.message}", e)
+            emit(ApiResult.NetworkError(e))
+        }
+    }
+
+    fun getLatestPatients(): Flow<ApiResult<List<PatientListItem>>> = flow {
+        try {
+            android.util.Log.d("PatientRepository", "Fetching latest 3 patients...")
+            val response = apiService.getLatestPatients()
+            android.util.Log.d("PatientRepository", "Response code: ${response.code()}")
+
+            if (response.isSuccessful) {
+                response.body()?.let { latestPatientsResponse ->
+                    android.util.Log.d("PatientRepository", "Received ${latestPatientsResponse.data.size} latest patients")
+                    emit(ApiResult.Success(latestPatientsResponse.data))
+                } ?: emit(ApiResult.Error(400, "No data received"))
+            } else {
+                android.util.Log.e("PatientRepository", "Error response: ${response.errorBody()?.string()}")
+                emit(ApiResult.Error(response.code(), "Error: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("PatientRepository", "Exception: ${e.message}", e)
+            emit(ApiResult.NetworkError(e))
+        }
+    }
+
+    suspend fun getAllPatients(): List<com.example.serious_game_usil.`interface`.PatientListItem> {
+        return try {
+            android.util.Log.d("PatientRepository", "Fetching all patients for therapy session...")
+            val response = apiService.getPatients(page = 1, limit = 100)
+
+            if (response.isSuccessful) {
+                response.body()?.let { patientsResponse ->
+                    android.util.Log.d("PatientRepository", "Received ${patientsResponse.patients?.size ?: 0} patients")
+                    // Convert Patient objects to PatientListItem
+                    patientsResponse.patients?.map { patient ->
+                        com.example.serious_game_usil.`interface`.PatientListItem(
+                            id = patient.id,
+                            nombresApellidos = patient.nombresApellidos,
+                            serialId = patient.serialId,
+                            edad = patient.edad,
+                            foto = patient.foto
+                        )
+                    } ?: emptyList()
+                } ?: emptyList()
+            } else {
+                android.util.Log.e("PatientRepository", "Error response: ${response.errorBody()?.string()}")
+                emptyList()
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("PatientRepository", "Exception: ${e.message}", e)
+            emptyList()
+        }
+    }
+
+    fun getPatientStats(patientId: Int): Flow<ApiResult<PatientStatsResponse>> = flow {
+        try {
+            android.util.Log.d("PatientRepository", "Getting stats for patient ID: $patientId")
+            val response = apiService.getPatientStats(patientId)
+            android.util.Log.d("PatientRepository", "Stats response code: ${response.code()}")
+
+            if (response.isSuccessful) {
+                response.body()?.let { statsResponse ->
+                    android.util.Log.d("PatientRepository", "Stats received: ${statsResponse.data}")
+                    emit(ApiResult.Success(statsResponse.data))
+                } ?: emit(ApiResult.Error(400, "No stats data received"))
+            } else {
+                emit(ApiResult.Error(response.code(), "Error getting stats: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("PatientRepository", "Error getting patient stats", e)
             emit(ApiResult.NetworkError(e))
         }
     }

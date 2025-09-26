@@ -12,7 +12,8 @@ data class CreatePatientRequest(
     val sexo: String,
     @SerializedName("diagnostico_clinico") val diagnosticoClinico: String? = null,
     val foto: String? = null,
-    @SerializedName("cuidador_id") val cuidadorID: Int? = null
+    @SerializedName("cuidador_id") val cuidadorID: Int? = null,
+    @SerializedName("terapeuta_id") val terapeutaID: Int? = null
 )
 
 data class UpdatePatientRequest(
@@ -26,12 +27,14 @@ data class UpdatePatientRequest(
     @SerializedName("diagnostico_clinico") val diagnosticoClinico: String? = null,
     val foto: String? = null,
     @SerializedName("cuidador_id") val cuidadorID: Int? = null,
+    @SerializedName("terapeuta_id") val terapeutaID: Int? = null,
     val activo: Boolean? = null
 )
 
 
 data class PatientListItem(
     val id: Int,
+    @SerializedName("serial_id") val serialId: String,
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
     @SerializedName("tipo_documento") val tipoDocumento: String,
     @SerializedName("num_documento") val numDocumento: String,
@@ -60,6 +63,7 @@ data class DeletePatientResponse(
 // Main Patient data class for internal use
 data class Patient(
     val id: Int,
+    @SerializedName("serial_id") val serialId: String,
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
     @SerializedName("tipo_documento") val tipoDocumento: String,

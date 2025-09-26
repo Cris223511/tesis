@@ -5,20 +5,38 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.serious_game_usil.R
-import com.example.serious_game_usil.data.TherapySession
+import com.example.serious_game_usil.`interface`.TherapySession
 import com.example.serious_game_usil.databinding.ItemSessionBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MySessionsAdapter(
-    private val onItemClick: (TherapySession) -> Unit
+    private val onItemClick: (TherapySession) -> Unit,
+    private val onAnalyzeEmotionsClick: (TherapySession) -> Unit,
+    private val onGenerateReportClick: (TherapySession) -> Unit
 ) : RecyclerView.Adapter<MySessionsAdapter.SessionViewHolder>() {
 
     private var sessions = listOf<TherapySession>()
+    private var sessionsWithNumbers = listOf<Pair<TherapySession, Int>>()
 
     fun updateSessions(newSessions: List<TherapySession>) {
         sessions = newSessions
+        // Group sessions by patient and number them
+        sessionsWithNumbers = groupAndNumberSessions(newSessions)
         notifyDataSetChanged()
+    }
+
+    private fun groupAndNumberSessions(sessions: List<TherapySession>): List<Pair<TherapySession, Int>> {
+        return sessions
+            .groupBy { it.pacienteId }
+            .flatMap { (_, patientSessions) ->
+                patientSessions
+                    .sortedBy { it.createdAt }
+                    .mapIndexed { index, session ->
+                        session to (index + 1)
+                    }
+            }
+            .sortedByDescending { it.first.createdAt }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SessionViewHolder {
@@ -31,34 +49,37 @@ class MySessionsAdapter(
     }
 
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {
-        holder.bind(sessions[position])
+        val (session, sessionNumber) = sessionsWithNumbers[position]
+        holder.bind(session, sessionNumber)
     }
 
-    override fun getItemCount() = sessions.size
+    override fun getItemCount() = sessionsWithNumbers.size
 
     inner class SessionViewHolder(
         private val binding: ItemSessionBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(session: TherapySession) {
-            binding.textSessionName.text = session.nombreSesion
-            binding.textTherapistName.text = "👨‍⚕️ ${session.terapeutaNombre}"
-            binding.textPatientName.text = "👤 ${session.pacienteNombre}"
+        fun bind(session: TherapySession, sessionNumber: Int) {
+            // Session name/type with numbering
+            binding.textSessionName.text = "Sesión $sessionNumber - ${session.tipoSesion ?: "Terapéutica"}"
 
-            // Formatear fecha y hora
+            // Therapist and patient info
+            binding.textTherapistName.text = "👨‍⚕️ ${session.terapeuta.nombresApellidos}"
+            binding.textPatientName.text = "👤 ${session.paciente.nombresApellidos}"
+
+            // Format date and time
             try {
-                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val outputFormatDate = SimpleDateFormat("dd MMM yyyy", Locale("es", "ES"))
-                val outputFormatTime = SimpleDateFormat("HH:mm", Locale.getDefault())
 
-                val date = inputFormat.parse(session.fechaHora)
+                val date = inputFormat.parse(session.fechaSesion)
                 date?.let {
                     binding.textSessionDate.text = "📅 ${outputFormatDate.format(it)}"
-                    binding.textSessionTime.text = "🕐 ${outputFormatTime.format(it)}"
                 }
+                binding.textSessionTime.text = "🕐 ${session.horaInicio}"
             } catch (e: Exception) {
-                binding.textSessionDate.text = "📅 ${session.fechaHora.split("T")[0]}"
-                binding.textSessionTime.text = "🕐 ${session.fechaHora.split("T").getOrNull(1)?.substring(0, 5) ?: ""}"
+                binding.textSessionDate.text = "📅 ${session.fechaSesion}"
+                binding.textSessionTime.text = "🕐 ${session.horaInicio}"
             }
 
             // Mostrar ubicación si está disponible
@@ -69,10 +90,10 @@ class MySessionsAdapter(
                 binding.textLocation.visibility = android.view.View.GONE
             }
 
-            // Mostrar duración si está disponible
-            if (session.duracionMinutos != null && session.duracionMinutos > 0) {
-                val hours = session.duracionMinutos / 60
-                val minutes = session.duracionMinutos % 60
+            // Show duration if available
+            if (session.duracion > 0) {
+                val hours = session.duracion / 60
+                val minutes = session.duracion % 60
                 val durationText = when {
                     hours > 0 && minutes > 0 -> "${hours}h ${minutes}min"
                     hours > 0 -> "${hours}h"
@@ -104,9 +125,18 @@ class MySessionsAdapter(
                 }
             )
 
-            // Click listener
+            // Click listeners
             binding.root.setOnClickListener {
                 onItemClick(session)
+            }
+
+            // Action button listeners
+            binding.btnAnalyzeEmotions.setOnClickListener {
+                onAnalyzeEmotionsClick(session)
+            }
+
+            binding.btnGenerateReport.setOnClickListener {
+                onGenerateReportClick(session)
             }
         }
     }

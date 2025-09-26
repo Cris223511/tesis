@@ -15,7 +15,9 @@ import java.util.*
 class PatientsAdapter(
     private val onEditClick: (PatientListItem) -> Unit,
     private val onDeleteClick: (PatientListItem) -> Unit,
-    private val onItemClick: (PatientListItem) -> Unit = {}
+    private val onItemClick: (PatientListItem) -> Unit = {},
+    private val onExportClick: (PatientListItem) -> Unit = {},
+    private val isAdmin: Boolean = false
 ) : RecyclerView.Adapter<PatientsAdapter.PatientViewHolder>() {
 
     private var originalPatients = listOf<PatientListItem>()
@@ -27,6 +29,7 @@ class PatientsAdapter(
             with(binding) {
                 tvPatientName.text = patient.nombresApellidos
                 tvPatientDocument.text = "${getDocumentTypeAbbreviation(patient.tipoDocumento)}: ${patient.numDocumento}"
+                tvPatientSerialId.text = "Serial: ${patient.serialId}"
                 tvPatientAge.text = "${patient.edad} años"
                 tvPatientGender.text = when(patient.sexo) {
                     "Masculino" -> "M"
@@ -46,6 +49,14 @@ class PatientsAdapter(
                 }
                 tvTherapistName.text = therapistText
 
+                // Caregiver info (solo visible para administradores)
+                if (isAdmin && !patient.cuidadorNombre.isNullOrBlank()) {
+                    tvCaregiverName.visibility = android.view.View.VISIBLE
+                    tvCaregiverName.text = "Cuidador: ${patient.cuidadorNombre}"
+                } else {
+                    tvCaregiverName.visibility = android.view.View.GONE
+                }
+
                 // Status badge
                 if (patient.activo) {
                     tvPatientStatus.text = "Activo"
@@ -62,6 +73,7 @@ class PatientsAdapter(
                 rippleOverlay.setOnClickListener { onItemClick(patient) }
                 btnEditPatient.setOnClickListener { onEditClick(patient) }
                 btnDeletePatient.setOnClickListener { onDeleteClick(patient) }
+                btnExportPatient.setOnClickListener { onExportClick(patient) }
             }
         }
 

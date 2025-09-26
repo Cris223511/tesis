@@ -211,6 +211,16 @@ class PatientsListActivity : AppCompatActivity() {
         }
     }
 
+    private fun exportPatientData(patientId: Int) {
+        Toast.makeText(this, "Exportando datos del paciente...", Toast.LENGTH_SHORT).show()
+        // TODO: Implementar exportación de datos del paciente
+        lifecycleScope.launch {
+            // Aquí podrías llamar a un endpoint de exportación cuando esté disponible
+            // Por ahora solo mostramos un mensaje
+            Toast.makeText(this@PatientsListActivity, "Función de exportación en desarrollo", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

@@ -388,6 +388,20 @@
 
                         </LinearLayout>
 
+                        <!-- Ver Sesiones Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnViewPatientSessions"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Ver Sesiones de este Paciente"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_view"
+                            app:iconGravity="start"
+                            app:iconSize="20dp" />
+
                         <!-- Resumen de sesiones del paciente actual -->
                         <LinearLayout
                             android:id="@+id/layoutSessionsSummary"
@@ -565,83 +579,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Mis Pacientes"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardRegistrarSesion"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/activity_green"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Mis Sesiones"
-                                android:textAlignment="center"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardProgreso"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/stat_pink"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@android:drawable/ic_menu_view"
-                                app:tint="@color/white" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Ver Progreso"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"

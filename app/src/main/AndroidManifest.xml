@@ -322,6 +322,60 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
+        <!-- Therapy Sessions Management Activity -->
+        <activity
+            android:name=".presentation.ui.therapy.SimpleTherapySessionsActivity"
+            android:label="Gestión de Sesiones"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.terapeuta.TerapeutaDrawerActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.terapeuta.TerapeutaDrawerActivity" />
+        </activity>
+
+        <!-- Create Therapy Session Activity -->
+        <activity
+            android:name=".presentation.ui.therapy.CreateSessionActivity"
+            android:label="Crear Sesión Terapéutica"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.therapy.SimpleTherapySessionsActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
+        </activity>
+
+        <!-- Session Detail Activity -->
+        <activity
+            android:name=".presentation.ui.therapy.SessionDetailActivity"
+            android:label="Detalle de Sesión"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.therapy.SimpleTherapySessionsActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
+        </activity>
+
+        <!-- Edit Session Activity -->
+        <activity
+            android:name=".presentation.ui.therapy.EditSessionActivity"
+            android:label="Editar Sesión"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.therapy.SessionDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.therapy.SessionDetailActivity" />
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

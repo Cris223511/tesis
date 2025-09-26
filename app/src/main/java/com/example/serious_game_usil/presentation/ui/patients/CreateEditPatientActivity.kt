@@ -394,6 +394,11 @@ class CreateEditPatientActivity : AppCompatActivity() {
         }
         val caregiverId = if (selectedCaregiverIndex >= 0) caregivers[selectedCaregiverIndex].id else null
 
+        // Obtener el ID del usuario actual si es terapeuta
+        val userRoles = AuthManager.getUserRoles()
+        val isTherapist = userRoles.any { it.lowercase() in listOf("terapeuta", "therapist") }
+        val currentUserId = if (isTherapist) AuthManager.getUserId() else null
+
         if (isEditMode) {
             val updateRequest = UpdatePatientRequest(
                 nombresApellidos = binding.etPatientName.text.toString(),
@@ -420,7 +425,8 @@ class CreateEditPatientActivity : AppCompatActivity() {
                 sexo = binding.actvGender.text.toString(),
                 diagnosticoClinico = binding.etClinicalDiagnosis.text.toString().takeIf { it.isNotBlank() },
                 foto = selectedPhotoBase64,
-                cuidadorID = caregiverId
+                cuidadorID = caregiverId,
+                terapeutaID = currentUserId  // Asignar automáticamente el terapeuta actual
             )
             viewModel.createPatient(createRequest)
         }
