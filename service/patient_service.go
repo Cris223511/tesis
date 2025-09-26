@@ -37,12 +37,21 @@ func (s *PatientService) calculateIMC(peso, altura float32) float32 {
 }
 
 func (s *PatientService) Create(dto *dto.CreatePatientDTO, terapeutaID uint) (*models.Patient, error) {
+	if dto.CuidadorID != nil {
+		var count int64
+		if err := s.db.Model(&models.Patient{}).Where("cuidador_id = ?", *dto.CuidadorID).Count(&count).Error; err != nil {
+			return nil, err
+		}
+		if count >= 5 {
+			return nil, errors.New("el cuidador ha alcanzado el límite máximo de 5 pacientes")
+		}
+	}
 	fechaNac, err := time.Parse("2006-01-02", dto.FechaNacimiento)
 	if err != nil {
 		return nil, errors.New("formato de fecha inválido")
 	}
 
-	// Validar edad (0-100 años)
+	// Validar edad (18-60 años para pacientes)
 	now := time.Now()
 	age := now.Year() - fechaNac.Year()
 	if now.YearDay() < fechaNac.YearDay() {
@@ -52,8 +61,11 @@ func (s *PatientService) Create(dto *dto.CreatePatientDTO, terapeutaID uint) (*m
 	if age < 0 {
 		return nil, errors.New("la fecha de nacimiento no puede ser futura")
 	}
-	if age > 100 {
-		return nil, errors.New("la edad no puede ser mayor a 100 años")
+	if age < 18 {
+		return nil, errors.New("el paciente debe tener al menos 18 años")
+	}
+	if age > 60 {
+		return nil, errors.New("la edad no puede ser mayor a 60 años")
 	}
 
 	imc := s.calculateIMC(dto.Peso, dto.Altura)
@@ -168,7 +180,7 @@ func (s *PatientService) Update(id uint, dto *dto.UpdatePatientDTO) (*models.Pat
 			return nil, errors.New("formato de fecha inválido")
 		}
 
-		// Validar edad (0-100 años)
+		// Validar edad (18-60 años para pacientes)
 		now := time.Now()
 		age := now.Year() - fechaNac.Year()
 		if now.YearDay() < fechaNac.YearDay() {
@@ -178,8 +190,11 @@ func (s *PatientService) Update(id uint, dto *dto.UpdatePatientDTO) (*models.Pat
 		if age < 0 {
 			return nil, errors.New("la fecha de nacimiento no puede ser futura")
 		}
-		if age > 100 {
-			return nil, errors.New("la edad no puede ser mayor a 100 años")
+		if age < 18 {
+			return nil, errors.New("el paciente debe tener al menos 18 años")
+		}
+		if age > 60 {
+			return nil, errors.New("la edad no puede ser mayor a 60 años")
 		}
 
 		updates["fecha_nacimiento"] = fechaNac
@@ -211,6 +226,15 @@ func (s *PatientService) Update(id uint, dto *dto.UpdatePatientDTO) (*models.Pat
 		updates["foto"] = dto.Foto
 	}
 	if dto.CuidadorID != nil {
+		if *dto.CuidadorID != 0 && (patient.CuidadorID == nil || *patient.CuidadorID != *dto.CuidadorID) {
+			var count int64
+			if err := s.db.Model(&models.Patient{}).Where("cuidador_id = ?", *dto.CuidadorID).Count(&count).Error; err != nil {
+				return nil, err
+			}
+			if count >= 5 {
+				return nil, errors.New("el cuidador ha alcanzado el límite máximo de 5 pacientes")
+			}
+		}
 		updates["cuidador_id"] = dto.CuidadorID
 	}
 	if dto.Activo != nil {

@@ -13,6 +13,7 @@ func SetupRouter(
 	authController *controllers.AuthController,
 	bioController *controllers.BioController,
 	patientController *controllers.PatientController,
+	therapyController *controllers.TherapyController,
 ) *gin.Engine {
 
 	r := gin.Default()
@@ -111,9 +112,24 @@ func SetupRouter(
 		// ============== PACIENTES ==============
 		protected.POST("/patients", patientController.CreatePatient)
 		protected.GET("/patients", patientController.GetPatients)
+		// Estadísticas de pacientes (debe ir antes de :id para evitar conflictos)
+		protected.GET("/patients/:id/stats", therapyController.GetPatientStats)
 		protected.GET("/patients/:id", patientController.GetPatient)
 		protected.PUT("/patients/:id", patientController.UpdatePatient)
 		protected.DELETE("/patients/:id", patientController.DeletePatient)
+
+		// ============== SESIONES TERAPÉUTICAS ==============
+		protected.POST("/sessions", therapyController.Create)
+		protected.GET("/sessions", therapyController.GetAll)
+		protected.GET("/sessions/paginated", therapyController.GetPaginated)
+		protected.GET("/sessions/latest-patients", therapyController.GetLatestPatients)
+		protected.GET("/sessions/available-therapists", therapyController.GetAvailableTherapists)
+		protected.GET("/sessions/:id", therapyController.GetByID)
+		protected.PUT("/sessions/:id", therapyController.Update)
+		protected.PATCH("/sessions/:id/reschedule", therapyController.Reschedule)
+		protected.DELETE("/sessions/:id", therapyController.Delete)
+		protected.GET("/sessions/:id/export/pdf", therapyController.ExportToPDF)
+		protected.GET("/sessions/:id/export/jpg", therapyController.ExportToJPG)
 	}
 
 	return r

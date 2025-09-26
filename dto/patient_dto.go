@@ -31,6 +31,7 @@ type UpdatePatientDTO struct {
 
 type PatientResponseDTO struct {
 	ID                 uint       `json:"id"`
+	SerialID           string     `json:"serial_id"`
 	NombresApellidos   string     `json:"nombres_apellidos"`
 	FechaNacimiento    string     `json:"fecha_nacimiento"`
 	TipoDocumento      string     `json:"tipo_documento"`
@@ -52,6 +53,7 @@ type PatientResponseDTO struct {
 
 type PatientListDTO struct {
 	ID               uint    `json:"id"`
+	SerialID         string  `json:"serial_id"`
 	NombresApellidos string  `json:"nombres_apellidos"`
 	TipoDocumento    string  `json:"tipo_documento"`
 	NumDocumento     string  `json:"num_documento"`

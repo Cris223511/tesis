@@ -185,6 +185,7 @@ func initializeServices() (*serviceContainer, error) {
 	otpService := services.NewOTPService(config.DB)
 	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
 	patientService := services.NewPatientService(config.DB)
+	therapyService := services.NewTherapyService(config.DB)
 
 	bioService, err := services.NewBioService(
 		config.DB,
@@ -204,6 +205,7 @@ func initializeServices() (*serviceContainer, error) {
 		otp:     otpService,
 		deviceIP: *deviceIPRepo,
 		patient: patientService,
+		therapy: therapyService,
 	}, nil
 }
 
@@ -214,6 +216,7 @@ func initializeControllers(services *serviceContainer) *controllerContainer {
 		auth:    controllers.NewAuthController(),
 		bio:     controllers.NewBioController(&services.bio),
 		patient: controllers.NewPatientController(services.patient),
+		therapy: controllers.NewTherapyController(services.therapy),
 	}
 }
 
@@ -224,6 +227,7 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.auth,
 		controllers.bio,
 		controllers.patient,
+		controllers.therapy,
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -257,6 +261,7 @@ type serviceContainer struct {
 	otp      services.OTPService
 	deviceIP services.DeviceIPRepo
 	patient  *services.PatientService
+	therapy  *services.TherapyService
 }
 
 type controllerContainer struct {
@@ -265,12 +270,19 @@ type controllerContainer struct {
 	auth    *controllers.AuthController
 	bio     *controllers.BioController
 	patient *controllers.PatientController
+	therapy *controllers.TherapyController
 }
 
 func main() {
 	r, err := initializeApp()
 	if err != nil {
 		log.Fatalf("Failed to initialize application: %v", err)
+	}
+
+	// Arreglar serial_ids faltantes después de las migraciones
+	if err := models.FixMissingSerialIDs(config.DB); err != nil {
+		log.Printf("Warning: Could not fix missing serial IDs: %v", err)
+		// No es fatal, continuamos
 	}
 
 	initialToken, err := utils.GenerateInitialAuthToken()

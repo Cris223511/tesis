@@ -241,6 +241,7 @@ func (pc *PatientController) DeletePatient(c *gin.Context) {
 func (pc *PatientController) toResponseDTO(p *models.Patient) dto.PatientResponseDTO {
 	dto := dto.PatientResponseDTO{
 		ID:                 p.ID,
+		SerialID:           p.SerialID,
 		NombresApellidos:   p.NombresApellidos,
 		FechaNacimiento:    time.Time(p.FechaNacimiento).Format("2006-01-02"),
 		TipoDocumento:      p.TipoDocumento,
@@ -273,6 +274,7 @@ func (pc *PatientController) toListDTO(p *models.Patient) dto.PatientListDTO {
 	edad := int(time.Since(time.Time(p.FechaNacimiento)).Hours() / 24 / 365)
 	dto := dto.PatientListDTO{
 		ID:               p.ID,
+		SerialID:         p.SerialID,
 		NombresApellidos: p.NombresApellidos,
 		TipoDocumento:    p.TipoDocumento,
 		NumDocumento:     p.NumDocumento,
