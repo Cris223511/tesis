@@ -1,19 +1,21 @@
-# Serious Game USIL - Android App
+# 📱 Serious Game USIL - Aplicación Android
 
-Aplicación móvil Android para el sistema de análisis de emociones en terapias infantiles. Esta app forma parte de un proyecto de tesis que incluye machine learning para el reconocimiento de emociones y gestión terapéutica.
+Sistema integral de terapia con análisis de emociones para la gestión de pacientes, sesiones terapéuticas y seguimiento de progreso. Esta aplicación forma parte de un proyecto de tesis universitaria que integra machine learning, autenticación biométrica y gestión terapéutica avanzada.
 
 ## 🎯 Descripción del Proyecto
 
-La aplicación **Serious Game USIL** es una plataforma integral diseñada para profesionales de la salud mental que trabajan con adultos. Permite gestionar pacientes, realizar seguimiento de terapias y analizar emociones mediante inteligencia artificial.
+La aplicación **Serious Game USIL** es una plataforma completa diseñada para profesionales de la salud mental, terapeutas y cuidadores que trabajan con pacientes adultos (18-60 años). Combina gestión terapéutica tradicional con análisis de emociones mediante inteligencia artificial, proporcionando herramientas avanzadas para el seguimiento del progreso terapéutico.
 
 ## ✨ Características Principales
 
-### 🔐 Sistema de Autenticación
-- Login seguro con JWT
-- Registro de usuarios
-- Recuperación de contraseña con OTP
-- Validación de email
-- Manejo de sesiones seguras
+### 🔐 Sistema de Autenticación Avanzado
+- **Login tradicional** con usuario/contraseña
+- **Autenticación biométrica** (huella dactilar, reconocimiento facial)
+- **JWT Tokens** con refresh automático
+- **Registro de usuarios** con validación OTP por email/SMS
+- **Recuperación de contraseña** mediante OTP seguro
+- **Gestión de sesiones** con expiración automática
+- **Rate limiting** para prevenir ataques de fuerza bruta
 
 ### 👥 Gestión de Roles
 - **Administrador**: Gestión completa del sistema
