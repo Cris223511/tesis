@@ -230,7 +230,7 @@ class CreateSessionActivity : AppCompatActivity() {
                     numeroDocumento = AuthManager.getNumDocumento() ?: "",
                     sexo = AuthManager.getSexo() ?: "M",
                     fechaNacimiento = "1990-01-01",
-                    foto = AuthManager.getFoto(),
+                    fotoMovil = AuthManager.getFoto(),
                     roles = emptyList(), // Lista vacía de roles por ahora
                     createdAt = "",
                     updatedAt = ""

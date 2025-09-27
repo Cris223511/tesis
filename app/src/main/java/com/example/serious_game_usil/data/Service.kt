@@ -83,7 +83,7 @@ data class UserData(
     @SerializedName("numero_documento")val numeroDocumento: String,
     val sexo: String,
     val activo: Boolean,
-    val foto: String,
+    @SerializedName("foto_movil") val fotoMovil: String,
     @SerializedName("fecha_nacimiento")
     val fechaNacimiento: FechaNullable
 
@@ -126,7 +126,7 @@ data class UserDetailResponse(
     @SerializedName("num_documento") val numeroDocumento: String,
     val sexo: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
-    val foto: String,
+    @SerializedName("foto_movil") val fotoMovil: String,
     val activo: Boolean,
     val intentos: Int,
     val roles: List<Role>,
@@ -160,7 +160,7 @@ data class UserListItem(
     @SerializedName("num_documento") val numeroDocumento: String,
     val sexo: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String,
-    val foto: String?,
+    @SerializedName("foto_movil") val fotoMovil: String?,
     val activo: Boolean,
     val roles: List<Role>,
     @SerializedName("created_at") val createdAt: String,
@@ -237,8 +237,8 @@ data class UserProfileResponse(
     val sexo: String,
     @SerializedName("fecha_nacimiento") val fechaNacimiento: String?,
     val descripcion: String?,
-    val foto: String?,
-    val banner: String?,
+    @SerializedName("foto_movil") val fotoMovil: String?,
+    @SerializedName("banner_movil") val bannerMovil: String?,
     val activo: Boolean,
     val roles: List<String>,
     @SerializedName("children_count") val childrenCount: Int,

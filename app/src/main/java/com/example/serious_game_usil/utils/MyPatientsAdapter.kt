@@ -48,7 +48,7 @@ class MyPatientsAdapter(
             binding.textPatientDocument.text = "${patient.tipoDocumento}: ${patient.numDocumento}"
 
             // Cargar foto del paciente
-            ImageUtils.loadUserPhoto(binding.root.context, patient.foto, binding.ivPatientPhoto)
+            ImageUtils.loadUserPhoto(binding.root.context, patient.fotoMovil, binding.ivPatientPhoto)
 
             // Click en toda la tarjeta para ver detalles
             binding.root.setOnClickListener {

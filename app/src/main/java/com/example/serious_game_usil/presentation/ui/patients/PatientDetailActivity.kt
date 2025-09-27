@@ -174,9 +174,9 @@ class PatientDetailActivity : AppCompatActivity() {
                 tvUpdatedAt.text = patient.updatedAt.substring(0, 10)
             }
 
-            if (!patient.foto.isNullOrBlank()) {
+            if (!patient.fotoMovil.isNullOrBlank()) {
                 Glide.with(this@PatientDetailActivity)
-                    .load(patient.foto)
+                    .load(patient.fotoMovil)
                     .placeholder(R.drawable.ic_patient_placeholder)
                     .error(R.drawable.ic_patient_placeholder)
                     .circleCrop()

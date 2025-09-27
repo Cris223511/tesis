@@ -280,7 +280,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Este mes se registró"
+                android:text="Resumen de Sesiones"
                 android:textColor="@color/on_background"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -291,7 +291,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
-                android:text="La medición reciente del niño"
+                android:text="Tiempo total de terapia de todos los pacientes"
                 android:textColor="@color/on_surface_variant"
                 android:textSize="13sp" />
 
@@ -323,7 +323,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tiempo de estímulo"
+                            android:text="Sesiones Completadas"
                             android:textAlignment="center"
                             android:textColor="@color/on_primary"
                             android:textSize="12sp" />
@@ -367,7 +367,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:alpha="0.87"
-                            android:text="PM"
+                            android:text="horas"
                             android:textColor="@color/on_primary"
                             android:textSize="11sp" />
 
@@ -394,7 +394,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Por registrar"
+                            android:text="Sesiones Pendientes"
                             android:textAlignment="center"
                             android:textColor="@color/on_error"
                             android:textSize="12sp" />
@@ -433,6 +433,15 @@
 
                         </LinearLayout>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:alpha="0.87"
+                            android:text="horas"
+                            android:textColor="@color/on_error"
+                            android:textSize="11sp" />
+
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -457,7 +466,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
-                android:text="Comparativa entre niño(a)s sobre la estimulación"
+                android:text="Sesiones terapéuticas completadas por mes"
                 android:textColor="@color/on_surface_variant"
                 android:textSize="13sp" />
 
@@ -515,7 +524,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Pacientes"
                                     android:textColor="@color/on_surface_variant"
-                                    android:textSize="12sp" />
+                                    android:textSize="10sp" />
 
                                 <FrameLayout
                                     android:layout_width="0dp"
@@ -547,7 +556,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="80 / 98 niños revisado"
+                                android:text="80 / 98 pacientes revisado"
                                 android:textColor="@color/on_surface_variant"
                                 android:textSize="10sp"
                                 android:layout_marginStart="50dp"
@@ -600,7 +609,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Pacientes"
                                     android:textColor="@color/on_surface_variant"
-                                    android:textSize="12sp" />
+                                    android:textSize="10sp" />
 
                                 <FrameLayout
                                     android:layout_width="0dp"
@@ -631,7 +640,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="80 / 98 niñas"
+                                android:text="80 / 98 pacientes"
                                 android:textColor="@color/on_surface_variant"
                                 android:textSize="10sp"
                                 android:layout_marginStart="50dp"

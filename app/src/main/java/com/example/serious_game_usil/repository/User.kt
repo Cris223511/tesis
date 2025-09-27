@@ -57,7 +57,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
             tipoDocumento = AuthManager.getTipoDocumento(),
             numDocumento = AuthManager.getNumDocumento(),
             sexo = AuthManager.getSexo(),
-            foto = AuthManager.getFoto(),
+            fotoMovil = AuthManager.getFoto(),
             roles = AuthManager.getUserRoles()
         )
     }
@@ -475,7 +475,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
     
     override suspend fun uploadUserBanner(base64Banner: String): ApiResult<com.example.serious_game_usil.`interface`.UploadBannerResponse> {
         return try {
-            val request = com.example.serious_game_usil.`interface`.UploadBannerRequest(banner = base64Banner)
+            val request = com.example.serious_game_usil.`interface`.UploadBannerRequest(bannerMovil = base64Banner)
             val response = apiService.uploadUserBanner(request)
             
             if (response.isSuccessful) {

@@ -22,7 +22,7 @@ object AuthManager {
     private const val KEY_TIPO_DOCUMENTO = "tipo_documento"
     private const val KEY_NUM_DOCUMENTO = "num_documento"
     private const val KEY_SEXO = "sexo"
-    private const val KEY_FOTO = "foto"
+    private const val KEY_FOTO = "foto_movil"
     private const val KEY_ROLE_IDS = "role_ids"
     private const val KEY_PROTECTED_ROUTE = "protected_route"
     private const val KEY_IS_AUTHENTICATED = "is_authenticated"
@@ -52,7 +52,7 @@ object AuthManager {
         tipoDocumento: String,
         numDocumento: String,
         sexo: String,
-        foto: String?,
+        fotoMovil: String?,
         roles: List<String>,
         roleIds: List<Int>,
         protectedRoute: String
@@ -67,7 +67,7 @@ object AuthManager {
             putString(KEY_TIPO_DOCUMENTO, tipoDocumento)
             putString(KEY_NUM_DOCUMENTO, numDocumento)
             putString(KEY_SEXO, sexo)
-            putString(KEY_FOTO, foto ?: "")
+            putString(KEY_FOTO, fotoMovil ?: "")
             putString(KEY_USER_ROLES, gson.toJson(roles))
             putString(KEY_ROLE_IDS, gson.toJson(roleIds))
             putString(KEY_PROTECTED_ROUTE, protectedRoute)

@@ -365,7 +365,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                                     tipoDocumento = userDetail.tipoDocumento,
                                     numDocumento = userDetail.numeroDocumento,
                                     sexo = userDetail.sexo,
-                                    foto = userDetail.foto,
+                                    fotoMovil = userDetail.fotoMovil,
                                     roles = roleNames,
                                     roleIds = emptyList(),
                                     protectedRoute = finalRoute

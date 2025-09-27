@@ -67,7 +67,7 @@ class PatientsAdapter(
                 }
 
                 // Load patient photo
-                loadPatientPhoto(patient.foto)
+                loadPatientPhoto(patient.fotoMovil)
 
                 // Set click listeners
                 rippleOverlay.setOnClickListener { onItemClick(patient) }

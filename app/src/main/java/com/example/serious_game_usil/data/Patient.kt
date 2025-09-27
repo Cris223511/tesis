@@ -11,7 +11,7 @@ data class CreatePatientRequest(
     val peso: Double? = null,
     val sexo: String,
     @SerializedName("diagnostico_clinico") val diagnosticoClinico: String? = null,
-    val foto: String? = null,
+    @SerializedName("foto_movil") val fotoMovil: String? = null,
     @SerializedName("cuidador_id") val cuidadorID: Int? = null,
     @SerializedName("terapeuta_id") val terapeutaID: Int? = null
 )
@@ -25,7 +25,7 @@ data class UpdatePatientRequest(
     val peso: Double? = null,
     val sexo: String? = null,
     @SerializedName("diagnostico_clinico") val diagnosticoClinico: String? = null,
-    val foto: String? = null,
+    @SerializedName("foto_movil") val fotoMovil: String? = null,
     @SerializedName("cuidador_id") val cuidadorID: Int? = null,
     @SerializedName("terapeuta_id") val terapeutaID: Int? = null,
     val activo: Boolean? = null
@@ -43,7 +43,7 @@ data class PatientListItem(
     @SerializedName("terapeuta_nombre") val terapeutaNombre: String,
     @SerializedName("cuidador_nombre") val cuidadorNombre: String?,
     val activo: Boolean,
-    val foto: String?
+    @SerializedName("foto_movil") val fotoMovil: String?
 )
 
 data class PatientsListResponse(
@@ -73,7 +73,7 @@ data class Patient(
     val imc: Double? = null,
     val sexo: String,
     @SerializedName("diagnostico_clinico") val diagnosticoClinico: String? = null,
-    val foto: String? = null,
+    @SerializedName("foto_movil") val fotoMovil: String? = null,
     @SerializedName("terapeuta_id") val terapeutaId: Int,
     @SerializedName("terapeuta_nombre") val terapeutaNombre: String,
     @SerializedName("cuidador_id") val cuidadorId: Int? = null,

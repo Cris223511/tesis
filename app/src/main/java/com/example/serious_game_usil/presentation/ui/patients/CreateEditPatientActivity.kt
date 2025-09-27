@@ -409,7 +409,7 @@ class CreateEditPatientActivity : AppCompatActivity() {
                 peso = binding.etWeight.text.toString().toDoubleOrNull(),
                 sexo = binding.actvGender.text.toString(),
                 diagnosticoClinico = binding.etClinicalDiagnosis.text.toString().takeIf { it.isNotBlank() },
-                foto = selectedPhotoBase64,
+                fotoMovil = selectedPhotoBase64,
                 cuidadorID = caregiverId,
                 activo = null // Keep current status
             )
@@ -424,7 +424,7 @@ class CreateEditPatientActivity : AppCompatActivity() {
                 peso = binding.etWeight.text.toString().toDoubleOrNull(),
                 sexo = binding.actvGender.text.toString(),
                 diagnosticoClinico = binding.etClinicalDiagnosis.text.toString().takeIf { it.isNotBlank() },
-                foto = selectedPhotoBase64,
+                fotoMovil = selectedPhotoBase64,
                 cuidadorID = caregiverId,
                 terapeutaID = currentUserId  // Asignar automáticamente el terapeuta actual
             )
@@ -472,7 +472,7 @@ class CreateEditPatientActivity : AppCompatActivity() {
         }
 
         // Load photo if exists
-        patient.foto?.let { base64Photo ->
+        patient.fotoMovil?.let { base64Photo ->
             try {
                 val decodedBytes = Base64.decode(base64Photo, Base64.DEFAULT)
                 val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)

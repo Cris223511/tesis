@@ -375,13 +375,13 @@ class ProfileActivity : AppCompatActivity() {
         // Manejar la foto del perfil
         val avatarImage = findViewById<ImageView>(R.id.avatarImage)
         
-        if (!profile.foto.isNullOrEmpty()) {
-            Log.d("ProfileActivity", "Mostrando foto del usuario, tamaño: ${profile.foto.length} caracteres")
+        if (!profile.fotoMovil.isNullOrEmpty()) {
+            Log.d("ProfileActivity", "Mostrando foto del usuario, tamaño: ${profile.fotoMovil.length} caracteres")
             try {
-                val cleanBase64 = if (profile.foto.contains("base64,")) {
-                    profile.foto.substring(profile.foto.indexOf("base64,") + 7)
+                val cleanBase64 = if (profile.fotoMovil.contains("base64,")) {
+                    profile.fotoMovil.substring(profile.fotoMovil.indexOf("base64,") + 7)
                 } else {
-                    profile.foto
+                    profile.fotoMovil
                 }
                 
                 val imageBytes = Base64.decode(cleanBase64, Base64.DEFAULT)
@@ -405,13 +405,13 @@ class ProfileActivity : AppCompatActivity() {
         
         // Manejar el banner del perfil
         bannerImage?.let { bannerImg ->
-            if (!profile.banner.isNullOrEmpty()) {
-                Log.d("ProfileActivity", "Mostrando banner del usuario, tamaño: ${profile.banner.length} caracteres")
+            if (!profile.bannerMovil.isNullOrEmpty()) {
+                Log.d("ProfileActivity", "Mostrando banner del usuario, tamaño: ${profile.bannerMovil.length} caracteres")
                 try {
-                    val cleanBase64 = if (profile.banner.contains("base64,")) {
-                        profile.banner.substring(profile.banner.indexOf("base64,") + 7)
+                    val cleanBase64 = if (profile.bannerMovil.contains("base64,")) {
+                        profile.bannerMovil.substring(profile.bannerMovil.indexOf("base64,") + 7)
                     } else {
-                        profile.banner
+                        profile.bannerMovil
                     }
                     
                     val imageBytes = Base64.decode(cleanBase64, Base64.DEFAULT)

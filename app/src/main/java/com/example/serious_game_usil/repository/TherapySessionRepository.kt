@@ -382,7 +382,7 @@ class TherapySessionRepository {
             paciente = PacienteInfo(
                 id = 0,
                 nombresApellidos = sessionDetail.pacienteNombre,
-                foto = null
+                fotoMovil = null
             ),
             terapeuta = TerapeutaInfo(
                 id = 0,

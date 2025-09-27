@@ -30,7 +30,7 @@ data class TherapySession(
 data class PacienteInfo(
     val id: Int,
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
-    val foto: String?
+    @SerializedName("foto_movil") val fotoMovil: String?
 )
 
 data class TerapeutaInfo(
@@ -68,5 +68,5 @@ data class PatientListItem(
     @SerializedName("nombres_apellidos") val nombresApellidos: String,
     @SerializedName("serial_id") val serialId: String,
     val edad: Int?,
-    val foto: String?
+    @SerializedName("foto_movil") val fotoMovil: String?
 )

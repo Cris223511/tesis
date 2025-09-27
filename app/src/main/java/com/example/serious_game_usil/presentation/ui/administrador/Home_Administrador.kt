@@ -30,6 +30,11 @@ import com.example.serious_game_usil.presentation.ui.patients.PatientsListActivi
 
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
+import com.example.serious_game_usil.repository.TherapySessionRepository
+import com.example.serious_game_usil.data.ApiResult
+import com.example.serious_game_usil.`interface`.TherapySession
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import com.example.serious_game_usil.utils.ActivitiesAdapter
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.navigation.NavigationView
@@ -41,6 +46,7 @@ import com.seriousgame.app.navigation.RouteNavigator
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Calendar
 
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +54,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var binding: DashboardAdministradorBinding
     private lateinit var activitiesAdapter: ActivitiesAdapter
     private lateinit var viewModel: DashboardViewModel
+    private lateinit var therapySessionRepository: TherapySessionRepository
     private lateinit var progressViewModel: ProgressViewModel
     private lateinit var toggle: ActionBarDrawerToggle
 
@@ -73,6 +80,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         )
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
         progressViewModel = ViewModelProvider(this)[ProgressViewModel::class.java]
+        therapySessionRepository = TherapySessionRepository()
 
         setupViews()
         observeViewModel()
@@ -81,6 +89,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         // Cargar progreso de todos los niños
         progressViewModel.loadAllChildrenProgress()
+
+        // Cargar datos de sesiones terapéuticas
+        loadTherapySessionsData()
 
         binding.logoutButton.setOnClickListener {
             AuthManager.clearSession()
@@ -123,7 +134,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     private fun showProfileOptions() {
-        val options = arrayOf("Ver Roles", "Gestionar Usuarios", "Mi Perfil", "Configuración")
+        val options = arrayOf("Ver Roles", "Gestionar Usuarios", "Mi Perfil")
 
         AlertDialog.Builder(this)
             .setTitle("Opciones del administrador")
@@ -143,7 +154,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java)
                         startActivity(intent)
                     }
-                    3 -> Toast.makeText(this, "Configuración - En desarrollo", Toast.LENGTH_SHORT).show()
+
                 }
             }
             .show()
@@ -156,7 +167,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     
     private fun showPatientManagementOptions() {
-        val options = arrayOf("Gestionar Pacientes", "Ver progreso de todos los pacientes", "Registrar nueva sesión", "Estadísticas detalladas")
+        val options = arrayOf("Gestionar Pacientes", "Gestionar Sesiones",)
 
         AlertDialog.Builder(this)
             .setTitle("Gestión de Pacientes")
@@ -168,7 +179,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         startActivity(intent)
                     }
                     1 -> {
-                        showDetailedProgressView()
+                        // Navegar a gestión de sesiones terapéuticas
+                        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity::class.java)
+                        startActivity(intent)
                     }
                     2 -> {
                         Toast.makeText(this, "Registro de sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
@@ -521,6 +534,213 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         // Re-verificar autenticación cuando la activity vuelve a estar activa
         if (!AuthManager.isAuthenticated()) {
             RouteNavigator.navigateToLogin(this)
+        }
+    }
+
+    private fun loadTherapySessionsData() {
+        lifecycleScope.launch {
+            therapySessionRepository.getSessions().collect { result ->
+                when (result) {
+                    is ApiResult.Success -> {
+                        updateTherapySessionStats(result.data)
+                    }
+                    is ApiResult.Error -> {
+                        android.util.Log.e("DashboardActivity", "Error loading sessions: ${result.message}")
+                        // Mostrar datos por defecto en caso de error
+                        updateTherapySessionStats(emptyList())
+                    }
+                    is ApiResult.NetworkError -> {
+                        android.util.Log.e("DashboardActivity", "Network error loading sessions: ${result.exception.message}")
+                        // Mostrar datos por defecto en caso de error de red
+                        updateTherapySessionStats(emptyList())
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateTherapySessionStats(sessions: List<TherapySession>) {
+        // Calcular tiempo total de estimulación de sesiones completadas
+        var totalCompletedMinutes = 0
+        var totalPendingSessions = 0
+
+        android.util.Log.d("DashboardActivity", "Total sessions received: ${sessions.size}")
+
+        sessions.forEach { session ->
+            android.util.Log.d("DashboardActivity", "Session ID: ${session.id}, Estado: '${session.estado}', Duración: ${session.duracion} minutos")
+
+            when (session.estado.lowercase()) {
+                "completada", "completado" -> {
+                    // Para sesiones completadas, usar la duración real
+                    totalCompletedMinutes += session.duracion
+                    android.util.Log.d("DashboardActivity", "Added to completed: ${session.duracion} minutes")
+                }
+                "programada", "pendiente", "programado" -> {
+                    // Para sesiones pendientes, contar cantidad de sesiones
+                    totalPendingSessions++
+                    android.util.Log.d("DashboardActivity", "Added to pending: 1 session")
+                }
+                else -> {
+                    android.util.Log.d("DashboardActivity", "Unknown state: '${session.estado}'")
+                }
+            }
+        }
+
+        android.util.Log.d("DashboardActivity", "Total completed minutes: $totalCompletedMinutes")
+        android.util.Log.d("DashboardActivity", "Total pending sessions: $totalPendingSessions")
+
+        // Convertir a horas y minutos para sesiones completadas
+        val completedHours = totalCompletedMinutes / 60
+        val completedMinutes = totalCompletedMinutes % 60
+
+        // Actualizar UI en el hilo principal
+        runOnUiThread {
+            // Actualizar tarjeta de "Sesiones Completadas" (tiempo en horas)
+            binding.stimulusHours.text = completedHours.toString().padStart(2, '0')
+            binding.stimulusMinutes.text = completedMinutes.toString().padStart(2, '0')
+
+            // Actualizar tarjeta de "Sesiones Pendientes" (cantidad de sesiones)
+            updatePendingSessionsCard(totalPendingSessions)
+
+            // Actualizar estadísticas de sesiones por mes
+            updateMonthlySessionStats(sessions)
+        }
+    }
+
+    private fun updatePendingSessionsCard(totalPendingSessions: Int) {
+        // Acceder a la segunda tarjeta (índice 1) - "Sesiones Pendientes"
+        val pendingCard = binding.statsContainer.getChildAt(1) as MaterialCardView
+        val container = pendingCard.getChildAt(0) as LinearLayout
+
+        // Encontrar el TextView del título para cambiar el texto si es necesario
+        val titleText = container.getChildAt(0) as TextView
+        titleText.text = "Sesiones Pendientes"
+
+        // Acceder al contenedor de tiempo/número
+        val displayContainer = container.getChildAt(1) as LinearLayout
+
+        // En lugar de mostrar horas:minutos, mostrar cantidad de sesiones
+        if (totalPendingSessions == 0) {
+            // Sin sesiones pendientes
+            (displayContainer.getChildAt(0) as TextView).text = "00"
+            (displayContainer.getChildAt(2) as TextView).text = "00"
+        } else {
+            // Mostrar cantidad de sesiones (ej: si son 5 sesiones, mostrar 05:00)
+            (displayContainer.getChildAt(0) as TextView).text = totalPendingSessions.toString().padStart(2, '0')
+            (displayContainer.getChildAt(2) as TextView).text = "00"
+        }
+
+        // Actualizar el texto descriptivo si existe
+        if (container.childCount > 2) {
+            val descriptionText = container.getChildAt(2) as? TextView
+            descriptionText?.text = when (totalPendingSessions) {
+                0 -> "No hay sesiones pendientes"
+                1 -> "1 sesión pendiente"
+                else -> "$totalPendingSessions sesiones pendientes"
+            }
+        }
+
+        android.util.Log.d("DashboardActivity", "Updated pending sessions card with $totalPendingSessions sessions")
+    }
+
+    private fun updateMonthlySessionStats(sessions: List<TherapySession>) {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        // Obtener últimos 3 meses
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentYear = calendar.get(Calendar.YEAR)
+
+        val months = mutableListOf<Pair<String, String>>() // Pair(nombre, año-mes)
+
+        for (i in 0..2) {
+            val monthIndex = if (currentMonth - i >= 0) currentMonth - i else currentMonth - i + 12
+            val year = if (currentMonth - i >= 0) currentYear else currentYear - 1
+
+            calendar.set(year, monthIndex, 1)
+            val monthName = SimpleDateFormat("MMM", Locale("es", "ES")).format(calendar.time)
+            val yearMonth = SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(calendar.time)
+
+            months.add(Pair(monthName.capitalize(), yearMonth))
+        }
+
+        // Calcular sesiones completadas por mes
+        val monthlyStats = months.map { (monthName, yearMonth) ->
+            val completedSessions = sessions.filter { session ->
+                session.estado.lowercase() == "completada" &&
+                session.fechaSesion.startsWith(yearMonth)
+            }.size
+
+            val totalSessions = sessions.filter { session ->
+                session.fechaSesion.startsWith(yearMonth)
+            }.size
+
+            Triple(monthName, completedSessions, totalSessions)
+        }
+
+        android.util.Log.d("DashboardActivity", "Monthly stats: $monthlyStats")
+
+        // Actualizar UI de los meses (más reciente primero)
+        updateMonthProgressBar(0, monthlyStats[0]) // Mes actual
+        updateMonthProgressBar(1, monthlyStats[1]) // Mes anterior
+        if (monthlyStats.size > 2) {
+            // Si hay un tercer mes, podríamos agregarlo al layout
+        }
+    }
+
+    private fun updateMonthProgressBar(index: Int, stats: Triple<String, Int, Int>) {
+        val (monthName, completed, total) = stats
+
+        // Encontrar la sección del mes en el layout
+        val comparisonCard = binding.comparisonCard
+        val cardLayout = comparisonCard.getChildAt(0) as LinearLayout
+
+        // Calcular el índice correcto (saltando separadores)
+        val monthSectionIndex = if (index == 0) 0 else 2 // Ago está en 0, Jul en 2 (después del separador)
+
+        if (monthSectionIndex < cardLayout.childCount) {
+            val monthSection = cardLayout.getChildAt(monthSectionIndex) as LinearLayout
+
+            // Actualizar nombre del mes
+            val monthText = monthSection.getChildAt(0) as TextView
+            monthText.text = monthName
+
+            // Actualizar datos de la barra
+            val dataLayout = monthSection.getChildAt(1) as LinearLayout
+            val barLayout = dataLayout.getChildAt(0) as LinearLayout
+
+            // Actualizar texto descriptivo
+            val labelText = barLayout.getChildAt(0) as TextView
+            labelText.text = "Sesiones"
+
+            // Actualizar barra de progreso
+            val progressContainer = barLayout.getChildAt(1) as FrameLayout
+            val progressBar = progressContainer.getChildAt(0) as View
+
+            // Calcular porcentaje
+            val percentage = if (total > 0) (completed * 100) / total else 0
+
+            // Actualizar ancho de la barra
+            progressContainer.post {
+                val params = progressBar.layoutParams as FrameLayout.LayoutParams
+                val containerWidth = progressContainer.width
+                params.width = (containerWidth * percentage / 100).coerceAtLeast(20) // Mínimo 20px para visibilidad
+                params.rightMargin = 0
+                progressBar.layoutParams = params
+            }
+
+            // Actualizar valor numérico
+            val scoreText = barLayout.getChildAt(2) as TextView
+            scoreText.text = completed.toString()
+
+            // Actualizar descripción
+            val descriptionText = dataLayout.getChildAt(1) as TextView
+            descriptionText.text = when {
+                total == 0 -> "Sin sesiones registradas"
+                completed == 0 -> "Ninguna sesión completada"
+                completed == total -> "Todas las sesiones completadas"
+                else -> "$completed de $total sesiones completadas"
+            }
         }
     }
 }

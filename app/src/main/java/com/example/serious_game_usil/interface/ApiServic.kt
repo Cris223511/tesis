@@ -1,5 +1,6 @@
 package com.example.serious_game_usil.`interface`
 
+import com.google.gson.annotations.SerializedName
 import com.example.serious_game_usil.data.BaseResponse
 import com.example.serious_game_usil.data.CreateRoleRequest
 import com.example.serious_game_usil.data.LoginRequest
@@ -260,7 +261,7 @@ data class PhotoChangesResponse(
 )
 
 data class UploadBannerRequest(
-    val banner: String
+    @SerializedName("banner_movil") val bannerMovil: String
 )
 
 data class UploadBannerResponse(

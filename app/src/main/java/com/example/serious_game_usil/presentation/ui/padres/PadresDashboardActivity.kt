@@ -377,7 +377,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             binding.textCurrentPatientInfo.text = "${currentPatient.edad} años • ${currentPatient.sexo}"
 
             // Cargar foto del paciente
-            ImageUtils.loadUserPhoto(this, currentPatient.foto, binding.ivCurrentPatientPhoto)
+            ImageUtils.loadUserPhoto(this, currentPatient.fotoMovil, binding.ivCurrentPatientPhoto)
 
             // Mostrar botón Ver Sesiones
             binding.btnViewPatientSessions.visibility = View.VISIBLE

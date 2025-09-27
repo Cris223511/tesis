@@ -157,7 +157,7 @@ class PatientRepository {
                             nombresApellidos = patient.nombresApellidos,
                             serialId = patient.serialId,
                             edad = patient.edad,
-                            foto = patient.foto
+                            fotoMovil = patient.fotoMovil
                         )
                     } ?: emptyList()
                 } ?: emptyList()

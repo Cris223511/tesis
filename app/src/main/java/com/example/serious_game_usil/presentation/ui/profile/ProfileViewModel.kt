@@ -60,8 +60,8 @@ class ProfileViewModel(private val repository: IUserRepository) : ViewModel() {
             when (val result = repository.getCurrentUserProfile()) {
                 is ApiResult.Success -> {
                     Log.d("ProfileViewModel", "Perfil cargado exitosamente: ${result.data}")
-                    Log.d("ProfileViewModel", "Foto presente: ${!result.data.foto.isNullOrEmpty()}")
-                    result.data.foto?.let {
+                    Log.d("ProfileViewModel", "Foto presente: ${!result.data.fotoMovil.isNullOrEmpty()}")
+                    result.data.fotoMovil?.let {
                         Log.d("ProfileViewModel", "Tamaño de foto: ${it.length} caracteres")
                     }
                     _profileData.value = result.data

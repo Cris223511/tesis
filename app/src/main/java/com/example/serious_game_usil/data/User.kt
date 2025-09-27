@@ -8,6 +8,6 @@ data class User(
     val tipoDocumento: String,
     val numDocumento: String,
     val sexo: String,
-    val foto: String?,
+    val fotoMovil: String?,
     val roles: List<String>
 )

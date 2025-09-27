@@ -69,9 +69,9 @@ class UsersAdapter(
                 }
 
                 // Imagen de perfil
-                if (!user.foto.isNullOrEmpty()) {
+                if (!user.fotoMovil.isNullOrEmpty()) {
                     Glide.with(root.context)
-                        .load(user.foto)
+                        .load(user.fotoMovil)
                         .placeholder(R.drawable.ic_person_placeholder)
                         .error(R.drawable.ic_person_placeholder)
                         .circleCrop()
