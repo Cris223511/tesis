@@ -427,7 +427,7 @@ func (tc *TherapyController) toSessionResponse(session *models.TherapySession) d
 		Paciente: dto.PatientBasicInfo{
 			ID:               session.Paciente.ID,
 			NombresApellidos: session.Paciente.NombresApellidos,
-			Foto:             session.Paciente.Foto,
+			FotoMovil:        session.Paciente.FotoMovil,
 		},
 		Terapeuta: dto.UserBasicInfo{
 			ID:                session.Terapeuta.ID,

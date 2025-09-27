@@ -73,7 +73,7 @@ type SessionResponse struct {
 type PatientBasicInfo struct {
 	ID               uint   `json:"id"`
 	NombresApellidos string `json:"nombres_apellidos"`
-	Foto             string `json:"foto"`
+	FotoMovil        string `json:"foto_movil"`
 }
 
 type UserBasicInfo struct {

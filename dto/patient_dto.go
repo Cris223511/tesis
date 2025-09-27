@@ -11,7 +11,7 @@ type CreatePatientDTO struct {
 	Peso               float32 `json:"peso" binding:"min=0,max=500"`
 	Sexo               string  `json:"sexo" binding:"required,oneof=Masculino Femenino M F Otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
-	Foto               string  `json:"foto"`
+	FotoMovil          string  `json:"foto_movil"`
 	CuidadorID         *uint   `json:"cuidador_id"`
 }
 
@@ -24,7 +24,7 @@ type UpdatePatientDTO struct {
 	Peso               float32 `json:"peso" binding:"omitempty,min=0,max=500"`
 	Sexo               string  `json:"sexo" binding:"omitempty,oneof=Masculino Femenino M F Otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
-	Foto               string  `json:"foto"`
+	FotoMovil          string  `json:"foto_movil"`
 	CuidadorID         *uint   `json:"cuidador_id"`
 	Activo             *bool   `json:"activo"`
 }
@@ -41,7 +41,7 @@ type PatientResponseDTO struct {
 	IMC                float32    `json:"imc"`
 	Sexo               string     `json:"sexo"`
 	DiagnosticoClinico string     `json:"diagnostico_clinico"`
-	Foto               string     `json:"foto"`
+	FotoMovil          string     `json:"foto_movil"`
 	TerapeutaID        uint       `json:"terapeuta_id"`
 	TerapeutaNombre    string     `json:"terapeuta_nombre"`
 	CuidadorID         *uint      `json:"cuidador_id"`
@@ -62,5 +62,5 @@ type PatientListDTO struct {
 	TerapeutaNombre  string  `json:"terapeuta_nombre"`
 	CuidadorNombre   *string `json:"cuidador_nombre,omitempty"`
 	Activo           bool    `json:"activo"`
-	Foto             string  `json:"foto"`
+	FotoMovil        string  `json:"foto_movil"`
 }

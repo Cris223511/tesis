@@ -543,7 +543,7 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 	allowedFields := map[string]bool{
 		"celular": true,
 		"correo": true,
-		"foto": true,
+		"foto_movil": true,
 	}
 
 	filteredUpdates := make(map[string]interface{})
@@ -869,9 +869,9 @@ func (s *userService) UpdateUserPhoto(userID uint, photoData string) error {
 
 		// Log antes de actualizar
 		log.Printf("UpdateUserPhoto - Usuario %d, foto actual: %d bytes, nueva foto: %d bytes", 
-			userID, len(user.Foto), len(photoData))
+			userID, len(user.FotoMovil), len(photoData))
 
-		if err := tx.Model(&user).Update("foto", photoData).Error; err != nil {
+		if err := tx.Model(&user).Update("foto_movil", photoData).Error; err != nil {
 			log.Printf("Error al actualizar foto en DB: %v", err)
 			return err
 		}
@@ -892,7 +892,7 @@ func (s *userService) UpdateUserPhoto(userID uint, photoData string) error {
 		var updatedUser models.Usuarios
 		if err := tx.First(&updatedUser, userID).Error; err == nil {
 			log.Printf("UpdateUserPhoto - Verificación: Usuario %d ahora tiene foto de %d bytes", 
-				userID, len(updatedUser.Foto))
+				userID, len(updatedUser.FotoMovil))
 		}
 		
 		return nil
@@ -913,9 +913,9 @@ func (s *userService) UpdateUserBanner(userID uint, bannerData string) error {
 		}
 
 		log.Printf("UpdateUserBanner - Usuario %d, banner actual: %d bytes, nuevo banner: %d bytes", 
-			userID, len(user.Banner), len(bannerData))
+			userID, len(user.BannerMovil), len(bannerData))
 
-		if err := tx.Model(&user).Update("banner", bannerData).Error; err != nil {
+		if err := tx.Model(&user).Update("banner_movil", bannerData).Error; err != nil {
 			log.Printf("Error al actualizar banner en DB: %v", err)
 			return err
 		}
@@ -934,7 +934,7 @@ func (s *userService) UpdateUserBanner(userID uint, bannerData string) error {
 		var updatedUser models.Usuarios
 		if err := tx.First(&updatedUser, userID).Error; err == nil {
 			log.Printf("UpdateUserBanner - Verificación: Usuario %d ahora tiene banner de %d bytes", 
-				userID, len(updatedUser.Banner))
+				userID, len(updatedUser.BannerMovil))
 		}
 		
 		return nil
@@ -1244,7 +1244,7 @@ func (s *userService) sendProfileUpdateNotification(email, name string, fields [
 	}{
 		"telefono":         {"Número de celular", "📱"},
 		"correo":          {"Correo electrónico", "📧"},
-		"foto":            {"Foto de perfil", "📷"},
+		"foto_movil":      {"Foto de perfil", "📷"},
 		"nombres_apellidos":         {"Nombres", "👤"},
 		"tipo_documento":  {"Tipo de documento", "🆔"},
 		"num_documento":   {"Número de documento", "🔢"},

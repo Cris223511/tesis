@@ -251,7 +251,7 @@ func (pc *PatientController) toResponseDTO(p *models.Patient) dto.PatientRespons
 		IMC:                p.IMC,
 		Sexo:               p.Sexo,
 		DiagnosticoClinico: p.DiagnosticoClinico,
-		Foto:               p.Foto,
+		FotoMovil:          p.FotoMovil,
 		TerapeutaID:        p.TerapeutaID,
 		CuidadorID:         p.CuidadorID,
 		Activo:             p.Activo,
@@ -282,7 +282,7 @@ func (pc *PatientController) toListDTO(p *models.Patient) dto.PatientListDTO {
 		Sexo:             p.Sexo,
 		TerapeutaNombre:  p.Terapeuta.Nombres_Apellidos,
 		Activo:           p.Activo,
-		Foto:             p.Foto,
+		FotoMovil:        p.FotoMovil,
 	}
 
 	if p.Cuidador != nil && p.Cuidador.ID > 0 {

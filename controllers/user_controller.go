@@ -163,7 +163,7 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 			"num_documento":   user.Num_Documento,
 			"sexo":              user.Sexo,
 			"activo":            user.Activo,
-			"foto":              user.Foto,
+			"foto_movil":        user.FotoMovil,
 			"fechaNacimiento":   user.FechaNacimiento,
 		},
 	})
@@ -503,7 +503,7 @@ func (ctrl *UserController) UploadBanner(c *gin.Context) {
 	}
 
 	var req struct {
-		Banner string `json:"banner"`
+		Banner string `json:"banner_movil"`
 	}
 
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -830,10 +830,10 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 	}
 	
 	fotoSize := 0
-	if user.Foto != "" {
-		fotoSize = len(user.Foto)
+	if user.FotoMovil != "" {
+		fotoSize = len(user.FotoMovil)
 	}
-	log.Printf("GetUserProfile - Usuario %d: tiene foto? %v (tamaño: %d bytes)", user.ID, user.Foto != "", fotoSize)
+	log.Printf("GetUserProfile - Usuario %d: tiene foto? %v (tamaño: %d bytes)", user.ID, user.FotoMovil != "", fotoSize)
 	
 	profileData := gin.H{
 		"id":                user.ID,
@@ -846,8 +846,8 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 		"sexo":              user.Sexo,
 		"fecha_nacimiento":  user.FechaNacimiento,
 		"descripcion":       user.Descripcion,
-		"foto":              user.Foto,
-		"banner":            user.Banner,
+		"foto_movil":        user.FotoMovil,
+		"banner_movil":      user.BannerMovil,
 		"activo":            user.Activo,
 		"children_count":    childrenCount,
 		"parent_info":       parentInfo,
@@ -1361,8 +1361,8 @@ func (ctrl *UserController) UpdateProfile(c *gin.Context) {
 		"fecha_nacimiento":   updatedUser.FechaNacimiento,
 		"sexo":               updatedUser.Sexo,
 		"activo":             updatedUser.Activo,
-		"foto":               updatedUser.Foto,
-		"banner":             updatedUser.Banner,
+		"foto_movil":         updatedUser.FotoMovil,
+		"banner_movil":       updatedUser.BannerMovil,
 		"descripcion":        updatedUser.Descripcion,
 		"roles":              roles,
 	})

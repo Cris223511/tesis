@@ -31,8 +31,8 @@ type Usuarios struct {
     Telefono           string                `gorm:"size:20;not null;index" json:"telefono"`
     Correo             string                `gorm:"size:100;uniqueIndex;not null" json:"correo"`
     Activo             bool                  `gorm:"default:false;index" json:"activo"`
-    Foto               string                `gorm:"type:mediumtext" json:"foto"`
-    Banner             string                `gorm:"type:mediumtext" json:"banner"`
+    FotoMovil          string                `gorm:"type:mediumtext;column:foto_movil" json:"foto_movil"`
+    BannerMovil        string                `gorm:"type:mediumtext;column:banner_movil" json:"banner_movil"`
     Usuario            string                `gorm:"size:50;uniqueIndex;not null" json:"usuario"`
     Contrasena         string                `gorm:"size:255;not null" json:"-"`
     Intentos           int                   `gorm:"default:0" json:"intentos"`

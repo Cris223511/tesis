@@ -526,7 +526,7 @@ func (s *TherapyService) toSessionResponse(session models.TherapySession) dto.Se
 		Paciente: dto.PatientBasicInfo{
 			ID:               session.Paciente.ID,
 			NombresApellidos: session.Paciente.NombresApellidos,
-			Foto:             session.Paciente.Foto,
+			FotoMovil:        session.Paciente.FotoMovil,
 		},
 		Terapeuta: dto.UserBasicInfo{
 			ID:                session.Terapeuta.ID,
@@ -680,7 +680,7 @@ func (s *TherapyService) toPatientListDTO(patient models.Patient) dto.PatientLis
 		TerapeutaNombre:  patient.Terapeuta.Nombres_Apellidos,
 		CuidadorNombre:   cuidadorNombre,
 		Activo:           patient.Activo,
-		Foto:             patient.Foto,
+		FotoMovil:        patient.FotoMovil,
 	}
 }
 

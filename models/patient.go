@@ -19,7 +19,7 @@ type Patient struct {
 	IMC               float32              `gorm:"type:decimal(5,2)" json:"imc"`
 	Sexo              string               `gorm:"size:20;not null" json:"sexo"`
 	DiagnosticoClinico string              `gorm:"type:text" json:"diagnostico_clinico"`
-	Foto              string               `gorm:"type:mediumtext" json:"foto"`
+	FotoMovil         string               `gorm:"type:mediumtext;column:foto_movil" json:"foto_movil"`
 	TerapeutaID       uint                 `gorm:"not null;index" json:"terapeuta_id"`
 	CuidadorID        *uint                `gorm:"index" json:"cuidador_id"`
 	Activo            bool                 `gorm:"default:true" json:"activo"`
