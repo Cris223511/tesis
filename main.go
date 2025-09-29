@@ -176,6 +176,8 @@ func migrateDatabase() error {
 		&models.OTPResend{},
 		&models.Patient{},
 		&models.TherapySession{},
+		&models.TherapistRating{},
+		&models.TherapistDisqualification{},
 	)
 }
 

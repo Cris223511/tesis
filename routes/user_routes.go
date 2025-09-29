@@ -130,6 +130,11 @@ func SetupRouter(
 		protected.DELETE("/sessions/:id", therapyController.Delete)
 		protected.GET("/sessions/:id/export/pdf", therapyController.ExportToPDF)
 		protected.GET("/sessions/:id/export/jpg", therapyController.ExportToJPG)
+
+		// ============== CALIFICACIONES DE TERAPEUTAS ==============
+		protected.POST("/therapist-ratings", therapyController.CreateTherapistRating)
+		protected.GET("/therapist-ratings/:therapist_id", therapyController.GetTherapistRatings)
+		protected.GET("/sessions/rating/:session_id", therapyController.GetSessionRating)
 	}
 
 	return r

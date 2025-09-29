@@ -449,3 +449,151 @@ func (tc *TherapyController) toSessionResponse(session *models.TherapySession) d
 
 	return response
 }
+
+// ============== THERAPIST RATING METHODS ==============
+
+func (tc *TherapyController) CreateTherapistRating(c *gin.Context) {
+	userID, roles, err := tc.validateToken(c)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	// Only caregivers and administrators can rate therapists
+	if !tc.hasRole(roles, "PD") && !tc.hasRole(roles, "AD") {
+		c.JSON(http.StatusForbidden, gin.H{"error": "Solo los cuidadores y administradores pueden calificar terapeutas"})
+		return
+	}
+
+	var createDto dto.CreateTherapistRatingDTO
+	if err := c.ShouldBindJSON(&createDto); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Verify that the caregiver ID in the DTO matches the authenticated user
+	// Exception: administrators can rate on behalf of caregivers
+	if createDto.CaregiverID != userID && !tc.hasRole(roles, "AD") {
+		c.JSON(http.StatusForbidden, gin.H{"error": "No puedes calificar en nombre de otro cuidador"})
+		return
+	}
+
+	rating, err := tc.therapyService.CreateTherapistRating(&createDto, userID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Convert to response map for now to avoid struct issues
+	response := gin.H{
+		"id":           rating.ID,
+		"session_id":   rating.SessionID,
+		"therapist_id": rating.TherapistID,
+		"caregiver_id": rating.CaregiverID,
+		"patient_id":   rating.PatientID,
+		"rating":       rating.Rating,
+		"comment":      rating.Comment,
+		"created_at":   rating.CreatedAt.Format("2006-01-02 15:04:05"),
+		"updated_at":   rating.UpdatedAt.Format("2006-01-02 15:04:05"),
+	}
+
+	// Add names if relationships are loaded
+	if rating.Therapist.ID > 0 {
+		response["therapist_name"] = rating.Therapist.Nombres_Apellidos
+	}
+	if rating.Caregiver.ID > 0 {
+		response["caregiver_name"] = rating.Caregiver.Nombres_Apellidos
+	}
+	if rating.Patient.ID > 0 {
+		response["patient_name"] = rating.Patient.NombresApellidos
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "Calificación creada exitosamente",
+		"data":    response,
+	})
+}
+
+func (tc *TherapyController) GetTherapistRatings(c *gin.Context) {
+	therapistID, err := strconv.ParseUint(c.Param("therapist_id"), 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de terapeuta inválido"})
+		return
+	}
+
+	userID, roles, err := tc.validateToken(c)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	ratings, err := tc.therapyService.GetTherapistRatings(uint(therapistID), userID, roles)
+	if err != nil {
+		c.JSON(http.StatusForbidden, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Calificaciones obtenidas exitosamente",
+		"data":    ratings,
+	})
+}
+
+func (tc *TherapyController) GetSessionRating(c *gin.Context) {
+	sessionID, err := strconv.ParseUint(c.Param("session_id"), 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de sesión inválido"})
+		return
+	}
+
+	userID, roles, err := tc.validateToken(c)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	// Check permissions - caregivers and admins can view session ratings
+	if !tc.hasRole(roles, "PD") && !tc.hasRole(roles, "AD") {
+		c.JSON(http.StatusForbidden, gin.H{"error": "No tienes permisos para ver esta calificación"})
+		return
+	}
+
+	rating, err := tc.therapyService.GetSessionRating(uint(sessionID), userID, roles)
+	if err != nil {
+		if err.Error() == "calificación no encontrada" {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Esta sesión no ha sido calificada aún"})
+			return
+		}
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Convert to response map
+	response := gin.H{
+		"id":           rating.ID,
+		"session_id":   rating.SessionID,
+		"therapist_id": rating.TherapistID,
+		"caregiver_id": rating.CaregiverID,
+		"patient_id":   rating.PatientID,
+		"rating":       rating.Rating,
+		"comment":      rating.Comment,
+		"created_at":   rating.CreatedAt.Format("2006-01-02 15:04:05"),
+		"updated_at":   rating.UpdatedAt.Format("2006-01-02 15:04:05"),
+	}
+
+	// Add names if relationships are loaded
+	if rating.Therapist.ID > 0 {
+		response["therapist_name"] = rating.Therapist.Nombres_Apellidos
+	}
+	if rating.Caregiver.ID > 0 {
+		response["caregiver_name"] = rating.Caregiver.Nombres_Apellidos
+	}
+	if rating.Patient.ID > 0 {
+		response["patient_name"] = rating.Patient.NombresApellidos
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Calificación obtenida exitosamente",
+		"data":    response,
+	})
+}

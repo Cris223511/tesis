@@ -1001,3 +1001,222 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 		AverageSessionDuration: averageSessionDuration,
 	}, nil
 }
+
+// ============== THERAPIST RATING METHODS ==============
+
+func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO, caregiverID uint) (*models.TherapistRating, error) {
+	// Verify session exists and is in a valid state for rating
+	var session models.TherapySession
+	if err := s.db.Where("id = ? AND estado IN (?)", dto.SessionID, []string{"completada", "programada", "en_progreso"}).First(&session).Error; err != nil {
+		return nil, errors.New("sesión no encontrada o no disponible para calificar")
+	}
+
+	// Verify caregiver has access to this session (through patient relationship)
+	// Skip this check if caregiverID is different from dto.CaregiverID (admin case)
+	if caregiverID == dto.CaregiverID {
+		var patient models.Patient
+		if err := s.db.Where("id = ? AND cuidador_id = ?", dto.PatientID, dto.CaregiverID).First(&patient).Error; err != nil {
+			return nil, errors.New("no tienes permisos para calificar esta sesión")
+		}
+	}
+	// If caregiverID != dto.CaregiverID, assume it's an admin and skip validation
+
+	// Check if rating already exists for this session and caregiver
+	var existingRating models.TherapistRating
+	if err := s.db.Where("session_id = ? AND caregiver_id = ?", dto.SessionID, dto.CaregiverID).First(&existingRating).Error; err == nil {
+		return nil, errors.New("ya has calificado esta sesión")
+	}
+
+	// Create the rating
+	rating := models.TherapistRating{
+		SessionID:   dto.SessionID,
+		TherapistID: dto.TherapistID,
+		CaregiverID: caregiverID,
+		PatientID:   dto.PatientID,
+		Rating:      dto.Rating,
+		Comment:     dto.Comment,
+	}
+
+	if err := s.db.Create(&rating).Error; err != nil {
+		return nil, fmt.Errorf("error al crear la calificación: %v", err)
+	}
+
+	// Handle automatic therapist reassignment if rating is 1-3
+	if dto.Rating <= 3 {
+		log.Printf("Low rating detected (%d stars) for therapist %d by caregiver %d", dto.Rating, dto.TherapistID, caregiverID)
+
+		// Update disqualification count
+		if err := s.updateTherapistDisqualification(dto.TherapistID); err != nil {
+			log.Printf("Error updating therapist disqualification: %v", err)
+		}
+
+		// Reassign therapist for patient's future sessions
+		if err := s.reassignTherapistForPatient(dto.PatientID, dto.TherapistID); err != nil {
+			log.Printf("Error reassigning therapist: %v", err)
+		}
+	}
+
+	// Load the rating with relationships for response
+	if err := s.db.Preload("Therapist").Preload("Caregiver").Preload("Patient").First(&rating, rating.ID).Error; err != nil {
+		log.Printf("Warning: Could not preload rating relationships: %v", err)
+	}
+
+	return &rating, nil
+}
+
+func (s *TherapyService) GetSessionRating(sessionID uint, userID uint, userRoles []string) (*models.TherapistRating, error) {
+	var rating models.TherapistRating
+
+	query := s.db.Preload("Therapist").Preload("Caregiver").Preload("Patient").Where("session_id = ?", sessionID)
+
+	// If user is not admin, filter by caregiver access
+	hasAdminRole := false
+	for _, role := range userRoles {
+		if role == "AD" || role == "admin" || role == "administrador" {
+			hasAdminRole = true
+			break
+		}
+	}
+
+	if !hasAdminRole {
+		// Non-admin users can only see ratings where they are the caregiver
+		query = query.Where("caregiver_id = ?", userID)
+	}
+
+	if err := query.First(&rating).Error; err != nil {
+		return nil, errors.New("calificación no encontrada")
+	}
+
+	return &rating, nil
+}
+
+func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error {
+	var disqualification models.TherapistDisqualification
+
+	// Find or create disqualification record
+	result := s.db.Where("therapist_id = ?", therapistID).First(&disqualification)
+	if result.Error != nil {
+		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+			// Create new disqualification record
+			disqualification = models.TherapistDisqualification{
+				TherapistID: therapistID,
+				BadRatings:  1,
+			}
+			if err := s.db.Create(&disqualification).Error; err != nil {
+				return fmt.Errorf("error creating disqualification record: %v", err)
+			}
+		} else {
+			return fmt.Errorf("error finding disqualification record: %v", result.Error)
+		}
+	} else {
+		// Update existing record
+		disqualification.BadRatings++
+		if err := s.db.Save(&disqualification).Error; err != nil {
+			return fmt.Errorf("error updating disqualification count: %v", err)
+		}
+	}
+
+	log.Printf("Therapist %d now has %d bad ratings", therapistID, disqualification.BadRatings)
+
+	// Check if therapist should be deleted (20 bad ratings)
+	if disqualification.BadRatings >= 20 {
+		log.Printf("Therapist %d has reached 20 bad ratings - deleting account", therapistID)
+		if err := s.deleteTherapistAccount(therapistID); err != nil {
+			return fmt.Errorf("error deleting therapist account: %v", err)
+		}
+
+		// Mark disqualification as deleted
+		disqualification.IsDeleted = true
+		s.db.Save(&disqualification)
+	}
+
+	return nil
+}
+
+func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID uint) error {
+	// Find an available therapist (different from the current one)
+	var newTherapist models.Usuarios
+	if err := s.db.Where("rol LIKE ? AND id != ? AND estado_cuenta = ?", "%TR%", oldTherapistID, "activa").First(&newTherapist).Error; err != nil {
+		log.Printf("No alternative therapist found for patient %d", patientID)
+		return nil // Don't fail the rating if no therapist is available
+	}
+
+	// Update all future (programada) sessions for this patient
+	result := s.db.Model(&models.TherapySession{}).
+		Where("paciente_id = ? AND terapeuta_id = ? AND estado = ?", patientID, oldTherapistID, "programada").
+		Update("terapeuta_id", newTherapist.ID)
+
+	if result.Error != nil {
+		return fmt.Errorf("error reassigning therapist: %v", result.Error)
+	}
+
+	log.Printf("Reassigned %d future sessions from therapist %d to therapist %d for patient %d",
+		result.RowsAffected, oldTherapistID, newTherapist.ID, patientID)
+
+	return nil
+}
+
+func (s *TherapyService) deleteTherapistAccount(therapistID uint) error {
+	// Soft delete the therapist account
+	if err := s.db.Model(&models.Usuarios{}).Where("id = ?", therapistID).Update("estado_cuenta", "eliminada").Error; err != nil {
+		return fmt.Errorf("error deleting therapist account: %v", err)
+	}
+
+	// Cancel all future sessions for this therapist
+	if err := s.db.Model(&models.TherapySession{}).
+		Where("terapeuta_id = ? AND estado = ?", therapistID, "programada").
+		Update("estado", "cancelada").Error; err != nil {
+		log.Printf("Warning: Could not cancel future sessions for deleted therapist %d: %v", therapistID, err)
+	}
+
+	log.Printf("Successfully deleted therapist account %d due to excessive bad ratings", therapistID)
+	return nil
+}
+
+func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, roles []string) ([]dto.TherapistRatingResponse, error) {
+	// Verify access permissions
+	isAdmin := s.hasRole(roles, "AD")
+	isTherapist := s.hasRole(roles, "TR") && userID == therapistID
+
+	if !isAdmin && !isTherapist {
+		return nil, errors.New("no tienes permisos para ver estas calificaciones")
+	}
+
+	var ratings []models.TherapistRating
+	if err := s.db.Where("therapist_id = ?", therapistID).
+		Preload("Therapist").
+		Preload("Caregiver").
+		Preload("Patient").
+		Order("created_at DESC").
+		Find(&ratings).Error; err != nil {
+		return nil, fmt.Errorf("error al obtener calificaciones: %v", err)
+	}
+
+	responses := make([]dto.TherapistRatingResponse, len(ratings))
+	for i, rating := range ratings {
+		responses[i] = dto.TherapistRatingResponse{
+			ID:          rating.ID,
+			SessionID:   rating.SessionID,
+			TherapistID: rating.TherapistID,
+			CaregiverID: rating.CaregiverID,
+			PatientID:   rating.PatientID,
+			Rating:      rating.Rating,
+			Comment:     rating.Comment,
+			CreatedAt:   rating.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt:   rating.UpdatedAt.Format("2006-01-02 15:04:05"),
+		}
+
+		// Add names if relationships are loaded
+		if rating.Therapist.ID > 0 {
+			responses[i].TherapistName = rating.Therapist.Nombres_Apellidos
+		}
+		if rating.Caregiver.ID > 0 {
+			responses[i].CaregiverName = rating.Caregiver.Nombres_Apellidos
+		}
+		if rating.Patient.ID > 0 {
+			responses[i].PatientName = rating.Patient.NombresApellidos
+		}
+	}
+
+	return responses, nil
+}

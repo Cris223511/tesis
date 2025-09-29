@@ -105,3 +105,42 @@ type PatientStatsResponse struct {
 	DaysSinceLastSession int  `json:"days_since_last_session"`
 	AverageSessionDuration int `json:"average_session_duration"`
 }
+
+// ============== THERAPIST RATING DTOs ==============
+
+type CreateTherapistRatingDTO struct {
+	SessionID    uint   `json:"session_id" binding:"required"`
+	TherapistID  uint   `json:"therapist_id" binding:"required"`
+	PatientID    uint   `json:"patient_id" binding:"required"`
+	CaregiverID  uint   `json:"caregiver_id" binding:"required"`
+	Rating       int    `json:"rating" binding:"required,min=1,max=5"`
+	Comment      string `json:"comment,omitempty"`
+}
+
+type TherapistRatingResponse struct {
+	ID           uint   `json:"id"`
+	SessionID    uint   `json:"session_id"`
+	TherapistID  uint   `json:"therapist_id"`
+	CaregiverID  uint   `json:"caregiver_id"`
+	PatientID    uint   `json:"patient_id"`
+	Rating       int    `json:"rating"`
+	Comment      string `json:"comment"`
+	CreatedAt    string `json:"created_at"`
+	UpdatedAt    string `json:"updated_at"`
+
+	// Basic info for relationships
+	TherapistName string `json:"therapist_name,omitempty"`
+	CaregiverName string `json:"caregiver_name,omitempty"`
+	PatientName   string `json:"patient_name,omitempty"`
+}
+
+type TherapistDisqualificationResponse struct {
+	ID           uint   `json:"id"`
+	TherapistID  uint   `json:"therapist_id"`
+	BadRatings   int    `json:"bad_ratings"`
+	IsDeleted    bool   `json:"is_deleted"`
+	CreatedAt    string `json:"created_at"`
+	UpdatedAt    string `json:"updated_at"`
+
+	TherapistName string `json:"therapist_name"`
+}
