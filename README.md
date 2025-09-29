@@ -26,16 +26,21 @@ La aplicación **Serious Game USIL** es una plataforma completa diseñada para p
 
 #### Administrador
 - Dashboard administrativo completo
+- **Estadísticas globales diferenciadas por rol** 🆕
 - Gestión de usuarios y roles
 - Creación y edición de usuarios
 - Gestión de pacientes
+- **Navegación completa: Cuidadores → Pacientes → Sesiones → Calificar** 🆕
+- **Calificación de terapeutas en nombre de cualquier cuidador** 🆕
 - Análisis de progreso terapéutico
 - Acceso a información del sistema
 
 #### Terapeuta
 - Dashboard especializado
+- **Estadísticas personalizadas de pacientes propios** 🆕
 - Gestión de pacientes asignados
 - Seguimiento de sesiones terapéuticas
+- **Visualización de calificaciones recibidas** 🆕
 - Análisis de emociones en tiempo real
 - Historial de progreso
 
@@ -43,6 +48,8 @@ La aplicación **Serious Game USIL** es una plataforma completa diseñada para p
 - Dashboard familiar
 - Visualización de pacientes asignados (hijos)
 - Seguimiento de sesiones terapéuticas
+- **Calificación de terapeutas tras sesiones** 🆕
+- **Visualización de calificaciones realizadas** 🆕
 - Estadísticas de progreso
 - Comparaciones de progreso mensual
 
@@ -229,6 +236,8 @@ cd android/
 - **MyPatientsActivity**: Mis hijos pacientes
 - **MySessionsActivity**: Sesiones terapéuticas
 - **SessionDetailActivity**: Detalles de sesiones
+- **RateTherapistActivity**: Calificación de terapeutas 🆕
+- **SimpleTherapySessionsActivity**: Sesiones filtradas por paciente 🆕
 
 ### 🎭 Análisis de Emociones
 - **EmotionAnalysisActivity**: Captura y análisis
@@ -324,6 +333,45 @@ Este proyecto es parte de una tesis académica de la Universidad San Ignacio de 
 **Proyecto**: Serious Game USIL - Sistema de Análisis de Emociones
 **Universidad**: Universidad San Ignacio de Loyola (USIL)
 **Tipo**: Proyecto de Tesis
+
+## 🆕 Nuevas Funcionalidades Implementadas
+
+### Sistema de Calificaciones de Terapeutas
+- **Interfaz de calificación**: `RateTherapistActivity` permite calificar terapeutas del 1-5 estrellas
+- **Comentarios opcionales**: Los usuarios pueden agregar comentarios detallados sobre la sesión
+- **Verificación automática**: El botón de calificación se deshabilita automáticamente si la sesión ya fue calificada
+- **Visualización dinámica**: Las calificaciones existentes se muestran con estrellas y comentarios en `SessionDetailActivity`
+- **Permisos por rol**: Los administradores pueden calificar en nombre de cualquier cuidador
+
+### Dashboard Diferenciado por Rol
+- **`TerapeutaDrawerActivity`** con estadísticas personalizadas según el rol del usuario:
+  - **Administradores**: Estadísticas globales (total de terapeutas, pacientes, sesiones, calificaciones)
+  - **Terapeutas**: Estadísticas propias (pacientes asignados, sesiones programadas, calificaciones recibidas)
+- **Carga asíncrona**: Las estadísticas se cargan dinámicamente desde múltiples endpoints
+- **UI adaptativa**: La interfaz se adapta según los permisos del usuario
+
+### Navegación Administrativa Completa
+- **Flujo de navegación mejorado**: Admin puede navegar desde Cuidadores → Pacientes → Sesiones específicas
+- **`PatientDetailActivity`** con botón "Ver Sesiones" que filtra sesiones por paciente
+- **`SimpleTherapySessionsActivity`** optimizada para mostrar sesiones filtradas
+- **Integración completa**: Desde cualquier punto se puede acceder a la funcionalidad de calificación
+
+### Mejoras en la UI/UX
+- **Botón dinámico de calificación**: Cambia su estado visual cuando una sesión ya fue calificada
+- **Iconografía mejorada**: Cambio del ícono "Gestionar Sesiones" por uno más apropiado (`ic_menu_agenda`)
+- **Feedback visual**: Indicadores claros del estado de las calificaciones con colores y transparencias
+- **Manejo de errores**: Validación robusta de permisos y datos antes de permitir calificaciones
+
+### Nuevas Actividades y Componentes
+- **`RateTherapistActivity.kt`**: Interfaz completa para calificar terapeutas con validación
+- **Adaptadores mejorados**: `TherapySessionAdapter` con mejor manejo de datos y navegación
+- **ViewModels actualizados**: `TherapySessionViewModel` con nuevas funcionalidades de calificación
+- **Integración con APIs**: Nuevos endpoints para verificar y crear calificaciones
+
+### Mejoras en Autenticación y Seguridad
+- **`AuthManager`** mejorado para manejo de roles y permisos granulares
+- **Validación de permisos**: Verificación dinámica de roles antes de permitir acciones sensibles
+- **Manejo de tokens**: Configuración automática de tokens JWT para nuevas APIs de calificación
 
 ---
 
