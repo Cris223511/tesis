@@ -6,6 +6,7 @@ import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.PatientListItem
 import com.example.serious_game_usil.data.PatientStatsResponse
 import com.example.serious_game_usil.repository.PatientRepository
+import com.example.serious_game_usil.guards.AuthManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,28 +31,55 @@ class PadresDashboardViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                // Usar el nuevo endpoint que devuelve solo los últimos 3 pacientes
-                patientRepository.getLatestPatients().collect { result ->
+                // Verificar si el usuario es administrador o tiene rol de cuidador
+                val isAdmin = AuthManager.isAdmin()
+                val userRoles = AuthManager.getUserRoles().map { it.lowercase() }
+                val hasCaregiver = isAdmin || userRoles.contains("cuidador")
+
+                if (!hasCaregiver) {
+                    android.util.Log.w("PadresDashboard", "User does not have caregiver role and is not admin")
+                    _myPatients.value = emptyList()
+                    _isLoading.value = false
+                    return@launch
+                }
+
+                // Obtener el nombre del usuario actual para filtrar por cuidador
+                val currentUserName = AuthManager.getNombresApellidos()
+
+                // Usar el endpoint de pacientes y filtrar por cuidador
+                patientRepository.getPatients(page = 1, limit = 100).collect { result ->
                     when (result) {
                         is ApiResult.Success -> {
-                            val patients = result.data
-                            android.util.Log.d("PadresDashboard", "Loaded ${patients.size} latest patients")
-                            _myPatients.value = patients
-                            if (patients.isNotEmpty() && _currentPatientIndex.value >= patients.size) {
+                            val allPatients = result.data.patients ?: emptyList()
+
+                            // Los administradores ven TODOS los pacientes, sin filtrar
+                            val filteredPatients = if (isAdmin) {
+                                android.util.Log.d("PadresDashboard", "Admin detected - showing ALL ${allPatients.size} patients")
+                                allPatients
+                            } else {
+                                // Solo los cuidadores normales filtran por su nombre
+                                allPatients.filter { patient ->
+                                    patient.cuidadorNombre == currentUserName
+                                }
+                            }
+
+                            android.util.Log.d("PadresDashboard", "Loaded ${filteredPatients.size} patients (isAdmin: $isAdmin, user: $currentUserName)")
+                            _myPatients.value = filteredPatients
+                            if (filteredPatients.isNotEmpty() && _currentPatientIndex.value >= filteredPatients.size) {
                                 _currentPatientIndex.value = 0
                             }
                             // Cargar estadísticas del paciente actual después de cargar la lista
-                            if (patients.isNotEmpty()) {
+                            if (filteredPatients.isNotEmpty()) {
                                 loadCurrentPatientStats()
                             }
                         }
                         is ApiResult.Error -> {
-                            android.util.Log.e("PadresDashboard", "Error loading latest patients: ${result.message}")
+                            android.util.Log.e("PadresDashboard", "Error loading patients for caregiver: ${result.message}")
                             // En caso de error, mantener lista vacía
                             _myPatients.value = emptyList()
                         }
                         is ApiResult.NetworkError -> {
-                            android.util.Log.e("PadresDashboard", "Network error loading latest patients", result.exception)
+                            android.util.Log.e("PadresDashboard", "Network error loading patients for caregiver", result.exception)
                             // En caso de error de red, mantener lista vacía
                             _myPatients.value = emptyList()
                         }
@@ -59,7 +87,7 @@ class PadresDashboardViewModel : ViewModel() {
                     _isLoading.value = false
                 }
             } catch (e: Exception) {
-                android.util.Log.e("PadresDashboard", "Exception loading latest patients", e)
+                android.util.Log.e("PadresDashboard", "Exception loading patients for caregiver", e)
                 _myPatients.value = emptyList()
                 _isLoading.value = false
             }

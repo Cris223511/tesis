@@ -12,6 +12,7 @@ import com.example.serious_game_usil.data.ApiResult
 import com.example.serious_game_usil.data.PatientListItem
 import com.example.serious_game_usil.data.PatientsListResponse
 import com.example.serious_game_usil.databinding.ActivityMyPatientsBinding
+import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.presentation.ui.patients.PatientDetailActivity
 import com.example.serious_game_usil.utils.MyPatientsAdapter
 import kotlinx.coroutines.launch
@@ -76,7 +77,14 @@ class MyPatientsActivity : AppCompatActivity() {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Mis Pacientes Asignados"
+
+        // Cambiar título para administradores
+        val isAdmin = AuthManager.isAdmin()
+        supportActionBar?.title = if (isAdmin) {
+            "Todos los Pacientes del Sistema"
+        } else {
+            "Mis Pacientes Asignados"
+        }
 
         binding.swipeRefresh.setOnRefreshListener {
             loadPatients()
@@ -129,7 +137,10 @@ class MyPatientsActivity : AppCompatActivity() {
     }
 
     private fun updateEmptyState(patients: List<PatientListItem>, isSearching: Boolean) {
-        if (patients.isEmpty()) {
+        val isAdmin = AuthManager.isAdmin()
+
+        if (patients.isEmpty() && !isAdmin) {
+            // Solo mostrar empty state si NO es administrador
             binding.emptyStateLayout.visibility = android.view.View.VISIBLE
             binding.recyclerViewPatients.visibility = android.view.View.GONE
 
@@ -140,6 +151,12 @@ class MyPatientsActivity : AppCompatActivity() {
                 binding.tvEmptyTitle.text = "Sin pacientes asignados"
                 binding.tvEmptyMessage.text = "Aún no tienes pacientes bajo tu cuidado. Contacta a tu terapeuta."
             }
+        } else if (patients.isEmpty() && isAdmin) {
+            // Los administradores ven una vista diferente
+            binding.emptyStateLayout.visibility = android.view.View.VISIBLE
+            binding.recyclerViewPatients.visibility = android.view.View.GONE
+            binding.tvEmptyTitle.text = "Vista de Administrador"
+            binding.tvEmptyMessage.text = "Como administrador, tienes acceso completo a todos los pacientes del sistema"
         } else {
             binding.emptyStateLayout.visibility = android.view.View.GONE
             binding.recyclerViewPatients.visibility = android.view.View.VISIBLE

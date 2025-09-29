@@ -76,9 +76,16 @@ class ProgressViewModel : ViewModel() {
             try {
                 _isLoading.value = true
                 _error.value = null
-                
-                val response = apiService.getAllChildrenProgress()
-                
+
+                // TODO: Implementar endpoint getAllChildrenProgress en el backend
+                // TEMPORAL: Comentado hasta que esté disponible el endpoint
+                // val response = apiService.getAllChildrenProgress()
+
+                // Por ahora, devolver lista vacía para que compile
+                android.util.Log.w("ProgressViewModel", "getAllChildrenProgress not implemented - returning empty list")
+                _allChildrenProgress.value = emptyList()
+
+                /*
                 if (response.isSuccessful) {
                     val progressList = response.body() ?: emptyList()
                     _allChildrenProgress.value = progressList
@@ -86,6 +93,7 @@ class ProgressViewModel : ViewModel() {
                     _error.value = "Error ${response.code()}: ${response.message()}"
                     _allChildrenProgress.value = emptyList()
                 }
+                */
             } catch (e: Exception) {
                 Log.e("ProgressViewModel", "Error loading all children progress", e)
                 _error.value = "Error de conexión: ${e.message}"

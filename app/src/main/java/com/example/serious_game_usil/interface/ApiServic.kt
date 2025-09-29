@@ -2,6 +2,10 @@ package com.example.serious_game_usil.`interface`
 
 import com.google.gson.annotations.SerializedName
 import com.example.serious_game_usil.data.BaseResponse
+import com.example.serious_game_usil.data.Caregiver
+import com.example.serious_game_usil.data.CaregiverDetailResponse
+import com.example.serious_game_usil.data.CaregiverListResponse
+import com.example.serious_game_usil.data.CreateCaregiverRequest
 import com.example.serious_game_usil.data.CreateRoleRequest
 import com.example.serious_game_usil.data.LoginRequest
 import com.example.serious_game_usil.data.LoginResponse
@@ -11,6 +15,7 @@ import com.example.serious_game_usil.data.RegisterRequest
 import com.example.serious_game_usil.data.RegisterResponse
 import com.example.serious_game_usil.data.ResendOTPRequest
 import com.example.serious_game_usil.data.Role
+import com.example.serious_game_usil.data.UpdateCaregiverRequest
 import com.example.serious_game_usil.data.UpdatePasswordRequest
 import com.example.serious_game_usil.data.UpdateRoleRequest
 import com.example.serious_game_usil.data.UpdateUserRequest
@@ -225,19 +230,65 @@ interface ApiService {
     @GET("api/sessions/{id}/export/jpg")
     suspend fun exportSessionToJPG(@Path("id") sessionId: Int): Response<okhttp3.ResponseBody>
 
+    @GET("api/sessions/rating/{session_id}")
+    suspend fun getSessionRating(@Path("session_id") sessionId: Int): Response<TherapistRatingResponse>
+
     @GET("api/sessions/available-therapists")
     suspend fun getAvailableTherapists(): Response<TherapistsListResponse>
 
     @GET("api/autism/children/{child_id}/progress/3months")
     suspend fun getThreeMonthComparison(@Path("child_id") childId: Int): Response<ThreeMonthComparison>
 
-    @GET("api/autism/children/progress")
-    suspend fun getAllChildrenProgress(): Response<List<ThreeMonthComparison>>
 
+    // Caregiver endpoints
+    @GET("api/caregivers")
+    suspend fun getCaregivers(@Query("page") page: Int = 1): Response<CaregiverListResponse>
+
+    @GET("api/caregivers/search")
+    suspend fun searchCaregivers(
+        @Query("q") query: String,
+        @Query("page") page: Int = 1
+    ): Response<CaregiverListResponse>
+
+    @GET("api/caregivers/{id}")
+    suspend fun getCaregiverDetail(@Path("id") caregiverId: Int): Response<CaregiverDetailResponse>
+
+    @POST("api/caregivers")
+    suspend fun createCaregiver(@Body request: CreateCaregiverRequest): Response<BaseResponse>
+
+    @PUT("api/caregivers/{id}")
+    suspend fun updateCaregiver(
+        @Path("id") caregiverId: Int,
+        @Body request: UpdateCaregiverRequest
+    ): Response<BaseResponse>
+
+    @DELETE("api/caregivers/{id}")
+    suspend fun deleteCaregiver(@Path("id") caregiverId: Int): Response<BaseResponse>
+
+    @POST("api/caregivers/{caregiver_id}/assign-patient/{patient_id}")
+    suspend fun assignPatientToCaregiver(
+        @Path("caregiver_id") caregiverId: Int,
+        @Path("patient_id") patientId: Int
+    ): Response<BaseResponse>
+
+    @DELETE("api/caregivers/{caregiver_id}/unassign-patient/{patient_id}")
+    suspend fun unassignPatientFromCaregiver(
+        @Path("caregiver_id") caregiverId: Int,
+        @Path("patient_id") patientId: Int
+    ): Response<BaseResponse>
 
     @POST("api/refresh-token")
     suspend fun refreshToken(@Body request: RefreshTokenRequest): Response<RefreshTokenResponse>
 
+    // Therapist Rating endpoints
+    @POST("api/therapist-ratings")
+    suspend fun rateTherapist(@Body request: TherapistRatingRequest): Response<TherapistRatingResponse>
+
+    @GET("api/therapist-ratings/{therapist_id}")
+    suspend fun getTherapistRatings(@Path("therapist_id") therapistId: Int): Response<TherapistRatingsHistoryResponse>
+
+    @GET("api/therapist-ratings/disqualifications/{therapist_id}")
+    suspend fun getTherapistDisqualifications(@Path("therapist_id") therapistId: Int): Response<TherapistDisqualificationsResponse>
 
 }
 
@@ -353,4 +404,78 @@ data class TherapistsListResponse(
 data class SessionsListResponse(
     val message: String,
     val data: List<com.example.serious_game_usil.`interface`.TherapySession>
+)
+
+// Therapist Rating Data Classes
+data class TherapistRatingRequest(
+    @SerializedName("session_id") val sessionId: Int,
+    @SerializedName("therapist_id") val therapistId: Int,
+    @SerializedName("caregiver_id") val caregiverId: Int,
+    @SerializedName("patient_id") val patientId: Int,
+    val rating: Int,
+    val feedback: String?,
+    @SerializedName("reassign_therapist") val reassignTherapist: Boolean
+)
+
+data class TherapistRatingResponse(
+    val success: Boolean,
+    val message: String,
+    val data: TherapistRatingData?
+)
+
+data class TherapistRatingData(
+    @SerializedName("rating_id") val ratingId: Int,
+    @SerializedName("new_therapist_id") val newTherapistId: Int?,
+    @SerializedName("new_therapist_name") val newTherapistName: String?,
+    @SerializedName("therapist_disqualifications") val therapistDisqualifications: Int?,
+    @SerializedName("therapist_removed") val therapistRemoved: Boolean?
+)
+
+data class TherapistRatingsHistoryResponse(
+    val message: String,
+    val data: TherapistRatingsHistoryData
+)
+
+data class TherapistRatingsHistoryData(
+    @SerializedName("therapist_id") val therapistId: Int,
+    @SerializedName("therapist_name") val therapistName: String,
+    @SerializedName("average_rating") val averageRating: Double,
+    @SerializedName("total_ratings") val totalRatings: Int,
+    @SerializedName("total_disqualifications") val totalDisqualifications: Int,
+    val ratings: List<TherapistRating>
+)
+
+data class TherapistRating(
+    val id: Int,
+    @SerializedName("session_id") val sessionId: Int,
+    @SerializedName("caregiver_name") val caregiverName: String,
+    @SerializedName("patient_name") val patientName: String,
+    val rating: Int,
+    val feedback: String?,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("reassign_requested") val reassignRequested: Boolean
+)
+
+data class TherapistDisqualificationsResponse(
+    val message: String,
+    val data: TherapistDisqualificationsData
+)
+
+data class TherapistDisqualificationsData(
+    @SerializedName("therapist_id") val therapistId: Int,
+    @SerializedName("therapist_name") val therapistName: String,
+    @SerializedName("total_disqualifications") val totalDisqualifications: Int,
+    @SerializedName("is_removed") val isRemoved: Boolean,
+    @SerializedName("removal_date") val removalDate: String?,
+    val disqualifications: List<TherapistDisqualification>
+)
+
+data class TherapistDisqualification(
+    val id: Int,
+    @SerializedName("session_id") val sessionId: Int,
+    @SerializedName("caregiver_name") val caregiverName: String,
+    @SerializedName("patient_name") val patientName: String,
+    val rating: Int,
+    val feedback: String?,
+    @SerializedName("created_at") val createdAt: String
 )

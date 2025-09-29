@@ -13,6 +13,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,6 +21,9 @@ import java.lang.String;
 public final class ActivityPatientDetailBinding implements ViewBinding {
   @NonNull
   private final ScrollView rootView;
+
+  @NonNull
+  public final MaterialButton btnViewSessions;
 
   @NonNull
   public final ImageView ivPatientPhoto;
@@ -76,14 +80,16 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
   public final TextView tvWeight;
 
   private ActivityPatientDetailBinding(@NonNull ScrollView rootView,
-      @NonNull ImageView ivPatientPhoto, @NonNull MaterialToolbar toolbar, @NonNull TextView tvAge,
-      @NonNull TextView tvBMI, @NonNull TextView tvBMICategory, @NonNull TextView tvBirthDate,
-      @NonNull TextView tvCaregiver, @NonNull TextView tvCreatedAt, @NonNull TextView tvDiagnosis,
-      @NonNull TextView tvGender, @NonNull TextView tvHeight, @NonNull TextView tvPatientDocument,
+      @NonNull MaterialButton btnViewSessions, @NonNull ImageView ivPatientPhoto,
+      @NonNull MaterialToolbar toolbar, @NonNull TextView tvAge, @NonNull TextView tvBMI,
+      @NonNull TextView tvBMICategory, @NonNull TextView tvBirthDate, @NonNull TextView tvCaregiver,
+      @NonNull TextView tvCreatedAt, @NonNull TextView tvDiagnosis, @NonNull TextView tvGender,
+      @NonNull TextView tvHeight, @NonNull TextView tvPatientDocument,
       @NonNull TextView tvPatientName, @NonNull TextView tvPatientStatus,
       @NonNull TextView tvSerialId, @NonNull TextView tvTherapist, @NonNull TextView tvUpdatedAt,
       @NonNull TextView tvWeight) {
     this.rootView = rootView;
+    this.btnViewSessions = btnViewSessions;
     this.ivPatientPhoto = ivPatientPhoto;
     this.toolbar = toolbar;
     this.tvAge = tvAge;
@@ -131,6 +137,12 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnViewSessions;
+      MaterialButton btnViewSessions = ViewBindings.findChildViewById(rootView, id);
+      if (btnViewSessions == null) {
+        break missingId;
+      }
+
       id = R.id.ivPatientPhoto;
       ImageView ivPatientPhoto = ViewBindings.findChildViewById(rootView, id);
       if (ivPatientPhoto == null) {
@@ -239,10 +251,10 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityPatientDetailBinding((ScrollView) rootView, ivPatientPhoto, toolbar, tvAge,
-          tvBMI, tvBMICategory, tvBirthDate, tvCaregiver, tvCreatedAt, tvDiagnosis, tvGender,
-          tvHeight, tvPatientDocument, tvPatientName, tvPatientStatus, tvSerialId, tvTherapist,
-          tvUpdatedAt, tvWeight);
+      return new ActivityPatientDetailBinding((ScrollView) rootView, btnViewSessions,
+          ivPatientPhoto, toolbar, tvAge, tvBMI, tvBMICategory, tvBirthDate, tvCaregiver,
+          tvCreatedAt, tvDiagnosis, tvGender, tvHeight, tvPatientDocument, tvPatientName,
+          tvPatientStatus, tvSerialId, tvTherapist, tvUpdatedAt, tvWeight);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

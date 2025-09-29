@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.presentation.adapters.TherapySessionAdapter
+import com.example.serious_game_usil.presentation.ui.padres.SessionDetailActivity
 import com.seriousgame.app.navigation.RouteNavigator
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -31,6 +32,10 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
     private lateinit var emptyStateLayout: LinearLayout
     private lateinit var adapter: TherapySessionAdapter
 
+    // Para filtro por paciente específico
+    private var specificPatientId: Int? = null
+    private var specificPatientName: String? = null
+
     private val createSessionLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -42,6 +47,10 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Obtener parámetros del intent (si se está filtrando por paciente específico)
+        specificPatientId = intent.getIntExtra("patient_id", -1).takeIf { it != -1 }
+        specificPatientName = intent.getStringExtra("patient_name")
 
         // Inicializar AuthManager
         AuthManager.init(this)
@@ -82,6 +91,11 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
         val toolbar = findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Actualizar título si se está filtrando por paciente específico
+        if (specificPatientName != null) {
+            toolbar.title = "Sesiones de $specificPatientName"
+        }
 
         toolbar.setNavigationOnClickListener {
             finish()
@@ -219,7 +233,19 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
     }
 
     private fun displaySessions(sessions: List<com.example.serious_game_usil.`interface`.TherapySession>) {
-        if (sessions.isEmpty()) {
+        // Filtrar por paciente específico si está disponible
+        val filteredSessions = if (specificPatientId != null) {
+            sessions.filter { session ->
+                // Filtrar por nombre del paciente usando el objeto anidado
+                specificPatientName?.let { patientName ->
+                    session.paciente.nombresApellidos.equals(patientName, ignoreCase = true)
+                } ?: false
+            }
+        } else {
+            sessions
+        }
+
+        if (filteredSessions.isEmpty()) {
             // Mostrar estado vacío
             recyclerView.visibility = View.GONE
             emptyStateLayout.visibility = View.VISIBLE
@@ -229,8 +255,8 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
             recyclerView.visibility = View.VISIBLE
             emptyStateLayout.visibility = View.GONE
 
-            // Actualizar adapter con las nuevas sesiones
-            adapter.updateSessions(sessions)
+            // Actualizar adapter con las sesiones filtradas
+            adapter.updateSessions(filteredSessions)
         }
     }
 
@@ -245,6 +271,10 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
             !currentQuery.isNullOrBlank() -> {
                 emptyTitle.text = "Sin resultados de búsqueda"
                 emptySubtitle.text = "No se encontraron sesiones que coincidan con \"$currentQuery\""
+            }
+            specificPatientName != null -> {
+                emptyTitle.text = "Sin sesiones para $specificPatientName"
+                emptySubtitle.text = "Este paciente no tiene sesiones registradas"
             }
             viewModel.currentFilter != null -> {
                 val filterName = when(viewModel.currentFilter) {

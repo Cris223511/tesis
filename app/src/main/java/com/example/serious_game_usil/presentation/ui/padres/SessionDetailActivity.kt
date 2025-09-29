@@ -12,7 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.SessionDetail
 import com.example.serious_game_usil.databinding.ActivitySessionDetailBinding
+import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.presentation.ui.therapy.TherapySessionViewModel
+import com.example.serious_game_usil.presentation.ui.therapy.RateTherapistActivity
+import com.example.serious_game_usil.network.RetrofitClient
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,6 +24,9 @@ class SessionDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySessionDetailBinding
     private lateinit var viewModel: TherapySessionViewModel
     private var sessionId: Int = -1
+    private var currentSession: SessionDetail? = null
+    private var isSessionRated = false
+    private var existingRating: Any? = null
 
     companion object {
         fun newIntent(context: Context, sessionId: Int): Intent {
@@ -39,7 +45,9 @@ class SessionDetailActivity : AppCompatActivity() {
 
         setupUI()
         setupViewModel()
+        setupClickListeners()
         loadSessionDetail()
+        checkExistingRating()
     }
 
     private fun setupUI() {
@@ -69,6 +77,7 @@ class SessionDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.sessionDetail.collect { sessionDetail ->
                 sessionDetail?.let {
+                    currentSession = it
                     updateUI(it)
                 }
             }
@@ -244,9 +253,121 @@ class SessionDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupClickListeners() {
+        // Click listener para el botón "Calificar Sesión"
+        binding.btnRateTherapist.setOnClickListener {
+            currentSession?.let { session ->
+                // Usar los IDs si están disponibles, sino usar valores de fallback
+                val therapistId = session.terapeutaId ?: sessionId // Fallback temporal
+                val patientId = session.pacienteId ?: sessionId // Fallback temporal
+
+                // Para el cuidador ID: si es admin, usar el ID del admin, si no, usar el cuidador de la sesión
+                val userRoles = AuthManager.getUserRoles()
+                val isAdmin = userRoles.any { it.equals("AD", ignoreCase = true) || it.equals("admin", ignoreCase = true) }
+                val caregiverId = if (isAdmin) {
+                    // Si es admin, usar su propio ID (él puede calificar en nombre de cualquier cuidador)
+                    AuthManager.getUserId()
+                } else {
+                    // Si es cuidador normal, usar el ID del cuidador de la sesión
+                    session.cuidadorId ?: AuthManager.getUserId()
+                }
+
+                val intent = RateTherapistActivity.newIntent(
+                    context = this,
+                    sessionId = sessionId,
+                    therapistId = therapistId,
+                    therapistName = session.terapeutaNombre ?: "Terapeuta",
+                    patientName = session.pacienteNombre ?: "Paciente",
+                    patientId = patientId,
+                    caregiverId = caregiverId
+                )
+                startActivity(intent)
+            } ?: run {
+                Toast.makeText(
+                    this,
+                    "Cargando datos de la sesión...",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun checkExistingRating() {
+        // Configurar token de autenticación
+        AuthManager.getAccessToken()?.let { token ->
+            RetrofitClient.setAuthToken(token)
+        }
+
+        lifecycleScope.launch {
+            try {
+                val apiService = RetrofitClient.getApiService()
+                val response = apiService.getSessionRating(sessionId)
+
+                if (response.isSuccessful) {
+                    // La sesión ya está calificada
+                    val ratingData = response.body()?.data
+                    ratingData?.let {
+                        isSessionRated = true
+                        existingRating = it
+                        updateUIForRatedSession(it)
+                    }
+                } else if (response.code() == 404) {
+                    // No hay calificación para esta sesión
+                    isSessionRated = false
+                    updateUIForUnratedSession()
+                }
+            } catch (e: Exception) {
+                // Error al verificar, asumir que no está calificada
+                isSessionRated = false
+                updateUIForUnratedSession()
+            }
+        }
+    }
+
+    private fun updateUIForRatedSession(ratingData: Any) {
+        // Extraer rating del objeto (asumiendo que es un Map o similar)
+        val rating = when (ratingData) {
+            is Map<*, *> -> ratingData["rating"]?.toString()?.toIntOrNull() ?: 0
+            else -> 0
+        }
+
+        val comment = when (ratingData) {
+            is Map<*, *> -> ratingData["comment"]?.toString() ?: ""
+            else -> ""
+        }
+
+        // Generar estrellas
+        val stars = "⭐".repeat(rating)
+
+        // Actualizar el botón para mostrar la calificación
+        binding.btnRateTherapist.text = "$stars $rating/5"
+        binding.btnRateTherapist.isEnabled = false
+        binding.btnRateTherapist.alpha = 0.6f
+
+        if (comment.isNotEmpty()) {
+            binding.btnRateTherapist.text = "${binding.btnRateTherapist.text}\n\"$comment\""
+        }
+
+        // Cambiar color del botón
+        binding.btnRateTherapist.backgroundTintList = ContextCompat.getColorStateList(this, R.color.success)
+    }
+
+    private fun updateUIForUnratedSession() {
+        // Mantener el botón activo para calificar
+        binding.btnRateTherapist.text = "⭐ Calificar Sesión"
+        binding.btnRateTherapist.isEnabled = true
+        binding.btnRateTherapist.alpha = 1.0f
+        binding.btnRateTherapist.backgroundTintList = ContextCompat.getColorStateList(this, R.color.primary)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Verificar de nuevo cuando regresamos de la actividad de calificación
+        checkExistingRating()
     }
 }

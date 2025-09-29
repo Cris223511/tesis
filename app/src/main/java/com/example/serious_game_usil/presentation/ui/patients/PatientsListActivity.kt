@@ -13,6 +13,7 @@ import com.example.serious_game_usil.data.PatientListItem
 import com.example.serious_game_usil.data.PatientsListResponse
 import com.example.serious_game_usil.databinding.ActivityPatientsListBinding
 import com.example.serious_game_usil.utils.PatientsAdapter
+import com.example.serious_game_usil.guards.AuthManager
 import kotlinx.coroutines.launch
 
 class PatientsListActivity : AppCompatActivity() {
@@ -31,9 +32,14 @@ class PatientsListActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        // Verificar rol del usuario
+        val userRoles = AuthManager.getUserRoles()
+        val isTherapist = userRoles.any { it.lowercase() in listOf("terapeuta", "therapist") }
+        val canEditPatients = !isTherapist
+
         // Setup RecyclerView
         patientsAdapter = PatientsAdapter(
-            onEditClick = { patient ->
+            onEditClick = if (canEditPatients) { { patient ->
                 android.util.Log.d("PatientsListActivity", "Edit button clicked for patient: ${patient.id}")
                 try {
                     val intent = Intent(this, CreateEditPatientActivity::class.java)
@@ -44,14 +50,19 @@ class PatientsListActivity : AppCompatActivity() {
                     android.util.Log.e("PatientsListActivity", "Error starting CreateEditPatientActivity", e)
                     Toast.makeText(this, "Error al abrir editor: ${e.message}", Toast.LENGTH_LONG).show()
                 }
-            },
-            onDeleteClick = { patient ->
+            } } else { { _ ->
+                Toast.makeText(this, "Los terapeutas no pueden editar datos de pacientes", Toast.LENGTH_SHORT).show()
+            } },
+            onDeleteClick = if (canEditPatients) { { patient ->
                 showDeleteConfirmation(patient.id, patient.nombresApellidos)
-            },
+            } } else { { _ ->
+                Toast.makeText(this, "Los terapeutas no pueden eliminar pacientes", Toast.LENGTH_SHORT).show()
+            } },
             onItemClick = { patient ->
                 val intent = PatientDetailActivity.newIntent(this, patient.id)
                 startActivity(intent)
-            }
+            },
+            showEditDeleteButtons = canEditPatients
         )
 
         binding.recyclerViewPatients.apply {
@@ -85,16 +96,21 @@ class PatientsListActivity : AppCompatActivity() {
             viewModel.loadNextPage()
         }
 
-        // Setup FAB
-        binding.fabAddPatient.setOnClickListener {
-            val intent = Intent(this, CreateEditPatientActivity::class.java)
-            startActivity(intent)
+        // Setup FAB - Solo para usuarios que pueden editar pacientes
+        if (canEditPatients) {
+            binding.fabAddPatient.setOnClickListener {
+                val intent = Intent(this, CreateEditPatientActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            // Ocultar FAB para terapeutas
+            binding.fabAddPatient.visibility = android.view.View.GONE
         }
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Lista de pacientes"
+        supportActionBar?.title = if (isTherapist) "Mis Pacientes" else "Lista de pacientes"
     }
 
     private fun setupObservers() {

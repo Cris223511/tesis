@@ -137,4 +137,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    // Google Play Services para SMS Retriever API
+    implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
+
 }

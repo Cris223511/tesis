@@ -1,5 +1,11 @@
 package com.example.serious_game_usil.presentation.ui.password
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,6 +24,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.common.api.CommonStatusCodes
+import com.google.android.gms.common.api.Status
 import com.example.serious_game_usil.data.OTPRequest
 import com.example.serious_game_usil.data.ResendOTPRequest
 import com.example.serious_game_usil.databinding.ActivityOtpVerificationBinding
@@ -41,6 +50,10 @@ class OtpVerificationActivity : AppCompatActivity() {
     private var failedOtpAttempts = 0
     private var countDownTimer: CountDownTimer? = null
     private var lastResendTime: Long = 0
+    private var smsReceiver: BroadcastReceiver? = null
+    private var clipboardMonitor: ClipboardManager.OnPrimaryClipChangedListener? = null
+    private var lastProcessedCode: String? = null
+    private var otpRequestTime: Long = 0
 
     companion object {
         private const val PREFS_NAME = "OtpPrefs"
@@ -54,6 +67,8 @@ class OtpVerificationActivity : AppCompatActivity() {
         private const val BLOCK_DURATION = 24 * 60 * 60 * 1000L
         private const val OTP_BLOCK_DURATION = 30 * 60 * 1000L
         private const val RESEND_COOLDOWN = 60 * 1000L
+        private const val CODE_VALIDITY_DURATION = 10 * 60 * 1000L // 10 minutos
+        private const val SMS_RETRIEVER_REQUEST_CODE = 1001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,10 +80,18 @@ class OtpVerificationActivity : AppCompatActivity() {
         userEmail = intent.getStringExtra("email") ?: ""
         if (userId == 0) finish()
 
+        // Marcar el tiempo cuando se solicita el OTP
+        otpRequestTime = System.currentTimeMillis()
+
         checkResendStatus()
         checkOtpAttemptsStatus()
         setupUI()
         setupOtpFields()
+        setupSmsRetriever()
+        setupClipboardMonitoring()
+
+        // Auto-detectar código en portapapeles al cargar la pantalla
+        checkClipboardOnLoad()
     }
 
     private fun setupUI() {
@@ -104,6 +127,12 @@ class OtpVerificationActivity : AppCompatActivity() {
                 override fun afterTextChanged(s: Editable?) {
                     s?.toString()?.let { text ->
                         if (text.isNotEmpty()) {
+                            // Detectar si se pegó un código completo de 6 dígitos
+                            if (text.length == 6 && text.all { it.isDigit() || it.isLetter() }) {
+                                fillOtpFields(text.uppercase())
+                                return
+                            }
+
                             if (text != text.uppercase()) {
                                 editText.setText(text.uppercase())
                                 editText.setSelection(text.length)
@@ -125,7 +154,256 @@ class OtpVerificationActivity : AppCompatActivity() {
                 }
                 false
             }
+
+            // Detectar pegado desde portapapeles
+            editText.setOnLongClickListener {
+                checkClipboardForOtp()
+                false // Permitir el menú contextual normal también
+            }
         }
+
+        // Agregar botón para pegar desde portapapeles
+        addClipboardButton()
+    }
+
+    private fun fillOtpFields(code: String) {
+        if (code.length == 6) {
+            otpFields.forEachIndexed { index, editText ->
+                editText.setText(code[index].toString())
+            }
+            otpFields.last().requestFocus()
+            Toast.makeText(this, "Código completo detectado y aplicado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkClipboardForOtp() {
+        try {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = clipboard.primaryClip
+
+            if (clipData != null && clipData.itemCount > 0) {
+                val clipText = clipData.getItemAt(0).text?.toString()
+
+                if (!clipText.isNullOrEmpty()) {
+                    // Extraer código OTP del texto con múltiples patrones
+                    val extractedCode = extractOtpFromText(clipText)
+
+                    if (extractedCode != null) {
+                        fillOtpFields(extractedCode)
+                        Toast.makeText(this, "Código OTP pegado desde portapapeles", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "No se encontró código OTP válido en el portapapeles", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("OTP", "Error al acceder al portapapeles: ${e.message}")
+        }
+    }
+
+    private fun addClipboardButton() {
+        // Configurar el botón de pegar código del portapapeles
+        binding.pasteCodeButton.setOnClickListener {
+            checkClipboardForOtp()
+        }
+    }
+
+    private fun checkClipboardOnLoad() {
+        // Esperar un poco para asegurar que la pantalla esté completamente cargada
+        Handler(Looper.getMainLooper()).postDelayed({
+            try {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clipData = clipboard.primaryClip
+
+                if (clipData != null && clipData.itemCount > 0) {
+                    val clipText = clipData.getItemAt(0).text?.toString()
+
+                    if (!clipText.isNullOrEmpty()) {
+                        // Buscar código OTP con múltiples patrones
+                        val extractedCode = extractOtpFromText(clipText)
+
+                        if (extractedCode != null && isCodeRecent()) {
+                            lastProcessedCode = extractedCode
+                            // Mostrar dialogo preguntando si quiere usar el código del portapapeles
+                            androidx.appcompat.app.AlertDialog.Builder(this)
+                                .setTitle("Código detectado")
+                                .setMessage("Se detectó un código OTP reciente en el portapapeles: $extractedCode\n\n¿Deseas usarlo?")
+                                .setPositiveButton("Sí, usar código") { _, _ ->
+                                    fillOtpFields(extractedCode)
+                                    Toast.makeText(this, "Código aplicado desde portapapeles", Toast.LENGTH_SHORT).show()
+                                }
+                                .setNegativeButton("No, gracias", null)
+                                .setCancelable(true)
+                                .show()
+                        } else if (extractedCode != null) {
+                            // Código encontrado pero muy antiguo
+                            Log.d("OTP", "Código encontrado en portapapeles pero es muy antiguo, ignorando")
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("OTP", "Error al verificar portapapeles al cargar: ${e.message}")
+            }
+        }, 1000) // Esperar 1 segundo
+    }
+
+    private fun setupSmsRetriever() {
+        try {
+            // Inicializar SMS Retriever API
+            val client = SmsRetriever.getClient(this)
+            val task = client.startSmsRetriever()
+
+            task.addOnSuccessListener {
+                Log.d("OTP", "SMS Retriever iniciado exitosamente")
+
+                // Registrar BroadcastReceiver para recibir SMS
+                smsReceiver = object : BroadcastReceiver() {
+                    override fun onReceive(context: Context?, intent: Intent?) {
+                        if (SmsRetriever.SMS_RETRIEVED_ACTION == intent?.action) {
+                            val extras = intent.extras
+                            val status = extras?.get(SmsRetriever.EXTRA_STATUS) as Status
+
+                            when (status.statusCode) {
+                                CommonStatusCodes.SUCCESS -> {
+                                    val message = extras.getString(SmsRetriever.EXTRA_SMS_MESSAGE) ?: ""
+                                    Log.d("OTP", "SMS recibido: $message")
+
+                                    val extractedCode = extractOtpFromText(message)
+                                    if (extractedCode != null && isCodeRecent()) {
+                                        runOnUiThread {
+                                            showAutoFillDialog(extractedCode, "SMS")
+                                        }
+                                    }
+                                }
+                                CommonStatusCodes.TIMEOUT -> {
+                                    Log.d("OTP", "SMS Retriever timeout")
+                                }
+                            }
+                        }
+                    }
+                }
+
+                val intentFilter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
+                registerReceiver(smsReceiver, intentFilter)
+            }
+
+            task.addOnFailureListener { e ->
+                Log.e("OTP", "Error al inicializar SMS Retriever: ${e.message}")
+            }
+        } catch (e: Exception) {
+            Log.e("OTP", "Excepción al configurar SMS Retriever: ${e.message}")
+        }
+    }
+
+    private fun setupClipboardMonitoring() {
+        try {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+            clipboardMonitor = ClipboardManager.OnPrimaryClipChangedListener {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    checkClipboardForNewCode()
+                }, 500) // Esperar medio segundo para asegurar que el clip esté listo
+            }
+
+            clipboard.addPrimaryClipChangedListener(clipboardMonitor)
+            Log.d("OTP", "Monitoreo de portapapeles iniciado")
+        } catch (e: Exception) {
+            Log.e("OTP", "Error al configurar monitoreo de portapapeles: ${e.message}")
+        }
+    }
+
+    private fun checkClipboardForNewCode() {
+        try {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = clipboard.primaryClip
+
+            if (clipData != null && clipData.itemCount > 0) {
+                val clipText = clipData.getItemAt(0).text?.toString()
+
+                if (!clipText.isNullOrEmpty()) {
+                    val extractedCode = extractOtpFromText(clipText)
+
+                    if (extractedCode != null &&
+                        extractedCode != lastProcessedCode &&
+                        isCodeRecent()) {
+
+                        lastProcessedCode = extractedCode
+                        showAutoFillDialog(extractedCode, "portapapeles")
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("OTP", "Error al verificar portapapeles: ${e.message}")
+        }
+    }
+
+    private fun isCodeRecent(): Boolean {
+        val currentTime = System.currentTimeMillis()
+        val timeSinceRequest = currentTime - otpRequestTime
+        return timeSinceRequest <= CODE_VALIDITY_DURATION
+    }
+
+    private fun showAutoFillDialog(code: String, source: String) {
+        if (getOtpCode().length >= 6) {
+            // Ya hay un código completo, no mostrar diálogo
+            return
+        }
+
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Código detectado")
+            .setMessage("Se detectó un código OTP desde $source: $code\n\n¿Deseas usarlo para auto-completar?")
+            .setPositiveButton("Sí, usar código") { _, _ ->
+                fillOtpFields(code)
+                Toast.makeText(this, "Código aplicado desde $source", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("No, gracias", null)
+            .setCancelable(true)
+            .show()
+    }
+
+    private fun extractOtpFromText(text: String): String? {
+        val upperText = text.uppercase()
+
+        // Patrones comunes para códigos OTP más específicos
+        val patterns = listOf(
+            // Patrón en contexto de verificación: "código de verificación: ABC123"
+            Regex("(?:código|code)\\s+(?:de\\s+)?(?:verificación|verification|otp|pin)\\s*:?\\s*([A-Z0-9]{6})"),
+            // Patrón para email/SMS típico: "Tu código es ABC123" o "Your code is ABC123"
+            Regex("(?:tu|your|su)\\s+(?:código|code)\\s+(?:es|is|de\\s+verificación)\\s*:?\\s*([A-Z0-9]{6})"),
+            // Patrón directo: "código: ABC123" o "OTP: ABC123"
+            Regex("(?:código|code|otp|pin)\\s*:?\\s*([A-Z0-9]{6})"),
+            // Patrón con contexto de seguridad: "código de seguridad ABC123"
+            Regex("(?:código|code)\\s+(?:de\\s+)?(?:seguridad|security)\\s*:?\\s*([A-Z0-9]{6})"),
+            // Patrón con guiones: ABC-123 en contexto
+            Regex("(?:código|code|otp)\\s*:?\\s*([A-Z0-9]{3}-[A-Z0-9]{3})"),
+            // Patrón principal: 6 caracteres alfanuméricos consecutivos (menos prioritario)
+            Regex("\\b([A-Z0-9]{6})\\b"),
+            // Patrón numérico puro de 6 dígitos en contexto
+            Regex("(?:código|code|otp|verification)\\s*:?\\s*([0-9]{6})"),
+            // Patrón para mensajes en español
+            Regex("(?:usar|utilizar|ingresar)\\s+(?:el\\s+)?(?:código|code)\\s*:?\\s*([A-Z0-9]{6})")
+        )
+
+        for (pattern in patterns) {
+            val match = pattern.find(upperText)
+            if (match != null) {
+                var code = if (match.groupValues.size > 1) {
+                    match.groupValues[1] // Usar grupo de captura si existe
+                } else {
+                    match.value // Usar el match completo
+                }
+
+                // Limpiar caracteres no deseados
+                code = code.replace(Regex("[\\s-]"), "")
+
+                // Verificar que el código final tenga exactamente 6 caracteres
+                if (code.length == 6 && code.matches(Regex("[A-Z0-9]{6}"))) {
+                    return code
+                }
+            }
+        }
+
+        return null
     }
 
     private fun checkOtpAttemptsStatus() {
@@ -540,6 +818,10 @@ class OtpVerificationActivity : AppCompatActivity() {
                     saveResendAttempt()
                     saveLastResendTime()
 
+                    // Resetear tiempo de solicitud para el nuevo código
+                    otpRequestTime = System.currentTimeMillis()
+                    lastProcessedCode = null // Permitir códigos nuevos
+
                     response.body()?.let { baseResponse ->
                         val message = if (baseResponse.reenviosRestantes != null) {
                             "Código enviado. Reenvíos restantes: ${baseResponse.reenviosRestantes}"
@@ -637,5 +919,26 @@ class OtpVerificationActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         countDownTimer?.cancel()
+
+        // Limpiar recursos de SMS Retriever
+        try {
+            smsReceiver?.let { receiver ->
+                unregisterReceiver(receiver)
+                smsReceiver = null
+            }
+        } catch (e: Exception) {
+            Log.e("OTP", "Error al desregistrar SMS receiver: ${e.message}")
+        }
+
+        // Limpiar monitoreo de portapapeles
+        try {
+            clipboardMonitor?.let { monitor ->
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.removePrimaryClipChangedListener(monitor)
+                clipboardMonitor = null
+            }
+        } catch (e: Exception) {
+            Log.e("OTP", "Error al remover clipboard monitor: ${e.message}")
+        }
     }
 }

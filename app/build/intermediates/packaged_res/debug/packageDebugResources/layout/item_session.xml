@@ -135,6 +135,19 @@
             android:gravity="end">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRateTherapist"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Calificar"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp"
+                app:icon="@drawable/ic_star"
+                app:iconGravity="start"
+                app:iconSize="16dp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnalyzeEmotions"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"

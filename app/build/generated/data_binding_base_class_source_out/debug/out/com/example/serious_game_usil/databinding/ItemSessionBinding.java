@@ -28,6 +28,9 @@ public final class ItemSessionBinding implements ViewBinding {
   public final MaterialButton btnGenerateReport;
 
   @NonNull
+  public final MaterialButton btnRateTherapist;
+
+  @NonNull
   public final Chip chipStatus;
 
   @NonNull
@@ -53,13 +56,15 @@ public final class ItemSessionBinding implements ViewBinding {
 
   private ItemSessionBinding(@NonNull MaterialCardView rootView,
       @NonNull MaterialButton btnAnalyzeEmotions, @NonNull MaterialButton btnGenerateReport,
-      @NonNull Chip chipStatus, @NonNull TextView textDuration, @NonNull TextView textLocation,
+      @NonNull MaterialButton btnRateTherapist, @NonNull Chip chipStatus,
+      @NonNull TextView textDuration, @NonNull TextView textLocation,
       @NonNull TextView textPatientName, @NonNull TextView textSessionDate,
       @NonNull TextView textSessionName, @NonNull TextView textSessionTime,
       @NonNull TextView textTherapistName) {
     this.rootView = rootView;
     this.btnAnalyzeEmotions = btnAnalyzeEmotions;
     this.btnGenerateReport = btnGenerateReport;
+    this.btnRateTherapist = btnRateTherapist;
     this.chipStatus = chipStatus;
     this.textDuration = textDuration;
     this.textLocation = textLocation;
@@ -106,6 +111,12 @@ public final class ItemSessionBinding implements ViewBinding {
       id = R.id.btnGenerateReport;
       MaterialButton btnGenerateReport = ViewBindings.findChildViewById(rootView, id);
       if (btnGenerateReport == null) {
+        break missingId;
+      }
+
+      id = R.id.btnRateTherapist;
+      MaterialButton btnRateTherapist = ViewBindings.findChildViewById(rootView, id);
+      if (btnRateTherapist == null) {
         break missingId;
       }
 
@@ -158,8 +169,8 @@ public final class ItemSessionBinding implements ViewBinding {
       }
 
       return new ItemSessionBinding((MaterialCardView) rootView, btnAnalyzeEmotions,
-          btnGenerateReport, chipStatus, textDuration, textLocation, textPatientName,
-          textSessionDate, textSessionName, textSessionTime, textTherapistName);
+          btnGenerateReport, btnRateTherapist, chipStatus, textDuration, textLocation,
+          textPatientName, textSessionDate, textSessionName, textSessionTime, textTherapistName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

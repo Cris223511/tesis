@@ -17,7 +17,8 @@ class PatientsAdapter(
     private val onDeleteClick: (PatientListItem) -> Unit,
     private val onItemClick: (PatientListItem) -> Unit = {},
     private val onExportClick: (PatientListItem) -> Unit = {},
-    private val isAdmin: Boolean = false
+    private val isAdmin: Boolean = false,
+    private val showEditDeleteButtons: Boolean = true
 ) : RecyclerView.Adapter<PatientsAdapter.PatientViewHolder>() {
 
     private var originalPatients = listOf<PatientListItem>()
@@ -71,8 +72,19 @@ class PatientsAdapter(
 
                 // Set click listeners
                 rippleOverlay.setOnClickListener { onItemClick(patient) }
-                btnEditPatient.setOnClickListener { onEditClick(patient) }
-                btnDeletePatient.setOnClickListener { onDeleteClick(patient) }
+
+                // Show/hide action buttons based on permissions
+                if (showEditDeleteButtons) {
+                    btnEditPatient.visibility = android.view.View.VISIBLE
+                    btnDeletePatient.visibility = android.view.View.VISIBLE
+                    btnEditPatient.setOnClickListener { onEditClick(patient) }
+                    btnDeletePatient.setOnClickListener { onDeleteClick(patient) }
+                } else {
+                    btnEditPatient.visibility = android.view.View.GONE
+                    btnDeletePatient.visibility = android.view.View.GONE
+                }
+
+                // Export button always visible for now
                 btnExportPatient.setOnClickListener { onExportClick(patient) }
             }
         }

@@ -2,6 +2,7 @@ package com.example.serious_game_usil.guards
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.google.gson.Gson
@@ -122,11 +123,35 @@ object AuthManager {
 
     fun isAuthenticated(): Boolean = prefs.getBoolean(KEY_IS_AUTHENTICATED, false)
 
-    fun hasRole(role: String): Boolean = getUserRoles().contains(role)
+    fun getUserRole(): String? {
+        val roles = getUserRoles()
+        return roles.firstOrNull()?.lowercase()
+    }
 
-    fun hasAnyRole(vararg roles: String): Boolean = roles.any { hasRole(it) }
+    fun isAdmin(): Boolean {
+        val roles = getUserRoles()
+        return roles.any { it.lowercase() in listOf("admin", "administrador", "administrator") }
+    }
+
+    fun hasRole(role: String): Boolean {
+        // Los administradores tienen acceso a TODO
+        if (isAdmin()) return true
+        return getUserRoles().contains(role)
+    }
+
+    fun hasAnyRole(vararg roles: String): Boolean {
+        // Los administradores tienen acceso a TODO
+        if (isAdmin()) return true
+        return roles.any { hasRole(it) }
+    }
 
     fun canAccessRoute(route: String): Boolean {
+        // Los administradores tienen acceso TOTAL a todas las rutas
+        if (isAdmin()) {
+            Log.d("AuthManager", "Admin detected - granting access to route: $route")
+            return true
+        }
+
         val userRoles = getUserRoles()
         val normalizedRoles = userRoles.map { it.lowercase() }
 

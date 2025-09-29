@@ -43,6 +43,9 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
   public final EditText otp6;
 
   @NonNull
+  public final TextView pasteCodeButton;
+
+  @NonNull
   public final TextView resendText;
 
   @NonNull
@@ -54,8 +57,8 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
   private ActivityOtpVerificationBinding(@NonNull LinearLayout rootView,
       @NonNull TextView emailText, @NonNull EditText otp1, @NonNull EditText otp2,
       @NonNull EditText otp3, @NonNull EditText otp4, @NonNull EditText otp5,
-      @NonNull EditText otp6, @NonNull TextView resendText, @NonNull TextView timerText,
-      @NonNull MaterialButton verifyButton) {
+      @NonNull EditText otp6, @NonNull TextView pasteCodeButton, @NonNull TextView resendText,
+      @NonNull TextView timerText, @NonNull MaterialButton verifyButton) {
     this.rootView = rootView;
     this.emailText = emailText;
     this.otp1 = otp1;
@@ -64,6 +67,7 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
     this.otp4 = otp4;
     this.otp5 = otp5;
     this.otp6 = otp6;
+    this.pasteCodeButton = pasteCodeButton;
     this.resendText = resendText;
     this.timerText = timerText;
     this.verifyButton = verifyButton;
@@ -138,6 +142,12 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.pasteCodeButton;
+      TextView pasteCodeButton = ViewBindings.findChildViewById(rootView, id);
+      if (pasteCodeButton == null) {
+        break missingId;
+      }
+
       id = R.id.resendText;
       TextView resendText = ViewBindings.findChildViewById(rootView, id);
       if (resendText == null) {
@@ -157,7 +167,7 @@ public final class ActivityOtpVerificationBinding implements ViewBinding {
       }
 
       return new ActivityOtpVerificationBinding((LinearLayout) rootView, emailText, otp1, otp2,
-          otp3, otp4, otp5, otp6, resendText, timerText, verifyButton);
+          otp3, otp4, otp5, otp6, pasteCodeButton, resendText, timerText, verifyButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

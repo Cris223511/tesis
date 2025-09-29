@@ -54,7 +54,14 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         binding.userName.text = AuthManager.getNombresApellidos()
         updateDateTime()
 
-        // Asegurar que el contenido principal esté visible
+        // IMPORTANTE: Los administradores SIEMPRE deben ver todo el contenido
+        val userRoles = AuthManager.getUserRoles()
+        val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
+
+        android.util.Log.d("PadresDashboard", "User roles: $userRoles")
+        android.util.Log.d("PadresDashboard", "Is admin: $isAdmin")
+
+        // Asegurar que el contenido principal esté visible (especialmente para admin)
         binding.layoutContent.visibility = View.VISIBLE
         binding.layoutEmptyState.visibility = View.GONE
 
@@ -83,9 +90,20 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
 
         progressViewModel.error.observe(this) { error ->
             error?.let {
-                // En caso de error, mantener el contenido visible pero sin datos de progreso
-                binding.layoutContent.visibility = View.VISIBLE
-                binding.layoutEmptyState.visibility = View.GONE
+                // Verificar si es administrador
+                val userRoles = AuthManager.getUserRoles()
+                val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
+
+                // Los administradores SIEMPRE ven el contenido, incluso con errores
+                if (isAdmin) {
+                    binding.layoutContent.visibility = View.VISIBLE
+                    binding.layoutEmptyState.visibility = View.GONE
+                } else {
+                    // Los cuidadores normales también mantienen el contenido visible en caso de error
+                    binding.layoutContent.visibility = View.VISIBLE
+                    binding.layoutEmptyState.visibility = View.GONE
+                }
+
                 binding.textProgresoPromedio.text = "0%"
                 binding.textSesionesTotales.text = "0"
                 binding.textMejorando.text = "0"
@@ -219,7 +237,11 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
     }
 
     private fun updateDashboard(progressList: List<com.example.serious_game_usil.data.ThreeMonthComparison>) {
-        // Siempre mostrar el contenido principal
+        // Verificar si es administrador
+        val userRoles = AuthManager.getUserRoles()
+        val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
+
+        // SIEMPRE mostrar contenido para administradores
         binding.layoutContent.visibility = View.VISIBLE
         binding.layoutEmptyState.visibility = View.GONE
 
@@ -245,9 +267,21 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
     }
 
     private fun showEmptyState() {
-        binding.layoutContent.visibility = View.GONE
-        binding.layoutEmptyState.visibility = View.VISIBLE
-        
+        // Verificar si es administrador - los admin NUNCA deben ver empty state
+        val userRoles = AuthManager.getUserRoles()
+        val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
+
+        if (isAdmin) {
+            // Los administradores SIEMPRE ven el contenido completo
+            android.util.Log.d("PadresDashboard", "Admin detected - showing full content, no empty state")
+            binding.layoutContent.visibility = View.VISIBLE
+            binding.layoutEmptyState.visibility = View.GONE
+        } else {
+            // Solo los cuidadores normales ven empty state
+            binding.layoutContent.visibility = View.GONE
+            binding.layoutEmptyState.visibility = View.VISIBLE
+        }
+
         binding.textTotalHijos.text = "0"
         binding.textProgresoPromedio.text = "0%"
         binding.textSesionesTotales.text = "0"
@@ -338,14 +372,26 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
     }
 
     private fun updatePatientsSlider(patients: List<com.example.serious_game_usil.data.PatientListItem>) {
-        if (patients.isEmpty()) {
-            // Mostrar estado vacío
+        val isAdmin = AuthManager.isAdmin()
+
+        if (patients.isEmpty() && !isAdmin) {
+            // Solo mostrar estado vacío si NO es administrador
             binding.layoutNoPatientsSlider.visibility = View.VISIBLE
             binding.btnPreviousPatient.visibility = View.GONE
             binding.btnNextPatient.visibility = View.GONE
             binding.layoutPatientIndicators.visibility = View.GONE
             binding.textCurrentPatientName.text = "Sin pacientes recientes"
             binding.textCurrentPatientInfo.text = "Contacta a tu terapeuta"
+        } else if (patients.isEmpty() && isAdmin) {
+            // Para administradores sin pacientes en la base de datos
+            binding.layoutNoPatientsSlider.visibility = View.GONE
+            binding.btnPreviousPatient.visibility = View.GONE
+            binding.btnNextPatient.visibility = View.GONE
+            binding.layoutPatientIndicators.visibility = View.GONE
+            binding.textCurrentPatientName.text = "Vista de Administrador"
+            binding.textCurrentPatientInfo.text = "No hay pacientes en el sistema"
+            // Asegurar que el contenido sigue visible
+            binding.layoutContent.visibility = View.VISIBLE
         } else {
             // Mostrar slider
             binding.layoutNoPatientsSlider.visibility = View.GONE

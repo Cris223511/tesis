@@ -13,6 +13,7 @@ import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.Patient
 import com.example.serious_game_usil.databinding.ActivityPatientDetailBinding
 import com.example.serious_game_usil.data.ApiResult
+import com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -43,6 +44,7 @@ class PatientDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
+        setupClickListeners()
         setupObservers()
         loadPatientData()
     }
@@ -50,6 +52,21 @@ class PatientDetailActivity : AppCompatActivity() {
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
+        }
+    }
+
+    private fun setupClickListeners() {
+        // Click listener para el botón "Ver Sesiones"
+        binding.btnViewSessions.setOnClickListener {
+            val patientId = intent.getIntExtra(EXTRA_PATIENT_ID, -1)
+            if (patientId != -1) {
+                val intent = Intent(this, SimpleTherapySessionsActivity::class.java)
+                intent.putExtra("patient_id", patientId)
+                intent.putExtra("patient_name", binding.tvPatientName.text.toString())
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Error: ID de paciente inválido", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

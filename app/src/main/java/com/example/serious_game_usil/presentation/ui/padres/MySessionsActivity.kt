@@ -12,6 +12,7 @@ import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.`interface`.TherapySession
 import com.example.serious_game_usil.databinding.ActivityMySessionsBinding
 import com.example.serious_game_usil.presentation.ui.therapy.TherapySessionViewModel
+import com.example.serious_game_usil.presentation.ui.therapy.RateTherapistActivity
 import com.example.serious_game_usil.utils.MySessionsAdapter
 import com.seriousgame.app.navigation.RouteNavigator
 import kotlinx.coroutines.launch
@@ -63,6 +64,9 @@ class MySessionsActivity : AppCompatActivity() {
             },
             onGenerateReportClick = { session ->
                 generateReport(session)
+            },
+            onRateTherapistClick = { session ->
+                rateTherapist(session)
             }
         )
 
@@ -210,6 +214,41 @@ class MySessionsActivity : AppCompatActivity() {
         Toast.makeText(this, "Generando reporte para sesión #${session.id}...", Toast.LENGTH_SHORT).show()
         // TODO: Implement report generation functionality
         android.util.Log.d("MySessionsActivity", "Generate report requested for session ${session.id}")
+    }
+
+    private fun rateTherapist(session: TherapySession) {
+        // Obtener el ID del cuidador actual
+        val currentUserId = AuthManager.getUserId()
+        val caregiverName = AuthManager.getNombresApellidos()
+
+        if (currentUserId == -1) {
+            Toast.makeText(this, "Error: No se pudo obtener información del usuario", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val intent = RateTherapistActivity.newIntent(
+            context = this,
+            sessionId = session.id,
+            therapistId = session.terapeutaId,
+            therapistName = session.terapeuta.nombresApellidos,
+            patientName = session.paciente.nombresApellidos,
+            patientId = session.pacienteId,
+            caregiverId = currentUserId
+        )
+        startActivityForResult(intent, REQUEST_CODE_RATE_THERAPIST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_RATE_THERAPIST && resultCode == RESULT_OK) {
+            // Recargar sesiones después de calificar
+            Toast.makeText(this, "Calificación enviada exitosamente", Toast.LENGTH_SHORT).show()
+            loadSessions()
+        }
+    }
+
+    companion object {
+        private const val REQUEST_CODE_RATE_THERAPIST = 1001
     }
 
     override fun onSupportNavigateUp(): Boolean {

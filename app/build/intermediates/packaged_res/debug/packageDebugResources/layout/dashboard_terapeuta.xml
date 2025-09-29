@@ -167,6 +167,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/labelPatients"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pacientes"
@@ -204,6 +205,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/labelSessions"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sesiones"
@@ -241,6 +243,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/labelProgress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Progreso"
@@ -381,7 +384,7 @@
                             <ImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:src="@android:drawable/ic_menu_view"
+                                android:src="@android:drawable/ic_menu_agenda"
                                 app:tint="@color/green_500" />
 
                             <TextView
@@ -489,6 +492,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/labelActivePatients"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Pacientes Activos"

@@ -269,6 +269,53 @@
                 android:value=".presentation.ui.patients.PatientsListActivity" />
         </activity>
 
+        <!-- Caregiver Management Activities -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+            android:exported="false"
+            android:label="Gestión de Cuidadores"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CreateEditCaregiverActivity"
+            android:exported="false"
+            android:label="Agregar Cuidador"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverDetailActivity"
+            android:exported="false"
+            android:label="Detalle del Cuidador"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverPatientsManagementActivity"
+            android:exported="false"
+            android:label="Pacientes del Cuidador"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+
         <!-- My Patients Activity (for Parents/Caregivers) -->
         <activity
             android:name="com.example.serious_game_usil.presentation.ui.padres.MyPatientsActivity"
@@ -370,6 +417,20 @@
                 android:value=".presentation.ui.therapy.SessionDetailActivity" />
         </activity>
 
+        <!-- Rate Therapist Activity -->
+        <activity
+            android:name="com.example.serious_game_usil.presentation.ui.therapy.RateTherapistActivity"
+            android:exported="false"
+            android:label="Calificar Terapeuta"
+            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+            android:windowSoftInputMode="adjustResize" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.MySessionsActivity" />
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.serious_game_usil.fileprovider"
@@ -379,6 +440,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"

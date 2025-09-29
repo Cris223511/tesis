@@ -13,7 +13,8 @@ import java.util.*
 class MySessionsAdapter(
     private val onItemClick: (TherapySession) -> Unit,
     private val onAnalyzeEmotionsClick: (TherapySession) -> Unit,
-    private val onGenerateReportClick: (TherapySession) -> Unit
+    private val onGenerateReportClick: (TherapySession) -> Unit,
+    private val onRateTherapistClick: (TherapySession) -> Unit
 ) : RecyclerView.Adapter<MySessionsAdapter.SessionViewHolder>() {
 
     private var sessions = listOf<TherapySession>()
@@ -130,7 +131,15 @@ class MySessionsAdapter(
                 onItemClick(session)
             }
 
+            // Show/hide rating button based on session status
+            val isCompleted = session.estado.lowercase() == "completada"
+            binding.btnRateTherapist.visibility = if (isCompleted) android.view.View.VISIBLE else android.view.View.GONE
+
             // Action button listeners
+            binding.btnRateTherapist.setOnClickListener {
+                onRateTherapistClick(session)
+            }
+
             binding.btnAnalyzeEmotions.setOnClickListener {
                 onAnalyzeEmotionsClick(session)
             }

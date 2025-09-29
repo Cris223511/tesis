@@ -275,6 +275,55 @@
                 android:value=".presentation.ui.patients.PatientsListActivity" />
         </activity>
 
+        <!-- Caregiver Management Activities -->
+        <activity
+            android:name=".presentation.ui.caregivers.CaregiversListActivity"
+            android:label="Gestión de Cuidadores"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.administrador.DashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.administrador.DashboardActivity" />
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.caregivers.CreateEditCaregiverActivity"
+            android:label="Agregar Cuidador"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.caregivers.CaregiversListActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.caregivers.CaregiverDetailActivity"
+            android:label="Detalle del Cuidador"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.caregivers.CaregiversListActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.ui.caregivers.CaregiverPatientsManagementActivity"
+            android:label="Pacientes del Cuidador"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.caregivers.CaregiversListActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+        </activity>
+
         <!-- My Patients Activity (for Parents/Caregivers) -->
         <activity
             android:name=".presentation.ui.padres.MyPatientsActivity"
@@ -374,6 +423,20 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.therapy.SessionDetailActivity" />
+        </activity>
+
+        <!-- Rate Therapist Activity -->
+        <activity
+            android:name=".presentation.ui.therapy.RateTherapistActivity"
+            android:label="Calificar Terapeuta"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.padres.MySessionsActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.MySessionsActivity" />
         </activity>
 
         <provider

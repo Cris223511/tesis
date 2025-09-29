@@ -81,7 +81,46 @@
                 android:text="para obtener el código."
                 android:textColor="#666"
                 android:textSize="16sp"
-                android:layout_marginBottom="32dp" />
+                android:layout_marginBottom="16dp" />
+
+            <!-- Auto-detection Status -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔍 "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detección automática activa"
+                    android:textColor="#2E7D32"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <!-- Paste Code Button -->
+            <TextView
+                android:id="@+id/pasteCodeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="📋 Pegar código del portapapeles"
+                android:textColor="#4A90E2"
+                android:textSize="14sp"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="16dp" />
 
             <!-- OTP Input Fields -->
             <LinearLayout

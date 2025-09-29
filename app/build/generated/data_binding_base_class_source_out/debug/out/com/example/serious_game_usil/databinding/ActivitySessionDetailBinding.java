@@ -35,6 +35,9 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
   public final MaterialButton btnExportPdf;
 
   @NonNull
+  public final MaterialButton btnRateTherapist;
+
+  @NonNull
   public final Chip chipStatus;
 
   @NonNull
@@ -63,6 +66,9 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
 
   @NonNull
   public final MaterialCardView layoutObjectives;
+
+  @NonNull
+  public final MaterialCardView layoutRateTherapist;
 
   @NonNull
   public final LinearLayout layoutTherapistEmail;
@@ -144,12 +150,13 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
 
   private ActivitySessionDetailBinding(@NonNull LinearLayout rootView,
       @NonNull MaterialButton btnDeleteSession, @NonNull MaterialButton btnEditSession,
-      @NonNull MaterialButton btnExportPdf, @NonNull Chip chipStatus,
-      @NonNull MaterialCardView layoutCaregiverCard, @NonNull LinearLayout layoutCaregiverEmail,
-      @NonNull MaterialCardView layoutCaregiverNotes, @NonNull LinearLayout layoutCaregiverPhone,
-      @NonNull MaterialCardView layoutDescription, @NonNull LinearLayout layoutDuration,
-      @NonNull MaterialCardView layoutLocation, @NonNull MaterialCardView layoutMaterials,
-      @NonNull MaterialCardView layoutObjectives, @NonNull LinearLayout layoutTherapistEmail,
+      @NonNull MaterialButton btnExportPdf, @NonNull MaterialButton btnRateTherapist,
+      @NonNull Chip chipStatus, @NonNull MaterialCardView layoutCaregiverCard,
+      @NonNull LinearLayout layoutCaregiverEmail, @NonNull MaterialCardView layoutCaregiverNotes,
+      @NonNull LinearLayout layoutCaregiverPhone, @NonNull MaterialCardView layoutDescription,
+      @NonNull LinearLayout layoutDuration, @NonNull MaterialCardView layoutLocation,
+      @NonNull MaterialCardView layoutMaterials, @NonNull MaterialCardView layoutObjectives,
+      @NonNull MaterialCardView layoutRateTherapist, @NonNull LinearLayout layoutTherapistEmail,
       @NonNull MaterialCardView layoutTherapistNotes, @NonNull LinearLayout layoutTherapistPhone,
       @NonNull ProgressBar progressBar, @NonNull FrameLayout progressContainer,
       @NonNull TextView textAddress, @NonNull TextView textCaregiverEmail,
@@ -167,6 +174,7 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
     this.btnDeleteSession = btnDeleteSession;
     this.btnEditSession = btnEditSession;
     this.btnExportPdf = btnExportPdf;
+    this.btnRateTherapist = btnRateTherapist;
     this.chipStatus = chipStatus;
     this.layoutCaregiverCard = layoutCaregiverCard;
     this.layoutCaregiverEmail = layoutCaregiverEmail;
@@ -177,6 +185,7 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
     this.layoutLocation = layoutLocation;
     this.layoutMaterials = layoutMaterials;
     this.layoutObjectives = layoutObjectives;
+    this.layoutRateTherapist = layoutRateTherapist;
     this.layoutTherapistEmail = layoutTherapistEmail;
     this.layoutTherapistNotes = layoutTherapistNotes;
     this.layoutTherapistPhone = layoutTherapistPhone;
@@ -250,6 +259,12 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnRateTherapist;
+      MaterialButton btnRateTherapist = ViewBindings.findChildViewById(rootView, id);
+      if (btnRateTherapist == null) {
+        break missingId;
+      }
+
       id = R.id.chipStatus;
       Chip chipStatus = ViewBindings.findChildViewById(rootView, id);
       if (chipStatus == null) {
@@ -307,6 +322,12 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
       id = R.id.layoutObjectives;
       MaterialCardView layoutObjectives = ViewBindings.findChildViewById(rootView, id);
       if (layoutObjectives == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutRateTherapist;
+      MaterialCardView layoutRateTherapist = ViewBindings.findChildViewById(rootView, id);
+      if (layoutRateTherapist == null) {
         break missingId;
       }
 
@@ -467,15 +488,15 @@ public final class ActivitySessionDetailBinding implements ViewBinding {
       }
 
       return new ActivitySessionDetailBinding((LinearLayout) rootView, btnDeleteSession,
-          btnEditSession, btnExportPdf, chipStatus, layoutCaregiverCard, layoutCaregiverEmail,
-          layoutCaregiverNotes, layoutCaregiverPhone, layoutDescription, layoutDuration,
-          layoutLocation, layoutMaterials, layoutObjectives, layoutTherapistEmail,
-          layoutTherapistNotes, layoutTherapistPhone, progressBar, progressContainer, textAddress,
-          textCaregiverEmail, textCaregiverName, textCaregiverNameDetail, textCaregiverNotes,
-          textCaregiverPhone, textDateLabel, textDescription, textDuration, textLocation,
-          textMaterials, textObjectives, textPatientName, textSessionDate, textSessionName,
-          textSessionTime, textTherapistEmail, textTherapistName, textTherapistNotes,
-          textTherapistPhone, toolbar);
+          btnEditSession, btnExportPdf, btnRateTherapist, chipStatus, layoutCaregiverCard,
+          layoutCaregiverEmail, layoutCaregiverNotes, layoutCaregiverPhone, layoutDescription,
+          layoutDuration, layoutLocation, layoutMaterials, layoutObjectives, layoutRateTherapist,
+          layoutTherapistEmail, layoutTherapistNotes, layoutTherapistPhone, progressBar,
+          progressContainer, textAddress, textCaregiverEmail, textCaregiverName,
+          textCaregiverNameDetail, textCaregiverNotes, textCaregiverPhone, textDateLabel,
+          textDescription, textDuration, textLocation, textMaterials, textObjectives,
+          textPatientName, textSessionDate, textSessionName, textSessionTime, textTherapistEmail,
+          textTherapistName, textTherapistNotes, textTherapistPhone, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

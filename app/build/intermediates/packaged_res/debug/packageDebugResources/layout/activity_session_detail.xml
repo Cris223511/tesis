@@ -597,6 +597,55 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Rate Therapist Card (for caregivers) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layoutRateTherapist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⭐ Evaluación"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¿Cómo calificarías el desempeño del terapeuta en esta sesión?"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRateTherapist"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="⭐ Calificar Sesión"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@color/primary"
+                        android:textColor="@color/white"
+                        app:cornerRadius="8dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </ScrollView>
@@ -669,6 +718,7 @@
                 app:elevation="4dp" />
 
         </LinearLayout>
+
 
     </com.google.android.material.card.MaterialCardView>
 

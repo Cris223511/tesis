@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.widget.FrameLayout
 import android.widget.ScrollView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -47,6 +48,7 @@ class SessionDetailActivity : AppCompatActivity() {
     private lateinit var btnEditSession: MaterialButton
     private lateinit var btnDeleteSession: MaterialButton
     private lateinit var btnExportPdf: MaterialButton
+    private lateinit var btnRateTherapist: MaterialButton
 
     private var sessionId: Int = -1
     private var currentSession: TherapySession? = null
@@ -122,6 +124,7 @@ class SessionDetailActivity : AppCompatActivity() {
         btnEditSession = findViewById(R.id.btnEditSession)
         btnDeleteSession = findViewById(R.id.btnDeleteSession)
         btnExportPdf = findViewById(R.id.btnExportPdf)
+        btnRateTherapist = findViewById(R.id.btnRateTherapist)
 
         // Set up button click listeners
         setupActionButtons()
@@ -143,6 +146,12 @@ class SessionDetailActivity : AppCompatActivity() {
         btnExportPdf.setOnClickListener {
             currentSession?.let { session ->
                 exportSessionToPdf(session)
+            }
+        }
+
+        btnRateTherapist.setOnClickListener {
+            currentSession?.let { session ->
+                rateTherapist(session)
             }
         }
     }
@@ -283,7 +292,8 @@ class SessionDetailActivity : AppCompatActivity() {
             // Update toolbar title
             supportActionBar?.title = "Sesión #${session.id}"
 
-            android.util.Log.d("SessionDetailActivity", "=== SESSION DETAILS UPDATED SUCCESSFULLY ===")
+            // Show/hide rating button based on session status and user role
+            setupRatingButton(session)
 
         } catch (e: Exception) {
             android.util.Log.e("SessionDetailActivity", "Error updating UI: ${e.message}", e)
@@ -300,6 +310,50 @@ class SessionDetailActivity : AppCompatActivity() {
         } catch (e: Exception) {
             dateString
         }
+    }
+
+
+    private fun setupRatingButton(session: TherapySession) {
+        val layoutRateTherapist = findViewById<com.google.android.material.card.MaterialCardView>(R.id.layoutRateTherapist)
+
+        if (layoutRateTherapist == null) {
+            return
+        }
+
+        // Check user permissions
+        val isAdmin = AuthManager.isAdmin()
+        val userRoles = AuthManager.getUserRoles()
+        val isCaregiver = isAdmin || userRoles.any { role ->
+            role.lowercase() in listOf("caregiver", "cuidador", "padre", "parent", "cuidadora")
+        }
+
+        // Show button for administrators and caregivers
+        if (isAdmin || isCaregiver) {
+            layoutRateTherapist.visibility = View.VISIBLE
+        } else {
+            layoutRateTherapist.visibility = View.GONE
+        }
+    }
+
+    private fun rateTherapist(session: TherapySession) {
+        // Get current caregiver info
+        val currentUserId = AuthManager.getUserId()
+
+        if (currentUserId == -1) {
+            Toast.makeText(this, "Error: No se pudo obtener información del usuario", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val intent = RateTherapistActivity.newIntent(
+            context = this,
+            sessionId = session.id,
+            therapistId = session.terapeutaId,
+            therapistName = session.terapeuta.nombresApellidos,
+            patientName = session.paciente.nombresApellidos,
+            patientId = session.pacienteId,
+            caregiverId = currentUserId
+        )
+        startActivityForResult(intent, REQUEST_CODE_RATE_THERAPIST)
     }
 
     private fun showEditSessionDialog(session: TherapySession) {
@@ -350,16 +404,28 @@ class SessionDetailActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_EDIT_SESSION && resultCode == RESULT_OK) {
-            // Reload session data after edit
-            loadSessionDetail()
-            Toast.makeText(this, "Sesión actualizada exitosamente", Toast.LENGTH_SHORT).show()
+        when (requestCode) {
+            REQUEST_CODE_EDIT_SESSION -> {
+                if (resultCode == RESULT_OK) {
+                    // Reload session data after edit
+                    loadSessionDetail()
+                    Toast.makeText(this, "Sesión actualizada exitosamente", Toast.LENGTH_SHORT).show()
+                }
+            }
+            REQUEST_CODE_RATE_THERAPIST -> {
+                if (resultCode == RESULT_OK) {
+                    // Reload session data after rating
+                    Toast.makeText(this, "Calificación enviada exitosamente", Toast.LENGTH_SHORT).show()
+                    loadSessionDetail()
+                }
+            }
         }
     }
 
     companion object {
         private const val EXTRA_SESSION_ID = "extra_session_id"
         private const val REQUEST_CODE_EDIT_SESSION = 1001
+        private const val REQUEST_CODE_RATE_THERAPIST = 1002
 
         fun newIntent(context: Context, sessionId: Int): Intent {
             return Intent(context, SessionDetailActivity::class.java).apply {

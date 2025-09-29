@@ -26,7 +26,7 @@ import com.example.serious_game_usil.presentation.ui.progress.ProgressViewModel
 import com.example.serious_game_usil.presentation.ui.progress.ThreeMonthComparisonFragment
 import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressAlertManager
-import com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity
+import com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity
 
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
@@ -119,7 +119,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun setupNavigation() {
         binding.navChildren.setOnClickListener {
             // Mostrar opciones de gestión de pacientes
-            showPatientManagementOptions()
+            showCaregiverManagementOptions()
         }
 
         binding.navProfile.setOnClickListener {
@@ -166,16 +166,16 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         startActivity(intent)
     }
     
-    private fun showPatientManagementOptions() {
-        val options = arrayOf("Gestionar Pacientes", "Gestionar Sesiones",)
+    private fun showCaregiverManagementOptions() {
+        val options = arrayOf("Gestionar Cuidadores", "Gestionar Sesiones",)
 
         AlertDialog.Builder(this)
-            .setTitle("Gestión de Pacientes")
+            .setTitle("Gestión de Cuidadores")
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> {
-                        // Navegar a lista de pacientes
-                        val intent = Intent(this, PatientsListActivity::class.java)
+                        // Navegar a lista de cuidadores
+                        val intent = Intent(this, CaregiversListActivity::class.java)
                         startActivity(intent)
                     }
                     1 -> {
@@ -493,7 +493,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(Intent(this, PadresDashboardActivity::class.java))
             }
             R.id.nav_children_list -> {
-                startActivity(Intent(this, PatientsListActivity::class.java))
+                startActivity(Intent(this, CaregiversListActivity::class.java))
             }
             R.id.nav_emotion_analysis -> {
                 startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
