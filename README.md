@@ -37,10 +37,12 @@ Sistema completo de autenticación, gestión de usuarios y sesiones terapéutica
 ### 🏥 Gestión Médica
 - **Pacientes** con información médica completa
 - **Sesiones terapéuticas** con programación y seguimiento
-- **Estadísticas y métricas** de progreso
+- **Sistema de calificaciones de terapeutas** por sesión
+- **Estadísticas y métricas** de progreso diferenciadas por rol
 - **Relaciones familiares** (terapeuta-paciente-padre)
 - **Exportación** de reportes (PDF/JPG)
 - **Validaciones médicas** específicas
+- **Dashboard dinámico** con estadísticas por rol (Admin/Terapeuta)
 
 ### 🛡️ Seguridad Avanzada
 - **Rate limiting** personalizable (50/día por usuario)
@@ -348,6 +350,11 @@ DELETE /api/sessions/{id}             # Eliminar sesión
 # Exportación
 GET    /api/sessions/{id}/export/pdf  # Exportar sesión a PDF
 GET    /api/sessions/{id}/export/jpg  # Exportar sesión a JPG
+
+# Sistema de Calificaciones de Terapeutas 🆕
+POST   /api/therapist-ratings         # Crear calificación de terapeuta
+GET    /api/therapist-ratings/{therapist_id} # Obtener calificaciones de terapeuta
+GET    /api/sessions/rating/{session_id}     # Verificar calificación de sesión existente
 ```
 
 #### Autenticación Biométrica
@@ -444,6 +451,9 @@ Permisos Completos:
 ✅ Gestión de roles y permisos
 ✅ Acceso a todos los pacientes
 ✅ Gestión de todas las sesiones terapéuticas
+✅ Calificación de terapeutas (en nombre de cualquier cuidador) 🆕
+✅ Visualización de todas las calificaciones existentes 🆕
+✅ Dashboard con estadísticas globales del sistema 🆕
 ✅ Configuración del sistema
 ✅ Exportación de reportes
 ✅ Gestión de dispositivos biométricos
@@ -455,10 +465,13 @@ Permisos Completos:
 Permisos Especializados:
 ✅ Gestión de pacientes asignados
 ✅ Creación y gestión de sesiones terapéuticas
+✅ Visualización de calificaciones recibidas 🆕
+✅ Dashboard con estadísticas de pacientes propios 🆕
 ✅ Acceso a estadísticas de pacientes
 ✅ Exportación de reportes de sesiones
 ✅ Gestión de objetivos terapéuticos
 ✅ Asignación de pacientes a padres
+❌ Calificación de otros terapeutas
 ❌ Gestión de otros usuarios
 ❌ Cambio de roles
 ❌ Configuración del sistema
@@ -470,6 +483,8 @@ Permisos Limitados:
 ✅ Vista de pacientes asignados (hijos)
 ✅ Seguimiento de progreso de hijos
 ✅ Vista de sesiones programadas
+✅ Calificación de terapeutas tras sesiones completadas 🆕
+✅ Visualización de calificaciones propias realizadas 🆕
 ✅ Acceso a estadísticas básicas
 ✅ Actualización de perfil propio
 ❌ Creación/modificación de pacientes
@@ -699,6 +714,30 @@ go tool pprof http://localhost:8080/debug/pprof/profile
 - Autenticación JWT y biométrica
 - Sistema de gestión terapéutica
 - Arquitectura escalable y segura
+
+## 🆕 Nuevas Funcionalidades Implementadas
+
+### Sistema de Calificaciones de Terapeutas
+- **Calificación por sesión**: Los cuidadores pueden calificar terapeutas del 1-5 estrellas tras cada sesión completada
+- **Comentarios opcionales**: Posibilidad de agregar comentarios a las calificaciones
+- **Verificación automática**: El sistema verifica si una sesión ya fue calificada para prevenir duplicados
+- **Visualización dinámica**: Las calificaciones se muestran automáticamente en la interfaz
+- **Permisos por rol**: Los administradores pueden calificar en nombre de cualquier cuidador
+
+### Dashboard Diferenciado por Rol
+- **Estadísticas de Administrador**: Vista global con total de terapeutas, pacientes, sesiones y calificaciones
+- **Estadísticas de Terapeuta**: Vista personalizada con pacientes propios, sesiones programadas y calificaciones recibidas
+- **Carga dinámica**: Las estadísticas se cargan según el rol del usuario autenticado
+
+### Navegación Administrativa Completa
+- **Flujo completo**: Admin → Cuidadores → Pacientes → Sesiones → Calificar
+- **Filtrado inteligente**: Sesiones filtradas por paciente específico
+- **Botón dinámico**: Estado del botón de calificación se actualiza automáticamente según si la sesión ya fue calificada
+
+### Mejoras en la API
+- **Endpoint de verificación**: `GET /api/sessions/rating/{session_id}` para verificar calificaciones existentes
+- **Control de permisos mejorado**: Validación específica por rol para calificaciones
+- **Resolución de conflictos**: Rutas optimizadas para evitar conflictos en Gin Router
 
 ---
 
