@@ -165,8 +165,24 @@ class CreateSessionActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.availableTherapists.collect { therapistsList ->
+                Log.d("CreateSession", "Observer: Received therapists list size=${therapistsList.size}")
                 therapists = therapistsList
-                setupTherapistSpinner()
+
+                // Solo configurar si es admin y hay terapeutas
+                val isAdmin = AuthManager.getUserRoles().any { it.lowercase() in listOf("admin", "administrador", "ad") }
+                if (isAdmin) {
+                    if (therapistsList.isNotEmpty()) {
+                        Log.d("CreateSession", "Setting up therapist spinner with ${therapistsList.size} items")
+                        setupTherapistSpinner()
+                    } else {
+                        Log.e("CreateSession", "ERROR: No therapists available in system!")
+                        Toast.makeText(
+                            this@CreateSessionActivity,
+                            "ERROR: No hay terapeutas disponibles en el sistema",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
             }
         }
     }
@@ -204,53 +220,39 @@ class CreateSessionActivity : AppCompatActivity() {
     private fun loadTherapists() {
         // Verificar el rol del usuario actual
         val userRoles = AuthManager.getUserRoles()
-        val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
+        val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador", "ad") }
         val isTherapist = userRoles.any { it.lowercase() in listOf("terapeuta", "therapist", "tr") }
 
         Log.d("CreateSession", "User roles: $userRoles, isAdmin: $isAdmin, isTherapist: $isTherapist")
 
         if (isAdmin) {
-            // Los administradores pueden ver todos los terapeutas disponibles
+            // ADMIN: Mostrar campo de terapeuta y cargar TODOS los terapeutas
+            findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.layoutTerapeuta).visibility = View.VISIBLE
+            Log.d("CreateSession", "Admin: Loading ALL therapists...")
             viewModel.loadAvailableTherapists()
+            // El observer está en setupObservers() línea 166-176
         } else if (isTherapist) {
-            // Los terapeutas solo pueden asignarse a sí mismos
+            // TERAPEUTA: OCULTAR campo y auto-asignar
+            findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.layoutTerapeuta).visibility = View.GONE
+
             val currentUserId = AuthManager.getUserId()
             val currentUserName = AuthManager.getNombresApellidos().ifEmpty { "Usuario Actual" }
-            val currentUserEmail = AuthManager.getCorreo().ifEmpty { "email@example.com" }
+
+            Log.d("CreateSession", "Therapist: Auto-assigning UserID: $currentUserId")
 
             if (currentUserId > 0) {
-                val currentTherapist = UserListItem(
-                    id = currentUserId,
-                    nombresApellidos = currentUserName,
-                    correo = currentUserEmail,
-                    nombreUsuario = currentUserName,
-                    telefono = AuthManager.getTelefono() ?: "",
-                    activo = true,
-                    tipoDocumento = AuthManager.getTipoDocumento() ?: "DNI",
-                    numeroDocumento = AuthManager.getNumDocumento() ?: "",
-                    sexo = AuthManager.getSexo() ?: "M",
-                    fechaNacimiento = "1990-01-01",
-                    fotoMovil = AuthManager.getFoto(),
-                    roles = emptyList(), // Lista vacía de roles por ahora
-                    createdAt = "",
-                    updatedAt = ""
-                )
-                therapists = listOf(currentTherapist)
-                setupTherapistSpinner()
-
-                // Pre-seleccionar el terapeuta actual
+                // Auto-asignar el terapeuta actual SIN mostrar el campo
                 selectedTherapistId = currentUserId
-                spinnerTerapeuta.setText("$currentUserName - $currentUserEmail", false)
-
-                Log.d("CreateSession", "Therapist auto-assigned: $currentUserName (ID: $currentUserId)")
+                Log.d("CreateSession", "Therapist auto-assigned silently: $currentUserName (ID: $currentUserId)")
             } else {
-                Log.w("CreateSession", "User ID is invalid: $currentUserId")
-                Toast.makeText(this, "Error: No se pudo obtener información del usuario", Toast.LENGTH_SHORT).show()
+                Log.e("CreateSession", "User ID is invalid: $currentUserId")
+                Toast.makeText(this, "Error: No se pudo obtener información del usuario", Toast.LENGTH_LONG).show()
+                finish()
             }
         } else {
-            // Para otros roles, mostrar error
-            Log.w("CreateSession", "User without proper roles trying to create session. Roles: $userRoles")
-            Toast.makeText(this, "No tienes permisos para crear sesiones", Toast.LENGTH_SHORT).show()
+            // Otros roles no pueden crear sesiones
+            Log.e("CreateSession", "User without proper roles. Roles: $userRoles")
+            Toast.makeText(this, "No tienes permisos para crear sesiones", Toast.LENGTH_LONG).show()
             finish()
         }
     }
@@ -395,6 +397,10 @@ class CreateSessionActivity : AppCompatActivity() {
             return false
         }
 
+        if (selectedTherapistId == null) {
+            Toast.makeText(this, "Selecciona un terapeuta", Toast.LENGTH_SHORT).show()
+            return false
+        }
 
         if (etFechaSesion.text.toString().isEmpty()) {
             Toast.makeText(this, "Selecciona una fecha", Toast.LENGTH_SHORT).show()

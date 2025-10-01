@@ -15,6 +15,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -57,6 +58,9 @@ public final class ActivityCreateSessionBinding implements ViewBinding {
   public final TextInputEditText etUbicacion;
 
   @NonNull
+  public final TextInputLayout layoutTerapeuta;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
@@ -80,8 +84,8 @@ public final class ActivityCreateSessionBinding implements ViewBinding {
       @NonNull TextInputEditText etDuracion, @NonNull TextInputEditText etFechaSesion,
       @NonNull TextInputEditText etHoraFin, @NonNull TextInputEditText etHoraInicio,
       @NonNull TextInputEditText etMateriales, @NonNull TextInputEditText etObjetivos,
-      @NonNull TextInputEditText etUbicacion, @NonNull ProgressBar progressBar,
-      @NonNull MaterialAutoCompleteTextView spinnerModalidad,
+      @NonNull TextInputEditText etUbicacion, @NonNull TextInputLayout layoutTerapeuta,
+      @NonNull ProgressBar progressBar, @NonNull MaterialAutoCompleteTextView spinnerModalidad,
       @NonNull MaterialAutoCompleteTextView spinnerPatient,
       @NonNull MaterialAutoCompleteTextView spinnerTerapeuta,
       @NonNull MaterialAutoCompleteTextView spinnerTipoSesion, @NonNull MaterialToolbar toolbar) {
@@ -97,6 +101,7 @@ public final class ActivityCreateSessionBinding implements ViewBinding {
     this.etMateriales = etMateriales;
     this.etObjetivos = etObjetivos;
     this.etUbicacion = etUbicacion;
+    this.layoutTerapeuta = layoutTerapeuta;
     this.progressBar = progressBar;
     this.spinnerModalidad = spinnerModalidad;
     this.spinnerPatient = spinnerPatient;
@@ -198,6 +203,12 @@ public final class ActivityCreateSessionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.layoutTerapeuta;
+      TextInputLayout layoutTerapeuta = ViewBindings.findChildViewById(rootView, id);
+      if (layoutTerapeuta == null) {
+        break missingId;
+      }
+
       id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -236,8 +247,8 @@ public final class ActivityCreateSessionBinding implements ViewBinding {
 
       return new ActivityCreateSessionBinding((ScrollView) rootView, btnCancelar, btnGuardar,
           etDescripcion, etDireccion, etDuracion, etFechaSesion, etHoraFin, etHoraInicio,
-          etMateriales, etObjetivos, etUbicacion, progressBar, spinnerModalidad, spinnerPatient,
-          spinnerTerapeuta, spinnerTipoSesion, toolbar);
+          etMateriales, etObjetivos, etUbicacion, layoutTerapeuta, progressBar, spinnerModalidad,
+          spinnerPatient, spinnerTerapeuta, spinnerTipoSesion, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

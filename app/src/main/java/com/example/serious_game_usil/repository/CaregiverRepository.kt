@@ -13,29 +13,33 @@ class CaregiverRepository {
 
     suspend fun getCaregivers(page: Int = 1, search: String? = null): Flow<ApiResult<CaregiverListResponse>> = flow {
         try {
-            // Usar directamente el ID 3 del rol cuidador según la base de datos
-            val caregiverRoleId = 3
-
-            // Usar el endpoint de usuarios existente y filtrar por rol de cuidador
-            val response = apiService.getUsers(
-                search = search,
-                page = page,
-                roleId = caregiverRoleId
+            // Usar searchUsers con límite alto para obtener todos los cuidadores
+            val limit = 100
+            val response = apiService.searchUsers(
+                query = search ?: "",
+                limit = limit
             )
 
             if (response.isSuccessful) {
                 response.body()?.let { usersList ->
-                    // Filtrar solo usuarios con rol cuidador (ID 3) del lado cliente como seguridad adicional
-                    val filteredUsers = usersList.users.filter { user ->
+                    // Filtrar solo usuarios con rol cuidador (ID 3) - MOSTRAR TODOS
+                    val caregiverRoleId = 3
+                    val filteredUsers = usersList.filter { user ->
                         user.roles.any { role -> role.id == caregiverRoleId }
                     }
 
-                    // Obtener pacientes para contar asignaciones (simplificado por rendimiento)
+                    android.util.Log.d("CaregiverRepo", "Total users: ${usersList.size}, Filtered caregivers: ${filteredUsers.size}")
+
+                    // Obtener pacientes para contar asignaciones
                     val patientsResponse = apiService.getPatients(limit = 200)
                     val allPatients = patientsResponse.body()?.patients ?: emptyList()
 
-                    // Convertir UsersListResponse a CaregiverListResponse
+                    // Convertir List<UserListItem> a List<Caregiver>
                     val caregivers = filteredUsers.map { user ->
+                        // NOTA: En la BD activo=0 significa ACTIVO, activo=1 significa INACTIVO
+                        // Android espera true=activo, false=inactivo, así que invertimos
+                        val isActivo = !user.activo  // Invertir lógica
+                        android.util.Log.d("CaregiverRepo", "User: ${user.nombresApellidos}, DB activo: ${user.activo}, App activo: $isActivo, Foto: ${user.fotoMovil?.take(30)}")
                         Caregiver(
                             id = user.id,
                             nombresApellidos = user.nombresApellidos,
@@ -44,8 +48,8 @@ class CaregiverRepository {
                             tipoDocumento = user.tipoDocumento,
                             numDocumento = user.numeroDocumento,
                             sexo = user.sexo,
-                            fotoMovil = user.fotoMovil ?: "",
-                            activo = user.activo,
+                            fotoMovil = user.fotoMovil, // Mantener valor original
+                            activo = isActivo,  // Usar valor invertido
                             fechaCreacion = user.createdAt,
                             pacientesAsignados = allPatients.count { patient ->
                                 patient.cuidadorNombre == user.nombresApellidos
@@ -57,16 +61,17 @@ class CaregiverRepository {
                     val caregiverResponse = CaregiverListResponse(
                         message = "Lista de cuidadores obtenida exitosamente",
                         caregivers = caregivers,
-                        total = usersList.total,
-                        page = usersList.page,
-                        totalPages = usersList.total_pages,
-                        hasPrevious = usersList.page > 1,
-                        hasNext = usersList.page < usersList.total_pages
+                        total = caregivers.size,
+                        page = 1,
+                        totalPages = 1,
+                        hasPrevious = false,
+                        hasNext = false
                     )
 
                     emit(Success(caregiverResponse))
                 } ?: emit(Error(500, "No se pudieron cargar los cuidadores"))
             } else {
+                android.util.Log.e("CaregiverRepo", "Error response: ${response.code()}")
                 emit(Error(response.code(), "Error al cargar cuidadores"))
             }
         } catch (e: Exception) {

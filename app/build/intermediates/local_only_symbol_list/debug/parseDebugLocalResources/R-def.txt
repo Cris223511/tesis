@@ -129,6 +129,8 @@ drawable ic_lock
 drawable ic_logout
 drawable ic_menu
 drawable ic_more_ver
+drawable ic_patient_adult
+drawable ic_patient_child
 drawable ic_patient_placeholder
 drawable ic_patients_empty
 drawable ic_person
@@ -376,6 +378,7 @@ id layoutPatientIndicators
 id layoutRateTherapist
 id layoutRecommendations
 id layoutSessionsSummary
+id layoutTerapeuta
 id layoutTherapistEmail
 id layoutTherapistNotes
 id layoutTherapistPhone

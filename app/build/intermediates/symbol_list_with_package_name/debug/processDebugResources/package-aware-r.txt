@@ -3184,6 +3184,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_patient_adult
+drawable ic_patient_child
 drawable ic_patient_placeholder
 drawable ic_patients_empty
 drawable ic_person
@@ -3754,6 +3756,7 @@ id layoutPatientIndicators
 id layoutRateTherapist
 id layoutRecommendations
 id layoutSessionsSummary
+id layoutTerapeuta
 id layoutTherapistEmail
 id layoutTherapistNotes
 id layoutTherapistPhone

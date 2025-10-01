@@ -19,7 +19,7 @@ import com.example.serious_game_usil.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -55,7 +55,7 @@ public final class ListUsersBinding implements ViewBinding {
   public final TextView emptyStateText;
 
   @NonNull
-  public final ExtendedFloatingActionButton fabAddUser;
+  public final FloatingActionButton fabAddUser;
 
   @NonNull
   public final TextView pageInfoText;
@@ -94,7 +94,7 @@ public final class ListUsersBinding implements ViewBinding {
       @NonNull MaterialButton btnNext, @NonNull MaterialButton btnPrevious,
       @NonNull MaterialButton clearSearchButton, @NonNull LinearLayout emptySearchLayout,
       @NonNull TextView emptySearchText, @NonNull LinearLayout emptyStateLayout,
-      @NonNull TextView emptyStateText, @NonNull ExtendedFloatingActionButton fabAddUser,
+      @NonNull TextView emptyStateText, @NonNull FloatingActionButton fabAddUser,
       @NonNull TextView pageInfoText, @NonNull TextView paginationInfoText,
       @NonNull MaterialCardView paginationLayout, @NonNull ProgressBar paginationProgressBar,
       @NonNull ProgressBar progressBar, @NonNull TextInputEditText searchEditText,
@@ -200,7 +200,7 @@ public final class ListUsersBinding implements ViewBinding {
       }
 
       id = R.id.fabAddUser;
-      ExtendedFloatingActionButton fabAddUser = ViewBindings.findChildViewById(rootView, id);
+      FloatingActionButton fabAddUser = ViewBindings.findChildViewById(rootView, id);
       if (fabAddUser == null) {
         break missingId;
       }

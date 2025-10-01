@@ -373,5 +373,28 @@ Este proyecto es parte de una tesis académica de la Universidad San Ignacio de 
 - **Validación de permisos**: Verificación dinámica de roles antes de permitir acciones sensibles
 - **Manejo de tokens**: Configuración automática de tokens JWT para nuevas APIs de calificación
 
+## 🐛 Correcciones Recientes
+
+### Interfaz de Usuario Optimizada
+- **FAB Compacto**: Reemplazo del `ExtendedFloatingActionButton` con texto "NUEVO USUARIO" por un `FloatingActionButton` compacto con solo ícono
+- **Iconos actualizados**: Cambio del ícono de paciente infantil por adulto en el dashboard del terapeuta
+- **Formato de fechas mejorado**: Las fechas en listas se muestran en formato corto (dd/MM/yy) en lugar del timestamp completo
+
+### Gestión de Cuidadores
+- **Visualización de fotos**: Corrección del procesamiento de imágenes base64 con prefijos data URI
+- **Estados activos/inactivos**: Inversión correcta de la lógica booleana (BD: 0=activo, 1=inactivo)
+- **Conteo de pacientes**: Texto simplificado de "X pacientes asignados" a "X pacientes"
+- **Endpoint corregido**: Cambio de `/api/users` inexistente a `/api/users/search` funcional
+
+### Creación de Sesiones Terapéuticas
+- **Búsqueda de terapeutas**: Corrección de consultas SQL usando IDs de roles en lugar de nombres
+- **Visibilidad condicional**: El campo de terapeuta se oculta automáticamente cuando el usuario es terapeuta
+- **Observadores duplicados**: Eliminación de múltiples observadores de Flow que causaban conflictos
+
+### Procesamiento de Imágenes
+- **Base64 con prefijos**: Eliminación automática de prefijos "data:image/jpeg;base64," antes de decodificar
+- **Validación mejorada**: Verificación de longitud mínima de string base64 antes de procesamiento
+- **Manejo de errores**: Fallback a placeholder cuando la decodificación falla
+
 ---
 

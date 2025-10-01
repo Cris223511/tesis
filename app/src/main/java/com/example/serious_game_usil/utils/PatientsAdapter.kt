@@ -90,12 +90,27 @@ class PatientsAdapter(
         }
 
         private fun loadPatientPhoto(photoBase64: String?) {
-            if (!photoBase64.isNullOrBlank()) {
+            // Validar que el string no esté vacío Y que sea válido
+            if (!photoBase64.isNullOrBlank() && photoBase64.length > 20) {
                 try {
-                    val decodedBytes = Base64.decode(photoBase64, Base64.DEFAULT)
+                    // Remover el prefijo "data:image/...;base64," si existe
+                    val cleanBase64 = if (photoBase64.contains("base64,")) {
+                        photoBase64.substring(photoBase64.indexOf("base64,") + 7)
+                    } else {
+                        photoBase64
+                    }
+
+                    val decodedBytes = Base64.decode(cleanBase64, Base64.DEFAULT)
                     val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                    binding.ivPatientPhoto.setImageBitmap(bitmap)
+
+                    if (bitmap != null) {
+                        binding.ivPatientPhoto.setImageBitmap(bitmap)
+                    } else {
+                        // El decode fue exitoso pero el bitmap es null
+                        binding.ivPatientPhoto.setImageResource(R.drawable.ic_patient_placeholder)
+                    }
                 } catch (e: Exception) {
+                    android.util.Log.e("PatientsAdapter", "Error decoding patient photo: ${e.message}")
                     binding.ivPatientPhoto.setImageResource(R.drawable.ic_patient_placeholder)
                 }
             } else {

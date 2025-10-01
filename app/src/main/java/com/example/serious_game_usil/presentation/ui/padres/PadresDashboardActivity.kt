@@ -54,7 +54,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         binding.userName.text = AuthManager.getNombresApellidos()
         updateDateTime()
 
-        // IMPORTANTE: Los administradores SIEMPRE deben ver todo el contenido
+
         val userRoles = AuthManager.getUserRoles()
         val isAdmin = userRoles.any { it.lowercase() in listOf("admin", "administrador") }
 
@@ -375,7 +375,7 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
         val isAdmin = AuthManager.isAdmin()
 
         if (patients.isEmpty() && !isAdmin) {
-            // Solo mostrar estado vacío si NO es administrador
+
             binding.layoutNoPatientsSlider.visibility = View.VISIBLE
             binding.btnPreviousPatient.visibility = View.GONE
             binding.btnNextPatient.visibility = View.GONE
@@ -422,8 +422,8 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             binding.textCurrentPatientName.text = currentPatient.nombresApellidos
             binding.textCurrentPatientInfo.text = "${currentPatient.edad} años • ${currentPatient.sexo}"
 
-            // Cargar foto del paciente
-            ImageUtils.loadUserPhoto(this, currentPatient.fotoMovil, binding.ivCurrentPatientPhoto)
+            // Cargar foto del paciente con validación mejorada
+            loadPatientPhoto(currentPatient.fotoMovil, binding.ivCurrentPatientPhoto)
 
             // Mostrar botón Ver Sesiones
             binding.btnViewPatientSessions.visibility = View.VISIBLE
@@ -511,6 +511,29 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             } else {
                 indicator.setBackgroundResource(R.drawable.indicator_inactive)
             }
+        }
+    }
+
+
+    private fun loadPatientPhoto(photoBase64: String?, imageView: com.google.android.material.imageview.ShapeableImageView) {
+        if (!photoBase64.isNullOrBlank() && photoBase64.length > 20) {
+            try {
+                val decodedBytes = android.util.Base64.decode(photoBase64, android.util.Base64.DEFAULT)
+                val bitmap = android.graphics.BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap)
+                } else {
+                    // Usar icono específico para pacientes
+                    imageView.setImageResource(R.drawable.ic_patient_child)
+                }
+            } catch (e: Exception) {
+                android.util.Log.e("PadresDashboard", "Error decoding patient photo: ${e.message}")
+                imageView.setImageResource(R.drawable.ic_patient_child)
+            }
+        } else {
+            // Placeholder para pacientes sin foto
+            imageView.setImageResource(R.drawable.ic_patient_child)
         }
     }
 }

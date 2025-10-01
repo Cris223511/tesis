@@ -39,9 +39,11 @@ class CaregiversAdapter(
 
                 // Mostrar número de pacientes asignados
                 val patientsText = if (caregiver.pacientesAsignados == 0) {
-                    "Sin pacientes asignados"
+                    "Sin pacientes"
+                } else if (caregiver.pacientesAsignados == 1) {
+                    "1 paciente"
                 } else {
-                    "${caregiver.pacientesAsignados} paciente${if (caregiver.pacientesAsignados != 1) "s asignados" else " asignado"}"
+                    "${caregiver.pacientesAsignados} pacientes"
                 }
                 btnPatientsCount.text = patientsText
                 tvPatientsCount.text = patientsText
@@ -58,14 +60,23 @@ class CaregiversAdapter(
                 // Último acceso
                 if (!caregiver.fechaUltimoAcceso.isNullOrBlank()) {
                     try {
-                        val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(caregiver.fechaUltimoAcceso)
-                        val displayDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date ?: Date())
-                        tvLastAccess.text = "Último acceso: $displayDate"
+                        // Try parsing ISO 8601 format first (from API)
+                        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                        val date = isoFormat.parse(caregiver.fechaUltimoAcceso.substringBefore("."))
+
+                        if (date != null) {
+                            val displayFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
+                            tvLastAccess.text = displayFormat.format(date)
+                        } else {
+                            // Fallback to just show date portion
+                            tvLastAccess.text = caregiver.fechaUltimoAcceso.substringBefore("T").replace("-", "/")
+                        }
                     } catch (e: Exception) {
-                        tvLastAccess.text = "Último acceso: ${caregiver.fechaUltimoAcceso}"
+                        // If parsing fails, just show the date portion
+                        tvLastAccess.text = caregiver.fechaUltimoAcceso.substringBefore("T").replace("-", "/")
                     }
                 } else {
-                    tvLastAccess.text = "Sin acceso registrado"
+                    tvLastAccess.text = "Sin acceso"
                 }
 
                 // Load caregiver photo
@@ -92,12 +103,26 @@ class CaregiversAdapter(
         }
 
         private fun loadCaregiverPhoto(photoBase64: String?) {
-            if (!photoBase64.isNullOrBlank()) {
+            // Validar que no esté vacío Y que tenga longitud válida
+            if (!photoBase64.isNullOrBlank() && photoBase64.length > 20) {
                 try {
-                    val decodedBytes = Base64.decode(photoBase64, Base64.DEFAULT)
+                    // Remover el prefijo "data:image/...;base64," si existe
+                    val cleanBase64 = if (photoBase64.contains("base64,")) {
+                        photoBase64.substring(photoBase64.indexOf("base64,") + 7)
+                    } else {
+                        photoBase64
+                    }
+
+                    val decodedBytes = Base64.decode(cleanBase64, Base64.DEFAULT)
                     val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                    binding.ivCaregiverPhoto.setImageBitmap(bitmap)
+
+                    if (bitmap != null) {
+                        binding.ivCaregiverPhoto.setImageBitmap(bitmap)
+                    } else {
+                        binding.ivCaregiverPhoto.setImageResource(R.drawable.ic_person_placeholder)
+                    }
                 } catch (e: Exception) {
+                    android.util.Log.e("CaregiversAdapter", "Error decoding photo: ${e.message}")
                     binding.ivCaregiverPhoto.setImageResource(R.drawable.ic_person_placeholder)
                 }
             } else {

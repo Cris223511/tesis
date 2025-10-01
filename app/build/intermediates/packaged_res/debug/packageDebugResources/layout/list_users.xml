@@ -305,17 +305,18 @@
 
     </LinearLayout>
 
-    <!-- FAB para agregar usuario - Posicionado arriba de la paginación -->
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <!-- FAB para agregar usuario - Más compacto -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="90dp"
-        android:text="NUEVO USUARIO"
-        app:icon="@drawable/ic_add"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="Nuevo usuario"
+        app:srcCompat="@drawable/ic_add"
         app:backgroundTint="@color/primary"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
