@@ -739,6 +739,23 @@ go tool pprof http://localhost:8080/debug/pprof/profile
 - **Control de permisos mejorado**: Validación específica por rol para calificaciones
 - **Resolución de conflictos**: Rutas optimizadas para evitar conflictos en Gin Router
 
+## 🐛 Correcciones Recientes
+
+### Búsqueda de Terapeutas Corregida
+- **Problema**: El sistema no encontraba terapeutas disponibles al crear sesiones
+- **Causa**: Las consultas SQL buscaban por nombre de rol 'TR' cuando la BD usaba IDs numéricos
+- **Solución**: Cambio de `WHERE UPPER(roles.name) = 'TR'` a `WHERE roles.id = 4` en `therapy_service.go`
+
+### Lógica de Estado Activo/Inactivo
+- **Problema**: Estados invertidos en la interfaz de usuario
+- **Causa**: La BD usa convención inversa (0=activo, 1=inactivo)
+- **Solución**: Inversión de lógica booleana en los repositorios de Android
+
+### Visualización de Fotos Base64
+- **Problema**: Las fotos de usuarios no se mostraban correctamente
+- **Causa**: Las imágenes venían con prefijo "data:image/jpeg;base64,"
+- **Solución**: Eliminación automática del prefijo antes de decodificar en los adapters
+
 ---
 
 *Última actualización: Septiembre 2025*

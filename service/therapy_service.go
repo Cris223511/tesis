@@ -617,7 +617,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 		Select("DISTINCT usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("UPPER(roles.name) = 'TR'"). // Solo terapeutas exactamente
+		Where("roles.id = 4"). // ID 4 = terapeuta según tu BD
 		Where("usuarios.activo = 0").
 		Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20") // Verificar límite de 20 pacientes
 
@@ -767,7 +767,7 @@ func (s *TherapyService) validateTherapistRole(therapistID uint) error {
 		Select("usuarios.idusuario, usuarios.nombres_apellidos").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("UPPER(roles.name) IN ('TR', 'AD')"). // Solo terapeutas o administradores
+		Where("roles.id IN (1, 4)"). // ID 1=administrador, ID 4=terapeuta
 		Where("usuarios.activo = 0").
 		Where("usuarios.idusuario = ?", therapistID).
 		First(&therapist).Error
@@ -1136,7 +1136,15 @@ func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error
 func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID uint) error {
 	// Find an available therapist (different from the current one)
 	var newTherapist models.Usuarios
-	if err := s.db.Where("rol LIKE ? AND id != ? AND estado_cuenta = ?", "%TR%", oldTherapistID, "activa").First(&newTherapist).Error; err != nil {
+	err := s.db.Table("usuarios").
+		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
+		Joins("JOIN roles ON user_roles.roles_id = roles.id").
+		Where("roles.id = 4"). // ID 4=terapeuta
+		Where("usuarios.idusuario != ?", oldTherapistID).
+		Where("usuarios.activo = 0"). // 0=activo en tu sistema
+		First(&newTherapist).Error
+
+	if err != nil {
 		log.Printf("No alternative therapist found for patient %d", patientID)
 		return nil // Don't fail the rating if no therapist is available
 	}
