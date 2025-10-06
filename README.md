@@ -396,5 +396,261 @@ Este proyecto es parte de una tesis académica de la Universidad San Ignacio de 
 - **Validación mejorada**: Verificación de longitud mínima de string base64 antes de procesamiento
 - **Manejo de errores**: Fallback a placeholder cuando la decodificación falla
 
----
+## 📺 Sistema de Videos Educativos (NUEVO) 🆕
+
+### Descripción General
+Sistema completo de videos educativos sobre TEA (Trastorno del Espectro Autista) integrado en la aplicación para padres/cuidadores. Permite buscar, filtrar y reproducir videos educativos de YouTube directamente desde la app.
+
+### 🎯 Funcionalidades Principales
+
+#### 🔍 Búsqueda y Filtrado de Videos
+- **Búsqueda en tiempo real**: Campo de búsqueda con debounce de 500ms
+- **Filtrado por categorías**:
+  - 📚 **Todos**: Videos generales sobre TEA
+  - 🎯 **Conducta**: Estrategias de comportamiento
+  - 💬 **Comunicación**: Desarrollo del lenguaje
+  - 😊 **Emociones**: Regulación emocional
+- **Safe Search habilitado**: Solo contenido seguro y apropiado
+- **Videos en español**: Filtro automático de idioma (relevanceLanguage=es)
+
+#### 📄 Paginación Inteligente (5 en 5)
+- **Carga inicial**: Muestra solo 5 videos para optimizar rendimiento
+- **Scroll infinito**: Carga automática de 5 videos más al hacer scroll
+- **Indicador visual**: Mensaje toast al cargar más videos
+- **Optimización de memoria**: No carga todos los videos a la vez
+
+#### 🎥 Reproductor Integrado con WebView
+- **Reproducción dentro de la app**: No necesitas salir a YouTube
+- **Autoplay habilitado**: El video comienza automáticamente
+- **Controles completos de YouTube**:
+  - ▶️ Play/Pause
+  - 🔊 Control de volumen
+  - ⏩ Avance/Retroceso
+  - 📊 Barra de progreso
+  - 🖥️ Pantalla completa
+  - ⏱️ Tiempo actual y duración
+
+#### 🚀 Acciones Disponibles
+- **Abrir en YouTube**: Botón para ver el video en la app oficial de YouTube
+- **Compartir**: Compartir el enlace del video por cualquier medio
+- **Información completa**: Título, canal, categoría y descripción
+
+#### 🎨 Interfaz de Usuario
+- **Material Design 3**: Diseño moderno y consistente
+- **Estados vacíos personalizados**:
+  - "No hay videos disponibles" (sin resultados)
+  - "No se encontraron coincidencias" (búsqueda sin resultados)
+  - Mensajes descriptivos y amigables
+- **Indicadores de carga**: ProgressBar durante la búsqueda
+- **Chips interactivos**: Categorías seleccionables con feedback visual
+
+### 🔧 Implementación Técnica
+
+#### Arquitectura
+```
+VideosEducativosActivity.kt
+├── Búsqueda de videos (YouTube Data API v3)
+├── Paginación (5 videos por página)
+├── Filtrado por categorías
+└── Navegación a reproductor
+
+VideoPlayerActivitySimple.kt
+├── WebView con YouTube embebido
+├── Controles nativos de YouTube
+├── Botones de acción (Abrir, Compartir)
+└── Información del video
+```
+
+#### Dependencias Agregadas
+```kotlin
+// YouTube Android Player API
+implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+// ExoPlayer para reproducción de videos
+implementation("androidx.media3:media3-exoplayer:1.2.1")
+implementation("androidx.media3:media3-ui:1.2.1")
+
+// WorkManager para operaciones en background
+implementation("androidx.work:work-runtime-ktx:2.9.0")
+```
+
+#### Configuración de API Key
+La API key de YouTube está configurada de forma segura:
+
+**Archivo `.env`** (excluido de Git):
+```bash
+YOUTUBE_API_KEY=AIzaSyD7aV8CVEvOi-jr3_74cDnhgeyIpOxw-hY
+```
+
+**Carga mediante BuildConfig**:
+```kotlin
+// build.gradle.kts
+val youtubeApiKey = project.findProperty("YOUTUBE_API_KEY")?.toString()
+    ?: System.getenv("YOUTUBE_API_KEY")
+    ?: "AIzaSyD7aV8CVEvOi-jr3_74cDnhgeyIpOxw-hY"
+buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+```
+
+**Uso en código**:
+```kotlin
+private val YOUTUBE_API_KEY = BuildConfig.YOUTUBE_API_KEY
+```
+
+#### Protección de Credenciales
+El archivo `.env` está incluido en `.gitignore`:
+```gitignore
+# Environment variables
+.env
+.env.local
+```
+
+### 📱 Nuevas Activities
+
+#### `VideosEducativosActivity.kt`
+- **Ubicación**: `presentation/ui/videos/`
+- **Propósito**: Lista y búsqueda de videos educativos
+- **Características**:
+  - Búsqueda con TextWatcher y debounce
+  - RecyclerView con scroll infinito
+  - Categorías con ChipGroup
+  - Paginación de 5 en 5
+  - Estados vacíos personalizados
+
+#### `VideoPlayerActivitySimple.kt`
+- **Ubicación**: `presentation/ui/videos/`
+- **Propósito**: Reproductor de video integrado
+- **Características**:
+  - WebView con YouTube embebido
+  - Controles nativos de YouTube
+  - Botones de acción (Abrir, Compartir)
+  - Autoplay habilitado
+  - Hardware acceleration
+
+#### `VideosAdapter.kt`
+- **Ubicación**: `presentation/ui/videos/`
+- **Propósito**: Adaptador para lista de videos
+- **Características**:
+  - ListAdapter con DiffUtil
+  - Carga de thumbnails con Glide
+  - Click listener personalizable
+  - Badge de categoría
+
+### 🎨 Nuevos Layouts
+
+#### `activity_videos_educativos.xml`
+- Toolbar con título
+- Campo de búsqueda con icono
+- ChipGroup para categorías
+- RecyclerView para videos
+- Estados vacíos (sin videos, sin resultados)
+- ProgressBar de carga
+
+#### `activity_video_player_simple.xml`
+- WebView para video de YouTube
+- ScrollView con información del video
+- Botones de acción (Abrir, Compartir)
+- FAB para cerrar
+- Diseño responsive
+
+#### `item_video_educativo.xml`
+- Thumbnail del video con overlay de play
+- Título del video (máximo 2 líneas)
+- Nombre del canal
+- Badge de categoría
+- Diseño Material Card
+
+### 🎯 Nuevos Drawables y Resources
+
+#### Iconos Creados
+- `ic_video_empty.xml` - Icono de video vacío
+- `ic_download.xml` - Icono de descarga
+- `ic_pip.xml` - Icono de Picture-in-Picture
+- `ic_share.xml` - Icono de compartir
+
+#### Backgrounds
+- `circle_play_background.xml` - Fondo circular para botón play
+- `category_badge_background.xml` - Fondo para badge de categoría
+- `gradient_blue_card.xml` - Gradiente azul para botón "Mis Pacientes"
+- `gradient_orange_card.xml` - Gradiente naranja para botón "Videos"
+
+#### Color Selectors
+- `chip_background_selector.xml` - Selector de color para chips de categorías
+
+### 🔗 Integración en Dashboard de Padres
+
+#### Mejoras en `activity_padres_dashboard.xml`
+- **Botones rediseñados**: "Mis Pacientes" y "Videos" más compactos
+- **Altura reducida**: 120dp → 100dp para mejor uso del espacio
+- **Gradientes visuales**: Fondo degradado para mejor apariencia
+- **Iconos más grandes**: 32dp → 36dp para mejor visibilidad
+- **Bordes redondeados**: 16dp → 20dp para diseño más moderno
+
+#### Actualización en `PadresDashboardActivity.kt`
+```kotlin
+binding.cardVideos.setOnClickListener {
+    val intent = Intent(this, VideosEducativosActivity::class.java)
+    startActivity(intent)
+}
+```
+
+### 🔒 Seguridad y Privacidad
+
+#### API Key Protection
+- ✅ API key NO incluida en control de versiones
+- ✅ Archivo `.env` en `.gitignore`
+- ✅ Carga mediante variables de entorno
+- ✅ Fallback a BuildConfig para builds
+
+#### Términos de Servicio de YouTube
+- ✅ Uso de YouTube Data API v3 oficial
+- ✅ Reproducción mediante embed permitido
+- ✅ Descarga redirige a YouTube oficial (cumple ToS)
+- ✅ Safe Search habilitado
+
+### 📊 Datos del Modelo
+
+#### `VideoEducativo.kt`
+```kotlin
+data class VideoEducativo(
+    val id: String,              // ID del video de YouTube
+    val title: String,           // Título del video
+    val thumbnailUrl: String,    // URL del thumbnail
+    val channelTitle: String,    // Nombre del canal
+    val videoUrl: String,        // URL completa del video
+    val category: String,        // Categoría (TODOS, CONDUCTA, etc.)
+    val description: String      // Descripción del video
+)
+```
+
+#### `VideoCategory.kt`
+```kotlin
+enum class VideoCategory(
+    val displayName: String,     // Nombre para mostrar
+    val searchTerm: String       // Término de búsqueda en YouTube
+) {
+    TODOS("Todos", "TEA autismo"),
+    CONDUCTA("Conducta", "TEA autismo conducta comportamiento"),
+    COMUNICACION("Comunicación", "TEA autismo comunicación lenguaje"),
+    EMOCIONES("Emociones", "TEA autismo emociones regulación")
+}
+```
+
+### 🚀 Flujo de Usuario
+
+1. **Acceso**: Dashboard de Padres → Botón "Videos" (naranja)
+2. **Búsqueda**:
+   - Usar campo de búsqueda para texto libre
+   - O seleccionar categoría con chips
+3. **Navegación**:
+   - Ver primeros 5 videos
+   - Scroll hacia abajo para cargar más (5 en 5)
+4. **Reproducción**:
+   - Click en video para abrir reproductor
+   - Video se reproduce automáticamente en WebView
+5. **Acciones**:
+   - Ver en pantalla completa
+   - Abrir en YouTube app
+   - Compartir con otros
+
+
 

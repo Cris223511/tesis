@@ -47,859 +47,1112 @@
 27        android:required="false" />
 27-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:16:68-92
 28
-29    <permission
-29-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
-30        android:name="com.example.serious_game_usil.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-30-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
-31        android:protectionLevel="signature" />
-31-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+29    <uses-permission android:name="android.permission.WAKE_LOCK" />
+29-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:5-68
+29-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:22-65
+30    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+30-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:25:5-81
+30-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:25:22-78
+31    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+31-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:26:5-77
+31-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:26:22-74
 32
-33    <uses-permission android:name="com.example.serious_game_usil.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-33-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
-33-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
-34
-35    <application
-35-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-451:19
-36        android:name="com.example.serious_game_usil.presentation.ui.main.MyApp"
-36-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:20:9-51
-37        android:allowBackup="true"
-37-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:21:9-35
-38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-38-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
-39        android:debuggable="true"
-40        android:extractNativeLibs="false"
-41        android:icon="@mipmap/ic_launcher"
-41-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:22:9-43
-42        android:label="@string/app_name"
-42-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:23:9-41
-43        android:networkSecurityConfig="@xml/network_security_config"
-43-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:28:9-69
-44        android:requestLegacyExternalStorage="true"
-44-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:29:9-52
-45        android:roundIcon="@mipmap/ic_launcher_round"
-45-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:24:9-54
-46        android:supportsRtl="true"
-46-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:25:9-35
-47        android:testOnly="true"
-48        android:theme="@style/Theme.SeriousGameUSIL"
-48-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:26:9-53
-49        android:usesCleartextTraffic="true" >
-49-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:27:9-44
-50        <activity
-50-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:9-43:20
-51            android:name="com.example.serious_game_usil.presentation.ui.splash.PreloaderActivity"
-51-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:13-69
-52            android:exported="true"
-52-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:36:13-36
-53            android:screenOrientation="portrait"
-53-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:37:13-49
-54            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-54-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:38:13-69
-55            <intent-filter>
-55-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:39:13-42:29
-56                <action android:name="android.intent.action.MAIN" />
-56-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:17-69
-56-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:25-66
-57
-58                <category android:name="android.intent.category.LAUNCHER" />
-58-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:17-77
-58-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:27-74
-59            </intent-filter>
-60        </activity>
+33    <permission
+33-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+34        android:name="com.example.serious_game_usil.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+34-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+35        android:protectionLevel="signature" />
+35-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+36
+37    <uses-permission android:name="com.example.serious_game_usil.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+37-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+37-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+38
+39    <application
+39-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:19:5-478:19
+40        android:name="com.example.serious_game_usil.presentation.ui.main.MyApp"
+40-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:20:9-51
+41        android:allowBackup="true"
+41-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:21:9-35
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.13.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/c00a1d32e8079041423c9c94e976c63f/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
+43        android:debuggable="true"
+44        android:extractNativeLibs="false"
+45        android:icon="@mipmap/ic_launcher"
+45-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:22:9-43
+46        android:label="@string/app_name"
+46-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:23:9-41
+47        android:networkSecurityConfig="@xml/network_security_config"
+47-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:28:9-69
+48        android:requestLegacyExternalStorage="true"
+48-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:29:9-52
+49        android:roundIcon="@mipmap/ic_launcher_round"
+49-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:24:9-54
+50        android:supportsRtl="true"
+50-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:25:9-35
+51        android:testOnly="true"
+52        android:theme="@style/Theme.SeriousGameUSIL"
+52-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:26:9-53
+53        android:usesCleartextTraffic="true" >
+53-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:27:9-44
+54        <activity
+54-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:34:9-43:20
+55            android:name="com.example.serious_game_usil.presentation.ui.splash.PreloaderActivity"
+55-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:35:13-69
+56            android:exported="true"
+56-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:36:13-36
+57            android:screenOrientation="portrait"
+57-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:37:13-49
+58            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+58-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:38:13-69
+59            <intent-filter>
+59-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:39:13-42:29
+60                <action android:name="android.intent.action.MAIN" />
+60-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:17-69
+60-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:40:25-66
 61
-62        <!-- Login Activity -->
-63        <activity
-63-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:46:9-51:72
-64            android:name="com.example.serious_game_usil.presentation.ui.login.LoginActivity"
-64-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:47:13-64
-65            android:exported="false"
-65-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:48:13-37
-66            android:screenOrientation="portrait"
-66-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:49:13-49
-67            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-67-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:51:13-69
-68            android:windowSoftInputMode="adjustResize" />
-68-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:50:13-55
-69
-70        <!-- Register Activity -->
-71        <activity
-71-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:54:9-59:72
-72            android:name="com.example.serious_game_usil.presentation.ui.register.RegisterActivity"
-72-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:55:13-70
-73            android:exported="false"
-73-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:56:13-37
-74            android:screenOrientation="portrait"
-74-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:57:13-49
-75            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-75-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:59:13-69
-76            android:windowSoftInputMode="adjustResize" />
-76-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:58:13-55
-77
-78        <!-- Main Activity -->
-79        <activity
-79-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:62:9-66:60
-80            android:name="com.example.serious_game_usil.presentation.ui.main.MainActivity"
-80-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:63:13-62
-81            android:exported="false"
-81-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:64:13-37
-82            android:screenOrientation="portrait"
-82-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:65:13-49
-83            android:theme="@style/Theme.SeriousGameUSIL" />
-83-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:66:13-57
-84        <activity
-84-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:70:9-75:72
-85            android:name="com.example.serious_game_usil.presentation.ui.password.OtpVerificationActivity"
-85-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:71:13-77
-86            android:exported="false"
-86-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:72:13-37
-87            android:screenOrientation="portrait"
-87-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:73:13-49
-88            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-88-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:75:13-69
-89            android:windowSoftInputMode="adjustResize" />
-89-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:74:13-55
-90        <activity
-90-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:77:9-82:72
-91            android:name="com.example.serious_game_usil.presentation.ui.password.ResetPasswordActivity"
-91-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:78:13-75
-92            android:exported="false"
-92-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:79:13-37
-93            android:screenOrientation="portrait"
-93-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:80:13-49
-94            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-94-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:82:13-69
-95            android:windowSoftInputMode="adjustResize" />
-95-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:81:13-55
-96        <activity
-96-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:84:9-88:72
-97            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordResetSuccessActivity"
-97-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:85:13-82
-98            android:exported="false"
-98-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:86:13-37
-99            android:screenOrientation="portrait"
-99-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:87:13-49
-100            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-100-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:88:13-69
-101
-102        <!-- Password Change Activities -->
-103        <activity
-103-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:91:9-96:72
-104            android:name="com.example.serious_game_usil.presentation.ui.password.ValidateEmailActivity"
-104-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:92:13-75
-105            android:exported="false"
-105-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:93:13-37
-106            android:screenOrientation="portrait"
-106-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:94:13-49
-107            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-107-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:96:13-69
-108            android:windowSoftInputMode="adjustResize" />
-108-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:95:13-55
-109        <activity
-109-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:98:9-103:72
-110            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordOTPActivity"
-110-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:99:13-73
-111            android:exported="false"
-111-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:100:13-37
-112            android:screenOrientation="portrait"
-112-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:101:13-49
-113            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-113-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:103:13-69
-114            android:windowSoftInputMode="adjustResize" />
-114-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:102:13-55
-115        <activity
-115-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:105:9-110:72
-116            android:name="com.example.serious_game_usil.presentation.ui.password.NewPasswordActivity"
-116-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:106:13-73
-117            android:exported="false"
-117-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:107:13-37
-118            android:screenOrientation="portrait"
-118-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:108:13-49
-119            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-119-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:110:13-69
-120            android:windowSoftInputMode="adjustResize" />
-120-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:109:13-55
-121        <activity
-121-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:112:9-116:72
-122            android:name="com.example.serious_game_usil.guards.UnauthorizedActivity"
-122-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:113:13-56
-123            android:exported="false"
-123-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:114:13-37
-124            android:screenOrientation="portrait"
-124-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:115:13-49
-125            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-125-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:116:13-69
-126        <activity
-126-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:118:9-122:72
-127            android:name="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-127-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:119:13-76
-128            android:exported="false"
-128-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:120:13-37
-129            android:screenOrientation="portrait"
-129-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:121:13-49
-130            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-130-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:122:13-69
-131        <activity
-131-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:124:9-126:72
-132            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
-132-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:125:13-80
-133            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-133-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:126:13-69
-134        <activity
-134-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:128:9-136:20
-135            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.CreateUserActivity"
-135-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:129:13-82
-136            android:label="Registrar Usuario"
-136-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:130:13-46
-137            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
-137-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:131:13-94
-138            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-138-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:132:13-69
-139            <meta-data
-139-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-140                android:name="android.support.PARENT_ACTIVITY"
-140-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-141                android:value=".presentation.ui.administrador.list.ListUserActivity" />
-141-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-142        </activity>
-143        <activity
-143-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:139:9-147:20
-144            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.EditUserActivity"
-144-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:140:13-80
-145            android:label="Editar Usuario"
-145-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:141:13-43
-146            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
-146-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:142:13-94
-147            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-147-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:143:13-69
-148            <meta-data
-148-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-149                android:name="android.support.PARENT_ACTIVITY"
-149-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-150                android:value=".presentation.ui.administrador.list.ListUserActivity" />
-150-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-151        </activity>
-152        <activity
-152-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:149:9-157:20
-153            android:name="com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity"
-153-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:150:13-82
-154            android:label="Perfil de Usuario"
-154-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:151:13-46
-155            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
-155-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:152:13-94
-156            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-156-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:153:13-69
-157            <meta-data
-157-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-158                android:name="android.support.PARENT_ACTIVITY"
-158-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-159                android:value=".presentation.ui.administrador.list.ListUserActivity" />
-159-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-160        </activity>
-161        <activity
-161-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:160:9-168:20
-162            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
-162-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:161:13-74
-163            android:label="Gestión de Roles"
-163-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:162:13-45
-164            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
-164-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:163:13-88
-165            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-165-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:164:13-69
-166            <meta-data
-166-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-167                android:name="android.support.PARENT_ACTIVITY"
-167-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-168                android:value=".presentation.ui.administrador.DashboardActivity" />
-168-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-169        </activity>
-170        <activity
-170-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:172:9-180:20
-171            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
-171-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:173:13-75
-172            android:label="Crear Rol"
-172-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:174:13-38
-173            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
-173-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:175:13-89
-174            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-174-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:176:13-69
-175            <meta-data
-175-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-176                android:name="android.support.PARENT_ACTIVITY"
-176-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-177                android:value=".presentation.ui.administrador.roles.ListRoles" />
-177-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-178        </activity>
-179        <activity
-179-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:182:9-190:20
-180            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
-180-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:183:13-73
-181            android:label="Editar Rol"
-181-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:184:13-39
-182            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
-182-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:185:13-87
-183            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-183-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:186:13-69
-184            <meta-data
-184-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-185                android:name="android.support.PARENT_ACTIVITY"
-185-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-186                android:value=".presentation.ui.administrador.roles.ListRoles" />
-186-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-187        </activity>
-188        <activity
-188-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:192:9-200:20
-189            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.UserRole"
-189-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:193:13-73
-190            android:label="Usuarios por Rol"
-190-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:194:13-45
-191            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
-191-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:195:13-88
-192            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-192-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:196:13-69
-193            <meta-data
-193-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-194                android:name="android.support.PARENT_ACTIVITY"
-194-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-195                android:value=".presentation.ui.administrador.roles.ListRoles" />
-195-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-196        </activity>
-197
-198        <!-- Progress/Therapy Activities -->
-199        <activity
-199-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:203:9-211:20
-200            android:name="com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity"
-200-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:204:13-76
-201            android:label="Progreso Terapéutico"
-201-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:205:13-49
-202            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-202-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:206:13-90
-203            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-203-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:207:13-69
-204            <meta-data
-204-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-205                android:name="android.support.PARENT_ACTIVITY"
-205-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-206                android:value=".presentation.ui.administrador.DashboardActivity" />
-206-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-207        </activity>
-208
-209        <!-- Parent Dashboard Activity -->
-210        <activity
-210-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:214:9-219:72
-211            android:name="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
-211-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:215:13-75
-212            android:exported="false"
-212-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:217:13-37
-213            android:label="Dashboard Padres"
-213-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:216:13-45
-214            android:screenOrientation="portrait"
-214-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:218:13-49
-215            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-215-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:219:13-69
-216
-217        <!-- Info Activity -->
-218        <activity
-218-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:222:9-230:20
-219            android:name="com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity"
-219-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:223:13-76
-220            android:label="Información"
-220-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:224:13-40
-221            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-221-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:225:13-90
-222            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-222-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:226:13-69
-223            <meta-data
-223-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-224                android:name="android.support.PARENT_ACTIVITY"
-224-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-225                android:value=".presentation.ui.administrador.DashboardActivity" />
-225-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-226        </activity>
-227
-228        <!-- Emotion Analysis Activity -->
-229        <activity
-229-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:233:9-238:60
-230            android:name="com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity"
-230-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:234:13-76
-231            android:exported="false"
-231-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:236:13-37
-232            android:label="Análisis de Emociones"
-232-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:235:13-50
-233            android:screenOrientation="portrait"
-233-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:237:13-49
-234            android:theme="@style/Theme.SeriousGameUSIL" />
-234-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:238:13-57
-235
-236        <!-- Patient Management Activities -->
-237        <activity
-237-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:241:9-251:20
-238            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
-238-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:242:13-74
-239            android:exported="false"
-239-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:244:13-37
-240            android:label="Gestión de Pacientes"
-240-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:243:13-49
-241            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-241-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:246:13-90
-242            android:screenOrientation="portrait"
-242-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:245:13-49
-243            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-243-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:247:13-69
-244            <meta-data
-244-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-245                android:name="android.support.PARENT_ACTIVITY"
-245-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-246                android:value=".presentation.ui.administrador.DashboardActivity" />
-246-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-247        </activity>
-248        <activity
-248-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:253:9-264:20
-249            android:name="com.example.serious_game_usil.presentation.ui.patients.CreateEditPatientActivity"
-249-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:254:13-79
-250            android:exported="false"
-250-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:256:13-37
-251            android:label="Agregar Paciente"
-251-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:255:13-45
-252            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
-252-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:258:13-88
-253            android:screenOrientation="portrait"
-253-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:257:13-49
-254            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-254-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:260:13-69
-255            android:windowSoftInputMode="adjustResize" >
-255-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:259:13-55
-256            <meta-data
-256-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-257                android:name="android.support.PARENT_ACTIVITY"
-257-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-258                android:value=".presentation.ui.patients.PatientsListActivity" />
-258-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-259        </activity>
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:17-77
+62-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:41:27-74
+63            </intent-filter>
+64        </activity>
+65
+66        <!-- Login Activity -->
+67        <activity
+67-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:46:9-51:72
+68            android:name="com.example.serious_game_usil.presentation.ui.login.LoginActivity"
+68-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:47:13-64
+69            android:exported="false"
+69-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:48:13-37
+70            android:screenOrientation="portrait"
+70-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:49:13-49
+71            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+71-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:51:13-69
+72            android:windowSoftInputMode="adjustResize" />
+72-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:50:13-55
+73
+74        <!-- Register Activity -->
+75        <activity
+75-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:54:9-59:72
+76            android:name="com.example.serious_game_usil.presentation.ui.register.RegisterActivity"
+76-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:55:13-70
+77            android:exported="false"
+77-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:56:13-37
+78            android:screenOrientation="portrait"
+78-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:57:13-49
+79            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+79-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:59:13-69
+80            android:windowSoftInputMode="adjustResize" />
+80-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:58:13-55
+81
+82        <!-- Main Activity -->
+83        <activity
+83-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:62:9-66:60
+84            android:name="com.example.serious_game_usil.presentation.ui.main.MainActivity"
+84-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:63:13-62
+85            android:exported="false"
+85-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:64:13-37
+86            android:screenOrientation="portrait"
+86-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:65:13-49
+87            android:theme="@style/Theme.SeriousGameUSIL" />
+87-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:66:13-57
+88        <activity
+88-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:70:9-75:72
+89            android:name="com.example.serious_game_usil.presentation.ui.password.OtpVerificationActivity"
+89-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:71:13-77
+90            android:exported="false"
+90-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:72:13-37
+91            android:screenOrientation="portrait"
+91-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:73:13-49
+92            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+92-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:75:13-69
+93            android:windowSoftInputMode="adjustResize" />
+93-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:74:13-55
+94        <activity
+94-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:77:9-82:72
+95            android:name="com.example.serious_game_usil.presentation.ui.password.ResetPasswordActivity"
+95-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:78:13-75
+96            android:exported="false"
+96-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:79:13-37
+97            android:screenOrientation="portrait"
+97-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:80:13-49
+98            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+98-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:82:13-69
+99            android:windowSoftInputMode="adjustResize" />
+99-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:81:13-55
+100        <activity
+100-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:84:9-88:72
+101            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordResetSuccessActivity"
+101-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:85:13-82
+102            android:exported="false"
+102-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:86:13-37
+103            android:screenOrientation="portrait"
+103-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:87:13-49
+104            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+104-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:88:13-69
+105
+106        <!-- Password Change Activities -->
+107        <activity
+107-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:91:9-96:72
+108            android:name="com.example.serious_game_usil.presentation.ui.password.ValidateEmailActivity"
+108-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:92:13-75
+109            android:exported="false"
+109-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:93:13-37
+110            android:screenOrientation="portrait"
+110-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:94:13-49
+111            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+111-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:96:13-69
+112            android:windowSoftInputMode="adjustResize" />
+112-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:95:13-55
+113        <activity
+113-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:98:9-103:72
+114            android:name="com.example.serious_game_usil.presentation.ui.password.PasswordOTPActivity"
+114-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:99:13-73
+115            android:exported="false"
+115-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:100:13-37
+116            android:screenOrientation="portrait"
+116-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:101:13-49
+117            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+117-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:103:13-69
+118            android:windowSoftInputMode="adjustResize" />
+118-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:102:13-55
+119        <activity
+119-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:105:9-110:72
+120            android:name="com.example.serious_game_usil.presentation.ui.password.NewPasswordActivity"
+120-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:106:13-73
+121            android:exported="false"
+121-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:107:13-37
+122            android:screenOrientation="portrait"
+122-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:108:13-49
+123            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+123-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:110:13-69
+124            android:windowSoftInputMode="adjustResize" />
+124-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:109:13-55
+125        <activity
+125-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:112:9-116:72
+126            android:name="com.example.serious_game_usil.guards.UnauthorizedActivity"
+126-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:113:13-56
+127            android:exported="false"
+127-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:114:13-37
+128            android:screenOrientation="portrait"
+128-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:115:13-49
+129            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+129-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:116:13-69
+130        <activity
+130-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:118:9-122:72
+131            android:name="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+131-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:119:13-76
+132            android:exported="false"
+132-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:120:13-37
+133            android:screenOrientation="portrait"
+133-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:121:13-49
+134            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+134-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:122:13-69
+135        <activity
+135-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:124:9-126:72
+136            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+136-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:125:13-80
+137            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+137-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:126:13-69
+138        <activity
+138-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:128:9-136:20
+139            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.CreateUserActivity"
+139-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:129:13-82
+140            android:label="Registrar Usuario"
+140-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:130:13-46
+141            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+141-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:131:13-94
+142            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+142-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:132:13-69
+143            <meta-data
+143-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+144                android:name="android.support.PARENT_ACTIVITY"
+144-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+145                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+145-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+146        </activity>
+147        <activity
+147-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:139:9-147:20
+148            android:name="com.example.serious_game_usil.presentation.ui.administrador.list.EditUserActivity"
+148-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:140:13-80
+149            android:label="Editar Usuario"
+149-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:141:13-43
+150            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+150-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:142:13-94
+151            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+151-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:143:13-69
+152            <meta-data
+152-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+153                android:name="android.support.PARENT_ACTIVITY"
+153-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+154                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+154-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+155        </activity>
+156        <activity
+156-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:149:9-157:20
+157            android:name="com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity"
+157-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:150:13-82
+158            android:label="Perfil de Usuario"
+158-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:151:13-46
+159            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.list.ListUserActivity"
+159-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:152:13-94
+160            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+160-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:153:13-69
+161            <meta-data
+161-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+162                android:name="android.support.PARENT_ACTIVITY"
+162-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+163                android:value=".presentation.ui.administrador.list.ListUserActivity" />
+163-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+164        </activity>
+165        <activity
+165-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:160:9-168:20
+166            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
+166-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:161:13-74
+167            android:label="Gestión de Roles"
+167-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:162:13-45
+168            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
+168-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:163:13-88
+169            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+169-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:164:13-69
+170            <meta-data
+170-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+171                android:name="android.support.PARENT_ACTIVITY"
+171-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+172                android:value=".presentation.ui.administrador.DashboardActivity" />
+172-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+173        </activity>
+174        <activity
+174-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:172:9-180:20
+175            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
+175-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:173:13-75
+176            android:label="Crear Rol"
+176-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:174:13-38
+177            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.CreateRole"
+177-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:175:13-89
+178            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+178-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:176:13-69
+179            <meta-data
+179-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+180                android:name="android.support.PARENT_ACTIVITY"
+180-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+181                android:value=".presentation.ui.administrador.roles.ListRoles" />
+181-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+182        </activity>
+183        <activity
+183-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:182:9-190:20
+184            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
+184-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:183:13-73
+185            android:label="Editar Rol"
+185-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:184:13-39
+186            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.EditRole"
+186-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:185:13-87
+187            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+187-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:186:13-69
+188            <meta-data
+188-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+189                android:name="android.support.PARENT_ACTIVITY"
+189-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+190                android:value=".presentation.ui.administrador.roles.ListRoles" />
+190-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+191        </activity>
+192        <activity
+192-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:192:9-200:20
+193            android:name="com.example.serious_game_usil.presentation.ui.administrador.roles.UserRole"
+193-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:193:13-73
+194            android:label="Usuarios por Rol"
+194-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:194:13-45
+195            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.roles.ListRoles"
+195-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:195:13-88
+196            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+196-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:196:13-69
+197            <meta-data
+197-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+198                android:name="android.support.PARENT_ACTIVITY"
+198-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+199                android:value=".presentation.ui.administrador.roles.ListRoles" />
+199-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+200        </activity>
+201
+202        <!-- Progress/Therapy Activities -->
+203        <activity
+203-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:203:9-211:20
+204            android:name="com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity"
+204-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:204:13-76
+205            android:label="Progreso Terapéutico"
+205-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:205:13-49
+206            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+206-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:206:13-90
+207            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+207-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:207:13-69
+208            <meta-data
+208-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+209                android:name="android.support.PARENT_ACTIVITY"
+209-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+210                android:value=".presentation.ui.administrador.DashboardActivity" />
+210-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+211        </activity>
+212
+213        <!-- Parent Dashboard Activity -->
+214        <activity
+214-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:214:9-219:72
+215            android:name="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+215-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:215:13-75
+216            android:exported="false"
+216-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:217:13-37
+217            android:label="Dashboard Padres"
+217-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:216:13-45
+218            android:screenOrientation="portrait"
+218-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:218:13-49
+219            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+219-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:219:13-69
+220
+221        <!-- Videos Educativos Activity -->
+222        <activity
+222-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:222:9-232:20
+223            android:name="com.example.serious_game_usil.presentation.ui.videos.VideosEducativosActivity"
+223-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:223:13-76
+224            android:exported="false"
+224-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:225:13-37
+225            android:label="Videos Educativos"
+225-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:224:13-46
+226            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+226-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:227:13-89
+227            android:screenOrientation="portrait"
+227-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:226:13-49
+228            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+228-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:228:13-69
+229            <meta-data
+229-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+230                android:name="android.support.PARENT_ACTIVITY"
+230-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+231                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+231-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+232        </activity>
+233
+234        <!-- Video Player Activity Simple con WebView -->
+235        <activity
+235-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:235:9-246:20
+236            android:name="com.example.serious_game_usil.presentation.ui.videos.VideoPlayerActivitySimple"
+236-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:236:13-77
+237            android:configChanges="orientation|screenSize"
+237-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:240:13-59
+238            android:exported="false"
+238-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:238:13-37
+239            android:hardwareAccelerated="true"
+239-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:239:13-47
+240            android:label="Reproductor de Video"
+240-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:237:13-49
+241            android:parentActivityName="com.example.serious_game_usil.presentation.ui.videos.VideosEducativosActivity"
+241-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:241:13-90
+242            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+242-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:242:13-69
+243            <meta-data
+243-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+244                android:name="android.support.PARENT_ACTIVITY"
+244-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+245                android:value=".presentation.ui.videos.VideosEducativosActivity" />
+245-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+246        </activity>
+247
+248        <!-- Info Activity -->
+249        <activity
+249-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:249:9-257:20
+250            android:name="com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity"
+250-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:250:13-76
+251            android:label="Información"
+251-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:251:13-40
+252            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+252-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:252:13-90
+253            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+253-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:253:13-69
+254            <meta-data
+254-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+255                android:name="android.support.PARENT_ACTIVITY"
+255-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+256                android:value=".presentation.ui.administrador.DashboardActivity" />
+256-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+257        </activity>
+258
+259        <!-- Emotion Analysis Activity -->
 260        <activity
-260-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:266:9-276:20
-261            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientDetailActivity"
-261-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:267:13-75
+260-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:260:9-265:60
+261            android:name="com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity"
+261-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:261:13-76
 262            android:exported="false"
-262-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:269:13-37
-263            android:label="Detalle del Paciente"
-263-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:268:13-49
-264            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
-264-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:271:13-88
-265            android:screenOrientation="portrait"
-265-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:270:13-49
-266            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-266-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:272:13-69
-267            <meta-data
-267-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-268                android:name="android.support.PARENT_ACTIVITY"
-268-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-269                android:value=".presentation.ui.patients.PatientsListActivity" />
-269-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-270        </activity>
-271
-272        <!-- Caregiver Management Activities -->
-273        <activity
-273-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:279:9-289:20
-274            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
-274-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:280:13-78
-275            android:exported="false"
-275-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:282:13-37
-276            android:label="Gestión de Cuidadores"
-276-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:281:13-50
-277            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
-277-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:284:13-90
-278            android:screenOrientation="portrait"
-278-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:283:13-49
-279            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-279-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:285:13-69
-280            <meta-data
-280-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-281                android:name="android.support.PARENT_ACTIVITY"
-281-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-282                android:value=".presentation.ui.administrador.DashboardActivity" />
-282-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-283        </activity>
-284        <activity
-284-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:291:9-302:20
-285            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CreateEditCaregiverActivity"
-285-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:292:13-83
-286            android:exported="false"
-286-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:294:13-37
-287            android:label="Agregar Cuidador"
-287-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:293:13-45
-288            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
-288-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:296:13-92
-289            android:screenOrientation="portrait"
-289-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:295:13-49
-290            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-290-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:298:13-69
-291            android:windowSoftInputMode="adjustResize" >
-291-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:297:13-55
-292            <meta-data
-292-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-293                android:name="android.support.PARENT_ACTIVITY"
-293-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-294                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
-294-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-295        </activity>
-296        <activity
-296-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:304:9-314:20
-297            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverDetailActivity"
-297-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:305:13-79
-298            android:exported="false"
-298-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:307:13-37
-299            android:label="Detalle del Cuidador"
-299-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:306:13-49
-300            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
-300-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:309:13-92
-301            android:screenOrientation="portrait"
-301-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:308:13-49
-302            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-302-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:310:13-69
-303            <meta-data
-303-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-304                android:name="android.support.PARENT_ACTIVITY"
-304-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-305                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
-305-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-306        </activity>
-307        <activity
-307-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:315:9-325:20
-308            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverPatientsManagementActivity"
-308-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:316:13-91
-309            android:exported="false"
-309-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:318:13-37
-310            android:label="Pacientes del Cuidador"
-310-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:317:13-51
-311            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
-311-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:320:13-92
-312            android:screenOrientation="portrait"
-312-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:319:13-49
-313            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-313-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:321:13-69
-314            <meta-data
-314-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-315                android:name="android.support.PARENT_ACTIVITY"
-315-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-316                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
-316-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-317        </activity>
-318
-319        <!-- My Patients Activity (for Parents/Caregivers) -->
-320        <activity
-320-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:328:9-338:20
-321            android:name="com.example.serious_game_usil.presentation.ui.padres.MyPatientsActivity"
-321-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:329:13-70
-322            android:exported="false"
-322-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:331:13-37
-323            android:label="Mis Pacientes Asignados"
-323-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:330:13-52
-324            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
-324-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:333:13-89
-325            android:screenOrientation="portrait"
-325-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:332:13-49
-326            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-326-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:334:13-69
-327            <meta-data
-327-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-328                android:name="android.support.PARENT_ACTIVITY"
-328-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-329                android:value=".presentation.ui.padres.PadresDashboardActivity" />
-329-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-330        </activity>
-331
-332        <!-- My Sessions Activity (for Parents/Caregivers) -->
-333        <activity
-333-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:341:9-351:20
-334            android:name="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
-334-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:342:13-70
-335            android:exported="false"
-335-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:344:13-37
-336            android:label="Mis Sesiones Terapéuticas"
-336-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:343:13-54
-337            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
-337-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:346:13-89
-338            android:screenOrientation="portrait"
-338-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:345:13-49
-339            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-339-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:347:13-69
-340            <meta-data
-340-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-341                android:name="android.support.PARENT_ACTIVITY"
-341-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-342                android:value=".presentation.ui.padres.PadresDashboardActivity" />
-342-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-343        </activity>
-344
-345        <!-- Session Detail Activity (for Parents/Caregivers) -->
-346        <activity
-346-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:354:9-364:20
-347            android:name="com.example.serious_game_usil.presentation.ui.padres.SessionDetailActivity"
-347-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:355:13-73
-348            android:exported="false"
-348-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:357:13-37
-349            android:label="Detalle de Sesión"
-349-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:356:13-46
-350            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
-350-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:359:13-84
-351            android:screenOrientation="portrait"
-351-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:358:13-49
-352            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-352-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:360:13-69
-353            <meta-data
-353-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-354                android:name="android.support.PARENT_ACTIVITY"
-354-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-355                android:value=".presentation.ui.padres.MySessionsActivity" />
-355-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-356        </activity>
-357
-358        <!-- Therapist Dashboard Activity -->
-359        <activity
-359-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:367:9-372:72
-360            android:name="com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity"
-360-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:368:13-78
-361            android:exported="false"
-361-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:370:13-37
-362            android:label="Dashboard Terapeuta"
-362-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:369:13-48
-363            android:screenOrientation="portrait"
-363-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:371:13-49
-364            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
-364-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:372:13-69
-365
-366        <!-- Therapy Sessions Management Activity -->
-367        <activity
-367-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:375:9-385:20
-368            android:name="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
-368-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:376:13-82
-369            android:exported="false"
-369-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:378:13-37
-370            android:label="Gestión de Sesiones"
-370-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:377:13-48
-371            android:parentActivityName="com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity"
-371-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:380:13-92
-372            android:screenOrientation="portrait"
-372-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:379:13-49
-373            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-373-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:381:13-69
-374            <meta-data
-374-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-375                android:name="android.support.PARENT_ACTIVITY"
-375-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-376                android:value=".presentation.ui.terapeuta.TerapeutaDrawerActivity" />
-376-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-377        </activity>
-378
-379        <!-- Create Therapy Session Activity -->
-380        <activity
-380-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:388:9-399:20
-381            android:name="com.example.serious_game_usil.presentation.ui.therapy.CreateSessionActivity"
-381-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:389:13-74
-382            android:exported="false"
-382-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:391:13-37
-383            android:label="Crear Sesión Terapéutica"
-383-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:390:13-53
-384            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
-384-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:393:13-96
-385            android:screenOrientation="portrait"
-385-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:392:13-49
-386            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-386-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:395:13-69
-387            android:windowSoftInputMode="adjustResize" >
-387-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:394:13-55
-388            <meta-data
-388-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-389                android:name="android.support.PARENT_ACTIVITY"
-389-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-390                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
-390-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-391        </activity>
-392
-393        <!-- Session Detail Activity -->
-394        <activity
-394-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:402:9-412:20
-395            android:name="com.example.serious_game_usil.presentation.ui.therapy.SessionDetailActivity"
-395-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:403:13-74
-396            android:exported="false"
-396-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:405:13-37
-397            android:label="Detalle de Sesión"
-397-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:404:13-46
-398            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
-398-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:407:13-96
-399            android:screenOrientation="portrait"
-399-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:406:13-49
-400            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
-400-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:408:13-69
-401            <meta-data
-401-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-402                android:name="android.support.PARENT_ACTIVITY"
-402-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-403                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
-403-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-404        </activity>
-405
-406        <!-- Edit Session Activity -->
-407        <activity
-407-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:415:9-426:20
-408            android:name="com.example.serious_game_usil.presentation.ui.therapy.EditSessionActivity"
-408-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:416:13-72
-409            android:exported="false"
-409-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:418:13-37
-410            android:label="Editar Sesión"
-410-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:417:13-42
-411            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SessionDetailActivity"
-411-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:420:13-88
-412            android:screenOrientation="portrait"
-412-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:419:13-49
-413            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-413-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:422:13-69
-414            android:windowSoftInputMode="adjustResize" >
-414-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:421:13-55
-415            <meta-data
-415-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-416                android:name="android.support.PARENT_ACTIVITY"
-416-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-417                android:value=".presentation.ui.therapy.SessionDetailActivity" />
-417-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-418        </activity>
-419
-420        <!-- Rate Therapist Activity -->
-421        <activity
-421-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:429:9-440:20
-422            android:name="com.example.serious_game_usil.presentation.ui.therapy.RateTherapistActivity"
-422-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:430:13-74
-423            android:exported="false"
-423-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:432:13-37
-424            android:label="Calificar Terapeuta"
-424-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:431:13-48
-425            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
-425-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:434:13-84
-426            android:screenOrientation="portrait"
-426-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:433:13-49
-427            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
-427-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:436:13-69
-428            android:windowSoftInputMode="adjustResize" >
-428-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:435:13-55
-429            <meta-data
-429-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
-430                android:name="android.support.PARENT_ACTIVITY"
-430-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
-431                android:value=".presentation.ui.padres.MySessionsActivity" />
-431-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
-432        </activity>
-433
-434        <provider
-435            android:name="androidx.core.content.FileProvider"
-435-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:443:13-62
-436            android:authorities="com.example.serious_game_usil.fileprovider"
-436-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:444:13-64
-437            android:exported="false"
-437-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:445:13-37
-438            android:grantUriPermissions="true" >
-438-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:446:13-47
-439            <meta-data
-439-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:447:13-449:54
-440                android:name="android.support.FILE_PROVIDER_PATHS"
-440-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:448:17-67
-441                android:resource="@xml/file_paths" />
-441-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:449:17-51
-442        </provider>
-443
-444        <activity
-444-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-445            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-445-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-446            android:exported="false"
-446-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-447            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-447-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-448
-449        <meta-data
-449-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-450            android:name="com.google.android.gms.version"
-450-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-451            android:value="@integer/google_play_services_version" />
-451-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-452
-453        <activity
-453-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
-454            android:name="androidx.compose.ui.tooling.PreviewActivity"
-454-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-455            android:exported="true" />
-455-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
-456        <activity
-456-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:23:9-25:39
-457            android:name="androidx.activity.ComponentActivity"
-457-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:24:13-63
-458            android:exported="true" />
-458-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:25:13-36
-459
-460        <provider
-460-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-461            android:name="androidx.startup.InitializationProvider"
-461-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-462            android:authorities="com.example.serious_game_usil.androidx-startup"
-462-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-463            android:exported="false" >
-463-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-464            <meta-data
-464-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-465                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-465-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-466                android:value="androidx.startup" />
-466-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-467            <meta-data
-467-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-468                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-468-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
-469                android:value="androidx.startup" />
-469-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+262-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:263:13-37
+263            android:label="Análisis de Emociones"
+263-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:262:13-50
+264            android:screenOrientation="portrait"
+264-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:264:13-49
+265            android:theme="@style/Theme.SeriousGameUSIL" />
+265-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:265:13-57
+266
+267        <!-- Patient Management Activities -->
+268        <activity
+268-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:268:9-278:20
+269            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+269-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:269:13-74
+270            android:exported="false"
+270-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:271:13-37
+271            android:label="Gestión de Pacientes"
+271-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:270:13-49
+272            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+272-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:273:13-90
+273            android:screenOrientation="portrait"
+273-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:272:13-49
+274            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+274-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:274:13-69
+275            <meta-data
+275-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+276                android:name="android.support.PARENT_ACTIVITY"
+276-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+277                android:value=".presentation.ui.administrador.DashboardActivity" />
+277-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+278        </activity>
+279        <activity
+279-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:280:9-291:20
+280            android:name="com.example.serious_game_usil.presentation.ui.patients.CreateEditPatientActivity"
+280-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:281:13-79
+281            android:exported="false"
+281-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:283:13-37
+282            android:label="Agregar Paciente"
+282-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:282:13-45
+283            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+283-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:285:13-88
+284            android:screenOrientation="portrait"
+284-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:284:13-49
+285            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+285-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:287:13-69
+286            android:windowSoftInputMode="adjustResize" >
+286-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:286:13-55
+287            <meta-data
+287-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+288                android:name="android.support.PARENT_ACTIVITY"
+288-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+289                android:value=".presentation.ui.patients.PatientsListActivity" />
+289-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+290        </activity>
+291        <activity
+291-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:293:9-303:20
+292            android:name="com.example.serious_game_usil.presentation.ui.patients.PatientDetailActivity"
+292-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:294:13-75
+293            android:exported="false"
+293-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:296:13-37
+294            android:label="Detalle del Paciente"
+294-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:295:13-49
+295            android:parentActivityName="com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity"
+295-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:298:13-88
+296            android:screenOrientation="portrait"
+296-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:297:13-49
+297            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+297-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:299:13-69
+298            <meta-data
+298-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+299                android:name="android.support.PARENT_ACTIVITY"
+299-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+300                android:value=".presentation.ui.patients.PatientsListActivity" />
+300-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+301        </activity>
+302
+303        <!-- Caregiver Management Activities -->
+304        <activity
+304-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:306:9-316:20
+305            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+305-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:307:13-78
+306            android:exported="false"
+306-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:309:13-37
+307            android:label="Gestión de Cuidadores"
+307-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:308:13-50
+308            android:parentActivityName="com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity"
+308-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:311:13-90
+309            android:screenOrientation="portrait"
+309-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:310:13-49
+310            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+310-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:312:13-69
+311            <meta-data
+311-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+312                android:name="android.support.PARENT_ACTIVITY"
+312-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+313                android:value=".presentation.ui.administrador.DashboardActivity" />
+313-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+314        </activity>
+315        <activity
+315-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:318:9-329:20
+316            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CreateEditCaregiverActivity"
+316-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:319:13-83
+317            android:exported="false"
+317-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:321:13-37
+318            android:label="Agregar Cuidador"
+318-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:320:13-45
+319            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+319-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:323:13-92
+320            android:screenOrientation="portrait"
+320-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:322:13-49
+321            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+321-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:325:13-69
+322            android:windowSoftInputMode="adjustResize" >
+322-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:324:13-55
+323            <meta-data
+323-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+324                android:name="android.support.PARENT_ACTIVITY"
+324-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+325                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+325-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+326        </activity>
+327        <activity
+327-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:331:9-341:20
+328            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverDetailActivity"
+328-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:332:13-79
+329            android:exported="false"
+329-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:334:13-37
+330            android:label="Detalle del Cuidador"
+330-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:333:13-49
+331            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+331-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:336:13-92
+332            android:screenOrientation="portrait"
+332-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:335:13-49
+333            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+333-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:337:13-69
+334            <meta-data
+334-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+335                android:name="android.support.PARENT_ACTIVITY"
+335-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+336                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+336-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+337        </activity>
+338        <activity
+338-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:342:9-352:20
+339            android:name="com.example.serious_game_usil.presentation.ui.caregivers.CaregiverPatientsManagementActivity"
+339-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:343:13-91
+340            android:exported="false"
+340-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:345:13-37
+341            android:label="Pacientes del Cuidador"
+341-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:344:13-51
+342            android:parentActivityName="com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity"
+342-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:347:13-92
+343            android:screenOrientation="portrait"
+343-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:346:13-49
+344            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+344-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:348:13-69
+345            <meta-data
+345-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+346                android:name="android.support.PARENT_ACTIVITY"
+346-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+347                android:value=".presentation.ui.caregivers.CaregiversListActivity" />
+347-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+348        </activity>
+349
+350        <!-- My Patients Activity (for Parents/Caregivers) -->
+351        <activity
+351-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:355:9-365:20
+352            android:name="com.example.serious_game_usil.presentation.ui.padres.MyPatientsActivity"
+352-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:356:13-70
+353            android:exported="false"
+353-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:358:13-37
+354            android:label="Mis Pacientes Asignados"
+354-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:357:13-52
+355            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+355-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:360:13-89
+356            android:screenOrientation="portrait"
+356-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:359:13-49
+357            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+357-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:361:13-69
+358            <meta-data
+358-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+359                android:name="android.support.PARENT_ACTIVITY"
+359-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+360                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+360-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+361        </activity>
+362
+363        <!-- My Sessions Activity (for Parents/Caregivers) -->
+364        <activity
+364-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:368:9-378:20
+365            android:name="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
+365-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:369:13-70
+366            android:exported="false"
+366-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:371:13-37
+367            android:label="Mis Sesiones Terapéuticas"
+367-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:370:13-54
+368            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.PadresDashboardActivity"
+368-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:373:13-89
+369            android:screenOrientation="portrait"
+369-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:372:13-49
+370            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+370-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:374:13-69
+371            <meta-data
+371-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+372                android:name="android.support.PARENT_ACTIVITY"
+372-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+373                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+373-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+374        </activity>
+375
+376        <!-- Session Detail Activity (for Parents/Caregivers) -->
+377        <activity
+377-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:381:9-391:20
+378            android:name="com.example.serious_game_usil.presentation.ui.padres.SessionDetailActivity"
+378-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:382:13-73
+379            android:exported="false"
+379-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:384:13-37
+380            android:label="Detalle de Sesión"
+380-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:383:13-46
+381            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
+381-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:386:13-84
+382            android:screenOrientation="portrait"
+382-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:385:13-49
+383            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+383-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:387:13-69
+384            <meta-data
+384-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+385                android:name="android.support.PARENT_ACTIVITY"
+385-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+386                android:value=".presentation.ui.padres.MySessionsActivity" />
+386-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+387        </activity>
+388
+389        <!-- Therapist Dashboard Activity -->
+390        <activity
+390-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:394:9-399:72
+391            android:name="com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity"
+391-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:395:13-78
+392            android:exported="false"
+392-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:397:13-37
+393            android:label="Dashboard Terapeuta"
+393-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:396:13-48
+394            android:screenOrientation="portrait"
+394-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:398:13-49
+395            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+395-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:399:13-69
+396
+397        <!-- Therapy Sessions Management Activity -->
+398        <activity
+398-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:402:9-412:20
+399            android:name="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
+399-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:403:13-82
+400            android:exported="false"
+400-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:405:13-37
+401            android:label="Gestión de Sesiones"
+401-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:404:13-48
+402            android:parentActivityName="com.example.serious_game_usil.presentation.ui.terapeuta.TerapeutaDrawerActivity"
+402-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:407:13-92
+403            android:screenOrientation="portrait"
+403-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:406:13-49
+404            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+404-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:408:13-69
+405            <meta-data
+405-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+406                android:name="android.support.PARENT_ACTIVITY"
+406-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+407                android:value=".presentation.ui.terapeuta.TerapeutaDrawerActivity" />
+407-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+408        </activity>
+409
+410        <!-- Create Therapy Session Activity -->
+411        <activity
+411-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:415:9-426:20
+412            android:name="com.example.serious_game_usil.presentation.ui.therapy.CreateSessionActivity"
+412-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:416:13-74
+413            android:exported="false"
+413-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:418:13-37
+414            android:label="Crear Sesión Terapéutica"
+414-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:417:13-53
+415            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
+415-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:420:13-96
+416            android:screenOrientation="portrait"
+416-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:419:13-49
+417            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+417-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:422:13-69
+418            android:windowSoftInputMode="adjustResize" >
+418-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:421:13-55
+419            <meta-data
+419-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+420                android:name="android.support.PARENT_ACTIVITY"
+420-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+421                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
+421-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+422        </activity>
+423
+424        <!-- Session Detail Activity -->
+425        <activity
+425-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:429:9-439:20
+426            android:name="com.example.serious_game_usil.presentation.ui.therapy.SessionDetailActivity"
+426-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:430:13-74
+427            android:exported="false"
+427-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:432:13-37
+428            android:label="Detalle de Sesión"
+428-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:431:13-46
+429            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity"
+429-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:434:13-96
+430            android:screenOrientation="portrait"
+430-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:433:13-49
+431            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" >
+431-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:435:13-69
+432            <meta-data
+432-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+433                android:name="android.support.PARENT_ACTIVITY"
+433-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+434                android:value=".presentation.ui.therapy.SimpleTherapySessionsActivity" />
+434-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+435        </activity>
+436
+437        <!-- Edit Session Activity -->
+438        <activity
+438-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:442:9-453:20
+439            android:name="com.example.serious_game_usil.presentation.ui.therapy.EditSessionActivity"
+439-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:443:13-72
+440            android:exported="false"
+440-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:445:13-37
+441            android:label="Editar Sesión"
+441-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:444:13-42
+442            android:parentActivityName="com.example.serious_game_usil.presentation.ui.therapy.SessionDetailActivity"
+442-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:447:13-88
+443            android:screenOrientation="portrait"
+443-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:446:13-49
+444            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+444-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:449:13-69
+445            android:windowSoftInputMode="adjustResize" >
+445-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:448:13-55
+446            <meta-data
+446-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+447                android:name="android.support.PARENT_ACTIVITY"
+447-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+448                android:value=".presentation.ui.therapy.SessionDetailActivity" />
+448-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+449        </activity>
+450
+451        <!-- Rate Therapist Activity -->
+452        <activity
+452-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:456:9-467:20
+453            android:name="com.example.serious_game_usil.presentation.ui.therapy.RateTherapistActivity"
+453-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:457:13-74
+454            android:exported="false"
+454-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:459:13-37
+455            android:label="Calificar Terapeuta"
+455-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:458:13-48
+456            android:parentActivityName="com.example.serious_game_usil.presentation.ui.padres.MySessionsActivity"
+456-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:461:13-84
+457            android:screenOrientation="portrait"
+457-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:460:13-49
+458            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar"
+458-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:463:13-69
+459            android:windowSoftInputMode="adjustResize" >
+459-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:462:13-55
+460            <meta-data
+460-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:133:13-135:88
+461                android:name="android.support.PARENT_ACTIVITY"
+461-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:134:17-63
+462                android:value=".presentation.ui.padres.MySessionsActivity" />
+462-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:135:17-85
+463        </activity>
+464
+465        <provider
+466            android:name="androidx.core.content.FileProvider"
+466-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:470:13-62
+467            android:authorities="com.example.serious_game_usil.fileprovider"
+467-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:471:13-64
+468            android:exported="false"
+468-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:472:13-37
+469            android:grantUriPermissions="true" >
+469-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:473:13-47
 470            <meta-data
-470-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
-471                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-471-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
-472                android:value="androidx.startup" />
-472-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+470-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:474:13-476:54
+471                android:name="android.support.FILE_PROVIDER_PATHS"
+471-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:475:17-67
+472                android:resource="@xml/file_paths" />
+472-->/Users/jhafetcanepa/Documents/tesis_titulacion/android/app/src/main/AndroidManifest.xml:476:17-51
 473        </provider>
 474
-475        <receiver
-475-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
-476            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-476-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
-477            android:directBootAware="false"
-477-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
-478            android:enabled="true"
-478-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
-479            android:exported="true"
-479-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
-480            android:permission="android.permission.DUMP" >
-480-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
-481            <intent-filter>
-481-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
-482                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-482-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
-482-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
-483            </intent-filter>
-484            <intent-filter>
-484-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
-485                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-485-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
-485-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
-486            </intent-filter>
-487            <intent-filter>
-487-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
-488                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-488-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
-488-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
-489            </intent-filter>
-490            <intent-filter>
-490-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
-491                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-491-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
-491-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
-492            </intent-filter>
-493        </receiver>
-494    </application>
-495
-496</manifest>
+475        <activity
+475-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+476            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+476-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+477            android:exported="false"
+477-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+478            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+478-->[com.google.android.gms:play-services-base:18.0.1] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/1a9de505a20696cd4d7a7ec6646b286a/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+479
+480        <meta-data
+480-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+481            android:name="com.google.android.gms.version"
+481-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+482            android:value="@integer/google_play_services_version" />
+482-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/81af9b2518a63367f63e2d750a6d456d/transformed/play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+483
+484        <activity
+484-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+485            android:name="androidx.compose.ui.tooling.PreviewActivity"
+485-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+486            android:exported="true" />
+486-->[androidx.compose.ui:ui-tooling-android:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/9fb3c5905320c02490ea42044dc6bedf/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+487        <activity
+487-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:23:9-25:39
+488            android:name="androidx.activity.ComponentActivity"
+488-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:24:13-63
+489            android:exported="true" />
+489-->[androidx.compose.ui:ui-test-manifest:1.6.6] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/0bb3069b84d36683545388d30243110a/transformed/ui-test-manifest-1.6.6/AndroidManifest.xml:25:13-36
+490
+491        <provider
+491-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+492            android:name="androidx.startup.InitializationProvider"
+492-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+493            android:authorities="com.example.serious_game_usil.androidx-startup"
+493-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+494            android:exported="false" >
+494-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+495            <meta-data
+495-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+496                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+496-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+497                android:value="androidx.startup" />
+497-->[androidx.emoji2:emoji2:1.3.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/fbca16b4bdb0d825ff310b740ce5d66e/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+498            <meta-data
+498-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:34:13-36:52
+499                android:name="androidx.work.WorkManagerInitializer"
+499-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:35:17-68
+500                android:value="androidx.startup" />
+500-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:36:17-49
+501            <meta-data
+501-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+502                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+502-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+503                android:value="androidx.startup" />
+503-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/b59414c978b83dde946181c3b19c1850/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+504            <meta-data
+504-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+505                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+505-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+506                android:value="androidx.startup" />
+506-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+507        </provider>
+508
+509        <service
+509-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:39:9-45:35
+510            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+510-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:40:13-88
+511            android:directBootAware="false"
+511-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:41:13-44
+512            android:enabled="@bool/enable_system_alarm_service_default"
+512-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:42:13-72
+513            android:exported="false" />
+513-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:43:13-37
+514        <service
+514-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:46:9-52:35
+515            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+515-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:47:13-84
+516            android:directBootAware="false"
+516-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:48:13-44
+517            android:enabled="@bool/enable_system_job_service_default"
+517-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:49:13-70
+518            android:exported="true"
+518-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:50:13-36
+519            android:permission="android.permission.BIND_JOB_SERVICE" />
+519-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:51:13-69
+520        <service
+520-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:53:9-59:35
+521            android:name="androidx.work.impl.foreground.SystemForegroundService"
+521-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:54:13-81
+522            android:directBootAware="false"
+522-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:55:13-44
+523            android:enabled="@bool/enable_system_foreground_service_default"
+523-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:56:13-77
+524            android:exported="false" />
+524-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:57:13-37
+525
+526        <receiver
+526-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:61:9-66:35
+527            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+527-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:62:13-88
+528            android:directBootAware="false"
+528-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:63:13-44
+529            android:enabled="true"
+529-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:64:13-35
+530            android:exported="false" />
+530-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:65:13-37
+531        <receiver
+531-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:67:9-77:20
+532            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+532-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:68:13-106
+533            android:directBootAware="false"
+533-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:69:13-44
+534            android:enabled="false"
+534-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:70:13-36
+535            android:exported="false" >
+535-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:71:13-37
+536            <intent-filter>
+536-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:73:13-76:29
+537                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+537-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:17-87
+537-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:25-84
+538                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+538-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:17-90
+538-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:25-87
+539            </intent-filter>
+540        </receiver>
+541        <receiver
+541-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:78:9-88:20
+542            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+542-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:79:13-104
+543            android:directBootAware="false"
+543-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:80:13-44
+544            android:enabled="false"
+544-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:81:13-36
+545            android:exported="false" >
+545-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:82:13-37
+546            <intent-filter>
+546-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:84:13-87:29
+547                <action android:name="android.intent.action.BATTERY_OKAY" />
+547-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:17-77
+547-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:25-74
+548                <action android:name="android.intent.action.BATTERY_LOW" />
+548-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:17-76
+548-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:25-73
+549            </intent-filter>
+550        </receiver>
+551        <receiver
+551-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:89:9-99:20
+552            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+552-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:90:13-104
+553            android:directBootAware="false"
+553-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:91:13-44
+554            android:enabled="false"
+554-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:92:13-36
+555            android:exported="false" >
+555-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:93:13-37
+556            <intent-filter>
+556-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:95:13-98:29
+557                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+557-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:17-83
+557-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:25-80
+558                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+558-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:17-82
+558-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:25-79
+559            </intent-filter>
+560        </receiver>
+561        <receiver
+561-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:100:9-109:20
+562            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+562-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:101:13-103
+563            android:directBootAware="false"
+563-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:102:13-44
+564            android:enabled="false"
+564-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:103:13-36
+565            android:exported="false" >
+565-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:104:13-37
+566            <intent-filter>
+566-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:106:13-108:29
+567                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+567-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:17-79
+567-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:25-76
+568            </intent-filter>
+569        </receiver>
+570        <receiver
+570-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:110:9-121:20
+571            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+571-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:111:13-88
+572            android:directBootAware="false"
+572-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:112:13-44
+573            android:enabled="false"
+573-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:113:13-36
+574            android:exported="false" >
+574-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:114:13-37
+575            <intent-filter>
+575-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:116:13-120:29
+576                <action android:name="android.intent.action.BOOT_COMPLETED" />
+576-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:117:17-79
+576-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:117:25-76
+577                <action android:name="android.intent.action.TIME_SET" />
+577-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:17-73
+577-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:25-70
+578                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+578-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:17-81
+578-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:25-78
+579            </intent-filter>
+580        </receiver>
+581        <receiver
+581-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:122:9-131:20
+582            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+582-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:123:13-99
+583            android:directBootAware="false"
+583-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:124:13-44
+584            android:enabled="@bool/enable_system_alarm_service_default"
+584-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:125:13-72
+585            android:exported="false" >
+585-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:126:13-37
+586            <intent-filter>
+586-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:128:13-130:29
+587                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+587-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:17-98
+587-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:25-95
+588            </intent-filter>
+589        </receiver>
+590        <receiver
+590-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:132:9-142:20
+591            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+591-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:133:13-78
+592            android:directBootAware="false"
+592-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:134:13-44
+593            android:enabled="true"
+593-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:135:13-35
+594            android:exported="true"
+594-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:136:13-36
+595            android:permission="android.permission.DUMP" >
+595-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:137:13-57
+596            <intent-filter>
+596-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:139:13-141:29
+597                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+597-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:17-88
+597-->[androidx.work:work-runtime:2.9.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/21e5e92ab224cd9ba3ec21e3b8f8a600/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:25-85
+598            </intent-filter>
+599        </receiver>
+600
+601        <service
+601-->[androidx.room:room-runtime:2.5.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/e9ec203520df4663b52d4a5fa400423f/transformed/room-runtime-2.5.0/AndroidManifest.xml:24:9-28:63
+602            android:name="androidx.room.MultiInstanceInvalidationService"
+602-->[androidx.room:room-runtime:2.5.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/e9ec203520df4663b52d4a5fa400423f/transformed/room-runtime-2.5.0/AndroidManifest.xml:25:13-74
+603            android:directBootAware="true"
+603-->[androidx.room:room-runtime:2.5.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/e9ec203520df4663b52d4a5fa400423f/transformed/room-runtime-2.5.0/AndroidManifest.xml:26:13-43
+604            android:exported="false" />
+604-->[androidx.room:room-runtime:2.5.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/e9ec203520df4663b52d4a5fa400423f/transformed/room-runtime-2.5.0/AndroidManifest.xml:27:13-37
+605
+606        <receiver
+606-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+607            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+607-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+608            android:directBootAware="false"
+608-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+609            android:enabled="true"
+609-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+610            android:exported="true"
+610-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+611            android:permission="android.permission.DUMP" >
+611-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+612            <intent-filter>
+612-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+613                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+613-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+613-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+614            </intent-filter>
+615            <intent-filter>
+615-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+616                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+616-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+616-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+617            </intent-filter>
+618            <intent-filter>
+618-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+619                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+619-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+619-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+620            </intent-filter>
+621            <intent-filter>
+621-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+622                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+622-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+622-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/jhafetcanepa/.gradle/caches/8.9/transforms/eeae6d3dd0159c80eee6d2dae80f164e/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+623            </intent-filter>
+624        </receiver>
+625    </application>
+626
+627</manifest>

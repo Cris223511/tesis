@@ -124,10 +124,18 @@ class CreateUserActivity : AppCompatActivity() {
             binding.rolesContainer.removeAllViews()
 
             roles.forEach { role ->
+                // Deshabilitar checkbox de "administrador" (roles AD, admin, administrador)
+                val isAdminRole = role.name.equals("AD", ignoreCase = true) ||
+                                  role.name.equals("admin", ignoreCase = true) ||
+                                  role.name.equals("administrador", ignoreCase = true)
+
                 val checkBox = com.google.android.material.checkbox.MaterialCheckBox(this).apply {
-                    text = role.name
+                    text = if (isAdminRole) "${role.name} (No disponible)" else role.name
                     textSize = 16f
                     setPadding(8, 8, 8, 8)
+                    isEnabled = !isAdminRole
+                    alpha = if (isAdminRole) 0.5f else 1.0f
+
                     setOnCheckedChangeListener { _, isChecked ->
                         if (isChecked) {
                             selectedRoles.add(role.id)

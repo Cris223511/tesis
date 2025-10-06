@@ -218,6 +218,33 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
+        <!-- Videos Educativos Activity -->
+        <activity
+            android:name=".presentation.ui.videos.VideosEducativosActivity"
+            android:label="Videos Educativos"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.padres.PadresDashboardActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.padres.PadresDashboardActivity" />
+        </activity>
+
+        <!-- Video Player Activity Simple con WebView -->
+        <activity
+            android:name=".presentation.ui.videos.VideoPlayerActivitySimple"
+            android:label="Reproductor de Video"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".presentation.ui.videos.VideosEducativosActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.videos.VideosEducativosActivity" />
+        </activity>
+
         <!-- Info Activity -->
         <activity
             android:name=".presentation.ui.administrador.info.InfoActivity"

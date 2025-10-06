@@ -166,7 +166,6 @@ class EditUserActivity : AppCompatActivity() {
                     phoneEditText.setText(it.telefono)
                     emailEditText.setText(it.correo)
 
-                    // Seleccionar roles actuales
                     selectedRoles.clear()
                     it.roles.forEach { role ->
                         selectedRoles.add(role.id)
@@ -176,26 +175,65 @@ class EditUserActivity : AppCompatActivity() {
         }
 
         viewModel.rolesState.observe(this) { roles ->
+            val currentUser = viewModel.userState.value
             binding.rolesContainer.removeAllViews()
 
-            roles.forEach { role ->
-                val checkBox = com.google.android.material.checkbox.MaterialCheckBox(this).apply {
-                    text = role.name
-                    textSize = 16f
-                    setPadding(8, 8, 8, 8)
-                    isChecked = selectedRoles.contains(role.id)
+            // Obtener roles de administrador del usuario actual
+            val adminRolesFromUser = currentUser?.roles?.filter {
+                it.name.equals("AD", ignoreCase = true) ||
+                it.name.equals("admin", ignoreCase = true) ||
+                it.name.equals("administrador", ignoreCase = true)
+            } ?: emptyList()
 
-                    setOnCheckedChangeListener { _, isChecked ->
-                        if (isChecked) {
-                            selectedRoles.add(role.id)
-                        } else {
-                            selectedRoles.remove(role.id)
-                        }
-                        updateSaveButtonState()
-                    }
+            val userHasAdminRole = adminRolesFromUser.isNotEmpty()
+
+            // Crear set de IDs de roles admin del usuario
+            val userAdminRoleIds = adminRolesFromUser.map { it.id }.toSet()
+
+            roles.forEach { role ->
+                val isAdminRole = role.name.equals("AD", ignoreCase = true) ||
+                                  role.name.equals("admin", ignoreCase = true) ||
+                                  role.name.equals("administrador", ignoreCase = true)
+
+                // Determinar si se debe mostrar este rol
+                val shouldShow = when {
+                    // Si el usuario YA tiene este rol admin, mostrarlo deshabilitado
+                    isAdminRole && userAdminRoleIds.contains(role.id) -> true
+                    // Si es rol admin pero el usuario NO lo tiene, NO mostrarlo
+                    isAdminRole && !userAdminRoleIds.contains(role.id) -> false
+                    // Cualquier otro rol, mostrarlo normalmente
+                    else -> true
                 }
 
-                binding.rolesContainer.addView(checkBox)
+                if (shouldShow) {
+                    val checkBox = com.google.android.material.checkbox.MaterialCheckBox(this).apply {
+                        // Si el usuario tiene este rol admin, mostrarlo deshabilitado
+                        val isUserAdminRole = isAdminRole && userAdminRoleIds.contains(role.id)
+
+                        text = if (isUserAdminRole) "${role.name} (No modificable)" else role.name
+                        textSize = 16f
+                        setPadding(8, 8, 8, 8)
+                        isChecked = selectedRoles.contains(role.id)
+                        isEnabled = !isUserAdminRole
+                        alpha = if (isUserAdminRole) 0.6f else 1.0f
+
+                        // Asegurar que el rol admin del usuario siempre esté seleccionado
+                        if (isUserAdminRole && !selectedRoles.contains(role.id)) {
+                            selectedRoles.add(role.id)
+                        }
+
+                        setOnCheckedChangeListener { _, isChecked ->
+                            if (isChecked) {
+                                selectedRoles.add(role.id)
+                            } else {
+                                selectedRoles.remove(role.id)
+                            }
+                            updateSaveButtonState()
+                        }
+                    }
+
+                    binding.rolesContainer.addView(checkBox)
+                }
             }
         }
 
@@ -243,7 +281,22 @@ class EditUserActivity : AppCompatActivity() {
                 }
                 is EditUserState.Error -> {
                     showLoading(false)
-                    Snackbar.make(binding.root, state.message, Snackbar.LENGTH_LONG).show()
+
+                    val errorMessage = when {
+                        state.message.contains("no puede remover su propio rol", ignoreCase = true) -> {
+                            "No puede remover su propio rol de administrador"
+                        }
+                        state.message.contains("roles no encontrados", ignoreCase = true) -> {
+                            "Roles inválidos seleccionados"
+                        }
+                        else -> state.message
+                    }
+
+                    AlertDialog.Builder(this)
+                        .setTitle("Error al actualizar")
+                        .setMessage(errorMessage)
+                        .setPositiveButton("Entendido", null)
+                        .show()
                 }
             }
         }

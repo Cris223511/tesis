@@ -148,7 +148,8 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
 
 
         binding.cardVideos.setOnClickListener {
-            Toast.makeText(this, "Videos educativos - Próximamente", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, com.example.serious_game_usil.presentation.ui.videos.VideosEducativosActivity::class.java)
+            startActivity(intent)
         }
 
         // Navegación inferior

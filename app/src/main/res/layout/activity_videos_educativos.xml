@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Videos Educativos"
+            app:titleTextColor="@android:color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenido principal -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Campo de búsqueda -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/searchInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:boxStrokeWidth="0dp"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_search"
+                    app:startIconTint="@color/text_secondary"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Buscar videos..."
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:maxLines="1"
+                        android:padding="16dp"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Categorías -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:text="Categorías"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodos"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Todos"
+                    android:checked="true"
+                    app:chipBackgroundColor="@color/chip_background_selector"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipConducta"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conducta"
+                    app:chipBackgroundColor="@color/chip_background_selector"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipComunicacion"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comunicación"
+                    app:chipBackgroundColor="@color/chip_background_selector"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEmociones"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emociones"
+                    app:chipBackgroundColor="@color/chip_background_selector"
+                    app:chipStrokeWidth="0dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- RecyclerView para videos -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/videosRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                tools:listitem="@layout/item_video_educativo" />
+
+            <!-- Estado vacío - Sin videos -->
+            <LinearLayout
+                android:id="@+id/emptyStateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_video_empty"
+                    android:tint="#9E9E9E"
+                    android:alpha="0.6" />
+
+                <TextView
+                    android:id="@+id/emptyStateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="No hay videos disponibles"
+                    android:textColor="@color/text_primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/emptyStateMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Los videos educativos aparecerán aquí"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="16sp"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <!-- Indicador de carga -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

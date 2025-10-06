@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- Sección de búsqueda -->
@@ -84,8 +85,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary"
-                        tools:text="Mostrando 1-10 de 43 usuarios" />
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        tools:text="Mostrando 1-5 de 25 usuarios" />
 
                     <ProgressBar
                         android:id="@+id/searchProgressBar"
@@ -118,11 +120,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingTop="8dp"
-                    android:paddingBottom="80dp"
+                    android:paddingBottom="16dp"
                     android:clipToPadding="false"
                     android:scrollbars="vertical"
                     android:scrollbarStyle="outsideOverlay"
-                    android:fadeScrollbars="true"
+                    android:fadeScrollbars="false"
+                    android:overScrollMode="always"
+                    android:nestedScrollingEnabled="true"
                     tools:listitem="@layout/item_users" />
 
                 <!-- Estado vacío - Sin usuarios -->
@@ -234,29 +238,33 @@
             android:id="@+id/paginationLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
+            app:cardElevation="4dp"
             app:strokeWidth="0dp"
+            android:layout_margin="8dp"
             android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPrevious"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:text="Anterior"
+                    android:textSize="12sp"
                     android:textAllCaps="false"
                     app:icon="@drawable/ic_chevron_left"
                     app:iconGravity="start"
-                    app:cornerRadius="24dp"
+                    app:iconSize="16dp"
+                    app:cornerRadius="8dp"
+                    app:strokeWidth="1dp"
                     android:enabled="false" />
 
                 <LinearLayout
@@ -264,23 +272,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_marginHorizontal="16dp">
+                    android:layout_marginHorizontal="8dp">
 
                     <TextView
                         android:id="@+id/pageInfoText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="12sp"
                         android:textColor="@color/text_primary"
                         android:textStyle="bold"
-                        tools:text="Página 1 de 5" />
+                        tools:text="Página 1 de 2" />
 
                     <ProgressBar
                         android:id="@+id/paginationProgressBar"
                         style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="2dp"
                         android:visibility="gone" />
 
                 </LinearLayout>
@@ -289,14 +297,17 @@
                     android:id="@+id/btnNext"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="6dp"
                     android:text="Siguiente"
+                    android:textSize="12sp"
                     android:textAllCaps="false"
                     app:icon="@drawable/ic_chevron_right"
                     app:iconGravity="end"
-                    app:cornerRadius="24dp"
+                    app:iconSize="16dp"
+                    app:cornerRadius="8dp"
+                    app:strokeWidth="1dp"
                     android:enabled="false" />
 
             </LinearLayout>
@@ -305,18 +316,20 @@
 
     </LinearLayout>
 
-    <!-- FAB para agregar usuario - Más compacto -->
+    <!-- FAB para agregar usuario -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
         android:contentDescription="Nuevo usuario"
         app:srcCompat="@drawable/ic_add"
         app:backgroundTint="@color/primary"
         app:tint="@android:color/white"
-        app:fabSize="normal" />
+        app:fabSize="normal"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

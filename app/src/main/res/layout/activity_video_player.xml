@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- Video Player -->
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtubePlayerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:autoPlay="true" />
+
+    <!-- Content ScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/background_light"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Video Title -->
+            <TextView
+                android:id="@+id/videoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"
+                tools:text="Título del Video Educativo sobre TEA" />
+
+            <!-- Channel Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="12dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_video_empty"
+                    android:background="@drawable/circle_background_blue"
+                    android:padding="8dp"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/videoChannel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    tools:text="Canal Educativo TEA" />
+
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDownload"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Descargar"
+                    android:textSize="12sp"
+                    app:icon="@drawable/ic_download"
+                    app:iconGravity="start"
+                    app:iconSize="18dp"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPictureInPicture"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Mini Player"
+                    android:textSize="12sp"
+                    app:icon="@drawable/ic_pip"
+                    app:iconGravity="start"
+                    app:iconSize="18dp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+            <!-- Category Badge -->
+            <TextView
+                android:id="@+id/videoCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/category_badge_background"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="COMUNICACIÓN" />
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Descripción"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/videoDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                tools:text="Esta es una descripción detallada del video educativo sobre el Trastorno del Espectro Autista (TEA)." />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Close Button (Floating) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Cerrar"
+        app:backgroundTint="@color/surface"
+        app:tint="@color/on_surface"
+        app:fabSize="normal"
+        app:elevation="6dp" />
+
+    <!-- Progress Indicator for Download -->
+    <LinearLayout
+        android:id="@+id/downloadProgressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/surface"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:elevation="8dp">
+
+        <TextView
+            android:id="@+id/downloadProgressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descargando video..."
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/downloadProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="0" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

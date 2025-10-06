@@ -15,4 +15,6 @@ public final class BuildConfig {
   public static final String RP_NAME = "SERIOUS_GAME";
   // Field from default config.
   public static final String RP_ORIGIN = "http://10.0.2.2:8080";
+  // Field from default config.
+  public static final String YOUTUBE_API_KEY = "AIzaSyD7aV8CVEvOi-jr3_74cDnhgeyIpOxw-hY";
 }

@@ -22,6 +22,12 @@ android {
         buildConfigField("String", "RP_ID", "\"localhost\"")
         buildConfigField("String", "RP_NAME", "\"SERIOUS_GAME\"")
 
+        // YouTube API Key - Leer desde .env o usar valor por defecto
+        val youtubeApiKey = project.findProperty("YOUTUBE_API_KEY")?.toString()
+            ?: System.getenv("YOUTUBE_API_KEY")
+            ?: "AIzaSyD7aV8CVEvOi-jr3_74cDnhgeyIpOxw-hY"
+        buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -139,5 +145,17 @@ dependencies {
 
     // Google Play Services para SMS Retriever API
     implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
+
+    // ExoPlayer para reproducción de videos
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
+    implementation("androidx.media3:media3-exoplayer-dash:1.2.1")
+    implementation("androidx.media3:media3-ui:1.2.1")
+    implementation("androidx.media3:media3-exoplayer-hls:1.2.1")
+
+    // YouTube Android Player API (para extraer URLs de streaming)
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+    // Descarga de archivos
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
 }

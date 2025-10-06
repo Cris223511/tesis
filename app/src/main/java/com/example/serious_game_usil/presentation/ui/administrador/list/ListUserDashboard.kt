@@ -37,7 +37,7 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
     private var isSearching = false
 
     companion object {
-        private const val PER_PAGE = 10
+        private const val PER_PAGE = 5  // Cambiado a 5 usuarios por página
         private  const val REQUEST_CREATE_USER = 1001
         private const val REQUEST_EDIT_USER = 1002
     }
@@ -253,7 +253,21 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
                     loadUsers()
                 }
                 is UserActionState.Error -> {
-                    showError(state.message)
+                    val errorMessage = when {
+                        state.message.contains("último administrador", ignoreCase = true) -> {
+                            "No se puede eliminar el último administrador del sistema"
+                        }
+                        state.message.contains("no se puede eliminar", ignoreCase = true) -> {
+                            state.message
+                        }
+                        else -> "Error: ${state.message}"
+                    }
+
+                    AlertDialog.Builder(this)
+                        .setTitle("Error en la operación")
+                        .setMessage(errorMessage)
+                        .setPositiveButton("Entendido", null)
+                        .show()
                 }
                 else -> {}
             }
@@ -347,9 +361,19 @@ class ListUserActivity : AppCompatActivity(), UsersAdapter.OnUserActionListener 
 
 
     override fun onDeleteClick(user: UserListItem) {
+        val isAdmin = user.roles.any { it.name == "AD" }
+
+        val message = if (isAdmin) {
+            "¿Estás seguro de eliminar al administrador ${user.nombresApellidos}?\n\n" +
+            "⚠️ ADVERTENCIA: No podrás eliminar este usuario si es el último administrador del sistema.\n\n" +
+            "Esta acción no se puede deshacer."
+        } else {
+            "¿Estás seguro de eliminar al usuario ${user.nombresApellidos}?\n\nEsta acción no se puede deshacer."
+        }
+
         AlertDialog.Builder(this)
             .setTitle("Eliminar usuario")
-            .setMessage("¿Estás seguro de eliminar al usuario ${user.nombresApellidos}?\n\nEsta acción no se puede deshacer.")
+            .setMessage(message)
             .setPositiveButton("Eliminar") { _, _ ->
                 viewModel.deleteUser(user.id)
             }

@@ -2,24 +2,19 @@ package com.example.serious_game_usil.presentation.ui.terapeuta
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.example.serious_game_usil.R
 import com.example.serious_game_usil.databinding.DashboardTerapeutaBinding
 import com.example.serious_game_usil.guards.AuthManager
 import com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.utils.ImageUtils
 import com.example.serious_game_usil.network.RetrofitClient
-import com.google.android.material.navigation.NavigationView
 import com.seriousgame.app.navigation.RouteNavigator
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
-class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class TerapeutaDrawerActivity : AppCompatActivity() {
 
     private lateinit var binding: DashboardTerapeutaBinding
 
@@ -36,7 +31,7 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
         setContentView(binding.root)
 
         setupViews()
-        setupNavigationDrawer()
+        setupToolbar()
         setupQuickActions()
         loadDashboardStats()
     }
@@ -57,37 +52,16 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
         }
     }
 
-    private fun setupNavigationDrawer() {
-        // Configurar el Navigation Drawer
-        binding.navView.setNavigationItemSelectedListener(this)
-
-        // Cargar foto del usuario en el header del drawer
-        val headerView = binding.navView.getHeaderView(0)
-        val drawerUserImage = headerView.findViewById<com.google.android.material.imageview.ShapeableImageView>(R.id.imageView)
-
-        val userPhoto = AuthManager.getFoto()
-        ImageUtils.loadUserPhoto(this, userPhoto, drawerUserImage)
-
-        // Configurar el botón hamburger
-        binding.menuButton.setOnClickListener {
-            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.START)
-            }
-        }
+    private fun setupToolbar() {
+        // Configurar toolbar simple sin navigation drawer
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "Dashboard Terapeuta"
     }
 
     private fun setupQuickActions() {
-        // Botón de gestionar cuidadores
+        // Botón de gestionar pacientes
         binding.cardManagePatients.setOnClickListener {
             val intent = Intent(this, CaregiversListActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Botón de análisis de progreso
-        binding.cardProgressAnalysis.setOnClickListener {
-            val intent = Intent(this, ProgressDetailActivity::class.java)
             startActivity(intent)
         }
 
@@ -99,43 +73,13 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
 
         // Botón de reportes
         binding.cardReports.setOnClickListener {
-            Toast.makeText(this, "Reportes y Análisis - En desarrollo", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ProgressDetailActivity::class.java)
+            startActivity(intent)
         }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_terapeuta_dashboard -> {
-                // Ya estamos en el dashboard terapeuta
-            }
-            R.id.nav_caregivers_list -> {
-                val intent = Intent(this, CaregiversListActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.nav_therapist_profile -> {
-                val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.nav_settings -> {
-                Toast.makeText(this, "Configuración - Próximamente", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_logout -> {
-                AuthManager.clearSession()
-                RouteNavigator.navigateToLogin(this)
-                finishAffinity()
-            }
-        }
-
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
-        return true
     }
 
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
+        super.onBackPressed()
     }
 
     override fun onResume() {
@@ -296,30 +240,17 @@ class TerapeutaDrawerActivity : AppCompatActivity(), NavigationView.OnNavigation
         isAdmin: Boolean,
         therapists: Int = 0
     ) {
-        // Actualizar las estadísticas principales
+        // Actualizar las estadísticas principales (solo números, sin labels)
         if (isAdmin) {
-            // Para admin: mostrar estadísticas globales en las tarjetas principales
+            // Para admin: mostrar estadísticas globales
             binding.textTotalPatients.text = patients.toString()
             binding.textWeeklySessions.text = sessions.toString()
-            binding.textAvgProgress.text = "${therapists} "
-
-            // Actualizar etiquetas para admin
-            binding.labelPatients.text = "Total Pacientes"
-            binding.labelSessions.text = "Sesiones Totales"
-            binding.labelProgress.text = "Total Terapeutas"
-
-            // Estadísticas secundarias
-            binding.textActivePatients.text = progress.toString()
-            binding.labelActivePatients.text = "Progreso Sistema (${progress}%)"
+            binding.textAvgProgress.text = therapists.toString()
         } else {
             // Para terapeuta: mostrar sus propias estadísticas
             binding.textTotalPatients.text = patients.toString()
             binding.textWeeklySessions.text = sessions.toString()
-            binding.textAvgProgress.text = "${progress}%"
-
-            binding.labelPatients.text = "Mis Pacientes"
-            binding.labelSessions.text = "Mis Sesiones"
-            binding.labelProgress.text = "Mi Progreso"
+            binding.textAvgProgress.text = progress.toString()
         }
     }
 
