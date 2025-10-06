@@ -2,7 +2,7 @@ package dto
 
 type CreateTherapySessionDTO struct {
 	PacienteID     uint     `json:"paciente_id" binding:"required"`
-	TerapeutaID    *uint    `json:"terapeuta_id,omitempty"` // Opcional, si no se especifica, se asigna el terapeuta actual
+	TerapeutaID    *uint    `json:"terapeuta_id,omitempty"` 
 	FechaSesion    string   `json:"fecha_sesion" binding:"required"`
 	HoraInicio     string   `json:"hora_inicio" binding:"required"`
 	HoraFin        string   `json:"hora_fin" binding:"required"`
@@ -46,28 +46,30 @@ type SearchSessionsDTO struct {
 }
 
 type SessionResponse struct {
-	ID              uint     `json:"id"`
-	PacienteID      uint     `json:"paciente_id"`
-	TerapeutaID     uint     `json:"terapeuta_id"`
-	FechaSesion     string   `json:"fecha_sesion"`
-	HoraInicio      string   `json:"hora_inicio"`
-	HoraFin         string   `json:"hora_fin"`
-	Duracion        int      `json:"duracion"`
-	Ubicacion       string   `json:"ubicacion"`
-	Direccion       string   `json:"direccion"`
-	Descripcion     string   `json:"descripcion"`
-	Objetivos       []string `json:"objetivos"`
-	Materiales      []string `json:"materiales"`
-	NotasTerapeuta  string   `json:"notas_terapeuta"`
-	Estado          string   `json:"estado"`
-	TipoSesion      string   `json:"tipo_sesion"`
-	Modalidad       string   `json:"modalidad"`
-	UpdateCount     int      `json:"update_count"`
-	CreatedAt       string   `json:"created_at"`
-	UpdatedAt       string   `json:"updated_at"`
-	Paciente        PatientBasicInfo `json:"paciente"`
-	Terapeuta       UserBasicInfo    `json:"terapeuta"`
-	Cuidador        *UserBasicInfo   `json:"cuidador,omitempty"`
+	ID                   uint                      `json:"id"`
+	PacienteID           uint                      `json:"paciente_id"`
+	TerapeutaID          uint                      `json:"terapeuta_id"`
+	FechaSesion          string                    `json:"fecha_sesion"`
+	HoraInicio           string                    `json:"hora_inicio"`
+	HoraFin              string                    `json:"hora_fin"`
+	Duracion             int                       `json:"duracion"`
+	Ubicacion            string                    `json:"ubicacion"`
+	Direccion            string                    `json:"direccion"`
+	Descripcion          string                    `json:"descripcion"`
+	Objetivos            []string                  `json:"objetivos"`
+	Materiales           []string                  `json:"materiales"`
+	NotasTerapeuta       string                    `json:"notas_terapeuta"`
+	Estado               string                    `json:"estado"`
+	TipoSesion           string                    `json:"tipo_sesion"`
+	Modalidad            string                    `json:"modalidad"`
+	UpdateCount          int                       `json:"update_count"`
+	CreatedAt            string                    `json:"created_at"`
+	UpdatedAt            string                    `json:"updated_at"`
+	Paciente             PatientBasicInfo          `json:"paciente"`
+	Terapeuta            UserBasicInfo             `json:"terapeuta"`
+	Cuidador             *UserBasicInfo            `json:"cuidador,omitempty"`
+	Rating               *TherapistRatingResponse  `json:"rating,omitempty"`
+	TerapeutaReasignado  *UserBasicInfo            `json:"terapeuta_reasignado,omitempty"`
 }
 
 type PatientBasicInfo struct {
@@ -106,7 +108,7 @@ type PatientStatsResponse struct {
 	AverageSessionDuration int `json:"average_session_duration"`
 }
 
-// ============== THERAPIST RATING DTOs ==============
+
 
 type CreateTherapistRatingDTO struct {
 	SessionID    uint   `json:"session_id" binding:"required"`
@@ -128,7 +130,6 @@ type TherapistRatingResponse struct {
 	CreatedAt    string `json:"created_at"`
 	UpdatedAt    string `json:"updated_at"`
 
-	// Basic info for relationships
 	TherapistName string `json:"therapist_name,omitempty"`
 	CaregiverName string `json:"caregiver_name,omitempty"`
 	PatientName   string `json:"patient_name,omitempty"`

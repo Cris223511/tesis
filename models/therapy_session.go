@@ -35,9 +35,10 @@ func (a *StringArray) Scan(value interface{}) error {
 
 
 type TherapySession struct {
-	ID              uint         `gorm:"primaryKey;autoIncrement" json:"id"`
-	PacienteID      uint         `gorm:"not null;index" json:"paciente_id"`
-	TerapeutaID     uint         `gorm:"not null;index" json:"terapeuta_id"`
+	ID                     uint         `gorm:"primaryKey;autoIncrement" json:"id"`
+	PacienteID             uint         `gorm:"not null;index" json:"paciente_id"`
+	TerapeutaID            uint         `gorm:"not null;index" json:"terapeuta_id"`
+	TerapeutaReasignadoID  *uint        `gorm:"index" json:"terapeuta_reasignado_id,omitempty"`
 
 	FechaSesion     time.Time    `gorm:"not null;index" json:"fecha_sesion"`
 	HoraInicio      string       `gorm:"size:10;not null" json:"hora_inicio"`
@@ -61,8 +62,9 @@ type TherapySession struct {
 	CreatedAt       time.Time    `gorm:"index" json:"created_at"`
 	UpdatedAt       time.Time    `json:"updated_at"`
 
-	Paciente        Patient      `gorm:"foreignKey:PacienteID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"paciente,omitempty"`
-	Terapeuta       Usuarios     `gorm:"foreignKey:TerapeutaID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"terapeuta,omitempty"`
+	Paciente            Patient      `gorm:"foreignKey:PacienteID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"paciente,omitempty"`
+	Terapeuta           Usuarios     `gorm:"foreignKey:TerapeutaID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"terapeuta,omitempty"`
+	TerapeutaReasignado *Usuarios    `gorm:"foreignKey:TerapeutaReasignadoID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL" json:"terapeuta_reasignado,omitempty"`
 }
 
 func (t *TherapySession) TableName() string {

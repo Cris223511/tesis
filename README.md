@@ -724,6 +724,27 @@ go tool pprof http://localhost:8080/debug/pprof/profile
 - **Visualización dinámica**: Las calificaciones se muestran automáticamente en la interfaz
 - **Permisos por rol**: Los administradores pueden calificar en nombre de cualquier cuidador
 
+### Sistema de Reasignación Automática de Terapeutas 🆕
+- **Detección de calificaciones bajas**: Cuando un terapeuta recibe una calificación de 1-3 estrellas, el sistema activa automáticamente el proceso de reasignación
+- **Búsqueda inteligente de terapeutas**: Encuentra un nuevo terapeuta disponible que cumpla con los criterios:
+  - No sea el terapeuta actual
+  - No esté descalificado (menos de 20 malas calificaciones)
+  - Tenga menos de 20 pacientes asignados
+  - Esté activo en el sistema
+- **Reasignación automática de sesiones**:
+  - Actualiza todas las sesiones futuras con estado "programada" al nuevo terapeuta
+  - Actualiza el terapeuta predeterminado del paciente
+  - Guarda el ID del nuevo terapeuta en la sesión calificada para referencia histórica
+- **Creación automática de sesiones de seguimiento**:
+  - Si no hay sesiones futuras programadas, crea automáticamente una nueva sesión
+  - Programa la sesión 8 días hábiles después de la calificación (excluyendo fines de semana)
+  - Configura la sesión con objetivos predefinidos: "Evaluación inicial con nuevo terapeuta", "Establecer rapport", "Definir plan de tratamiento"
+  - Duración estándar: 60 minutos (10:00 AM - 11:00 AM)
+- **Cálculo de días hábiles**: Algoritmo que excluye sábados y domingos para programación precisa
+- **Sistema de descalificación**: Contador de malas calificaciones por terapeuta con eliminación automática tras 20 calificaciones bajas
+- **Notificaciones automáticas**: Envío de emails a cuidadores y nuevo terapeuta asignado (funcionalidad preparada)
+- **Logs detallados**: Registro completo del proceso de reasignación para auditoría y debugging
+
 ### Dashboard Diferenciado por Rol
 - **Estadísticas de Administrador**: Vista global con total de terapeutas, pacientes, sesiones y calificaciones
 - **Estadísticas de Terapeuta**: Vista personalizada con pacientes propios, sesiones programadas y calificaciones recibidas

@@ -189,7 +189,7 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 
 	sessionResponses := make([]dto.SessionResponse, len(sessions))
 	for i, session := range sessions {
-		sessionResponses[i] = s.toSessionResponse(session)
+		sessionResponses[i] = s.ToSessionResponse(session)
 	}
 
 	return &dto.PaginatedSessionsResponse{
@@ -205,7 +205,7 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 
 func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.TherapySession, error) {
 	var session models.TherapySession
-	query := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").Where("is_deleted = ?", false)
+	query := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").Preload("TerapeutaReasignado").Where("is_deleted = ?", false)
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Joins("JOIN patients ON patients.id = therapy_sessions.paciente_id").
@@ -486,7 +486,7 @@ func (s *TherapyService) calculateDuration(horaInicio, horaFin string) (int, err
 	return int(duracion.Minutes()), nil
 }
 
-func (s *TherapyService) toSessionResponse(session models.TherapySession) dto.SessionResponse {
+func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.SessionResponse {
 	// Log para debugging de datos del cuidador
 	log.Printf("[DEBUG] Session ID: %d, Paciente: %s, PacienteID: %d",
 		session.ID, session.Paciente.NombresApellidos, session.Paciente.ID)
@@ -547,6 +547,50 @@ func (s *TherapyService) toSessionResponse(session models.TherapySession) dto.Se
 		log.Printf("[DEBUG] Cuidador agregado a respuesta: %s", response.Cuidador.NombresApellidos)
 	} else {
 		log.Printf("[DEBUG] No se agregó cuidador a la respuesta")
+	}
+
+	// Agregar calificación si existe
+	var rating models.TherapistRating
+	if err := s.db.Where("session_id = ?", session.ID).First(&rating).Error; err == nil {
+		response.Rating = &dto.TherapistRatingResponse{
+			ID:          rating.ID,
+			SessionID:   rating.SessionID,
+			TherapistID: rating.TherapistID,
+			CaregiverID: rating.CaregiverID,
+			PatientID:   rating.PatientID,
+			Rating:      rating.Rating,
+			Comment:     rating.Comment,
+			CreatedAt:   rating.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt:   rating.UpdatedAt.Format("2006-01-02 15:04:05"),
+		}
+		log.Printf("[DEBUG] ⭐ Calificación encontrada: %d estrellas", rating.Rating)
+	}
+
+	// Si la sesión tiene un terapeuta reasignado, cargarlo
+	if session.TerapeutaReasignadoID != nil && *session.TerapeutaReasignadoID > 0 {
+		// Si ya está precargado, usarlo directamente
+		if session.TerapeutaReasignado != nil {
+			response.TerapeutaReasignado = &dto.UserBasicInfo{
+				ID:                session.TerapeutaReasignado.ID,
+				NombresApellidos:  session.TerapeutaReasignado.Nombres_Apellidos,
+				Correo:            session.TerapeutaReasignado.Correo,
+				Telefono:          session.TerapeutaReasignado.Telefono,
+			}
+			log.Printf("[DEBUG] 🔄 Terapeuta reasignado (precargado): %s (ID: %d)",
+				session.TerapeutaReasignado.Nombres_Apellidos, session.TerapeutaReasignado.ID)
+		} else {
+			// Si no está precargado, cargarlo manualmente
+			var newTherapist models.Usuarios
+			if err := s.db.First(&newTherapist, *session.TerapeutaReasignadoID).Error; err == nil {
+				response.TerapeutaReasignado = &dto.UserBasicInfo{
+					ID:                newTherapist.ID,
+					NombresApellidos:  newTherapist.Nombres_Apellidos,
+					Correo:            newTherapist.Correo,
+					Telefono:          newTherapist.Telefono,
+				}
+				log.Printf("[DEBUG] 🔄 Terapeuta reasignado (cargado): %s (ID: %d)", newTherapist.Nombres_Apellidos, newTherapist.ID)
+			}
+		}
 	}
 
 	return response
@@ -619,7 +663,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
 		Where("roles.id = 4"). // ID 4 = terapeuta según tu BD
 		Where("usuarios.activo = 0").
-		Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20") // Verificar límite de 20 pacientes
+		Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20") 
 
 	if err := query.Find(&therapists).Error; err != nil {
 		log.Printf("[ERROR] Error al obtener terapeutas: %v", err)
@@ -647,7 +691,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 	return result, nil
 }
 
-// toPatientListDTO transforms a Patient model to PatientListDTO with calculated age
+
 func (s *TherapyService) toPatientListDTO(patient models.Patient) dto.PatientListDTO {
 	// Calculate age from birth date
 	now := time.Now()
@@ -1004,22 +1048,50 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 
 // ============== THERAPIST RATING METHODS ==============
 
-func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO, caregiverID uint) (*models.TherapistRating, error) {
+func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO, userID uint, roles []string) (*models.TherapistRating, error) {
+	log.Printf("🎯 CreateTherapistRating: userID=%d, roles=%v, dto.CaregiverID=%d", userID, roles, dto.CaregiverID)
+
+	// Check if user is admin
+	isAdmin := s.hasRole(roles, "AD")
+	log.Printf("   👤 Usuario es admin: %v", isAdmin)
+
 	// Verify session exists and is in a valid state for rating
 	var session models.TherapySession
 	if err := s.db.Where("id = ? AND estado IN (?)", dto.SessionID, []string{"completada", "programada", "en_progreso"}).First(&session).Error; err != nil {
+		log.Printf("❌ Sesión no encontrada: %d", dto.SessionID)
 		return nil, errors.New("sesión no encontrada o no disponible para calificar")
 	}
+	log.Printf("✅ Sesión: ID=%d, PacienteID=%d, TerapeutaID=%d", session.ID, session.PacienteID, session.TerapeutaID)
 
-	// Verify caregiver has access to this session (through patient relationship)
-	// Skip this check if caregiverID is different from dto.CaregiverID (admin case)
-	if caregiverID == dto.CaregiverID {
-		var patient models.Patient
-		if err := s.db.Where("id = ? AND cuidador_id = ?", dto.PatientID, dto.CaregiverID).First(&patient).Error; err != nil {
-			return nil, errors.New("no tienes permisos para calificar esta sesión")
-		}
+	// Get the patient from the session to validate caregiver relationship
+	var patient models.Patient
+	if err := s.db.Where("id = ?", session.PacienteID).First(&patient).Error; err != nil {
+		log.Printf("❌ Paciente no encontrado: %d", session.PacienteID)
+		return nil, errors.New("paciente de la sesión no encontrado")
 	}
-	// If caregiverID != dto.CaregiverID, assume it's an admin and skip validation
+	log.Printf("✅ Paciente: ID=%d, CuidadorID=%v", patient.ID, patient.CuidadorID)
+
+	// Verify caregiver has access to this patient
+	if isAdmin {
+		// ADMIN: Can rate on behalf of ANY caregiver - NO validation needed
+		if patient.CuidadorID == nil {
+			log.Printf("❌ Paciente sin cuidador asignado")
+			return nil, errors.New("el paciente no tiene cuidador asignado")
+		}
+		log.Printf("✅ ADMIN autorizado: calificando en nombre de cuidador %d (paciente tiene cuidador %d)",
+			dto.CaregiverID, *patient.CuidadorID)
+	} else {
+		// NORMAL CAREGIVER: Must own the patient
+		if patient.CuidadorID == nil {
+			log.Printf("❌ Paciente sin cuidador asignado")
+			return nil, errors.New("no tienes permisos para calificar esta sesión - paciente sin cuidador")
+		}
+		if *patient.CuidadorID != userID {
+			log.Printf("❌ Cuidador no autorizado: esperado=%d, tú=%d", *patient.CuidadorID, userID)
+			return nil, errors.New("no tienes permisos para calificar esta sesión - paciente no asignado a ti")
+		}
+		log.Printf("✅ Cuidador autorizado: ID=%d", userID)
+	}
 
 	// Check if rating already exists for this session and caregiver
 	var existingRating models.TherapistRating
@@ -1027,12 +1099,12 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 		return nil, errors.New("ya has calificado esta sesión")
 	}
 
-	// Create the rating
+	// Create the rating using data from the session (not DTO)
 	rating := models.TherapistRating{
 		SessionID:   dto.SessionID,
-		TherapistID: dto.TherapistID,
-		CaregiverID: caregiverID,
-		PatientID:   dto.PatientID,
+		TherapistID: session.TerapeutaID,  // Use therapist from session
+		CaregiverID: dto.CaregiverID,      // Use caregiver from DTO (can be admin action)
+		PatientID:   session.PacienteID,   // Use patient from session
 		Rating:      dto.Rating,
 		Comment:     dto.Comment,
 	}
@@ -1043,16 +1115,27 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 
 	// Handle automatic therapist reassignment if rating is 1-3
 	if dto.Rating <= 3 {
-		log.Printf("Low rating detected (%d stars) for therapist %d by caregiver %d", dto.Rating, dto.TherapistID, caregiverID)
+		log.Printf("⚠️  Low rating detected (%d stars) for therapist %d by user %d", dto.Rating, session.TerapeutaID, userID)
 
 		// Update disqualification count
-		if err := s.updateTherapistDisqualification(dto.TherapistID); err != nil {
-			log.Printf("Error updating therapist disqualification: %v", err)
+		if err := s.updateTherapistDisqualification(session.TerapeutaID); err != nil {
+			log.Printf("❌ Error updating therapist disqualification: %v", err)
 		}
 
 		// Reassign therapist for patient's future sessions
-		if err := s.reassignTherapistForPatient(dto.PatientID, dto.TherapistID); err != nil {
-			log.Printf("Error reassigning therapist: %v", err)
+		newTherapistID, err := s.reassignTherapistForPatient(session.PacienteID, session.TerapeutaID)
+		if err != nil {
+			log.Printf("❌ Error reassigning therapist: %v", err)
+		} else if newTherapistID > 0 {
+			// Guardar el ID del nuevo terapeuta en la sesión que fue calificada
+			log.Printf("💾 Guardando terapeuta reasignado (ID: %d) en sesión %d", newTherapistID, dto.SessionID)
+			if err := s.db.Model(&models.TherapySession{}).
+				Where("id = ?", dto.SessionID).
+				Update("terapeuta_reasignado_id", newTherapistID).Error; err != nil {
+				log.Printf("❌ Error guardando terapeuta reasignado: %v", err)
+			} else {
+				log.Printf("✅ Terapeuta reasignado guardado correctamente en sesión %d", dto.SessionID)
+			}
 		}
 	}
 
@@ -1133,20 +1216,45 @@ func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error
 	return nil
 }
 
-func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID uint) error {
-	// Find an available therapist (different from the current one)
+func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID uint) (uint, error) {
+	log.Printf("🔄 Buscando terapeuta de reemplazo para paciente %d (excluir terapeuta %d)", patientID, oldTherapistID)
+
+	// Get list of disqualified therapists (those who have been marked as deleted due to bad ratings)
+	var disqualifiedIDs []uint
+	s.db.Table("therapist_disqualifications").
+		Where("is_deleted = ?", true).
+		Pluck("therapist_id", &disqualifiedIDs)
+
+	log.Printf("   📋 Terapeutas descalificados: %v", disqualifiedIDs)
+
+	// Find an available therapist (different from current one and not disqualified)
 	var newTherapist models.Usuarios
-	err := s.db.Table("usuarios").
+	query := s.db.Table("usuarios").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
 		Where("roles.id = 4"). // ID 4=terapeuta
 		Where("usuarios.idusuario != ?", oldTherapistID).
-		Where("usuarios.activo = 0"). // 0=activo en tu sistema
-		First(&newTherapist).Error
+		Where("usuarios.activo = 0") // 0=activo
 
+	// Exclude disqualified therapists
+	if len(disqualifiedIDs) > 0 {
+		query = query.Where("usuarios.idusuario NOT IN (?)", disqualifiedIDs)
+	}
+
+	// Also check that new therapist has less than 20 patients
+	query = query.Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20")
+
+	err := query.First(&newTherapist).Error
 	if err != nil {
-		log.Printf("No alternative therapist found for patient %d", patientID)
-		return nil // Don't fail the rating if no therapist is available
+		log.Printf("❌ No hay terapeutas alternativos disponibles para paciente %d", patientID)
+		return 0, nil // Don't fail the rating if no therapist is available
+	}
+
+	log.Printf("✅ Nuevo terapeuta encontrado: %s (ID: %d)", newTherapist.Nombres_Apellidos, newTherapist.ID)
+
+	// Update patient's default therapist
+	if err := s.db.Model(&models.Patient{}).Where("id = ?", patientID).Update("terapeuta_id", newTherapist.ID).Error; err != nil {
+		log.Printf("⚠️  Warning: Could not update patient's default therapist: %v", err)
 	}
 
 	// Update all future (programada) sessions for this patient
@@ -1155,13 +1263,107 @@ func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID u
 		Update("terapeuta_id", newTherapist.ID)
 
 	if result.Error != nil {
-		return fmt.Errorf("error reassigning therapist: %v", result.Error)
+		return 0, fmt.Errorf("error reassigning therapist: %v", result.Error)
 	}
 
-	log.Printf("Reassigned %d future sessions from therapist %d to therapist %d for patient %d",
+	log.Printf("✅ Reasignadas %d sesiones futuras del terapeuta %d al terapeuta %d para paciente %d",
 		result.RowsAffected, oldTherapistID, newTherapist.ID, patientID)
 
+	// Si no hay sesiones futuras, crear una nueva sesión automáticamente
+	if result.RowsAffected == 0 {
+		log.Printf("📅 No hay sesiones futuras. Creando nueva sesión automática con el nuevo terapeuta...")
+		if err := s.createAutomaticFollowUpSession(patientID, newTherapist.ID, oldTherapistID); err != nil {
+			log.Printf("⚠️  Warning: No se pudo crear sesión automática: %v", err)
+			// No fallar la reasignación si falla la creación de sesión
+		}
+	}
+
+	return newTherapist.ID, nil
+}
+
+func (s *TherapyService) createAutomaticFollowUpSession(patientID, newTherapistID, oldTherapistID uint) error {
+	// Obtener información del paciente
+	var patient models.Patient
+	if err := s.db.Preload("Cuidador").First(&patient, patientID).Error; err != nil {
+		return fmt.Errorf("no se pudo cargar paciente: %v", err)
+	}
+
+	// Calcular fecha: 7-10 días hábiles después (usar 8 días como promedio)
+	now := time.Now()
+	sessionDate := s.calculateBusinessDays(now, 8)
+
+	// Hora por defecto: 10:00 AM - 11:00 AM
+	horaInicio := "10:00"
+	horaFin := "11:00"
+
+	log.Printf("📅 Creando sesión de seguimiento para %s con nuevo terapeuta %d", patient.NombresApellidos, newTherapistID)
+	log.Printf("   Fecha programada: %s, Hora: %s - %s", sessionDate.Format("2006-01-02"), horaInicio, horaFin)
+
+	// Crear la sesión
+	newSession := models.TherapySession{
+		PacienteID:     patientID,
+		TerapeutaID:    newTherapistID,
+		FechaSesion:    sessionDate,
+		HoraInicio:     horaInicio,
+		HoraFin:        horaFin,
+		Duracion:       60,
+		Ubicacion:      "Consultorio principal",
+		Direccion:      "Por confirmar",
+		Descripcion:    fmt.Sprintf("Sesión de seguimiento con nuevo terapeuta. Sesión anterior con terapeuta anterior (ID: %d) fue calificada con baja puntuación.", oldTherapistID),
+		Objetivos:      models.StringArray{"Evaluación inicial con nuevo terapeuta", "Establecer rapport", "Definir plan de tratamiento"},
+		Materiales:     models.StringArray{"Material estándar de terapia"},
+		TipoSesion:     "individual",
+		Modalidad:      "presencial",
+		Estado:         "programada",
+		NotasTerapeuta: "Sesión creada automáticamente por cambio de terapeuta debido a baja calificación",
+	}
+
+	if err := s.db.Create(&newSession).Error; err != nil {
+		return fmt.Errorf("error creando sesión automática: %v", err)
+	}
+
+	log.Printf("✅ Sesión automática creada exitosamente (ID: %d) para fecha %s", newSession.ID, sessionDate.Format("2006-01-02"))
+
+	// Enviar notificación al cuidador si existe
+	if patient.Cuidador != nil {
+		s.sendNewTherapistNotification(&newSession, &patient, patient.Cuidador, newTherapistID, oldTherapistID)
+	}
+
 	return nil
+}
+
+func (s *TherapyService) calculateBusinessDays(startDate time.Time, businessDays int) time.Time {
+	currentDate := startDate
+	daysAdded := 0
+
+	for daysAdded < businessDays {
+		currentDate = currentDate.AddDate(0, 0, 1)
+
+		// Saltar fines de semana (Saturday = 6, Sunday = 0)
+		weekday := currentDate.Weekday()
+		if weekday != time.Saturday && weekday != time.Sunday {
+			daysAdded++
+		}
+	}
+
+	return currentDate
+}
+
+func (s *TherapyService) sendNewTherapistNotification(session *models.TherapySession, patient *models.Patient, cuidador *models.Usuarios, newTherapistID, oldTherapistID uint) {
+	// Obtener información del nuevo terapeuta
+	var newTherapist models.Usuarios
+	if err := s.db.First(&newTherapist, newTherapistID).Error; err != nil {
+		log.Printf("⚠️  No se pudo cargar info del nuevo terapeuta para notificación")
+		return
+	}
+
+	log.Printf("📧 Enviando notificación de cambio de terapeuta a %s (%s)", cuidador.Nombres_Apellidos, cuidador.Correo)
+	log.Printf("   Paciente: %s", patient.NombresApellidos)
+	log.Printf("   Nuevo terapeuta: %s", newTherapist.Nombres_Apellidos)
+	log.Printf("   Nueva sesión: %s a las %s", session.FechaSesion.Format("2006-01-02"), session.HoraInicio)
+
+	// TODO: Implementar envío de email si el servicio de email está disponible
+	// s.emailService.SendTherapistChangeNotification(session, patient, cuidador, &newTherapist)
 }
 
 func (s *TherapyService) deleteTherapistAccount(therapistID uint) error {

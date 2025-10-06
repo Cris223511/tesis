@@ -404,53 +404,10 @@ func (tc *TherapyController) hasRole(roles []string, targetRole string) bool {
 }
 
 func (tc *TherapyController) toSessionResponse(session *models.TherapySession) dto.SessionResponse {
-	response := dto.SessionResponse{
-		ID:             session.ID,
-		PacienteID:     session.PacienteID,
-		TerapeutaID:    session.TerapeutaID,
-		FechaSesion:    session.FechaSesion.Format("2006-01-02"),
-		HoraInicio:     session.HoraInicio,
-		HoraFin:        session.HoraFin,
-		Duracion:       session.Duracion,
-		Ubicacion:      session.Ubicacion,
-		Direccion:      session.Direccion,
-		Descripcion:    session.Descripcion,
-		Objetivos:      []string(session.Objetivos),
-		Materiales:     []string(session.Materiales),
-		NotasTerapeuta: session.NotasTerapeuta,
-		Estado:         session.Estado,
-		TipoSesion:     session.TipoSesion,
-		Modalidad:      session.Modalidad,
-		UpdateCount:    session.UpdateCount,
-		CreatedAt:      session.CreatedAt.Format("2006-01-02 15:04:05"),
-		UpdatedAt:      session.UpdatedAt.Format("2006-01-02 15:04:05"),
-		Paciente: dto.PatientBasicInfo{
-			ID:               session.Paciente.ID,
-			NombresApellidos: session.Paciente.NombresApellidos,
-			FotoMovil:        session.Paciente.FotoMovil,
-		},
-		Terapeuta: dto.UserBasicInfo{
-			ID:                session.Terapeuta.ID,
-			NombresApellidos:  session.Terapeuta.Nombres_Apellidos,
-			Correo:            session.Terapeuta.Correo,
-			Telefono:          session.Terapeuta.Telefono,
-		},
-	}
-
-	// Agregar información del cuidador si existe
-	if session.Paciente.Cuidador != nil {
-		response.Cuidador = &dto.UserBasicInfo{
-			ID:                session.Paciente.Cuidador.ID,
-			NombresApellidos:  session.Paciente.Cuidador.Nombres_Apellidos,
-			Correo:            session.Paciente.Cuidador.Correo,
-			Telefono:          session.Paciente.Cuidador.Telefono,
-		}
-	}
-
-	return response
+	// Delegar al servicio que ya tiene la lógica completa con rating y terapeuta reasignado
+	return tc.therapyService.ToSessionResponse(*session)
 }
 
-// ============== THERAPIST RATING METHODS ==============
 
 func (tc *TherapyController) CreateTherapistRating(c *gin.Context) {
 	userID, roles, err := tc.validateToken(c)
@@ -478,7 +435,7 @@ func (tc *TherapyController) CreateTherapistRating(c *gin.Context) {
 		return
 	}
 
-	rating, err := tc.therapyService.CreateTherapistRating(&createDto, userID)
+	rating, err := tc.therapyService.CreateTherapistRating(&createDto, userID, roles)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
