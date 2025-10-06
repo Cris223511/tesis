@@ -309,7 +309,7 @@ func parseFecha(fechaStr string) sql.NullTime {
 
 func (ctrl *UserController) List(c *gin.Context) {
     page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-    perPage, _ := strconv.Atoi(c.DefaultQuery("per_page", "10"))
+    perPage, _ := strconv.Atoi(c.DefaultQuery("per_page", "5"))  // Cambiado a 5 usuarios por página
     
     // Obtener todos los usuarios para contar
     var total int64
@@ -368,15 +368,43 @@ func (ctrl *UserController) Update(c *gin.Context) {
 		return
 	}
 
-	var updates map[string]interface{}
-	if err := c.ShouldBindJSON(&updates); err != nil {
+	var fullRequest map[string]interface{}
+	if err := c.ShouldBindJSON(&fullRequest); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
 		return
 	}
 
-	if err := ctrl.UserService.UpdateUser(id, updates); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	userClaims, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario no autenticado"})
 		return
+	}
+
+	claims := userClaims.(*utils.Claims)
+	currentUserID := claims.UserID
+
+	roleIDs := []uint{}
+	if roleIDsInterface, ok := fullRequest["role_ids"]; ok {
+		if roleIDsSlice, ok := roleIDsInterface.([]interface{}); ok {
+			for _, roleID := range roleIDsSlice {
+				if roleIDFloat, ok := roleID.(float64); ok {
+					roleIDs = append(roleIDs, uint(roleIDFloat))
+				}
+			}
+		}
+		delete(fullRequest, "role_ids")
+	}
+
+	if len(roleIDs) > 0 {
+		if err := ctrl.UserService.UpdateUserWithRoles(id, fullRequest, roleIDs, currentUserID); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+	} else {
+		if err := ctrl.UserService.UpdateUser(id, fullRequest); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Usuario actualizado exitosamente"})
@@ -414,8 +442,17 @@ func (ctrl *UserController) Delete(c *gin.Context) {
 		return
 	}
 
-	if err := ctrl.UserService.DeleteUser(id); err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+	userClaims, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario no autenticado"})
+		return
+	}
+
+	claims := userClaims.(*utils.Claims)
+	currentUserID := claims.UserID
+
+	if err := ctrl.UserService.DeleteUserWithValidation(id, currentUserID); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -703,7 +740,7 @@ func (ctrl *UserController) RefreshToken(c *gin.Context) {
 func (ctrl *UserController) Search(c *gin.Context) {
     // Cambiar de "search" a "q"
     q := c.Query("q")
-    limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+    limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5"))  // Cambiado a 5 usuarios por búsqueda
 
     var users []models.Usuarios
     query := ctrl.UserService.DB().Preload("Roles")

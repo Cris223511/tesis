@@ -11,6 +11,7 @@ import (
 type RoleService interface {
 	CreateRole(name string) (*models.Role, error)
 	GetAllRoles() ([]models.Role, error)
+	GetAvailableRoles() ([]models.Role, error)
 	GetRoleByName(name string) (*models.Role, error)
 	UpdateRole(id uint, newName string) error
 	DeleteRole(id uint) error
@@ -43,6 +44,15 @@ func (s *roleService) CreateRole(name string) (*models.Role, error) {
 func (s *roleService) GetAllRoles() ([]models.Role, error) {
 	var roles []models.Role
 	if err := s.db.Find(&roles).Error; err != nil {
+		return nil, err
+	}
+	return roles, nil
+}
+
+// Obtener roles disponibles para asignación (excluye AD)
+func (s *roleService) GetAvailableRoles() ([]models.Role, error) {
+	var roles []models.Role
+	if err := s.db.Where("name != ?", "AD").Find(&roles).Error; err != nil {
 		return nil, err
 	}
 	return roles, nil

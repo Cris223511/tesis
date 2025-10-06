@@ -33,7 +33,9 @@ type UserService interface {
 	GetUserByID(id uint) (*models.Usuarios, error)
 	GetUserByEmail(email string) (*models.Usuarios, error)
 	UpdateUser(id uint, updates map[string]interface{}) error
+	UpdateUserWithRoles(id uint, updates map[string]interface{}, roleIDs []uint, currentUserID uint) error
 	DeleteUser(id uint) error
+	DeleteUserWithValidation(id uint, currentUserID uint) error
 	LoginUser(username, password, clientIP, userAgent string) (*models.Usuarios, error)
 	ListUsers() ([]models.Usuarios, error)
 	SearchUserByField(field, value string) ([]models.Usuarios, error)
@@ -321,10 +323,19 @@ func (s *userService) CreateUser(user *models.Usuarios) (string, error) {
 		user.RoleIDs = []uint{2}
 	}
 
+	// VALIDACIÓN DE SEGURIDAD: Prevenir asignación de rol administrador en creación
 	var roles []models.Role
 	if err := tx.Where("id IN ?", user.RoleIDs).Find(&roles).Error; err != nil {
 		return "", err
 	}
+
+	// Verificar si se intenta asignar rol administrador
+	for _, role := range roles {
+		if role.Name == "AD" || role.Name == "admin" || role.Name == "administrador" {
+			return "", errors.New("no se puede asignar el rol de administrador durante la creación de usuario")
+		}
+	}
+
 	if err := tx.Model(user).Association("Roles").Replace(roles); err != nil {
 		return "", err
 	}
@@ -548,12 +559,11 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 
 	filteredUpdates := make(map[string]interface{})
 	var updatedFields []string
-	
+
 	for key, value := range updates {
 		if allowedFields[key] {
-			// Mapear nombres de campos según el modelo
 			if key == "celular" {
-				filteredUpdates["telefono"] = value // El modelo usa "Telefono"
+				filteredUpdates["telefono"] = value
 			} else {
 				filteredUpdates[key] = value
 			}
@@ -566,7 +576,7 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 			return errors.New("formato de correo inválido")
 		}
 	}
-	
+
 	if telefono, ok := filteredUpdates["telefono"]; ok {
 		if telefono.(string) != "" && !s.isValidPhone(telefono.(string)) {
 			return errors.New("formato de teléfono inválido")
@@ -579,9 +589,111 @@ func (s *userService) UpdateUser(id uint, updates map[string]interface{}) error 
 	}
 
 	go s.sendProfileUpdateNotification(user.Correo, user.Nombres_Apellidos, updatedFields, "")
-	s.logSecurityEvent("USER_UPDATED", fmt.Sprintf("user_id_%d", id), "", 
+	s.logSecurityEvent("USER_UPDATED", fmt.Sprintf("user_id_%d", id), "",
 		fmt.Sprintf("Campos actualizados: %v", filteredUpdates))
-	
+
+	return nil
+}
+
+func (s *userService) UpdateUserWithRoles(id uint, updates map[string]interface{}, roleIDs []uint, currentUserID uint) error {
+	tx := s.db.Begin()
+	defer tx.Rollback()
+
+	var user models.Usuarios
+	if err := tx.Preload("Roles").First(&user, id).Error; err != nil {
+		return errors.New("usuario no encontrado")
+	}
+
+	allowedFields := map[string]bool{
+		"nombres_apellidos": true,
+		"tipo_documento": true,
+		"num_documento": true,
+		"fecha_nacimiento": true,
+		"sexo": true,
+		"celular": true,
+		"telefono": true,
+		"correo": true,
+		"foto_movil": true,
+	}
+
+	filteredUpdates := make(map[string]interface{})
+	for key, value := range updates {
+		if allowedFields[key] {
+			if key == "celular" {
+				filteredUpdates["telefono"] = value
+			} else {
+				filteredUpdates[key] = value
+			}
+		}
+	}
+
+	if correo, ok := filteredUpdates["correo"]; ok {
+		if !s.isValidEmail(correo.(string)) {
+			return errors.New("formato de correo inválido")
+		}
+	}
+
+	if telefono, ok := filteredUpdates["telefono"]; ok {
+		if telefono.(string) != "" && !s.isValidPhone(telefono.(string)) {
+			return errors.New("formato de teléfono inválido")
+		}
+	}
+
+	if len(filteredUpdates) > 0 {
+		if err := tx.Model(&user).Updates(filteredUpdates).Error; err != nil {
+			return errors.New("error al actualizar usuario")
+		}
+	}
+
+	if roleIDs != nil && len(roleIDs) > 0 {
+		// Verificar si el usuario actualmente tiene rol admin
+		userHasAdmin := false
+		for _, role := range user.Roles {
+			if role.Name == "AD" || role.Name == "admin" || role.Name == "administrador" {
+				userHasAdmin = true
+				break
+			}
+		}
+
+		// Cargar los nuevos roles solicitados
+		var newRoles []models.Role
+		if err := tx.Where("id IN ?", roleIDs).Find(&newRoles).Error; err != nil {
+			return errors.New("roles no encontrados")
+		}
+
+		// Verificar si se intenta asignar o remover rol admin
+		newHasAdmin := false
+		for _, role := range newRoles {
+			if role.Name == "AD" || role.Name == "admin" || role.Name == "administrador" {
+				newHasAdmin = true
+				break
+			}
+		}
+
+		// VALIDACIÓN 1: No se puede asignar rol admin a usuarios que no lo tienen
+		if !userHasAdmin && newHasAdmin {
+			return errors.New("no se puede asignar el rol de administrador a usuarios que no lo poseen")
+		}
+
+		// VALIDACIÓN 2: Si el usuario editado tiene admin, debe mantenerlo (no puede quitárselo)
+		if userHasAdmin && !newHasAdmin {
+			return errors.New("no se puede remover el rol de administrador de un usuario que lo posee")
+		}
+
+		// VALIDACIÓN 3: No puede removerse su propio rol de administrador
+		if userHasAdmin && user.ID == currentUserID && !newHasAdmin {
+			return errors.New("no puede remover su propio rol de administrador")
+		}
+
+		if err := tx.Model(&user).Association("Roles").Replace(newRoles); err != nil {
+			return errors.New("error al actualizar roles")
+		}
+	}
+
+	tx.Commit()
+	s.logSecurityEvent("USER_UPDATED", fmt.Sprintf("user_id_%d", id), "",
+		fmt.Sprintf("Usuario actualizado por: user_id_%d", currentUserID))
+
 	return nil
 }
 
@@ -605,10 +717,59 @@ func (s *userService) DeleteUser(id uint) error {
 	}
 
 	tx.Commit()
-	
+
 	go s.sendAccountDeletionNotification(user.Correo, user.Nombres_Apellidos)
 	s.logSecurityEvent("USER_DELETED", user.Usuario, "", "Usuario eliminado")
-	
+
+	return nil
+}
+
+func (s *userService) DeleteUserWithValidation(id uint, currentUserID uint) error {
+	tx := s.db.Begin()
+	defer tx.Rollback()
+
+	var user models.Usuarios
+	if err := tx.Preload("Roles").First(&user, id).Error; err != nil {
+		return errors.New("usuario no encontrado")
+	}
+
+	isAdmin := false
+	for _, role := range user.Roles {
+		if role.Name == "AD" {
+			isAdmin = true
+			break
+		}
+	}
+
+	if isAdmin {
+		var adminCount int64
+		tx.Table("usuarios").
+			Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
+			Joins("JOIN roles ON user_roles.roles_id = roles.id").
+			Where("roles.name = ?", "AD").
+			Count(&adminCount)
+
+		if adminCount <= 1 {
+			return errors.New("no se puede eliminar el último administrador del sistema")
+		}
+	}
+
+	tx.Where("user_id = ?", id).Delete(&models.Role{})
+	tx.Where("user_id = ?", id).Delete(&models.BiometricCredential{})
+	tx.Where("user_id = ?", id).Delete(&models.UserDeviceIP{})
+	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
+	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
+
+	if err := tx.Delete(&user).Error; err != nil {
+		return errors.New("error al eliminar usuario")
+	}
+
+	tx.Commit()
+
+	go s.sendAccountDeletionNotification(user.Correo, user.Nombres_Apellidos)
+	s.logSecurityEvent("USER_DELETED", user.Usuario, "",
+		fmt.Sprintf("Usuario eliminado por: user_id_%d", currentUserID))
+
 	return nil
 }
 

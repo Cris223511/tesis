@@ -47,7 +47,7 @@ func (ctrl *RoleController) CreateRole(c *gin.Context) {
 
 // Obtener todos los roles disponibles
 func (ctrl *RoleController) GetAllRoles(c *gin.Context) {
-	roles, err := ctrl.RoleService.GetAllRoles()
+	roles, err := ctrl.RoleService.GetAvailableRoles()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener los roles"})
 		return
