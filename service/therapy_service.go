@@ -110,7 +110,15 @@ func (s *TherapyService) Create(dto *dto.CreateTherapySessionDTO, userID uint) (
 
 func (s *TherapyService) GetAll(userID uint, roles []string) ([]models.TherapySession, error) {
 	var sessions []models.TherapySession
-	query := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").Where("is_deleted = ?", false)
+	query := s.db.
+		Preload("Paciente").
+		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Where("is_deleted = ?", false)
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Joins("JOIN patients ON patients.id = therapy_sessions.paciente_id").
@@ -144,7 +152,15 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 	var sessions []models.TherapySession
 	var total int64
 
-	query := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").Where("is_deleted = ?", false)
+	query := s.db.
+		Preload("Paciente").
+		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Where("is_deleted = ?", false)
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Joins("JOIN patients ON patients.id = therapy_sessions.paciente_id").
@@ -205,7 +221,18 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 
 func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.TherapySession, error) {
 	var session models.TherapySession
-	query := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").Preload("TerapeutaReasignado").Where("is_deleted = ?", false)
+	query := s.db.
+		Preload("Paciente").
+		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("TerapeutaReasignado", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Where("is_deleted = ?", false)
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Joins("JOIN patients ON patients.id = therapy_sessions.paciente_id").
@@ -388,7 +415,15 @@ func (s *TherapyService) Delete(id, userID uint, roles []string) error {
 
 func (s *TherapyService) GetLatestPatients(userID uint, roles []string) ([]dto.PatientListDTO, error) {
 	var patients []models.Patient
-	query := s.db.Preload("Terapeuta").Preload("Cuidador").Limit(3).Order("created_at DESC")
+	query := s.db.
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos")
+		}).
+		Preload("Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos")
+		}).
+		Limit(3).
+		Order("created_at DESC")
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Where("cuidador_id = ?", userID)
@@ -1140,7 +1175,15 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 	}
 
 	// Load the rating with relationships for response
-	if err := s.db.Preload("Therapist").Preload("Caregiver").Preload("Patient").First(&rating, rating.ID).Error; err != nil {
+	if err := s.db.
+		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Patient").
+		First(&rating, rating.ID).Error; err != nil {
 		log.Printf("Warning: Could not preload rating relationships: %v", err)
 	}
 
@@ -1150,7 +1193,15 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 func (s *TherapyService) GetSessionRating(sessionID uint, userID uint, userRoles []string) (*models.TherapistRating, error) {
 	var rating models.TherapistRating
 
-	query := s.db.Preload("Therapist").Preload("Caregiver").Preload("Patient").Where("session_id = ?", sessionID)
+	query := s.db.
+		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Patient").
+		Where("session_id = ?", sessionID)
 
 	// If user is not admin, filter by caregiver access
 	hasAdminRole := false
@@ -1394,8 +1445,12 @@ func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, role
 
 	var ratings []models.TherapistRating
 	if err := s.db.Where("therapist_id = ?", therapistID).
-		Preload("Therapist").
-		Preload("Caregiver").
+		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
+		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+		}).
 		Preload("Patient").
 		Order("created_at DESC").
 		Find(&ratings).Error; err != nil {

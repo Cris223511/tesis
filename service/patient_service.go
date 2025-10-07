@@ -98,7 +98,13 @@ func (s *PatientService) Create(dto *dto.CreatePatientDTO, terapeutaID uint) (*m
 
 func (s *PatientService) GetAll(userID uint, roles []string) ([]models.Patient, error) {
 	var patients []models.Patient
-	query := s.db.Preload("Terapeuta").Preload("Cuidador")
+	query := s.db.
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos")
+		}).
+		Preload("Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos")
+		})
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		query = query.Where("cuidador_id = ?", userID)
@@ -115,26 +121,35 @@ func (s *PatientService) GetAllPaginated(userID uint, roles []string, page, limi
 	var patients []models.Patient
 	var total int64
 
-	query := s.db.Preload("Terapeuta").Preload("Cuidador")
+	baseQuery := s.db.Model(&models.Patient{})
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
-		query = query.Where("cuidador_id = ?", userID)
+		baseQuery = baseQuery.Where("cuidador_id = ?", userID)
 	}
 
 	if search != "" {
 		searchPattern := "%" + search + "%"
-		query = query.Where(
+		baseQuery = baseQuery.Where(
 			"nombres_apellidos LIKE ? OR num_documento LIKE ? OR diagnostico_clinico LIKE ?",
 			searchPattern, searchPattern, searchPattern,
 		)
 	}
 
-	if err := query.Model(&models.Patient{}).Count(&total).Error; err != nil {
+	if err := baseQuery.Count(&total).Error; err != nil {
 		return nil, err
 	}
 
 	offset := (page - 1) * limit
-	if err := query.Offset(offset).Limit(limit).Find(&patients).Error; err != nil {
+	if err := baseQuery.
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("id", "nombres_apellidos")
+		}).
+		Preload("Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("id", "nombres_apellidos")
+		}).
+		Offset(offset).
+		Limit(limit).
+		Find(&patients).Error; err != nil {
 		return nil, err
 	}
 

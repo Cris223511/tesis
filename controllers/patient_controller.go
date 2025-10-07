@@ -113,9 +113,9 @@ func (pc *PatientController) GetPatients(c *gin.Context) {
 		}
 	}
 
-	limit := 10
+	limit := 5
 	if l := c.Query("limit"); l != "" {
-		if limitNum, err := strconv.Atoi(l); err == nil && limitNum > 0 && limitNum <= 50 {
+		if limitNum, err := strconv.Atoi(l); err == nil && limitNum > 0 && limitNum <= 5 {
 			limit = limitNum
 		}
 	}

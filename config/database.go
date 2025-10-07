@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 	"usuarios/models"
 
 	"github.com/joho/godotenv"
@@ -37,7 +38,19 @@ func InitializeDatabase() {
 	if err != nil {
 		log.Fatalf("Error al conectar a la base de datos: %v", err)
 	}
-	
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatalf("Error obteniendo instancia de base de datos: %v", err)
+	}
+
+	sqlDB.SetMaxOpenConns(3)
+	sqlDB.SetMaxIdleConns(2)
+	sqlDB.SetConnMaxLifetime(5 * time.Minute)
+	sqlDB.SetConnMaxIdleTime(2 * time.Minute)
+
+	log.Println("Pool de conexiones configurado: MaxOpen=3, MaxIdle=2")
+
 	DB = db
 	
 	if err := DB.Exec("SET FOREIGN_KEY_CHECKS = 0").Error; err != nil {
