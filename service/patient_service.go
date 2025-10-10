@@ -142,10 +142,10 @@ func (s *PatientService) GetAllPaginated(userID uint, roles []string, page, limi
 	offset := (page - 1) * limit
 	if err := baseQuery.
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
-			return db.Select("id", "nombres_apellidos")
+			return db.Select("idusuario", "nombres_apellidos")
 		}).
 		Preload("Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("id", "nombres_apellidos")
+			return db.Select("idusuario", "nombres_apellidos")
 		}).
 		Offset(offset).
 		Limit(limit).
