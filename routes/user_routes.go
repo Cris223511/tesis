@@ -112,7 +112,7 @@ func SetupRouter(
 		// ============== PACIENTES ==============
 		protected.POST("/patients", patientController.CreatePatient)
 		protected.GET("/patients", patientController.GetPatients)
-		// Estadísticas de pacientes (debe ir antes de :id para evitar conflictos)
+		
 		protected.GET("/patients/:id/stats", therapyController.GetPatientStats)
 		protected.GET("/patients/:id", patientController.GetPatient)
 		protected.PUT("/patients/:id", patientController.UpdatePatient)
@@ -124,6 +124,7 @@ func SetupRouter(
 		protected.GET("/sessions/paginated", therapyController.GetPaginated)
 		protected.GET("/sessions/latest-patients", therapyController.GetLatestPatients)
 		protected.GET("/sessions/available-therapists", therapyController.GetAvailableTherapists)
+		protected.GET("/sessions/patient/:patient_id", therapyController.GetPatientSessions) 
 		protected.GET("/sessions/:id", therapyController.GetByID)
 		protected.PUT("/sessions/:id", therapyController.Update)
 		protected.PATCH("/sessions/:id/reschedule", therapyController.Reschedule)

@@ -113,10 +113,10 @@ func (s *TherapyService) GetAll(userID uint, roles []string) ([]models.TherapySe
 	query := s.db.
 		Preload("Paciente").
 		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
 		}).
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Where("is_deleted = ?", false)
 
@@ -155,10 +155,10 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 	query := s.db.
 		Preload("Paciente").
 		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
 		}).
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Where("is_deleted = ?", false)
 
@@ -224,13 +224,13 @@ func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.Thera
 	query := s.db.
 		Preload("Paciente").
 		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
 		}).
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("TerapeutaReasignado", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Where("is_deleted = ?", false)
 
@@ -263,6 +263,101 @@ func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.Thera
 	}
 
 	return &session, nil
+}
+
+func (s *TherapyService) GetPatientSessions(patientID, userID uint, roles []string) ([]models.TherapySession, error) {
+	log.Printf("[DEBUG] GetPatientSessions called: patientID=%d, userID=%d, roles=%v", patientID, userID, roles)
+
+	// First check if patient exists at all
+	var patientCount int64
+	if err := s.db.Model(&models.Patient{}).Where("id = ?", patientID).Count(&patientCount).Error; err != nil {
+		log.Printf("[ERROR] Failed to check patient existence: %v", err)
+		return nil, err
+	}
+	log.Printf("[DEBUG] Patient %d exists in database: %v (count: %d)", patientID, patientCount > 0, patientCount)
+
+	// Check total sessions for this patient (without role filtering)
+	var totalSessionCount int64
+	if err := s.db.Model(&models.TherapySession{}).Where("paciente_id = ? AND is_deleted = ?", patientID, false).Count(&totalSessionCount).Error; err != nil {
+		log.Printf("[ERROR] Failed to count sessions: %v", err)
+		return nil, err
+	}
+	log.Printf("[DEBUG] Total non-deleted sessions for patient %d: %d", patientID, totalSessionCount)
+
+	var sessions []models.TherapySession
+	query := s.db.
+		Preload("Paciente").
+		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
+		}).
+		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
+		}).
+		Where("is_deleted = ? AND paciente_id = ?", false, patientID)
+
+	// Determinar qué filtros aplicar
+	isAdmin := s.hasRole(roles, "AD")
+	isTherapist := s.hasRole(roles, "TR")
+	isCaregiver := s.hasRole(roles, "PD")
+
+	log.Printf("[DEBUG] Role analysis: isAdmin=%v, isTherapist=%v, isCaregiver=%v", isAdmin, isTherapist, isCaregiver)
+
+	var finalQuery *gorm.DB = query
+	if isCaregiver && !isTherapist && !isAdmin {
+		// Solo cuidadores: filtrar por sesiones de sus pacientes
+		log.Printf("[DEBUG] Applying caregiver filter: cuidador_id = %d", userID)
+		finalQuery = query.Joins("JOIN patients ON patients.id = therapy_sessions.paciente_id").
+			Where("patients.cuidador_id = ?", userID)
+
+		// Debug: Check if this patient has the current user as caregiver
+		var patient models.Patient
+		if err := s.db.Where("id = ?", patientID).First(&patient).Error; err == nil {
+			log.Printf("[DEBUG] Patient %d caregiver ID: %v (user ID: %d)", patientID, patient.CuidadorID, userID)
+			if patient.CuidadorID != nil {
+				log.Printf("[DEBUG] Caregiver match: %v", *patient.CuidadorID == userID)
+			}
+		}
+	} else if isTherapist && !isAdmin {
+		// Solo terapeutas (no administradores): filtrar por sus sesiones
+		log.Printf("[DEBUG] Applying therapist filter: terapeuta_id = %d", userID)
+		finalQuery = query.Where("terapeuta_id = ?", userID)
+	} else {
+		// Administradores: sin filtros adicionales
+		log.Printf("[DEBUG] No additional filters applied (admin access)")
+		finalQuery = query
+	}
+
+	// Count filtered results before executing
+	var filteredCount int64
+	if err := finalQuery.Model(&models.TherapySession{}).Count(&filteredCount).Error; err != nil {
+		log.Printf("[ERROR] Failed to count filtered sessions: %v", err)
+	} else {
+		log.Printf("[DEBUG] Filtered session count: %d", filteredCount)
+	}
+
+	if err := finalQuery.Order("fecha_sesion DESC, hora_inicio ASC").Find(&sessions).Error; err != nil {
+		log.Printf("[ERROR] Database query failed: %v", err)
+		return nil, err
+	}
+
+	log.Printf("[DEBUG] GetPatientSessions loaded %d sessions for patient %d", len(sessions), patientID)
+
+	// Log detallado de las sesiones encontradas
+	for i, session := range sessions {
+		log.Printf("[DEBUG] Session %d: ID=%d, Patient=%d, Therapist=%d, Date=%s",
+			i+1, session.ID, session.PacienteID, session.TerapeutaID, session.FechaSesion.Format("2006-01-02"))
+		if i >= 3 { // Limitar logs para no saturar
+			break
+		}
+	}
+
+	// If we found 0 sessions but total > 0, there's a filtering issue
+	if len(sessions) == 0 && totalSessionCount > 0 {
+		log.Printf("[WARNING] Filter logic is blocking %d available sessions for patient %d (user %d, roles %v)",
+			totalSessionCount, patientID, userID, roles)
+	}
+
+	return sessions, nil
 }
 
 func (s *TherapyService) Update(id uint, dto *dto.UpdateTherapySessionDTO, userID uint, roles []string) (*models.TherapySession, error) {
@@ -533,6 +628,16 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 				session.Paciente.Cuidador.Nombres_Apellidos, session.Paciente.Cuidador.ID)
 		} else {
 			log.Printf("[WARNING] CuidadorID existe pero Cuidador es nil - problema de preload")
+
+			// Hacer consulta directa para debug
+			var cuidadorDirect models.Usuarios
+			err := s.db.Where("idusuario = ?", *session.Paciente.CuidadorID).First(&cuidadorDirect).Error
+			if err != nil {
+				log.Printf("[DEBUG] ❌ Consulta directa falló: %v", err)
+			} else {
+				log.Printf("[DEBUG] ✅ Consulta directa exitosa: %s (activo: %v, idusuario: %d)",
+					cuidadorDirect.Nombres_Apellidos, cuidadorDirect.Activo, cuidadorDirect.ID)
+			}
 		}
 	} else {
 		log.Printf("[DEBUG] Paciente sin cuidador asignado")
@@ -568,6 +673,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 			NombresApellidos:  session.Terapeuta.Nombres_Apellidos,
 			Correo:            session.Terapeuta.Correo,
 			Telefono:          session.Terapeuta.Telefono,
+			FotoMovil:         session.Terapeuta.FotoMovil,
 		},
 	}
 
@@ -578,8 +684,28 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 			NombresApellidos:  session.Paciente.Cuidador.Nombres_Apellidos,
 			Correo:            session.Paciente.Cuidador.Correo,
 			Telefono:          session.Paciente.Cuidador.Telefono,
+			FotoMovil:         session.Paciente.Cuidador.FotoMovil,
 		}
 		log.Printf("[DEBUG] Cuidador agregado a respuesta: %s", response.Cuidador.NombresApellidos)
+	} else if session.Paciente.CuidadorID != nil {
+		// Fallback: Si el preload falló, cargar manualmente
+		log.Printf("[DEBUG] Intentando cargar cuidador manualmente (ID: %d)", *session.Paciente.CuidadorID)
+		var cuidadorFallback models.Usuarios
+		err := s.db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").
+			Where("idusuario = ? AND activo = ?", *session.Paciente.CuidadorID, false).
+			First(&cuidadorFallback).Error
+		if err == nil {
+			response.Cuidador = &dto.UserBasicInfo{
+				ID:                cuidadorFallback.ID,
+				NombresApellidos:  cuidadorFallback.Nombres_Apellidos,
+				Correo:            cuidadorFallback.Correo,
+				Telefono:          cuidadorFallback.Telefono,
+				FotoMovil:         cuidadorFallback.FotoMovil,
+			}
+			log.Printf("[DEBUG] ✅ Cuidador cargado manualmente: %s", response.Cuidador.NombresApellidos)
+		} else {
+			log.Printf("[DEBUG] ❌ No se pudo cargar cuidador manualmente: %v", err)
+		}
 	} else {
 		log.Printf("[DEBUG] No se agregó cuidador a la respuesta")
 	}
@@ -610,6 +736,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 				NombresApellidos:  session.TerapeutaReasignado.Nombres_Apellidos,
 				Correo:            session.TerapeutaReasignado.Correo,
 				Telefono:          session.TerapeutaReasignado.Telefono,
+				FotoMovil:         session.TerapeutaReasignado.FotoMovil,
 			}
 			log.Printf("[DEBUG] 🔄 Terapeuta reasignado (precargado): %s (ID: %d)",
 				session.TerapeutaReasignado.Nombres_Apellidos, session.TerapeutaReasignado.ID)
@@ -622,6 +749,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 					NombresApellidos:  newTherapist.Nombres_Apellidos,
 					Correo:            newTherapist.Correo,
 					Telefono:          newTherapist.Telefono,
+					FotoMovil:         newTherapist.FotoMovil,
 				}
 				log.Printf("[DEBUG] 🔄 Terapeuta reasignado (cargado): %s (ID: %d)", newTherapist.Nombres_Apellidos, newTherapist.ID)
 			}
@@ -693,7 +821,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 	// Buscar SOLO usuarios con rol de terapeuta
 	var therapists []models.Usuarios
 	query := s.db.Table("usuarios").
-		Select("DISTINCT usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono").
+		Select("DISTINCT usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono, usuarios.foto_movil").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
 		Where("roles.id = 4"). // ID 4 = terapeuta según tu BD
@@ -720,6 +848,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 			NombresApellidos:  therapist.Nombres_Apellidos,
 			Correo:            therapist.Correo,
 			Telefono:          therapist.Telefono,
+			FotoMovil:         therapist.FotoMovil,
 		}
 	}
 
@@ -769,7 +898,7 @@ func (s *TherapyService) GetAllActiveUsers() ([]dto.UserBasicInfo, error) {
 
 	// Simplemente obtener todos los usuarios activos
 	query := s.db.Table("usuarios").
-		Select("usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono").
+		Select("usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono, usuarios.foto_movil").
 		Where("usuarios.activo = 0").
 		Order("usuarios.nombres_apellidos ASC")
 
@@ -787,6 +916,7 @@ func (s *TherapyService) GetAllActiveUsers() ([]dto.UserBasicInfo, error) {
 			NombresApellidos:  user.Nombres_Apellidos,
 			Correo:            user.Correo,
 			Telefono:          user.Telefono,
+			FotoMovil:         user.FotoMovil,
 		}
 	}
 
@@ -813,7 +943,21 @@ func (s *TherapyService) DebugCaregiverPreload() error {
 
 	for _, session := range sessions {
 		log.Printf("[DEBUG] Session ID: %d, Paciente: %s", session.ID, session.Paciente.NombresApellidos)
-		log.Printf("[DEBUG] CuidadorID: %v", session.Paciente.CuidadorID)
+		log.Printf("[DEBUG] Paciente ID: %d", session.Paciente.ID)
+		log.Printf("[DEBUG] CuidadorID from preload: %v", session.Paciente.CuidadorID)
+
+		// Verificar directamente en la BD qué tiene el paciente
+		var patientDirect models.Patient
+		err := s.db.Where("id = ?", session.Paciente.ID).First(&patientDirect).Error
+		if err == nil {
+			log.Printf("[DEBUG] 🔍 Consulta directa paciente - CuidadorID: %v", patientDirect.CuidadorID)
+			if patientDirect.CuidadorID != nil {
+				log.Printf("[DEBUG] 🔍 Valor directo CuidadorID: %d", *patientDirect.CuidadorID)
+			}
+		} else {
+			log.Printf("[DEBUG] ❌ Error consultando paciente directamente: %v", err)
+		}
+
 		if session.Paciente.CuidadorID != nil {
 			log.Printf("[DEBUG] CuidadorID value: %d", *session.Paciente.CuidadorID)
 			if session.Paciente.Cuidador != nil {
@@ -1177,10 +1321,10 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 	// Load the rating with relationships for response
 	if err := s.db.
 		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Patient").
 		First(&rating, rating.ID).Error; err != nil {
@@ -1195,10 +1339,10 @@ func (s *TherapyService) GetSessionRating(sessionID uint, userID uint, userRoles
 
 	query := s.db.
 		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Patient").
 		Where("session_id = ?", sessionID)
@@ -1446,10 +1590,10 @@ func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, role
 	var ratings []models.TherapistRating
 	if err := s.db.Where("therapist_id = ?", therapistID).
 		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Caregiver", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono")
+			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Preload("Patient").
 		Order("created_at DESC").

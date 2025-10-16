@@ -129,6 +129,36 @@ func (tc *TherapyController) GetByID(c *gin.Context) {
 	})
 }
 
+func (tc *TherapyController) GetPatientSessions(c *gin.Context) {
+	patientID, err := strconv.ParseUint(c.Param("patient_id"), 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de paciente inválido"})
+		return
+	}
+
+	userID, roles, err := tc.validateToken(c)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	sessions, err := tc.therapyService.GetPatientSessions(uint(patientID), userID, roles)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	responses := make([]dto.SessionResponse, len(sessions))
+	for i, session := range sessions {
+		responses[i] = tc.toSessionResponse(&session)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Sesiones del paciente obtenidas exitosamente",
+		"data":    responses,
+	})
+}
+
 func (tc *TherapyController) Update(c *gin.Context) {
 	userID, roles, err := tc.validateAdminOrTherapist(c)
 	if err != nil {

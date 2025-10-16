@@ -21,14 +21,14 @@ type Patient struct {
 	DiagnosticoClinico string              `gorm:"type:text" json:"diagnostico_clinico"`
 	FotoMovil         string               `gorm:"type:mediumtext;column:foto_movil" json:"foto_movil"`
 	TerapeutaID       uint                 `gorm:"not null;index" json:"terapeuta_id"`
-	CuidadorID        *uint                `gorm:"index" json:"cuidador_id"`
+	CuidadorID        *uint                `gorm:"column:responsable_id;index" json:"cuidador_id"`
 	Activo            bool                 `gorm:"default:true" json:"activo"`
 	CreatedAt         time.Time            `gorm:"index" json:"created_at"`
 	UpdatedAt         time.Time            `json:"updated_at"`
 	DeletedAt         gorm.DeletedAt       `gorm:"index" json:"-"`
 
 	Terapeuta         Usuarios             `gorm:"foreignKey:TerapeutaID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT" json:"terapeuta,omitempty"`
-	Cuidador          *Usuarios            `gorm:"foreignKey:CuidadorID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL" json:"cuidador,omitempty"`
+	Cuidador          *Usuarios            `gorm:"foreignKey:CuidadorID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL" json:"cuidador,omitempty"`
 }
 
 func (p *Patient) TableName() string {

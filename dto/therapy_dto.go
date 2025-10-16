@@ -83,6 +83,7 @@ type UserBasicInfo struct {
 	NombresApellidos  string `json:"nombres_apellidos"`
 	Correo            string `json:"correo"`
 	Telefono          string `json:"telefono"`
+	FotoMovil         string `json:"foto_movil"`
 }
 
 type PaginatedSessionsResponse struct {
