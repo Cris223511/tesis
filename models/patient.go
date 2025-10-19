@@ -20,6 +20,7 @@ type Patient struct {
 	Sexo              string               `gorm:"size:20;not null" json:"sexo"`
 	DiagnosticoClinico string              `gorm:"type:text" json:"diagnostico_clinico"`
 	FotoMovil         string               `gorm:"type:mediumtext;column:foto_movil" json:"foto_movil"`
+	FotoWeb           string               `gorm:"type:mediumtext;column:foto_web" json:"foto_web"`
 	TerapeutaID       uint                 `gorm:"not null;index" json:"terapeuta_id"`
 	CuidadorID        *uint                `gorm:"column:responsable_id;index" json:"cuidador_id"`
 	Activo            bool                 `gorm:"default:true" json:"activo"`

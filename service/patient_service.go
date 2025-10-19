@@ -81,6 +81,7 @@ func (s *PatientService) Create(dto *dto.CreatePatientDTO, terapeutaID uint) (*m
 		Sexo:               dto.Sexo,
 		DiagnosticoClinico: dto.DiagnosticoClinico,
 		FotoMovil:          dto.FotoMovil,
+		FotoWeb:            dto.FotoWeb,
 		TerapeutaID:        terapeutaID,
 		CuidadorID:         dto.CuidadorID,
 		Activo:             true,
@@ -239,6 +240,9 @@ func (s *PatientService) Update(id uint, dto *dto.UpdatePatientDTO) (*models.Pat
 	}
 	if dto.FotoMovil != "" {
 		updates["foto_movil"] = dto.FotoMovil
+	}
+	if dto.FotoWeb != "" {
+		updates["foto_web"] = dto.FotoWeb
 	}
 	if dto.CuidadorID != nil {
 		if *dto.CuidadorID != 0 && (patient.CuidadorID == nil || *patient.CuidadorID != *dto.CuidadorID) {

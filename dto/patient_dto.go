@@ -12,6 +12,7 @@ type CreatePatientDTO struct {
 	Sexo               string  `json:"sexo" binding:"required,oneof=Masculino Femenino M F Otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
 	FotoMovil          string  `json:"foto_movil"`
+	FotoWeb            string  `json:"foto_web"`
 	CuidadorID         *uint   `json:"cuidador_id"`
 }
 
@@ -25,6 +26,7 @@ type UpdatePatientDTO struct {
 	Sexo               string  `json:"sexo" binding:"omitempty,oneof=Masculino Femenino M F Otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
 	FotoMovil          string  `json:"foto_movil"`
+	FotoWeb            string  `json:"foto_web"`
 	CuidadorID         *uint   `json:"cuidador_id"`
 	Activo             *bool   `json:"activo"`
 }
@@ -42,6 +44,7 @@ type PatientResponseDTO struct {
 	Sexo               string     `json:"sexo"`
 	DiagnosticoClinico string     `json:"diagnostico_clinico"`
 	FotoMovil          string     `json:"foto_movil"`
+	FotoWeb            string     `json:"foto_web"`
 	TerapeutaID        uint       `json:"terapeuta_id"`
 	TerapeutaNombre    string     `json:"terapeuta_nombre"`
 	CuidadorID         *uint      `json:"cuidador_id"`
@@ -63,4 +66,5 @@ type PatientListDTO struct {
 	CuidadorNombre   *string `json:"cuidador_nombre,omitempty"`
 	Activo           bool    `json:"activo"`
 	FotoMovil        string  `json:"foto_movil"`
+	FotoWeb          string  `json:"foto_web"`
 }
