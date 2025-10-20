@@ -11,7 +11,6 @@ func SetupRouter(
 	userController *controllers.UserController,
 	roleController *controllers.RoleController,
 	authController *controllers.AuthController,
-	bioController *controllers.BioController,
 	patientController *controllers.PatientController,
 	therapyController *controllers.TherapyController,
 ) *gin.Engine {
@@ -47,8 +46,6 @@ func SetupRouter(
 
 		public.POST("/otp/validate", userController.ValidateOTP)
 		public.POST("/otp/resend", userController.ResendOTP)
-		public.POST("/login/begin", bioController.BeginLogin)
-		public.POST("/login/finish", bioController.FinishLogin)
 		
 		// ---------- CAMBIO DE CONTRASEÑA ----------
 		public.POST("/password/validate-email", userController.ValidateEmailForPasswordChange)
@@ -86,29 +83,12 @@ func SetupRouter(
 		
 		protected.POST("/users/banner", userController.UploadBanner)
 		protected.GET("/users/banner/changes", userController.GetBannerChanges)
-		
-	
-
-
-		
-
 
 		// ============== ROLES ==============
 		protected.POST("/roles", roleController.CreateRole)
 		protected.GET("/roles", roleController.GetAllRoles)
 		protected.PUT("/roles/:id", roleController.UpdateRole)
 		protected.DELETE("/roles/:id", roleController.DeleteRole)
-
-
-
-		// ============== BIOMETRÍA ==============
-		protected.GET("/capabilities", bioController.CheckBiometricCapabilities)
-		protected.POST("/register/begin", bioController.BeginRegister)
-		protected.POST("/register/finish", bioController.FinishRegister)
-		protected.GET("/devices", bioController.ListDevices)
-		protected.DELETE("/device", bioController.DeleteDevice)
-		protected.PUT("/device/rename", bioController.RenameDevice)
-
 		// ============== PACIENTES ==============
 		protected.POST("/patients", patientController.CreatePatient)
 		protected.GET("/patients", patientController.GetPatients)

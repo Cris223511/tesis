@@ -15,7 +15,7 @@ import (
 )
 
 func LoadEnv() {
-	// Esto NO rompe en producción, solo loguea.
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("No se encontró .env, usando variables de entorno del sistema")
@@ -25,17 +25,18 @@ func LoadEnv() {
 
 var jwtKey = []byte(os.Getenv("JWT_SECRET"))
 
-// Claims personalizados para el token "normal"
+
 type Claims struct {
 	UserID uint   `json:"user_id"`
 	Roles  string `json:"roles"`
 	jwt.StandardClaims
 }
 
-// GenerateToken genera el token principal (20 min) y el refresh token (7 días)
-// Se asigna el userID en el campo Id y los roles en el Subject del refresh token.
+
+
+
 func GenerateToken(user *models.Usuarios) (string, string, error) {
-	// Convertir roles a una cadena separada por comas
+
 	var roleNames []string
 	for _, role := range user.Roles {
 		roleNames = append(roleNames, role.Name)
@@ -58,9 +59,9 @@ func GenerateToken(user *models.Usuarios) (string, string, error) {
 		return "", "", err
 	}
 
-	// Refresh Token (expira en 7 días)
+
 	refreshExpiration := time.Now().Add(7 * 24 * time.Hour)
-	// Asignamos el userID al campo Id y los roles en Subject
+	
 	refreshClaims := &jwt.StandardClaims{
 		ExpiresAt: refreshExpiration.Unix(),
 		Id:        strconv.FormatUint(uint64(user.ID), 10),
@@ -87,17 +88,16 @@ func RefreshToken(refreshTokenString string) (string, string, error) {
 		return "", "", errors.New("refresh token inválido o expirado")
 	}
 
-	// Convertir el userID que se guardó en claims.Id
+
 	userID, err := strconv.ParseUint(claims.Id, 10, 32)
 	if err != nil {
 		return "", "", errors.New("ID de usuario inválido en los claims")
 	}
 
-	// Generar un nuevo access token (expira en 2 horas)
 	expirationTime := time.Now().Add(2 * time.Hour)
 	newClaims := &Claims{
 		UserID: uint(userID),
-		// Los roles se recuperan del campo Subject del refresh token
+
 		Roles: claims.Subject,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
@@ -110,7 +110,6 @@ func RefreshToken(refreshTokenString string) (string, string, error) {
 		return "", "", err
 	}
 
-	// Generar un nuevo refresh token (expira en 7 días)
 	refreshExpiration := time.Now().Add(7 * 24 * time.Hour)
 	refreshClaims := &jwt.StandardClaims{
 		ExpiresAt: refreshExpiration.Unix(),
@@ -126,7 +125,6 @@ func RefreshToken(refreshTokenString string) (string, string, error) {
 	return newTokenString, newRefreshTokenString, nil
 }
 
-// ValidateToken valida un token "normal" y retorna los claims personalizados.
 func ValidateToken(tokenString string) (*Claims, error) {
 	claims := &Claims{}
 	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
@@ -137,6 +135,7 @@ func ValidateToken(tokenString string) (*Claims, error) {
 	}
 	return claims, nil
 }
+
 
 func GenerateInitialAuthToken() (string, error) {
 	expirationTime := time.Now().Add(24 * time.Hour)

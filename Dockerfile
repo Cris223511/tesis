@@ -54,4 +54,4 @@ CMD ["./main"]
 # Labels para metadatos
 LABEL maintainer="Backend Team"
 LABEL version="1.0.0"
-LABEL description="Backend de usuarios con autenticación JWT y roles"
+LABEL description="servicios de gestion de usuarios con autentacion basada en JWT"

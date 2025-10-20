@@ -127,7 +127,7 @@ func (s *userService) LoginUser(username, password, clientIP, userAgent string) 
 	}
 
 	var user models.Usuarios
-	err := s.db.Preload("Roles").Preload("BiometricCreds").
+	err := s.db.Preload("Roles").
 		Where("(usuario = ? OR correo = ? OR num_documento = ?) AND activo = ?",
 			username, username, username, false).
 		First(&user).Error
@@ -707,7 +707,6 @@ func (s *userService) DeleteUser(id uint) error {
 	}
 
 	tx.Where("user_id = ?", id).Delete(&models.Role{})
-	tx.Where("user_id = ?", id).Delete(&models.BiometricCredential{})
 	tx.Where("user_id = ?", id).Delete(&models.UserDeviceIP{})
 	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
@@ -755,7 +754,6 @@ func (s *userService) DeleteUserWithValidation(id uint, currentUserID uint) erro
 	}
 
 	tx.Where("user_id = ?", id).Delete(&models.Role{})
-	tx.Where("user_id = ?", id).Delete(&models.BiometricCredential{})
 	tx.Where("user_id = ?", id).Delete(&models.UserDeviceIP{})
 	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})

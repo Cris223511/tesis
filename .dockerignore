@@ -52,3 +52,37 @@ build/
 *.swp
 *.swo
 *~
+
+# Archivos de uploads y recursos grandes
+uploads/
+static/uploads/
+public/uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Base de datos local
+*.db
+*.sqlite
+*.sqlite3
+backups/
+dumps/
+
+# Redis y caché
+redis-data/
+*.rdb
+dump.rdb
+
+# Certificados y llaves
+*.pem
+*.key
+*.crt
+*.p12
+
+# Docker compose (no necesario en build context)
+docker-compose.yml
+docker-compose.override.yml

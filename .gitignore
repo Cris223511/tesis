@@ -1,1 +1,88 @@
+# Variables de entorno y configuración sensible
 /.env
+.env.*
+!.env.example
+
+# Binarios y ejecutables
+/back_usuarios
+/server
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos de prueba y testing
+*.test
+*.out
+*.profile
+coverage.txt
+coverage.out
+
+# Logs y archivos temporales
+*.log
+*.tmp
+/logs/
+/temp/
+.DS_Store
+Thumbs.db
+
+# Dependencias y caché de Go
+/vendor/
+go.sum
+
+# Archivos de desarrollo y IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Uploads y archivos multimedia
+/uploads/
+/static/uploads/
+/public/uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Base de datos y backups
+*.db
+*.sqlite
+*.sqlite3
+/backups/
+/dumps/
+
+# Documentación generada
+/docs/generated/
+/api-docs/
+
+# Archivos de sistema y OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Redis y caché
+/redis-data/
+*.rdb
+dump.rdb
+
+# Certificados y llaves
+*.pem
+*.key
+*.crt
+*.p12
+
+# Archivos de configuración local
+config.local.*
+settings.local.*

@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/duo-labs/webauthn/webauthn"
 	"gorm.io/gorm"
 )
 
@@ -47,31 +46,12 @@ type Usuarios struct {
     LastUserAgent      string                `gorm:"size:255" json:"-"`
     PasswordChangedAt  *time.Time            `json:"-"`
     Roles []Role `gorm:"many2many:user_roles;foreignKey:ID;joinForeignKey:usuarios_id_usuario;references:ID;joinReferences:roles_id" json:"roles"`
-    BiometricCreds     []BiometricCredential `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"-"`
     RoleIDs            []uint                `gorm:"-" json:"role_ids,omitempty"`
 }
 
 
 func (UserRole) TableName() string                 { return "user_roles" }
 func (u *Usuarios) TableName() string              { return "usuarios" }
-func (u *Usuarios) WebAuthnID() []byte             { return []byte(u.Usuario) }
-func (u *Usuarios) WebAuthnName() string           { return u.Nombres_Apellidos }
-func (u *Usuarios) WebAuthnDisplayName() string    { return u.Nombres_Apellidos }
-func (u *Usuarios) WebAuthnIcon() string           { return "" }
-
-func (u *Usuarios) WebAuthnCredentials() []webauthn.Credential {
-	cs := make([]webauthn.Credential, len(u.BiometricCreds))
-	for i, c := range u.BiometricCreds {
-		cs[i] = webauthn.Credential{
-			ID:        c.CredentialID,
-			PublicKey: c.PublicKey,
-			Authenticator: webauthn.Authenticator{
-				SignCount: c.SignCount,
-			},
-		}
-	}
-	return cs
-}
 
 func (u *Usuarios) ValidateTipoDocumento() error {
 	switch u.Tipo_Documento {

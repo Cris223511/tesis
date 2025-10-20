@@ -69,13 +69,10 @@ func InitializeDatabase() {
 		log.Fatalf("Error al migrar usuarios: %v", err)
 	}
 	
-	// Fix temporal: eliminar tabla profile_changes si existe con estructura incorrecta
-	DB.Exec("DROP TABLE IF EXISTS profile_changes")
 	
 	if err := DB.AutoMigrate(
 		&models.UserRole{},
 		&models.UserUnblockCooldown{},
-		&models.BiometricCredential{},
 		&models.UserDeviceIP{},
 		&models.LoginHistory{},
 		&models.SecurityLog{},

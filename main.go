@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -17,6 +18,7 @@ import (
 	"usuarios/utils"
 
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -25,6 +27,9 @@ import (
 
 
 
+
+
+var redisClient *redis.Client
 
 type RateLimiter struct {
 	mu             sync.Mutex
@@ -35,6 +40,7 @@ type RateLimiter struct {
 	repeatLimit    int
 	repeatWindow   time.Duration
 	blockDuration  time.Duration
+	useRedis       bool 
 }
 
 func NewRateLimiter(dailyLimit, repeatLimit int, repeatWindow, blockDuration time.Duration) *RateLimiter {
@@ -46,6 +52,7 @@ func NewRateLimiter(dailyLimit, repeatLimit int, repeatWindow, blockDuration tim
 		repeatLimit:   repeatLimit,
 		repeatWindow:  repeatWindow,
 		blockDuration: blockDuration,
+		useRedis:      redisClient != nil, // Usar Redis si está disponible
 	}
 }
 
@@ -79,7 +86,36 @@ func (rl *RateLimiter) Middleware() gin.HandlerFunc {
 
 func (rl *RateLimiter) checkDailyLimit(c *gin.Context, uid uint, now time.Time) bool {
 	startOfDay := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
-	
+
+	// Si Redis está disponible, usarlo
+	if rl.useRedis && redisClient != nil {
+		ctx := context.Background()
+		key := fmt.Sprintf("rate_limit:daily:%d", uid)
+
+		current, err := redisClient.Get(ctx, key).Int()
+		if err == redis.Nil {
+			// Primera request del día
+			redisClient.Set(ctx, key, 1, 24*time.Hour)
+			return false
+		} else if err != nil {
+			// Error de Redis, fallback a memoria
+			log.Printf("Redis error, fallback: %v", err)
+		} else {
+			// Redis OK
+			if current >= rl.dailyLimit {
+				c.JSON(http.StatusTooManyRequests, gin.H{
+					"error": "límite diario alcanzado (Redis)",
+					"reset": startOfDay.Add(24 * time.Hour).Format(time.RFC3339),
+				})
+				c.Abort()
+				return true
+			}
+			redisClient.Incr(ctx, key)
+			return false
+		}
+	}
+
+	// Código original - memoria
 	var validRequests []time.Time
 	for _, t := range rl.dailyCounts[uid] {
 		if t.After(startOfDay) {
@@ -140,9 +176,12 @@ func (rl *RateLimiter) checkModuleLimit(c *gin.Context, key string, now time.Tim
 
 func initializeApp() (*gin.Engine, error) {
 	utils.LoadEnv()
-	
+
 	config.InitializeDatabase()
-	
+
+	// Inicializar Redis (opcional)
+	initRedis()
+
 	if err := migrateDatabase(); err != nil {
 		return nil, fmt.Errorf("database migration failed: %w", err)
 	}
@@ -153,8 +192,40 @@ func initializeApp() (*gin.Engine, error) {
 	}
 
 	controllers := initializeControllers(services)
-	
+
 	return setupRouter(controllers), nil
+}
+
+// initRedis inicializa Redis de manera opcional
+func initRedis() {
+	redisHost := os.Getenv("REDIS_HOST")
+	if redisHost == "" {
+		redisHost = "localhost"
+	}
+
+	redisPort := os.Getenv("REDIS_PORT")
+	if redisPort == "" {
+		redisPort = "6379"
+	}
+
+	redisClient = redis.NewClient(&redis.Options{
+		Addr:     fmt.Sprintf("%s:%s", redisHost, redisPort),
+		Password: os.Getenv("REDIS_PASSWORD"),
+		DB:       0,
+	})
+
+	// Probar conexión
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
+	_, err := redisClient.Ping(ctx).Result()
+	if err != nil {
+		log.Printf("⚠️  Redis no disponible: %v (continuando sin cache)", err)
+		redisClient = nil
+		return
+	}
+
+	log.Printf("✅ Redis conectado: %s:%s", redisHost, redisPort)
 }
 
 func migrateDatabase() error {
@@ -162,7 +233,6 @@ func migrateDatabase() error {
 		&models.Usuarios{},
 		&models.Role{},
 		&models.UserUnblockCooldown{},
-		&models.BiometricCredential{},
 		&models.UserDeviceIP{},
 		&models.LoginHistory{},
 		&models.SecurityLog{},
@@ -189,25 +259,14 @@ func initializeServices() (*serviceContainer, error) {
 	patientService := services.NewPatientService(config.DB)
 	therapyService := services.NewTherapyService(config.DB)
 
-	bioService, err := services.NewBioService(
-		config.DB,
-		userService,
-		os.Getenv("RP_ORIGIN"),
-		os.Getenv("RP_ID"),
-		os.Getenv("RP_NAME"),
-	)
-	if err != nil {
-		return nil, err
-	}
 
 	return &serviceContainer{
-		user:    userService,
-		role:    roleService,
-		bio:     *bioService,
-		otp:     otpService,
+		user:     userService,
+		role:     roleService,
+		otp:      otpService,
 		deviceIP: *deviceIPRepo,
-		patient: patientService,
-		therapy: therapyService,
+		patient:  patientService,
+		therapy:  therapyService,
 	}, nil
 }
 
@@ -216,7 +275,6 @@ func initializeControllers(services *serviceContainer) *controllerContainer {
 		user:    controllers.NewUserController(services.user, services.otp, services.deviceIP),
 		role:    controllers.NewRoleController(services.role),
 		auth:    controllers.NewAuthController(),
-		bio:     controllers.NewBioController(&services.bio),
 		patient: controllers.NewPatientController(services.patient),
 		therapy: controllers.NewTherapyController(services.therapy),
 	}
@@ -227,7 +285,6 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.user,
 		controllers.role,
 		controllers.auth,
-		controllers.bio,
 		controllers.patient,
 		controllers.therapy,
 	)
@@ -239,6 +296,47 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 	setupSwagger()
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.Static("/uploads", "./uploads")
+
+	// Health check endpoint para Docker
+	r.GET("/health", func(c *gin.Context) {
+		status := "ok"
+		details := gin.H{
+			"database": "connected",
+			"redis":    "not configured",
+			"timestamp": time.Now().UTC().Format(time.RFC3339),
+		}
+
+		// Verificar conexión a base de datos
+		sqlDB, err := config.DB.DB()
+		if err != nil || sqlDB.Ping() != nil {
+			details["database"] = "disconnected"
+			status = "error"
+		}
+
+		// Verificar Redis si está configurado
+		if redisClient != nil {
+			ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+			defer cancel()
+			if err := redisClient.Ping(ctx).Err(); err != nil {
+				details["redis"] = "disconnected"
+				status = "warning"
+			} else {
+				details["redis"] = "connected"
+			}
+		}
+
+		if status == "error" {
+			c.JSON(http.StatusServiceUnavailable, gin.H{
+				"status": status,
+				"details": details,
+			})
+		} else {
+			c.JSON(http.StatusOK, gin.H{
+				"status": status,
+				"details": details,
+			})
+		}
+	})
 
 	return r
 }
@@ -259,7 +357,6 @@ func getPort() string {
 type serviceContainer struct {
 	user     services.UserService
 	role     services.RoleService
-	bio      services.BioService
 	otp      services.OTPService
 	deviceIP services.DeviceIPRepo
 	patient  *services.PatientService
@@ -270,7 +367,6 @@ type controllerContainer struct {
 	user    *controllers.UserController
 	role    *controllers.RoleController
 	auth    *controllers.AuthController
-	bio     *controllers.BioController
 	patient *controllers.PatientController
 	therapy *controllers.TherapyController
 }
@@ -280,6 +376,14 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to initialize application: %v", err)
 	}
+
+	// Cerrar conexiones cuando la aplicación termine
+	defer func() {
+		if redisClient != nil {
+			redisClient.Close()
+		}
+		log.Println("Application shutdown complete")
+	}()
 
 	// Arreglar serial_ids faltantes después de las migraciones
 	if err := models.FixMissingSerialIDs(config.DB); err != nil {
@@ -299,7 +403,8 @@ func main() {
 
 	port := getPort()
 	log.Printf("Server starting on port %s", port)
-	
+	log.Printf("Redis connection: %s:%s", os.Getenv("REDIS_HOST"), os.Getenv("REDIS_PORT"))
+
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}

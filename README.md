@@ -243,10 +243,7 @@ SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password
 
-# WebAuthn (Biometría)
-RP_DISPLAY_NAME=Serious Game USIL
-RP_ID=localhost
-RP_ORIGIN=http://localhost:8080
+
 
 # Límites de aplicación
 MAX_PATIENTS_PER_THERAPIST=20
@@ -357,15 +354,7 @@ GET    /api/therapist-ratings/{therapist_id} # Obtener calificaciones de terapeu
 GET    /api/sessions/rating/{session_id}     # Verificar calificación de sesión existente
 ```
 
-#### Autenticación Biométrica
-```http
-GET    /api/capabilities              # Verificar capacidades biométricas
-POST   /api/register/begin            # Iniciar registro biométrico
-POST   /api/register/finish           # Completar registro biométrico
-GET    /api/devices                   # Dispositivos registrados
-DELETE /api/device                    # Eliminar dispositivo
-PUT    /api/device/rename             # Renombrar dispositivo
-```
+
 
 ### 📊 Parámetros de Consulta
 
@@ -420,25 +409,7 @@ sequenceDiagram
 }
 ```
 
-### Autenticación Biométrica (WebAuthn)
-```go
-// Registro de credencial biométrica
-POST /api/register/begin
-{
-  "display_name": "Mi iPhone 14",
-  "device_type": "platform"
-}
 
-// Respuesta con challenge
-{
-  "credential_creation_options": {
-    "challenge": "base64_challenge",
-    "rp": {"id": "localhost", "name": "Serious Game USIL"},
-    "user": {"id": "user_123", "name": "usuario@example.com"},
-    "authenticatorSelection": {...}
-  }
-}
-```
 
 ## 👥 Roles y Permisos
 
@@ -471,10 +442,6 @@ Permisos Especializados:
 ✅ Exportación de reportes de sesiones
 ✅ Gestión de objetivos terapéuticos
 ✅ Asignación de pacientes a padres
-❌ Calificación de otros terapeutas
-❌ Gestión de otros usuarios
-❌ Cambio de roles
-❌ Configuración del sistema
 ```
 
 #### 👨‍👩‍👧‍👦 Padres/Cuidadores (PD)
@@ -487,10 +454,7 @@ Permisos Limitados:
 ✅ Visualización de calificaciones propias realizadas 🆕
 ✅ Acceso a estadísticas básicas
 ✅ Actualización de perfil propio
-❌ Creación/modificación de pacientes
-❌ Gestión de sesiones terapéuticas
-❌ Acceso a otros pacientes
-❌ Funciones administrativas
+
 ```
 
 ### Validación de Permisos
@@ -508,212 +472,7 @@ AES256-GCM para campos críticos
 HMAC-SHA256 con secret rotativo
 ```
 
-## 🐳 Docker
 
-### Dockerfile
-```dockerfile
-# Build stage
-FROM golang:1.21-alpine AS builder
-WORKDIR /app
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN go build -o backend_usuarios main.go
-
-# Production stage
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates tzdata
-WORKDIR /root/
-COPY --from=builder /app/backend_usuarios .
-COPY --from=builder /app/public ./public
-EXPOSE 8080
-CMD ["./backend_usuarios"]
-```
-
-### Docker Compose
-```yaml
-version: '3.8'
-services:
-  backend-usuarios:
-    build: ./backend_usuarios
-    ports:
-      - "8080:8080"
-    environment:
-      - DB_HOST=mysql
-      - REDIS_HOST=redis
-    depends_on:
-      - mysql
-      - redis
-
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: usuarios_db
-    ports:
-      - "3306:3306"
-
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-```
-
-### Comandos Docker
-```bash
-# Construir imagen
-docker build -t backend-usuarios .
-
-# Ejecutar contenedor
-docker run -p 8080:8080 --env-file .env backend-usuarios
-
-# Con docker-compose (recomendado)
-docker-compose up -d
-```
-
----
-
-## 📊 Monitoreo y Logging
-
-### Health Check
-```http
-GET /health
-```
-```json
-{
-  "status": "healthy",
-  "database": "connected",
-  "redis": "connected",
-  "uptime": "2h30m45s",
-  "timestamp": "2024-09-26T10:30:00Z"
-}
-```
-
-### Métricas Disponibles
-- **Tiempo de respuesta** promedio por endpoint
-- **Rate limit status** en headers
-- **Conexiones activas** a base de datos
-- **Uso de memoria** y CPU
-- **Errores por tipo** y frecuencia
-
-### Logs Estructurados
-```go
-log.WithFields(logrus.Fields{
-    "user_id": userID,
-    "endpoint": "/api/sessions",
-    "method": "POST",
-    "ip": clientIP,
-    "duration": responseTime,
-}).Info("Session created successfully")
-```
-
----
-
-## 🚀 Deployment y Producción
-
-### Configuración de Producción
-```bash
-# Variables críticas
-GIN_MODE=release
-JWT_SECRET=complex_production_secret_256_bits
-DB_HOST=production-mysql-host
-REDIS_HOST=production-redis-host
-
-# Certificados SSL
-SSL_CERT_PATH=/path/to/cert.pem
-SSL_KEY_PATH=/path/to/key.pem
-
-# Logging
-LOG_LEVEL=info
-LOG_FORMAT=json
-```
-
-### CI/CD Pipeline
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy Backend
-on:
-  push:
-    branches: [main]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version: 1.21
-      - run: go test ./...
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to production
-        run: |
-          docker build -t backend-usuarios .
-          docker push ${{ secrets.DOCKER_REGISTRY }}/backend-usuarios
-```
-
----
-
-## 📚 Documentación Adicional
-
-### Swagger/OpenAPI
-- **URL**: `http://localhost:8080/swagger/index.html`
-- **Generación**: `swag init`
-- **Formato**: OpenAPI 3.0
-
-### Testing
-```bash
-# Tests unitarios
-go test ./... -v
-
-# Tests de integración
-go test ./tests/integration/... -v
-
-# Coverage
-go test ./... -coverprofile=coverage.out
-go tool cover -html=coverage.out
-```
-
-### Performance
-```bash
-# Benchmarks
-go test -bench=. ./...
-
-# Profiling
-go tool pprof http://localhost:8080/debug/pprof/profile
-```
-
----
-
-## 🤝 Contribución
-
-1. **Fork** el proyecto
-2. **Crear rama** feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** cambios (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. **Abrir Pull Request**
-
-### Estándares de Código
-- **gofmt** para formateo
-- **golint** para linting
-- **go vet** para análisis estático
-- **Comentarios** en inglés para funciones públicas
-- **Tests** obligatorios para nuevas funcionalidades
-
----
-
-
-
-## 👨‍💻 Desarrollado por
-
-**Jhafet Canepa** - Tesis de Titulación USIL
-- Backend API REST con Go + Gin
-- Autenticación JWT y biométrica
-- Sistema de gestión terapéutica
-- Arquitectura escalable y segura
 
 ## 🆕 Nuevas Funcionalidades Implementadas
 
@@ -779,4 +538,5 @@ go tool pprof http://localhost:8080/debug/pprof/profile
 
 ---
 
-*Última actualización: Septiembre 2025*
+
+#DESARROLLADO POR JHAFET CÁNEPA  , ACTUALIZADO OCTUBRE - 2025
