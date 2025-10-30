@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"net"
 	"strings"
 	"time"
 	"usuarios/models"
@@ -23,14 +24,21 @@ type OTPService interface {
     ValidateOTP(userID uint, code string) (bool, error)
     CheckOTP(userID uint, code string) (bool, error)
     InvalidateUserOTPs(userID uint) error
+
+    GenerateSecureOTP(userID uint, clientIP, userAgent, purpose string) (*models.OTP, error)
+    VerifySecureOTP(userID uint, code, clientIP, userAgent string) error
 }
 
 type otpService struct {
-    db *gorm.DB
+    db        *gorm.DB
+    secureOTP *utils.SecureOTP
 }
 
 func NewOTPService(db *gorm.DB) OTPService {
-    return &otpService{db: db}
+    return &otpService{
+        db:        db,
+        secureOTP: utils.GetSecureOTP(),
+    }
 }
 
 const (
@@ -40,84 +48,18 @@ const (
     MAX_RESEND_ATTEMPTS  = 3
     RESEND_COOLDOWN      = 1 * time.Minute
     RESEND_BLOCK_HOURS   = 24
+
+    MAX_DAILY_OTP_PER_USER = 200
+    MAX_HOURLY_OTP_PER_USER = 200
+    MAX_DAILY_OTP_PER_IP   = 50
 )
 
 func (s *otpService) GenerateOTP(userID uint) (*models.OTP, error) {
-    // Invalidar OTPs anteriores
-    s.db.Model(&models.OTP{}).
-        Where("user_id = ? AND is_used = ? AND expires_at > ?", userID, false, time.Now()).
-        Update("is_used", true)
-    
-    // Generar código OTP
-    code := s.generateRandomCode()
-    
-    // Crear OTP
-    otp := &models.OTP{
-        UserID:    userID,
-        Code:      code,
-        ExpiresAt: time.Now().Add(OTP_EXPIRY_MINUTES * time.Minute),
-        IsUsed:    false,
-        Attempts:  0,
-    }
-    
-    if err := s.db.Create(otp).Error; err != nil {
-        return nil, errors.New("error al generar OTP")
-    }
-    
-    // Obtener usuario para enviar email
-    var user models.Usuarios
-    if err := s.db.First(&user, userID).Error; err != nil {
-        return nil, errors.New("usuario no encontrado")
-    }
-    
-    // Enviar OTP por email para 2FA (verificación de doble factor)
-    go utils.SendOTPEmail(user.Correo, code)
-    
-    log.Printf("[OTP] Código generado para usuario %d: %s", userID, code)
-    
-    return otp, nil
+    return s.GenerateSecureOTP(userID, "", "", "login")
 }
 
 func (s *otpService) VerifyOTP(userID uint, code string) error {
-    var otp models.OTP
-    
-    // Buscar OTP válido
-    err := s.db.Where("user_id = ? AND is_used = ? AND expires_at > ?", 
-        userID, false, time.Now()).
-        Order("created_at DESC").
-        First(&otp).Error
-    
-    if err != nil {
-        if errors.Is(err, gorm.ErrRecordNotFound) {
-            return errors.New("código OTP no válido o expirado")
-        }
-        return errors.New("error al verificar OTP")
-    }
-    
-    // Verificar intentos
-    if otp.Attempts >= MAX_OTP_ATTEMPTS {
-        s.db.Model(&otp).Update("is_used", true)
-        return errors.New("demasiados intentos fallidos")
-    }
-    
-    // Incrementar intentos
-    s.db.Model(&otp).Update("attempts", otp.Attempts + 1)
-    
-    // Comparar código (case insensitive)
-    if strings.ToUpper(code) != strings.ToUpper(otp.Code) {
-        if otp.Attempts + 1 >= MAX_OTP_ATTEMPTS {
-            s.db.Model(&otp).Update("is_used", true)
-            return errors.New("código incorrecto, OTP bloqueado")
-        }
-        return errors.New("código incorrecto")
-    }
-    
-    // Marcar como usado
-    s.db.Model(&otp).Update("is_used", true)
-    
-    log.Printf("[OTP] Código verificado exitosamente para usuario %d", userID)
-    
-    return nil
+    return s.VerifySecureOTP(userID, code, "", "")
 }
 
 
@@ -160,7 +102,7 @@ func (s *otpService) ResendOTP(userID uint) error {
     }
     
    
-    _, err = s.GenerateOTP(userID) 
+    _, err = s.GenerateSecureOTP(userID, "", "", "resend")
     if err != nil {
         return err
     }
@@ -188,9 +130,23 @@ func (s *otpService) generateRandomCode() string {
     return string(code)
 }
 
-func (s *otpService) sendOTPEmail(email, name, otp string) {
-    // Usar directamente la función que ya funciona para verificación 2FA
-    utils.SendOTPEmail(email, otp)
+func (s *otpService) sendOTPEmail(userID uint, code string) error {
+    var user models.Usuarios
+    if err := s.db.First(&user, userID).Error; err != nil {
+        return fmt.Errorf("usuario no encontrado: %w", err)
+    }
+
+    log.Printf("[OTP][EMAIL] Enviando código OTP a usuario %d, email: %s, código: %s", userID, user.Correo, code)
+
+    go func() {
+        if err := utils.SendOTPEmail(user.Correo, code); err != nil {
+            log.Printf("[OTP][EMAIL][ERROR] Error enviando email a %s: %v", user.Correo, err)
+        } else {
+            log.Printf("[OTP][EMAIL][SUCCESS] Email enviado exitosamente a %s", user.Correo)
+        }
+    }()
+
+    return nil
 }
 
 func (s *otpService) CleanupExpiredOTPs() error {
@@ -229,19 +185,205 @@ func (s *otpService) ValidateOTP(userID uint, code string) (bool, error) {
 
 func (s *otpService) CheckOTP(userID uint, code string) (bool, error) {
     var otp models.OTP
-    err := s.db.Where("user_id = ? AND code = ? AND is_used = ? AND expires_at > ?", 
-        userID, code, false, time.Now()).First(&otp).Error
-    
+    err := s.db.Where("user_id = ? AND is_used = ? AND expires_at > ?",
+        userID, false, time.Now()).
+        Order("created_at DESC").
+        First(&otp).Error
+
     if err != nil {
         return false, err
     }
-    
-    // NO marcar como usado, solo verificar que existe y es válido
-    return true, nil
+
+    var isValid bool
+    if otp.IsEncrypted() {
+        isValid = s.secureOTP.VerifyOTP(code, otp.CodeHash, otp.Salt)
+    } else {
+        isValid = otp.VerifyLegacy(code)
+    }
+
+    return isValid, nil
 }
 
 func (s *otpService) InvalidateUserOTPs(userID uint) error {
     return s.db.Model(&models.OTP{}).
         Where("user_id = ? AND is_used = ?", userID, false).
         Update("is_used", true).Error
+}
+
+func (s *otpService) GenerateSecureOTP(userID uint, clientIP, userAgent, purpose string) (*models.OTP, error) {
+    if err := s.checkRateLimit(userID, clientIP); err != nil {
+        s.logSecurityEvent(userID, clientIP, "OTP_RATE_LIMIT", err.Error())
+        return nil, err
+    }
+
+    s.db.Model(&models.OTP{}).
+        Where("user_id = ? AND is_used = ? AND expires_at > ?", userID, false, time.Now()).
+        Update("is_used", true)
+
+    code := s.generateRandomCode()
+
+    encryptedCode, hash, salt, err := s.secureOTP.EncryptOTP(code)
+    if err != nil {
+        s.logSecurityEvent(userID, clientIP, "OTP_ENCRYPTION_ERROR", err.Error())
+        return nil, fmt.Errorf("error interno al generar OTP")
+    }
+
+    otp := &models.OTP{
+        UserID:        userID,
+        Code:          "",
+        EncryptedCode: encryptedCode,
+        CodeHash:      hash,
+        Salt:          salt,
+        ExpiresAt:     time.Now().Add(OTP_EXPIRY_MINUTES * time.Minute),
+        IsUsed:        false,
+        Attempts:      0,
+        ClientIP:      s.normalizeIP(clientIP),
+        UserAgent:     s.sanitizeUserAgent(userAgent),
+        Purpose:       purpose,
+    }
+
+    if err := s.db.Create(otp).Error; err != nil {
+        s.logSecurityEvent(userID, clientIP, "OTP_SAVE_ERROR", err.Error())
+        return nil, errors.New("error al generar OTP")
+    }
+
+    if err := s.sendOTPEmail(userID, code); err != nil {
+        log.Printf("[OTP][WARNING] Error enviando email a usuario %d: %v", userID, err)
+    }
+
+    s.logSecurityEvent(userID, clientIP, "OTP_GENERATED", fmt.Sprintf("Purpose: %s", purpose))
+
+    return otp, nil
+}
+
+func (s *otpService) VerifySecureOTP(userID uint, code, clientIP, userAgent string) error {
+    if err := s.validateOTPInput(code); err != nil {
+        s.logSecurityEvent(userID, clientIP, "OTP_INVALID_INPUT", err.Error())
+        return err
+    }
+
+    var otp models.OTP
+    err := s.db.Where(
+        "user_id = ? AND is_used = ? AND expires_at > ?",
+        userID, false, time.Now(),
+    ).Order("created_at DESC").First(&otp).Error
+
+    if err != nil {
+        if errors.Is(err, gorm.ErrRecordNotFound) {
+            s.logSecurityEvent(userID, clientIP, "OTP_NOT_FOUND", "No valid OTP")
+            return errors.New("código OTP no válido o expirado")
+        }
+        s.logSecurityEvent(userID, clientIP, "OTP_DB_ERROR", err.Error())
+        return errors.New("error al verificar OTP")
+    }
+
+    if otp.Attempts >= MAX_OTP_ATTEMPTS {
+        s.db.Model(&otp).Update("is_used", true)
+        s.logSecurityEvent(userID, clientIP, "OTP_MAX_ATTEMPTS", fmt.Sprintf("OTP ID: %d", otp.ID))
+        return errors.New("demasiados intentos fallidos")
+    }
+
+    s.db.Model(&otp).Update("attempts", otp.Attempts+1)
+
+    var isValid bool
+    if otp.IsEncrypted() {
+        isValid = s.secureOTP.VerifyOTP(code, otp.CodeHash, otp.Salt)
+    } else {
+        isValid = otp.VerifyLegacy(code)
+    }
+
+    if !isValid {
+        s.logSecurityEvent(userID, clientIP, "OTP_INVALID_CODE",
+            fmt.Sprintf("Attempt %d/%d, OTP ID: %d", otp.Attempts+1, MAX_OTP_ATTEMPTS, otp.ID))
+
+        if otp.Attempts+1 >= MAX_OTP_ATTEMPTS {
+            s.db.Model(&otp).Update("is_used", true)
+            return errors.New("código incorrecto, OTP bloqueado")
+        }
+        return errors.New("código incorrecto")
+    }
+
+    s.db.Model(&otp).Update("is_used", true)
+    s.logSecurityEvent(userID, clientIP, "OTP_VERIFIED", fmt.Sprintf("OTP ID: %d", otp.ID))
+
+    return nil
+}
+
+func (s *otpService) checkRateLimit(userID uint, clientIP string) error {
+    now := time.Now()
+    today := now.Truncate(24 * time.Hour)
+    hourAgo := now.Add(-1 * time.Hour)
+
+    var dailyUserCount int64
+    s.db.Model(&models.OTP{}).Where(
+        "user_id = ? AND created_at >= ?", userID, today,
+    ).Count(&dailyUserCount)
+
+    if dailyUserCount >= MAX_DAILY_OTP_PER_USER {
+        return fmt.Errorf("límite diario de usuario excedido (%d/%d)", dailyUserCount, MAX_DAILY_OTP_PER_USER)
+    }
+
+    var hourlyUserCount int64
+    s.db.Model(&models.OTP{}).Where(
+        "user_id = ? AND created_at >= ?", userID, hourAgo,
+    ).Count(&hourlyUserCount)
+
+    if hourlyUserCount >= MAX_HOURLY_OTP_PER_USER {
+        return fmt.Errorf("límite por hora excedido (%d/%d)", hourlyUserCount, MAX_HOURLY_OTP_PER_USER)
+    }
+
+    if clientIP != "" && clientIP != "unknown" {
+        var ipCount int64
+        s.db.Model(&models.OTP{}).Where(
+            "client_ip = ? AND created_at >= ?", clientIP, today,
+        ).Count(&ipCount)
+
+        if ipCount >= MAX_DAILY_OTP_PER_IP {
+            return fmt.Errorf("límite diario por IP excedido (%d/%d)", ipCount, MAX_DAILY_OTP_PER_IP)
+        }
+    }
+
+    return nil
+}
+
+func (s *otpService) validateOTPInput(code string) error {
+    if len(code) != OTP_LENGTH {
+        return errors.New("código debe tener 6 caracteres")
+    }
+
+    for _, char := range strings.ToUpper(code) {
+        if !((char >= '0' && char <= '9') || (char >= 'A' && char <= 'Z')) {
+            return errors.New("código contiene caracteres inválidos")
+        }
+    }
+
+    return nil
+}
+
+func (s *otpService) normalizeIP(ip string) string {
+    if ip == "" {
+        return "unknown"
+    }
+
+    if strings.HasPrefix(ip, "::ffff:") {
+        ip = strings.TrimPrefix(ip, "::ffff:")
+    }
+
+    if net.ParseIP(ip) == nil {
+        return "invalid"
+    }
+
+    return ip
+}
+
+func (s *otpService) sanitizeUserAgent(ua string) string {
+    if len(ua) > 500 {
+        ua = ua[:500]
+    }
+    return strings.TrimSpace(ua)
+}
+
+func (s *otpService) logSecurityEvent(userID uint, clientIP, eventType, details string) {
+    log.Printf("[SECURITY][%s] UserID: %d, IP: %s, Details: %s",
+        eventType, userID, clientIP, details)
 }

@@ -111,6 +111,7 @@ func SetupRouter(
 		protected.DELETE("/sessions/:id", therapyController.Delete)
 		protected.GET("/sessions/:id/export/pdf", therapyController.ExportToPDF)
 		protected.GET("/sessions/:id/export/jpg", therapyController.ExportToJPG)
+		protected.POST("/sessions/update-expired", therapyController.UpdateExpiredSessions)
 
 		// ============== CALIFICACIONES DE TERAPEUTAS ==============
 		protected.POST("/therapist-ratings", therapyController.CreateTherapistRating)

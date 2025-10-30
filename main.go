@@ -259,6 +259,9 @@ func initializeServices() (*serviceContainer, error) {
 	patientService := services.NewPatientService(config.DB)
 	therapyService := services.NewTherapyService(config.DB)
 
+	// Initialize automatic session state updater
+	log.Printf("🔄 Inicializando actualizador automático de sesiones...")
+	therapyService.StartAutomaticSessionUpdater()
 
 	return &serviceContainer{
 		user:     userService,
@@ -274,7 +277,7 @@ func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
 		user:    controllers.NewUserController(services.user, services.otp, services.deviceIP),
 		role:    controllers.NewRoleController(services.role),
-		auth:    controllers.NewAuthController(),
+		auth:    controllers.NewAuthController(services.user, services.otp, config.DB),
 		patient: controllers.NewPatientController(services.patient),
 		therapy: controllers.NewTherapyController(services.therapy),
 	}
