@@ -131,16 +131,12 @@ func (s *TherapyService) GetAll(userID uint, roles []string) ([]models.TherapySe
 		return nil, err
 	}
 
-	log.Printf("[DEBUG] GetAll loaded %d sessions", len(sessions))
+	
 	for i, session := range sessions {
 		if session.Paciente.CuidadorID != nil {
-			caregiverLoaded := session.Paciente.Cuidador != nil
-			log.Printf("[DEBUG] Session %d: Paciente %s, CuidadorID: %d, Cuidador loaded: %v",
-				session.ID, session.Paciente.NombresApellidos, *session.Paciente.CuidadorID, caregiverLoaded)
-		} else {
-			log.Printf("[DEBUG] Session %d: Paciente %s, sin cuidador asignado", session.ID, session.Paciente.NombresApellidos)
+			_ = session.Paciente.Cuidador != nil
 		}
-		if i >= 3 { // Solo mostrar los primeros 3 para no saturar los logs
+		if i >= 3 {
 			break
 		}
 	}
@@ -249,40 +245,28 @@ func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.Thera
 		return nil, err
 	}
 
-	log.Printf("[DEBUG] GetByID - Session %d loaded successfully", session.ID)
+	
 	if session.Paciente.CuidadorID != nil {
-		caregiverLoaded := session.Paciente.Cuidador != nil
-		log.Printf("[DEBUG] GetByID - Paciente: %s, CuidadorID: %d, Cuidador loaded: %v",
-			session.Paciente.NombresApellidos, *session.Paciente.CuidadorID, caregiverLoaded)
-		if caregiverLoaded {
-			log.Printf("[DEBUG] GetByID - Cuidador details: %s (ID: %d)",
-				session.Paciente.Cuidador.Nombres_Apellidos, session.Paciente.Cuidador.ID)
-		}
-	} else {
-		log.Printf("[DEBUG] GetByID - Paciente %s sin cuidador asignado", session.Paciente.NombresApellidos)
+		_ = session.Paciente.Cuidador != nil
 	}
 
 	return &session, nil
 }
 
 func (s *TherapyService) GetPatientSessions(patientID, userID uint, roles []string) ([]models.TherapySession, error) {
-	log.Printf("[DEBUG] GetPatientSessions called: patientID=%d, userID=%d, roles=%v", patientID, userID, roles)
-
-	// First check if patient exists at all
+	
 	var patientCount int64
 	if err := s.db.Model(&models.Patient{}).Where("id = ?", patientID).Count(&patientCount).Error; err != nil {
-		log.Printf("[ERROR] Failed to check patient existence: %v", err)
+		
 		return nil, err
 	}
-	log.Printf("[DEBUG] Patient %d exists in database: %v (count: %d)", patientID, patientCount > 0, patientCount)
 
-	// Check total sessions for this patient (without role filtering)
 	var totalSessionCount int64
 	if err := s.db.Model(&models.TherapySession{}).Where("paciente_id = ? AND is_deleted = ?", patientID, false).Count(&totalSessionCount).Error; err != nil {
-		log.Printf("[ERROR] Failed to count sessions: %v", err)
+	
 		return nil, err
 	}
-	log.Printf("[DEBUG] Total non-deleted sessions for patient %d: %d", patientID, totalSessionCount)
+	
 
 	var sessions []models.TherapySession
 	query := s.db.
@@ -1517,9 +1501,7 @@ func (s *TherapyService) createAutomaticFollowUpSession(patientID, newTherapistI
 		return fmt.Errorf("error creando sesión automática: %v", err)
 	}
 
-	log.Printf("✅ Sesión automática creada exitosamente (ID: %d) para fecha %s", newSession.ID, sessionDate.Format("2006-01-02"))
-
-	// Enviar notificación al cuidador si existe
+	
 	if patient.Cuidador != nil {
 		s.sendNewTherapistNotification(&newSession, &patient, patient.Cuidador, newTherapistID, oldTherapistID)
 	}
@@ -1534,7 +1516,6 @@ func (s *TherapyService) calculateBusinessDays(startDate time.Time, businessDays
 	for daysAdded < businessDays {
 		currentDate = currentDate.AddDate(0, 0, 1)
 
-		// Saltar fines de semana (Saturday = 6, Sunday = 0)
 		weekday := currentDate.Weekday()
 		if weekday != time.Saturday && weekday != time.Sunday {
 			daysAdded++
@@ -1548,26 +1529,15 @@ func (s *TherapyService) sendNewTherapistNotification(session *models.TherapySes
 	// Obtener información del nuevo terapeuta
 	var newTherapist models.Usuarios
 	if err := s.db.First(&newTherapist, newTherapistID).Error; err != nil {
-		log.Printf("⚠️  No se pudo cargar info del nuevo terapeuta para notificación")
+		
 		return
 	}
-
-	log.Printf("📧 Enviando notificación de cambio de terapeuta a %s (%s)", cuidador.Nombres_Apellidos, cuidador.Correo)
-	log.Printf("   Paciente: %s", patient.NombresApellidos)
-	log.Printf("   Nuevo terapeuta: %s", newTherapist.Nombres_Apellidos)
-	log.Printf("   Nueva sesión: %s a las %s", session.FechaSesion.Format("2006-01-02"), session.HoraInicio)
-
-	// TODO: Implementar envío de email si el servicio de email está disponible
-	// s.emailService.SendTherapistChangeNotification(session, patient, cuidador, &newTherapist)
 }
 
 func (s *TherapyService) deleteTherapistAccount(therapistID uint) error {
-	// Soft delete the therapist account
 	if err := s.db.Model(&models.Usuarios{}).Where("id = ?", therapistID).Update("estado_cuenta", "eliminada").Error; err != nil {
 		return fmt.Errorf("error deleting therapist account: %v", err)
 	}
-
-	// Cancel all future sessions for this therapist
 	if err := s.db.Model(&models.TherapySession{}).
 		Where("terapeuta_id = ? AND estado = ?", therapistID, "programada").
 		Update("estado", "cancelada").Error; err != nil {
@@ -1615,7 +1585,6 @@ func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, role
 			UpdatedAt:   rating.UpdatedAt.Format("2006-01-02 15:04:05"),
 		}
 
-		// Add names if relationships are loaded
 		if rating.Therapist.ID > 0 {
 			responses[i].TherapistName = rating.Therapist.Nombres_Apellidos
 		}
@@ -1628,4 +1597,101 @@ func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, role
 	}
 
 	return responses, nil
+}
+
+func (s *TherapyService) UpdateExpiredSessions() error {
+	log.Printf("🔄 Iniciando actualización automática de estados de sesiones...")
+
+	now := time.Now()
+
+	var sessionsToUpdate []models.TherapySession
+
+	if err := s.db.Preload("Paciente").Preload("Terapeuta").
+		Where("estado = ? AND fecha_sesion < ? AND is_deleted = ?",
+			"programada",
+			now.Add(-2*time.Hour),
+			false).
+		Find(&sessionsToUpdate).Error; err != nil {
+		log.Printf("❌ Error al obtener sesiones para actualizar: %v", err)
+		return err
+	}
+
+	if len(sessionsToUpdate) == 0 {
+		log.Printf("✅ No hay sesiones para actualizar automáticamente")
+		return nil
+	}
+
+	log.Printf("📋 Encontradas %d sesiones para actualizar", len(sessionsToUpdate))
+
+	updatedCount := 0
+	for _, session := range sessionsToUpdate {
+		if err := s.db.Model(&session).Updates(map[string]interface{}{
+			"estado":     "completada",
+			"updated_at": now,
+		}).Error; err != nil {
+			log.Printf("❌ Error al actualizar sesión ID %d: %v", session.ID, err)
+			continue
+		}
+
+		updatedCount++
+		log.Printf("✅ Sesión ID %d actualizada automáticamente a 'completada' - Paciente: %s, Fecha: %s",
+			session.ID,
+			session.Paciente.NombresApellidos,
+			session.FechaSesion.Format("2006-01-02 15:04"))
+		go s.sendAutomaticCompletionNotification(&session)
+	}
+
+	log.Printf("🎯 Actualización automática completada: %d/%d sesiones actualizadas", updatedCount, len(sessionsToUpdate))
+
+	return nil
+}
+
+
+func (s *TherapyService) sendAutomaticCompletionNotification(session *models.TherapySession) {
+	if session.Paciente.CuidadorID != nil {
+		var cuidador models.Usuarios
+		if err := s.db.First(&cuidador, *session.Paciente.CuidadorID).Error; err == nil {
+			
+			s.emailService.SendSessionAutoCompletedEmail(session, &session.Paciente, &cuidador)
+		}
+	}
+}
+
+
+func (s *TherapyService) StartAutomaticSessionUpdater() {
+	log.Printf("🚀 Iniciando actualizador automático de sesiones (cada hora)...")
+	go func() {
+		if err := s.UpdateExpiredSessions(); err != nil {
+			log.Printf("❌ Error en actualización automática inicial: %v", err)
+		}
+	}()
+	ticker := time.NewTicker(1 * time.Hour)
+	go func() {
+		for {
+			select {
+			case <-ticker.C:
+				if err := s.UpdateExpiredSessions(); err != nil {
+					log.Printf("❌ Error en actualización automática programada: %v", err)
+				}
+			}
+		}
+	}()
+
+	log.Printf("✅ Actualizador automático de sesiones iniciado correctamente")
+}
+
+func (s *TherapyService) GetSessionsRequiringUpdate() ([]models.TherapySession, error) {
+	var sessions []models.TherapySession
+	now := time.Now()
+
+	if err := s.db.Preload("Paciente").Preload("Terapeuta").
+		Where("estado = ? AND fecha_sesion < ? AND is_deleted = ?",
+			"programada",
+			now.Add(-2*time.Hour),
+			false).
+		Find(&sessions).Error; err != nil {
+		return nil, err
+	}
+
+	return sessions, nil
 }

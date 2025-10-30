@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 	"usuarios/dto"
 	"usuarios/models"
 	"usuarios/service"
@@ -582,5 +583,51 @@ func (tc *TherapyController) GetSessionRating(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Calificación obtenida exitosamente",
 		"data":    response,
+	})
+}
+
+func (controller *TherapyController) UpdateExpiredSessions(c *gin.Context) {
+	userID, _, err := controller.validateAdminOnly(c)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
+
+
+	sessionsToUpdate, err := controller.therapyService.GetSessionsRequiringUpdate()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Error al obtener sesiones para actualizar: " + err.Error(),
+		})
+		return
+	}
+
+	beforeCount := len(sessionsToUpdate)
+	
+	err = controller.therapyService.UpdateExpiredSessions()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Error al actualizar estados de sesiones: " + err.Error(),
+		})
+		return
+	}
+
+	
+	sessionsAfterUpdate, err := controller.therapyService.GetSessionsRequiringUpdate()
+	if err != nil {
+		
+		sessionsAfterUpdate = []models.TherapySession{}
+	}
+
+	afterCount := len(sessionsAfterUpdate)
+	updatedCount := beforeCount - afterCount
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":           "Actualización de sesiones ejecutada exitosamente",
+		"sessions_found":    beforeCount,
+		"sessions_updated":  updatedCount,
+		"sessions_pending":  afterCount,
+		"updated_by_admin":  userID,
+		"updated_at":        time.Now().Format("2006-01-02 15:04:05"),
 	})
 }

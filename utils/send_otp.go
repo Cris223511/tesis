@@ -4,15 +4,33 @@ import (
 	"fmt"
 	"log"
 	"net/smtp"
+	"os"
 	"time"
 )
 
-const (
-	smtpHost     = "smtp.gmail.com"
-	smtpPort     = "587"
-	senderEmail  = "jafcnepamace24@gmail.com"
-	senderPassword = "gumwkmvmkqbczusm"
-)
+func getSMTPConfig() (host, port, email, password string) {
+	host = os.Getenv("SMTP_HOST")
+	if host == "" {
+		host = "smtp.gmail.com"
+	}
+
+	port = os.Getenv("SMTP_PORT")
+	if port == "" {
+		port = "587"
+	}
+
+	email = os.Getenv("SMTP_EMAIL")
+	if email == "" {
+		email = "jafcnepamace24@gmail.com"
+	}
+
+	password = os.Getenv("SMTP_PASSWORD")
+	if password == "" {
+		password = "gumwkmvmkqbczusm"
+	}
+
+	return host, port, email, password
+}
 
 func SendOTPEmail(toEmail, otp string) error {
 	subject := "Código de Verificación - Portal Universitario"
@@ -57,7 +75,7 @@ func SendOTPEmail(toEmail, otp string) error {
 }
 
 func SendSecurityAlert(toEmail, name, reason, ip string) error {
-	subject := "Alerta de Seguridad - UNTUMBES"
+	subject := "Alerta de Seguridad - SERIOUS GAME"
 	body := fmt.Sprintf(`
 	<html>
 	<body>
@@ -75,6 +93,11 @@ func SendSecurityAlert(toEmail, name, reason, ip string) error {
 }
 
 func sendEmailWithTLS(toEmail, subject, body string) error {
+	smtpHost, smtpPort, senderEmail, senderPassword := getSMTPConfig()
+
+	log.Printf("[EMAIL][DEBUG] Iniciando envío a: %s", toEmail)
+	log.Printf("[EMAIL][DEBUG] SMTP Config - Host: %s, Port: %s, User: %s", smtpHost, smtpPort, senderEmail)
+
 	msg := []byte("From: " + senderEmail + "\r\n" +
 		"To: " + toEmail + "\r\n" +
 		"Subject: " + subject + "\r\n" +
@@ -85,12 +108,14 @@ func sendEmailWithTLS(toEmail, subject, body string) error {
 	addr := smtpHost + ":" + smtpPort
 	auth := smtp.PlainAuth("", senderEmail, senderPassword, smtpHost)
 
-	// Usar smtp.SendMail que maneja STARTTLS automáticamente
+	log.Printf("[EMAIL][DEBUG] Conectando a %s...", addr)
+
 	err := smtp.SendMail(addr, auth, senderEmail, []string{toEmail}, msg)
 	if err != nil {
+		log.Printf("[EMAIL][ERROR] Error detallado: %v", err)
 		return fmt.Errorf("error enviando email: %v", err)
 	}
 
-	log.Printf("Email enviado correctamente a %s", toEmail)
+	log.Printf("[EMAIL][SUCCESS] Email enviado correctamente a %s", toEmail)
 	return nil
 }

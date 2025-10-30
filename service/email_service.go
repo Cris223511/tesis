@@ -534,3 +534,125 @@ func (e *EmailService) sendEmail(to, subject, htmlBody string) error {
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 	return smtp.SendMail(smtpHost+":"+smtpPort, auth, from, []string{to}, []byte(message))
 }
+
+// SendSessionAutoCompletedEmail sends notification when a session is automatically marked as completed
+func (e *EmailService) SendSessionAutoCompletedEmail(session *models.TherapySession, paciente *models.Patient, cuidador *models.Usuarios) error {
+	subject := "Sesión Terapéutica Completada Automáticamente"
+	templateData := map[string]interface{}{
+		"PacienteNombre":     paciente.NombresApellidos,
+		"CuidadorNombre":     cuidador.Nombres_Apellidos,
+		"TerapeutaNombre":    session.Terapeuta.Nombres_Apellidos,
+		"FechaSesion":        session.FechaSesion.Format("02/01/2006"),
+		"HoraInicio":         session.HoraInicio,
+		"HoraFin":            session.HoraFin,
+		"Ubicacion":          session.Ubicacion,
+		"Descripcion":        session.Descripcion,
+		"FechaActualizacion": time.Now().Format("02/01/2006 15:04"),
+	}
+
+	htmlTemplate := `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sesión Completada Automáticamente</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #2E7D4F; margin: 0; font-size: 24px; }
+        .info-box { background-color: #E8F5E8; padding: 20px; border-radius: 6px; margin: 20px 0; }
+        .info-row { margin: 10px 0; }
+        .label { font-weight: bold; color: #2E7D4F; }
+        .value { color: #333; }
+        .alert-box { background-color: #FFF3CD; border: 1px solid #FFE69C; padding: 15px; border-radius: 6px; margin: 20px 0; }
+        .alert-text { color: #856404; margin: 0; }
+        .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; color: #666; font-size: 12px; }
+        .icon { font-size: 18px; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Sesión Terapéutica Completada Automáticamente</h1>
+        </div>
+
+        <div class="alert-box">
+            <p class="alert-text">
+                <strong>⚠️ Notificación Automática:</strong> Esta sesión ha sido marcada como completada automáticamente
+                debido a que la fecha programada ya pasó.
+            </p>
+        </div>
+
+        <p>Estimado/a <strong>{{.CuidadorNombre}}</strong>,</p>
+
+        <p>Le informamos que la sesión terapéutica programada para <strong>{{.PacienteNombre}}</strong>
+        ha sido marcada automáticamente como completada.</p>
+
+        <div class="info-box">
+            <div class="info-row">
+                <span class="label">👤 Paciente:</span>
+                <span class="value">{{.PacienteNombre}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">👨‍⚕️ Terapeuta:</span>
+                <span class="value">{{.TerapeutaNombre}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">📅 Fecha Original:</span>
+                <span class="value">{{.FechaSesion}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">🕐 Horario:</span>
+                <span class="value">{{.HoraInicio}} - {{.HoraFin}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">📍 Ubicación:</span>
+                <span class="value">{{.Ubicacion}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">📝 Descripción:</span>
+                <span class="value">{{.Descripcion}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">🕒 Actualizado:</span>
+                <span class="value">{{.FechaActualizacion}}</span>
+            </div>
+        </div>
+
+        <div style="background-color: #F8F9FA; padding: 15px; border-radius: 6px; margin: 20px 0;">
+            <h3 style="color: #495057; margin-top: 0;">¿Qué significa esto?</h3>
+            <ul style="color: #6C757D; padding-left: 20px;">
+                <li>La sesión programada ya pasó y no se registró asistencia</li>
+                <li>El sistema automáticamente la marcó como "completada" para mantener registros actualizados</li>
+                <li>Si la sesión SÍ se realizó, no necesita tomar ninguna acción</li>
+                <li>Si la sesión NO se realizó, puede contactar al terapeuta para reagendar</li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 30px;">
+            Si tiene alguna pregunta sobre esta sesión o necesita reagendar,
+            no dude en contactar directamente al terapeuta asignado.
+        </p>
+
+        <div class="footer">
+            <p>Este es un mensaje automático del Sistema de Gestión Terapéutica</p>
+            <p>Generado automáticamente el {{.FechaActualizacion}}</p>
+        </div>
+    </div>
+</body>
+</html>`
+
+	// Parse template and send email
+	t, err := template.New("sessionAutoCompleted").Parse(htmlTemplate)
+	if err != nil {
+		return fmt.Errorf("error parsing template: %v", err)
+	}
+
+	var buf bytes.Buffer
+	if err := t.Execute(&buf, templateData); err != nil {
+		return fmt.Errorf("error executing template: %v", err)
+	}
+
+	return e.sendEmail(cuidador.Correo, subject, buf.String())
+}
