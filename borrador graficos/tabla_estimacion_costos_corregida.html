@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimación de Costos - Serious Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .tabla-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        th, td {
+            border: 1px solid #666;
+            padding: 6px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .header-main {
+            background-color: #c5d9f1;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .header-presupuesto {
+            background-color: #c5d9f1;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .header-reservas {
+            background-color: #c5d9f1;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .header-total-final {
+            background-color: #c5d9f1;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .header-columns {
+            background-color: #c5d9f1;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .categoria-recursos-humanos {
+            background-color: #ffc000;
+            font-weight: bold;
+            text-align: center;
+        }
+        .categoria-recursos-materiales {
+            background-color: #ffc000;
+            font-weight: bold;
+            text-align: center;
+        }
+        .categoria-hardware {
+            background-color: #ffc000;
+            font-weight: bold;
+            text-align: center;
+        }
+        .categoria-recursos-tecnologicos {
+            background-color: #ffc000;
+            font-weight: bold;
+            text-align: center;
+        }
+        .categoria-servicios {
+            background-color: #ff9900;
+            font-weight: bold;
+            text-align: center;
+        }
+        .total-proyecto {
+            background-color: #ff9900;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+        }
+        .celda-presupuesto {
+            background-color: #ff6b6b;
+            color: white;
+            font-weight: bold;
+        }
+        .celda-reservas {
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+        }
+        .celda-total {
+            background-color: #5cb85c;
+            color: white;
+            font-weight: bold;
+        }
+        .texto-izquierda {
+            text-align: left;
+        }
+        .observaciones {
+            font-size: 9px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabla-container">
+        <table>
+            <thead>
+                <tr>
+                    <td colspan="6" class="header-main"></td>
+                    <td class="header-presupuesto">Presupuesto</td>
+                    <td class="header-reservas">Reservas<br>(20% de<br>Presupuesto)</td>
+                    <td class="header-total-final">Total</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="header-main">Total</td>
+                    <td class="celda-presupuesto">S/48,680.00</td>
+                    <td class="celda-reservas">S/9,736.00</td>
+                    <td class="celda-total">S/58,416.00</td>
+                </tr>
+                <tr>
+                    <td class="header-columns">Categoría</td>
+                    <td class="header-columns">Recurso</td>
+                    <td class="header-columns">Unidad</td>
+                    <td class="header-columns">Tasa</td>
+                    <td class="header-columns">Precio Unitario</td>
+                    <td class="header-columns">Total</td>
+                    <td class="header-columns">Observaciones</td>
+                    <td class="header-columns"></td>
+                    <td class="header-columns"></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="categoria-recursos-humanos">Recursos<br>Humanos</td>
+                    <td class="texto-izquierda">Tesista A - Especialista ML/Go/Python</td>
+                    <td>Horas/Mensuales</td>
+                    <td>160 hrs/mes</td>
+                    <td>S/25.00 x hr</td>
+                    <td>S/32,000.00</td>
+                    <td class="observaciones">8 meses x 160 hrs x S/25.00<br>Desarrollo ML con CNN</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Tesista B - Desarrollador Web/Móvil Kotlin</td>
+                    <td>Horas/Mensuales</td>
+                    <td>160 hrs/mes</td>
+                    <td>S/22.00 x hr</td>
+                    <td>S/28,160.00</td>
+                    <td class="observaciones">8 meses x 160 hrs x S/22.00<br>Desarrollo web PHP y aplicación Kotlin</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="6" class="categoria-recursos-materiales">Recursos<br>Materiales</td>
+                    <td class="texto-izquierda">Internet Banda Ancha</td>
+                    <td>Conexiones</td>
+                    <td>2</td>
+                    <td>S/40.00</td>
+                    <td>S/640.00</td>
+                    <td class="observaciones">8 meses x 2 conexiones x S/40.00<br>Conectividad remota</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Cloud Storage</td>
+                    <td>TB/Mensual</td>
+                    <td>1</td>
+                    <td>S/10.00</td>
+                    <td>S/80.00</td>
+                    <td class="observaciones">8 meses x S/10.00<br>Backup automático</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Certificado SSL</td>
+                    <td>Anual</td>
+                    <td>1</td>
+                    <td>S/50.00</td>
+                    <td>S/50.00</td>
+                    <td class="observaciones">Seguridad HTTPS</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Servicios Email</td>
+                    <td>Mensual</td>
+                    <td>6</td>
+                    <td>S/15.00</td>
+                    <td>S/90.00</td>
+                    <td class="observaciones">6 meses x S/15.00<br>10,000 emails/mes</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Impresiones y Documentación</td>
+                    <td>Paquete</td>
+                    <td>1</td>
+                    <td>S/120.00</td>
+                    <td>S/120.00</td>
+                    <td class="observaciones">Manuales, diagramas, presentaciones</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Útiles de Oficina</td>
+                    <td>Paquete</td>
+                    <td>1</td>
+                    <td>S/150.00</td>
+                    <td>S/150.00</td>
+                    <td class="observaciones">Papelería, cables, accesorios</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="7" class="categoria-hardware">Hardware</td>
+                    <td class="texto-izquierda">Laptop Desarrollo Principal</td>
+                    <td>Unidad</td>
+                    <td>1</td>
+                    <td>S/4,500.00</td>
+                    <td>S/4,500.00</td>
+                    <td class="observaciones">Intel i7, 32GB RAM, RTX 3060<br>Para desarrollo ML con CNN</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Laptop Desarrollo Web</td>
+                    <td>Unidad</td>
+                    <td>1</td>
+                    <td>S/2,800.00</td>
+                    <td>S/2,800.00</td>
+                    <td class="observaciones">Intel i5, 16GB RAM<br>Para desarrollo web</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Dispositivos Android Testing</td>
+                    <td>Unidades</td>
+                    <td>3</td>
+                    <td>S/800.00</td>
+                    <td>S/2,400.00</td>
+                    <td class="observaciones">Testing compatibilidad<br>Gama media-alta</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">SSD Externo</td>
+                    <td>Unidades</td>
+                    <td>2</td>
+                    <td>S/300.00</td>
+                    <td>S/600.00</td>
+                    <td class="observaciones">1TB c/u para respaldos</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Cámara Web HD</td>
+                    <td>Unidades</td>
+                    <td>2</td>
+                    <td>S/180.00</td>
+                    <td>S/360.00</td>
+                    <td class="observaciones">Testing facial recognition</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Hosting VPS Desarrollo</td>
+                    <td>Mensual</td>
+                    <td>6</td>
+                    <td>S/45.00</td>
+                    <td>S/270.00</td>
+                    <td class="observaciones">4 vCPU, 8GB RAM<br>Ambiente de pruebas</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Hosting VPS Producción</td>
+                    <td>Mensual</td>
+                    <td>3</td>
+                    <td>S/75.00</td>
+                    <td>S/225.00</td>
+                    <td class="observaciones">8 vCPU, 16GB RAM<br>Servidor principal</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="5" class="categoria-recursos-tecnologicos">Recursos<br>Tecnológicos</td>
+                    <td class="texto-izquierda">Dominio Web</td>
+                    <td>Anual</td>
+                    <td>1</td>
+                    <td>S/45.00</td>
+                    <td>S/45.00</td>
+                    <td class="observaciones">Dominio .com principal</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Figma Pro</td>
+                    <td>Mensual</td>
+                    <td>8</td>
+                    <td>S/39.00</td>
+                    <td>S/288.00</td>
+                    <td class="observaciones">Diseño UI/UX colaborativo</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Asana Premium</td>
+                    <td>Mensual</td>
+                    <td>8</td>
+                    <td>S/33.00</td>
+                    <td>S/264.00</td>
+                    <td class="observaciones">Gestión de proyectos</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Redis Cloud + MySQL Cloud</td>
+                    <td>Créditos</td>
+                    <td>1</td>
+                    <td>S/600.00</td>
+                    <td>S/600.00</td>
+                    <td class="observaciones">Cache distribuido y base de datos</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Licencias JetBrains (GoLand/PyCharm)</td>
+                    <td>Anual</td>
+                    <td>2</td>
+                    <td>S/150.00</td>
+                    <td>S/300.00</td>
+                    <td class="observaciones">IDEs para Go, Python y Android</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="categoria-servicios">Servicios</td>
+                    <td class="texto-izquierda">Consultoría Especializada TEA Adultos</td>
+                    <td>Horas</td>
+                    <td>20</td>
+                    <td>S/120.00</td>
+                    <td>S/2,400.00</td>
+                    <td class="observaciones">Experto en ML/CNN para adultos con TEA</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Testing QA Externo</td>
+                    <td>Horas</td>
+                    <td>40</td>
+                    <td>S/45.00</td>
+                    <td>S/1,800.00</td>
+                    <td class="observaciones">Testing especializado<br>Performance y seguridad</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="texto-izquierda">Capacitación Técnica</td>
+                    <td>Cursos</td>
+                    <td>4</td>
+                    <td>S/200.00</td>
+                    <td>S/800.00</td>
+                    <td class="observaciones">TensorFlow, OpenCV, Go, Redis avanzado</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="total-proyecto">TOTAL DEL PROYECTO</td>
+                    <td class="celda-presupuesto">S/48,680.00</td>
+                    <td class="celda-reservas">S/9,736.00</td>
+                    <td class="celda-total">S/58,416.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

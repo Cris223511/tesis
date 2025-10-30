@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico Pregunta N°1 - Antes de la Implementación</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 2px solid #0000000b;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="chart-wrapper">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('pieChart').getContext('2d');
+
+        const pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['De 1 a 2', 'De 3 a 5', 'De 6 a 8', 'De 9 a 10'],
+                datasets: [{
+                    data: [0, 0, 10, 90],
+                    backgroundColor: [
+                        '#c72722',
+                        '#42b44a',
+                        '#2a7ad6',
+                        '#703eaa'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 13,
+                                family: 'Arial'
+                            },
+                            color: '#000000',
+                            padding: 15,
+                            boxWidth: 20,
+                            boxHeight: 20
+                        }
+                    },
+                    tooltip: {
+                        enabled: false
+                    },
+                    datalabels: {
+                        color: '#000000',
+                        font: {
+                            size: 16,
+                            weight: 'bold',
+                            family: 'Arial'
+                        },
+                        formatter: function (value) {
+                            if (value === 0) {
+                                return '';
+                            }
+                            return value + '%';
+                        }
+                    }
+                },
+                layout: {
+                    padding: 10
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+</body>
+
+</html>

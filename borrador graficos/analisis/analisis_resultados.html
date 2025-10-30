@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de Resultados Estadísticos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 0;
+        }
+        
+        .table-container {
+            margin-bottom: 50px;
+        }
+        
+        .table-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 12px;
+        }
+        
+        th {
+            background-color: #d0cece;
+            color: #000000;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000000;
+        }
+        
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000000;
+            background-color: #ffffff;
+        }
+        
+        .row-header {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 15px;
+        }
+        
+        .section-header {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            text-align: center;
+            font-size: 13px;
+            padding: 12px;
+        }
+        
+        .note {
+            font-size: 11px;
+            font-style: italic;
+            margin-top: 10px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TABLA 87 -->
+<div class="table-container">
+    <div class="table-title">Tabla 87</div>
+    <div class="table-title" style="font-style: italic; font-weight: normal;">Prueba de muestras emparejadas - Grupo Experimental</div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2"></th>
+                <th colspan="5" style="background-color: #ffffff; border-bottom: none; font-weight: normal; font-size: 11px;">Diferencias emparejadas</th>
+                <th rowspan="2">t</th>
+                <th rowspan="2">gl</th>
+                <th rowspan="2">Sig. (bilateral)</th>
+            </tr>
+            <tr>
+                <th>Media</th>
+                <th>Desviación estándar</th>
+                <th>Media de error estándar</th>
+                <th colspan="2">95% de intervalo de confianza de la diferencia</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Inferior</th>
+                <th>Superior</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-header">Pretest - Postest</td>
+                <td>-9.50</td>
+                <td>2.889</td>
+                <td>0.646</td>
+                <td>-10.853</td>
+                <td>-8.147</td>
+                <td>-14.706</td>
+                <td>19</td>
+                <td><.001</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="note">Fuente: Elaboración propia</div>
+</div>
+
+<!-- TABLA 90 -->
+<div class="table-container">
+    <div class="table-title">Tabla 90</div>
+    <div class="table-title" style="font-style: italic; font-weight: normal;">Prueba de muestras emparejadas - Grupo Control</div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2"></th>
+                <th colspan="5" style="background-color: #ffffff; border-bottom: none; font-weight: normal; font-size: 11px;">Diferencias emparejadas</th>
+                <th rowspan="2">t</th>
+                <th rowspan="2">gl</th>
+                <th rowspan="2">Sig. (bilateral)</th>
+            </tr>
+            <tr>
+                <th>Media</th>
+                <th>Desviación estándar</th>
+                <th>Media de error estándar</th>
+                <th colspan="2">95% de intervalo de confianza de la diferencia</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Inferior</th>
+                <th>Superior</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-header">Pretest - Postest</td>
+                <td>-2.10</td>
+                <td>1.586</td>
+                <td>0.355</td>
+                <td>-2.842</td>
+                <td>-1.358</td>
+                <td>-5.919</td>
+                <td>19</td>
+                <td><.001</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="note">Fuente: Elaboración propia</div>
+</div>
+
+<!-- TABLA 92 -->
+<div class="table-container">
+    <div class="table-title">Tabla 92</div>
+    <div class="table-title" style="font-style: italic; font-weight: normal;">Prueba de muestras independientes</div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="3"></th>
+                <th colspan="2">Prueba de Levene de igualdad de varianzas</th>
+                <th colspan="7">Prueba t para la igualdad de medias</th>
+            </tr>
+            <tr>
+                <th rowspan="2">F</th>
+                <th rowspan="2">Sig</th>
+                <th rowspan="2">t</th>
+                <th rowspan="2">gl</th>
+                <th rowspan="2">Sig. (bilateral)</th>
+                <th rowspan="2">Diferencia de medias</th>
+                <th rowspan="2">Diferencia de error estándar</th>
+                <th colspan="2">95% de intervalo de confianza de la diferencia</th>
+            </tr>
+            <tr>
+                <th>Inferior</th>
+                <th>Superior</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-header">Se asumen varianzas iguales</td>
+                <td>2.341</td>
+                <td>0.134</td>
+                <td>16.643</td>
+                <td>38</td>
+                <td><.001</td>
+                <td>20.56</td>
+                <td>1.235</td>
+                <td>18.060</td>
+                <td>23.060</td>
+            </tr>
+            <tr>
+                <td class="row-header">No se asumen varianzas iguales</td>
+                <td></td>
+                <td></td>
+                <td>16.643</td>
+                <td>34.892</td>
+                <td><.001</td>
+                <td>20.56</td>
+                <td>1.235</td>
+                <td>18.049</td>
+                <td>23.071</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="note">Fuente: Elaboración propia</div>
+</div>
+
+</body>
+</html>
