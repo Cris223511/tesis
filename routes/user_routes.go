@@ -13,6 +13,7 @@ func SetupRouter(
 	authController *controllers.AuthController,
 	patientController *controllers.PatientController,
 	therapyController *controllers.TherapyController,
+	adminController *controllers.AdminController,
 ) *gin.Engine {
 
 	r := gin.Default()
@@ -117,6 +118,11 @@ func SetupRouter(
 		protected.POST("/therapist-ratings", therapyController.CreateTherapistRating)
 		protected.GET("/therapist-ratings/:therapist_id", therapyController.GetTherapistRatings)
 		protected.GET("/sessions/rating/:session_id", therapyController.GetSessionRating)
+
+		// ============== ADMINISTRACIÓN ==============
+		protected.GET("/admin/stats", adminController.GetAdminStats)
+		protected.GET("/admin/therapists", adminController.GetTherapists)
+		protected.GET("/admin/sessions/stats", adminController.GetSessionStats)
 	}
 
 	return r

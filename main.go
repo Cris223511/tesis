@@ -258,6 +258,7 @@ func initializeServices() (*serviceContainer, error) {
 	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
 	patientService := services.NewPatientService(config.DB)
 	therapyService := services.NewTherapyService(config.DB)
+	adminService := services.NewAdminService(config.DB)
 
 	// Initialize automatic session state updater
 	log.Printf("🔄 Inicializando actualizador automático de sesiones...")
@@ -270,6 +271,7 @@ func initializeServices() (*serviceContainer, error) {
 		deviceIP: *deviceIPRepo,
 		patient:  patientService,
 		therapy:  therapyService,
+		admin:    adminService,
 	}, nil
 }
 
@@ -280,6 +282,7 @@ func initializeControllers(services *serviceContainer) *controllerContainer {
 		auth:    controllers.NewAuthController(services.user, services.otp, config.DB),
 		patient: controllers.NewPatientController(services.patient),
 		therapy: controllers.NewTherapyController(services.therapy),
+		admin:   controllers.NewAdminController(services.admin),
 	}
 }
 
@@ -290,6 +293,7 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.auth,
 		controllers.patient,
 		controllers.therapy,
+		controllers.admin,
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -364,6 +368,7 @@ type serviceContainer struct {
 	deviceIP services.DeviceIPRepo
 	patient  *services.PatientService
 	therapy  *services.TherapyService
+	admin    *services.AdminService
 }
 
 type controllerContainer struct {
@@ -372,6 +377,7 @@ type controllerContainer struct {
 	auth    *controllers.AuthController
 	patient *controllers.PatientController
 	therapy *controllers.TherapyController
+	admin   *controllers.AdminController
 }
 
 func main() {
