@@ -83,6 +83,7 @@ func InitializeDatabase() {
 		&models.PhotoChange{},
 		&models.BannerChange{},
 		&models.ProfileChange{},
+		&models.ReportHistory{},
 	); err != nil {
 		log.Fatalf("Error al migrar tablas relacionadas: %v", err)
 	}

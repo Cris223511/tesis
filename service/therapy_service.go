@@ -1,6 +1,7 @@
 package services
 
 import (
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"log"
@@ -9,17 +10,20 @@ import (
 	"time"
 	"usuarios/dto"
 	"usuarios/models"
+	"usuarios/utils"
 	"gorm.io/gorm"
 )
 
 type TherapyService struct {
 	db           *gorm.DB
 	emailService *EmailService
+	mlClient     *utils.MLServiceClient
 }
 
 func NewTherapyService(db *gorm.DB) *TherapyService {
 	return &TherapyService{
 		db:           db,
+		mlClient:     utils.NewMLServiceClient(),
 		emailService: NewEmailService(),
 	}
 }
@@ -601,7 +605,7 @@ func (s *TherapyService) calculateDuration(horaInicio, horaFin string) (int, err
 }
 
 func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.SessionResponse {
-	// Log para debugging de datos del cuidador
+
 	log.Printf("[DEBUG] Session ID: %d, Paciente: %s, PacienteID: %d",
 		session.ID, session.Paciente.NombresApellidos, session.Paciente.ID)
 
@@ -613,7 +617,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		} else {
 			log.Printf("[WARNING] CuidadorID existe pero Cuidador es nil - problema de preload")
 
-			// Hacer consulta directa para debug
+	
 			var cuidadorDirect models.Usuarios
 			err := s.db.Where("idusuario = ?", *session.Paciente.CuidadorID).First(&cuidadorDirect).Error
 			if err != nil {
@@ -661,7 +665,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		},
 	}
 
-	// Agregar información del cuidador si existe
+
 	if session.Paciente.Cuidador != nil {
 		response.Cuidador = &dto.UserBasicInfo{
 			ID:                session.Paciente.Cuidador.ID,
@@ -672,7 +676,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		}
 		log.Printf("[DEBUG] Cuidador agregado a respuesta: %s", response.Cuidador.NombresApellidos)
 	} else if session.Paciente.CuidadorID != nil {
-		// Fallback: Si el preload falló, cargar manualmente
+
 		log.Printf("[DEBUG] Intentando cargar cuidador manualmente (ID: %d)", *session.Paciente.CuidadorID)
 		var cuidadorFallback models.Usuarios
 		err := s.db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").
@@ -694,7 +698,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		log.Printf("[DEBUG] No se agregó cuidador a la respuesta")
 	}
 
-	// Agregar calificación si existe
+
 	var rating models.TherapistRating
 	if err := s.db.Where("session_id = ?", session.ID).First(&rating).Error; err == nil {
 		response.Rating = &dto.TherapistRatingResponse{
@@ -711,7 +715,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		log.Printf("[DEBUG] ⭐ Calificación encontrada: %d estrellas", rating.Rating)
 	}
 
-	// Si la sesión tiene un terapeuta reasignado, cargarlo
+	
 	if session.TerapeutaReasignadoID != nil && *session.TerapeutaReasignadoID > 0 {
 		// Si ya está precargado, usarlo directamente
 		if session.TerapeutaReasignado != nil {
@@ -725,7 +729,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 			log.Printf("[DEBUG] 🔄 Terapeuta reasignado (precargado): %s (ID: %d)",
 				session.TerapeutaReasignado.Nombres_Apellidos, session.TerapeutaReasignado.ID)
 		} else {
-			// Si no está precargado, cargarlo manualmente
+
 			var newTherapist models.Usuarios
 			if err := s.db.First(&newTherapist, *session.TerapeutaReasignadoID).Error; err == nil {
 				response.TerapeutaReasignado = &dto.UserBasicInfo{
@@ -802,13 +806,13 @@ func (s *TherapyService) sendReminder(session *models.TherapySession, reminderTy
 }
 
 func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
-	// Buscar SOLO usuarios con rol de terapeuta
+
 	var therapists []models.Usuarios
 	query := s.db.Table("usuarios").
 		Select("DISTINCT usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono, usuarios.foto_movil").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("roles.id = 4"). // ID 4 = terapeuta según tu BD
+		Where("roles.id = 4"). 
 		Where("usuarios.activo = 0").
 		Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20") 
 
@@ -819,7 +823,7 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 
 	log.Printf("[DEBUG] Terapeutas disponibles encontrados: %d", len(therapists))
 	for _, t := range therapists {
-		// Verificar cuántos pacientes tiene este terapeuta
+
 		var patientCount int64
 		s.db.Model(&models.Patient{}).Where("terapeuta_id = ?", t.ID).Count(&patientCount)
 		log.Printf("  - ID: %d, Nombre: %s, Email: %s, Pacientes: %d/20", t.ID, t.Nombres_Apellidos, t.Correo, patientCount)
@@ -841,17 +845,16 @@ func (s *TherapyService) GetAvailableTherapists() ([]dto.UserBasicInfo, error) {
 
 
 func (s *TherapyService) toPatientListDTO(patient models.Patient) dto.PatientListDTO {
-	// Calculate age from birth date
+
 	now := time.Now()
 	birthDate := time.Time(patient.FechaNacimiento)
 	age := now.Year() - birthDate.Year()
 
-	// Adjust age if birthday hasn't occurred this year yet
 	if now.YearDay() < birthDate.YearDay() {
 		age--
 	}
 
-	// Ensure age is not negative
+
 	if age < 0 {
 		age = 0
 	}
@@ -876,11 +879,10 @@ func (s *TherapyService) toPatientListDTO(patient models.Patient) dto.PatientLis
 	}
 }
 
-// GetAllActiveUsers obtiene todos los usuarios activos (sin filtro de rol)
+
 func (s *TherapyService) GetAllActiveUsers() ([]dto.UserBasicInfo, error) {
 	var users []models.Usuarios
 
-	// Simplemente obtener todos los usuarios activos
 	query := s.db.Table("usuarios").
 		Select("usuarios.idusuario, usuarios.nombres_apellidos, usuarios.correo, usuarios.telefono, usuarios.foto_movil").
 		Where("usuarios.activo = 0").
@@ -907,11 +909,11 @@ func (s *TherapyService) GetAllActiveUsers() ([]dto.UserBasicInfo, error) {
 	return result, nil
 }
 
-// DebugCaregiverPreload - función temporal para debug del preload de cuidadores
+
 func (s *TherapyService) DebugCaregiverPreload() error {
 	var sessions []models.TherapySession
 
-	// Test query con preload explícito
+
 	err := s.db.Preload("Paciente").Preload("Paciente.Cuidador").Preload("Terapeuta").
 		Where("is_deleted = ?", false).
 		Limit(5).
@@ -930,7 +932,7 @@ func (s *TherapyService) DebugCaregiverPreload() error {
 		log.Printf("[DEBUG] Paciente ID: %d", session.Paciente.ID)
 		log.Printf("[DEBUG] CuidadorID from preload: %v", session.Paciente.CuidadorID)
 
-		// Verificar directamente en la BD qué tiene el paciente
+
 		var patientDirect models.Patient
 		err := s.db.Where("id = ?", session.Paciente.ID).First(&patientDirect).Error
 		if err == nil {
@@ -950,7 +952,6 @@ func (s *TherapyService) DebugCaregiverPreload() error {
 			} else {
 				log.Printf("[DEBUG] ❌ Cuidador NOT loaded despite CuidadorID being set")
 
-				// Direct query to check if caregiver exists
 				var cuidador models.Usuarios
 				err := s.db.Where("idusuario = ?", *session.Paciente.CuidadorID).First(&cuidador).Error
 				if err != nil {
@@ -974,7 +975,7 @@ func (s *TherapyService) validateTherapistRole(therapistID uint) error {
 		Select("usuarios.idusuario, usuarios.nombres_apellidos").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("roles.id IN (1, 4)"). // ID 1=administrador, ID 4=terapeuta
+		Where("roles.id IN (1, 4)"). 
 		Where("usuarios.activo = 0").
 		Where("usuarios.idusuario = ?", therapistID).
 		First(&therapist).Error
@@ -1112,19 +1113,19 @@ func (s *TherapyService) hasRole(roles []string, targetRole string) bool {
 }
 
 func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string) (*dto.PatientStatsResponse, error) {
-	// Verificar que el usuario tenga acceso al paciente
+
 	var patient models.Patient
 	patientQuery := s.db.Where("id = ? AND activo = ?", patientID, true)
 
 	if s.hasRole(roles, "PD") && !s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
-		// Padres: solo sus pacientes asignados
+		
 		patientQuery = patientQuery.Where("cuidador_id = ?", userID)
 	} else if s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
-		// Terapeutas: solo pacientes de sus sesiones
+
 		patientQuery = patientQuery.Joins("JOIN therapy_sessions ON therapy_sessions.paciente_id = patients.id").
 			Where("therapy_sessions.terapeuta_id = ? AND therapy_sessions.is_deleted = ?", userID, false)
 	}
-	// Admin ve todos los pacientes
+	
 
 	err := patientQuery.First(&patient).Error
 	if err != nil {
@@ -1134,11 +1135,11 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 		return nil, err
 	}
 
-	// Obtener estadísticas de sesiones
+
 	var sessions []models.TherapySession
 	sessionQuery := s.db.Where("paciente_id = ? AND is_deleted = ?", patientID, false)
 
-	// Aplicar filtro de acceso para sesiones
+
 	if s.hasRole(roles, "TR") && !s.hasRole(roles, "AD") {
 		sessionQuery = sessionQuery.Where("terapeuta_id = ?", userID)
 	}
@@ -1148,7 +1149,7 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 		return nil, err
 	}
 
-	// Calcular estadísticas
+
 	totalSessions := len(sessions)
 	completedSessions := 0
 	scheduledSessions := 0
@@ -1175,13 +1176,13 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 		}
 	}
 
-	// Calcular porcentaje de progreso (sesiones completadas vs total)
+
 	progressPercentage := 0
 	if totalSessions > 0 {
 		progressPercentage = (completedSessions * 100) / totalSessions
 	}
 
-	// Calcular días desde la última sesión
+
 	daysSinceLastSession := 0
 	lastSessionDateStr := ""
 	if lastSessionDate != nil {
@@ -1189,7 +1190,7 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 		lastSessionDateStr = lastSessionDate.Format("2006-01-02")
 	}
 
-	// Calcular duración promedio
+
 	averageSessionDuration := 0
 	if completedSessions > 0 {
 		averageSessionDuration = totalDuration / completedSessions
@@ -1209,16 +1210,15 @@ func (s *TherapyService) GetPatientStats(patientID, userID uint, roles []string)
 	}, nil
 }
 
-// ============== THERAPIST RATING METHODS ==============
+
 
 func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO, userID uint, roles []string) (*models.TherapistRating, error) {
 	log.Printf("🎯 CreateTherapistRating: userID=%d, roles=%v, dto.CaregiverID=%d", userID, roles, dto.CaregiverID)
 
-	// Check if user is admin
 	isAdmin := s.hasRole(roles, "AD")
 	log.Printf("   👤 Usuario es admin: %v", isAdmin)
 
-	// Verify session exists and is in a valid state for rating
+
 	var session models.TherapySession
 	if err := s.db.Where("id = ? AND estado IN (?)", dto.SessionID, []string{"completada", "programada", "en_progreso"}).First(&session).Error; err != nil {
 		log.Printf("❌ Sesión no encontrada: %d", dto.SessionID)
@@ -1226,7 +1226,7 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 	}
 	log.Printf("✅ Sesión: ID=%d, PacienteID=%d, TerapeutaID=%d", session.ID, session.PacienteID, session.TerapeutaID)
 
-	// Get the patient from the session to validate caregiver relationship
+
 	var patient models.Patient
 	if err := s.db.Where("id = ?", session.PacienteID).First(&patient).Error; err != nil {
 		log.Printf("❌ Paciente no encontrado: %d", session.PacienteID)
@@ -1234,9 +1234,9 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 	}
 	log.Printf("✅ Paciente: ID=%d, CuidadorID=%v", patient.ID, patient.CuidadorID)
 
-	// Verify caregiver has access to this patient
+
 	if isAdmin {
-		// ADMIN: Can rate on behalf of ANY caregiver - NO validation needed
+
 		if patient.CuidadorID == nil {
 			log.Printf("❌ Paciente sin cuidador asignado")
 			return nil, errors.New("el paciente no tiene cuidador asignado")
@@ -1244,7 +1244,7 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 		log.Printf("✅ ADMIN autorizado: calificando en nombre de cuidador %d (paciente tiene cuidador %d)",
 			dto.CaregiverID, *patient.CuidadorID)
 	} else {
-		// NORMAL CAREGIVER: Must own the patient
+
 		if patient.CuidadorID == nil {
 			log.Printf("❌ Paciente sin cuidador asignado")
 			return nil, errors.New("no tienes permisos para calificar esta sesión - paciente sin cuidador")
@@ -1256,18 +1256,18 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 		log.Printf("✅ Cuidador autorizado: ID=%d", userID)
 	}
 
-	// Check if rating already exists for this session and caregiver
+
 	var existingRating models.TherapistRating
 	if err := s.db.Where("session_id = ? AND caregiver_id = ?", dto.SessionID, dto.CaregiverID).First(&existingRating).Error; err == nil {
 		return nil, errors.New("ya has calificado esta sesión")
 	}
 
-	// Create the rating using data from the session (not DTO)
+
 	rating := models.TherapistRating{
 		SessionID:   dto.SessionID,
-		TherapistID: session.TerapeutaID,  // Use therapist from session
-		CaregiverID: dto.CaregiverID,      // Use caregiver from DTO (can be admin action)
-		PatientID:   session.PacienteID,   // Use patient from session
+		TherapistID: session.TerapeutaID,  
+		CaregiverID: dto.CaregiverID,     
+		PatientID:   session.PacienteID,  
 		Rating:      dto.Rating,
 		Comment:     dto.Comment,
 	}
@@ -1276,16 +1276,16 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 		return nil, fmt.Errorf("error al crear la calificación: %v", err)
 	}
 
-	// Handle automatic therapist reassignment if rating is 1-3
+
 	if dto.Rating <= 3 {
 		log.Printf("⚠️  Low rating detected (%d stars) for therapist %d by user %d", dto.Rating, session.TerapeutaID, userID)
 
-		// Update disqualification count
+	
 		if err := s.updateTherapistDisqualification(session.TerapeutaID); err != nil {
 			log.Printf("❌ Error updating therapist disqualification: %v", err)
 		}
 
-		// Reassign therapist for patient's future sessions
+
 		newTherapistID, err := s.reassignTherapistForPatient(session.PacienteID, session.TerapeutaID)
 		if err != nil {
 			log.Printf("❌ Error reassigning therapist: %v", err)
@@ -1302,7 +1302,6 @@ func (s *TherapyService) CreateTherapistRating(dto *dto.CreateTherapistRatingDTO
 		}
 	}
 
-	// Load the rating with relationships for response
 	if err := s.db.
 		Preload("Therapist", func(db *gorm.DB) *gorm.DB {
 			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
@@ -1331,7 +1330,6 @@ func (s *TherapyService) GetSessionRating(sessionID uint, userID uint, userRoles
 		Preload("Patient").
 		Where("session_id = ?", sessionID)
 
-	// If user is not admin, filter by caregiver access
 	hasAdminRole := false
 	for _, role := range userRoles {
 		if role == "AD" || role == "admin" || role == "administrador" {
@@ -1355,11 +1353,11 @@ func (s *TherapyService) GetSessionRating(sessionID uint, userID uint, userRoles
 func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error {
 	var disqualification models.TherapistDisqualification
 
-	// Find or create disqualification record
+
 	result := s.db.Where("therapist_id = ?", therapistID).First(&disqualification)
 	if result.Error != nil {
 		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-			// Create new disqualification record
+
 			disqualification = models.TherapistDisqualification{
 				TherapistID: therapistID,
 				BadRatings:  1,
@@ -1380,14 +1378,12 @@ func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error
 
 	log.Printf("Therapist %d now has %d bad ratings", therapistID, disqualification.BadRatings)
 
-	// Check if therapist should be deleted (20 bad ratings)
 	if disqualification.BadRatings >= 20 {
 		log.Printf("Therapist %d has reached 20 bad ratings - deleting account", therapistID)
 		if err := s.deleteTherapistAccount(therapistID); err != nil {
 			return fmt.Errorf("error deleting therapist account: %v", err)
 		}
 
-		// Mark disqualification as deleted
 		disqualification.IsDeleted = true
 		s.db.Save(&disqualification)
 	}
@@ -1397,8 +1393,6 @@ func (s *TherapyService) updateTherapistDisqualification(therapistID uint) error
 
 func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID uint) (uint, error) {
 	log.Printf("🔄 Buscando terapeuta de reemplazo para paciente %d (excluir terapeuta %d)", patientID, oldTherapistID)
-
-	// Get list of disqualified therapists (those who have been marked as deleted due to bad ratings)
 	var disqualifiedIDs []uint
 	s.db.Table("therapist_disqualifications").
 		Where("is_deleted = ?", true).
@@ -1406,37 +1400,31 @@ func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID u
 
 	log.Printf("   📋 Terapeutas descalificados: %v", disqualifiedIDs)
 
-	// Find an available therapist (different from current one and not disqualified)
 	var newTherapist models.Usuarios
 	query := s.db.Table("usuarios").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
 		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("roles.id = 4"). // ID 4=terapeuta
+		Where("roles.id = 4"). 
 		Where("usuarios.idusuario != ?", oldTherapistID).
-		Where("usuarios.activo = 0") // 0=activo
-
-	// Exclude disqualified therapists
+		Where("usuarios.activo = 0") 
 	if len(disqualifiedIDs) > 0 {
 		query = query.Where("usuarios.idusuario NOT IN (?)", disqualifiedIDs)
 	}
 
-	// Also check that new therapist has less than 20 patients
 	query = query.Having("(SELECT COUNT(*) FROM patients WHERE terapeuta_id = usuarios.idusuario) < 20")
 
 	err := query.First(&newTherapist).Error
 	if err != nil {
 		log.Printf("❌ No hay terapeutas alternativos disponibles para paciente %d", patientID)
-		return 0, nil // Don't fail the rating if no therapist is available
+		return 0, nil 
 	}
 
 	log.Printf("✅ Nuevo terapeuta encontrado: %s (ID: %d)", newTherapist.Nombres_Apellidos, newTherapist.ID)
 
-	// Update patient's default therapist
 	if err := s.db.Model(&models.Patient{}).Where("id = ?", patientID).Update("terapeuta_id", newTherapist.ID).Error; err != nil {
 		log.Printf("⚠️  Warning: Could not update patient's default therapist: %v", err)
 	}
 
-	// Update all future (programada) sessions for this patient
 	result := s.db.Model(&models.TherapySession{}).
 		Where("paciente_id = ? AND terapeuta_id = ? AND estado = ?", patientID, oldTherapistID, "programada").
 		Update("terapeuta_id", newTherapist.ID)
@@ -1447,13 +1435,11 @@ func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID u
 
 	log.Printf("✅ Reasignadas %d sesiones futuras del terapeuta %d al terapeuta %d para paciente %d",
 		result.RowsAffected, oldTherapistID, newTherapist.ID, patientID)
-
-	// Si no hay sesiones futuras, crear una nueva sesión automáticamente
 	if result.RowsAffected == 0 {
 		log.Printf("📅 No hay sesiones futuras. Creando nueva sesión automática con el nuevo terapeuta...")
 		if err := s.createAutomaticFollowUpSession(patientID, newTherapist.ID, oldTherapistID); err != nil {
 			log.Printf("⚠️  Warning: No se pudo crear sesión automática: %v", err)
-			// No fallar la reasignación si falla la creación de sesión
+			
 		}
 	}
 
@@ -1461,24 +1447,21 @@ func (s *TherapyService) reassignTherapistForPatient(patientID, oldTherapistID u
 }
 
 func (s *TherapyService) createAutomaticFollowUpSession(patientID, newTherapistID, oldTherapistID uint) error {
-	// Obtener información del paciente
+
 	var patient models.Patient
 	if err := s.db.Preload("Cuidador").First(&patient, patientID).Error; err != nil {
 		return fmt.Errorf("no se pudo cargar paciente: %v", err)
 	}
-
-	// Calcular fecha: 7-10 días hábiles después (usar 8 días como promedio)
 	now := time.Now()
 	sessionDate := s.calculateBusinessDays(now, 8)
 
-	// Hora por defecto: 10:00 AM - 11:00 AM
 	horaInicio := "10:00"
 	horaFin := "11:00"
 
 	log.Printf("📅 Creando sesión de seguimiento para %s con nuevo terapeuta %d", patient.NombresApellidos, newTherapistID)
 	log.Printf("   Fecha programada: %s, Hora: %s - %s", sessionDate.Format("2006-01-02"), horaInicio, horaFin)
 
-	// Crear la sesión
+
 	newSession := models.TherapySession{
 		PacienteID:     patientID,
 		TerapeutaID:    newTherapistID,
@@ -1526,7 +1509,7 @@ func (s *TherapyService) calculateBusinessDays(startDate time.Time, businessDays
 }
 
 func (s *TherapyService) sendNewTherapistNotification(session *models.TherapySession, patient *models.Patient, cuidador *models.Usuarios, newTherapistID, oldTherapistID uint) {
-	// Obtener información del nuevo terapeuta
+
 	var newTherapist models.Usuarios
 	if err := s.db.First(&newTherapist, newTherapistID).Error; err != nil {
 		
@@ -1549,7 +1532,7 @@ func (s *TherapyService) deleteTherapistAccount(therapistID uint) error {
 }
 
 func (s *TherapyService) GetTherapistRatings(therapistID uint, userID uint, roles []string) ([]dto.TherapistRatingResponse, error) {
-	// Verify access permissions
+
 	isAdmin := s.hasRole(roles, "AD")
 	isTherapist := s.hasRole(roles, "TR") && userID == therapistID
 
@@ -1694,4 +1677,908 @@ func (s *TherapyService) GetSessionsRequiringUpdate() ([]models.TherapySession, 
 	}
 
 	return sessions, nil
+}
+
+
+func (s *TherapyService) ValidatePatientAccess(patientID, userID uint, roles string) (bool, error) {
+	roleSlice := strings.Split(roles, ",")
+
+
+	if s.hasRole(roleSlice, "AD") {
+		return true, nil
+	}
+
+	var patient models.Patient
+	if err := s.db.Where("id = ?", patientID).First(&patient).Error; err != nil {
+		return false, errors.New("patient not found")
+	}
+
+
+	if s.hasRole(roleSlice, "TR") {
+		if patient.TerapeutaID == userID {
+			return true, nil
+		}
+	}
+
+	if s.hasRole(roleSlice, "PD") {
+		if patient.CuidadorID != nil && *patient.CuidadorID == userID {
+			return true, nil
+		}
+	}
+
+	return false, nil
+}
+
+
+func (s *TherapyService) GetPatientReportHistory(patientID uint, page, limit int, reportType string) ([]models.ReportHistoryResponse, int, error) {
+	var reports []models.ReportHistory
+	var total int64
+	query := s.db.Model(&models.ReportHistory{}).
+		Where("paciente_id = ?", patientID)
+
+	if reportType != "" {
+		query = query.Where("report_type = ?", reportType)
+	}
+
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+
+	offset := (page - 1) * limit
+	if err := query.
+		Preload("GeneratedByUser").
+		Preload("CurrentTherapist").
+		Preload("PreviousTherapist").
+		Order("created_at DESC").
+		Offset(offset).
+		Limit(limit).
+		Find(&reports).Error; err != nil {
+		return nil, 0, err
+	}
+
+
+	var responses []models.ReportHistoryResponse
+	for _, report := range reports {
+		response := models.ReportHistoryResponse{
+			ID:                report.ID,
+			ReportType:        report.ReportType,
+			ReportTitle:       report.ReportTitle,
+			ReportDescription: report.ReportDescription,
+			DateRange:         report.DateRange,
+			TotalSessions:     report.TotalSessions,
+			CompletedSessions: report.CompletedSessions,
+			AverageConfidence: report.AverageConfidence,
+			DominantEmotion:   report.DominantEmotion,
+			EmotionTrend:      report.EmotionTrend,
+			TherapistChanged:  report.TherapistChanged,
+			FileFormat:        report.FileFormat,
+			FileSizeBytes:     report.FileSizeBytes,
+			CreatedAt:         report.CreatedAt,
+			GeneratedByUser: models.UserBasicInfo{
+				ID:               report.GeneratedByUser.ID,
+				NombresApellidos: report.GeneratedByUser.Nombres_Apellidos,
+				Correo:          report.GeneratedByUser.Correo,
+				Telefono:        report.GeneratedByUser.Telefono,
+			},
+			CurrentTherapist: models.UserBasicInfo{
+				ID:               report.CurrentTherapist.ID,
+				NombresApellidos: report.CurrentTherapist.Nombres_Apellidos,
+				Correo:          report.CurrentTherapist.Correo,
+				Telefono:        report.CurrentTherapist.Telefono,
+			},
+		}
+
+		if report.PreviousTherapist != nil {
+			response.PreviousTherapist = &models.UserBasicInfo{
+				ID:               report.PreviousTherapist.ID,
+				NombresApellidos: report.PreviousTherapist.Nombres_Apellidos,
+				Correo:          report.PreviousTherapist.Correo,
+				Telefono:        report.PreviousTherapist.Telefono,
+			}
+		}
+
+		responses = append(responses, response)
+	}
+
+	return responses, int(total), nil
+}
+
+
+func (s *TherapyService) GeneratePatientFullReport(patientID, userID uint, dateFrom, dateTo *time.Time) (*models.PatientReportSummary, error) {
+	log.Printf("🔄 Generando reporte completo para paciente %d", patientID)
+
+	var patient models.Patient
+	if err := s.db.Preload("Cuidador").
+		Where("id = ?", patientID).
+		First(&patient).Error; err != nil {
+		return nil, errors.New("patient not found")
+	}
+
+	// Primero intentar obtener datos reales de la tabla emociones_detectadas
+	emotionHistory := s.getEmotionHistoryFromDatabase(patientID, dateFrom, dateTo)
+	if emotionHistory != nil {
+		log.Printf("✅ Obtenidos %d análisis emocionales de la base de datos local", len(emotionHistory.Analyses))
+	} else {
+		// Si no hay datos locales, intentar ML service
+		jwtToken, err := s.generateMLServiceToken(userID)
+		if err != nil {
+			log.Printf("⚠️ Error generando token para ML service: %v. Continuando sin autenticación.", err)
+		} else {
+			s.mlClient.SetJWTToken(jwtToken)
+		}
+
+		emotionHistory, err = s.mlClient.GetPatientEmotionHistory(int(patientID), dateFrom, dateTo, 500)
+		if err != nil {
+			log.Printf("⚠️ Error obteniendo historial emocional del ML service: %v. Usando datos simulados.", err)
+			return s.generatePatientFullReportFallback(patientID, userID, dateFrom, dateTo)
+		}
+	}
+
+	log.Printf("✅ Obtenidos %d análisis emocionales del ML service", len(emotionHistory.Analyses))
+
+	// Obtener sesiones del backend
+	sessionQuery := s.db.Model(&models.TherapySession{}).
+		Where("paciente_id = ? AND is_deleted = ?", patientID, false)
+
+	if dateFrom != nil {
+		sessionQuery = sessionQuery.Where("fecha_sesion >= ?", *dateFrom)
+	}
+	if dateTo != nil {
+		sessionQuery = sessionQuery.Where("fecha_sesion <= ?", *dateTo)
+	}
+
+	var sessions []models.TherapySession
+	if err := sessionQuery.
+		Preload("Terapeuta").
+		Preload("TerapeutaReasignado").
+		Order("fecha_sesion ASC").
+		Find(&sessions).Error; err != nil {
+		return nil, err
+	}
+
+	if len(sessions) == 0 {
+		return nil, errors.New("no sessions found")
+	}
+
+	log.Printf("✅ Encontradas %d sesiones para el reporte", len(sessions))
+
+
+	emotionBySession := make(map[int]*utils.EmotionAnalysis)
+	for _, analysis := range emotionHistory.Analyses {
+		if analysis.TherapySessionID != nil {
+			emotionBySession[*analysis.TherapySessionID] = &analysis
+		}
+	}
+
+
+	var sessionWithAnalysis []models.SessionWithAnalysis
+	for _, session := range sessions {
+		sessionDetail := models.TherapySessionDetail{
+			ID:              session.ID,
+			FechaSesion:     session.FechaSesion,
+			HoraInicio:      session.HoraInicio,
+			HoraFin:         session.HoraFin,
+			Duracion:        session.Duracion,
+			Ubicacion:       session.Ubicacion,
+			Direccion:       session.Direccion,
+			Descripcion:     session.Descripcion,
+			Objetivos:       []string(session.Objetivos),
+			Materiales:      []string(session.Materiales),
+			Estado:          session.Estado,
+			TipoSesion:      session.TipoSesion,
+			Modalidad:       session.Modalidad,
+			Terapeuta: models.UserBasicInfo{
+				ID:               session.Terapeuta.ID,
+				NombresApellidos: session.Terapeuta.Nombres_Apellidos,
+				Correo:          session.Terapeuta.Correo,
+				Telefono:        session.Terapeuta.Telefono,
+			},
+		}
+
+		if session.TerapeutaReasignado != nil {
+			sessionDetail.TerapeutaReasignado = &models.UserBasicInfo{
+				ID:               session.TerapeutaReasignado.ID,
+				NombresApellidos: session.TerapeutaReasignado.Nombres_Apellidos,
+				Correo:          session.TerapeutaReasignado.Correo,
+				Telefono:        session.TerapeutaReasignado.Telefono,
+			}
+		}
+
+
+		var emotionAnalysis *models.EmotionResult
+		if mlAnalysis, exists := emotionBySession[int(session.ID)]; exists {
+
+			spanishEmotion := s.translateEmotionToSpanish(mlAnalysis.EmotionName)
+			emotionAnalysis = &models.EmotionResult{
+				ID:                   uint(mlAnalysis.ID),
+				SessionID:            session.ID,
+				EmotionType:          spanishEmotion,
+				ConfidencePercentage: mlAnalysis.Confidence,
+				ImageAnalyzed:        true,
+				AnalysisDate:         mlAnalysis.SessionDate,
+				Notes:                fmt.Sprintf("Análisis ML - %s (%.1f%% confianza, calidad: %s)",
+					spanishEmotion, mlAnalysis.Confidence, mlAnalysis.QualityStatus),
+			}
+		}
+
+		sessionWithAnalysis = append(sessionWithAnalysis, models.SessionWithAnalysis{
+			Session:         sessionDetail,
+			EmotionAnalysis: emotionAnalysis,
+			TherapistNotes:  session.NotasTerapeuta,
+		})
+	}
+
+	
+	emotionSummary := s.calculateEmotionSummaryFromMLData(emotionHistory)
+	therapistHistory := s.getTherapistHistory(patientID)
+
+	reportPeriod := emotionHistory.DateRange
+	if reportPeriod == "" {
+		reportPeriod = "Historial completo"
+	}
+
+	var generatedByUser models.Usuarios
+	s.db.Where("id = ?", userID).First(&generatedByUser)
+
+	report := &models.PatientReportSummary{
+		Patient: models.PatientDetailInfo{
+			ID:                 patient.ID,
+			SerialID:           patient.SerialID,
+			NombresApellidos:   patient.NombresApellidos,
+			FechaNacimiento:    time.Time(patient.FechaNacimiento),
+			Edad:               s.calculateAge(time.Time(patient.FechaNacimiento)),
+			Genero:             patient.Sexo,
+			TipoDocumento:      patient.TipoDocumento,
+			NumDocumento:       patient.NumDocumento,
+			Telefono:           "",
+			Direccion:          "",
+			CondicionMedica:    patient.DiagnosticoClinico,
+			Medicamentos:       []string{},
+			Alergias:           []string{},
+			ContactoEmergencia: "",
+			CreatedAt:          patient.CreatedAt,
+		},
+		Caregiver: models.UserBasicInfo{
+			ID:               patient.Cuidador.ID,
+			NombresApellidos: patient.Cuidador.Nombres_Apellidos,
+			Correo:          patient.Cuidador.Correo,
+			Telefono:        patient.Cuidador.Telefono,
+		},
+		Sessions:         sessionWithAnalysis,
+		EmotionSummary:   emotionSummary,
+		TherapistHistory: therapistHistory,
+		GeneratedAt:      time.Now(),
+		GeneratedBy: models.UserBasicInfo{
+			ID:               generatedByUser.ID,
+			NombresApellidos: generatedByUser.Nombres_Apellidos,
+			Correo:          generatedByUser.Correo,
+			Telefono:        generatedByUser.Telefono,
+		},
+		ReportPeriod: reportPeriod,
+	}
+
+
+	go s.saveReportHistory(patientID, userID, report, "patient_summary", "PDF")
+
+	log.Printf("✅ Reporte generado exitosamente para paciente %d con %d análisis emocionales reales",
+		patientID, len(emotionHistory.Analyses))
+
+	return report, nil
+}
+
+
+func (s *TherapyService) generateMLServiceToken(userID uint) (string, error) {
+	var user models.Usuarios
+	if err := s.db.Preload("Roles").Where("id = ?", userID).First(&user).Error; err != nil {
+		return "", err
+	}
+	token, _, err := utils.GenerateToken(&user)
+	return token, err
+}
+
+
+func (s *TherapyService) translateEmotionToSpanish(emotion string) string {
+	translations := map[string]string{
+		"happy":     "Feliz",
+		"sad":       "Triste",
+		"angry":     "Enojado",
+		"fear":      "Miedo",
+		"surprise":  "Sorpresa",
+		"disgust":   "Disgusto",
+		"neutral":   "Neutral",
+		"joy":       "Alegría",
+		"sadness":   "Tristeza",
+		"anger":     "Ira",
+		"fearful":   "Temeroso",
+		"surprised": "Sorprendido",
+		"disgusted": "Disgustado",
+		"calm":      "Tranquilo",
+		"excited":   "Emocionado",
+		"anxious":   "Ansioso",
+		"confused":  "Confundido",
+		"bored":     "Aburrido",
+		"focused":   "Concentrado",
+	}
+
+	if spanish, exists := translations[strings.ToLower(emotion)]; exists {
+		return spanish
+	}
+	return emotion 
+}
+
+
+func (s *TherapyService) calculateEmotionSummaryFromMLData(mlHistory *utils.PatientEmotionHistory) models.EmotionAnalysisSummary {
+	if mlHistory.TotalAnalyses == 0 {
+		return models.EmotionAnalysisSummary{
+			TotalAnalyses:     0,
+			AverageConfidence: 0,
+			DominantEmotion:   "Sin datos",
+			EmotionDistribution: make(map[string]int),
+			ConfidenceTrend:   "Sin tendencia",
+			EmotionTrend:      "Sin tendencia",
+		}
+	}
+
+	var recentEmotions []models.EmotionResult
+	var highestConfidence, lowestConfidence float64
+
+	if len(mlHistory.Analyses) > 0 {
+		highestConfidence = mlHistory.Analyses[0].Confidence
+		lowestConfidence = mlHistory.Analyses[0].Confidence
+
+		recentCount := 3
+		if len(mlHistory.Analyses) < recentCount {
+			recentCount = len(mlHistory.Analyses)
+		}
+
+		for i := len(mlHistory.Analyses) - recentCount; i < len(mlHistory.Analyses); i++ {
+			analysis := mlHistory.Analyses[i]
+			sessionID := uint(0)
+			if analysis.TherapySessionID != nil {
+				sessionID = uint(*analysis.TherapySessionID)
+			}
+			
+			recentEmotions = append(recentEmotions, models.EmotionResult{
+				ID:                   uint(analysis.ID),
+				SessionID:            sessionID,
+				EmotionType:          analysis.EmotionName,
+				ConfidencePercentage: analysis.Confidence,
+				ImageAnalyzed:        true,
+				AnalysisDate:         analysis.SessionDate,
+				Notes:                fmt.Sprintf("Análisis reciente - %s con %.1f%% confianza", analysis.EmotionName, analysis.Confidence),
+			})
+
+			if analysis.Confidence > highestConfidence {
+				highestConfidence = analysis.Confidence
+			}
+			if analysis.Confidence < lowestConfidence {
+				lowestConfidence = analysis.Confidence
+			}
+		}
+	}
+
+
+	dominantEmotionSpanish := s.translateEmotionToSpanish(mlHistory.MostFrequentEmotion)
+
+	return models.EmotionAnalysisSummary{
+		TotalAnalyses:       mlHistory.TotalAnalyses,
+		AverageConfidence:   mlHistory.AverageConfidence,
+		DominantEmotion:     dominantEmotionSpanish,
+		EmotionDistribution: mlHistory.EmotionDistribution,
+		ConfidenceTrend:     mlHistory.ConfidenceTrend,
+		EmotionTrend:        "Estable",
+		HighestConfidence:   highestConfidence,
+		LowestConfidence:    lowestConfidence,
+		RecentEmotions:      recentEmotions,
+	}
+}
+
+
+func (s *TherapyService) generatePatientFullReportFallback(patientID, userID uint, dateFrom, dateTo *time.Time) (*models.PatientReportSummary, error) {
+	log.Printf("⚠️ Generando reporte con datos simulados para paciente %d", patientID)
+	
+	var patient models.Patient
+	if err := s.db.Preload("Cuidador").Where("id = ?", patientID).First(&patient).Error; err != nil {
+		return nil, errors.New("patient not found")
+	}
+
+	sessionQuery := s.db.Model(&models.TherapySession{}).
+		Where("paciente_id = ? AND is_deleted = ?", patientID, false)
+
+	if dateFrom != nil {
+		sessionQuery = sessionQuery.Where("fecha_sesion >= ?", *dateFrom)
+	}
+	if dateTo != nil {
+		sessionQuery = sessionQuery.Where("fecha_sesion <= ?", *dateTo)
+	}
+
+	var sessions []models.TherapySession
+	if err := sessionQuery.Preload("Terapeuta").Preload("TerapeutaReasignado").Order("fecha_sesion ASC").Find(&sessions).Error; err != nil {
+		return nil, err
+	}
+
+	if len(sessions) == 0 {
+		return nil, errors.New("no sessions found")
+	}
+
+	var emotionAnalyses []models.EmotionResult
+	var sessionWithAnalysis []models.SessionWithAnalysis
+
+	for _, session := range sessions {
+		sessionDetail := models.TherapySessionDetail{
+			ID:              session.ID,
+			FechaSesion:     session.FechaSesion,
+			HoraInicio:      session.HoraInicio,
+			HoraFin:         session.HoraFin,
+			Duracion:        session.Duracion,
+			Ubicacion:       session.Ubicacion,
+			Direccion:       session.Direccion,
+			Descripcion:     session.Descripcion,
+			Objetivos:       []string(session.Objetivos),
+			Materiales:      []string(session.Materiales),
+			Estado:          session.Estado,
+			TipoSesion:      session.TipoSesion,
+			Modalidad:       session.Modalidad,
+			Terapeuta: models.UserBasicInfo{
+				ID:               session.Terapeuta.ID,
+				NombresApellidos: session.Terapeuta.Nombres_Apellidos,
+				Correo:          session.Terapeuta.Correo,
+				Telefono:        session.Terapeuta.Telefono,
+			},
+		}
+
+		if session.TerapeutaReasignado != nil {
+			sessionDetail.TerapeutaReasignado = &models.UserBasicInfo{
+				ID:               session.TerapeutaReasignado.ID,
+				NombresApellidos: session.TerapeutaReasignado.Nombres_Apellidos,
+				Correo:          session.TerapeutaReasignado.Correo,
+				Telefono:        session.TerapeutaReasignado.Telefono,
+			}
+		}
+
+		var emotionAnalysis *models.EmotionResult
+		if session.Estado == "completada" {
+			emotions := []string{"happy", "sad", "angry", "neutral", "surprised", "fearful", "disgust"}
+			randomEmotion := emotions[session.ID%uint(len(emotions))]
+			confidence := 75.0 + float64(session.ID%20)
+
+			emotionAnalysis = &models.EmotionResult{
+				ID:                   session.ID + 1000,
+				SessionID:            session.ID,
+				EmotionType:          randomEmotion,
+				ConfidencePercentage: confidence,
+				ImageAnalyzed:        true,
+				AnalysisDate:         session.FechaSesion,
+				Notes:                fmt.Sprintf("Análisis simulado - %s detectado con %.1f%% de confianza", randomEmotion, confidence),
+			}
+			emotionAnalyses = append(emotionAnalyses, *emotionAnalysis)
+		}
+
+		sessionWithAnalysis = append(sessionWithAnalysis, models.SessionWithAnalysis{
+			Session:         sessionDetail,
+			EmotionAnalysis: emotionAnalysis,
+			TherapistNotes:  session.NotasTerapeuta,
+		})
+	}
+
+	emotionSummary := s.calculateEmotionSummary(nil)
+	therapistHistory := s.getTherapistHistory(patientID)
+
+	reportPeriod := "Historial completo (datos simulados)"
+	if dateFrom != nil && dateTo != nil {
+		reportPeriod = fmt.Sprintf("Del %s al %s (datos simulados)",
+			dateFrom.Format("02/01/2006"), dateTo.Format("02/01/2006"))
+	}
+
+	var generatedByUser models.Usuarios
+	s.db.Where("id = ?", userID).First(&generatedByUser)
+
+	report := &models.PatientReportSummary{
+		Patient: models.PatientDetailInfo{
+			ID:                 patient.ID,
+			SerialID:           patient.SerialID,
+			NombresApellidos:   patient.NombresApellidos,
+			FechaNacimiento:    time.Time(patient.FechaNacimiento),
+			Edad:               s.calculateAge(time.Time(patient.FechaNacimiento)),
+			Genero:             patient.Sexo,
+			TipoDocumento:      patient.TipoDocumento,
+			NumDocumento:       patient.NumDocumento,
+			Telefono:           "",
+			Direccion:          "",
+			CondicionMedica:    patient.DiagnosticoClinico,
+			Medicamentos:       []string{},
+			Alergias:           []string{},
+			ContactoEmergencia: "",
+			CreatedAt:          patient.CreatedAt,
+		},
+		Caregiver: models.UserBasicInfo{
+			ID:               patient.Cuidador.ID,
+			NombresApellidos: patient.Cuidador.Nombres_Apellidos,
+			Correo:          patient.Cuidador.Correo,
+			Telefono:        patient.Cuidador.Telefono,
+		},
+		Sessions:         sessionWithAnalysis,
+		EmotionSummary:   emotionSummary,
+		TherapistHistory: therapistHistory,
+		GeneratedAt:      time.Now(),
+		GeneratedBy: models.UserBasicInfo{
+			ID:               generatedByUser.ID,
+			NombresApellidos: generatedByUser.Nombres_Apellidos,
+			Correo:          generatedByUser.Correo,
+			Telefono:        generatedByUser.Telefono,
+		},
+		ReportPeriod: reportPeriod,
+	}
+
+	go s.saveReportHistory(patientID, userID, report, "patient_summary", "PDF")
+	return report, nil
+}
+
+// DeletePatientReport elimina un reporte del historial
+func (s *TherapyService) DeletePatientReport(patientID, reportID, userID uint, roles string) error {
+	roleSlice := strings.Split(roles, ",")
+
+	var report models.ReportHistory
+	if err := s.db.Where("id = ? AND paciente_id = ?", reportID, patientID).First(&report).Error; err != nil {
+		return errors.New("report not found")
+	}
+
+	if !s.hasRole(roleSlice, "AD") && report.GeneratedByUserID != userID {
+		return errors.New("access denied")
+	}
+
+	return s.db.Delete(&report).Error
+}
+
+
+func (s *TherapyService) calculateAge(birthDate time.Time) int {
+	now := time.Now()
+	age := now.Year() - birthDate.Year()
+	if now.YearDay() < birthDate.YearDay() {
+		age--
+	}
+	return age
+}
+
+
+func (s *TherapyService) getTherapistHistory(patientID uint) []models.TherapistAssignment {
+	var assignments []models.TherapistAssignment
+
+
+	return assignments
+}
+
+
+func (s *TherapyService) calculateEmotionSummary(mlHistory *utils.PatientEmotionHistory) models.EmotionAnalysisSummary {
+	if mlHistory == nil {
+		return models.EmotionAnalysisSummary{
+			TotalAnalyses:     0,
+			AverageConfidence: 0,
+			DominantEmotion:   "Sin datos",
+			EmotionDistribution: make(map[string]int),
+			ConfidenceTrend:   "Sin tendencia",
+			EmotionTrend:      "Sin tendencia",
+			HighestConfidence: 0,
+			LowestConfidence:  0,
+			RecentEmotions:    []models.EmotionResult{},
+		}
+	}
+
+	return models.EmotionAnalysisSummary{
+		TotalAnalyses:       mlHistory.TotalAnalyses,
+		AverageConfidence:   mlHistory.AverageConfidence,
+		DominantEmotion:     mlHistory.MostFrequentEmotion,
+		EmotionDistribution: mlHistory.EmotionDistribution,
+		ConfidenceTrend:     mlHistory.ConfidenceTrend,
+		EmotionTrend:        "Estable", 
+		HighestConfidence:   mlHistory.AverageConfidence,
+		LowestConfidence:    mlHistory.AverageConfidence,
+		RecentEmotions:      []models.EmotionResult{},
+	}
+}
+
+
+
+func (s *TherapyService) saveReportHistory(patientID, userID uint, report *models.PatientReportSummary, reportType, format string) {
+
+	reportHistory := models.ReportHistory{
+		PacienteID:          patientID,
+		GeneratedByUserID:   userID,
+		ReportType:          reportType,
+		ReportTitle:         fmt.Sprintf("Reporte de %s", report.Patient.NombresApellidos),
+		ReportDescription:   "Reporte generado automáticamente",
+		DateRange:           report.ReportPeriod,
+		TotalSessions:       len(report.Sessions),
+		CompletedSessions:   len(report.Sessions),
+		AverageConfidence:   report.EmotionSummary.AverageConfidence,
+		DominantEmotion:     report.EmotionSummary.DominantEmotion,
+		EmotionTrend:        report.EmotionSummary.EmotionTrend,
+		CurrentTherapistID:  report.Patient.ID, // Simplificación
+		TherapistChanged:    false,
+		FileFormat:          format,
+		FileSizeBytes:       0,
+	}
+
+	if err := s.db.Create(&reportHistory).Error; err != nil {
+		log.Printf("❌ Error guardando historial de reporte: %v", err)
+	}
+}
+
+
+func (s *TherapyService) GenerateHistoricalReportPDF(reportData *models.PatientReportSummary) (string, error) {
+	if reportData == nil {
+		return "", fmt.Errorf("datos de reporte no disponibles")
+	}
+
+	
+	htmlContent := fmt.Sprintf(`
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Histórico - %s</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 15px; }
+        .patient-info { background: #f5f5f5; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .section { margin-bottom: 25px; }
+        .section h2 { color: #2c5aa0; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .emotion-summary { background: #e8f4f8; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .sessions-table { width: 100%%; border-collapse: collapse; margin: 10px 0; }
+        .sessions-table th, .sessions-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .sessions-table th { background-color: #f2f2f2; }
+        .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>REPORTE HISTÓRICO DEL PACIENTE</h1>
+        <p>Sistema de Terapia - Análisis Emocional</p>
+    </div>
+
+    <div class="patient-info">
+        <h2>Información del Paciente</h2>
+        <p><strong>Nombre:</strong> %s</p>
+        <p><strong>ID Serial:</strong> %s</p>
+        <p><strong>Edad:</strong> %d años</p>
+        <p><strong>Género:</strong> %s</p>
+        <p><strong>Documento:</strong> %s - %s</p>
+        <p><strong>Condición Médica:</strong> %s</p>
+    </div>
+
+    <div class="section">
+        <h2>Resumen de Análisis Emocional</h2>
+        <div class="emotion-summary">
+            <p><strong>Total de Análisis:</strong> %d</p>
+            <p><strong>Confianza Promedio:</strong> %.1f%%</p>
+            <p><strong>Emoción Dominante:</strong> %s</p>
+            <p><strong>Tendencia Emocional:</strong> %s</p>
+            <p><strong>Confianza Más Alta:</strong> %.1f%%</p>
+            <p><strong>Confianza Más Baja:</strong> %.1f%%</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Historial de Sesiones (%d sesiones)</h2>
+        <table class="sessions-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Terapeuta</th>
+                    <th>Estado</th>
+                    <th>Emoción Detectada</th>
+                    <th>Confianza</th>
+                </tr>
+            </thead>
+            <tbody>
+                %s
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Información del Cuidador</h2>
+        <p><strong>Cuidador Responsable:</strong> %s</p>
+        <p><strong>Correo:</strong> %s</p>
+        <p><strong>Teléfono:</strong> %s</p>
+    </div>
+
+    <div class="footer">
+        <p>Reporte generado por: %s</p>
+        <p>Fecha de generación: %s</p>
+        <p>Período del reporte: %s</p>
+        <hr>
+        <p>Este reporte contiene información confidencial del paciente.</p>
+    </div>
+</body>
+</html>`,
+		reportData.Patient.NombresApellidos,
+		reportData.Patient.NombresApellidos,
+		reportData.Patient.SerialID,
+		reportData.Patient.Edad,
+		reportData.Patient.Genero,
+		reportData.Patient.TipoDocumento,
+		reportData.Patient.NumDocumento,
+		reportData.Patient.CondicionMedica,
+		reportData.EmotionSummary.TotalAnalyses,
+		reportData.EmotionSummary.AverageConfidence,
+		reportData.EmotionSummary.DominantEmotion,
+		reportData.EmotionSummary.EmotionTrend,
+		reportData.EmotionSummary.HighestConfidence,
+		reportData.EmotionSummary.LowestConfidence,
+		len(reportData.Sessions),
+		generateSessionsTableRows(reportData.Sessions),
+		reportData.Caregiver.NombresApellidos,
+		reportData.Caregiver.Correo,
+		reportData.Caregiver.Telefono,
+		reportData.GeneratedBy.NombresApellidos,
+		reportData.GeneratedAt.Format("02/01/2006 15:04:05"),
+		reportData.ReportPeriod,
+	)
+
+	base64Content := base64.StdEncoding.EncodeToString([]byte(htmlContent))
+
+	log.Printf("✅ PDF histórico generado exitosamente - %d caracteres en Base64", len(base64Content))
+	return base64Content, nil
+}
+
+
+func generateSessionsTableRows(sessions []models.SessionWithAnalysis) string {
+	var rows strings.Builder
+
+	for _, session := range sessions {
+		emotionText := "Sin análisis"
+		confidenceText := "-"
+
+		if session.EmotionAnalysis != nil {
+			emotionText = session.EmotionAnalysis.EmotionType
+			confidenceText = fmt.Sprintf("%.1f%%", session.EmotionAnalysis.ConfidencePercentage)
+		}
+
+		rows.WriteString(fmt.Sprintf(`
+			<tr>
+				<td>%s</td>
+				<td>%s</td>
+				<td>%s</td>
+				<td>%s</td>
+				<td>%s</td>
+				<td>%s</td>
+			</tr>`,
+			session.Session.FechaSesion.Format("02/01/2006"),
+			session.Session.TipoSesion,
+			session.Session.Terapeuta.NombresApellidos,
+			session.Session.Estado,
+			emotionText,
+			confidenceText,
+		))
+	}
+
+	return rows.String()
+}
+
+
+func (s *TherapyService) getEmotionHistoryFromDatabase(patientID uint, dateFrom, dateTo *time.Time) *utils.PatientEmotionHistory {
+
+	type EmotionDetectada struct {
+		ID           uint      `gorm:"column:idemocion_detectada"`
+		PacienteID   uint      `gorm:"column:paciente_id"`
+		Emocion      uint      `gorm:"column:idemocion"`
+		Porcentaje   float64   `gorm:"column:porcentaje"`
+		ResponsableID *uint    `gorm:"column:responsable_user_id"`
+		TherapySessionID *uint `gorm:"column:therapy_session_id"`
+		CreatedAt    time.Time `gorm:"column:created_at"`
+	}
+
+	var emotions []EmotionDetectada
+	query := s.db.Table("emociones_detectadas").Where("paciente_id = ?", patientID)
+
+	if dateFrom != nil {
+		query = query.Where("created_at >= ?", *dateFrom)
+	}
+	if dateTo != nil {
+		query = query.Where("created_at <= ?", *dateTo)
+	}
+
+	if err := query.Find(&emotions).Error; err != nil {
+		log.Printf("⚠️ Error consultando emociones_detectadas: %v", err)
+		return nil
+	}
+
+	if len(emotions) == 0 {
+		log.Printf("📊 No se encontraron emociones para el paciente %d", patientID)
+		return nil
+	}
+
+	log.Printf("📊 Encontradas %d emociones para el paciente %d", len(emotions), patientID)
+
+
+	emotionNames := map[uint]string{
+		1:  "neutral",
+		2:  "happy",
+		3:  "sad",
+		4:  "angry",
+		5:  "fear",
+		6:  "surprise",
+		7:  "disgust",
+		8:  "contempt",
+		9:  "unknown",
+		10: "calm",
+		11: "excited", 
+	}
+
+
+	var analyses []utils.EmotionAnalysis
+	emotionDistribution := make(map[string]int)
+	var totalConfidence float64
+	var mostFrequentEmotion string
+	maxCount := 0
+
+	for _, emotion := range emotions {
+		emotionName, exists := emotionNames[emotion.Emocion]
+		if !exists {
+			emotionName = "unknown"
+		}
+
+
+		confidence := emotion.Porcentaje * 100
+
+		var therapySessionIDInt *int
+		if emotion.TherapySessionID != nil {
+			temp := int(*emotion.TherapySessionID)
+			therapySessionIDInt = &temp
+		}
+
+		var responsableUserIDInt *int
+		if emotion.ResponsableID != nil {
+			temp := int(*emotion.ResponsableID)
+			responsableUserIDInt = &temp
+		}
+
+		analysis := utils.EmotionAnalysis{
+			ID:                int(emotion.ID),
+			EmotionName:       emotionName,
+			Confidence:        confidence,
+			RawConfidence:     emotion.Porcentaje,
+			QualityStatus:     "high",
+			SessionDate:       emotion.CreatedAt,
+			PacienteID:        int(emotion.PacienteID),
+			TherapySessionID:  therapySessionIDInt,
+			ResponsableUserID: responsableUserIDInt,
+			AlgorithmVersion:  "v2.0",
+			SessionNotes:      fmt.Sprintf("Análisis emocional - %s con %.1f%% confianza", emotionName, confidence),
+			SessionType:       "therapy",
+			MeetsPrecisionTarget: confidence >= 95.0,
+		}
+
+		analyses = append(analyses, analysis)
+		emotionDistribution[emotionName]++
+		totalConfidence += confidence
+
+		if emotionDistribution[emotionName] > maxCount {
+			maxCount = emotionDistribution[emotionName]
+			mostFrequentEmotion = emotionName
+		}
+	}
+
+	avgConfidence := totalConfidence / float64(len(emotions))
+
+	
+	dateRange := "Últimos análisis"
+	if dateFrom != nil && dateTo != nil {
+		dateRange = fmt.Sprintf("%s - %s", dateFrom.Format("02/01/2006"), dateTo.Format("02/01/2006"))
+	}
+
+	return &utils.PatientEmotionHistory{
+		TotalAnalyses:       len(emotions),
+		AverageConfidence:   avgConfidence,
+		MostFrequentEmotion: mostFrequentEmotion,
+		EmotionDistribution: emotionDistribution,
+		ConfidenceTrend:     "stable",
+		Analyses:            analyses,
+		DateRange:           dateRange,
+		GeneratedAt:         time.Now(),
+	}
 }

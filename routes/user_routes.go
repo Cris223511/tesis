@@ -119,6 +119,11 @@ func SetupRouter(
 		protected.GET("/therapist-ratings/:therapist_id", therapyController.GetTherapistRatings)
 		protected.GET("/sessions/rating/:session_id", therapyController.GetSessionRating)
 
+		// ============== HISTORIAL DE REPORTES ==============
+		protected.GET("/therapy/patient/:patient_id/reports", therapyController.GetPatientReportHistory)
+		protected.POST("/therapy/patient/:patient_id/reports/generate", therapyController.GetPatientFullReport)
+		protected.DELETE("/therapy/patient/:patient_id/reports/:report_id", therapyController.DeletePatientReport)
+
 		// ============== ADMINISTRACIÓN ==============
 		protected.GET("/admin/stats", adminController.GetAdminStats)
 		protected.GET("/admin/therapists", adminController.GetTherapists)

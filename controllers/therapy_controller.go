@@ -631,3 +631,229 @@ func (controller *TherapyController) UpdateExpiredSessions(c *gin.Context) {
 		"updated_at":        time.Now().Format("2006-01-02 15:04:05"),
 	})
 }
+
+
+func (controller *TherapyController) GetPatientReportHistory(c *gin.Context) {
+
+	claims, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token de autenticación requerido"})
+		return
+	}
+
+	userClaims := claims.(*utils.Claims)
+	patientIDParam := c.Param("patient_id")
+	patientID, err := strconv.ParseUint(patientIDParam, 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de paciente inválido"})
+		return
+	}
+
+	hasAccess, err := controller.therapyService.ValidatePatientAccess(uint(patientID), userClaims.UserID, userClaims.Roles)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al validar acceso: " + err.Error()})
+		return
+	}
+	if !hasAccess {
+		c.JSON(http.StatusForbidden, gin.H{"error": "No tiene permisos para acceder a los reportes de este paciente"})
+		return
+	}
+
+	// Parámetros de paginación
+	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+	reportType := c.Query("report_type")
+
+	if page < 1 {
+		page = 1
+	}
+	if limit < 1 || limit > 50 {
+		limit = 10
+	}
+
+	reports, total, err := controller.therapyService.GetPatientReportHistory(uint(patientID), page, limit, reportType)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener historial de reportes: " + err.Error()})
+		return
+	}
+
+	totalPages := (total + limit - 1) / limit
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"data": gin.H{
+			"reports":      reports,
+			"pagination": gin.H{
+				"current_page": page,
+				"total_pages":  totalPages,
+				"total_items":  total,
+				"limit":        limit,
+			},
+			"patient_id": patientID,
+		},
+	})
+}
+
+
+func (controller *TherapyController) GetPatientFullReport(c *gin.Context) {
+	claims, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token de autenticación requerido"})
+		return
+	}
+
+	userClaims := claims.(*utils.Claims)
+	patientIDParam := c.Param("patient_id")
+	patientID, err := strconv.ParseUint(patientIDParam, 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de paciente inválido"})
+		return
+	}
+
+	// Validar formato
+	format := c.Query("format")
+	if format != "pdf" && format != "jpg" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Formato debe ser 'pdf' o 'jpg'"})
+		return
+	}
+
+	// Validar acceso al paciente
+	hasAccess, err := controller.therapyService.ValidatePatientAccess(uint(patientID), userClaims.UserID, userClaims.Roles)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al validar acceso: " + err.Error()})
+		return
+	}
+	if !hasAccess {
+		c.JSON(http.StatusForbidden, gin.H{"error": "No tiene permisos para generar reportes de este paciente"})
+		return
+	}
+	var dateFrom, dateTo *time.Time
+	if dateFromStr := c.Query("date_from"); dateFromStr != "" {
+		if parsed, err := time.Parse("2006-01-02", dateFromStr); err == nil {
+			dateFrom = &parsed
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Formato de fecha_desde inválido (YYYY-MM-DD)"})
+			return
+		}
+	}
+	if dateToStr := c.Query("date_to"); dateToStr != "" {
+		if parsed, err := time.Parse("2006-01-02", dateToStr); err == nil {
+			dateTo = &parsed
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Formato de fecha_hasta inválido (YYYY-MM-DD)"})
+			return
+		}
+	}
+	reportData, err := controller.therapyService.GeneratePatientFullReport(uint(patientID), userClaims.UserID, dateFrom, dateTo)
+	if err != nil {
+		if err.Error() == "patient not found" {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Paciente no encontrado"})
+			return
+		}
+		if err.Error() == "no sessions found" {
+			c.JSON(http.StatusNotFound, gin.H{
+				"error": "No se encontraron sesiones para este paciente en el período especificado",
+				"message": "Para generar un reporte, el paciente debe tener al menos una sesión programada y un análisis emocional realizado.",
+			})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al generar reporte: " + err.Error()})
+		return
+	}
+	if len(reportData.Sessions) == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "No hay sesiones disponibles para generar el reporte",
+			"message": "Para generar un reporte, el paciente debe tener al menos una sesión programada.",
+		})
+		return
+	}
+
+	hasEmotionAnalysis := false
+	for _, session := range reportData.Sessions {
+		if session.EmotionAnalysis != nil {
+			hasEmotionAnalysis = true
+			break
+		}
+	}
+
+	if !hasEmotionAnalysis {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "No hay análisis emocionales disponibles para generar el reporte",
+			"message": "Para generar un reporte completo, debe existir al menos un análisis emocional realizado durante las sesiones.",
+		})
+		return
+	}
+
+
+	pdfContent := ""
+	if format == "pdf" {
+		generatedPDFContent, err := controller.therapyService.GenerateHistoricalReportPDF(reportData)
+		if err != nil {
+			log.Printf("⚠️ Error al generar PDF: %v", err)
+		} else {
+			pdfContent = generatedPDFContent
+		}
+	}
+
+	response := gin.H{
+		"success": true,
+		"message": "Reporte generado exitosamente",
+		"data": reportData,
+		"format": format,
+		"generated_at": time.Now(),
+		"generated_by": gin.H{
+			"user_id": userClaims.UserID,
+			"roles":   userClaims.Roles,
+		},
+	}
+	if pdfContent != "" {
+		response["pdf_content"] = pdfContent
+	}
+
+	c.JSON(http.StatusOK, response)
+}
+
+
+func (controller *TherapyController) DeletePatientReport(c *gin.Context) {
+	claims, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token de autenticación requerido"})
+		return
+	}
+
+	userClaims := claims.(*utils.Claims)
+	patientIDParam := c.Param("patient_id")
+	reportIDParam := c.Param("report_id")
+
+	patientID, err := strconv.ParseUint(patientIDParam, 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de paciente inválido"})
+		return
+	}
+
+	reportID, err := strconv.ParseUint(reportIDParam, 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de reporte inválido"})
+		return
+	}
+	err = controller.therapyService.DeletePatientReport(uint(patientID), uint(reportID), userClaims.UserID, userClaims.Roles)
+	if err != nil {
+		if err.Error() == "report not found" {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Reporte no encontrado"})
+			return
+		}
+		if err.Error() == "access denied" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "No tiene permisos para eliminar este reporte"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al eliminar reporte: " + err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"message": "Reporte eliminado exitosamente",
+		"deleted_by": userClaims.UserID,
+		"deleted_at": time.Now(),
+	})
+}
