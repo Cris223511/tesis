@@ -1,5 +1,5 @@
 # Usar imagen oficial de Go como base
-FROM golang:1.21-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 # Instalar dependencias del sistema
 RUN apk add --no-cache git ca-certificates tzdata
@@ -22,8 +22,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 # Etapa final - imagen mínima
 FROM alpine:latest
 
-# Instalar ca-certificates para HTTPS
-RUN apk --no-cache add ca-certificates tzdata
+# Instalar ca-certificates para HTTPS y wget para health check
+RUN apk --no-cache add ca-certificates tzdata wget
 
 # Crear directorio de trabajo
 WORKDIR /root/

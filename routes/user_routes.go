@@ -108,6 +108,7 @@ func SetupRouter(
 		protected.GET("/sessions/patient/:patient_id", therapyController.GetPatientSessions) 
 		protected.GET("/sessions/:id", therapyController.GetByID)
 		protected.PUT("/sessions/:id", therapyController.Update)
+		protected.PUT("/sessions/:id/status", therapyController.UpdateSessionStatus)
 		protected.PATCH("/sessions/:id/reschedule", therapyController.Reschedule)
 		protected.DELETE("/sessions/:id", therapyController.Delete)
 		protected.GET("/sessions/:id/export/pdf", therapyController.ExportToPDF)

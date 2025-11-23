@@ -57,7 +57,7 @@ func SendOTPEmail(toEmail, otp string) error {
 						<span style="font-size: 28px; font-weight: bold; color: #ff6600;">%s</span>
 					</div>
 					<p style="font-size: 14px; color: #666;">
-						El código expirará en 5 minutos. Si no has solicitado este código, comunícate de inmediato con soporte.
+						El código expirará en 1 minutos. Si no has solicitado este código, comunícate de inmediato con soporte.
 					</p>
 				</td>
 			</tr>

@@ -633,6 +633,50 @@ func (controller *TherapyController) UpdateExpiredSessions(c *gin.Context) {
 }
 
 
+func (tc *TherapyController) UpdateSessionStatus(c *gin.Context) {
+	sessionID, err := strconv.ParseUint(c.Param("id"), 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de sesión inválido"})
+		return
+	}
+
+	var request struct {
+		Estado string `json:"estado" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Estado requerido"})
+		return
+	}
+
+	allowedStates := []string{"programada", "en_progreso", "completada", "cancelada", "expirada"}
+	isValid := false
+	for _, state := range allowedStates {
+		if request.Estado == state {
+			isValid = true
+			break
+		}
+	}
+
+	if !isValid {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Estado no válido"})
+		return
+	}
+
+	err = tc.therapyService.UpdateSessionStatus(uint(sessionID), request.Estado)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Estado de sesión actualizado exitosamente",
+		"session_id": sessionID,
+		"new_status": request.Estado,
+	})
+}
+
+
 func (controller *TherapyController) GetPatientReportHistory(c *gin.Context) {
 
 	claims, exists := c.Get("user")

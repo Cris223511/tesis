@@ -2582,3 +2582,23 @@ func (s *TherapyService) getEmotionHistoryFromDatabase(patientID uint, dateFrom,
 		GeneratedAt:         time.Now(),
 	}
 }
+
+
+func (s *TherapyService) UpdateSessionStatus(sessionID uint, newStatus string) error {
+
+	var session models.TherapySession
+	if err := s.db.Where("id = ? AND is_deleted = ?", sessionID, false).First(&session).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return fmt.Errorf("sesión no encontrada")
+		}
+		return fmt.Errorf("error al buscar sesión: %w", err)
+	}
+
+
+	if err := s.db.Model(&session).Where("id = ?", sessionID).Update("estado", newStatus).Error; err != nil {
+		return fmt.Errorf("error al actualizar estado de sesión: %w", err)
+	}
+
+	log.Printf("✅ Estado de sesión %d actualizado de '%s' a '%s'", sessionID, session.Estado, newStatus)
+	return nil
+}
