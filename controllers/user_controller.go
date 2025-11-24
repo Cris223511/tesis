@@ -170,26 +170,119 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 }
 
 func sendLoginNotificationEmail(to, name, device, ip, location string) {
-	subject := "Inicio de Sesión Exitoso - Serious Game"
+	subject := "✅Acceso Exitoso - Serious Game"
 	body := fmt.Sprintf(`
-<!DOCTYPE html>
-<html><body>
-  <h1>Inicio de Sesión Exitoso</h1>
-  <p>Hola <strong>%s</strong>,</p>
-  <p>Acabas de iniciar sesión en Serious Game con estos datos:</p>
-  <ul>
-    <li><strong>Dispositivo:</strong> %s</li>
-    <li><strong>Ubicación:</strong> %s</li>
-    <li><strong>Dirección IP:</strong> %s</li>
-    <li><strong>Fecha y Hora:</strong> %s</li>
-  </ul>
-  <p>Si no reconoces esta actividad, contacta a soporte.</p>
-</body></html>`,
+	<!DOCTYPE html>
+	<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Acceso Exitoso</title>
+	</head>
+	<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; line-height: 1.6;">
+		<div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+		
+			<div style="background: linear-gradient(135deg, #10b981 0%%, #059669 100%%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+				<div style="background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 50%%; display: inline-block; margin-bottom: 20px;">
+					<div style="width: 50px; height: 50px; background-color: #ffffff; border-radius: 50%%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+						<span style="font-size: 24px;">✅</span>
+					</div>
+				</div>
+				<h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">SERIOUS GAME</h1>
+				<p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 16px;">Plataforma de Terapias Emocionales</p>
+			</div>
+
+			<div style="padding: 50px 30px; background-color: #ffffff;">
+				<div style="text-align: center; margin-bottom: 40px;">
+					<h2 style="color: #1f2937; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Acceso Exitoso</h2>
+					<p style="color: #6b7280; font-size: 16px; margin: 0; line-height: 1.5;">
+						Hola <strong style="color: #1f2937;">%s</strong>, acabas de iniciar sesión exitosamente en tu cuenta.
+					</p>
+				</div>
+
+
+				<div style="background-color: #f0f9ff; border-radius: 16px; padding: 30px; margin: 30px 0; border-left: 4px solid #10b981;">
+					<h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 18px; font-weight: 600; display: flex; align-items: center;">
+						<span style="margin-right: 10px;">🔐</span>
+						Detalles de la Sesión
+					</h3>
+					<div style="background-color: #ffffff; border-radius: 12px; padding: 20px;">
+						<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+							<strong style="color: #374151; display: block; margin-bottom: 5px;">📱 Dispositivo:</strong>
+							<span style="color: #6b7280;">%s</span>
+						</div>
+						<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+							<strong style="color: #374151; display: block; margin-bottom: 5px;">🌍 Ubicación:</strong>
+							<span style="color: #6b7280;">%s</span>
+						</div>
+						<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+							<strong style="color: #374151; display: block; margin-bottom: 5px;">🌐 Dirección IP:</strong>
+							<span style="color: #6b7280;">%s</span>
+						</div>
+						<div style="padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+							<strong style="color: #374151; display: block; margin-bottom: 5px;">⏰ Fecha y Hora:</strong>
+							<span style="color: #6b7280;">%s</span>
+						</div>
+					</div>
+				</div>
+
+		
+				<div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 30px 0;">
+					<div style="display: flex; align-items: flex-start;">
+						<span style="font-size: 18px; margin-right: 12px;">⚠️</span>
+						<div>
+							<h3 style="color: #92400e; margin: 0 0 8px 0; font-size: 16px; font-weight: 600;">Aviso de Seguridad</h3>
+							<p style="color: #a16207; margin: 0; font-size: 14px; line-height: 1.5;">
+								Si <strong>no reconoces esta actividad</strong>, tu cuenta podría estar comprometida.<br>
+								• Cambia tu contraseña inmediatamente<br>
+								• Contacta a nuestro equipo de soporte<br>
+								• Revisa tu actividad reciente
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div style="text-align: center; margin-top: 40px;">
+					<p style="color: #6b7280; font-size: 14px; margin: 0;">
+						¿Necesitas ayuda? Contacta a nuestro equipo de soporte<br>
+						<a href="mailto:soporte@seriousgame.com" style="color: #10b981; text-decoration: none; font-weight: 500;">soporte@seriousgame.com</a>
+					</p>
+				</div>
+			</div>
+
+
+			<div style="background-color: #f8fafc; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
+				<div style="margin-bottom: 15px;">
+					<p style="color: #9ca3af; font-size: 12px; margin: 0;">
+						© %d Serious Game • Plataforma de Terapias Emocionales
+					</p>
+				</div>
+				<div style="border-top: 1px solid #e5e7eb; padding-top: 15px; margin-top: 15px;">
+					<p style="color: #9ca3af; font-size: 11px; margin: 0; line-height: 1.4;">
+						Este correo fue enviado automáticamente desde una cuenta no monitoreada.<br>
+						Por favor, no respondas a este mensaje directamente.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+		<style>
+			@media only screen and (max-width: 600px) {
+				.container { width: 100%% !important; }
+				.content { padding: 30px 20px !important; }
+				.session-details { padding: 20px 15px !important; }
+			}
+		</style>
+	</body>
+	</html>`,
 		name,
 		device,
 		location,
 		ip,
 		time.Now().Format("02/01/2006 15:04:05"),
+		time.Now().Year(),
 	)
 	_ = sendEmail(to, subject, body)
 }
