@@ -265,7 +265,7 @@ func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent 
 	}
 
 	var lastLogin models.LoginHistory
-	s.db.Where("user_id = ?", user.ID).Order("created_at DESC").First(&lastLogin)
+	s.db.Where("usuarios_id_usuario = ?", user.ID).Order("created_at DESC").First(&lastLogin)
 
 	if !lastLogin.CreatedAt.IsZero() {
 		if lastLogin.IPAddress != ip {
@@ -708,7 +708,7 @@ func (s *userService) DeleteUser(id uint) error {
 
 	tx.Exec("DELETE FROM user_roles WHERE usuarios_id_usuario = ?", id)
 	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
-	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
+	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
 
 	if err := tx.Delete(&user).Error; err != nil {
@@ -755,7 +755,7 @@ func (s *userService) DeleteUserWithValidation(id uint, currentUserID uint) erro
 
 	tx.Exec("DELETE FROM user_roles WHERE usuarios_id_usuario = ?", id)
 	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
-	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
+	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
 
 	if err := tx.Delete(&user).Error; err != nil {
