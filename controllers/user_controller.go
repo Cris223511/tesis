@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"math/big"
@@ -1185,16 +1186,96 @@ func sendEmail(to, subject, body string) error {
 	return smtp.SendMail(host+":"+port, auth, user, []string{to}, msg.Bytes())
 }
 
+type LocationResponse struct {
+	City        string  `json:"city"`
+	Region      string  `json:"region"`
+	Country     string  `json:"country"`
+	CountryName string  `json:"country_name"`
+	Postal      string  `json:"postal"`
+	Latitude    float64 `json:"latitude"`
+	Longitude   float64 `json:"longitude"`
+	Timezone    string  `json:"timezone"`
+	Org         string  `json:"org"`
+	Error       bool    `json:"error"`
+	Reason      string  `json:"reason"`
+}
+
 func getLocationFromIP(ip string) string {
+
 	if ip == "127.0.0.1" || ip == "::1" {
 		return "Servidor local"
 	}
-	if strings.HasPrefix(ip, "192.168.") || strings.HasPrefix(ip, "10.") {
+	if strings.HasPrefix(ip, "192.168.") || strings.HasPrefix(ip, "10.") || strings.HasPrefix(ip, "172.") {
 		return "Red local"
 	}
 
-	// API de geolocalización (puedes usar ipapi.co, ipinfo.io, etc.)
-	// Por ahora retornamos un placeholder, luego implementamos la API
+	
+	url := fmt.Sprintf("https://ipapi.co/%s/json/", ip)
+
+	client := &http.Client{
+		Timeout: 5 * time.Second, 
+	}
+
+	resp, err := client.Get(url)
+	if err != nil {
+		log.Printf("Error al consultar ubicación para IP %s: %v", ip, err)
+		return "Ubicación desconocida"
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		log.Printf("Error HTTP al consultar ubicación para IP %s: %d", ip, resp.StatusCode)
+		return "Ubicación desconocida"
+	}
+
+	var location LocationResponse
+	if err := json.NewDecoder(resp.Body).Decode(&location); err != nil {
+		log.Printf("Error al decodificar respuesta de ubicación para IP %s: %v", ip, err)
+		return "Ubicación desconocida"
+	}
+
+
+	if location.Error {
+		log.Printf("Error en API de ubicación para IP %s: %s", ip, location.Reason)
+		return "Ubicación desconocida"
+	}
+
+
+	var locationParts []string
+
+	if location.City != "" {
+		locationParts = append(locationParts, location.City)
+	}
+
+	if location.Region != "" && location.Region != location.City {
+		locationParts = append(locationParts, location.Region)
+	}
+
+	if location.CountryName != "" {
+		locationParts = append(locationParts, location.CountryName)
+	} else if location.Country != "" {
+		locationParts = append(locationParts, location.Country)
+	}
+
+
+	ispInfo := ""
+	if location.Org != "" {
+	
+		org := strings.TrimSpace(location.Org)
+		if strings.HasPrefix(org, "AS") {
+			if spaceIndex := strings.Index(org, " "); spaceIndex > 0 {
+				org = strings.TrimSpace(org[spaceIndex:])
+			}
+		}
+		ispInfo = fmt.Sprintf(" (%s)", org)
+	}
+
+	if len(locationParts) > 0 {
+		result := strings.Join(locationParts, ", ") + ispInfo
+		log.Printf("Ubicación detectada para IP %s: %s", ip, result)
+		return result
+	}
+
 	return "Ubicación desconocida"
 }
 

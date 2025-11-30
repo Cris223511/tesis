@@ -265,7 +265,7 @@ func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent 
 	}
 
 	var lastLogin models.LoginHistory
-	s.db.Where("user_id = ?", user.ID).Order("created_at DESC").First(&lastLogin)
+	s.db.Where("usuarios_id_usuario = ?", user.ID).Order("created_at DESC").First(&lastLogin)
 
 	if !lastLogin.CreatedAt.IsZero() {
 		if lastLogin.IPAddress != ip {
