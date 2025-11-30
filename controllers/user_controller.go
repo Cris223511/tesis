@@ -170,7 +170,28 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 }
 
 func sendLoginNotificationEmail(to, name, device, ip, location string) {
-	subject := "✅Acceso Exitoso - Serious Game"
+	subject := "✅ Acceso Exitoso - Serious Game"
+
+	// Parsear información del dispositivo
+	deviceInfo := parseUserAgent(device)
+	locationInfo := getLocationFromIP(ip)
+
+	// Construir información detallada del dispositivo
+	deviceDetails := deviceInfo.DeviceName
+	if deviceInfo.OSVersion != "" {
+		deviceDetails = fmt.Sprintf("%s (%s %s)", deviceInfo.DeviceName, deviceInfo.OS, deviceInfo.OSVersion)
+	} else if deviceInfo.OS != "Sistema desconocido" {
+		deviceDetails = fmt.Sprintf("%s (%s)", deviceInfo.DeviceName, deviceInfo.OS)
+	}
+
+	appVersionText := ""
+	if deviceInfo.AppVersion != "" {
+		appVersionText = fmt.Sprintf("<div style=\"margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;\">
+			<strong style=\"color: #374151; display: block; margin-bottom: 5px;\">📲 Versión de la App:</strong>
+			<span style=\"color: #6b7280;\">%s</span>
+		</div>", deviceInfo.AppVersion)
+	}
+
 	body := fmt.Sprintf(`
 	<!DOCTYPE html>
 	<html lang="es">
@@ -181,7 +202,7 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 	</head>
 	<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; line-height: 1.6;">
 		<div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-		
+
 			<div style="background: linear-gradient(135deg, #10b981 0%%, #059669 100%%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
 				<div style="background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 50%%; display: inline-block; margin-bottom: 20px;">
 					<div style="width: 50px; height: 50px; background-color: #ffffff; border-radius: 50%%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
@@ -200,7 +221,6 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 					</p>
 				</div>
 
-
 				<div style="background-color: #f0f9ff; border-radius: 16px; padding: 30px; margin: 30px 0; border-left: 4px solid #10b981;">
 					<h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 18px; font-weight: 600; display: flex; align-items: center;">
 						<span style="margin-right: 10px;">🔐</span>
@@ -211,6 +231,11 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 							<strong style="color: #374151; display: block; margin-bottom: 5px;">📱 Dispositivo:</strong>
 							<span style="color: #6b7280;">%s</span>
 						</div>
+						<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+							<strong style="color: #374151; display: block; margin-bottom: 5px;">💻 Sistema Operativo:</strong>
+							<span style="color: #6b7280;">%s %s</span>
+						</div>
+						%s
 						<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
 							<strong style="color: #374151; display: block; margin-bottom: 5px;">🌍 Ubicación:</strong>
 							<span style="color: #6b7280;">%s</span>
@@ -226,7 +251,6 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 					</div>
 				</div>
 
-		
 				<div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 30px 0;">
 					<div style="display: flex; align-items: flex-start;">
 						<span style="font-size: 18px; margin-right: 12px;">⚠️</span>
@@ -242,7 +266,6 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 					</div>
 				</div>
 
-
 				<div style="text-align: center; margin-top: 40px;">
 					<p style="color: #6b7280; font-size: 14px; margin: 0;">
 						¿Necesitas ayuda? Contacta a nuestro equipo de soporte<br>
@@ -250,7 +273,6 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 					</p>
 				</div>
 			</div>
-
 
 			<div style="background-color: #f8fafc; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
 				<div style="margin-bottom: 15px;">
@@ -267,7 +289,6 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 			</div>
 		</div>
 
-
 		<style>
 			@media only screen and (max-width: 600px) {
 				.container { width: 100%% !important; }
@@ -278,8 +299,11 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 	</body>
 	</html>`,
 		name,
-		device,
-		location,
+		deviceDetails,
+		deviceInfo.OS,
+		deviceInfo.OSVersion,
+		appVersionText,
+		locationInfo,
 		ip,
 		time.Now().Format("02/01/2006 15:04:05"),
 		time.Now().Year(),
@@ -1168,7 +1192,107 @@ func getLocationFromIP(ip string) string {
 	if strings.HasPrefix(ip, "192.168.") || strings.HasPrefix(ip, "10.") {
 		return "Red local"
 	}
+
+	// API de geolocalización (puedes usar ipapi.co, ipinfo.io, etc.)
+	// Por ahora retornamos un placeholder, luego implementamos la API
 	return "Ubicación desconocida"
+}
+
+type DeviceInfo struct {
+	DeviceName string
+	OS         string
+	OSVersion  string
+	AppVersion string
+}
+
+func parseUserAgent(userAgent string) DeviceInfo {
+	info := DeviceInfo{
+		DeviceName: "Dispositivo desconocido",
+		OS:         "Sistema desconocido",
+		OSVersion:  "",
+		AppVersion: "",
+	}
+
+	userAgent = strings.ToLower(userAgent)
+
+	// Detectar Android
+	if strings.Contains(userAgent, "android") {
+		info.OS = "Android"
+
+		// Extraer versión de Android
+		if idx := strings.Index(userAgent, "android "); idx != -1 {
+			start := idx + 8
+			end := start
+			for end < len(userAgent) && (userAgent[end] >= '0' && userAgent[end] <= '9' || userAgent[end] == '.') {
+				end++
+			}
+			if end > start {
+				info.OSVersion = userAgent[start:end]
+			}
+		}
+
+		// Detectar modelo de dispositivo Android
+		if strings.Contains(userAgent, "samsung") {
+			if strings.Contains(userAgent, "sm-g") {
+				if strings.Contains(userAgent, "sm-g998") {
+					info.DeviceName = "Samsung Galaxy S21 Ultra"
+				} else if strings.Contains(userAgent, "sm-g996") {
+					info.DeviceName = "Samsung Galaxy S21+"
+				} else if strings.Contains(userAgent, "sm-g991") {
+					info.DeviceName = "Samsung Galaxy S21"
+				} else {
+					info.DeviceName = "Samsung Galaxy"
+				}
+			} else {
+				info.DeviceName = "Samsung"
+			}
+		} else if strings.Contains(userAgent, "huawei") {
+			info.DeviceName = "Huawei"
+		} else if strings.Contains(userAgent, "xiaomi") {
+			info.DeviceName = "Xiaomi"
+		} else if strings.Contains(userAgent, "oneplus") {
+			info.DeviceName = "OnePlus"
+		} else if strings.Contains(userAgent, "pixel") {
+			info.DeviceName = "Google Pixel"
+		} else {
+			info.DeviceName = "Android"
+		}
+	}
+
+	// Detectar iOS
+	if strings.Contains(userAgent, "iphone") || strings.Contains(userAgent, "ios") {
+		info.OS = "iOS"
+		info.DeviceName = "iPhone"
+
+		// Extraer versión de iOS
+		if idx := strings.Index(userAgent, "os "); idx != -1 {
+			start := idx + 3
+			end := start
+			for end < len(userAgent) && (userAgent[end] >= '0' && userAgent[end] <= '9' || userAgent[end] == '_' || userAgent[end] == '.') {
+				end++
+			}
+			if end > start {
+				version := strings.Replace(userAgent[start:end], "_", ".", -1)
+				info.OSVersion = version
+			}
+		}
+	}
+
+	// Detectar versión de la app (si está en el User-Agent)
+	if strings.Contains(userAgent, "serious_game_app") {
+		if idx := strings.Index(userAgent, "serious_game_app/"); idx != -1 {
+			start := idx + 17
+			end := start
+			for end < len(userAgent) && userAgent[end] != ' ' && userAgent[end] != ')' {
+				end++
+			}
+			if end > start {
+				info.AppVersion = userAgent[start:end]
+			}
+		}
+	}
+
+	return info
 }
 
 func getEnv(key, def string) string {

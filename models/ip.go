@@ -10,5 +10,6 @@ type UserDeviceIP struct {
 	UserID    uint      `gorm:"index;not null"`
 	Device    string    `gorm:"size:100;not null"`
 	IP        string    `gorm:"size:45;not null"`
+	IsTrusted bool      `gorm:"default:false"`
 	CreatedAt time.Time
 }
