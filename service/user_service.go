@@ -256,7 +256,7 @@ func (s *userService) recordSuccessfulLogin(user *models.Usuarios, ip, userAgent
 
 func (s *userService) detectAnomalousLogin(user *models.Usuarios, ip, userAgent string) error {
 	var knownDevices []models.UserDeviceIP
-	s.db.Where("user_id = ? AND is_trusted = ?", user.ID, true).Find(&knownDevices)
+	s.db.Where(&models.UserDeviceIP{UserID: user.ID, IsTrusted: true}).Find(&knownDevices)
 
 	for _, device := range knownDevices {
 		if device.IP == ip {
