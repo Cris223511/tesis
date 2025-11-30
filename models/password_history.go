@@ -7,7 +7,7 @@ import (
 
 type PasswordHistory struct {
 	ID           uint      `gorm:"primaryKey"`
-	UserID       uint      `gorm:"column:usuarios_id_usuario;not null;index"`
+	UserID       uint      `gorm:"column:user_id;not null;index"`
 	PasswordHash string    `gorm:"type:varchar(255);not null"`
 	ChangedBy    uint      `gorm:"index"` 
 	ChangeReason string    `gorm:"type:varchar(100)"` 
