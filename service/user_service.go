@@ -452,7 +452,7 @@ func (s *userService) UpdateUserPassword(userID uint, newPassword string) error 
 	}
 
 	var passwordHistory []models.PasswordHistory
-	tx.Where("user_id = ?", userID).Order("created_at DESC").Limit(5).Find(&passwordHistory)
+	tx.Where("usuarios_id_usuario = ?", userID).Order("created_at DESC").Limit(5).Find(&passwordHistory)
 	
 	for _, history := range passwordHistory {
 		if bcrypt.CompareHashAndPassword([]byte(history.PasswordHash), []byte(newPassword)) == nil {
@@ -706,7 +706,7 @@ func (s *userService) DeleteUser(id uint) error {
 		return errors.New("usuario no encontrado")
 	}
 
-	tx.Where(&models.Role{UserID: id}).Delete(&models.Role{})
+	tx.Exec("DELETE FROM user_roles WHERE usuarios_id_usuario = ?", id)
 	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
 	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("usuarios_id_usuario= ?", id).Delete(&models.PasswordHistory{})
@@ -753,7 +753,7 @@ func (s *userService) DeleteUserWithValidation(id uint, currentUserID uint) erro
 		}
 	}
 
-	tx.Where(&models.Role{UserID: id}).Delete(&models.Role{})
+	tx.Exec("DELETE FROM user_roles WHERE usuarios_id_usuario = ?", id)
 	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
 	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
 	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.PasswordHistory{})

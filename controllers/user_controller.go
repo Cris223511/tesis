@@ -187,10 +187,10 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 
 	appVersionText := ""
 	if deviceInfo.AppVersion != "" {
-		appVersionText = fmt.Sprintf("<div style=\"margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;\">
-			<strong style=\"color: #374151; display: block; margin-bottom: 5px;\">📲 Versión de la App:</strong>
-			<span style=\"color: #6b7280;\">%s</span>
-		</div>", deviceInfo.AppVersion)
+		appVersionText = fmt.Sprintf(`<div style="margin-bottom: 15px; padding: 12px; border-radius: 8px; background-color: #f8fafc;">
+			<strong style="color: #374151; display: block; margin-bottom: 5px;">📲 Versión de la App:</strong>
+			<span style="color: #6b7280;">%s</span>
+		</div>`, deviceInfo.AppVersion)
 	}
 
 	body := fmt.Sprintf(`
