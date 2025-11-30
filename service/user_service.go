@@ -706,10 +706,10 @@ func (s *userService) DeleteUser(id uint) error {
 		return errors.New("usuario no encontrado")
 	}
 
-	tx.Where("user_id = ?", id).Delete(&models.Role{})
-	tx.Where("user_id = ?", id).Delete(&models.UserDeviceIP{})
-	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
-	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
+	tx.Where(&models.Role{UserID: id}).Delete(&models.Role{})
+	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
+	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
+	tx.Where("usuarios_id_usuario= ?", id).Delete(&models.PasswordHistory{})
 
 	if err := tx.Delete(&user).Error; err != nil {
 		return errors.New("error al eliminar usuario")
@@ -753,10 +753,10 @@ func (s *userService) DeleteUserWithValidation(id uint, currentUserID uint) erro
 		}
 	}
 
-	tx.Where("user_id = ?", id).Delete(&models.Role{})
-	tx.Where("user_id = ?", id).Delete(&models.UserDeviceIP{})
-	tx.Where("user_id = ?", id).Delete(&models.LoginHistory{})
-	tx.Where("user_id = ?", id).Delete(&models.PasswordHistory{})
+	tx.Where(&models.Role{UserID: id}).Delete(&models.Role{})
+	tx.Where(&models.UserDeviceIP{UserID: id}).Delete(&models.UserDeviceIP{})
+	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.LoginHistory{})
+	tx.Where("usuarios_id_usuario = ?", id).Delete(&models.PasswordHistory{})
 
 	if err := tx.Delete(&user).Error; err != nil {
 		return errors.New("error al eliminar usuario")
