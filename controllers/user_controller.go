@@ -142,7 +142,7 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 			ctrl.DeviceIPRepo.TrimOldest(user.ID, device)
 		}
 	}
-	go sendLoginNotificationEmail(user.Correo, user.Nombres_Apellidos, device, ip,(ip))
+	go sendLoginNotificationEmail(user.Correo, user.Nombres_Apellidos, device, ip, ip)
 	var roles []string
 	for _, r := range user.Roles {
 		roles = append(roles, r.Name)
@@ -1132,22 +1132,70 @@ func SendLoginNotificationEmail(to, name, device, ip string) error {
 	body := fmt.Sprintf(`
 <!DOCTYPE html>
 <html>
-<body style="font-family:Arial,sans-serif;background-color:#f5f5f5;padding:20px;">
-  <div style="max-width:600px;margin:auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-    <div style="background:#004165;color:#fff;padding:20px;text-align:center;">
-      <h1 style="margin:0;font-size:24px;">Inicio de Sesión Exitoso</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión Exitoso</title>
+</head>
+<body style="font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#f8f9fa;margin:0;padding:20px;">
+  <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+
+    <!-- Header with logo -->
+    <div style="background:linear-gradient(135deg,#4A90E2 0%%,#357ABD 100%%);color:#ffffff;padding:30px 20px;text-align:center;">
+      <div style="display:inline-block;background:#ffffff;border-radius:50%%;padding:15px;margin-bottom:15px;">
+        <div style="width:50px;height:50px;background:#4A90E2;border-radius:50%%;display:flex;align-items:center;justify-content:center;">
+          <div style="color:#ffffff;font-size:24px;font-weight:bold;">🎮</div>
+        </div>
+      </div>
+      <h1 style="margin:0;font-size:28px;font-weight:600;">Serious Game</h1>
+      <p style="margin:5px 0 0;font-size:16px;opacity:0.9;">Inicio de Sesión Exitoso</p>
     </div>
-    <div style="padding:30px;color:#333;">
-      <p>Hola <strong>%s</strong>,</p>
-      <p>Acabas de iniciar sesión en Serious Game:</p>
-      <ul>
-        <li><strong>Dispositivo:</strong> %s</li>
-        <li><strong>Ubicación:</strong> %s</li>
-        <li><strong>Dirección IP:</strong> %s</li>
-        <li><strong>Fecha y Hora:</strong> %s</li>
-      </ul>
-      <p style="color:#d32f2f;font-weight:bold;">
-        Si no reconoces esta actividad, contacta con soporte inmediatamente.
+
+    <!-- Content -->
+    <div style="padding:30px;">
+      <div style="background:#f8f9fa;border-radius:8px;padding:20px;margin-bottom:25px;">
+        <h2 style="color:#2c3e50;margin:0 0 15px;font-size:20px;">¡Hola %s! 👋</h2>
+        <p style="color:#5a6c7d;margin:0;font-size:16px;line-height:1.5;">
+          Has iniciado sesión exitosamente en tu cuenta de Serious Game.
+        </p>
+      </div>
+
+      <!-- Details -->
+      <div style="background:#ffffff;border:2px solid #e9ecef;border-radius:8px;padding:20px;">
+        <h3 style="color:#2c3e50;margin:0 0 15px;font-size:18px;">Detalles de la sesión:</h3>
+        <table style="width:100%%;border-collapse:collapse;">
+          <tr>
+            <td style="padding:8px 0;color:#5a6c7d;font-weight:600;width:30%%;">🔧 Dispositivo:</td>
+            <td style="padding:8px 0;color:#2c3e50;">%s</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0;color:#5a6c7d;font-weight:600;">🌍 Ubicación:</td>
+            <td style="padding:8px 0;color:#2c3e50;">%s</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0;color:#5a6c7d;font-weight:600;">🌐 IP:</td>
+            <td style="padding:8px 0;color:#2c3e50;">%s</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0;color:#5a6c7d;font-weight:600;">⏰ Fecha:</td>
+            <td style="padding:8px 0;color:#2c3e50;">%s</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Security Alert -->
+      <div style="background:#fff3cd;border:1px solid #ffeaa7;border-radius:8px;padding:20px;margin-top:20px;">
+        <h4 style="color:#856404;margin:0 0 10px;font-size:16px;">🔒 Aviso de Seguridad</h4>
+        <p style="color:#856404;margin:0;font-size:14px;line-height:1.5;">
+          Si no reconoces esta actividad, cambia tu contraseña inmediatamente y contacta a nuestro soporte.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f8f9fa;padding:20px;text-align:center;border-top:1px solid #e9ecef;">
+      <p style="color:#6c757d;margin:0;font-size:14px;">
+        © 2024 Serious Game - Plataforma de Reconocimiento Emocional
       </p>
     </div>
   </div>
@@ -1294,13 +1342,21 @@ func parseUserAgent(userAgent string) DeviceInfo {
 		AppVersion: "",
 	}
 
+	log.Printf("Parsing User-Agent: %s", userAgent)
+
+
+	if strings.Contains(userAgent, "serious_game_app/") {
+		return parseCustomUserAgent(userAgent)
+	}
+
+
 	userAgent = strings.ToLower(userAgent)
 
-	// Detectar Android
+	
 	if strings.Contains(userAgent, "android") {
 		info.OS = "Android"
 
-		// Extraer versión de Android
+
 		if idx := strings.Index(userAgent, "android "); idx != -1 {
 			start := idx + 8
 			end := start
@@ -1312,7 +1368,7 @@ func parseUserAgent(userAgent string) DeviceInfo {
 			}
 		}
 
-		// Detectar modelo de dispositivo Android
+	
 		if strings.Contains(userAgent, "samsung") {
 			if strings.Contains(userAgent, "sm-g") {
 				if strings.Contains(userAgent, "sm-g998") {
@@ -1340,12 +1396,11 @@ func parseUserAgent(userAgent string) DeviceInfo {
 		}
 	}
 
-	// Detectar iOS
+
 	if strings.Contains(userAgent, "iphone") || strings.Contains(userAgent, "ios") {
 		info.OS = "iOS"
 		info.DeviceName = "iPhone"
 
-		// Extraer versión de iOS
 		if idx := strings.Index(userAgent, "os "); idx != -1 {
 			start := idx + 3
 			end := start
@@ -1359,7 +1414,7 @@ func parseUserAgent(userAgent string) DeviceInfo {
 		}
 	}
 
-	// Detectar versión de la app (si está en el User-Agent)
+	
 	if strings.Contains(userAgent, "serious_game_app") {
 		if idx := strings.Index(userAgent, "serious_game_app/"); idx != -1 {
 			start := idx + 17
@@ -1372,6 +1427,63 @@ func parseUserAgent(userAgent string) DeviceInfo {
 			}
 		}
 	}
+
+	return info
+}
+
+
+func parseCustomUserAgent(userAgent string) DeviceInfo {
+	info := DeviceInfo{
+		DeviceName: "Dispositivo desconocido",
+		OS:         "Sistema desconocido",
+		OSVersion:  "",
+		AppVersion: "",
+	}
+
+	log.Printf("Parsing custom User-Agent: %s", userAgent)
+
+
+	if strings.Contains(userAgent, "serious_game_app/") {
+		start := strings.Index(userAgent, "serious_game_app/") + 17
+		if start < len(userAgent) {
+			end := strings.Index(userAgent[start:], " ")
+			if end == -1 {
+				end = len(userAgent) - start
+			}
+			if end > 0 {
+				info.AppVersion = userAgent[start : start+end]
+			}
+		}
+	}
+
+
+	if strings.Contains(userAgent, "Android ") {
+		info.OS = "Android"
+		start := strings.Index(userAgent, "Android ") + 8
+		if start < len(userAgent) {
+			end := strings.Index(userAgent[start:], " (")
+			if end == -1 {
+				end = strings.Index(userAgent[start:], " ")
+			}
+			if end == -1 {
+				end = len(userAgent) - start
+			}
+			if end > 0 {
+				info.OSVersion = userAgent[start : start+end]
+			}
+		}
+	}
+
+	apiEnd := strings.Index(userAgent, ") ")
+	if apiEnd != -1 && apiEnd+2 < len(userAgent) {
+		deviceName := strings.TrimSpace(userAgent[apiEnd+2:])
+		if deviceName != "" {
+			info.DeviceName = deviceName
+		}
+	}
+
+	log.Printf("Parsed custom User-Agent - Device: %s, OS: %s %s, App: %s",
+		info.DeviceName, info.OS, info.OSVersion, info.AppVersion)
 
 	return info
 }
