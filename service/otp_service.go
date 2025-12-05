@@ -15,6 +15,14 @@ import (
 	"gorm.io/gorm"
 )
 
+type DeviceLoginInfo struct {
+	IP             string
+	UserAgent      string
+	DeviceInfo     string
+	AndroidVersion string
+	Timestamp      time.Time
+}
+
 type OTPService interface {
     GenerateOTP(userID uint) (*models.OTP, error)
     VerifyOTP(userID uint, code string) error
@@ -27,6 +35,7 @@ type OTPService interface {
 
     GenerateSecureOTP(userID uint, clientIP, userAgent, purpose string) (*models.OTP, error)
     VerifySecureOTP(userID uint, code, clientIP, userAgent string) error
+    VerifySecureOTPWithDevice(userID uint, code, clientIP, userAgent string, deviceInfo *DeviceLoginInfo) error
 }
 
 type otpService struct {
@@ -44,7 +53,6 @@ func NewOTPService(db *gorm.DB) OTPService {
 const (
     OTP_LENGTH           = 6
     OTP_EXPIRY_MINUTES   = 5
-    MAX_OTP_ATTEMPTS     = 3
     MAX_RESEND_ATTEMPTS  = 3
     RESEND_COOLDOWN      = 1 * time.Minute
     RESEND_BLOCK_HOURS   = 24
@@ -277,14 +285,6 @@ func (s *otpService) VerifySecureOTP(userID uint, code, clientIP, userAgent stri
         return errors.New("error al verificar OTP")
     }
 
-    if otp.Attempts >= MAX_OTP_ATTEMPTS {
-        s.db.Model(&otp).Update("is_used", true)
-        s.logSecurityEvent(userID, clientIP, "OTP_MAX_ATTEMPTS", fmt.Sprintf("OTP ID: %d", otp.ID))
-        return errors.New("demasiados intentos fallidos")
-    }
-
-    s.db.Model(&otp).Update("attempts", otp.Attempts+1)
-
     var isValid bool
     if otp.IsEncrypted() {
         isValid = s.secureOTP.VerifyOTP(code, otp.CodeHash, otp.Salt)
@@ -294,12 +294,7 @@ func (s *otpService) VerifySecureOTP(userID uint, code, clientIP, userAgent stri
 
     if !isValid {
         s.logSecurityEvent(userID, clientIP, "OTP_INVALID_CODE",
-            fmt.Sprintf("Attempt %d/%d, OTP ID: %d", otp.Attempts+1, MAX_OTP_ATTEMPTS, otp.ID))
-
-        if otp.Attempts+1 >= MAX_OTP_ATTEMPTS {
-            s.db.Model(&otp).Update("is_used", true)
-            return errors.New("código incorrecto, OTP bloqueado")
-        }
+            fmt.Sprintf("OTP ID: %d", otp.ID))
         return errors.New("código incorrecto")
     }
 
@@ -381,6 +376,105 @@ func (s *otpService) sanitizeUserAgent(ua string) string {
         ua = ua[:500]
     }
     return strings.TrimSpace(ua)
+}
+
+func (s *otpService) VerifySecureOTPWithDevice(userID uint, code, clientIP, userAgent string, deviceInfo *DeviceLoginInfo) error {
+
+	if err := s.VerifySecureOTP(userID, code, clientIP, userAgent); err != nil {
+		return err
+	}
+
+	
+	go s.sendSecurityNotificationEmail(userID, deviceInfo)
+
+	return nil
+}
+
+func (s *otpService) sendSecurityNotificationEmail(userID uint, deviceInfo *DeviceLoginInfo) {
+	var user models.Usuarios
+	if err := s.db.First(&user, userID).Error; err != nil {
+		log.Printf("[SECURITY][EMAIL] Error obteniendo usuario %d: %v", userID, err)
+		return
+	}
+
+
+	subject := "Nuevo acceso a tu cuenta - Notificación de Seguridad"
+
+	body := fmt.Sprintf(`
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #2196F3; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+        .content { background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
+        .device-info { background-color: #fff; border-left: 4px solid #2196F3; padding: 15px; margin: 15px 0; }
+        .info-row { margin: 10px 0; }
+        .label { font-weight: bold; color: #2196F3; }
+        .warning { color: #F44336; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Notificación de Acceso a tu Cuenta</h2>
+        </div>
+        <div class="content">
+            <p>Hola <strong>%s</strong>,</p>
+
+            <p>Se ha detectado un nuevo acceso a tu cuenta. Si fuiste tú, puedes ignorar este mensaje. Si no reconoces este acceso, <span class="warning">cambia tu contraseña inmediatamente</span>.</p>
+
+            <div class="device-info">
+                <h3>Información del Dispositivo</h3>
+                <div class="info-row">
+                    <span class="label">Dispositivo:</span> %s
+                </div>
+                <div class="info-row">
+                    <span class="label">Sistema Operativo:</span> Android %s
+                </div>
+                <div class="info-row">
+                    <span class="label">Dirección IP:</span> %s
+                </div>
+                <div class="info-row">
+                    <span class="label">Fecha y Hora:</span> %s
+                </div>
+                <div class="info-row">
+                    <span class="label">User Agent:</span> %s
+                </div>
+            </div>
+
+            <p><strong>¿Cómo proteger tu cuenta?</strong></p>
+            <ul>
+                <li>Usa contraseñas fuertes y únicas</li>
+                <li>Habilita la autenticación de dos factores</li>
+                <li>Revisa regularmente tus accesos recientes</li>
+                <li>No compartas tu código OTP con nadie</li>
+            </ul>
+
+            <p>Si tienes dudas sobre tu seguridad, contacta al equipo de soporte.</p>
+
+            <p style="color: #999; font-size: 12px; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px;">
+                Este es un correo automático. No respondas a este mensaje.
+            </p>
+        </div>
+    </div>
+</body>
+</html>`,
+		user.Nombres_Apellidos,
+		deviceInfo.DeviceInfo,
+		deviceInfo.AndroidVersion,
+		deviceInfo.IP,
+		deviceInfo.Timestamp.Format("02/01/2006 15:04:05"),
+		deviceInfo.UserAgent,
+	)
+
+
+	if err := utils.SendSecurityNotificationEmail(user.Correo, subject, body); err != nil {
+		log.Printf("[SECURITY][EMAIL] Error enviando notificación de seguridad a %s: %v", user.Correo, err)
+	} else {
+		log.Printf("[SECURITY][EMAIL] Notificación de seguridad enviada exitosamente a %s", user.Correo)
+	}
 }
 
 func (s *otpService) logSecurityEvent(userID uint, clientIP, eventType, details string) {

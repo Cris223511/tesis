@@ -146,6 +146,10 @@ func SendSecurityAlert(toEmail, name, reason, ip string) error {
 	return sendEmailWithTLS(toEmail, subject, body)
 }
 
+func SendSecurityNotificationEmail(toEmail, subject, body string) error {
+	return sendEmailWithTLS(toEmail, subject, body)
+}
+
 func sendEmailWithTLS(toEmail, subject, body string) error {
 	smtpHost, smtpPort, senderEmail, senderPassword := getSMTPConfig()
 

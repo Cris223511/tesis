@@ -37,8 +37,11 @@ type LoginRequest struct {
 }
 
 type OTPRequest struct {
-	UserID uint   `json:"user_id" binding:"required"`
-	Code   string `json:"code" binding:"required,len=6"`
+	UserID       uint   `json:"user_id" binding:"required"`
+	Code         string `json:"code" binding:"required,len=6"`
+	DeviceInfo   string `json:"device_info"`   // Model, manufacturer, etc
+	AndroidVersion string `json:"android_version"`
+	UserAgent    string `json:"user_agent"`
 }
 
 type ResendOTPRequest struct {
@@ -136,9 +139,17 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 	clientIP := ac.getClientIP(c)
 	userAgent := ac.getUserAgent(c)
 
-	log.Printf("[AUTH][OTP_VERIFY_ATTEMPT] UserID: %d, IP: %s", req.UserID, clientIP)
+	log.Printf("[AUTH][OTP_VERIFY_ATTEMPT] UserID: %d, IP: %s, Device: %s", req.UserID, clientIP, req.DeviceInfo)
 
-	err := ac.OTPService.VerifySecureOTP(req.UserID, req.Code, clientIP, userAgent)
+	deviceInfo := &services.DeviceLoginInfo{
+		IP:             clientIP,
+		UserAgent:      userAgent,
+		DeviceInfo:     req.DeviceInfo,
+		AndroidVersion: req.AndroidVersion,
+		Timestamp:      time.Now(),
+	}
+
+	err := ac.OTPService.VerifySecureOTPWithDevice(req.UserID, req.Code, clientIP, userAgent, deviceInfo)
 	if err != nil {
 		ac.handleOTPVerificationError(c, err, req.UserID, clientIP)
 		return
@@ -352,12 +363,6 @@ func (ac *AuthController) handleOTPVerificationError(c *gin.Context, err error, 
 	ac.logSecurityEvent(userID, clientIP, "OTP_VERIFICATION_FAILED", errMsg)
 
 	switch {
-	case strings.Contains(errMsg, "bloqueado"):
-		c.JSON(http.StatusTooManyRequests, gin.H{
-			"error":   "Código OTP bloqueado",
-			"code":    "OTP_BLOCKED",
-			"message": "Solicita un nuevo código",
-		})
 	case strings.Contains(errMsg, "expirado"):
 		c.JSON(http.StatusGone, gin.H{
 			"error":   "Código OTP expirado",
