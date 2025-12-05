@@ -1,9 +1,7 @@
 package controllers
 
 import (
-	"bytes"
 	"fmt"
-	"io"
 	"log"
 	"net"
 	"net/http"
@@ -40,7 +38,7 @@ type LoginRequest struct {
 
 type OTPRequest struct {
 	UserID        uint   `json:"user_id" binding:"required"`
-	Code          string `json:"code" binding:"required,min=6,max=10"`
+	Code          string `json:"code" binding:"required"`
 	DeviceInfo    string `json:"device_info"`
 	AndroidVersion string `json:"android_version"`
 	UserAgent     string `json:"user_agent"`
@@ -129,15 +127,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 func (ac *AuthController) VerifyOTP(c *gin.Context) {
 	var req OTPRequest
 
-
-	bodyBytes, _ := c.GetRawData()
-	log.Printf("[AUTH][OTP_DEBUG] Raw request body: %s", string(bodyBytes))
-
-
-	c.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
-
 	if err := c.ShouldBindJSON(&req); err != nil {
-		log.Printf("[AUTH][OTP_BINDING_ERROR] Binding error: %v", err)
 		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_INVALID_REQUEST", err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":   "Datos de verificación inválidos",
@@ -145,8 +135,6 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 		})
 		return
 	}
-
-	log.Printf("[AUTH][OTP_REQUEST] UserID: %d, Code: %s, DeviceInfo: %s", req.UserID, req.Code, req.DeviceInfo)
 
 	clientIP := ac.getClientIP(c)
 	userAgent := ac.getUserAgent(c)
