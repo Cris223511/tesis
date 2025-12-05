@@ -1,6 +1,7 @@
 package middlewares
 
 import (
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -14,6 +15,10 @@ var jwtKey = []byte(os.Getenv("JWT_SECRET"))
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		path := c.FullPath()
+		if path == "/api/otp/validate" || strings.Contains(path, "otp") {
+			log.Printf("[AUTH_MIDDLEWARE] FullPath: %s, RequestPath: %s", path, c.Request.URL.Path)
+		}
+
 		if strings.HasPrefix(path, "/un/") {
 			c.Next()
 			return
