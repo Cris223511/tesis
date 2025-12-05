@@ -125,8 +125,10 @@ func (ac *AuthController) Login(c *gin.Context) {
 }
 
 func (ac *AuthController) VerifyOTP(c *gin.Context) {
-	var req OTPRequest
+	log.Printf("[AUTH][OTP_HANDLER_CALLED] Method: %s, ContentType: %s, ContentLength: %d, Body available: %v",
+		c.Request.Method, c.Request.Header.Get("Content-Type"), c.Request.ContentLength, c.Request.Body != nil)
 
+	var req OTPRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		log.Printf("[AUTH][OTP_BIND_ERROR] Cannot bind JSON: %v, Body: %s", err, c.Request.Body)

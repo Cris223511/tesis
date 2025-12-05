@@ -17,7 +17,6 @@ func SetupRouter(
 ) *gin.Engine {
 
 	r := gin.Default()
-	r.Use(middlewares.DebugMiddleware())
 	r.Use(middlewares.CORSMiddleware())
 
 	r.GET("/auth/gett", authController.GetToken)
