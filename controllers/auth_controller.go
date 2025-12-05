@@ -125,53 +125,32 @@ func (ac *AuthController) Login(c *gin.Context) {
 }
 
 func (ac *AuthController) VerifyOTP(c *gin.Context) {
-	// First try to get raw map to debug
-	var rawMap map[string]interface{}
-	if err := c.BindJSON(&rawMap); err != nil {
-		log.Printf("[AUTH][OTP_RAW_ERROR] Cannot parse JSON: %v", err)
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON", "details": err.Error()})
+	var req OTPRequest
+
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		log.Printf("[AUTH][OTP_BIND_ERROR] Cannot bind JSON: %v, Body: %s", err, c.Request.Body)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Formato de solicitud inválido",
+		})
 		return
 	}
 
-	log.Printf("[AUTH][OTP_RAW_MAP] Received map: %v", rawMap)
-
-	// Now try to bind to typed struct
-	var req OTPRequest
-
-	// Manually map the values
-	if userID, ok := rawMap["user_id"]; ok {
-		if userIDFloat, ok := userID.(float64); ok {
-			req.UserID = uint(userIDFloat)
-		}
-	}
-	if code, ok := rawMap["code"]; ok {
-		if codeStr, ok := code.(string); ok {
-			req.Code = codeStr
-		}
-	}
-	if deviceInfo, ok := rawMap["device_info"]; ok {
-		if deviceInfoStr, ok := deviceInfo.(string); ok {
-			req.DeviceInfo = deviceInfoStr
-		}
-	}
-	if androidVersion, ok := rawMap["android_version"]; ok {
-		if androidVersionStr, ok := androidVersion.(string); ok {
-			req.AndroidVersion = androidVersionStr
-		}
-	}
-	if userAgent, ok := rawMap["user_agent"]; ok {
-		if userAgentStr, ok := userAgent.(string); ok {
-			req.UserAgent = userAgentStr
-		}
-	}
-
-	log.Printf("[AUTH][OTP_PARSED] UserID: %d, Code: %s, DeviceInfo: %s", req.UserID, req.Code, req.DeviceInfo)
-
-	if req.UserID == 0 || req.Code == "" {
-		log.Printf("[AUTH][OTP_MISSING] UserID: %d, Code: '%s'", req.UserID, req.Code)
-		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_MISSING_FIELDS", "user_id or code missing")
+	// Validate required fields
+	if req.UserID == 0 {
+		log.Printf("[AUTH][OTP_MISSING_USER_ID] UserID is 0")
+		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_MISSING_USER_ID", "user_id missing or invalid")
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "user_id y code son requeridos",
+			"error": "ID de usuario requerido",
+		})
+		return
+	}
+
+	if req.Code == "" {
+		log.Printf("[AUTH][OTP_MISSING_CODE] Code is empty")
+		ac.logSecurityEvent(req.UserID, ac.getClientIP(c), "OTP_MISSING_CODE", "code missing")
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Código OTP requerido",
 		})
 		return
 	}
