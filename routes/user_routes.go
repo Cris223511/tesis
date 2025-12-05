@@ -45,9 +45,9 @@ func SetupRouter(
 			})
 		})
 
-		public.POST("/otp/validate", userController.ValidateOTP)
-		public.POST("/otp/resend", userController.ResendOTP)
-		
+		public.POST("/otp/validate", authController.VerifyOTP)
+		public.POST("/otp/resend", authController.ResendOTP)
+
 		// ---------- CAMBIO DE CONTRASEÑA ----------
 		public.POST("/password/validate-email", userController.ValidateEmailForPasswordChange)
 		public.POST("/password/send-otp", userController.SendPasswordChangeOTP)

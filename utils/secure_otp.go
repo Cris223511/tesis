@@ -45,6 +45,9 @@ func deriveKey(masterKey string) []byte {
 
 
 func (s *SecureOTP) EncryptOTP(code string) (string, string, string, error) {
+	// Normalize code to uppercase for consistency
+	code = strings.ToUpper(code)
+
 	if len(code) != 6 {
 		return "", "", "", errors.New("código debe ser de 6 caracteres")
 	}
@@ -69,14 +72,15 @@ func (s *SecureOTP) EncryptOTP(code string) (string, string, string, error) {
 
 
 func (s *SecureOTP) VerifyOTP(inputCode, storedHash, salt string) bool {
-	if len(inputCode) != 6 || storedHash == "" || salt == "" {
+	// Normalizar el código: eliminar espacios, guiones y convertir a mayúsculas
+	normalizedCode := strings.ToUpper(strings.ReplaceAll(strings.ReplaceAll(inputCode, "-", ""), " ", ""))
+
+	if len(normalizedCode) != 6 || storedHash == "" || salt == "" {
 		return false
 	}
 
+	inputHash := s.createHash(normalizedCode, salt)
 
-	inputHash := s.createHash(inputCode, salt)
-
-	
 	return subtle.ConstantTimeCompare([]byte(inputHash), []byte(storedHash)) == 1
 }
 
