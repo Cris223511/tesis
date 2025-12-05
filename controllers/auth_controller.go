@@ -37,8 +37,8 @@ type LoginRequest struct {
 }
 
 type OTPRequest struct {
-	UserID        uint   `json:"user_id" binding:"required"`
-	Code          string `json:"code" binding:"required"`
+	UserID        uint   `json:"user_id"`
+	Code          string `json:"code"`
 	DeviceInfo    string `json:"device_info"`
 	AndroidVersion string `json:"android_version"`
 	UserAgent     string `json:"user_agent"`
