@@ -73,57 +73,13 @@ func (s *otpService) VerifyOTP(userID uint, code string) error {
 
 func (s *otpService) ResendOTP(userID uint) error {
 
-    var resendRecord models.OTPResend
-    err := s.db.Where("user_id = ?", userID).First(&resendRecord).Error
-    
-    if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
-        return errors.New("error al verificar límites")
-    }
-    
+	_, err := s.GenerateSecureOTP(userID, "", "", "resend")
+	if err != nil {
+		return err
+	}
 
-    if errors.Is(err, gorm.ErrRecordNotFound) {
-        resendRecord = models.OTPResend{
-            UserID:       userID,
-            ResendCount:  0,
-            LastResendAt: time.Now(),
-        }
-        s.db.Create(&resendRecord)
-    }
-    
-    if resendRecord.BlockedUntil != nil && resendRecord.BlockedUntil.After(time.Now()) {
-        return fmt.Errorf("reenvío bloqueado hasta %s", resendRecord.BlockedUntil.Format("15:04"))
-    }
-
-    if time.Since(resendRecord.LastResendAt) < RESEND_COOLDOWN {
-        remaining := RESEND_COOLDOWN - time.Since(resendRecord.LastResendAt)
-        return fmt.Errorf("espera %d segundos antes de reenviar", int(remaining.Seconds()))
-    }
- 
-    if resendRecord.ResendCount >= MAX_RESEND_ATTEMPTS {
-  
-        blockedUntil := time.Now().Add(RESEND_BLOCK_HOURS * time.Hour)
-        s.db.Model(&resendRecord).Updates(map[string]interface{}{
-            "blocked_until": blockedUntil,
-            "resend_count": 0,
-        })
-        return errors.New("límite de reenvíos alcanzado, bloqueado por 24 horas")
-    }
-    
-   
-    _, err = s.GenerateSecureOTP(userID, "", "", "resend")
-    if err != nil {
-        return err
-    }
-  
-    s.db.Model(&resendRecord).Updates(map[string]interface{}{
-        "resend_count":  resendRecord.ResendCount + 1,
-        "last_resend_at": time.Now(),
-    })
-    
-    reenviosRestantes := MAX_RESEND_ATTEMPTS - (resendRecord.ResendCount + 1)
-    log.Printf("[OTP] Código reenviado para usuario %d. Reenvíos restantes: %d", userID, reenviosRestantes)
-    
-    return nil
+	log.Printf("[OTP] Código reenviado para usuario %d sin restricciones", userID)
+	return nil
 }
 
 func (s *otpService) generateRandomCode() string {
