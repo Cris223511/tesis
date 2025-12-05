@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"usuarios/controllers"
 	"usuarios/middlewares"
 	"usuarios/utils"
@@ -17,6 +18,17 @@ func SetupRouter(
 ) *gin.Engine {
 
 	r := gin.Default()
+
+
+	r.Use(func(c *gin.Context) {
+		if c.Request.URL.Path == "/api/otp/validate" {
+			log.Printf("[CUSTOM_LOG] OTP/validate request received!")
+			log.Printf("[CUSTOM_LOG] Method: %s, ContentType: %s, ContentLength: %d",
+				c.Request.Method, c.Request.Header.Get("Content-Type"), c.Request.ContentLength)
+		}
+		c.Next()
+	})
+
 	r.Use(middlewares.CORSMiddleware())
 
 	r.GET("/auth/gett", authController.GetToken)
