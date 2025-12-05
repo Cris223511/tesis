@@ -34,40 +34,34 @@ func SetupRouter(
 	r.GET("/auth/gett", authController.GetToken)
 
 	// ---------- RUTAS PÚBLICAS ----------
-	public := r.Group("/api")
-	{
-		public.POST("/login", userController.Login)
-		public.POST("/refresh-token", func(c *gin.Context) {
-			var req struct {
-				RefreshToken string `json:"refresh_token"`
-			}
-			if err := c.ShouldBindJSON(&req); err != nil || req.RefreshToken == "" {
-				c.JSON(400, gin.H{"error": "refresh_token faltante"})
-				return
-			}
+	r.POST("/api/login", userController.Login)
+	r.POST("/api/otp/validate", authController.VerifyOTP)
+	r.POST("/api/otp/resend", authController.ResendOTP)
+	r.POST("/api/refresh-token", func(c *gin.Context) {
+		var req struct {
+			RefreshToken string `json:"refresh_token"`
+		}
+		if err := c.ShouldBindJSON(&req); err != nil || req.RefreshToken == "" {
+			c.JSON(400, gin.H{"error": "refresh_token faltante"})
+			return
+		}
 
-			newTok, newRef, err := utils.RefreshToken(req.RefreshToken)
-			if err != nil {
-				c.JSON(401, gin.H{"error": err.Error()})
-				return
-			}
-			c.JSON(200, gin.H{
-				"bearer_token":  newTok,
-				"refresh_token": newRef,
-			})
+		newTok, newRef, err := utils.RefreshToken(req.RefreshToken)
+		if err != nil {
+			c.JSON(401, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(200, gin.H{
+			"bearer_token":  newTok,
+			"refresh_token": newRef,
 		})
+	})
 
-		public.POST("/otp/validate", authController.VerifyOTP)
-		public.POST("/otp/resend", authController.ResendOTP)
-
-		// ---------- CAMBIO DE CONTRASEÑA ----------
-		public.POST("/password/validate-email", userController.ValidateEmailForPasswordChange)
-		public.POST("/password/send-otp", userController.SendPasswordChangeOTP)
-		public.POST("/password/verify-otp", userController.VerifyPasswordOTP)
-		public.POST("/password/change-with-otp", userController.ChangePasswordWithOTP)
-
-
-	}
+	// ---------- CAMBIO DE CONTRASEÑA ----------
+	r.POST("/api/password/validate-email", userController.ValidateEmailForPasswordChange)
+	r.POST("/api/password/send-otp", userController.SendPasswordChangeOTP)
+	r.POST("/api/password/verify-otp", userController.VerifyPasswordOTP)
+	r.POST("/api/password/change-with-otp", userController.ChangePasswordWithOTP)
 
 	// ---------- RUTAS PROTEGIDAS ----------
 	protected := r.Group("/api")
