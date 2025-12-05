@@ -127,7 +127,9 @@ func (ac *AuthController) Login(c *gin.Context) {
 func (ac *AuthController) VerifyOTP(c *gin.Context) {
 	var req OTPRequest
 
-	if err := c.ShouldBindJSON(&req); err != nil {
+	// Use BindJSON instead of ShouldBindJSON for better error handling
+	if err := c.BindJSON(&req); err != nil {
+		log.Printf("[AUTH][OTP_BIND_ERROR] Error: %v, Content-Type: %s", err, c.GetHeader("Content-Type"))
 		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_INVALID_REQUEST", err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":   "Datos de verificación inválidos",
@@ -136,10 +138,19 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 		return
 	}
 
+	
+	if req.UserID == 0 || req.Code == "" {
+		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_MISSING_FIELDS", "user_id or code missing")
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "user_id y code son requeridos",
+		})
+		return
+	}
+
 	clientIP := ac.getClientIP(c)
 	userAgent := ac.getUserAgent(c)
 
-	log.Printf("[AUTH][OTP_VERIFY_ATTEMPT] UserID: %d, IP: %s, Device: %s", req.UserID, clientIP, req.DeviceInfo)
+	log.Printf("[AUTH][OTP_VERIFY_ATTEMPT] UserID: %d, Code: %s, IP: %s, Device: %s", req.UserID, req.Code, clientIP, req.DeviceInfo)
 
 	deviceInfo := &services.DeviceLoginInfo{
 		IP:             clientIP,
