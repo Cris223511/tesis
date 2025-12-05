@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"net/http"
@@ -127,9 +129,16 @@ func (ac *AuthController) Login(c *gin.Context) {
 func (ac *AuthController) VerifyOTP(c *gin.Context) {
 	var req OTPRequest
 
-	// Use BindJSON instead of ShouldBindJSON for better error handling
+
+	rawBody, _ := c.GetRawData()
+	log.Printf("[AUTH][OTP_RAW] Raw body: %s", string(rawBody))
+	log.Printf("[AUTH][OTP_RAW] Body length: %d bytes", len(rawBody))
+
+
+	c.Request.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
 	if err := c.BindJSON(&req); err != nil {
-		log.Printf("[AUTH][OTP_BIND_ERROR] Error: %v, Content-Type: %s", err, c.GetHeader("Content-Type"))
+		log.Printf("[AUTH][OTP_BIND_ERROR] Error: %v", err)
 		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_INVALID_REQUEST", err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":   "Datos de verificación inválidos",
@@ -138,7 +147,8 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 		return
 	}
 
-	
+	log.Printf("[AUTH][OTP_PARSED] UserID: %d, Code: %s", req.UserID, req.Code)
+
 	if req.UserID == 0 || req.Code == "" {
 		ac.logSecurityEvent(0, ac.getClientIP(c), "OTP_MISSING_FIELDS", "user_id or code missing")
 		c.JSON(http.StatusBadRequest, gin.H{
