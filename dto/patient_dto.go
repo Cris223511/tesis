@@ -9,7 +9,7 @@ type CreatePatientDTO struct {
 	NumDocumento       string  `json:"num_documento" binding:"required,min=1,max=20"`
 	Altura             float32 `json:"altura" binding:"min=0,max=300"`
 	Peso               float32 `json:"peso" binding:"min=0,max=500"`
-	Sexo               string  `json:"sexo" binding:"required,oneof=Masculino Femenino M F Otro"`
+	Sexo               string  `json:"sexo" binding:"required,oneof=Masculino Femenino M F Otro masculino femenino m f otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
 	FotoMovil          string  `json:"foto_movil"`
 	FotoWeb            string  `json:"foto_web"`
@@ -23,7 +23,7 @@ type UpdatePatientDTO struct {
 	NumDocumento       string  `json:"num_documento" binding:"omitempty,min=1,max=20"`
 	Altura             float32 `json:"altura" binding:"omitempty,min=0,max=300"`
 	Peso               float32 `json:"peso" binding:"omitempty,min=0,max=500"`
-	Sexo               string  `json:"sexo" binding:"omitempty,oneof=Masculino Femenino M F Otro"`
+	Sexo               string  `json:"sexo" binding:"omitempty,oneof=Masculino Femenino M F Otro masculino femenino m f otro"`
 	DiagnosticoClinico string  `json:"diagnostico_clinico"`
 	FotoMovil          string  `json:"foto_movil"`
 	FotoWeb            string  `json:"foto_web"`
@@ -62,6 +62,7 @@ type PatientListDTO struct {
 	NumDocumento     string  `json:"num_documento"`
 	Edad             int     `json:"edad"`
 	Sexo             string  `json:"sexo"`
+	TerapeutaID      uint    `json:"terapeuta_id"`
 	TerapeutaNombre  string  `json:"terapeuta_nombre"`
 	CuidadorNombre   *string `json:"cuidador_nombre,omitempty"`
 	Activo           bool    `json:"activo"`

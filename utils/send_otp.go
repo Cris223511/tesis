@@ -44,18 +44,16 @@ func SendOTPEmail(toEmail, otp string) error {
 	</head>
 	<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; line-height: 1.6;">
 		<div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-			<!-- Header -->
-			<div style="background: linear-gradient(135deg, #1e40af 0%%, #3b82f6 100%%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
-				<div style="background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 50%%; display: inline-block; margin-bottom: 20px;">
-					<div style="width: 50px; height: 50px; background-color: #ffffff; border-radius: 50%%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-						<span style="font-size: 24px;">🔐</span>
-					</div>
+	
+			<div style="background-color: #1e40af; padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+				<div style="margin-bottom: 15px;">
+					<span style="font-size: 40px;">🔐</span>
 				</div>
-				<h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">SERIOUS GAME</h1>
-				<p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 16px;">Plataforma de Terapias Emocionales</p>
+				<h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">SERIOUS GAME</h1>
+				<p style="color: #93c5fd; margin: 8px 0 0 0; font-size: 16px;">Plataforma de Terapia Emocional</p>
 			</div>
 
-			<!-- Main Content -->
+		
 			<div style="padding: 50px 30px; background-color: #ffffff;">
 				<div style="text-align: center; margin-bottom: 40px;">
 					<h2 style="color: #1f2937; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Código de Verificación</h2>
@@ -64,16 +62,16 @@ func SendOTPEmail(toEmail, otp string) error {
 					</p>
 				</div>
 
-				<!-- OTP Code Box -->
-				<div style="background: linear-gradient(135deg, #f59e0b 0%%, #f97316 100%%); border-radius: 16px; padding: 30px; margin: 30px 0; text-align: center; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);">
-					<p style="color: #ffffff; margin: 0 0 10px 0; font-size: 14px; font-weight: 500; opacity: 0.9;">TU CÓDIGO DE VERIFICACIÓN</p>
-					<div style="background-color: rgba(255,255,255,0.15); border-radius: 12px; padding: 20px; margin: 10px 0;">
-						<span style="font-size: 36px; font-weight: 900; color: #ffffff; letter-spacing: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">%s</span>
+			
+				<div style="background-color: #fef3c7; border: 2px solid #f59e0b; border-radius: 16px; padding: 30px; margin: 30px 0; text-align: center;">
+					<p style="color: #92400e; margin: 0 0 10px 0; font-size: 14px; font-weight: 500;">TU CÓDIGO DE VERIFICACIÓN</p>
+					<div style="background-color: #ffffff; border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 10px 0;">
+						<span style="font-size: 36px; font-weight: 900; color: #1e40af; letter-spacing: 8px;">%s</span>
 					</div>
-					<p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">Válido por 1 minuto</p>
+					<p style="color: #92400e; margin: 10px 0 0 0; font-size: 14px;">Válido por 1 minuto</p>
 				</div>
 
-				<!-- Security Notice -->
+				
 				<div style="background-color: #f0f9ff; border-left: 4px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 30px 0;">
 					<div style="display: flex; align-items: flex-start;">
 						<span style="font-size: 18px; margin-right: 12px;">🛡️</span>
@@ -88,7 +86,7 @@ func SendOTPEmail(toEmail, otp string) error {
 					</div>
 				</div>
 
-				<!-- Support Info -->
+				
 				<div style="text-align: center; margin-top: 40px;">
 					<p style="color: #6b7280; font-size: 14px; margin: 0;">
 						¿Necesitas ayuda? Contacta a nuestro equipo de soporte<br>
@@ -97,7 +95,7 @@ func SendOTPEmail(toEmail, otp string) error {
 				</div>
 			</div>
 
-			<!-- Footer -->
+	
 			<div style="background-color: #f8fafc; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
 				<div style="margin-bottom: 15px;">
 					<p style="color: #9ca3af; font-size: 12px; margin: 0;">
@@ -113,7 +111,7 @@ func SendOTPEmail(toEmail, otp string) error {
 			</div>
 		</div>
 
-		<!-- Mobile Responsiveness -->
+	
 		<style>
 			@media only screen and (max-width: 600px) {
 				.container { width: 100%% !important; }
@@ -124,6 +122,115 @@ func SendOTPEmail(toEmail, otp string) error {
 	</body>
 	</html>
 	`, otp, time.Now().Year())
+
+	return sendEmailWithTLS(toEmail, subject, body)
+}
+
+func SendOTPResendEmail(toEmail, otp string, resendCount int) error {
+	subject := "🔄 Código Reenviado - Serious Game"
+	body := fmt.Sprintf(`
+	<!DOCTYPE html>
+	<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Código Reenviado</title>
+	</head>
+	<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; line-height: 1.6;">
+		<div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+
+			<!-- Header azul igual al OTP original -->
+			<div style="background-color: #1e40af; padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+				<div style="margin-bottom: 15px;">
+					<span style="font-size: 40px;">🔄</span>
+				</div>
+				<h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">SERIOUS GAME</h1>
+				<p style="color: #93c5fd; margin: 8px 0 0 0; font-size: 16px;">Código de Verificación Reenviado</p>
+			</div>
+
+	
+			<div style="padding: 50px 30px; background-color: #ffffff;">
+
+				
+				<div style="background-color: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; padding: 16px 20px; margin-bottom: 30px; text-align: center;">
+					<div style="display: inline-flex; align-items: center; gap: 8px;">
+						<span style="font-size: 20px;">📨</span>
+						<span style="color: #c2410c; font-size: 14px; font-weight: 600;">Reenvío #%d solicitado</span>
+					</div>
+				</div>
+
+				<div style="text-align: center; margin-bottom: 40px;">
+					<h2 style="color: #1f2937; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Tu Nuevo Código</h2>
+					<p style="color: #6b7280; font-size: 16px; margin: 0; line-height: 1.5;">
+						Hemos generado un nuevo código de verificación para ti.
+						El código anterior ya no es válido.
+					</p>
+				</div>
+
+		
+				<div style="background-color: #fef3c7; border: 2px solid #f59e0b; border-radius: 16px; padding: 30px; margin: 30px 0; text-align: center;">
+					<p style="color: #92400e; margin: 0 0 10px 0; font-size: 14px; font-weight: 500;">NUEVO CÓDIGO DE VERIFICACIÓN</p>
+					<div style="background-color: #ffffff; border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 10px 0;">
+						<span style="font-size: 36px; font-weight: 900; color: #d97706; letter-spacing: 8px;">%s</span>
+					</div>
+					<p style="color: #92400e; margin: 10px 0 0 0; font-size: 14px;">⏱️ Válido por 1 minuto</p>
+				</div>
+
+				<div style="background-color: #fef9c3; border-left: 4px solid #eab308; border-radius: 8px; padding: 20px; margin: 30px 0;">
+					<div style="display: flex; align-items: flex-start;">
+						<span style="font-size: 18px; margin-right: 12px;">⚠️</span>
+						<div>
+							<h3 style="color: #854d0e; margin: 0 0 8px 0; font-size: 16px; font-weight: 600;">Importante</h3>
+							<p style="color: #a16207; margin: 0; font-size: 14px; line-height: 1.5;">
+								• El código anterior ha sido <strong>invalidado</strong><br>
+								• Solo este nuevo código funcionará<br>
+								• Si sigues sin recibir el código, verifica tu bandeja de spam
+							</p>
+						</div>
+					</div>
+				</div>
+
+		
+				<div style="background-color: #f0f9ff; border-left: 4px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 30px 0;">
+					<div style="display: flex; align-items: flex-start;">
+						<span style="font-size: 18px; margin-right: 12px;">🛡️</span>
+						<div>
+							<h3 style="color: #0c4a6e; margin: 0 0 8px 0; font-size: 16px; font-weight: 600;">Seguridad</h3>
+							<p style="color: #0e7490; margin: 0; font-size: 14px; line-height: 1.5;">
+								Si no solicitaste este código, alguien podría estar intentando acceder a tu cuenta.
+								Te recomendamos cambiar tu contraseña.
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div style="text-align: center; margin-top: 40px;">
+					<p style="color: #6b7280; font-size: 14px; margin: 0;">
+						¿Problemas para verificar? Contacta a soporte<br>
+						<a href="mailto:soporte@seriousgame.com" style="color: #d97706; text-decoration: none; font-weight: 500;">soporte@seriousgame.com</a>
+					</p>
+				</div>
+			</div>
+
+	
+			<div style="background-color: #f8fafc; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
+				<div style="margin-bottom: 15px;">
+					<p style="color: #9ca3af; font-size: 12px; margin: 0;">
+						© %d Serious Game • Plataforma de Terapias Emocionales
+					</p>
+				</div>
+				<div style="border-top: 1px solid #e5e7eb; padding-top: 15px; margin-top: 15px;">
+					<p style="color: #9ca3af; font-size: 11px; margin: 0; line-height: 1.4;">
+						Este correo fue enviado automáticamente.<br>
+						Por favor, no respondas a este mensaje directamente.
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	</html>
+	`, resendCount, otp, time.Now().Year())
 
 	return sendEmailWithTLS(toEmail, subject, body)
 }

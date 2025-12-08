@@ -198,6 +198,11 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 
 	ac.logSecurityEvent(user.ID, clientIP, "AUTH_COMPLETE_SUCCESS", "Full authentication successful")
 
+	roleNames := make([]string, len(user.Roles))
+	for i, role := range user.Roles {
+		roleNames[i] = role.Name
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"success":       true,
 		"message":       "Autenticación exitosa",
@@ -205,6 +210,8 @@ func (ac *AuthController) VerifyOTP(c *gin.Context) {
 		"refresh_token": refreshToken,
 		"token_type":    "Bearer",
 		"expires_in":    7200,
+		"roles":         roleNames, 
+		"user_id":       user.ID, 
 		"user": gin.H{
 			"id":               user.ID,
 			"usuario":          user.Usuario,

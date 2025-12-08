@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -185,11 +188,20 @@ func (pc *PatientController) UpdatePatient(c *gin.Context) {
 		return
 	}
 
+
+	bodyBytes, _ := c.GetRawData()
+	log.Printf("[PATIENT][UPDATE] Raw body received: %s", string(bodyBytes))
+
+	c.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
+
 	var dto dto.UpdatePatientDTO
 	if err := c.ShouldBindJSON(&dto); err != nil {
+		log.Printf("[PATIENT][UPDATE] Binding error: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	log.Printf("[PATIENT][UPDATE] DTO parsed: %+v", dto)
 
 	claims := c.MustGet("user").(*utils.Claims)
 
@@ -273,6 +285,10 @@ func (pc *PatientController) toResponseDTO(p *models.Patient) dto.PatientRespons
 
 func (pc *PatientController) toListDTO(p *models.Patient) dto.PatientListDTO {
 	edad := int(time.Since(time.Time(p.FechaNacimiento)).Hours() / 24 / 365)
+
+	log.Printf("[DEBUG] Patient %d: TerapeutaID=%d, Terapeuta.ID=%d, Terapeuta.Nombre=%s",
+		p.ID, p.TerapeutaID, p.Terapeuta.ID, p.Terapeuta.Nombres_Apellidos)
+
 	dto := dto.PatientListDTO{
 		ID:               p.ID,
 		SerialID:         p.SerialID,
@@ -281,6 +297,7 @@ func (pc *PatientController) toListDTO(p *models.Patient) dto.PatientListDTO {
 		NumDocumento:     p.NumDocumento,
 		Edad:             edad,
 		Sexo:             p.Sexo,
+		TerapeutaID:      p.TerapeutaID,
 		TerapeutaNombre:  p.Terapeuta.Nombres_Apellidos,
 		Activo:           p.Activo,
 		FotoMovil:        p.FotoMovil,

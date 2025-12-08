@@ -28,8 +28,8 @@ type Patient struct {
 	UpdatedAt         time.Time            `json:"updated_at"`
 	DeletedAt         gorm.DeletedAt       `gorm:"index" json:"-"`
 
-	Terapeuta         Usuarios             `gorm:"foreignKey:TerapeutaID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT" json:"terapeuta,omitempty"`
-	Cuidador          *Usuarios            `gorm:"foreignKey:CuidadorID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL" json:"cuidador,omitempty"`
+	Terapeuta         Usuarios             `gorm:"foreignKey:TerapeutaID;references:ID" json:"terapeuta,omitempty"`
+	Cuidador          *Usuarios            `gorm:"foreignKey:CuidadorID;references:ID" json:"cuidador,omitempty"`
 }
 
 func (p *Patient) TableName() string {

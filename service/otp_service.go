@@ -95,18 +95,33 @@ func (s *otpService) generateRandomCode() string {
 }
 
 func (s *otpService) sendOTPEmail(userID uint, code string) error {
+    return s.sendOTPEmailWithType(userID, code, false, 0)
+}
+
+func (s *otpService) sendOTPEmailWithType(userID uint, code string, isResend bool, resendCount int) error {
     var user models.Usuarios
     if err := s.db.First(&user, userID).Error; err != nil {
         return fmt.Errorf("usuario no encontrado: %w", err)
     }
 
-    log.Printf("[OTP][EMAIL] Enviando código OTP a usuario %d, email: %s, código: %s", userID, user.Correo, code)
+    emailType := "OTP"
+    if isResend {
+        emailType = "OTP_RESEND"
+    }
+    log.Printf("[%s][EMAIL] Enviando código a usuario %d, email: %s, código: %s", emailType, userID, user.Correo, code)
 
     go func() {
-        if err := utils.SendOTPEmail(user.Correo, code); err != nil {
-            log.Printf("[OTP][EMAIL][ERROR] Error enviando email a %s: %v", user.Correo, err)
+        var err error
+        if isResend {
+            err = utils.SendOTPResendEmail(user.Correo, code, resendCount)
         } else {
-            log.Printf("[OTP][EMAIL][SUCCESS] Email enviado exitosamente a %s", user.Correo)
+            err = utils.SendOTPEmail(user.Correo, code)
+        }
+
+        if err != nil {
+            log.Printf("[%s][EMAIL][ERROR] Error enviando email a %s: %v", emailType, user.Correo, err)
+        } else {
+            log.Printf("[%s][EMAIL][SUCCESS] Email enviado exitosamente a %s", emailType, user.Correo)
         }
     }()
 
@@ -175,10 +190,12 @@ func (s *otpService) InvalidateUserOTPs(userID uint) error {
 }
 
 func (s *otpService) GenerateSecureOTP(userID uint, clientIP, userAgent, purpose string) (*models.OTP, error) {
-    if err := s.checkRateLimit(userID, clientIP); err != nil {
-        s.logSecurityEvent(userID, clientIP, "OTP_RATE_LIMIT", err.Error())
-        return nil, err
-    }
+
+    var resendCount int64
+    today := time.Now().Truncate(24 * time.Hour)
+    s.db.Model(&models.OTP{}).Where(
+        "user_id = ? AND created_at >= ?", userID, today,
+    ).Count(&resendCount)
 
     s.db.Model(&models.OTP{}).
         Where("user_id = ? AND is_used = ? AND expires_at > ?", userID, false, time.Now()).
@@ -211,7 +228,9 @@ func (s *otpService) GenerateSecureOTP(userID uint, clientIP, userAgent, purpose
         return nil, errors.New("error al generar OTP")
     }
 
-    if err := s.sendOTPEmail(userID, code); err != nil {
+    // Enviar email: si es reenvío usa template especial, sino template normal
+    isResend := purpose == "resend"
+    if err := s.sendOTPEmailWithType(userID, code, isResend, int(resendCount)+1); err != nil {
         log.Printf("[OTP][WARNING] Error enviando email a usuario %d: %v", userID, err)
     }
 

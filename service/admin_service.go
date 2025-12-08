@@ -1,6 +1,7 @@
 package services
 
 import (
+	"log"
 	"time"
 	"usuarios/models"
 	"gorm.io/gorm"
@@ -32,7 +33,7 @@ func (s *AdminService) GetAdminStats() (*AdminStats, error) {
 
 	var activePatients int64
 	if err := s.DB.Model(&models.Patient{}).
-		Where("activo = ?", true).
+		Where("activo = ?", 0).
 		Count(&activePatients).Error; err != nil {
 		return nil, err
 	}
@@ -41,12 +42,13 @@ func (s *AdminService) GetAdminStats() (*AdminStats, error) {
 	var totalTherapists int64
 	if err := s.DB.Table("usuarios").
 		Joins("JOIN user_roles ON usuarios.idusuario = user_roles.usuarios_id_usuario").
-		Joins("JOIN roles ON user_roles.roles_id = roles.id").
-		Where("roles.name IN (?) AND usuarios.activo = ?", []string{"TR", "Terapeuta"}, true).
+		Where("user_roles.roles_id = ? AND usuarios.activo = ?", 4, 0).
 		Distinct("usuarios.idusuario").
 		Count(&totalTherapists).Error; err != nil {
+		log.Printf("[ADMIN_STATS] Error counting therapists: %v", err)
 		return nil, err
 	}
+	log.Printf("[ADMIN_STATS] Total therapists found: %d", totalTherapists)
 	stats.TotalTherapists = int(totalTherapists)
 
 	var totalSessions int64

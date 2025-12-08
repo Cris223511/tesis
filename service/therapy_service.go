@@ -116,9 +116,7 @@ func (s *TherapyService) GetAll(userID uint, roles []string) ([]models.TherapySe
 	var sessions []models.TherapySession
 	query := s.db.
 		Preload("Paciente").
-		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
-		}).
+		Preload("Paciente.Cuidador").
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
 			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
@@ -154,9 +152,7 @@ func (s *TherapyService) GetPaginated(userID uint, roles []string, search *dto.S
 
 	query := s.db.
 		Preload("Paciente").
-		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
-		}).
+		Preload("Paciente.Cuidador").
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
 			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
@@ -223,9 +219,7 @@ func (s *TherapyService) GetByID(id, userID uint, roles []string) (*models.Thera
 	var session models.TherapySession
 	query := s.db.
 		Preload("Paciente").
-		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
-		}).
+		Preload("Paciente.Cuidador").
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
 			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
@@ -275,15 +269,13 @@ func (s *TherapyService) GetPatientSessions(patientID, userID uint, roles []stri
 	var sessions []models.TherapySession
 	query := s.db.
 		Preload("Paciente").
-		Preload("Paciente.Cuidador", func(db *gorm.DB) *gorm.DB {
-			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").Where("activo = ?", false)
-		}).
+		Preload("Paciente.Cuidador").
 		Preload("Terapeuta", func(db *gorm.DB) *gorm.DB {
 			return db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil")
 		}).
 		Where("is_deleted = ? AND paciente_id = ?", false, patientID)
 
-	// Determinar qué filtros aplicar
+
 	isAdmin := s.hasRole(roles, "AD")
 	isTherapist := s.hasRole(roles, "TR")
 	isCaregiver := s.hasRole(roles, "PD")
@@ -680,7 +672,7 @@ func (s *TherapyService) ToSessionResponse(session models.TherapySession) dto.Se
 		log.Printf("[DEBUG] Intentando cargar cuidador manualmente (ID: %d)", *session.Paciente.CuidadorID)
 		var cuidadorFallback models.Usuarios
 		err := s.db.Select("idusuario", "nombres_apellidos", "correo", "telefono", "foto_movil").
-			Where("idusuario = ? AND activo = ?", *session.Paciente.CuidadorID, false).
+			Where("idusuario = ?", *session.Paciente.CuidadorID).
 			First(&cuidadorFallback).Error
 		if err == nil {
 			response.Cuidador = &dto.UserBasicInfo{
