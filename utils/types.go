@@ -14,7 +14,7 @@ func (a *AuthorID) UnmarshalJSON(data []byte) error {
 		*a = AuthorID(num)
 		return nil
 	}
-	// Si falla, intentar deserializar como cadena aas
+
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
 		return err
