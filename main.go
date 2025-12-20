@@ -283,6 +283,7 @@ func initializeControllers(services *serviceContainer) *controllerContainer {
 		patient: controllers.NewPatientController(services.patient),
 		therapy: controllers.NewTherapyController(services.therapy),
 		admin:   controllers.NewAdminController(services.admin),
+		version: controllers.NewVersionController(),
 	}
 }
 
@@ -294,6 +295,7 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.patient,
 		controllers.therapy,
 		controllers.admin,
+		controllers.version,
 	)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
@@ -378,6 +380,7 @@ type controllerContainer struct {
 	patient *controllers.PatientController
 	therapy *controllers.TherapyController
 	admin   *controllers.AdminController
+	version *controllers.VersionController
 }
 
 func main() {

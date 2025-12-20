@@ -15,6 +15,7 @@ func SetupRouter(
 	patientController *controllers.PatientController,
 	therapyController *controllers.TherapyController,
 	adminController *controllers.AdminController,
+	versionController *controllers.VersionController,
 ) *gin.Engine {
 
 	r := gin.Default()
@@ -56,6 +57,9 @@ func SetupRouter(
 			"refresh_token": newRef,
 		})
 	})
+
+
+	r.GET("/api/app/version", versionController.CheckVersion)
 
 	// ---------- CAMBIO DE CONTRASEÑA ----------
 	r.POST("/api/password/validate-email", userController.ValidateEmailForPasswordChange)
