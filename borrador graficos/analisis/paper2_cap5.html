@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figures 12, 13, 14 - Emotion Recognition Paper</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .figure {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .figure-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .figure-caption {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 500px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .metrics-circles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .metric-circle {
+            text-align: center;
+        }
+
+        .circle-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .circle-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .green {
+            color: #27ae60;
+        }
+
+        .gray {
+            color: #95a5a6;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .figure {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="figure">
+            <div class="figure-title">Figure 12. Summary of accuracy results by emotion type</div>
+            <div class="figure-caption">CNN model performance for each of the 5 basic emotions during validation phase.
+                Metrics obtained from model evaluation on validation dataset.</div>
+            <div class="chart-wrapper">
+                <canvas id="emotionAccuracyChart"></canvas>
+            </div>
+        </div>
+        <div class="figure">
+            <div class="figure-title">Figure 13. Summary of evaluation metrics of the emotion recognition system</div>
+            <div class="figure-caption">Overall system performance metrics (Precision, Recall, F1-Score) evaluated on
+                validation dataset. Overall accuracy of 95.8% achieved across all emotion categories.</div>
+            <div class="metrics-grid">
+                <div class="chart-wrapper" style="height: 450px;">
+                    <canvas id="metricsChart"></canvas>
+                </div>
+                <div class="metrics-circles">
+                    <div class="metric-circle">
+                        <div class="circle-value green">95.8%</div>
+                        <div class="circle-label">Accuracy</div>
+                    </div>
+                    <div class="metric-circle">
+                        <div class="circle-value green">95.4%</div>
+                        <div class="circle-label">Sensitivity</div>
+                    </div>
+                    <div class="metric-circle">
+                        <div class="circle-value green">96.2%</div>
+                        <div class="circle-label">Specificity</div>
+                    </div>
+                    <div class="metric-circle">
+                        <div class="circle-value gray">4.2%</div>
+                        <div class="circle-label">Error Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="figure">
+            <div class="figure-title">Figure 14. Graphical representation of related works performance and proposed
+                method</div>
+            <div class="figure-caption">Comparative analysis of CNN-based facial emotion recognition systems as
+                indicated in Table 15. Horizontal line indicates 95% accuracy threshold objective.</div>
+            <div class="chart-wrapper">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        Chart.register(ChartDataLabels);
+        const fig12ctx = document.getElementById('emotionAccuracyChart');
+        new Chart(fig12ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Happy', 'Neutral', 'Sad', 'Angry', 'Disgusted'],
+                datasets: [{
+                    label: 'Accuracy (%)',
+                    data: [97.84, 96.45, 95.12, 93.89, 92.31],
+                    backgroundColor: ['#f1c40f', '#3498db', '#9b59b6', '#e74c3c', '#16a085'],
+                    borderColor: ['#f39c12', '#2980b9', '#8e44ad', '#c0392b', '#138f75'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: '#2c3e50',
+                        font: { weight: 'bold', size: 13 },
+                        formatter: (value) => value.toFixed(2) + '%'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Emotion Type', font: { size: 14, weight: 'bold' } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        title: { display: true, text: 'Accuracy (%)', font: { size: 14, weight: 'bold' } },
+                        min: 90,
+                        max: 100,
+                        ticks: { callback: v => v + '%' },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    }
+                }
+            }
+        });
+        const fig13ctx = document.getElementById('metricsChart');
+        new Chart(fig13ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Happy', 'Neutral', 'Sad', 'Angry', 'Disgusted'],
+                datasets: [{
+                    label: 'Precision',
+                    data: [0.981, 0.966, 0.954, 0.943, 0.928],
+                    backgroundColor: '#27ae60',
+                    borderColor: '#229954',
+                    borderWidth: 2
+                }, {
+                    label: 'Recall',
+                    data: [0.977, 0.963, 0.949, 0.936, 0.919],
+                    backgroundColor: '#3498db',
+                    borderColor: '#2980b9',
+                    borderWidth: 2
+                }, {
+                    label: 'F1-Score',
+                    data: [0.979, 0.965, 0.952, 0.940, 0.924],
+                    backgroundColor: '#f39c12',
+                    borderColor: '#e67e22',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { size: 13, weight: '600' }, padding: 15, usePointStyle: true } },
+                    datalabels: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Emotion Type', font: { size: 14, weight: 'bold' } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        title: { display: true, text: 'Score', font: { size: 14, weight: 'bold' } },
+                        min: 0.9,
+                        max: 1.0,
+                        ticks: {
+                            callback: v => v.toFixed(2),
+                            stepSize: 0.02
+                        },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    }
+                }
+            }
+        });
+        const fig14ctx = document.getElementById('comparisonChart');
+        new Chart(fig14ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Alshamsi [1]\nCNN cloud',
+                    'Saumell [2]\nSVM',
+                    'Zhu et al. [3]\nI-MobileNetV2',
+                    'Nan et al. [4]\nA-MobileNet',
+                    'Haq et al. [5]\nMobileNet-V1',
+                    'Agung et al. [7]\nInception-V3',
+                    'Elsheikh et al. [8]\nAA-DCN',
+                    'Debnath et al. [9]\nCNN 4-layer',
+                    'This study (2025)\nEfficientNetB1'
+                ],
+                datasets: [{
+                    label: 'Accuracy (%)',
+                    data: [97.26, 90.5, 95.96, 88.11, 97.9, 96.0, 99.26, 91.01, 95.8],
+                    backgroundColor: [
+                        '#e74c3c', '#3498db', '#f39c12', '#1abc9c',
+                        '#9b59b6', '#e67e22', '#e91e63', '#95a5a6', '#27ae60'
+                    ],
+                    borderColor: [
+                        '#c0392b', '#2980b9', '#e67e22', '#16a085',
+                        '#8e44ad', '#d35400', '#c2185b', '#7f8c8d', '#229954'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'right',
+                        color: '#2c3e50',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: (value) => value.toFixed(2) + '%'
+                    },
+                    annotation: {
+                        annotations: {
+                            line95: {
+                                type: 'line',
+                                xMin: 95,
+                                xMax: 95,
+                                borderColor: '#e74c3c',
+                                borderWidth: 3,
+                                borderDash: [8, 4],
+                                label: {
+                                    display: true,
+                                    content: 'Objective Threshold (95%)',
+                                    position: 'end',
+                                    backgroundColor: '#e74c3c',
+                                    color: 'white',
+                                    font: { size: 10, weight: 'bold' },
+                                    padding: 4
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Accuracy (%)', font: { size: 14, weight: 'bold' } },
+                        min: 85,
+                        max: 100,
+                        ticks: { callback: v => v + '%' },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Reference / Method', font: { size: 14, weight: 'bold' } },
+                        ticks: {
+                            font: { size: 10 },
+                            autoSkip: false
+                        },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

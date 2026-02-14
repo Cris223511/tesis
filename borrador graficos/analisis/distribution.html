@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figure 2 - Methodological Challenges</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        canvas {
+            max-height: 450px;
+        }
+
+        .caption {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+            text-align: justify;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chart-container">
+        <h3>Figure 2. Distribution of Studies Addressing Methodological Challenges in ML for ASD</h3>
+        <canvas id="challengesChart"></canvas>
+        <div class="caption">
+            <strong>Note:</strong> The chart displays the number of studies explicitly documenting approaches to address
+            each methodological challenge. Studies may address multiple challenges simultaneously. Values represent
+            documented implementations identified through systematic review of 42 included studies. The relatively low
+            frequencies reflect the nascent stage of methodological rigor in applying ML to ASD contexts and highlight
+            areas requiring increased research attention.
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('challengesChart').getContext('2d');
+        const data = {
+            labels: [
+                'Not Addressed',
+                'Classification Uncertainty\n& Low Robustness',
+                'Limited Model\nInterpretability',
+                'Poor Generalization\nin Small Samples',
+                'Multicollinearity in\nMultimodal Data',
+                'Class Imbalance\n& Sampling Biases'
+            ],
+            datasets: [{
+                label: 'Number of Studies',
+                data: [18, 8, 5, 5, 3, 3],
+                backgroundColor: [
+                    'rgba(200, 200, 200, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(153, 102, 255, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(150, 150, 150, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 2
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            color: '#000000',
+                            padding: 12,
+                            usePointStyle: true,
+                            boxWidth: 12,
+                            generateLabels: function (chart) {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => ({
+                                    text: label.replace(/\n/g, ' '),
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    strokeStyle: data.datasets[0].borderColor[i],
+                                    lineWidth: 2,
+                                    hidden: false,
+                                    index: i
+                                }));
+                            }
+                        }
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        titleFont: {
+                            size: 13,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function (context) {
+                                return 'Studies: ' + context.parsed.x + ' of 42 total';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#000',
+                        font: {
+                            size: 13,
+                            weight: 'bold'
+                        },
+                        formatter: function (value) {
+                            return value;
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 20,
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 13
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Number of Studies (n = 42 total)',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            color: '#000000'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            display: false
+                        },
+                        grid: {
+                            display: false
+                        },
+                        border: {
+                            display: false
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 30,
+                        top: 10,
+                        bottom: 10
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        };
+        new Chart(ctx, config);
+    </script>
+</body>
+
+</html>

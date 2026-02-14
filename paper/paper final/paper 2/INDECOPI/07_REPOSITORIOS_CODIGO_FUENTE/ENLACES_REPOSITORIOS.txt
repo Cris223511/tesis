@@ -1,0 +1,84 @@
+REPOSITORIOS DE CÓDIGO FUENTE
+Sistema de Reconocimiento de Emociones Faciales - Serious Game
+
+================================================================================
+INFORMACIÓN GENERAL
+================================================================================
+
+Proyecto: Serious Game para Desarrollar el Reconocimiento Visual de Emociones en Autistas
+Autores: 
+  - Jhafet Martín Cánepa Maceda (50%)
+  - Christopher Antonio Pillihuamán Santiago (50%)
+
+Institución: Universidad San Ignacio de Loyola (USIL)
+Fecha: Febrero 2025 - Octubre 2025
+
+================================================================================
+REPOSITORIOS EN GITHUB
+================================================================================
+
+1. BACKEND - API REST CON GO + GIN
+   URL: https://github.com/Cris223511/tesis/tree/backend_usuarios_mobile
+   Descripción: Servidor principal desarrollado en Go 1.21+ con framework Gin
+                Gestión de usuarios, pacientes, sesiones, autenticación JWT
+                Sistema de calificaciones y reasignaciones automáticas
+   Tecnologías: Go, Gin, GORM, MySQL, Redis, JWT, WebAuthn
+   Puerto: 8080
+
+2. APLICACIÓN MÓVIL ANDROID
+   URL: https://github.com/Cris223511/tesis/tree/dev_android
+   Descripción: App cliente desarrollada en Kotlin con Jetpack Compose
+                Interfaz de usuario para terapeutas, responsables y pacientes
+                Captura facial, análisis de emociones, reportes de progreso
+   Tecnologías: Kotlin 1.9+, Jetpack Compose, Retrofit, Room, CameraX, Hilt
+   SDK: Android 34 (min API 30)
+
+3. SERVICIO DE MACHINE LEARNING
+   URL: https://github.com/Cris223511/tesis/tree/emotion-ml-service
+   Descripción: Servicio especializado de análisis de emociones con IA
+                Modelo EfficientNetB1 con TensorFlow para clasificación
+                Detección de 5 emociones con 95% de precisión
+   Tecnologías: Python 3.9+, FastAPI, TensorFlow 2.15, OpenCV, Redis
+   Puerto: 5000
+
+================================================================================
+INSTRUCCIONES DE ACCESO
+================================================================================
+
+Los repositorios están alojados en GitHub de forma privada/pública.
+Para clonar cualquier repositorio:
+
+git clone https://github.com/Cris223511/tesis.git
+cd tesis
+git checkout [nombre-de-rama]
+
+Ramas:
+  - backend_usuarios_mobile: Backend Go
+  - dev_android: App Android
+  - emotion-ml-service: ML Service Python
+
+Para más detalles de instalación, consultar los archivos README.md 
+dentro de cada repositorio.
+
+================================================================================
+CONTACTO
+================================================================================
+
+Jhafet Martín Cánepa Maceda
+Email: jhafet.canepa@usil.pe
+Teléfono: +51 992 290 742
+
+Christopher Antonio Pillihuamán Santiago
+Email: c.pillihuaman@usil.pe
+Teléfono: +51 973 182 294
+
+Jorge Eduardo Castañeda Alban (Asesor)
+Email: jcastaneda@usil.edu.pe
+Teléfono: +51 939 844 835
+
+================================================================================
+
+Este documento certifica que el código fuente completo está disponible
+en los repositorios indicados arriba, propiedad de los autores mencionados.
+
+© 2025 - Todos los derechos reservados

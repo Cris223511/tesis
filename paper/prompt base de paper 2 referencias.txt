@@ -1,0 +1,281 @@
+Hola, ¿qué tal? Buenos días. ¿Te acuerdas sobre el Paper Nº1 que ya hemos elaborado de Serious Game? Pues el Paper Nº1 se basa en el reconocimiento de emociones a través del rostro facial para los niños con TEA. Creo que ya sabes sobre eso. Y pues ahora vamos a hacer un cambio pequeñito, que ya no va a ser de niños, sino que va a ser ahora para adultos, dentro del rango de los 18 años hasta los 60 años. Esa es la única diferencia que vamos a hacer. Necesito, por favor, que me ayudes a verificar estas referencias. ¿Cuáles son accesibles? ¿Cuáles existen? Porque hay algunas referencias de las cuales no existen. Y eso quiero que tú lo verifiques. Quiero que investigues y quiero que también de las fuentes que sí existen, las URL que sí puedes acceder, me digas los datos más importantes que has encontrado ahí. Pueden ser sus datasets, sus métricas, su información relevante, ya que en base a esto vamos a utilizar también una parte del Paper Nº2. Recuerda que vamos a hacer ahora el Paper Nº2 y vamos a necesitar información de estas referencias. Entonces te voy a pasar a continuación las referencias que yo tengo en el Paper Nº2. Ya lo he estado elaborando, pero las referencias están mal. Las referencias están mal porque hay unas referencias que, uno, no van con el tema. Dos, no existen las URL, son inventadas. Y tres, existe la URL pero quizás sea inaccesible a los datos más relevantes sobre el tema. Recuerda, no obvies referencias que tengan que ver con niños o adultos. Recuerda que mi Paper Nº2 va a ser sobre adultos, pero el Paper Nº1 ha sido sobre niños. Así que si tú ves una referencia que habla sobre niños, pero mi Paper Nº2 es sobre adultos, no lo omitas. Igual vamos a utilizar su información porque también están utilizando reconocimiento facial para las emociones, para reconocer las emociones. Así que esto es sumamente importante. Vas a omitir las referencias que no existen, que sí existen pero son inaccesibles, y de las cuales también no tienen nada que ver con niños y adultos. Vas a tener que omitir. Así que investiga todas estas fuentes. Te voy a pasar a continuación las fuentes de mi Paper Nº2 y también te voy a pasar a continuación las fuentes de mi Paper Nº1. Ya que para el Paper Nº2 puedo agarrar solamente algunas referencias del Paper Nº1. Algunas, no todas. Y del Paper Nº2 puede que algunas se omitan, de las cuales ya te los he dicho, y puede que algunas nos las quedemos y así vamos a tener referencias finales para el Paper Nº2. Recuerda, el Paper Nº1 ha sido sobre niños en base a la búsqueda sistemática con una cadena de búsqueda en Scopus, Web of Science y IE. Y estos resultados se han recopilado dentro del Paper Nº1. El Paper Nº1 solamente se trató de eso, de la búsqueda sobre el tema y los datos relevantes del tema. Y el Paper Nº2 va a tratar sobre el aplicativo móvil, el backend, el frontend, todo. Así que ten esto en cuenta para que investigues y me digas las referencias finales que vas a capturar del Paper Nº2, que te voy a pasar las referencias, y las referencias finales del Paper Nº1 que vas a capturarlo.
+
+
+
+TE PASO LAS REFERENCiAS DEL PAPER 1. ESTAS TODAS EXSTEN Y SON CORRECTAS ERO TU ME VAS A CAPTURAR DE ACÁ LAS MÁS RELEVANTES ARA M PAPPER 2 Q YA TE DiJE DE QUE VA A TRATAR APPP MOViL ESO PS:
+
+
+
+1.	Keinert, M.; Pistrosch, S.; Mallol-Ragolta, A.; Schuller, B.W.; Berking, M. Facial emotion recognition of 16 distinct emotions from smartphone videos: Comparative study of machine learning and human performance. J. Med. Internet Res. 2025, 27, e68942. https://doi.org/10.2196/68942
+
+2.	Shambour, Q.Y.; Qandeel, N.; Alraba'nah, Y.; Abumariam, A.; Shambour, M.K. Artificial intelligence techniques for early autism detection in toddlers: A comparative analysis. J. Appl. Data Sci. 2024, 5, 1754–1764. https://doi.org/10.47738/jads.v5i4.353
+
+3.	Keinert, M.; Schindler-Gmelch, L.; Rupp, L.H.; Sadeghi, M.; Capito, K.; Hager, M.; Berking, M. Facing depression: Evaluating the efficacy of the EmpkinS-EKSpression reappraisal training augmented with facial expressions – protocol of a randomized controlled trial. BMC Psychiatry 2024, 24, 896. https://doi.org/10.1186/s12888-024-06361-3
+
+4.	Chen, J.; Chan, N.Y.; Li, C.T.; Chan, J.W.Y.; Liu, Y.; Li, S.X.; Wing, Y.K. Multimodal digital assessment of depression with actigraphy and app in Hong Kong Chinese. Transl. Psychiatry 2024, 14, 150. https://doi.org/10.1038/s41398-024-02873-4
+
+5.	Nepal, S.; Pillai, A.; College, D.; Wang, W.; Griffin, T.; Collins, A.C.; Campbell, A.T. MoodCapture: Depression detection using in-the-wild smartphone images. In Proceedings of the Conference on Human Factors in Computing Systems, Honolulu, HI, USA, 11–16 May 2024; p. 996. https://doi.org/10.1145/3613904.3642680
+
+6.	Hwang, S.H.; Yu, Y.; Kim, J.; Lee, T.; Park, Y.R.; Kim, H.W. A study on the screening of children at risk for developmental disabilities using facial landmarks derived from a mobile-based application. Psychiatry Investig. 2024, 21, 496–505. https://doi.org/10.30773/pi.2023.0315
+
+7.	Panda, P.K.; Elwadhi, A.; Gupta, D.; Palayullakandi, A.; Tomar, A.; Singh, M.; Sharawat, I.K. Effectiveness of IMPUTE ADT-1 mobile application in children with autism spectrum disorder: An interim analysis of an ongoing randomized controlled trial. Iran. J. Mater. Sci. Eng. 2024, 15, 262–269. https://doi.org/10.25259/JNRP_599_2023
+
+8.	Abd El-Sattar, H.K.H.; Omar, M.; Mohamady, H. Developing a participatory research framework through serious games to promote learning for children with autism. Front. Educ. 2024, 9, 1453327. https://doi.org/10.3389/feduc.2024.1453327
+
+9.	Rashid, Z.; Folarin, A.A.; Zhang, Y.; Ranjan, Y.; Conde, P.; Sankesara, H.; Dobson, R.J.B. Digital phenotyping of mental and physical conditions: Remote monitoring of patients through RADAR-Base platform. JMIR Ment. Health 2024, 11, e51259. https://doi.org/10.2196/51259
+
+10.	Anto-Chavez, C.; Maguiña-Bernuy, R.; Ugarte, W. Real-time CNN based facial emotion recognition model for a mobile serious game. In Proceedings of the International Conference on Information and Communication Technologies for Ageing Well and e-Health (ICT4AWE), Angers, France, 22–24 April 2024; pp. 84–92. https://doi.org/10.5220/0012683800003699
+
+11.	Krumnikl, M.; Maiwald, V. Facial emotion recognition for mobile devices: A practical review. IEEE Access 2024, 12, 15735–15747. https://doi.org/10.1109/ACCESS.2024.3358455
+
+12.	Mukherjee, D.; Bhavnani, S.; Lockwood-Estrin, G.; Rao, V.; Dasgupta, J.; Irfan, H.; Belmonte, M.K. Digital tools for direct assessment of autism risk during early childhood: A systematic review. Autism 2024, 28, 6–31. https://doi.org/10.1177/13623613221133176
+
+13.	Valuch, C.; Pelowski, M.; Peltoketo, V.T.; Hakala, J.; Leder, H. Let's put a smile on that face—A positive facial expression improves aesthetics of portrait photographs. R. Soc. Open Sci. 2023, 10, 230413. https://doi.org/10.1098/rsos.230413
+
+14.	Parlett-Pelleriti, C.M.; Stevens, E.; Dixon, D.; Linstead, E.J. Applications of unsupervised machine learning in autism spectrum disorder research: A review. Rev. J. Autism Dev. Disord. 2023, 10, 406–421. https://doi.org/10.1007/s40489-021-00299-y
+
+15.	Wali, A.; Alfrihidi, M.; Alasiri, N.; Alsabei, N. Aawn: An interactive mobile application for improving the communication skills of Arab children with autism. TEM J. 2023, 12, 1307–1315. https://doi.org/10.18421/TEM123-10
+
+16.	Lootus, M.; Beatson, L.; Atwood, L.; Bourdais, T.; Steyaert, S.; Sarabu, C.; Rinaldo, F. Development and assessment of an artificial intelligence-based tool for ptosis measurement in adult myasthenia gravis patients using selfie video clips recorded on smartphones. Digit. Biomark. 2023, 7, 63–73. https://doi.org/10.1159/000531224
+
+17.	Toki, E.I.; Tatsis, G.; Tatsis, V.A.; Plachouras, K.; Pange, J.; Tsoulos, I.G. Employing classification techniques on SmartSpeech biometric data towards identification of neurodevelopmental disorders. Signals 2023, 4, 401–420. https://doi.org/10.3390/signals4020021
+
+18.	Vacca, R.A.; Augello, A.; Gallo, L.; Caggianese, G.; Malizia, V.; La Grutta, S.; Scala, I. Serious games in the new era of digital-health interventions: A narrative review of their therapeutic applications to manage neurobehavior in neurodevelopmental disorders. Neurosci. Biobehav. Rev. 2023, 149, 105156. https://doi.org/10.1016/j.neubiorev.2023.105156
+
+19.	Sajjad, M.; Ullah, F.U.M.; Ullah, M.; Christodoulou, G.; Sudarshana, F.; Hijji, M.; Rodrigues, J.J.P.C. A comprehensive survey on deep facial expression recognition: Challenges, applications, and future guidelines. Alex. Eng. J. 2023, 68, 817–840. https://doi.org/10.1016/j.aej.2023.01.017
+
+20.	Aghakhani, S.; Carre, N.; Mostovoy, K.; Shafer, R.; Baeza-Hernandez, K.; Entenberg, G.; Bunge, E.L. Qualitative analysis of mental health conversational agents messages about autism spectrum disorder: A call for action. Front. Digit. Health 2023, 5, 1251016. https://doi.org/10.3389/fdgth.2023.1251016
+
+21.	Saisanthiya, D.; Supraja, P. Heterogeneous convolutional neural networks for emotion recognition combined with multimodal factorised bilinear pooling and mobile application recommendation. Int. J. Interact. Mob. Technol. 2023, 17, 129–142. https://doi.org/10.3991/ijim.v17i16.42735
+
+22.	Haoues, M.; Mokni, R. Toward an autism-friendly environment based on mobile apps user feedback analysis using deep learning and machine learning models. PeerJ Comput. Sci. 2023, 9, e1442. https://doi.org/10.7717/peerj-cs.1442
+
+23.	Thabet, Z.; Ansari, H.; Albashtawi, S.; Siyam, N.; Abdallah, S. Using deep learning and native mobile app to assist autistic students' educational experience. In Proceedings of the International Conference on Computer Supported Education (CSEDU), Prague, Czech Republic, 21–23 April 2023; Volume 2, pp. 96–103. https://doi.org/10.5220/0011748800003470
+
+24.	Alam, H.; Burhan, M.; Gillani, A.; Haq, I.U.; Arshed, M.A.; Shafi, M.; Ahmed, S. IoT based smart baby monitoring system with emotion recognition using machine learning. Wirel. Commun. Mob. Comput. 2023, 2023, 1175450. https://doi.org/10.1155/2023/1175450
+
+25.	Banerjee, A.; Mutlu, O.C.; Kline, A.; Surabhi, S.; Washington, P.; Wall, D.P. Training and profiling a pediatric facial expression classifier for children on mobile devices: Machine learning study. JMIR Form. Res. 2023, 7, e39917. https://doi.org/10.2196/39917
+
+26.	Popescu, A.L.; Popescu, N. Drawing interpretation using neural networks and accessibility implementation in mobile application. Computation 2022, 10, 202. https://doi.org/10.3390/computation10110202
+
+27.	Miranda-Calero, J.A.; Rituerto-González, E.; Luis-Mingueza, C.; Canabal, M.F.; Ramirez-Barcenas, A.R.; Lanza-Gutierrez, J.M.; Lopez-Ongil, C. Bindi: Affective Internet of Things to combat gender-based violence. IEEE Internet Things J. 2022, 9, 21174–21193. https://doi.org/10.1109/JIOT.2022.3177256
+
+28.	Neggaz, I.; Fizazi, H. An intelligent handcrafted feature selection using Archimedes optimization algorithm for facial analysis. Soft Comput. 2022, 26, 10435–10464. https://doi.org/10.1007/s00500-022-06886-3
+
+29.	Ali, N.; Abdrazaq, A.; Shah, Z.; Househ, M. Artificial intelligence-based mobile application for emotion sensing for children through art. Stud. Health Technol. Inform. 2022, 290, 1130–1131. https://doi.org/10.3233/SHTI220302
+
+30.	Sayis, B.; Ramirez-Melendez, R.; Pares, N. Mixed reality or LEGO game play? Fostering social interaction in children with Autism. Virtual Real. 2022, 26, 771–787. https://doi.org/10.1007/s10055-021-00580-9
+
+31.	Washington, P.; Kalantarian, H.; Kent, J.; Husic, A.; Kline, A.; Leblanc, E.; Wall, D.P. Improved digital therapy for developmental pediatrics using domain-specific artificial intelligence: Machine learning study. JMIR Pediatr. Parent. 2022, 5, e26760. https://doi.org/10.2196/26760
+
+32.	Popescu, A.L.; Popescu, N.; Dobre, C.; Apostol, E.S.; Popescu, D. IoT and AI-based application for automatic interpretation of the affective state of children diagnosed with autism. Sensors 2022, 22, 2528. https://doi.org/10.3390/s22072528
+
+33.	Wetcho, S.; Nasongkhla, J. An investigation of pre-service teachers using mobile and wearable devices for emotion recognition and social sharing of emotion to support emotion regulation in mCSCL environments. Contemp. Educ. Technol. 2022, 14, ep359. https://doi.org/10.30935/cedtech/11668
+
+34.	Amiriparian, S.; Hübner, T.; Karas, V.; Gerczuk, M.; Ottl, S.; Schuller, B.W. DeepSpectrumLite: A power-efficient transfer learning framework for embedded speech and audio processing from decentralized data. Front. Artif. Intell. 2022, 5, 856232. https://doi.org/10.3389/frai.2022.856232
+
+35.	Varma, M.; Washington, P.; Chrisman, B.; Kline, A.; Leblanc, E.; Paskov, K.; Wall, D.P. Identification of social engagement indicators associated with autism spectrum disorder using a game-based mobile app: Comparative study of gaze fixation and visual scanning methods. J. Med. Internet Res. 2022, 24, e31830. https://doi.org/10.2196/31830
+
+36.	Lee, Y.S.; Park, W.H. Diagnosis of depressive disorder model on facial expression based on Fast R-CNN. Diagnostics 2022, 12, 317. https://doi.org/10.3390/diagnostics12020317
+
+37.	Izountar, Y.; Benbelkacem, S.; Otmane, S.; Khababa, A.; Masmoudi, M.; Zenati, N. VR-PEER: A personalized exer-game platform based on emotion recognition. Electronics 2022, 11, 455. https://doi.org/10.3390/electronics11030455
+
+38.	Abdel Hameed, M.; Hassaballah, M.; Hosney, M.E.; Alqahtani, A. An AI-enabled Internet of Things based autism care system for improving cognitive ability of children with autism spectrum disorders. Comput. Intell. Neurosci. 2022, 2022, 2247675. https://doi.org/10.1155/2022/2247675
+
+39.	Abbas, A.; Hansen, B.J.; Koesmahargyo, V.; Yadav, V.; Rosenfield, P.J.; Patil, O.; Galatzer-Levy, I.R. Facial and vocal markers of schizophrenia measured using remote smartphone assessments: Observational study. JMIR Form. Res. 2022, 6, e26276. https://doi.org/10.2196/26276
+
+40.	Santamaria-Granados, L.; Mendoza-Moreno, J.F.; Chantre-Astaiza, A.; Munoz-Organero, M.; Ramírez-González, G. Tourist experiences recommender system based on emotion recognition with wearable data. Sensors 2021, 21, 7854. https://doi.org/10.3390/s21237854
+
+41.	Leblanc, E.; Washington, P.; Varma, M.; Dunlap, K.; Penev, Y.; Kline, A.; Wall, D.P. Feature replacement methods enable reliable home video analysis for machine learning detection of autism. Sci. Rep. 2020, 10, 21245. https://doi.org/10.1038/s41598-020-76874-w
+
+42.	Kolakowska, A.; Szwoch, W.; Szwoch, M. A review of emotion recognition methods based on data acquired via smartphone sensors. Sensors 2020, 20, 6367. https://doi.org/10.3390/s20216367
+
+
+
+
+
+Y TE PASO LAS REFERENCiAS DEL PAPER 2 ACA ALGUNAS ESTÁN MAL YA TE DiJE CUALES PROBLEMAS SURJEN:
+
+
+
+[1] Abd El-Sattar, H. K. H., Omar, M., & Mohamady, H. (2024). Developing a participatory research framework through serious games to promote learning for children with autism. Frontiers in Education, 9, 1453327. https://doi.org/10.3389/feduc.2024.1453327
+
+[2] Abdelbar, A., Haytham, H., Ziad, M., Amr, M., Haytham, M., Ashraf, N., Moussa, K., & Darweesh, M. S. (2024). Face recognition using Python and OpenCV: Review. International Journal of Scientific and Research Publications, 14(01). https://www.ijsrp.org/research-paper-0124.php?rp=P14513223
+
+[3] Asif, M. A., Al Wadhahi, F., Rehman, M. H., Kalban, I. A., & Achuthan, G. (2020). Intelligent educational system for autistic children using augmented reality and machine learning. Lecture Notes on Data Engineering and Communications Technologies, 46, 524–534. https://doi.org/10.1007/978-981-15-5232-8_46
+
+[4] Baio, J., Wiggins, L., Christensen, D. L., Maenner, M. J., Daniels, J., Warren, Z., Kurzius-Spencer, M., Zahorodny, W., Rosenberg, C. R., White, T., Durkin, M. S., Imm, P., Nikolaou, L., Yeargin-Allsopp, M., Lee, L. C., Harrington, R., Lopez, M., Fitzgerald, R. T., Hewitt, A., Dowling, N. F. (2022). Prevalence of Autism Spectrum Disorder among children aged 8 years. Morbidity and Mortality Weekly Report, 71(SS-11), 1-16. https://doi.org/10.15585/mmwr.ss7111a1
+
+[5] Banerjee, A., Mutlu, O. C., Kline, A., Linke, A., Jeffries, T., Liberati, T., Mahony, M., Hegarty, S., Spann, M., Adams, J. N., Dunlap, K., Liu, R., Chao, T., Kala, S., Javed, M., Washington, P., & Wall, D. P. (2023). Training and profiling a pediatric facial expression classifier for children on mobile devices: Machine learning study. JMIR Formative Research, 7, e39917. https://doi.org/10.2196/39917
+
+[6] Barba, A., Rufo, V., Iandolo, G., & García-Cuesta, E. (2022). EMOLEARN-Las aventuras de Marco- A Serious Game to train emotions to children with ASD. CEUR Workshop Proceedings, 3305. http://ceur-ws.org
+
+[7] Baron-Cohen, S. (1995). Mindblindness: An essay on autism and theory of mind. MIT Press. https://doi.org/10.7551/mitpress/4635.001.0001
+
+[8] Baron-Cohen, S., Golan, O., & Wheelwright, S. (2001). The "Reading the Mind in the Eyes" Test revised version: A study with normal adults, and adults with Asperger syndrome or high-functioning autism. Journal of Child Psychology and Psychiatry, 42(2), 241-251. https://doi.org/10.1017/S0021963001006643
+
+[9] Barrett, L. F. (2017). How emotions are made: The secret life of the brain. Houghton Mifflin Harcourt.
+
+[10] Barrett, L. F., Lewis, M., & Haviland-Jones, J. M. (Eds.). (2016). Handbook of emotions (4.ª ed.). Guilford Press.
+
+[11] Beaumont, R., & Sofronoff, K. (2008). A multi-component social skills intervention for children with Asperger syndrome: The Junior Detective Training Program. Journal of Child Psychology and Psychiatry, 49(7), 743-753. https://doi.org/10.1111/j.1469-7610.2008.01900.x
+
+[12] Bir, V., Bhatt, A., Chauhan, S., & Tanwar, P. (2023). Design and development of application for children suffering from Autism Spectrum Disorder using Machine Learning. 2023 International Conference on Advances in Computation Communication and Information Technology (ICAICCIT), 772–777. https://doi.org/10.1109/ICAICCIT57747.2023.10263513
+
+[13] Bogush, D., Costello, C., Fong, E., Sharmin, M., & Ahmed, S. (2024). Emotion Recognition Technology for People with Autism: A Systematic Literature Review. Proceedings of the 2024 IEEE 48th Annual Computers, Software, and Applications Conference (COMPSAC), 851–861. https://doi.org/10.1109/COMPSAC61105.2024.00126
+
+[14] Calderón-Parra, J., Gutiérrez-Martínez, J., & López-Hernández, M. (2024). Serious Game for developing social skills in children and adolescents with autism spectrum disorder: A systematic review. Healthcare, 12(5), 508. https://doi.org/10.3390/healthcare12050508
+
+[15] Creswell, J. W., & Creswell, J. D. (2018). Research design: Qualitative, quantitative, and mixed methods approaches (5.ª ed.). SAGE Publications.
+
+[16] Dapogny, A., Grossard, C., Hun, S., Serret, S., Grynszpan, O., Dubuisson-Quellier, S., Foulon, P., Bourgeois, J., Pellerin, H., Bailly, K., & Cohen, D. (2019). On Automatically Assessing Children's Facial Expressions Quality: A Study, Database, and Protocol. Frontiers in Computer Science, 1, 5. https://doi.org/10.3389/fcomp.2019.00005
+
+[17] de Belen, R. A. J., Bednarz, T., Sowmya, A., & Del Favero, D. (2020). Computer vision in autism spectrum disorder research: A systematic review of published studies from 2009 to 2019. Translational Psychiatry, 10(1), 333. https://doi.org/10.1038/s41398-020-01015-w
+
+[18] Ekman, P. (1992). An argument for basic emotions. Cognition & Emotion, 6(3-4), 169-200. https://doi.org/10.1080/02699939208411068
+
+[19] Ekman, P. (2003). Emotions revealed: Recognizing faces and feelings to improve communication and emotional life. Times Books.
+
+[20] Ekman, P., & Friesen, W. V. (1971). Constants across cultures in the face and emotion. Journal of Personality and Social Psychology, 17(2), 124-129. https://doi.org/10.1037/h0030377
+
+[21] Epstein, J. L. (2011). School, family, and community partnerships: Preparing educators and improving schools. Westview Press.
+
+[22] Faria, D. R., & da Silva Ayrosa, P. P. (2025). Adaptive Neuro-Affective Engagement via Bayesian Feedback Learning in Serious Games for Neurodivergent Children. Applied Sciences, 15(13), 7532. https://doi.org/10.3390/app15137532
+
+[23] Fridenson-Hayo, S., Berggren, S., Lassalle, A., Tal, S., Pigat, D., Meir-Goren, N., Bölte, S., Baron-Cohen, S., & Golan, O. (2017). 'Emotiplay': A serious game for learning about emotions in children with autism: Results of a cross-cultural evaluation. European Child & Adolescent Psychiatry, 26(8), 979-992. https://doi.org/10.1007/s00787-017-0968-0
+
+[24] Frith, U., Morton, J., & Leslie, A. M. (1991). The cognitive basis of a biological disorder: Autism. Trends in Neurosciences, 14(10), 433-438. https://doi.org/10.1016/0166-2236(91)90041-R
+
+[25] Fullan, M. (2016). The new meaning of educational change (5th ed.). Teachers College Press.
+
+[26] García, M., & Montoya, L. (2018). Entornos digitales seguros para el aprendizaje emocional en población con TEA: Revisión europea. International Journal of Developmental and Educational Psychology, 2(1), 185-196.
+
+[27] Garrett, J. J. (2010). The elements of user experience: User-centered design for the web and beyond (2nd ed.). New Riders.
+
+[28] Gatica, M., Castillo, M., & Basualto, C. (2020). Reconocimiento facial en adultos con trastorno del espectro autista: Estudio multicéntrico latinoamericano. Revista Chilena de Neuropsiquiatría, 58(3), 234-245. https://doi.org/10.4067/S0717-92272020000300234
+
+[29] Golan, O., Ashwin, E., Granader, Y., McClintock, S., Day, K., Leggett, V., & Baron-Cohen, S. (2009). Enhancing emotion recognition in children with autism spectrum conditions: An intervention using animated vehicles with real emotional faces. Journal of Autism and Developmental Disorders, 40(3), 269-279. https://doi.org/10.1007/s10803-009-0862-9
+
+[30] González, J., Mora, A., & Toledo, P. (2017). EmoReact: Sistema adaptativo de reconocimiento emocional con inteligencia artificial para personas con TEA. Revista Española de Discapacidad, 5(2), 87-105. https://doi.org/10.5569/2340-5104.05.02.05
+
+[31] Hirano, T., Kojima, M., Okuzumi, H., Tanabe, T., Kokubun, M., & Tachino, K. (2010). Effectiveness of computer-based training in reading facial expressions in people with autism. Journal of Developmental and Physical Disabilities, 22(1), 77-89. https://doi.org/10.1007/s10882-009-9174-x
+
+[32] Hobson, R. P. (2002). The cradle of thought: Exploring the origins of thinking. Macmillan. https://doi.org/10.4324/9780203765272
+
+[33] Ilaslan, E. (2023). Deep learning approach for facial emotion recognition using CNN architectures. Neural Computing and Applications, 35(12), 8979-8995. https://doi.org/10.1007/s00521-023-08234-x
+
+[34] Instituto Nacional de Estadística e Informática [INEI]. (2023). Estadísticas de las Tecnologías de Información y Comunicación en los Hogares: Trimestre octubre-noviembre-diciembre 2022. INEI.
+
+[35] Jayasekera, D., Alwis, H., Dissanayaka, H., Koswatte, K., Piyawardana, V., & Pulasinghe, K. (2021). ASD Screening for Toddlers via Physical Interpretation through Advanced AI. 2021 3rd International Conference on Advancements in Computing (ICAC), 128–133. https://doi.org/10.1109/ICAC54203.2021.9671135
+
+[36] Kapp, K. M. (2012). The gamification of learning and instruction: Game-based methods and strategies for training and education. Pfeiffer. https://doi.org/10.1145/2207270.2211316
+
+[37] Kavikeshawa, H. K. C. D. (2024). AI-Based Early Intervention for Enhancing Facial Emotion Recognition in Children with Autism Spectrum Disorder in Sri Lanka. Proceedings of ICITR 2024 - 9th International Conference on Information Technology Research: Harnessing the Potential of Information Technology. https://doi.org/10.1109/ICITR63383.2024.10783074
+
+[38] Kazemi, V., & Sullivan, J. (2014). One millisecond face alignment with an ensemble of regression trees. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 1867-1874. https://doi.org/10.1109/CVPR.2014.241
+
+[39] Kerzner, H. (2017). Project management: A systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+
+[40] King, D. E. (2009). Dlib-ml: A machine learning toolkit. The Journal of Machine Learning Research, 10, 1755-1758. http://dlib.net/
+
+[41] Koumpouros, Y. (2025). Digital Horizons: Enhancing Autism Support with Augmented Reality. Journal of Autism and Developmental Disorders. https://doi.org/10.1007/s10803-025-06709-8
+
+[42] Krug, S. (2014). Don't make me think, revisited: A common sense approach to web usability (3rd ed.). New Riders.
+
+[43] La Fauci De Leo, A., Bagheri Zadeh, P., Voderhobli, K., & Sheikh Akbari, A. (2025). A New AI Framework to Support Social-Emotional Skills and Emotion Awareness in Children with Autism Spectrum Disorder. Computers, 14(7), 292. https://doi.org/10.3390/computers14070292
+
+[44] Leekam, S. R., Nieto, C., Libby, S. J., Wing, L., & Gould, J. (2007). Describing the sensory abnormalities of children and adults with autism. Journal of Autism and Developmental Disorders, 37(5), 894-910. https://doi.org/10.1007/s10803-006-0218-7
+
+[45] Li, Y. J., Sokhadze, E. M., Luo, H. I., El-Baz, A. S., & Elmaghraby, A. S. (2021). Affective Virtual Reality Gaming for Autism. In Contemporary Clinical Neuroscience (pp. 575–606). Springer. https://doi.org/10.1007/978-3-030-57735-7_25
+
+[46] López-Bouzas, N., Del Moral Pérez, M. E., & Castañeda Fernández, J. (2023). Incremento de las habilidades socioemocionales de alumnado con TEA tras una intervención apoyada en un Entorno Gamificado Aumentado. Revista Educación Inclusiva, 16(2), 123-138.
+
+[47] Lord, C., Elsabbagh, M., Baird, G., & Veenstra-Vanderweele, J. (2018). Autism spectrum disorder. The Lancet, 392(10146), 508-520. https://doi.org/10.1016/S0140-6736(18)31129-2
+
+[48] Ma, M. (Ed.). (2014). Serious games and edutainment applications (Vol. 2). Springer. https://doi.org/10.1007/978-1-4471-5161-6
+
+[49] Meredith, J. R., & Mantel, S. J. (2017). Project management: A managerial approach (9th ed.). John Wiley & Sons.
+
+[50] Ministerio de Salud [MINSA]. (2023). Plan Nacional de Salud Mental 2023-2026. MINSA. https://cdn.www.gob.pe/uploads/document/file/6720731/5832490-estrategia-tea.pdf
+
+[51] Ministerio de Transportes y Comunicaciones [MTC]. (2023). Diagnóstico de Conectividad Digital en Regiones del Perú. MTC. https://cdn.www.gob.pe/uploads/document/file/4341442/Innovar%20para%20conectar.pdf
+
+[52] Negri, Y., Panceri, J., Freitas, É., Nicolau, P. G., Caldeira, E., & Bastos-Filho, T. (2021). Proposal of Serious Games for a Socially Assistive Robot Based on Eye Contact and Visual Attention of Children with Autism Spectrum Disorder. IFMBE Proceedings, 100, 538–549. https://doi.org/10.1007/978-3-031-49404-8_51
+
+[53] Newbutt, N. (2020). The use of virtual reality technologies for social skill development in people on the autism spectrum. British Journal of Educational Technology, 51(5), 1682-1695. https://doi.org/10.1111/bjet.13010
+
+[54] Northouse, P. G. (2018). Leadership: Theory and practice (8th ed.). SAGE Publications.
+
+[55] Organización Mundial de la Salud [OMS]. (2023). Trastornos del espectro autista. https://www.who.int/es/news-room/fact-sheets/detail/autism-spectrum-disorders
+
+[56] Piazzalunga, C., Molino, P., Giangregorio, C., Termine, C., & Ferrante, S. (2023). Development and Validation of an iPad-based Serious Game for Emotion Recognition and Attention Tracking towards Early Identification of Autism. 2023 11th International Conference on Affective Computing and Intelligent Interaction Workshops and Demos (ACIIW). https://doi.org/10.1109/ACIIW59127.2023.10388146
+
+[57] Picard, R. W. (1997). Affective computing. MIT Press.
+
+[58] Pontoh, S. H., Sholikah, R. W., Suryotrisongko, H., & Alimboyong, C. R. (2024). Mobile-Based Serious Game for Learning Facial Expression Recognition in Children with Autism Spectrum Disorder Using MobileNet Model. Proceedings of the International Conference on Computer, Engineering, Network and Intelligent Multimedia (CENIM) 2024. https://doi.org/10.1109/CENIM63072.2024.10850763
+
+[59] Porter, J. R., Marston, M. L., Shu, E., & Pope, M. (2023). The 68 facial landmarks extracted by the dlib library. ResearchGate. https://www.researchgate.net/figure/The-68-facial-landmarks-extracted-by-the-dlib-library-8_fig2_352860048
+
+[60] Rajesh, V., Sravan, V. S., & Prakash, N. N. (2024). Facial expression recognition using KERAS. International Journal of Innovative Research in Technology, 9(10), 1032-1037.
+
+[61] Rodríguez-Sanz, A. (2020). Revisión de juegos serios en educación especial: Una revisión del estado del arte [Trabajo Fin de Grado]. Universidad Autónoma de Madrid. https://repositorio.uam.es/bitstream/handle/10486/693304/rodriguez_sanz_adriana_tfg.pdf
+
+[62] Santos, P., Silva, V., Soares, F., & Simões, A. (2019). Facial Virtual Tracking: A System to Mirror Emotions. Lecture Notes in Computer Science, 11805 LNAI, 68–79. https://doi.org/10.1007/978-3-030-30238-4_7
+
+[63] Shekar, B. H., Ravi, K., & Pilar, B. (2021). Facial emotion recognition using convolutional neural networks. In Advances in Computing and Network Communications (pp. 521-530). Springer. https://doi.org/10.1007/978-981-33-6987-0_43
+
+[64] Silver, M., & Oakes, P. (2001). Evaluation of a new computer intervention to teach people with autism or Asperger syndrome to recognize and predict emotions in others. Autism, 5(3), 299-316. https://doi.org/10.1177/1362361301005003007
+
+[65] Solórzano Alcívar, N. I., Paillacho Chiluiza, D. F., Arce Sierra, M. X., Pincay Lino, A. J., & Eras Zamora, E. A. (2025). Facial expression analysis in children with autism spectrum disorder using a refined Human-Robot-Game platform for active learning. Behaviour and Information Technology, 44(13), 3152–3164. https://doi.org/10.1080/0144929X.2024.2381597
+
+[66] Talaat, F. M. (2023). Real-time facial emotion recognition system among children with autism based on Deep Learning and IoT. Neural Computing and Applications, 35, 12717-12728. https://doi.org/10.1007/s00521-023-08372-9
+
+[67] Ur Rehman, I., Sobnath, D., Nasralla, M. M., Winnett, M., Anwar, A., Asif, W., & Sherazi, H. H. R. (2021). Features of mobile apps for people with autism in a post COVID-19 scenario: Current status and recommendations for apps using AI. Diagnostics, 11(10), 1923. https://doi.org/10.3390/diagnostics11101923
+
+[68] Vallejo, M., Espinoza, D., & Herrera, J. (2019). Desigualdades en el acceso a la salud mental en zonas rurales del Perú. Revista Peruana de Medicina Experimental y Salud Pública, 36(2), 273-279. https://doi.org/10.17843/rpmesp.2019.362.4526
+
+[69] Voss, C., Schwartz, J., Daniels, J., Kline, A., Haber, N., Washington, P., Tariq, Q., Robinson, T. N., Desai, M., Phillips, J. M., Feinstein, C., Winograd, T., & Wall, D. P. (2019). Effect of wearable digital intervention for improving socialization in children with Autism Spectrum Disorder: A randomized clinical trial. JAMA Pediatrics, 173(5), 446–454. https://doi.org/10.1001/jamapediatrics.2019.0285
+
+[70] Wall, N. G., Wallis, M., Smith, O., Alexander, A., McCormack, P., Wiggins, L. M., Paolini, S., Loughland, C., & Schall, U. (2025). Teach Yourself to Learn (Facial) Expressions: An Acceptability and Usability Study of an App Teaching Facial Emotion Recognition Skills to Autistic Children. International Journal of Human-Computer Interaction. https://doi.org/10.1080/10447318.2024.2442848
+
+[71] Wan, G., Deng, F., Jiang, Z., Chen, F., Xu, Q., Su, J., & Zhang, J. (2022). FECTS: A Facial Emotion Cognition and Training System for Chinese Children with Autism Spectrum Disorder. Computational Intelligence and Neuroscience, 2022, 9213526. https://doi.org/10.1155/2022/9213526
+
+[72] Wang, H., Tobón, D. P. V., Hossain, M. S., & El Saddik, A. (2021). Deep Learning (DL)-Enabled System for Emotional Big Data. IEEE Access, 9, 116073–116082. https://doi.org/10.1109/ACCESS.2021.3106165
+
+[73] Washington, P., Kalantarian, H., Kent, J., Husic, A., Kline, A., Leblanc, E., Hou, C., Mutlu, C., Dunlap, K., Penev, Y., Haber, N., & Wall, D. P. (2022). Improved Digital Therapy for Developmental Pediatrics Using Domain-Specific Artificial Intelligence: Machine Learning Study. JMIR Pediatrics and Parenting, 5(2), e26760. https://doi.org/10.2196/26760
+
+[74] López-Bouzas, N., Del Moral Pérez, M. E., & Castañeda Fernández, J. (2023). Incremento de las habilidades socioemocionales de alumnado con TEA tras una intervención apoyada en un Entorno Gamificado Aumentado. REVINCLUSIÓN: Revista de educación inclusiva, 19, 80-93.
+
+
+
+iNVESTGALOS CREAME UNA TABLA DE TODAS LAS REFERENCiAS DONDE HAYAS EXTRAiDO LO MÁS iMPPORTANTE Y LUEGO UN BREVE RESUMEN DE CADA REFERENCiA FiNAL EXTRiDA. EXTRAE LO MÁS MPOPRTANTE.
+
+
+
+Y AL FNAL ME VUELVES A ENUMERAR LAS REFRENCAS FiNALES FiNALES EN EL FORMATO QUE TE ESTOY DANDO. DE PREFERENCiA QUE SEA EN EL FORMATO DE LAS REFERENCiAS DEL PAPER 1.
+
+
+
+RECUERDA M PPAPER 1 VA A TENER
+
+
+
+ABSTRACT
+
+1. Introducción
+
+2. Trabajos Relacionados
+
+3. Metodología
+
+4. Resultados y Análisis
+
+5. Discusión
+
+6. Conclusiones
+
+7. Limitaciones y Direcciones Futuras
+
+
+
+SOLO QUERO LAS REFERENCAS FNALES. DESUES REMOS ARMANDO LO NECESARO. VAMOS

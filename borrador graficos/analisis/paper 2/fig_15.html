@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figura 15 - Accuracy por Emoción</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 450px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-mini {
+            text-align: center;
+            padding: 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .stat-mini strong {
+            display: block;
+            font-size: 16px;
+            color: #2d3748;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Figura 15. Accuracy del modelo CNN por tipo de emoción básica</h2>
+        <div class="chart-container">
+            <canvas id="emotionChart"></canvas>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-mini">
+                😊 Happy<br><strong>97.82%</strong>
+            </div>
+            <div class="stat-mini">
+                😲 Surprise<br><strong>96.94%</strong>
+            </div>
+            <div class="stat-mini">
+                😐 Neutral<br><strong>96.45%</strong>
+            </div>
+            <div class="stat-mini">
+                😢 Sad<br><strong>95.87%</strong>
+            </div>
+            <div class="stat-mini">
+                😠 Angry<br><strong>95.23%</strong>
+            </div>
+            <div class="stat-mini">
+                😨 Fear<br><strong>94.68%</strong>
+            </div>
+            <div class="stat-mini">
+                🤢 Disgust<br><strong>93.89%</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('emotionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Happy', 'Surprise', 'Neutral', 'Sad', 'Angry', 'Fear', 'Disgust'],
+                datasets: [{
+                    label: 'Accuracy (%)',
+                    data: [97.82, 96.94, 96.45, 95.87, 95.23, 94.68, 93.89],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(201, 203, 207, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(201, 203, 207, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Accuracy promedio: 96.01% (N=1,500 inferencias)',
+                        font: { size: 16, weight: 'bold' },
+                        padding: { bottom: 30 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return 'Accuracy: ' + context.parsed.x.toFixed(2) + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function (value) {
+                                return value + '%';
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: { size: 13, weight: 'bold' }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

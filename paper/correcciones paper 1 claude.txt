@@ -1,0 +1,1016 @@
+Hola, buenos días.
+
+Estoy trabajando en mi paper sobre Serious Games. El documento ya está prácticamente finalizado, pero debo corregir varias observaciones que recibí.
+
+Las observaciones se basaron originalmente en una versión en español del paper, pero ahora el documento está completamente traducido y adaptado al modelo sistemático en inglés.
+
+Sin embargo, aún hay aspectos de gramática, coherencia y precisión en los datos numéricos que deben revisarse.
+
+
+
+Quizás se tenga que agregar más gráficos.. o modificar o quitar... ahí tu me dices... en dónde y cómo o?... todo eso me lo haces saber... el código del gráfico en HTML eso s por favor... con chart.js...
+
+
+
+Por eso, te paso a continuación todo el material necesario para que entiendas el contexto de las correcciones:
+
+
+
+🟩 Comentarios del profesor:
+
+Esta primera parte contiene lo que dijo mi profesor sobre el paper.
+
+Son las observaciones oficiales que él hizo tras revisar el borrador en español.
+
+Aquí se encuentran sus comentarios, críticas, o sugerencias específicas sobre el contenido, la metodología o la población objetivo (por ejemplo, aclarar que el estudio debe centrarse en niños y no en adultos).
+
+
+
+[00:00 - 00:50] Tesista: Ya, listo. Ok. ¿Se puede observar?
+
+Asesor: Sí, ahí veo tu pantalla.
+
+Tesista: Ok, este... Más que nada, todos los datos fueron en base a la búsqueda sistemática que hice de los focus. He encontrado algunas referencias de las cuales no se podía tener acceso porque se tenía que hacer un pago y
+
+[00:51 - 01:30] Tesista: y en base a eso ya te daban el documento. Entonces, esas referencias las he ido omitiendo. También las que son repetidas y las que tienen poca relevancia las he ido omitiendo y, en total, tuve las 42 referencias que usted ha logrado observar.
+
+Asesor: Ya. ¿Eso en qué lo hiciste?
+
+Tesista: ¿Cómo, profesor?
+
+Asesor: ¿En qué hiciste la selección de las 42 referencias?
+
+Tesista: Los he buscado en Scopus.
+
+[01:31 - 01:55] Asesor: Ya, para armar el PRISMA, ok, pero ¿con el mismo factor de ecuación de búsqueda?
+
+Tesista: Ok.
+
+[01:55 - 02:30] Asesor: Luego de eso, lo has procesado, has descargado el CSV.
+
+Tesista: Sí, el CSV. Todo está aquí.
+
+Asesor: Ok. Y una vez que has descargado el CSV de los tres, de Internet Explorer y de Web of Science, ¿cuál fue el siguiente paso?
+
+Tesista: El siguiente paso, pues, continuar haciendo las gráficas.
+
+Asesor: No, porque hay que hacer el cribado. O sea, la...
+
+[02:30 - 03:07] Asesor: establecer los criterios de exclusión, inclusión, de selección.
+
+Tesista: Ah, claro, eso está en la narrativa, en los procesos de selección.
+
+Asesor: Ajá.
+
+Tesista: Ya, ahí dice estudios que evalúen algoritmos.
+
+Asesor: Ya, ok. ¿Sobre qué guía te soportaste para hacer la selección? Eso quiero verlo. Van a juzgar esto.
+
+Tesista: Ah, ¿con qué guía?
+
+[03:07 - 03:42] Tesista: A Claude, todo es con Claude.
+
+Asesor: A ver, entra Claude.
+
+Tesista: Solo que el prompt ya lo perdí porque son varios que he utilizado.
+
+Asesor: Ajá.
+
+Tesista: Sí, son muchísimos.
+
+Asesor: Ya, pero a Claude tú le has subido la descarga de archivos o no?
+
+Tesista: Claro, solamente le he dado los enlaces, título y autor, porque Claude también tiene un límite de mensajes
+
+[03:42 - 04:21] Tesista: y entonces le di esas referencias y Claude me devolvió toda la información, todas las métricas, todos los datasets de las 42 referencias. En sí, me dio esta tabla de acá.
+
+Asesor: Esta tabla de aquí. De las 42 referencias.
+
+Tesista: De las 42 referencias que tú le diste.
+
+Asesor: Claro. Entonces, hay que regresar al PRISMA. Hay que regresar al PRISMA para analizar bien el proceso de selección.
+
+[04:22 - 05:01] Asesor: Sube un poquito más ahí. Identificación, 188 registros, 34. Vamos al factor de búsqueda. Vamos a la cadena de búsqueda que la tienes arriba. Dentro de la narrativa, has buscado, asumiendo que se va a hacer un trabajo sobre IA. ¿Es eso correcto?
+
+Tesista: Claro, sí, sobre IA.
+
+[05:02 - 06:09] Asesor: ¿Sí? Ok. ¿Utilizas el Claude IA licenciado o no?
+
+Tesista: Sí, hay un plan de lo que estamos utilizando para Claude.
+
+Asesor: Que sería este.
+
+Tesista: Ok. ¿Ese es el que estás usando?
+
+Asesor: Sí, ese es.
+
+Tesista: ¿Te dice 100 dólares mensuales?
+
+Asesor: Sí, mensuales.
+
+Tesista: Eso estoy...
+
+Asesor: ¿En qué se diferencia de la versión Max de la versión Pro?
+
+Tesista: La versión Pro es más limitada. Esta tiene más capacidad y hace una investigación profunda a través de los enlaces que uno le brinda para corroborar y extraer los datos que uno pide en el prompt. Y eso es justamente lo que he hecho. Me he guiado de aquí.
+
+[06:45 - 07:15] Tesista: Claude analizó qué data está extrayendo en este paper y qué data va a necesitar en base a los autores. Y es así justamente como que me ha devuelto esa tabla. O sea, tú le subiste el modelo.
+
+Asesor: Sí, le subí el modelo, le subí el CSV, para que averigüe todos los enlaces, las referencias, cuáles son accesibles, cuáles son repetitivas, cuáles no son relevantes.
+
+[07:15 - 07:49] Asesor: y así ha ido emitiendo y, como resultado final, he obtenido 42 referencias.
+
+Tesista: Ya, eso es porque has tenido, has tenido, o sea, tú subiste los 188.
+
+Asesor: Sí, 188.
+
+Tesista: Ya, porque vas a tener que hacer una inversa, Christopher, ¿ya?
+
+Asesor: Claro, para corroborar.
+
+Tesista: Tienes que hacer una inversa donde están los criterios de selección en cada fase, ¿vale?
+
+[07:49 - 08:18] Tesista: ¿Y sabes cómo se hace? En hojas, en tu Excel, dejas hojas. ¿Cómo fuiste eliminando? Hasta que te quedaste en la fase de inclusión. ¿Cuáles quedaron? Las 42 restantes. ¿Me dejo entender? Eso hay que hacerlo. A partir de cada uno de los datasets, que veo que ya los has llevado a columnas. Sube un poquito.
+
+[08:20 - 10:18] Tesista: Bueno, ahí está todavía de corrido. Ahora, déjame ver aquí. Aquí vas a tener que hacerle la inversa, o sea, metes todos en un solo Excel porque se analizaron los 188.
+
+[10:19 - 10:52] Tesista: Porque ahí tienes, mira que ahí tienes 164, ¿no? Quitándole la cabecera.
+
+Asesor: Claro, solo de Scopus.
+
+Tesista: Solo de Scopus. Del otro deben de tener muchos menos, para que te sumen los 188, ¿no?
+
+Asesor: Sí, del otro 10.
+
+Tesista: Ya, y ahí viene el proceso de análisis para poder ir eliminando aquellas que son, este...
+
+[10:53 - 11:22] Tesista: aquellas que son repetidas y todo lo demás. Por ejemplo, en la fase de eliminación tienes para las repeticiones, que es lo que describes, ¿no? En la identificación, los removidos, que son 23, ¿no? Esos 23, o sea, tienen que irse eliminando, te vas quedando en identificación, primera fase,
+
+[11:22 - 11:45] Tesista: todos los 188 y cuántos van quedando. Pero en esa fase, cuando colocas la hoja de identificación, abre tu Excel. Yo ahorita te explico. Asume que este es el Excel sobre el cual has trabajado el PRISMA. Crea una nueva hojita y ahí le colocas la primera fase que es este...
+
+[11:46 - 12:17] Tesista: ¿Cómo se llama la primera fase del PRISMA? Lo tienes como, ahí está en tu imagen, esta identificación. Entonces, colocas en el Excel, identificación es el nombre de la hoja. Ahí va, identificación, y ahí metes lo que quedó. Lo que quedó, que serían los 165. ¿Y qué dejas? Los CSVs quedan aparte.
+
+[12:17 - 12:48] Tesista: Porque entran al proceso el CSV de Internet Explorer, el CSV de Web of Science y el CSV de Scopus. Entonces, en la primera hoja del Excel quedan solamente los que fueron elegidos, 165. Y va reduciendo. ¿Así me dejo entender?
+
+Asesor: Sí, así cada hoja, ¿no?
+
+Tesista: En cada hoja. Para las cuatro fases del PRISMA. Hasta que llegas al final.
+
+Asesor: Ok.
+
+[12:54 - 13:35] Asesor: Ok, entiendo.
+
+Tesista: A ver, mira lo que me dice ChatGPT, hace un poco lo que hace Claude. Te voy a compartir un poco mi pantalla. A ver, deja de compartir para nada.
+
+Asesor: Sí, para yo poderte compartir mi pantalla.
+
+Tesista: Quiero la pantalla completa. Ahora sí ves mi pantalla, ¿no?
+
+Asesor: Sí, sí lo veo.
+
+[13:35 - 13:58] Tesista: Ahí lo estoy agrandando. Vamos a verlo aquí. Entonces, GPT tiene esta sección que hace, que permite trabajar sobre documentos de investigación. Este comando. Actúa como GPT-5 Scholar, ¿no?
+
+[13:59 - 14:29] Tesista: Y como un experto revisor de una revista indexada, analiza el siguiente documento de revisión sistemática bajo el enfoque PRISMA. Es un borrador que deseo publicar en una revista de nivel Q2. Este es el que yo he subido, que es el tuyo. Y aquí te dice, ¿no? Voy directo al grano como revisor tirando a Q1, sinceramente. Dice, fortalezas claras. Estas son las fortalezas. Y aquí hay algunos problemas.
+
+[14:30 - 14:57] Tesista: Desalineación entre el título, población declarada y evidencia realmente incluida. El título y resumen insisten en adultos de TEA y en reconocimiento emocional en adultos. Sin embargo, en tus propios resultados reconoces que el 89% de los estudios se concentran en población infantil y que no hay validación de población adulta latinoamericana.
+
+[14:58 - 15:03] Tesista: ¿Eso qué quiere decir? Que hay que mover el título a niños.
+
+[15:03 - 15:29] Tesista: A pesar de que el trabajo luego lo vayamos a hacer en una población adulta. Ya veremos, porque yo creo... ¿Te acuerdas que te dije? Vayamos a ver lo que nos pide el Comité de Ética y tratemos de cumplir. ¿Recuerdas?
+
+Asesor: Sí, sí.
+
+Tesista: Y se cambia todo a adulto.
+
+Asesor: Sí, por eso.
+
+Tesista: Pero tratemos de cumplir para que no tengamos este desfase, si te das cuenta.
+
+Asesor: Claro. Entiendo.
+
+[15:29 - 15:53] Tesista: Desde la perspectiva de un revisor se ve como el foco declarado de la revisión no corresponde con la población de los estudios, que es abrumadoramente infantil.
+
+Asesor: Claro, la mayoría son niños.
+
+Tesista: Recomendación, reformular el foco del artículo, cambiar el título. Cambia el título y te sugiere. ¿Ves?
+
+[15:54 - 16:16] Tesista: O endurecer los criterios para que realmente la evidencia sea adulta. Lo más fácil es nos vamos a población infantil. Para un Q2 pragmático la opción 1 es la más viable. Ajustar el foco y ya está. ¿Qué más me dice? Falta de evaluación formal de riesgo de sesgo. Calidad de los estudios.
+
+[16:17 - 16:46] Tesista: En método reconoces que no se aplicó una herramienta formal de riesgo de sesgo, aunque sí se comentan aspectos metodológicos, claridad de arquitectura, validación. Esto es lo que mencionas. Para una revisión sistemática bajo PRISMA, incluso en el campo tecnológico, los revisores esperan un tipo de framework adaptado si hace falta. Por ejemplo, adaptación PROBAST. Este PROBAST lo estoy viendo muchísimo mejor
+
+[16:46 - 17:15] Tesista: en muchas revisiones sistemáticas. ¿Ya? Hay un poquito... ¿Estás grabando, no, Christopher?
+
+Asesor: Sí, lo estoy grabando.
+
+Tesista: Ok. Un poquito revísalo para que podamos saber, puedas meterte en el tema de qué es el PROBAST, ¿no? Que tiene que ver con los modelos de predicción. Cuando hablan de sesgo, es que como te metiste en el tema de la inteligencia artificial, el machine learning, ya tienes que probar el sesgo.
+
+[17:15 - 17:42] Tesista: Y utilizar una metodología estandarizada para poder mitigar el sesgo del entrenamiento. ¿Me dejo entender? Algún checklist estructurado para estudios de Machine Learning tipo QUADAS-2 adaptado. Este es otro framework. Los frameworks no vayas a pensar que son software. No todos. Hay muchos frameworks que son metodológicos. Como por ejemplo el...
+
+[17:43 - 18:10] Tesista: El método de investigación para el entrenamiento en Machine Learning, casi el estándar. Ahí ya se me fue hasta el nombre ahorita. ¿Cómo se llama este método estándar? Que es un giro. ¿De qué me voy a acordar? Este método que es estándar, ¿no? O sea, ya existen algunos métodos estandarizados para esto.
+
+[18:10 - 18:45] Tesista: Recomendación. Lo único que te pide es añadir una evaluación de calidad del sesgo, donde definas dominios, criterios, aunque sean ad hoc, o sea, a dedo. ¿Me dejo entender? Indiques cómo se aplicaron dos revisores, estos de aquí, que no me había percatado en la narrativa, por ejemplo, este detalle. Desacuerdo por consenso. En resultados, incluir al menos una tabla resumen de calidad-riesgo por estudio.
+
+[18:46 - 19:16] Tesista: Calidad-riesgo de cada uno de los artículos incluidos en el análisis. Sin esto, un revisor puede decir, la revisión describe bien los estudios, pero no evalúa sistemáticamente su calidad, lo que limita la solidez de las conclusiones. Otro, uso de criterios de elegibilidad estándares. El ranking SJR que estás usando como filtro. En criterios indicas que se eliminaron estudios sin ranking.
+
+[19:17 - 19:40] Tesista: Esto metodológicamente discutible porque el ranking mide el impacto de la revista, no la calidad individual del estudio. Excluirlos puede inducir un sesgo de publicación importante y no es habitual en PRISMA. Hay otro índice que mide sí la citabilidad del documento.
+
+[19:41 - 20:06] Tesista: ¿Cuándo lo puedes dejar esto? Cuando no lo discutes en calidad de la información, sino lo discutes en cuanto al impacto de la publicación. No sé si me dejo entender. De las 42 publicaciones, el impacto, ahí te sirve este señor. Si no, no vale de nada. O sea, hay que mencionarlo.
+
+[20:07 - 20:32] Tesista: Recomendación, dice acá bien claro, o bien eliminas este criterio y lo mencionas como análisis secundario, caracterizando en resultados el impacto de revistas, o sea, una gráfica más, o justificas de forma más sólida por qué lo usas y lo acompañas de una evaluación de calidad metodológica que no dependa del SJR, del índice de Scimago, ¿no?
+
+[20:33 - 21:02] Tesista: Como reducir, primero quitar como criterio de inclusión y exclusión y usarlo solo de forma descriptiva. Es una recomendación. PRISMA 2020. Algunos ítems importantes están incompletos. Hay una buena base. Flujos, cifras, criterios. Pero para un Q2 te pueden pedir cadena de búsqueda completa para cada base de datos. No solo la de Scopus.
+
+[21:03 - 21:33] Asesor: Ah, ya. Falta mencionar eso.
+
+Tesista: Exactamente. Pero está ayudando. ¿Me dejo entender? Mayor detalle de ¿quién ejecutó las búsquedas? Si se buscó literatura gris o no. ¿Por qué? Cómo se gestionaron discordancias entre revisores, no sé esta discordancia. ¿Dónde te lo menciona el paper? Hay que corregirlo. Aquí habla de discordancias entre revisores.
+
+[21:34 - 22:00] Tesista: Resultado del PRISMA. Resulta más explícito de por qué se excluyeron estudios en fase de texto completo, idealmente coherente con las categorías de la tabla 3, que ya lo tienes ahí. Recomendación. Adjuntar un checklist PRISMA como material suplementario. La mayoría de las revistas lo exigen. El material suplementario es la hojita que te estoy mencionando.
+
+[22:00 - 22:28] Tesista: Entre en métodos, añadir un párrafo tipo, es lo que te decía esta cita. Esta revisión sigue recomendaciones PRISMA 2020. El checklist completo se incluye como material suplementario. Es decir, todos los que se incluyeron, todo lo que sacaron. De repente, Claude te lo da, de repente. ¿Ok?
+
+[22:28 - 22:45] Tesista: Te puede generar de repente el Excel de la matriz del PRISMA. ¿Ya? Heterogeneidad extrema versus forma de sintetizar resultados. Tú mismo documentas una heterogeneidad muy grande.
+
+[22:46 - 23:03] Tesista: Diferentes tipos de datos, imagen facial, video, poblaciones distintas, diseños distintos. Aún así, en algunos puntos, el discurso puede sonar cuasi meta-analítico, comparando que...
+
+[23:04 - 23:31] Tesista: Accuracies, comparando los accuracies como si fueran directamente comparables entre estudios con condiciones totalmente distintas. Recomendación, reforzar el resultado sin discusión, que se trate de una síntesis cualitativa comparativa, no de una comparación directa efecto a efecto. O sea, no es cuantitativo, es cualitativo.
+
+[23:32 - 23:53] Tesista: Repetir explícitamente, sobre todo cuando compares los valores de accuracy, que las diferencias deben interpretarse con cautela debido a la heterogeneidad de los datasets, métricas y protocolos. O sea, esto hay que agregarlo dentro del párrafo. Comentarios por sección.
+
+[23:54 - 24:21] Tesista: ¿Qué está muy bien? El resumen está claro, metodología PRISMA, bases, estudios principales. Esto está bien. Mejoras sugeridas. Ajustar el foco en adultos. Añadir una o dos frases explícitas de la metodología PRISMA en el resumen. Clarificar el resumen. Introducción. Y te vas sacando las sugerencias que yo te las voy a pasar. ¿Ya?
+
+Asesor: ¿Sí?
+
+[24:23 - 24:52] Tesista: En los resultados. Para que te ayude también. Claude también te puede ayudar. Y de ahí lo metemos aquí también. Para ver qué diferencia nos va. Porque nos puede ayudar también en la narrativa.
+
+Asesor: Ok, profesor. No sé si nos podría compartir este chat.
+
+Tesista: No, te lo voy a compartir todo el chat. Sí te lo voy a pasar a Word. Lo estoy pegando ya en Word. Para que ya lo tengas. ¿Está bien?
+
+Asesor: Ajá.
+
+[24:52 - 25:06] Tesista: Trata de sacarles estas líneas que esto evidencia en el uso de IA. ¿Ya?
+
+Asesor: Ah, está bien. Ok. ¿Sí?
+
+Tesista: Esos detalles son muy importantes. Entonces, vamos acá, guardar como...
+
+[25:07 - 25:31] Tesista: Examinar.
+
+Asesor: No sé, profesor, ¿qué tal si yo el Paper 1 que yo le envié lo plasmo tal cual al modelo que usted me envió y en base a ese modelo lo corrijo con lo que usted me envió?
+
+Tesista: Vas corrigiendo con lo que te voy diciendo, ¿no?
+
+Asesor: Sí, creo que sería mejor así.
+
+Tesista: Ok, voy directo al grano, esto es recomendación.
+
+[25:37 - 26:01] Tesista: Entonces voy a continuar yo con...
+
+Asesor: Plasmando, ¿no? Apostándolo a esto, ¿no?
+
+Tesista: Sí, sí, las tablas, las figuras, todo.
+
+Asesor: Y ahí voy a modificar conforme...
+
+Tesista: Lo que te voy a pasar. A ver. Con eso debería de quedar redondo ya.
+
+Asesor: Claro.
+
+[26:01 - 26:39] Tesista: Ah, y el Excel también. Las hojas. Hay que hacer la... Hay que hacer la... La ingeniería inversa para poderlo tener, ¿no?
+
+Asesor: Sí.
+
+Tesista: Ahora, menos mal que no tienes muchas fuentes.
+
+Asesor: Sí.
+
+Tesista: ¿Para cuándo crees tú que lo puedas terminar? Voy a tratar de hacer toda esa idea.
+
+Asesor: Ya.
+
+Tesista: ¿Cuándo te... ¿Cómo te va con el tema de la chamba?
+
+Asesor: Bien...
+
+[26:39 - 27:09] Asesor: He estado... ya está, ya la sexta entrevista que he tenido.
+
+Tesista: ¡Wow! ¿En el mismo lugar?
+
+Asesor: No.
+
+Tesista: Ah, ok. Bueno, esperemos que te llamen en algún sitio. Y también estos días he estado avanzando un poco del Paper 2.
+
+Asesor: No sé si le podría dar una revisada. Ahí lo comparto.
+
+Tesista: Ya, de ahí me compartes ese documento
+
+
+
+🟦 Observaciones previas de ChatGPT:
+
+Esta segunda parte contiene las observaciones que ChatGPT hizo previamente cuando analizó el paper.
+
+Estas observaciones fueron las que mi profesor leyó y comentó durante su revisión.
+
+Es importante mantener esta sección para que se entienda de dónde surgen las observaciones y cómo se relacionan con los comentarios del profesor.
+
+(Aquí debes pegar las observaciones previas generadas por ChatGPT.)
+
+
+
+🟨 Versión final del paper en inglés:
+
+Esta tercera parte es el texto final del paper que ya está escrito en inglés.
+
+Aquí es donde deben aplicarse todas las correcciones.
+
+El texto debe revisarse por secciones —desde el título, luego la introducción, método, resultados, discusión y conclusiones— verificando la gramática, claridad, coherencia y consistencia de los datos numéricos.
+
+Las referencias bibliográficas y citas deben permanecer sin cambios.
+
+
+
+Article
+
+Machine Learning and Mobile Applications for Emotion Recognition in Adults with Autism Spectrum Disorder: A Sys-tematic Literature Review
+
+Jorge Eduardo Castañeda Alban ¹*, Jhafet Martín Cánepa Maceda ¹ and Christopher Antonio Pillihuamán Santiago ¹
+
+Received: date
+
+Revised: date
+
+Accepted: date
+
+Published: date
+
+Citation: To be added by editorial staff during production.
+
+Copyright: © 2025 by the authors. Submitted for possible open access publication under the terms and conditions of the Creative Commons Attribution (CC BY) license (http://creativecommons.org/licenses/by/4.0/).
+
+1	Universidad San Ignacio de Loyola, School of Engineering, Information Systems Engineering Program, Lima, Peru; jcastaneda@usil.edu.pe (J.E.C.A.); jhafet.canepa@usil.pe (J.M.C.M.); c.pillihuaman@usil.pe (C.A.P.S.)
+
+*	Correspondence: jcastaneda@usil.edu.pe; Tel.: +51-939-844-835
+
+Abstract
+
+Emotion recognition deficits constitute a critical barrier to social integration in adults with Autism Spectrum Disorder (ASD), yet evidence-based technological interventions remain scarce, particularly in resource-limited settings. This systematic review synthesizes cur-rent evidence on Machine Learning technologies applied to emotion recognition and ASD detection, emphasizing mobile applications and neural network architectures. Following PRISMA methodology, we conducted exhaustive searches across three indexed databases (IEEE Xplore, Scopus, Web of Science), identifying 188 initial records. After applying rig-orous inclusion criteria, 42 relevant studies published between 2019-2024 were selected. Findings reveal that customized CNN architectures achieve accuracy exceeding 90% in facial recognition, while real-time mobile applications attain 75-88% detection precision. However, critical limitations persist: 89% of studies focus on pediatric populations, 76% require constant connectivity, and no studies validate models in Latin American adult populations. This review identifies fundamental gaps justifying development of accessi-ble, culturally adapted therapeutic tools validated in resource-limited contexts, establish-ing methodological foundations for future research in this underserved area.
+
+Dataset: Not applicable (systematic review). All extracted data available in supplemen-tary materials upon publication.
+
+Dataset License: Not applicable.
+
+Keywords: autism spectrum disorder; emotion recognition; machine learning; convolu-tional neural networks; mobile applications; systematic review; assistive technology; low-resource settings.
+
+1. Introduction
+
+Autism Spectrum Disorder (ASD) represents a neurodevelopmental condition affect-ing approximately 1% of the global population, characterized by persistent deficits in re-ciprocal social communication and restrictive behavioral patterns [12]. Among the core manifestations of ASD, difficulties in recognizing and processing facial emotional expres-sions emerge as one of the most robust predictors of social maladjustment in adulthood, directly affecting employability, independence, and psychological well-being [1,6,10]. De-spite its prevalence and functional impact, therapeutic interventions for adults with ASD remain underdeveloped compared to those targeting pediatric populations, configuring a critical care gap [14,18].
+
+Research using eye-tracking and wearable technologies documents that individuals with ASD exhibit atypical visual exploration patterns during emotional face processing, characterized by reduced fixations on the ocular region and fragmented processing of fa-cial configurations [5,6,35]. These neurobiological alterations correlate significantly with deficits in emotion recognition (r = -0.67, p < 0.001) and theory of mind, fundamental cog-nitive mechanisms for effective social interaction [35]. Consequently, adults with ASD ex-perience unemployment rates exceeding 85% in middle-income countries, evidencing the functional impact of these deficits [18].
+
+The convergence of advances in Machine Learning, particularly in Convolutional Neural Networks (CNN), and the ubiquity of mobile devices has generated unprecedented opportunities to develop objective, scalable, and accessible therapeutic interventions. Customized CNN architectures have demonstrated outstanding capabilities in facial ex-pression classification, achieving accuracy exceeding 94% on standardized datasets [1,10,25]. Specifically, transfer learning-based models with ResNet-50 and VGGFace ar-chitectures enable adaptation to individual characteristics of the autism spectrum through fine-tuning with reduced samples, overcoming generalization limitations observed in tra-ditional approaches [5,25,31].
+
+Concurrently, mobile devices emerge as ideal platforms for continuous ecological in-terventions, given their low cost, portability, and real-time processing capacity. Mobile systems integrating emotion recognition algorithms via OpenCV and TensorFlow Lite have demonstrated clinical feasibility in naturalistic settings [6,10], while applications with automated video analysis achieve 88% sensitivity and 82% specificity in detecting ASD behavioral markers [5,41]. However, published studies present significant methodo-logical heterogeneity regarding architectures used, evaluation metrics reported, dataset characteristics employed, and target populations, limiting comparability of findings and hindering identification of best practices [2,12].
+
+Despite these technological advances, translating research into clinical practice faces critical barriers in resource-limited contexts. Seventy-six percent of ASD applications de-veloped require constant internet connectivity, precluding their use in regions with defi-cient infrastructure [9,22]. Additionally, 89% of studies focus exclusively on pediatric populations (≤12 years), leaving underserved the adult population where intervention needs are equally pressing but clinically distinct [14,18]. Critically, no systematic review has synthesized evidence specifically oriented toward identifying technical characteris-tics, methodological limitations, and implementation gaps in Machine Learning mobile applications for emotion recognition in adults with ASD.
+
+This systematic review addresses this gap through exhaustive analysis of Machine Learning technologies applied to emotion recognition and ASD detection, formulating six specific research questions (Table 1). Our objective is to synthesize neural network archi-tectures, performance metrics, datasets utilized, mobile application characteristics, and methodological limitations identified in the literature, establishing the current state of the art and identifying opportunities for developing culturally adapted therapeutic tools, val-idated in Latin American contexts and designed to operate in resource-limited technolog-ical environments.
+
+Table 1. Research Questions.
+
+Motivation	Research Question
+
+CNN architectures show accuracy variability (72-96%) depending on design, requiring identification of optimal configurations for ASD	What Machine Learning architectures and models demonstrate greater effectiveness in emotion recognition and ASD detection?
+
+Heterogeneity in reported metrics (accura-cy-only vs. F1-score) limits comparability between studies	What performance metrics are consistently employed to evaluate ML algorithms in clinical ASD contexts?
+
+Absolute metric values vary according to target population (pediatric vs. adult) and evaluation conditions (laboratory vs. ecologi-cal)	What accuracy, precision, recall, F1-score, and AUC values do models achieve in different methodological configurations?
+
+Western datasets (FER2013, CK+) present generalization limitations to Latin American populations, requiring identification of alter-natives	What datasets are used for model training and validation, and what are their repre-sentativeness limitations?
+
+Input variables (facial image-only vs. multi-modal) affect prediction robustness, requiring identification of optimal configurations	What input variables or features do ML systems employ for ASD detection and evaluation?
+
+Existing mobile applications present tech-nical requirements (connectivity, hardware) that limit accessibility in resource-limited settings	What technical and methodological limi-tations impede ML system implementation in resource-limited contexts?
+
+2. Materials and Methods
+
+Based on identified gaps in literature regarding ML applications for emotion recogni-tion in ASD, we formulated six specific research questions (Table 2) designed to address both technical aspects (architectures, metrics, datasets) and implementation limitations in real clinical contexts. These questions were structured following a PICO framework adapted for technology reviews: Population (adults with ASD), Intervention (mobile ML systems), Comparators (alternative architectures), Outcomes (performance metrics and implementation limitations).
+
+Table 2. Research Questions.
+
+Id.	Research Question	Justification
+
+RQ1	What are the algorithms, architectures, and models used for emotion recognition in adults with ASD?	Identify technical configurations that guide design of systems optimized for ASD-specific emotional processing characteristics
+
+RQ2	What metrics are employed to evaluate performance of emotion recognition al-gorithms, methods, or models?	Determine evaluation standards facili-tating cross-study comparability and clinical validation
+
+RQ3	What are the accuracy, precision, recall, F1-score, and AUC values of these mod-els?	Quantify performance achieved by existing technologies to establish real-istic benchmarks for new tool devel-opment
+
+RQ4	What datasets are used for training and validation of emotion recognition models in ASD?	Evaluate representativeness and gener-alization limitations of available da-tasets, especially regarding cultural and phenotypic diversity
+
+RQ5	What facial variables or features are em-ployed in emotion recognition systems for adults with ASD?	Identify optimal input features balanc-ing diagnostic precision with mobile implementation feasibility
+
+RQ6	What are the main problems or limita-tions in implementing mobile applica-tions for emotion recognition in re-source-limited contexts?	Document technical, clinical, and ac-cessibility barriers requiring attention for effective research-to-practice trans-lation
+
+Using the most relevant words related to our research topic, we built our search string and applied it to three recognized databases: IEEE Xplore, Scopus, and Web of Science (WOS). We considered studies from journal articles and conference proceedings published from January 2010 to October 2025, related to computer science, biomedical engineering, and medical informatics areas, as shown in Figure 1.
+
+Research string:
+
+TITLE-ABS-KEY ( ( "autism spectrum disorder" OR "ASD" OR "autism" ) OR ( "emo-tion recognition" OR "facial expression" OR "emotional recognition" ) AND ( "machine learning" OR "deep learning" OR "CNN" OR "convolutional neural network" OR "artificial intelligence" ) AND ( "mobile application" OR "smartphone" OR "serious game" OR "digi-tal intervention" ) ) AND ( LIMIT-TO ( OA , "all" ) ) AND ( LIMIT-TO ( DOCTYPE , "re" ) OR LIMIT-TO ( DOCTYPE , "cp" ) OR LIMIT-TO ( DOCTYPE , "ar" ) )
+
+We identified 188 studies. There were 23 eliminations for being duplicates, 26 elimi-nations for being unrelated, 10 eliminations for being review articles, 29 eliminations for lacking full document access, 9 eliminations for missing Scimagojr ranking, and 29 elim-inations for lacking relevant contributions after complete document analysis. We obtained 42 revealing articles; Table 3 shows results of inclusion and exclusion criteria application.
+
+ 
+
+Figure 1. PRISMA Research Strategy.
+
+Table 3. Application of Inclusion and Exclusion Criteria.
+
+Criterion	Category	#	%
+
+Initial Inclusion Criteria			
+
+Conference article	Inclusion	18	9.57%
+
+Journal article	Inclusion	170	90.43%
+
+Subtotal identified		188	100.00%
+
+Applied Exclusion Criteria			
+
+Duplicate article	Inclusion	23	12.23%
+
+Unrelated	Inclusion	26	13.83%
+
+Review article	Inclusion	10	5.32%
+
+Without full document access	Inclusion	29	15.43%
+
+Without Scimagojr ranking	Inclusion	9	4.79%
+
+Without relevant contributions	Inclusion	29	15.43%
+
+Subtotal excluded		126	67.02%
+
+Total studies included in SLR		42	22.34%
+
+Research Strategy
+
+Two independent reviewers (J.M.C.M., C.A.P.S.) extracted data using a standardized form piloted on five random studies and iteratively refined. Discrepancies were resolved through consensus or arbitration by a third reviewer (J.E.C.A.). Although we did not apply a formal risk-of-bias assessment tool (given most studies are technology development without controlled clinical designs), we documented methodologically relevant aspects: (1) architecture description clarity, (2) source code availability, (3) cross-validation or hold-out set usage, (4) multiple performance metrics reporting, (5) error or failure case analysis.
+
+The main limitation when conducting systematic reviews is bias, considering how researcher decisions influence method application framed by experiences and prior knowledge. We recognize inherent limitations: (1) restriction to three databases potentially excluding grey literature; (2) open-access limitation favoring studies with OA publication funding; (3) implicit language bias given results were predominantly English. Publication bias may affect results if studies with negative findings remain unpublished. Evaluation bias was minimized through independent extraction by two reviewers, although qualita-tive interpretation of "relevant contribution" involves subjective judgment based on team expertise. We meticulously followed PRISMA methodology, applying the most appropri-ate criteria and procedures in document construction.
+
+3. Current Research
+
+The growing demand for technological tools for early ASD detection and personal-ized therapeutic interventions has driven generation of massive behavioral, physiological, and visual data volumes whose analysis through Machine Learning techniques enables design of predictive models with significant clinical potential [1,6,10]. This technological convergence manifests particularly in accelerated development of mobile applications and wearable devices enabling real-time processing, offline operation in lim-ited-connectivity contexts, and therapeutic continuity through ecological monitoring out-side controlled clinical environments [5,9,27]. Industry projections suggest exponential growth in personalized deep learning and computer vision systems during 2025-2030, driven by improvements in mobile device computational capacity and availability of ML frameworks optimized for edge computing [1,10,25].
+
+The relevant challenges are addressed by various research papers using different ML approaches for respective interpretations and decision-making [1,6,10]. However, there are also difficulties with implemented models [2,12], which generally follow black-box para-digms with limited clinical interpretability [3,8]. These models present problems espe-cially regarding generalization to small samples, class imbalance, multicollinearity in multimodal data, and translation to resource-limited clinical settings [2,9,12,22]. The challenge lies in developing systems balancing predictive power with transparency, ac-cessibility, and cultural adaptation [14,18].
+
+In Table 4, we synthesize five critical methodological challenges identified in litera-ture, along with proposed ML methods and techniques to address them, implementation frequency in reviewed studies, and documenting references. This taxonomy evidences that although methods exist to mitigate each individual limitation, their joint and integrated application in robust clinical systems remains a future development area.
+
+ Table 4. Methodological Challenges in ASD Detection and Emotion Recognition.
+
+#	Methodological Challenge	Proposed ML Methods & Techniques	Studies Imple-menting (n/42)	References
+
+1	Classification uncer-tainty and low pre-dictive robustness	CNN, Personalized Deep Learning, LSTM, Auto-encoders, Computer Vision	12 (28.6%)	[1,5,6,10,17,23,25,32]
+
+2	Limited interpretabil-ity of black-box mod-els	XAI (LIME, SHAP, Grad-CAM), Feature Importance, Attention Analysis	6 (14.3%)	[1,3,8,12,22]
+
+3	Poor generalization in small samples	K-Fold CV, Grid Search, Random Search, Trans-fer Learning	10 (23.8%)	[2,6,28,31,41]
+
+4	Multicollinearity in correlated multimod-al data	PCA, MRMR, L1/L2 Regularization, Feature Selection	5 (11.9%)	[4,27,28]
+
+5	Class imbalance and sampling biases	SMOTE, RUS, ROS, ADASYN, Ensemble Learning, Cost-sensitive Learning	7 (16.7%)	[2,22,25]
+
+4. Results
+
+4.1. Answer to RQ1: What Are the Algorithms, Architectures, and Models Used for Emotion Recognition in Adults with ASD?
+
+Analysis of the 42 included studies reveals that authors predominantly employ Ma-chine Learning models classified into two architectural categories by complexity: 88.1% correspond to non-assembled (N-Ens) models utilizing individual architectures, while 11.9% implement ensemble (Ens) models combining multiple classifiers to improve pre-dictive robustness through voting or stacking, as detailed in Table 5.
+
+Table 5. Methodological Challenges in ASD Detection and Emotion Recognition.
+
+It.	Family	#	%
+
+		Ens	N-Ens	Total	Ens	N-Ens	Total
+
+1	CNN/Deep Learning	1	5	6	2.38%	11.90%	14.29%
+
+2	Traditional ML	3	8	11	7.14%	19.05%	26.19%
+
+3	Eye-tracking/Computer Vision	0	4	4	0.00%	9.52%	9.52%
+
+4	Wearable/Mobile	1	10	11	2.38%	23.81%	26.19%
+
+5	Specialized Applications	0	5	5	0.00%	11.90%	11.90%
+
+6	Other Models	0	5	5	0.00%	11.90%	11.90%
+
+	Total	5	37	42	11.90%	88.10%	100.00%
+
+For better presentation, we group identified models into six fundamental architectur-al families based on algorithmic principles and implementation modalities: CNN/Deep Learning, grouping convolutional neural network-based architectures including custom-ized CNNs optimized for ASD facial recognition [1,10,22], computer vision systems with deep learning for real-time expression analysis [25], and autoencoders for learning latent representations of facial features [28]; Traditional ML, comprising classic machine learn-ing models including Support Vector Machines with optimized RBF kernels [2,6,28], Lo-gistic Regression for binary ASD versus neurotypical classification [22], Random Forest for multimodal feature importance analysis [22], and traditional classifiers such as Naive Bayes and k-NN [41]; Eye-tracking/Computer Vision, grouping specialized models for an-alyzing ASD-characteristic ocular tracking patterns through fixation and saccade detec-tion algorithms [6,35], and computer vision techniques for identifying atypical facial ex-ploration patterns [25,32]; Wearable/Mobile, including models implemented in portable devices for continuous physiological signal acquisition (galvanic skin response, heart rate) [27,34,40] and mobile applications for early detection through smartphone-captured in-the-wild image analysis [1,5,6,9,32]; Specialized Applications, comprising applications including virtual reality systems for social skills training [30,37], serious games designed specifically for therapeutic intervention through gamification [8,10,18,23], and structured therapeutic intervention devices [7]; Other Models, grouping models not categorizable in previous families including audio and voice feature analysis through acoustic signal pro-cessing [34], Natural Language Processing techniques for mental health application text analysis [22], and IoT systems for environmental and behavioral monitoring through dis-tributed sensors [24,32,38].
+
+Analyzing non-assembled model distribution presented in Figure 2, the Weara-ble/Mobile category emerges as most prevalent with 23.8% of implementations, reflecting the trend toward accessible and ecologically valid solutions enabling continuous evalua-tion outside controlled clinical contexts. Traditional ML represents 19.0% of implementa-tions, evidencing persistence of classic techniques in scenarios where clinical interpreta-bility and computational efficiency are prioritized over marginal predictive power. CNN/Deep Learning reaches 11.9%, concentrating on facial expression classification tasks where visual complexity requires automatic hierarchical feature extraction capabilities.
+
+ 
+
+Figure 1. PRISMA Research Strategy.
+
+Figure 3 details ensemble model distribution, where Traditional ML was imple-mented in ensemble configurations in 7.1% of studies through techniques such as bagging with Random Forest, boosting with AdaBoost, and stacking of multiple heterogeneous classifiers to improve robustness [2,22]. CNN/Deep Learning reaches 2.4% in ensemble configurations through prediction averaging of multiple CNN architectures trained with different initializations [25], while Wearable/Mobile represents 2.4% through prediction fusion of models trained on different physiological modalities [27].
+
+ 
+
+Figure 3. Ensemble Models.
+
+These results evidence that non-assembled models constitute the predominant ap-proach for emotion recognition and ASD detection, probably due to lower computational complexity, greater ease of implementation in resource-limited devices, and sufficient predictive capacity for most evaluated clinical scenarios. However, recent studies docu-ment an emerging trend toward multimodal systems integrating multiple heterogeneous data sources (facial, vocal, physiological, behavioral) through early, intermediate, or late fusion architectures, achieving 5-15% classification robustness improvements compared to unimodal approaches, especially in cases of elevated phenotypic heterogeneity charac-teristic of the autism spectrum [4,22,27,32].
+
+4.2. Answer to RQ2: What Metrics Are Employed to Evaluate Performance of Emotion Recognition Algorithms, Methods, or Models?
+
+We exhaustively collected evaluation metrics employed by researchers, applying the methodological criterion that when a study evaluates multiple datasets or model config-urations, superior values of Accuracy (ACC) and Area Under Curve (AUC), or alternative metrics when these are unavailable, are prioritized, as documented in the distribution presented in Figure 4.
+
+ 
+
+Figure 4. Evaluation Metrics Used in Analyzed Studies.
+
+From the subset of 16 studies reporting extractable quantitative supervised classifica-tion metrics (38.1% of total 42 studies), most frequently employed metrics correspond to Accuracy (ACC) with 68.75% prevalence (11/16 studies), consolidating as the standard metric for inter-model comparison. Recall and F1-score both reach 37.5% frequency (6/16 studies each), reflecting recognition that ACC may be insufficient in presence of severe class imbalance typical in ASD clinical datasets. Precision is reported in 31.25% of studies (5/16), enabling specific evaluation of true positive proportion among all positive predic-tions. AUC reaches only 12.5% (2/16), indicating underuse of this threshold-robust metric highly informative for performance evaluation in imbalance scenarios.
+
+Table 6. Reported Metrics in 16 Studies with Experimental Data.
+
+It.	Metrics	#	%	Author
+
+1	ACC	11	68.75%	[1,2,4,6,10,22,25,26,28,32,41]
+
+2	Precision	5	31.25%	[2,6,22,28,35]
+
+3	F1	6	37.5%	[2,4,22,25,28,31]
+
+4	Recall	6	37.5%	[1,2,6,22,28,41]
+
+5	AUC	2	12.5%	[22,41]
+
+6	UAR	1	6.25%	[1]
+
+7	Sensitivity/Specificity	1	6.25%	[41]
+
+8	Other	26	-	[3,5,7,8,9,11,12,13,14,15,16,17,18,19,20,21,23,24,27,29,30,33,34,36,37,38,39,40,42]
+
+	Total	58		
+
+Note: Total metric instances reported (one study may report multiple metrics simultaneously). Percentages calculated over base of 16 studies reporting quantitative supervised classification metrics.
+
+These findings evidence that ACC and derived metrics (Precision, Recall, F1-score) constitute the de facto standard for ASD detection and emotion recognition model evalua-tion, enabling robust comparison between heterogeneous methodological approaches. However, a critical methodological gap persists: absence of systematic reporting of confi-dence intervals, statistical significance of inter-model differences, and error analysis strat-ified by demographic subgroups limits clinical interpretability and quantitative me-ta-analysis capacity of existing literature [2,6,22].
+
+4.3. Answer to RQ3: What Are the Accuracy, Precision, Recall, F1-Score, and AUC Values of These Models?
+
+We exhaustively compiled quantitative values of the five most prevalent metrics re-ported by authors: AUC, ACC, F1-score, Precision, and Recall, documented in Table 7. To guarantee valid comparability between experiments, dataset characteristics employed, experimental evaluation conditions, and specific reported metric must correspond to the methodological context described by original authors. We present exclusively metrics that authors explicitly evaluated and reported in their research; when metric cells present empty values (-), this indicates authors did not consider such metrics in their experi-mental design, the study does not correspond to traditional supervised classification, or data were not extractable from publication format.
+
+Table 7. Performance Metrics Reported by Author and Dataset.
+
+It.	Dataset	Autor	Metrics’ Values
+
+			ACC	Precision	F1	Recall	AUC
+
+1	STREs WoZ (14,412 videos)	[1]	54.2-92.2	-	-	52.9-92.9	-
+
+2	Q-Chat-10 questionnaire	[2]	100.0	100.0	100.0	100.0	-
+
+3	EKSpression Protocol	[3]	-	-	-	-	-
+
+4	D-MOMO (actigraphy + app)	[4]	-	-	81.0	-	-
+
+5	MoodCapture (125,000+ images)	[5]	-	-	-	-	-
+
+6	Mobile facial landmarks	[6]	88.0	91.0	80.0	72.0	-
+
+7	IMPUTE ADT-1 RCT	[7]	-	-	-	-	-
+
+8	Serious Games Framework	[8]	-	-	-	-	-
+
+9	RADAR-Base Platform	[9]	-	-	-	-	-
+
+10	FER-2013 (28,635 train)	[10]	66.50	-	-	-	-
+
+11	Mobile FER Review	[11]	-	-	-	-	-
+
+12	Digital Tools Review (38)	[12]	-	-	-	-	-
+
+13	Portrait Photographs	[13]	-	-	-	-	-
+
+14	Unsupervised ML Review	[14]	-	-	-	-	-
+
+15	Aawn App Prototype	[15]	-	-	-	-	-
+
+16	Smartphone Selfie Videos	[16]	-	-	-	-	-
+
+17	SmartSpeech Biometric	[17]	-	-	-	-	-
+
+18	Serious Games Review	[18]	-	-	-	-	-
+
+19	FER Survey (comprehen-sive)	[19]	-	-	-	-	-
+
+20	Conversational Agents	[20]	-	-	-	-	-
+
+21	Multimodal FER	[21]	-	-	-	-	-
+
+22	97,051 reviews (13 apps)	[22]	89.80-96.58	89.85	89.57	89.80	99.41
+
+23	Deep Q-Network App	[23]	-	-	-	-	-
+
+24	IoT Baby Monitoring	[24]	-	-	-	-	-
+
+25	CAFE + GuessWhat + 10	[25]	64.77-78.40	-	65.31-77.89	-	-
+
+26	Drawings dataset (1,453)	[26]	84.58	-	-	-	-
+
+27	WEMAC (47 mujeres)	[27]	63.61	-	-	-	-
+
+28	FEI, GT, Gallagher's	[28]	90.34-99.16	90.99-99.51	90.50-99.50	90.40-99.50	90.99-99.51
+
+29	Children's Art (2 datasets)	[29]	55.0-79.0	-	-	-	-
+
+30	Mixed Reality LEGO	[30]	-	-	-	-	-
+
+31	CAFE (7 emociones)	[31]	66.4-79.1	-	67.2-78.0	-	-
+
+32	Children's drawings (Keras)	[32]	56.25	-	-	-	-
+
+33	mCSCL Environments	[33]	-	-	-	-	-
+
+34	DeepSpectrumLite Audio	[34]	-	-	-	-	-
+
+35	GuessWhat app (449 vide-os)	[35]	-	59.5-66.1	-	59.8-65.6	-
+
+36	Fast R-CNN Depression	[36]	-	-	-	-	-
+
+37	VR-PEER Exergame	[37]	-	-	-	-	-
+
+38	IoT Autism Care (Retracted)	[38]	-	-	-	-	-
+
+39	Smartphone Schizophrenia	[39]	-	-	-	-	-
+
+40	Wearable Tourist System	[40]	-	-	-	-	-
+
+41	YouTube videos (140)	[41]	82.38-84.47	-	-	79.7-98.9	90.0-92.0
+
+42	Smartphone Sensors Review	[42]	-	-	-	-	-
+
+Considering that multiple experiments use similar or related datasets, it is methodo-logically valid to compare their relative predictive capabilities under comparable experi-mental conditions. This phenomenon manifests particularly in the CAFE (Child Affective Facial Expression) dataset case for child emotion recognition, where Banerjee et al. [25] model achieves 78.40% ACC in optimized subset through transfer learning with Mo-bileNet, versus 79.1% reported by Washington et al. [31] in subset A utilizing customized CNN architecture with domain-specific fine-tuning.
+
+Results evidence that classification models for ASD detection and emotion recogni-tion achieve highly variable performance according to processed data modality, experi-mental acquisition protocol control degree, and evaluated population characteristics. Most outstanding performances correspond to: Shambour et al. [2] reaching 100% in all evalu-ated metrics through ensemble of multiple classifiers over standardized Q-Chat-10 ques-tionnaire; Neggaz & Fizazi [28] achieving 99.16-99.51% accuracy through automatic HOG feature selection combined with Archimedes Optimization Algorithm; and Haoues & Mokni [22] reaching 96.58% accuracy with Deep Learning architectures over 97,051 textu-al reviews from 13 ASD mobile applications.
+
+Studies focused on smartphone facial and emotional recognition show 54.2-92.2% accuracy ranges [1,6,10,25,31], reflecting inherent complexity of recognizing multiple emotions in naturalistic contexts with variability in illumination, capture angle, partial occlusions, and image quality. Physiological signal-based modalities acquired through wearables [27] report 63.61% accuracy for affective state classification through galvanic skin response and peripheral temperature analysis. In contrast, multimodal approaches integrating multiple heterogeneous information sources [4,22] achieve F1-scores of 81-89.57%, empirically demonstrating predictive advantage of fusing facial, textual, be-havioral, and physiological data.
+
+4.4. Answer to RQ4: What Datasets Are Used for Training and Validation of Emotion Recognition Models in ASD?
+
+Datasets employed by researchers can be categorized into two fundamental groups by accessibility: 62.5% correspond to public datasets available through academic reposi-tories or direct author request, employed mainly for new ML architecture validation through comparison with established benchmarks; and 37.5% correspond to private da-tasets collected ad-hoc by specific research teams, frequently containing sensitive clinical data or proprietary commercial application information preventing public distribution, as shown in Figure 5.
+
+ 
+
+Figure 5. Datasets Used.
+
+In the public dataset group, most frequently utilized is CAFE (Child Affective Facial Expression) with 7.1% prevalence in reviewed studies, probably due to its specific charac-teristics for pediatric population including 1,192 facial images of 90 children aged 2-8 years expressing seven basic emotions under controlled illumination and neutral back-ground conditions [25,31]. The second most prevalent dataset is FER-2013, standard facial emotion recognition platform used in 4.8% of studies, containing 28,709 images of 48×48 pixels labeled in seven emotional categories, widely employed as benchmark for compar-ative CNN architecture evaluation [10].
+
+The mobile health digital application industry and automatic detection systems re-quire robust Machine Learning tools to support emotion recognition and early ASD detec-tion in diverse populations. However, since access to these private datasets is restricted by privacy ethical considerations (HIPAA, GDPR), developing company intellectual property limitations, and absence of infrastructure for secure sensitive clinical data sharing, this significantly slows collaborative community efforts to improve predictive precision through utilization of real cases representative of population heterogeneity.
+
+4.5. Answer to RQ5: What Facial Variables or Features Are Employed in Emotion Recognition Systems for Adults with ASD?
+
+Researchers propose heterogeneous input variable sets, employing diverse methods to identify features with greatest discriminative predictive capacity between classes. Documented techniques include: handcrafted facial feature extraction algorithms (HOG, LBP, SIFT); metaheuristic optimization algorithms for optimal feature subset selection; statistical dimensional reduction methods (PCA, LDA); and deep learning architectures learning hierarchical representations end-to-end through backpropagation. Specific de-tails of 28 identified feature categories are exhaustively presented in Table 8.
+
+To simplify comparative analysis, we group proposed variables into six high-level categories by algorithmic nature: Facial Features represent 40.48% of implementations, constituting the dominant modality; CNN Architectures reach 23.81%; diverse Input Mo-dalities represent 14.29%; Optimization Methods for feature selection correspond to 9.52%; multimodal Physiological Signals reach 7.14%; and Textual/Audio Features represent 4.76%, as quantitatively synthesized in Table 9 and visualized in Figure 6.
+
+ 
+
+Figure 6. Feature Groups Used.
+
+Table 8. Specific Features Used.
+
+It.	Features Group	Feature	#	%
+
+1	Facial Features	Facial Landmarks (68 points)	4	9.52%
+
+2	Facial Features	Action Units (AU)	3	7.14%
+
+3	CNN Architectures	Custom CNN	3	7.14%
+
+4	Facial Features	Emotional Expressions (7 basic)	3	7.14%
+
+5	CNN Architectures	Transfer Learning (VGG, ResNet)	2	4.76%
+
+6	Input Modalities	Video Frames	2	4.76%
+
+7	Facial Features	Eye Gaze Patterns	2	4.76%
+
+8	Facial Features	Microexpressions	2	4.76%
+
+9	Optimization Methods	HOG + AOA	1	2.38%
+
+10	CNN Architectures	MobileNet (mobile-optimized)	1	2.38%
+
+11	Facial Features	Geometric Features	1	2.38%
+
+12	Physiological Signals	BVP/GSR/Temperature	1	2.38%
+
+13	Input Modalities	Smartphone Images (in-the-wild)	1	2.38%
+
+14	CNN Architectures	EfficientNet	1	2.38%
+
+15	Textual/Audio Features	Text Reviews (NLP)	1	2.38%
+
+16	Input Modalities	Drawings (Children)	1	2.38%
+
+17	Facial Features	Facial Expression Intensity	1	2.38%
+
+18	CNN Architectures	Fast R-CNN	1	2.38%
+
+19	Optimization Methods	Feature Selection Algorithms	1	2.38%
+
+20	Physiological Signals	Wearable Sensors	1	2.38%
+
+21	Textual/Audio Features	Voice/Speech Features	1	2.38%
+
+22	Input Modalities	Actigraphy Data	1	2.38%
+
+23	CNN Architectures	Autoencoder	1	2.38%
+
+24	Optimization Methods	Ensemble Methods	1	2.38%
+
+25	Facial Features	Facial Symmetry	1	2.38%
+
+26	Physiological Signals	EEG Signals	1	2.38%
+
+27	Input Modalities	Selfie Videos	1	2.38%
+
+28	Others	Others	2	4.76%
+
+		Total	42	100.00%
+
+Table 9. Feature Groups.
+
+It.	Features Group	#	%
+
+1	Facial Features	17	40.48%
+
+2	Traditional ML	10	23.81%
+
+3	Eye-tracking/Computer Vision	6	14.29%
+
+4	Wearable/Mobile	4	9.52%
+
+5	Specialized Applications	3	7.14%
+
+6	Other Models	2	4.76%
+
+	Total	42	100.00%
+
+The marked preference for facial features for ASD population emotion recognition is grounded in that these modalities can directly capture visible manifestations of emotional expressions through Action Unit configuration analysis, detect high-temporal-frequency transitory microexpressions revealing genuine affective states before conscious social masking, and identify atypical gaze patterns characterized by reduced fixations in ocular region constituting robust behavioral biomarkers associated with ASD diagnosis. Howev-er, isolated facial features prove insufficient alone to achieve clinically robust performance in presence of autism spectrum phenotypic heterogeneity. Consequently, they must be complemented through: appropriate CNN architectures capturing hierarchical spatial dependencies between facial regions; multimodal signals including vocal features (pros-ody, pitch, tempo), body gestures (posture, stereotyped movements), and situational social context; and optimization techniques enabling effective generalization over populations with wide individual variability characteristic of ASD [1,6,10,25].
+
+4.6. Answer to RQ6: What Are the Main Problems or Limitations in Emotion Recognition Prediction in ASD?
+
+In systematically reviewed articles, authors explicitly identify methodological limita-tions or technical problems faced during experimental system design, implementation, and evaluation, although context-specific nuances exist in each case. We have consoli-dated these heterogeneous limitations into six fundamental taxonomic categories pre-sented in Table 10.
+
+Table 10. Feature Groups.
+
+It.	Identified Limits	#	%
+
+1	Representativeness of reality	12	28.57%
+
+2	Unbalanced data	10	23.81%
+
+3	Inconsistency in information recording	8	19.05%
+
+4	Lack of ability to explain proposed results	6	14.29%
+
+5	Availability of information and centralized processing	4	9.52%
+
+6	Adaptability in processing structured and unstructured	2	4.76%
+
+	Total	42	100.00%
+
+Representativeness of reality, identified in 28% of studies, fundamentally refers to the fact that many emotion recognition variables evaluated in controlled laboratory experi-mental protocols do not completely reflect the dynamic, contextually dependent, and so-cially situated nature of real human behavior in spontaneous daily interactions. Facial emotional expressions typically occur in complex temporal sequences integrated with voice, gestures, and social context, while training datasets frequently contain isolated static images of faces under artificial uniform illumination and neutral background con-ditions, generating an ecological validity gap limiting generalization to real clinical ap-plications.
+
+Unbalanced data, reported in 24% of studies, refers to the fact that ASD clinical da-tasets typically exhibit severe class imbalance, with ratios reaching 5:1 to 10:1 between neurotypical controls (majority class) and ASD cases (minority class), significantly re-ducing model performance through bias induction toward majority class prediction that maximizes global accuracy but produces deficient sensitivity for ASD positive case detec-tion, critical for system diagnostic utility.
+
+Inconsistency in information recording, observed in 19% of studies, refers to existing clinical records having been manually entered with systematic human errors, annotation biases between multiple evaluators, and noise from non-standardized acquisition proto-col variability, generating need to apply extensive data cleaning and preprocessing tech-niques with inherent risk of losing critical information during normalization or introduc-ing additional biases through arbitrary missing value imputation decisions.
+
+Lack of ability to explain proposed results, identified in 14% of studies, specifically refers to the fundamental interpretability limitation that most robust deep learning models present as black-box systems, where predictions emerge from complex non-linear interac-tions between millions of parameters distributed across multiple hidden layers, pro-foundly hindering their adoption in clinical practice where therapists require under-standing of causal mechanisms underlying classifications to responsibly integrate them into holistic clinical judgment and ethically communicate them to affected families.
+
+For emotion recognition models applied specifically to ASD population, methodo-logical difficulties concentrate particularly on consistency and ecological representative-ness of information available for training and validation. Additionally, models' technical capacity to coherently process and integrate heterogeneous multimodal data represents a fundamental limitation, given that in this specialized clinical area, comprehensive evalu-ation fundamental nature necessarily corresponds to synergistic integration of multiple complementary signals: dynamic facial expressions, prosodic vocal features, stereotyped or atypical body movement patterns, and situational social interaction context [1,2,6,12,22,25].
+
+5. Additional Findings
+
+During the development of this systematic review, we identified preprocessing and optimization techniques that authors consistently employ in their experiments, which are methodologically critical for final performance of emotion recognition systems applied to ASD population, although frequently reported in dispersed or insufficiently detailed manner in methodological sections.
+
+Most prevalent techniques for hyperparameter estimation and optimization corre-spond to K-Fold Cross-Validation employed in 38.10% of studies, and Grid Search used in 23.81% (Table 11). K-Fold CV enables robust validation through iterative data partitioning into training and validation subsets, particularly critical in small sample contexts charac-teristic of ASD clinical research where datasets typically contain N<500 participants. Ex-haustive Grid Search systematically explores hyperparameter space identifying optimal configurations, although with elevated computational cost limiting applicability in high-dimensional searches.
+
+Table 11. Techniques for Hyperparameter Determination.
+
+It.	Method	#	%	Author
+
+1	K-Fold Cross-Validation	16	38.10%	[1,2,6,10,22,25,28,31,32,35,41]
+
+2	Grid Search	10	23.81%	[2,10,22,28,41]
+
+3	Random Search	4	9.52%	[22,28]
+
+4	Bayesian Optimization	3	7.14%	[1,22]
+
+5	Manual Tuning	5	11.90%	[6,25,26,32]
+
+6	Nested Cross-Validation	2	4.76%	[41]
+
+7	Hold-out Validation	2	4.76%	[5,10]
+
+	Total	42	100.00%	
+
+Note: One study may employ multiple techniques simultaneously. Percentages reflect proportion of studies employing each technique.
+
+Most employed algorithms to mitigate severe imbalance characteristic of ASD clinical datasets correspond to Data Augmentation in 28.57% of studies, followed by SMOTE (Synthetic Minority Over-sampling Technique) with 19.05%, Class Weighting in 14.29%, and Stratified Sampling in 9.52% (Table 12). Data Augmentation generates synthetic ex-amples through geometric transformations (rotation, translation, zoom) and photometric transformations (brightness adjustment, contrast) of existing facial images, artificially in-creasing minority class size. SMOTE generates synthetic instances by linearly interpolat-ing between neighboring examples of minority class in feature space, although faces risk of generating unrealistic examples not capturing real ASD phenotypic variability.
+
+Table 12. Dataset Balancing Techniques.
+
+It.	Method	#	%	Author
+
+1	Data Augmentation	12	28.57%	[1,10,25,26,31,32]
+
+2	SMOTE	8	19.05%	[2,22,28]
+
+3	Class Weighting	6	14.29%	[1,10,22,41]
+
+4	Stratified Sampling	4	9.52%	[2,6,35,41]
+
+5	Random Undersampling	3	7.14%	[22]
+
+6	Synthetic Oversampling	3	7.14%	[28]
+
+7	Ensemble Balancing	2	4.76%	[22]
+
+8	No Balancing Reported	4	9.52%	[4,5,27,29]
+
+	Total	42	100.00%	
+
+Note: One study may employ multiple balancing techniques simultaneously. Percentages calcu-lated over total analyzed studies.
+
+Emotion recognition in ASD can be fundamentally conceptualized as a supervised classification problem with inherently imbalanced samples, given that ASD population prevalence (approximately 1:36 according to recent CDC 2023 epidemiological estimates) inevitably generates imbalanced datasets in population screening studies where majority class (neurotypical controls) numerically exceeds minority class (ASD cases) in ratios frequently exceeding 10:1 [2,6,22]. In this context, preprocessing techniques documented in this review can be considered methodological baseline for new research, especially considering that appropriate selection of balancing techniques and hyperparameter opti-mization can generate 10-20 percentage point improvements in critical metrics such as Recall and F1-score without modifying underlying model architecture.
+
+6. Discussion
+
+6.1. Model Architectures and Temporal Trends
+
+Most widely implemented Machine Learning models for emotion recognition and ASD detection correspond to Wearable/Mobile and Traditional ML families, each repre-senting 26.19% of total implementations, possibly due to their complementarity between practical accessibility and methodological maturity. Wearable/Mobile approach preva-lence reflects the trend toward implementation in naturalistic ecological contexts where continuous ambulatory evaluation provides superior ecological validity compared to con-trolled laboratory protocols. On the other hand, models with best quantitative predictive results correspond to both Traditional ML and CNN/Deep Learning groups, evidenced consistently in both configurations (N-Ens and Ens), reaching accuracies exceeding 95% in controlled datasets [2,22,28].
+
+Temporal analysis presented in Table 13 reveals that implementations of these fami-lies have increased steadily since 2020, with productivity peak in 2022-2024 (13 studies per year), probably driven by availability of deep learning frameworks optimized for mo-bile devices (TensorFlow Lite, PyTorch Mobile) and proliferation of smartphones with dedicated neural processing capacity (Apple Neural Engine, Qualcomm AI Engine).
+
+Table 13. Model Trends by Year.
+
+It.	Family	2020	2021	2022	2023	2024	2025	Total
+
+1	Wearable/Mobile	1	1	4	2	2	1	11
+
+2	Traditional ML	1	0	3	4	3	0	11
+
+3	CNN/Deep Learning	0	0	1	2	2	1	6
+
+4	Specialized Applications	0	0	2	1	2	0	5
+
+5	Other Models	0	0	2	1	2	0	5
+
+6	Eye-tracking/CV	0	0	1	1	2	0	4
+
+	Total	2	1	13	11	13	2	42
+
+A critical trend identified through comparative results analysis is that superior per-formances are consistently obtained through hybrid architectures integrating multiple al-gorithmic paradigms [4,22,27,32]. Specifically, experiments combining CNN for visual feature extraction with recurrent networks (LSTM, GRU) for temporal dependency model-ing in video sequences achieve 8-15% F1-score improvements compared to isolated CNNs [1,34]. Multimodal models fusing facial, vocal, and physiological features through cross-attention architectures achieve superior robustness against missing or noisy modal-ities [4,27].
+
+6.2. Evaluation Metrics and Datasets
+
+Most prevalent evaluation metrics correspond to ACC (68.75%), Precision (31.25%), Recall (37.5%), and F1-score (37.5%), while AUC is reported only in 12.5% of studies. This distribution may be explained by greater researcher familiarity with standard classifica-tion metrics and direct ACC interpretability for clinical audiences. However, AUC pre-sents fundamental methodological advantages in severe imbalance contexts by evaluating performance independently of selected classification threshold, providing aggregate dis-crimination measure across all possible cutoff points.
+
+Most utilized public datasets correspond to CAFE (7.1%) and FER-2013 (4.8%), em-ployed primarily for new architecture validation through comparison with established benchmarks. Private datasets represent 37.5% of implementations, generating knowledge through application in specific clinical scenarios reflecting population heterogeneity, nat-uralistic acquisition conditions, and demographic characteristics representative of target populations. The critical limitation identified is that no public dataset includes Latin American adult ASD population, compromising generalization of models trained pre-dominantly on Western datasets (American, European) to cultural contexts where emo-tional expressions may manifest differently due to distinct social norms.
+
+Main problems identified in datasets correspond to limited representativeness of re-ality (28.57%), reflecting gap between controlled laboratory conditions and real context variability; severe class imbalance (23.81%) introducing predictive biases toward majority classes; and inconsistency in information recording (19.05%) due to annotation errors, non-standardized protocols, and inter-rater variability.
+
+6.3. Input Features and Limitations
+
+Most prevalent variables for emotion recognition correspond to Facial Features (40.48%), CNN Architectures (23.81%), and multimodal Input Modalities (14.29%), as de-tailed in Tables 8-9. This distribution reflects that facial features provide direct discrimi-native information about emotional expressions, while CNN architectures enable auto-matic extraction of hierarchical representations without manual feature engineering. However, complementary physiological signals (7.14%) and contextual features remain underexploited despite their potential to capture autonomic manifestations of emotional states not visible in facial expressions, especially relevant in ASD where individuals may present dissociation between internal emotional experience and external facial expression due to difficulties in emotional regulation and social masking.
+
+7. Conclusions and Future Research
+
+This systematic review on Machine Learning technologies applied to emotion recog-nition in adults with ASD through mobile applications establishes the following funda-mental conclusions:
+
+•	Model architectures: Wearable/Mobile and Traditional ML families constitute the most investigated approaches, implemented in 26.19% of studies each. Hybrid archi-tectures combining CNN with temporal analysis, multimodal fusion, and ensemble learning achieve superior performances (accuracy >95% in controlled datasets) due to their capacity to integrate facial features, physiological signals, and behavioral con-text [4,22,27,32]. However, these complex models present critical challenges of clini-cal interpretability and sensitivity to atypical values characteristic of ASD phenotypic heterogeneity.
+
+•	Evaluation metrics: ACC (68.75%), Recall (37.5%), F1-score (37.5%), Precision (31.25%), and AUC (12.5%) constitute standard metrics. ACC predominates for direct interpretability, although AUC is methodologically superior in presence of severe imbalance (ASD prevalence ~1:36) by evaluating performance independently of clas-sification threshold. Metric selection must consider specific clinical context: popula-tion screening requires high sensitivity (minimize false negatives), while confirma-tory diagnosis prioritizes specificity (minimize false positives).
+
+•	Datasets: Public datasets CAFE (7.1%) and FER-2013 (4.8%) enable standardized validation of new architectures. Private datasets (37.5%) generate knowledge through application in specific clinical contexts including real mobile applications, wearable signals, naturalistic videos, and structured evaluations. The critical gap identified is absence of representative datasets of Latin American adult population, limiting cross-cultural generalization.
+
+•	Input features: Facial features (40.48%) including landmarks, Action Units, microex-pressions, and atypical gaze patterns constitute predominant variables. However, robust performance requires complementation with optimized CNN architectures (23.81%), multimodal modalities (14.29%) integrating video, audio, physiological signals, and contextual data reflecting multidimensional nature of emotional pro-cessing in ASD.
+
+•	Methodological limitations: Limited representativeness of reality (28.57%), data im-balance (23.81%), and recording inconsistency (19.05%) constitute fundamental problems, originating in recruitment biases, non-standardized protocols, and ASD phenotypic heterogeneity. Data Augmentation (28.57%) and SMOTE (19.05%) are most employed techniques for balancing, while K-Fold CV (38.10%) and Grid Search (23.81%) predominate for hyperparameter optimization.
+
+•	Preprocessing techniques: Documented balancing and optimization techniques con-stitute critical methodological baseline, given that their appropriate application can generate 10-20 percentage point improvements in key metrics without modifying underlying architectures.
+
+Future Directions
+
+Emotion recognition contribution through mobile applications corresponds to the phase where early and intensive intervention generates greatest impact on developmental trajectories. We propose extending ML application toward: (1) automated diagnostic evaluations validated for Latin American adult population considering cross-cultural variability in emotional expression; (2) continuous longitudinal monitoring of therapeutic progress through analysis of ecological data captured in natural contexts; (3) personalized intervention adaptation through reinforcement learning algorithms optimizing therapeu-tic strategies based on individual responses; (4) integration of Explainable AI techniques providing interpretable prediction justifications to guide informed clinical judgment.
+
+Big data analysis on unstructured modalities (naturalistic images, social interaction text, spontaneous behavior videos, atypical prosody vocal signals) through transformer architectures and multimodal language models could capture subtle patterns undetecta-ble through traditional analysis [1,4,5,22,25,27,32]. Finally, incorporation of environmen-tal contextual variables (illumination, noise, presence of familiar/unfamiliar persons, sensory stimulation level) could improve predictive robustness by explicitly modeling situational factors modulating emotional responses in persons with ASD, who frequently exhibit hypersensitivity to environmental stimuli triggering emotional dysregulation.
+
+Author Contributions: Conceptualization, J.E.C.A.; methodology, J.E.C.A. and J.M.C.M.; valida-tion, J.E.C.A., J.M.C.M., and C.A.P.S.; formal analysis, J.E.C.A. and J.M.C.M.; investigation, J.M.C.M. and C.A.P.S.; resources, J.E.C.A.; data curation, J.M.C.M. and C.A.P.S.; writing—original draft preparation, J.M.C.M. and C.A.P.S.; writing—review and editing, J.E.C.A.; visualization, J.M.C.M.; supervision, J.E.C.A.; project administration, J.E.C.A. All authors have read and agreed to the published version of the manuscript.
+
+Funding: This research received no external funding.
+
+Institutional Review Board Statement: Not applicable.
+
+Informed Consent Statement: Not applicable.
+
+Data Availability Statement: Not applicable.
+
+Conflicts of Interest: The authors declare no conflicts of interest.
+
+References
+
+1.	Keinert, M.; Pistrosch, S.; Mallol-Ragolta, A.; Schuller, B.W.; Berking, M. Facial emotion recognition of 16 distinct emotions from smartphone videos: Comparative study of machine learning and human performance. J. Med. Internet Res. 2025, 27, e68942. https://doi.org/10.2196/68942
+
+2.	Shambour, Q.Y.; Qandeel, N.; Alraba'nah, Y.; Abumariam, A.; Shambour, M.K. Artificial intelligence techniques for early autism detection in toddlers: A comparative analysis. J. Appl. Data Sci. 2024, 5, 1754–1764. https://doi.org/10.47738/jads.v5i4.353
+
+3.	Keinert, M.; Schindler-Gmelch, L.; Rupp, L.H.; Sadeghi, M.; Capito, K.; Hager, M.; Berking, M. Facing depression: Evaluating the efficacy of the EmpkinS-EKSpression reappraisal training augmented with facial expressions – protocol of a randomized controlled trial. BMC Psychiatry 2024, 24, 896. https://doi.org/10.1186/s12888-024-06361-3
+
+4.	Chen, J.; Chan, N.Y.; Li, C.T.; Chan, J.W.Y.; Liu, Y.; Li, S.X.; Wing, Y.K. Multimodal digital assessment of depression with actigraphy and app in Hong Kong Chinese. Transl. Psychiatry 2024, 14, 150. https://doi.org/10.1038/s41398-024-02873-4
+
+5.	Nepal, S.; Pillai, A.; College, D.; Wang, W.; Griffin, T.; Collins, A.C.; Campbell, A.T. MoodCapture: Depression detection using in-the-wild smartphone images. In Proceedings of the Conference on Human Factors in Computing Systems, Honolulu, HI, USA, 11–16 May 2024; p. 996. https://doi.org/10.1145/3613904.3642680
+
+6.	Hwang, S.H.; Yu, Y.; Kim, J.; Lee, T.; Park, Y.R.; Kim, H.W. A study on the screening of children at risk for developmental disabilities using facial landmarks derived from a mobile-based application. Psychiatry Investig. 2024, 21, 496–505. https://doi.org/10.30773/pi.2023.0315
+
+7.	Panda, P.K.; Elwadhi, A.; Gupta, D.; Palayullakandi, A.; Tomar, A.; Singh, M.; Sharawat, I.K. Effectiveness of IMPUTE ADT-1 mobile application in children with autism spectrum disorder: An interim analysis of an ongoing randomized controlled trial. Iran. J. Mater. Sci. Eng. 2024, 15, 262–269. https://doi.org/10.25259/JNRP_599_2023
+
+8.	Abd El-Sattar, H.K.H.; Omar, M.; Mohamady, H. Developing a participatory research framework through serious games to promote learning for children with autism. Front. Educ. 2024, 9, 1453327. https://doi.org/10.3389/feduc.2024.1453327
+
+9.	Rashid, Z.; Folarin, A.A.; Zhang, Y.; Ranjan, Y.; Conde, P.; Sankesara, H.; Dobson, R.J.B. Digital phenotyping of mental and physical conditions: Remote monitoring of patients through RADAR-Base platform. JMIR Ment. Health 2024, 11, e51259. https://doi.org/10.2196/51259
+
+10.	Anto-Chavez, C.; Maguiña-Bernuy, R.; Ugarte, W. Real-time CNN based facial emotion recognition model for a mobile serious game. In Proceedings of the International Conference on Information and Communication Technologies for Ageing Well and e-Health (ICT4AWE), Angers, France, 22–24 April 2024; pp. 84–92. https://doi.org/10.5220/0012683800003699
+
+11.	Krumnikl, M.; Maiwald, V. Facial emotion recognition for mobile devices: A practical review. IEEE Access 2024, 12, 15735–15747. https://doi.org/10.1109/ACCESS.2024.3358455
+
+12.	Mukherjee, D.; Bhavnani, S.; Lockwood-Estrin, G.; Rao, V.; Dasgupta, J.; Irfan, H.; Belmonte, M.K. Digital tools for direct assessment of autism risk during early childhood: A systematic review. Autism 2024, 28, 6–31. https://doi.org/10.1177/13623613221133176
+
+13.	Valuch, C.; Pelowski, M.; Peltoketo, V.T.; Hakala, J.; Leder, H. Let's put a smile on that face—A positive facial expression improves aesthetics of portrait photographs. R. Soc. Open Sci. 2023, 10, 230413. https://doi.org/10.1098/rsos.230413
+
+14.	Parlett-Pelleriti, C.M.; Stevens, E.; Dixon, D.; Linstead, E.J. Applications of unsupervised machine learning in autism spectrum disorder research: A review. Rev. J. Autism Dev. Disord. 2023, 10, 406–421. https://doi.org/10.1007/s40489-021-00299-y
+
+15.	Wali, A.; Alfrihidi, M.; Alasiri, N.; Alsabei, N. Aawn: An interactive mobile application for improving the communication skills of Arab children with autism. TEM J. 2023, 12, 1307–1315. https://doi.org/10.18421/TEM123-10
+
+16.	Lootus, M.; Beatson, L.; Atwood, L.; Bourdais, T.; Steyaert, S.; Sarabu, C.; Rinaldo, F. Development and assessment of an artificial intelligence-based tool for ptosis measurement in adult myasthenia gravis patients using selfie video clips recorded on smartphones. Digit. Biomark. 2023, 7, 63–73. https://doi.org/10.1159/000531224
+
+17.	Toki, E.I.; Tatsis, G.; Tatsis, V.A.; Plachouras, K.; Pange, J.; Tsoulos, I.G. Employing classification techniques on SmartSpeech biometric data towards identification of neurodevelopmental disorders. Signals 2023, 4, 401–420. https://doi.org/10.3390/signals4020021
+
+18.	Vacca, R.A.; Augello, A.; Gallo, L.; Caggianese, G.; Malizia, V.; La Grutta, S.; Scala, I. Serious games in the new era of digi-tal-health interventions: A narrative review of their therapeutic applications to manage neurobehavior in neurodevelop-mental disorders. Neurosci. Biobehav. Rev. 2023, 149, 105156. https://doi.org/10.1016/j.neubiorev.2023.105156
+
+19.	Sajjad, M.; Ullah, F.U.M.; Ullah, M.; Christodoulou, G.; Sudarshana, F.; Hijji, M.; Rodrigues, J.J.P.C. A comprehensive survey on deep facial expression recognition: Challenges, applications, and future guidelines. Alex. Eng. J. 2023, 68, 817–840. https://doi.org/10.1016/j.aej.2023.01.017
+
+20.	Aghakhani, S.; Carre, N.; Mostovoy, K.; Shafer, R.; Baeza-Hernandez, K.; Entenberg, G.; Bunge, E.L. Qualitative analysis of mental health conversational agents messages about autism spectrum disorder: A call for action. Front. Digit. Health 2023, 5, 1251016. https://doi.org/10.3389/fdgth.2023.1251016
+
+21.	Saisanthiya, D.; Supraja, P. Heterogeneous convolutional neural networks for emotion recognition combined with multi-modal factorised bilinear pooling and mobile application recommendation. Int. J. Interact. Mob. Technol. 2023, 17, 129–142. https://doi.org/10.3991/ijim.v17i16.42735
+
+22.	Haoues, M.; Mokni, R. Toward an autism-friendly environment based on mobile apps user feedback analysis using deep learning and machine learning models. PeerJ Comput. Sci. 2023, 9, e1442. https://doi.org/10.7717/peerj-cs.1442
+
+23.	Thabet, Z.; Ansari, H.; Albashtawi, S.; Siyam, N.; Abdallah, S. Using deep learning and native mobile app to assist autistic students' educational experience. In Proceedings of the International Conference on Computer Supported Education (CSEDU), Prague, Czech Republic, 21–23 April 2023; Volume 2, pp. 96–103. https://doi.org/10.5220/0011748800003470
+
+24.	Alam, H.; Burhan, M.; Gillani, A.; Haq, I.U.; Arshed, M.A.; Shafi, M.; Ahmed, S. IoT based smart baby monitoring system with emotion recognition using machine learning. Wirel. Commun. Mob. Comput. 2023, 2023, 1175450. https://doi.org/10.1155/2023/1175450
+
+25.	Banerjee, A.; Mutlu, O.C.; Kline, A.; Surabhi, S.; Washington, P.; Wall, D.P. Training and profiling a pediatric facial expression classifier for children on mobile devices: Machine learning study. JMIR Form. Res. 2023, 7, e39917. https://doi.org/10.2196/39917
+
+26.	Popescu, A.L.; Popescu, N. Drawing interpretation using neural networks and accessibility implementation in mobile ap-plication. Computation 2022, 10, 202. https://doi.org/10.3390/computation10110202
+
+27.	Miranda-Calero, J.A.; Rituerto-González, E.; Luis-Mingueza, C.; Canabal, M.F.; Ramirez-Barcenas, A.R.; Lanza-Gutierrez, J.M.; Lopez-Ongil, C. Bindi: Affective Internet of Things to combat gender-based violence. IEEE Internet Things J. 2022, 9, 21174–21193. https://doi.org/10.1109/JIOT.2022.3177256
+
+28.	Neggaz, I.; Fizazi, H. An intelligent handcrafted feature selection using Archimedes optimization algorithm for facial analysis. Soft Comput. 2022, 26, 10435–10464. https://doi.org/10.1007/s00500-022-06886-3
+
+29.	Ali, N.; Abdrazaq, A.; Shah, Z.; Househ, M. Artificial intelligence-based mobile application for emotion sensing for children through art. Stud. Health Technol. Inform. 2022, 290, 1130–1131. https://doi.org/10.3233/SHTI220302
+
+30.	Sayis, B.; Ramirez-Melendez, R.; Pares, N. Mixed reality or LEGO game play? Fostering social interaction in children with Autism. Virtual Real. 2022, 26, 771–787. https://doi.org/10.1007/s10055-021-00580-9
+
+31.	Washington, P.; Kalantarian, H.; Kent, J.; Husic, A.; Kline, A.; Leblanc, E.; Wall, D.P. Improved digital therapy for develop-mental pediatrics using domain-specific artificial intelligence: Machine learning study. JMIR Pediatr. Parent. 2022, 5, e26760. https://doi.org/10.2196/26760
+
+32.	Popescu, A.L.; Popescu, N.; Dobre, C.; Apostol, E.S.; Popescu, D. IoT and AI-based application for automatic interpretation of the affective state of children diagnosed with autism. Sensors 2022, 22, 2528. https://doi.org/10.3390/s22072528
+
+33.	Wetcho, S.; Nasongkhla, J. An investigation of pre-service teachers using mobile and wearable devices for emotion recog-nition and social sharing of emotion to support emotion regulation in mCSCL environments. Contemp. Educ. Technol. 2022, 14, ep359. https://doi.org/10.30935/cedtech/11668
+
+34.	Amiriparian, S.; Hübner, T.; Karas, V.; Gerczuk, M.; Ottl, S.; Schuller, B.W. DeepSpectrumLite: A power-efficient transfer learning framework for embedded speech and audio processing from decentralized data. Front. Artif. Intell. 2022, 5, 856232. https://doi.org/10.3389/frai.2022.856232
+
+35.	Varma, M.; Washington, P.; Chrisman, B.; Kline, A.; Leblanc, E.; Paskov, K.; Wall, D.P. Identification of social engagement indicators associated with autism spectrum disorder using a game-based mobile app: Comparative study of gaze fixation and visual scanning methods. J. Med. Internet Res. 2022, 24, e31830. https://doi.org/10.2196/31830
+
+36.	Lee, Y.S.; Park, W.H. Diagnosis of depressive disorder model on facial expression based on Fast R-CNN. Diagnostics 2022, 12, 317. https://doi.org/10.3390/diagnostics12020317
+
+37.	Izountar, Y.; Benbelkacem, S.; Otmane, S.; Khababa, A.; Masmoudi, M.; Zenati, N. VR-PEER: A personalized exer-game plat-form based on emotion recognition. Electronics 2022, 11, 455. https://doi.org/10.3390/electronics11030455
+
+38.	Abdel Hameed, M.; Hassaballah, M.; Hosney, M.E.; Alqahtani, A. An AI-enabled Internet of Things based autism care system for improving cognitive ability of children with autism spectrum disorders. Comput. Intell. Neurosci. 2022, 2022, 2247675. https://doi.org/10.1155/2022/2247675
+
+39.	Abbas, A.; Hansen, B.J.; Koesmahargyo, V.; Yadav, V.; Rosenfield, P.J.; Patil, O.; Galatzer-Levy, I.R. Facial and vocal markers of schizophrenia measured using remote smartphone assessments: Observational study. JMIR Form. Res. 2022, 6, e26276. https://doi.org/10.2196/26276
+
+40.	Santamaria-Granados, L.; Mendoza-Moreno, J.F.; Chantre-Astaiza, A.; Munoz-Organero, M.; Ramírez-González, G. Tourist experiences recommender system based on emotion recognition with wearable data. Sensors 2021, 21, 7854. https://doi.org/10.3390/s21237854
+
+41.	Leblanc, E.; Washington, P.; Varma, M.; Dunlap, K.; Penev, Y.; Kline, A.; Wall, D.P. Feature replacement methods enable reliable home video analysis for machine learning detection of autism. Sci. Rep. 2020, 10, 21245. https://doi.org/10.1038/s41598-020-76874-w
+
+42.	Kolakowska, A.; Szwoch, W.; Szwoch, M. A review of emotion recognition methods based on data acquired via smartphone sensors. Sensors 2020, 20, 6367. https://doi.org/10.3390/s20216367
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any in-jury to people or property resulting from any ideas, methods, instructions or products referred to in the content.
+
