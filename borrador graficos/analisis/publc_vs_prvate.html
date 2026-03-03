@@ -38,40 +38,24 @@
         canvas {
             max-height: 400px;
         }
-
-        .caption {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #666;
-            text-align: justify;
-            line-height: 1.6;
-        }
     </style>
 </head>
 
 <body>
     <div class="chart-container">
-        <h3>Figure 6. Public vs. Private Dataset Distribution (n = 42 studies)</h3>
+        <h3>Figure 6. Public vs. Private Dataset Distribution (n = 34 studies)</h3>
         <canvas id="datasetChart"></canvas>
-        <div class="caption">
-            <strong>Note:</strong> The majority of reviewed studies (62.5%, n=26) utilize publicly available datasets
-            enabling reproducibility and benchmark comparison, while 37.5% (n=16) employ proprietary or
-            privacy-restricted datasets containing sensitive clinical information. This distribution reflects the
-            tension between open science principles and privacy protection requirements in clinical ASD research.
-        </div>
     </div>
-
     <script>
         const ctx = document.getElementById('datasetChart').getContext('2d');
-
         const data = {
             labels: [
-                'Public Datasets (62.5%)',
-                'Private Datasets (37.5%)'
+                'Public Datasets (50.0%)',
+                'Private / Semi-restricted Datasets (50.0%)'
             ],
             datasets: [{
                 label: 'Number of Studies',
-                data: [26, 16],
+                data: [17, 17],
                 backgroundColor: [
                     'rgba(54, 162, 235, 0.8)',
                     'rgba(255, 99, 132, 0.8)'
@@ -83,7 +67,6 @@
                 borderWidth: 2
             }]
         };
-
         const config = {
             type: 'pie',
             data: data,
@@ -126,7 +109,6 @@
                 }
             }
         };
-
         new Chart(ctx, config);
     </script>
 </body>

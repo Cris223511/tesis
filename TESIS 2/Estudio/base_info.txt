@@ -1,0 +1,373 @@
+recuerda q primero tuvimos a toda la data:
+SCOPUS (935)
+Web Of Science (942)
+IEEE (38)
+luego en IDENTIFICATION P. borramos los repetidos y eso p
+SCOPUS (642)
+Web Of Science (258)
+IEEE (13)
+y en SELECTION los que son accesibles a sus datos por lo menos, y los que son relevantes en nuestro tempa p eso etc
+SCOPUS (60)
+Web Of Science (17)
+IEEE (8)
+y en ELEGIBLIITY los que tienen datasets metricas etc esos datos relevantes p
+SCOPUS (25)
+Web Of Science (7)
+IEEE (2)
+y en INCLUSION es los nuevos papers q incluímos por nuestra cuenta, pero no lo hemos echo, por la cual está igual a ELEGIBILITY, ok? todo claro?...
+dime necesitas saber algo más? si no, CONTINUA.
+y me dices p lo q hiciste etc... ok? go.
+
+ah y la data p.. .q hicimos:
+
+Revisión Sistemática — Extracción de Datos de 34 Papers
+Reconocimiento de Emociones mediante Machine Learning en Niños con Trastorno del Espectro Autista
+Total de papers: 34 (25 Scopus + 7 Web of Science + 2 IEEE)
+Distribución por tipo:
+Papers con métricas cuantitativas ML/DL: 22
+Papers clínicos/conductuales/psicométricos sin modelo ML: 8
+Papers de diseño de sistemas o conceptuales: 2
+Papers retractados o con problemas graves de integridad: 3 (incluidos en el conteo anterior pero flaggeados)
+Rango de accuracy reportados: 53% — 99% (con clara inflación en papers que usan datasets Kaggle éticamente comprometidos)
+Accesibilidad: Solo 8 de 34 ofrecen algún nivel de acceso a datos o código. Ninguno comparte simultáneamente dataset completo + código fuente.
+Tabla Principal: Extracción Sistemática de los 34 Papers
+SCOPUS (25 papers)
+Paper 1 — Güngör, Sarman & Tuncay (2025) ⚠️ RETRACTADO
+Título: Can artificial intelligence and face recognition using deep learning detect emotions in children with autism?
+Fuente: PLOS ONE, Vol. 20(12), Art. e0338701
+DOI: 10.1371/journal.pone.0338701
+Afiliación: Hacettepe University / Bingöl University, Turquía
+Métricas reportadas: ACC: 75.8%; Sensibilidad: 74.3%; Especificidad: 76.2%; F1 por clase
+Dataset(s): Kaggle "Autistic Children Emotions" + FERAC — Público (problemas éticos: imágenes de menores sin consentimiento verificado ni diagnóstico clínico confirmado)
+Tipo de modelo: No ensamblado — AutismEfficientNet (CNN híbrida MobileNetV3 + EfficientNetV2)
+Accesibilidad: SÍ (Kaggle) pero éticamente comprometido; sin código
+Estado: ⚠️ RETRACTADO — Uso de imágenes de menores de dataset no curado, sin consentimiento parental documentado
+Paper 2 — Johnson, Argyriou, Barman & Politis (2025)
+Título: Assistive facial expression recognition for children with autism using re-enactment
+Fuente: Computers in Human Behavior Reports, Vol. 20, Art. 100800
+DOI: 10.1016/j.chbr.2025.100800
+Afiliación: Kingston University, Reino Unido
+Métricas reportadas: ACC: 67.83% (7 expresiones), 64.65% (8 expresiones)
+Dataset(s): AffectNet (~450K imágenes, semi-público, requiere permiso) + Cohorte clínica (N=48, privado)
+Tipo de modelo: No ensamblado — EfficientNet-v2 + modelo generativo de re-enactment facial
+Accesibilidad: PARCIAL — AffectNet requiere permiso; datos clínicos disponibles bajo solicitud
+Paper 3 — Mahmood, Menzli, Alturki & Tawfeek (2025) ⚠️ RETRACTADO
+Título: Leveraging artificial intelligence for diagnosis of children autism through facial expressions
+Fuente: Scientific Reports, Vol. 15(1), Art. 11945
+DOI: 10.1038/s41598-025-96014-6
+Afiliación: Jouf University / Princess Nourah Bint Abdulrahman University, Arabia Saudita
+Métricas reportadas: ACC: 91.33% (ResNet152+ViT); comparaciones: VGG16 84.66%, MobileNet 84.67%, EfficientNetB0 87.9%
+Dataset(s): Kaggle ASD facial images — Público (problemas éticos)
+Tipo de modelo: No ensamblado — Híbrido ResNet152 + Vision Transformer (ViT)
+Accesibilidad: SÍ (Kaggle) pero éticamente comprometido; sin código
+Estado: ⚠️ RETRACTADO — Imágenes de menores recopiladas de internet sin consentimiento ni diagnóstico verificado
+Paper 4 — Shaik, Shekhar & Shelke (2025)
+Título: Hybrid Deep Learning Framework for Autism Detection in Children Using Facial Emotion Recognition
+Fuente: Ingenierie des Systemes d'Information, Vol. 30(10), pp. 2595-2607
+DOI: 10.18280/isi.301007
+Afiliación: Alliance University, Bengaluru, India
+Métricas reportadas: ACC: 84.00%; AUC: 92.29%; Precision: 84.83%; Recall: 86.17%; F1: >81.9%; Kappa: >63%; MCC: >63%
+Dataset(s): Kaggle ASD Dataset + ASD Emotion Dataset (833 imágenes, 6 emociones) — Público
+Tipo de modelo: Ensamblado — Soft-voting (SVC + Gradient Boosting + MLP) sobre features de EfficientNetB0 + ResNet50 + MobileNetV3Small
+Accesibilidad: SÍ — Datasets públicos en Kaggle
+Paper 5 — El Rhatassi, El Ghali & Najima (2025)
+Título: Hybrid Real Time Facial Emotions Recognition on Autistic Individuals
+Fuente: International Journal of Advanced Computer Science and Applications, Vol. 16(9), pp. 629-635
+DOI: 10.14569/IJACSA.2025.0160959
+Afiliación: School of Information Sciences / ENSIAS, Rabat, Marruecos
+Métricas reportadas: ACC entrenamiento: 94.5%; ACC validación: 53.03% (CK+)
+Dataset(s): CK+ (123 sujetos, semi-público, requiere permiso) + Kaggle Autistic Children Emotions — Parcial
+Tipo de modelo: Ensamblado (fusión de features) — Híbrido CNN×3 (EfficientNetB0 + ResNet50 + MobileNetV2) + LSTM temporal
+Accesibilidad: PARCIAL — CK+ requiere permiso; Kaggle dataset público
+Paper 6 — Aljbori, Makhlouf & Fakhfakh (2025)
+Título: A Facial Emotion Recognition System for Children with Autism, Based on The Integration of 3D-CNN and LSTM
+Fuente: Journal of Wireless Mobile Networks, Ubiquitous Computing, and Dependable Applications, Vol. 16(3), pp. 433-452
+DOI: 10.58346/JOWUA.2025.I3.026
+Afiliación: ENET'Com / University of Sfax, Túnez
+Métricas reportadas: ACC: 99.01%; Precision: 98.54%; Recall: 98.72%; F1: 98.63%; AUC: 0.9912; Kappa: 0.961
+Dataset(s): Kaggle "Autistic Children Emotions" (6 categorías) — Público
+Tipo de modelo: No ensamblado — Híbrido 3D-CNN + LSTM + Autoencoder
+Accesibilidad: SÍ — Dataset público en Kaggle
+Nota: Accuracy extremadamente alto (99.01%) probablemente inflado por overfitting en dataset pequeño y éticamente cuestionable
+Paper 7 — Ramachandran, Malladi, Bellamkonda & Reddy (2025)
+Título: Disorder Facial Emotion Recognition with Grey Wolf Optimized Gefficient-Net for Autism Spectrum
+Fuente: International Journal of Image, Graphics and Signal Processing, Vol. 17(1), pp. 1-16
+DOI: 10.5815/ijigsp.2025.01.01
+Afiliación: Vasireddy Venkatadri Institute of Technology / KL University / IIIT Gwalior / Acharya Nagarjuna University, India
+Métricas reportadas: ACC: 96.54%; F1: 0.9635; Sensibilidad: 0.9615; Especificidad: 0.9648; AUC: 0.9678; G-Mean: 0.9632
+Dataset(s): Kaggle Autism Children Facial (2,936 imgs) + Kaggle FER (35,887 imgs) — Público
+Tipo de modelo: Ensamblado (híbrido) — GWO-GEfficientNet: EfficientNet + GoogleNet con Grey Wolf Optimization; features VGG-16
+Accesibilidad: SÍ — Ambos datasets públicos en Kaggle
+Paper 8 — Sariyanidi, Yankowitz, Schultz, Herrington, Tunç & Cohn (2025)
+Título: Beyond FACS: Data-driven Facial Expression Dictionaries, with Application to Predicting Autism
+Fuente: 2025 IEEE 19th International Conference on Automatic Face and Gesture Recognition (FG 2025)
+DOI: 10.1109/FG61629.2025.11099288
+Afiliación: Children's Hospital of Philadelphia / University of Pennsylvania / University of Pittsburgh, EE.UU.
+Métricas reportadas: ACC F2F: ~83–85%; ACC R2R: ~77–80% (valores de gráficas, no tablas exactas)
+Dataset(s): CK+ y MMI (públicos, para diccionario) + CHOP clínico F2F (N=42) y R2R (N=97) — Parcial
+Tipo de modelo: No ensamblado — Facial Basis (Dictionary Learning) + SVM lineal
+Accesibilidad: SÍ — Código en GitHub: github.com/sariyanidi/FacialBasis; CK+ y MMI públicos; datos clínicos privados
+Nota: Único paper con código abierto verificado en GitHub
+Paper 9 — Kumar, Kumar & Jayakody (2024) ⚠️ RETRACTADO
+Título: Ambiguous facial expression detection for Autism Screening using enhanced YOLOv7-tiny model
+Fuente: Scientific Reports, Vol. 14(1), Art. 28501
+DOI: 10.1038/s41598-024-77549-6
+Afiliación: Bennett University, India / Universidade Autónoma de Lisboa, Portugal / SLIIT, Sri Lanka
+Métricas reportadas: mAP: 79.56% (detección)
+Dataset(s): Self-annotated face images de internet — Privado (éticamente comprometido)
+Tipo de modelo: No ensamblado — Enhanced YOLOv7-tiny (dilated convolutions + detection head adicional)
+Accesibilidad: SÍ (Google Drive, pre-retracción) pero éticamente comprometido
+Estado: ⚠️ RETRACTADO — Imágenes de menores recopiladas de internet sin consentimiento documentado ni supervisión ética institucional
+Paper 10 — Radočaj & Martinović (2025)
+Título: Emotion Recognition in Autistic Children Through Facial Expressions Using Advanced Deep Learning Architectures
+Fuente: Applied Sciences (Switzerland), Vol. 15(17), Art. 9555
+DOI: 10.3390/app15179555
+Afiliación: Inspecto d.o.o. / Sveučilište Josipa Jurja Strossmayera u Osijeku, Croacia
+Métricas reportadas: ACC: 0.80; F1: 0.7889 (Swin Transformer, mejor modelo). CNNs no detectaron clase "fear". 8 modelos evaluados
+Dataset(s): FERAC (Facial Expression Recognition in Autistic Children) — 4 emociones, Ma Shishu Hospital, Bangladesh. Disponible en Kaggle. Público
+Tipo de modelo: No ensamblado — Comparación individual de 4 CNNs (InceptionV3, InceptionResNetV2, DenseNet201, ResNet152V2) y 4 Transformers (ViT, ViT-DeiT, CvT, Swin Transformer)
+Accesibilidad: SÍ — OA (CC BY, MDPI). Dataset FERAC en Kaggle
+Paper 11 — Alam, Rashid, Bin Haja Mohideen, Alahi, Kchaou & Alharthi (2025)
+Título: Robust Autism Spectrum Disorder Screening Based on Facial Images (For Disability Diagnosis): A Domain-Adaptive Deep Ensemble Approach
+Fuente: Diagnostics, Vol. 15(13), Art. 1601
+DOI: 10.3390/diagnostics15131601
+Afiliación: International Islamic University Malaysia / Northern University Bangladesh / Walailak University / University of Bisha, Arabia Saudita
+Métricas reportadas: ACC: 96.0%, AUC: 0.990 (conjunto combinado T1+T2); ACC: 90.6%, AUC: 0.930 (datos no vistos T3/UIFID); Xception sola: 83%
+Dataset(s): (1) Kaggle ASD (~2,940 imgs) ⚠️ ético; (2) YTUIA (YouTube, público en Kaggle); (3) UIFID (N=130, 51 sujetos, privado)
+Tipo de modelo: Ensamblado — ASD-UANet: Xception + ResNet50V2 con FPPR weighted voting. Transfer learning con domain adaptation
+Accesibilidad: SÍ pero éticamente comprometido — OA (CC BY). Kaggle y YTUIA públicos; UIFID privado
+Paper 12 — Levy, Ambaw, Ben-Itzhak & Holdengreber (2024)
+Título: A real-time environmental translator for emotion recognition in autism spectrum disorder
+Fuente: Scientific Reports, Vol. 14(1), Art. 31527
+DOI: 10.1038/s41598-024-83229-2
+Afiliación: Ariel University, Israel
+Métricas reportadas: No reporta métricas ML del CNN. Diseño de sistema wearable (gafas inteligentes + retroalimentación vibrotáctil). CNN proporciona distribución de probabilidad sobre 7 emociones
+Dataset(s): FER2013 (35,888 imágenes, 7 emociones) — Público
+Tipo de modelo: No ensamblado — CNN simple (Keras/Python) para FER. Innovación en hardware, no en modelo
+Accesibilidad: SÍ — OA (Scientific Reports). FER2013 público
+Paper 13 — Hosney, Talaat, El-Gendy & Saafan (2024)
+Título: AutYOLO-ATT: an attention-based YOLOv8 algorithm for early autism diagnosis through facial expression recognition
+Fuente: Neural Computing and Applications, Vol. 36(27), pp. 17199-17219
+DOI: 10.1007/s00521-024-09966-7
+Afiliación: Mansoura University / Kafr el-Sheikh University, Egipto
+Métricas reportadas: ACC: 97.2%; Precision: 93.97%; Recall: 97.5%; F1: 92.99%
+Dataset(s): Kaggle "Autistic Children Emotions" (Dr. Fatma M. Talaat) ⚠️ Co-autora creó el dataset — conflicto de interés. 6 emociones. Público pero éticamente cuestionable
+Tipo de modelo: No ensamblado — AutYOLO-ATT: YOLOv8 + mecanismo de atención (DCNN)
+Accesibilidad: SÍ pero éticamente comprometido — OA. Dataset Kaggle público pero cuestionable (co-autora creadora del dataset)
+Paper 14 — El Rhatassi, El Ghali & Najima (2024)
+Título: Deep learning approaches for recognizing facial emotions on autistic patients
+Fuente: International Journal of Electrical and Computer Engineering, Vol. 14(4), pp. 4034-4045
+DOI: 10.11591/ijece.v14i4.pp4034-4045
+Afiliación: LyRica Lab, ITQAN Team / ENSIAS, Rabat, Marruecos
+Métricas reportadas: ACC: 74% (CNN en FER2013), 69% (ViT en FER2013), 65% (CNN en dataset autism). Sin precision/recall/F1/AUC
+Dataset(s): FER2013 (público) + dataset combinado de autism (privado, tamaño no especificado)
+Tipo de modelo: No ensamblado — Comparación CNN vs. ViT. Parte de proyecto chatbot
+Accesibilidad: SÍ — OA (CC BY-SA, IJECE). Dataset autism privado/poco descrito
+Nota: Mismos autores que Paper 5. Al aplicar CNN entrenado en FER2013 (74%) a datos de personas autistas, la accuracy cae a 65%, evidenciando la brecha de dominio
+Paper 15 — Ahmad, Rashid, Faheem, Akram, Khan & Ul Amin (2024)
+Título: Autism spectrum disorder detection using facial images: A performance comparison of pretrained convolutional neural networks
+Fuente: Healthcare Technology Letters, Vol. 11(4), pp. 227-239
+DOI: 10.1049/htl2.12073
+Afiliación: Beihang University, China / University of Okara, Pakistan / University of Vaasa, Finlandia
+Métricas reportadas: ACC: 92% (ResNet50 a 248×248); VGG19: ~80%, VGG16: ~78%, AlexNet: ~76%, MobileNetV2: ~78%, ResNet34: ~79%. ROC curves reportadas
+Dataset(s): Kaggle ASD (2,940 imgs, cihan063) ⚠️ ético — Público pero comprometido
+Tipo de modelo: No ensamblado — Comparación de 6 CNNs pre-entrenadas (ResNet34/50, AlexNet, MobileNetV2, VGG16/19). Transfer learning
+Accesibilidad: SÍ pero éticamente comprometido — OA (CC BY 4.0, PMC). Nota: detecta ASD (binario), NO reconoce emociones
+Paper 16 — Sholikah, Ginardi, Nugroho, Ghozali & Indrawanti (2024)
+Título: Real-time Facial Expression Recognition to Enhance Emotional Intelligence in Autism
+Fuente: Procedia Computer Science, Vol. 234, pp. 222-229
+DOI: 10.1016/j.procs.2024.02.169
+Afiliación: Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia
+Métricas reportadas: ACC: 0.91 (91%); F1: 0.91. Probado cualitativamente con 3 individuos con ASD
+Dataset(s): FER-2013 (~35,000 imgs, 7 emociones) — Público. N cualitativo = 3 ASD
+Tipo de modelo: No ensamblado — VGG-16 (transfer learning). App móvil en tiempo real
+Accesibilidad: SÍ — OA (Procedia Computer Science). FER2013 público. Sin GitHub
+Paper 17 — Nagae & Lee (2022)
+Título: Understanding Emotions in Children with Developmental Disabilities during Robot Therapy Using EDA
+Fuente: Sensors, Vol. 22(14), Art. 5116
+DOI: 10.3390/s22145116
+Afiliación: Chubu University, Kasugai, Japón
+Métricas reportadas: No reporta métricas ML estándar. Estudio piloto de intervención (robot + EDA). Tasas de reconocimiento emocional por emoción. Matrices de confusión para datos raw vs. wavelet
+Dataset(s): N=11 niños con discapacidades del desarrollo. Videos + EDA. 4 emociones — Privado
+Tipo de modelo: N/A — Estudio clínico/intervención. Robot NAO con reconocimiento facial + análisis EDA con wavelet
+Accesibilidad: SÍ — OA (CC BY 4.0, MDPI Sensors). Datos clínicos no públicos
+Paper 18 — Washington, Kalantarian, Kent, Husic, Kline, Leblanc, Hou, Mutlu, Dunlap, Penev, Varma, Stockham, Chrisman, Paskov, Sun, Jung, Voss, Haber & Wall (2022)
+Título: Improved Digital Therapy for Developmental Pediatrics Using Domain-Specific Artificial Intelligence: Machine Learning Study
+Fuente: JMIR Pediatrics and Parenting, Vol. 5(2), Art. e26760
+DOI: 10.2196/26760
+Afiliación: Stanford University, Stanford, CA, EE.UU.
+Métricas reportadas: Balanced ACC: 66.9% (CAFE full), 79.1% (CAFE Subset A ≥60% acuerdo); F1: 67.4% / 78.0%. >10% superior a clasificadores CAFE previos
+Dataset(s): Entrenamiento: GuessWhat/HollywoodSquares (2,155 videos, 39,968 frames, privado Stanford) + JAFFE, AffectNet, CK+ (públicos). Test: CAFE (público)
+Tipo de modelo: No ensamblado — ResNet-152 (mejor de varios: VGG-16, ResNet-18/50). Transfer learning
+Accesibilidad: SÍ — OA (CC BY, JMIR). arXiv disponible. Datos GuessWhat privados; CAFE público
+Paper 19 — Papaioannou, Kalantzi, Papageorgiou, Korobili, Bokou, Pehlivanidis, Papageorgiou & Papaioannou (2021)
+Título: Differences in performance of ASD and ADHD subjects facing cognitive loads in an innovative reasoning experiment
+Fuente: Brain Sciences, Vol. 11(11), Art. 1531
+DOI: 10.3390/brainsci11111531
+Afiliación: Eginition Hospital, Athens / University of Patras, Grecia
+Métricas reportadas: No reporta métricas ML de clasificación. Estudio de neurociencia clínica. MSE (Multiscale Entropy), ANOVA, PLSC, medidas de conectividad grafos
+Dataset(s): EEG de 63 adultos (21 ASD + 21 ADHD + 21 control). 14 electrodos — Privado (Hospital Eginition, Atenas)
+Tipo de modelo: N/A — Estudio neurocientífico (MSE + PLSC + teoría de grafos). Sin modelo de clasificación
+Accesibilidad: SÍ — OA (CC BY 4.0, MDPI Brain Sciences, PMC). Datos clínicos EEG no públicos
+Paper 20 — Reed, Mahedy, Jackson, Davey Smith, Penton-Voak, Attwood & Munafo (2021)
+Título: Examining the bidirectional association between emotion recognition and social autistic traits using observational and genetic analyses
+Fuente: Journal of Child Psychology and Psychiatry, Vol. 62(11), pp. 1330-1338
+DOI: 10.1111/jcpp.13395
+Afiliación: University of Bristol / NIHR Bristol Biomedical Research Centre / Cardiff Metropolitan University, Reino Unido
+Métricas reportadas: No reporta métricas ML. Estudio epidemiológico longitudinal + genético. b = −0.18 (rasgos sociales → ERT); b = −0.04 (DANVA → rasgos sociales); PRS ASD → ERT: b = 0.40
+Dataset(s): ALSPAC (N=3,562 / 9,071) — Semi-público (acceso gestionado por solicitud)
+Tipo de modelo: N/A — Regresión lineal, PRS, correlación genética LDSC. Sin ML
+Accesibilidad: PARCIAL — OA (CC BY 4.0, PMC). ALSPAC datos por solicitud gestionada
+Paper 21 — Lecciso, Levante, Fabio, Caprì, Leo, Carcagnì, Distante, Mazzeo, Spagnolo & Petrocchi (2021)
+Título: Emotional Expression in Children With ASD: A Pre-Study on a Two-Group Pre-Post-Test Design Comparing Robot-Based and Computer-Based Training
+Fuente: Frontiers in Psychology, Vol. 12, Art. 678052
+DOI: 10.3389/fpsyg.2021.678052
+Afiliación: Università del Salento / Università di Messina / CNR-ISASI / Università della Svizzera Italiana, Italia y Suiza
+Métricas reportadas: No reporta métricas ML. Estudio de intervención (pre-post). Hedges's g: 0.52 (robot), 0.44 (computadora). ANOVA no paramétrica
+Dataset(s): N=24 niños ASC (12 robot + 12 computadora) — Privado. OpenFace usado para evaluar producción facial (no clasificación)
+Tipo de modelo: N/A — Estudio de intervención. OpenFace para medición (no clasificación ML)
+Accesibilidad: SÍ — OA (CC BY 4.0, Frontiers). Datos no compartidos públicamente
+Paper 22 — Rudovic, Zhang, Schuller & Picard (2019)
+Título: Multi-modal active learning from human data: A deep reinforcement learning approach
+Fuente: ICMI 2019 — Proceedings of the 2019 International Conference on Multimodal Interaction, pp. 6-15
+DOI: 10.1145/3340555.3353742
+Afiliación: MIT / Imperial College London
+Métricas reportadas: ACC y F1 para estimación de engagement (3 niveles), no emociones. Valores en figuras. MMQL supera baselines (RND, UNC) en B=10. Personalización por niño
+Dataset(s): ~35 niños con autismo, terapia con robot. 4 modalidades: facial (OpenFace), corporal (OpenPose), fisiológica (E4 wristband), audio (OpenSMILE) — Privado (MIT Media Lab)
+Tipo de modelo: Ensamblado — 4 LSTMs modality-specific (64 hidden states) + majority voting (model-level fusion) + Deep RL (Q-function) para selección activa de datos
+Accesibilidad: PARCIAL — arXiv OA. Datos privados (clínicos). Sin código público
+Paper 23 — Dapogny, Grossard, Hun, Serret, Grynszpan, Dubuisson, Cohen & Bailly (2019)
+Título: On Automatically Assessing Children's Facial Expressions Quality: A Study, Database, and Protocol
+Fuente: Frontiers in Computer Science, Vol. 1, Art. 5
+DOI: 10.3389/fcomp.2019.00005
+Afiliación: Sorbonne Université / AP-HP / Cognition Behavior Technology, Francia
+Métricas reportadas: ACC FE: ~82% (4 clases: neutral, happiness, anger, sadness); ICC inter-rater: 0.82–0.93 (TD), 0.79–0.82 (ASD). Regresión de calidad (escala 0-10)
+Dataset(s): JEMImE DB: 3,568 imgs de 157 niños TD (6-11 años); JEMImE-Paris (1,458/63 niños) + JEMImE-Nice (2,110/94 niños). También CK+, FG-NET — Semi-público (bajo solicitud)
+Tipo de modelo: No ensamblado — Random Forests (RF) con features heterogéneas (geométricas + apariencia). PCRF en integración JEMImE game
+Accesibilidad: PARCIAL — Paper OA (Frontiers, CC BY). JEMImE DB bajo solicitud al autor. CK+/FG-NET públicos. Sin código
+Paper 24 — He, Su, Wang, He, Tan, Zhang, Ng, Yan & Chen (2019)
+Título: The characteristics of intelligence profile and eye gaze in facial emotion recognition in mild and moderate preschoolers with autism spectrum disorder
+Fuente: Frontiers in Psychiatry, Vol. 10(JUN), Art. 402
+DOI: 10.3389/fpsyt.2019.00402
+Afiliación: Xi'an Jiaotong University / Shenzhen Institutes of Advanced Technology / University of Hong Kong, China y Hong Kong
+Métricas reportadas: No reporta métricas ML. Estudio clínico con eye-tracking. FDT cara-GQ: r = 0.619, p = .006 (tristeza en ASD). ASD inferior a TD en reconocimiento emocional. MANOVA con medidas repetidas
+Dataset(s): N=21 ASD + 21 TD (emparejados), 46-83 meses, Xi'an, China. 20 escenas de película — Privado
+Tipo de modelo: N/A — Estudio clínico conductual con eye-tracking. MATLAB + SPSS. Sin ML
+Accesibilidad: SÍ — OA (Frontiers, CC BY). Datos clínicos y estímulos no públicos
+Paper 25 — Almeida, da Silva, Theodório, Silva, Rodrigues, Scardovelli, Silva & Bissaco (2019)
+Título: ALTRIRAS: A Computer Game for Training Children with Autism Spectrum Disorder in the Recognition of Basic Emotions
+Fuente: International Journal of Computer Games Technology, Vol. 2019, Art. 4384896
+DOI: 10.1155/2019/4384896
+Afiliación: Universidade de Mogi das Cruzes, Brasil
+Métricas reportadas: No reporta métricas ML. Diseño de juego/usabilidad. Evaluación ISO/IEC 9126 y 14598 por panel de expertos
+Dataset(s): N/A — Sin dataset ML. Juego RPG para niños ASD 6-12 años. 4 emociones (alegría, tristeza, rabia, sorpresa). Prototipo sin ensayo clínico
+Tipo de modelo: N/A — Juego RPG educativo (ALTRIRAS). Sin componente ML/IA
+Accesibilidad: SÍ — OA (CC BY, Hindawi). Sin código ni binario del juego publicado
+WEB OF SCIENCE (7 papers)
+Paper 26 — Rudovic, Lee, Dai, Schuller & Picard (2018)
+Título: Personalized machine learning for robot perception of affect and engagement in autism therapy
+Fuente: Science Robotics, Vol. 3(19), Art. eaao6760
+DOI: 10.1126/scirobotics.aao6760
+Afiliación: MIT Media Lab / Chubu University, Japón / Imperial College London / University of Augsburg
+Métricas reportadas: ICC: ~60% (valence, arousal, engagement); supera correlación inter-evaluadores humanos (50-55%). Framework de ML personalizado
+Dataset(s): Privado — 35 niños ASD (3-13 años), ~500K datapoints, 2 culturas (Japón/Serbia). Audio, video, autonomic physiology
+Tipo de modelo: No ensamblado — PPA-net: red neuronal profunda personalizada jerárquica (multitarea: Valence/Arousal/Engagement)
+Accesibilidad: PARCIAL — Código parcialmente disponible (MIT Media Lab EngageME); datos privados
+Paper 27 — Hwang, Yu, Kim, Lee, Park & Kim (2024)
+Título: A Study on the Screening of Children at Risk for Developmental Disabilities Using Facial Landmarks Derived From a Mobile-Based Application
+Fuente: Psychiatry Investigation, Vol. 21(5), pp. 496-505
+DOI: 10.30773/pi.2023.0315
+Afiliación: Yonsei University / Ulsan University College of Medicine / Asan Medical Center, Corea del Sur
+Métricas reportadas: ACC: 0.88 (rango 0.78-1.00); Precision: 0.91; F1: 0.80; SHAP: pitch nodding más importante como variable
+Dataset(s): Privado — 89 niños (33 DD + 56 TD), 34-77 meses, aplicación móvil
+Tipo de modelo: No ensamblado — LSTM con features de 2D-FAN (68 facial landmarks) + head pose (OpenCV)
+Accesibilidad: NO — Explícitamente no disponible (datos faciales sensibles de menores); disponible bajo solicitud
+Paper 28 — Leo, Carcagnì, Distante, Spagnolo, Mazzeo, Rosato, Petrocchi, Pellegrino, Levante, De Lumè & Lecciso (2018)
+Título: Computational Assessment of Facial Expression Production in ASD Children
+Fuente: Sensors, Vol. 18(11), Art. 3993
+DOI: 10.3390/s18113993
+Afiliación: CNR — Institute of Applied Sciences and Intelligent Systems / Università del Salento / USI Lugano, Italia y Suiza
+Métricas reportadas: TP Rate: 84.4%; TN Rate: 90%; FP Rate: 10%; FN Rate: 15% (validación en CK+). No reporta ACC/F1/AUC estándar
+Dataset(s): CK+ (593 videos, Público); 17 niños ASD (Privado); DISFA, SEMAINE, BP4D (Públicos)
+Tipo de modelo: No ensamblado — Pipeline multietapa: HOG + CLNF + SVM/SVR + CNN para AU intensity y regularización temporal/geométrica
+Accesibilidad: PARCIAL — CK+ y datasets de entrenamiento son públicos; datos de niños ASD son privados; código no disponible
+Paper 29 — Akin-Bulbul, Kök & Özdemir (2024)
+Título: Otizm Belirtilerinin Erken Tespitinde Duygu Durumlarına Yöneltilen Görsel Dikkatin Makine Öğrenmesi Aracılığıyla Değerlendirilmesi
+Fuente: Turk Psikoloji Dergisi, Vol. 39 (Special Issue, Nov 2024)
+DOI: 10.31828/turkpsikoloji.1515430
+Afiliación: Hacettepe University / Ankara University, Turquía
+Métricas reportadas: ACC: 81.45% (KNN, emoción neutral). Otros algoritmos evaluados (Decision Tree, Naive Bayes) sin valores exactos publicados en abstract
+Dataset(s): Eye-tracking propio, niños 18-36 meses, ASD + TD — Privado (posiblemente disponible en aiot.cs.hacettepe.edu.tr/etjasd/)
+Tipo de modelo: No ensamblado — Clasificadores ML individuales: KNN, Decision Tree, Naive Bayes con selección de features (filter + wrapper)
+Accesibilidad: PARCIAL — Datos posiblemente disponibles en URL del proyecto TÜBİTAK asociado; código no disponible
+Paper 30 — Alsubai (2025)
+Título: MDNCT: a multi-domain neurocognitive transformer architecture approach for early prediction of autism spectrum disorders
+Fuente: Scientific Reports, Vol. 15(1), Art. 26378
+DOI: 10.1038/s41598-025-09862-7
+Afiliación: Prince Sattam bin Abdulaziz University / King Salman Center for Disability Research, Arabia Saudita
+Métricas reportadas: MDNCT: ACC 94.7%, Precision 94.2%, Recall 93.8%, F1 94.0%, ROC-AUC 93.9%, MAE 5.3%. Baselines: CNN ACC 90.0%, RF 89.2-89.7%, SVM 88.7-89.1%, LR 87.3-88.0% en 3 datasets
+Dataset(s): Dataset-I: Tweets learning disabilities (Público, Kaggle); Dataset-II: Dementia Prediction, N=150 (Público, Kaggle); Dataset-III: ASD Screening Toddlers 12-36m (Público, Kaggle)
+Tipo de modelo: No ensamblado — Transformer (MDNCT): multi-head self-attention, residual connections, cross-attention layers, domain-specific preprocessing
+Accesibilidad: SÍ — Los 3 datasets son públicos en Kaggle; código no reportado
+Nota: Usa datos tabulares de cuestionarios de screening (Q-CHAT-10), NO reconocimiento facial
+Paper 31 — Xu & Ju (2023)
+Título: Abnormal Brain Structure Is Associated with Social and Communication Deficits in Children with Autism Spectrum Disorder: A Voxel-Based Morphometry Analysis
+Fuente: Brain Sciences, Vol. 13(5), Art. 779
+DOI: 10.3390/brainsci13050779
+Afiliación: Northeast Normal University, Changchun / Jilin Provincial Key Lab of Cognitive Neuroscience & Brain Development, China
+Métricas reportadas: No reporta métricas ML. Análisis VBM: t-tests (p<.001, cluster>100 voxels, GRF correction). Regresión: GMV hipocampo izquierdo correlacionado con ADOS comunicación y socialización
+Dataset(s): ABIDE: 203 niños (98 ASD + 105 TD), 8-12 años — Público (fcon_1000.projects.nitrc.org/indi/abide/)
+Tipo de modelo: N/A — Análisis VBM de neuroimagen. SPM12 + CAT12. Sin modelo ML
+Accesibilidad: SÍ — Dataset ABIDE es público; herramientas de análisis (SPM12, CAT12) son de libre acceso
+Paper 32 — O'Sullivan, Bogaarts, Schoenenberger, Tillmann, Slater, Mesgarani, Eule, Kilchenmann, Murtagh, Hipp, Lindemann, Lipsmeier, Cheng, Nobbs & Chatham (2023)
+Título: Automatic speaker diarization for natural conversation analysis in autism clinical trials
+Fuente: Scientific Reports, Vol. 13(1), Art. 10270
+DOI: 10.1038/s41598-023-36701-4
+Afiliación: Hoffmann-La Roche / Columbia University, Suiza y EE.UU.
+Métricas reportadas: Correlación UD predicho vs real: r=0.81 (p=3×10⁻⁹). UD vs VABS comunicación expresiva: r=0.51 (p=7×10⁻⁵). Precision/Recall/F1 por participante (distribuciones, no agregados)
+Dataset(s): 72 participantes (54 ASD + 18 NTC), 5-45 años, 652 conversaciones — Privado (ensayo clínico Roche NCT03611075); VoxCeleb (Público, para preentrenamiento)
+Tipo de modelo: No ensamblado — Pipeline de diarización: Pyannote v2 + ECAPA-TDNN (x-vector, 192-dim embeddings). Cosine distance (umbral 0.75) para ID de hablante
+Accesibilidad: PARCIAL — Datos clínicos privados (Roche); herramientas de diarización open-source (Pyannote en GitHub, ECAPA-TDNN en HuggingFace)
+IEEE (2 papers)
+Paper 33 — Hassan, Nahid, Islam, Hossain, Schuller & Ahad (2025)
+Título: Automated Autism Assessment With Multimodal Data and Ensemble Learning: A Scalable and Consistent Robot-Enhanced Therapy Framework
+Fuente: IEEE Transactions on Neural Systems and Rehabilitation Engineering, Vol. 33, pp. 1191-1201
+DOI: 10.1109/TNSRE.2025.3546519
+Afiliación: Kyushu Institute of Technology / Ahsanullah University of Science and Technology / University of East London / Technical University of Munich
+Métricas reportadas: ACC: 95.59% (ASD level prediction, 3D biomarker); F1: 92.75%; RMSE: 1.78; R²: 0.74 (ADOS score). Con saliency maps: ACC: 97.36%; F1: 95.56%
+Dataset(s): DREAM Dataset — 61 niños ASD, >3,000 sesiones, >300h de terapia — Público
+Tipo de modelo: Ensamblado — Majority voting de Random Forest + XGBoost + Extra Trees; features de skeleton 3D + gaze + head movement
+Accesibilidad: PARCIAL — DREAM dataset público; código no disponible
+Nota: DREAM dataset es el recurso público más robusto identificado en toda la revisión
+Paper 34 — Cicceri, Maisano, Tripodi, Tartarisco, Vitabile, Pioggia, Ruta & Distefano (2026)
+Título: AI4ASC: A Hierarchical Multi-Level AI-Driven Framework for Gesture Analysis and Monitoring in ASC Children
+Fuente: IEEE Access, Vol. 14, pp. 17885-17904
+DOI: 10.1109/ACCESS.2026.3659276
+Afiliación: University of Palermo / University of Messina / CNR-IRIB, Italia
+Métricas reportadas: mAP detección niño: 88.6%; Precision mano: 95.7%; Precision gesto pointing: 97.4%
+Dataset(s): Privado — Videos clínicos de niños autistas (N no especificado)
+Tipo de modelo: Jerárquico multi-nivel — Framework de 4 niveles: detección niño → detección manos → clasificación gestos pointing → clustering
+Accesibilidad: PARCIAL — Herramienta con GUI para terapeutas; datos clínicos privados
+Resumen de Papers con Datos ACCESIBLES
+#PaperTipo de accesoRecurso principal4Shaik et al., 2025SÍ — Kaggle públicoKaggle ASD Dataset + ASD Emotion Dataset6Aljbori et al., 2025SÍ — Kaggle públicoKaggle "Autistic Children Emotions"7Ramachandran et al., 2025SÍ — Kaggle públicoKaggle Autism Facial + Kaggle FER8Sariyanidi et al., 2025SÍ — GitHub + públicosgithub.com/sariyanidi/FacialBasis; CK+; MMI10Radočaj & Martinović, 2025SÍ — Kaggle FERACDataset FERAC en Kaggle12Levy et al., 2024SÍ — FER2013 públicoFER2013 (35,888 imágenes)16Sholikah et al., 2024SÍ — FER2013 públicoFER-201318Washington et al., 2022SÍ — CAFE públicoCAFE + JAFFE + AffectNet + CK+ (test)30Alsubai, 2025SÍ — 3 datasets KaggleASD Screening Toddlers + otros31Xu & Ju, 2023SÍ — ABIDE públicoABIDE (fcon_1000.projects.nitrc.org)33Hassan et al., 2025PARCIAL — DREAM públicoDREAM Dataset (61 niños, >3000 sesiones)2Johnson et al., 2025PARCIAL — bajo solicitudAffectNet (permiso) + clínicos5El Rhatassi et al., 2025PARCIAL — CK+ + KaggleCK+ (permiso) + Kaggle20Reed et al., 2021PARCIAL — solicitud gestionadaALSPAC23Dapogny et al., 2019PARCIAL — bajo solicitudJEMImE DB26Rudovic et al., 2018PARCIAL — código parcial MITEngageME27Hwang et al., 2024PARCIAL — bajo solicitudDatos faciales sensibles28Leo et al., 2018PARCIAL — CK+ públicoCK+ + DISFA + SEMAINE + BP4D29Akin-Bulbul et al., 2024PARCIAL — URL proyectoaiot.cs.hacettepe.edu.tr/etjasd/32O'Sullivan et al., 2023PARCIAL — herramientas OSPyannote + ECAPA-TDNN open-source34Cicceri et al., 2026PARCIAL — GUI disponibleFramework AI4ASC
+Resumen de Papers SIN Datos Accesibles
+#PaperRazón1Güngör et al., 2025⚠️ RETRACTADO — Dataset Kaggle éticamente comprometido3Mahmood et al., 2025⚠️ RETRACTADO — Dataset Kaggle éticamente comprometido9Kumar et al., 2024⚠️ RETRACTADO — Imágenes de internet sin consentimiento11Alam et al., 2025Usa Kaggle ASD ⚠️ éticamente comprometido; UIFID privado13Hosney et al., 2024Dataset Kaggle con conflicto de interés (co-autora creadora)14El Rhatassi et al., 2024Dataset autism privado/poco descrito15Ahmad et al., 2024Kaggle ASD ⚠️ éticamente comprometido17Nagae & Lee, 2022Datos clínicos de menores, privados19Papaioannou et al., 2021Datos EEG clínicos no públicos21Lecciso et al., 2021Datos de intervención no compartidos22Rudovic et al., 2019Datos de MIT Media Lab, privados24He et al., 2019Datos clínicos de eye-tracking, privados25Almeida et al., 2019Sin código ni binario del juego
+Análisis Transversal
+Tres papers retractados exponen vulnerabilidades éticas críticas
+Los papers de Güngör et al. (2025), Mahmood et al. (2025) y Kumar et al. (2024) fueron retractados entre diciembre 2024 y diciembre 2025. Los tres compartían un mismo problema fundamental: utilizaron datasets de Kaggle con imágenes de menores recopiladas de internet sin diagnóstico verificado de ASD, sin consentimiento documentado y sin supervisión ética institucional. Los datasets de Kaggle de "Autistic Children Emotions" (Dr. Fatma M. Talaat) aparecen en múltiples papers de esta revisión y su validez clínica es cuestionable.
+Distribución de arquitecturas
+De los papers con métricas ML cuantitativas:
+No ensamblados (mayoría): CNNs pre-entrenadas individuales (ResNet, VGG, Xception, MobileNet, EfficientNet) con transfer learning. Híbridos CNN+LSTM para features espaciotemporales. SVM como clasificador en contextos de muestras pequeñas. Vision Transformers en papers recientes (2024-2025): Swin Transformer, ViT, CvT
+Ensamblados (5 papers): Soft-voting con CNN features (Paper 4), fusión CNN×3 + LSTM (Paper 5), GWO-GEfficientNet (Paper 7), 4 LSTMs + majority voting + Deep RL (Paper 22), Majority voting RF+XGBoost+ExtraTrees (Paper 33)
+La paradoja accuracy-calidad
+Los rendimientos más altos (>96% accuracy) provienen frecuentemente de datasets de Kaggle cuya validez clínica está comprometida (Papers 6, 7, 11, 13) o de estudios con muestras muy pequeñas. Los enfoques con datos clínicos genuinos reportan rendimientos más realistas: 60-85% para expresiones faciales, 81-88% para clasificación con eye-tracking, 86-96% para fusión multimodal.
+Crisis de reproducibilidad
+28 de 34 papers trabajan con datasets completamente o parcialmente privados. El único paper con código abierto verificado en GitHub es Sariyanidi et al. (2025, Paper 8). El DREAM dataset (Paper 33) es el recurso público más robusto identificado (61 niños, >300h de terapia). El toolkit FacialBasis es la única herramienta de código abierto validada en predicción de autismo.
+Brecha de dominio evidenciada
+El Paper 14 (El Rhatassi et al., 2024) es revelador: al aplicar un CNN entrenado en FER2013 (74% accuracy) a datos de personas autistas, la accuracy cae a 65%, demostrando que las expresiones faciales atípicas en autismo no son capturadas por modelos entrenados en población neurotípica.
+Conclusión
+Esta revisión de 34 papers revela tres hallazgos principales:
+Crisis de reproducibilidad: Solo 8 papers de 34 ofrecen acceso legítimo a datos o código, y el único repositorio de código verificado es el de Sariyanidi et al. en GitHub.
+Contaminación ética de datasets: Los rendimientos más altos (>96%) provienen de datasets de Kaggle cuya validez clínica está comprometida — tres retractaciones en un año lo confirman. Los datasets "Autistic Children Emotions" de Kaggle están presentes en al menos 7 papers de esta revisión.
+Promesa multimodal: Los enfoques multimodales con datos clínicos genuinos (biosignals + facial, EEG + eye-tracking, skeleton + gaze) ofrecen el balance más prometedor entre rendimiento realista (85-96%) y validez clínica, aunque sus datos permanecen cerrados.
+Para futuros trabajos, el DREAM dataset (Paper 33) emerge como el recurso público más completo disponible, y el toolkit FacialBasis (Paper 8) como la única herramienta de código abierto validada en contexto de predicción de autismo.CompartirArtefactosDescargar todoReviewCódigo · HTML

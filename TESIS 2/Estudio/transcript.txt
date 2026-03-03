@@ -1,0 +1,41 @@
+ya te di toda la información revisalo bien por favor ya sabes... figuras aun no hagamos pones nomas, tablas me das. no agregues figuras demás ni tablas demás. pero ya sabes ps q esté en mi ENFOQUEEE.
+
+¿Cuál es el problema identificado?
+
+El problema es que los niños con autismo tienen dificultad para expresar emociones facialmente, y los terapeutas no tienen forma objetiva de medir si están mejorando durante las terapias. Todo se basa en observación manual que es subjetiva y varía según quién evalúe. Además, las pocas herramientas tecnológicas que existen requieren internet constante, están validadas solo en población occidental y no dan métricas claras que el terapeuta pueda usar para tomar decisiones clínicas.
+
+¿Cuál es la justificación de hacer esta revisión sistemática?
+
+Necesitamos primero saber qué existe ya en la literatura antes de proponer nuestra solución. La revisión nos permite identificar qué tecnologías funcionan bien, cuáles son sus limitaciones, qué brechas hay en Latinoamérica, y así fundamentar científicamente por qué nuestra aplicación es necesaria y cómo diseñarla mejor aprovechando lo que ya se ha investigado.
+
+¿Cuáles son los objetivos?
+
+El objetivo general es sintetizar la evidencia sobre herramientas digitales de reconocimiento facial para monitorear expresividad emocional en niños con TEA, identificando qué funciona, qué falta y qué necesitan los terapeutas en contextos con recursos limitados.
+
+Los objetivos específicos son identificar las arquitecturas de inteligencia artificial más efectivas, caracterizar las métricas de evaluación que usan, analizar los conjuntos de datos disponibles y sus limitaciones de representatividad, documentar qué características de entrada funcionan mejor, e identificar las barreras técnicas que impiden implementar estas herramientas en contextos como el nuestro.
+
+¿Cuál es la solución que brindamos?
+
+Nuestra solución es una aplicación móvil tipo serious game que usa reconocimiento facial automático para escanear las emociones del niño durante sesiones terapéuticas. El terapeuta registra al responsable del niño, programa las sesiones, y en cada sesión el niño interactúa con el juego mientras la app escanea su rostro y detecta emociones predominantes. Esto genera reportes cuantitativos sesión por sesión que el terapeuta puede analizar para ver el progreso del niño, identificar patrones emocionales y ajustar sus intervenciones basándose en datos objetivos en lugar de solo observación subjetiva. La app funciona offline, está pensada para nuestro contexto y da métricas interpretables para el terapeuta.
+
+¿Por qué primero la revisión sistemática y después el paper de la app?
+
+Porque académicamente necesitas justificar que tu solución es necesaria. El Paper 1 demuestra qué existe, qué falta y por qué lo que existe no resuelve el problema en nuestro contexto. El Paper 2 presenta tu aplicación como la respuesta a esas brechas identificadas. Sin el Paper 1, tu Paper 2 no tiene fundamento científico sólido.
+
+¿CUÁL ES NUESTRO ENFOQUE?
+
+El enfoque es proporcionar al terapeuta una herramienta de apoyo para el monitoreo objetivo de la expresividad emocional del niño durante sus intervenciones terapéuticas. No estamos diagnosticando TEA ni determinando su nivel de severidad, estamos dando datos cuantificables sobre cómo el niño expresa emociones sesión tras sesión para que el terapeuta pueda evaluar si sus intervenciones están funcionando y tomar decisiones informadas.
+
+La app registra, cuantifica y visualiza patrones de expresividad emocional a lo largo del tiempo. El terapeuta usa esos datos como complemento a su evaluación clínica integral. Es una herramienta de monitoreo de progreso, no de diagnóstico.
+
+¿ESTÁ BIEN QUE EL TERAPEUTA ANOTE EL NIVEL DE TEA EN LA CONCLUSIÓN FINAL?
+
+Sí, está bien, PERO con una aclaración importante.
+
+El terapeuta puede anotar en sus conclusiones clínicas el nivel de TEA del niño (Nivel 1, 2 o 3 según DSM-5), pero eso NO lo determina la app. Eso lo determina el terapeuta usando instrumentos clínicos validados como ADOS-2, ADI-R, evaluaciones neuropsicológicas, observación clínica estructurada, y su juicio profesional.
+
+Tu app solamente le proporciona DATOS sobre expresividad emocional que pueden AYUDAR en esa evaluación integral, pero no son suficientes por sí solos para determinar nivel de severidad de TEA.
+
+Entonces en tu sistema puedes tener un campo donde el terapeuta registre manualmente el nivel de TEA del niño como parte de su conclusión clínica, pero deja claro que eso es responsabilidad y decisión del profesional, no un output automático de tu aplicación.
+
+En resumen: tu app mide expresividad emocional, el terapeuta usa eso más otras evaluaciones para determinar nivel de TEA. Está bien que lo registre en el sistema, pero no como resultado automático.
