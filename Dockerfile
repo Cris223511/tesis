@@ -1,6 +1,6 @@
 # Usar imagen base oficial de Python
-# Force rebuild: 2026-04-08-01
-FROM python:3.11-slim
+# Force rebuild: 2026-04-08-02
+FROM python:3.11.7-slim-bullseye
 
 # Establecer directorio de trabajo
 WORKDIR /app
