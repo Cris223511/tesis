@@ -1,4 +1,5 @@
 # Usar imagen base oficial de Python
+# Force rebuild: 2026-04-08-01
 FROM python:3.11-slim
 
 # Establecer directorio de trabajo
