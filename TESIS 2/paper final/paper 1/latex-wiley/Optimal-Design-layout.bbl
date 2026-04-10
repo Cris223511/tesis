@@ -1,0 +1,299 @@
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[\protect\citeauthoryear{Gungor, Sarman, and Tuncay}{Gungor
+  et~al.}{}]{Gungor2025}
+I.~Gungor, A.~Sarman,, and S.~Tuncay.
+\newblock
+\newblock ``Can artificial intelligence and face recognition using deep
+  learning detect emotions in children with autism?.''  {\it PLoS ONE\/}~20,
+  no. 12 (2025): e0338701.
+\newblock https://doi.org/10.1371/journal.pone.0338701.
+
+\bibitem[\protect\citeauthoryear{Johnson, Argyriou, Barman, and
+  Politis}{Johnson et~al.}{}]{Johnson2025}
+G.~Johnson, V.~Argyriou, S.~A. Barman,, and C.~Politis.
+\newblock
+\newblock ``Assistive facial expression recognition for children with autism
+  using re-enactment.''  {\it Comput Hum Behav Rep\/}20 (2025): 100800.
+\newblock https://doi.org/10.1016/j.chbr.2025.100800.
+
+\bibitem[\protect\citeauthoryear{He et~al.}{He et~al.}{}]{He2019}
+Y.~He et~al.
+\newblock
+\newblock ``The characteristics of intelligence profile and eye gaze in facial
+  emotion recognition in mild and moderate preschoolers with autism spectrum
+  disorder.''  {\it Front Psychiatry\/}10 (2019): 402.
+\newblock https://doi.org/10.3389/fpsyt.2019.00402.
+
+\bibitem[\protect\citeauthoryear{Reed et~al.}{Reed et~al.}{}]{Reed2021}
+Z.~E. Reed et~al.
+\newblock
+\newblock ``Examining the bidirectional association between emotion recognition
+  and social autistic traits using observational and genetic analyses.''  {\it
+  J Child Psychol Psychiatry\/}~62, no. 11 (2021): 1330--1338.
+\newblock https://doi.org/10.1111/jcpp.13395.
+
+\bibitem[\protect\citeauthoryear{Lecciso et~al.}{Lecciso
+  et~al.}{}]{Lecciso2021}
+F.~Lecciso et~al.
+\newblock
+\newblock ``Emotional expression in children with {ASD}: {A} pre-study on a
+  two-group pre-post-test design comparing robot-based and computer-based
+  training.''  {\it Front Psychol\/}12 (2021): 678052.
+\newblock https://doi.org/10.3389/fpsyg.2021.678052.
+
+\bibitem[\protect\citeauthoryear{Shaik, Shekhar, and Shelke}{Shaik
+  et~al.}{}]{Shaik2025}
+J.~Shaik, R.~Shekhar,, and C.~J. Shelke.
+\newblock
+\newblock ``Hybrid deep learning framework for autism detection in children
+  using facial emotion recognition.''  {\it Ing Syst Inf\/}~30, no. 10 (2025):
+  2595--2607.
+\newblock https://doi.org/10.18280/isi.301007.
+
+\bibitem[\protect\citeauthoryear{Ahmad, Rashid, Faheem, Akram, Khan, and {Ul
+  Amin}}{Ahmad et~al.}{}]{Ahmad2024}
+I.~Ahmad, J.~Rashid, M.~Y. Faheem, A.~Akram, N.~A. Khan,, and R.~U. {Ul Amin}.
+\newblock
+\newblock ``Autism spectrum disorder detection using facial images: {A}
+  performance comparison of pretrained convolutional neural networks.''  {\it
+  Healthc Technol Lett\/}~11, no. 4 (2024): 227--239.
+\newblock https://doi.org/10.1049/htl2.12073.
+
+\bibitem[\protect\citeauthoryear{Rhatassi, Ghali, and Najima}{Rhatassi
+  et~al.}{}]{Rhatassi2024}
+F.~E.~El Rhatassi, B.~El Ghali,, and N.~Najima.
+\newblock
+\newblock ``Deep learning approaches for recognizing facial emotions on
+  autistic patients.''  {\it Int J Electr Comput Eng\/}~14, no. 4 (2024):
+  4034--4045.
+\newblock https://doi.org/10.11591/ijece.v14i4.pp4034-4045.
+
+\bibitem[\protect\citeauthoryear{Rado\v{c}aj and Martinovi\'{c}}{Rado\v{c}aj
+  and Martinovi\'{c}}{}]{Radocaj2025}
+P.~Rado\v{c}aj, and G.~Martinovi\'{c}.
+\newblock
+\newblock ``Emotion recognition in autistic children through facial expressions
+  using advanced deep learning architectures.''  {\it Appl Sci\/}~15, no. 17
+  (2025): 9555.
+\newblock https://doi.org/10.3390/app15179555.
+
+\bibitem[\protect\citeauthoryear{Washington et~al.}{Washington
+  et~al.}{}]{Washington2022}
+P.~Washington et~al.
+\newblock
+\newblock ``Improved digital therapy for developmental pediatrics using
+  domain-specific artificial intelligence: {M}achine learning study.''  {\it
+  JMIR Pediatr Parent\/}~5, no. 2 (2022): e26760.
+\newblock https://doi.org/10.2196/26760.
+
+\bibitem[\protect\citeauthoryear{Sholikah, Ginardi, Nugroho, Ghozali, and
+  Indrawanti}{Sholikah et~al.}{}]{Sholikah2024}
+R.~W. Sholikah, R.~V.~H. Ginardi, S.~L.~C. Nugroho, K.~Ghozali,, and A.~S.
+  Indrawanti.
+\newblock
+\newblock ``Real-time facial expression recognition to enhance emotional
+  intelligence in autism.''  {\it Procedia Comput Sci\/}234 (2024): 222--229.
+\newblock https://doi.org/10.1016/j.procs.2024.02.169.
+
+\bibitem[\protect\citeauthoryear{Levy, Ambaw, Ben-Itzhak, and
+  Holdengreber}{Levy et~al.}{}]{Levy2024}
+L.~Levy, A.~Ambaw, E.~Ben-Itzhak,, and E.~Holdengreber.
+\newblock
+\newblock ``A real-time environmental translator for emotion recognition in
+  autism spectrum disorder.''  {\it Sci Rep\/}~14, no. 1 (2024): 31527.
+\newblock https://doi.org/10.1038/s41598-024-83229-2.
+
+\bibitem[\protect\citeauthoryear{Mahmood, Menzli, Alturki, and Tawfeek}{Mahmood
+  et~al.}{}]{Mahmood2025}
+M.~A. Mahmood, L.~J. Menzli, N.~M. Alturki,, and M.~A. Tawfeek.
+\newblock
+\newblock ``Leveraging artificial intelligence for diagnosis of children autism
+  through facial expressions.''  {\it Sci Rep\/}~15, no. 1 (2025): 11945.
+\newblock https://doi.org/10.1038/s41598-025-96014-6.
+
+\bibitem[\protect\citeauthoryear{Kumar, Kumar, and Jayakody}{Kumar
+  et~al.}{}]{Kumar2024}
+A.~Kumar, A.~Kumar,, and D.~N.~K. Jayakody.
+\newblock
+\newblock ``Ambiguous facial expression detection for autism screening using
+  enhanced {YOLOv7-tiny} model.''  {\it Sci Rep\/}~14, no. 1 (2024): 28501.
+\newblock https://doi.org/10.1038/s41598-024-77549-6.
+
+\bibitem[\protect\citeauthoryear{Sariyanidi, Yankowitz, Schultz, Herrington,
+  Tun\c{c}, and Cohn}{Sariyanidi et~al.}{}]{Sariyanidi2025}
+E.~Sariyanidi, L.~D. Yankowitz, R.~T. Schultz, J.~D. Herrington, B.~Tun\c{c},,
+  and J.~F. Cohn. 2025.
+\newblock ``Beyond {FACS}: {D}ata-driven facial expression dictionaries, with
+  application to predicting autism.''   In {\it 2025 {IEEE} 19th Int. Conf.
+  Autom. Face Gesture Recognit. ({FG})},
+  https://doi.org/10.1109/FG61629.2025.11099288.
+
+\bibitem[\protect\citeauthoryear{Hassan, Nahid, Islam, Hossain, Schuller, and
+  Ahad}{Hassan et~al.}{}]{Hassan2025}
+I.~Hassan, N.~Nahid, M.~Islam, S.~Hossain, B.~Schuller,, and M.~A.~R. Ahad.
+\newblock
+\newblock ``Automated autism assessment with multimodal data and ensemble
+  learning: {A} scalable and consistent robot-enhanced therapy framework.''
+  {\it IEEE Trans Neural Syst Rehabil Eng\/}33 (2025): 1191--1201.
+\newblock https://doi.org/10.1109/TNSRE.2025.3546519.
+
+\bibitem[\protect\citeauthoryear{Alsubai}{Alsubai}{}]{Alsubai2025}
+S.~Alsubai.
+\newblock
+\newblock ``{MDNCT}: a multi-domain neurocognitive transformer architecture
+  approach for early prediction of autism spectrum disorders.''  {\it Sci
+  Rep\/}~15, no. 1 (2025): 26378.
+\newblock https://doi.org/10.1038/s41598-025-09862-7.
+
+\bibitem[\protect\citeauthoryear{Rudovic, Lee, Dai, Schuller, and
+  Picard}{Rudovic et~al.}{}]{Rudovic2018}
+O.~Rudovic, J.~Lee, M.~Dai, B.~Schuller,, and R.~W. Picard.
+\newblock
+\newblock ``Personalized machine learning for robot perception of affect and
+  engagement in autism therapy.''  {\it Sci Robot\/}~3, no. 19 (2018):
+  eaao6760.
+\newblock https://doi.org/10.1126/scirobotics.aao6760.
+
+\bibitem[\protect\citeauthoryear{Rudovic, Zhang, Schuller, and Picard}{Rudovic
+  et~al.}{}]{Rudovic2019}
+O.~Rudovic, M.~Zhang, B.~W. Schuller,, and R.~Picard. 2019.
+\newblock ``Multi-modal active learning from human data: {A} deep reinforcement
+  learning approach.''   In {\it Proc. 2019 Int. Conf. Multimodal Interact.},
+  6--15.
+\newblock https://doi.org/10.1145/3340555.3353742.
+
+\bibitem[\protect\citeauthoryear{Almeida et~al.}{Almeida
+  et~al.}{}]{Almeida2019}
+L.~M. Almeida et~al.
+\newblock
+\newblock ``{ALTRIRAS}: {A} computer game for training children with autism
+  spectrum disorder in the recognition of basic emotions.''  {\it Int J Comput
+  Game Technol\/}2019 (2019): 4384896.
+\newblock https://doi.org/10.1155/2019/4384896.
+
+\bibitem[\protect\citeauthoryear{Alam, Rashid, {Bin Haja Mohideen}, Alahi,
+  Kchaou, and Alharthi}{Alam et~al.}{}]{Alam2025}
+M.~S. Alam, M.~M. Rashid, A.~J. {Bin Haja Mohideen}, M.~E.~E. Alahi,
+  M.~Kchaou,, and K.~A.~B. Alharthi.
+\newblock
+\newblock ``Robust autism spectrum disorder screening based on facial images
+  (for disability diagnosis): {A} domain-adaptive deep ensemble approach.''
+  {\it Diagnostics\/}~15, no. 13 (2025): 1601.
+\newblock https://doi.org/10.3390/diagnostics15131601.
+
+\bibitem[\protect\citeauthoryear{Hwang, Yu, Kim, Lee, Park, and Kim}{Hwang
+  et~al.}{}]{Hwang2024}
+S.~H. Hwang, Y.~Yu, J.~Kim, T.~Lee, Y.~R. Park,, and H.~W. Kim.
+\newblock
+\newblock ``A study on the screening of children at risk for developmental
+  disabilities using facial landmarks derived from a mobile-based
+  application.''  {\it Psychiatry Investig\/}~21, no. 5 (2024): 496--505.
+\newblock https://doi.org/10.30773/pi.2023.0315.
+
+\bibitem[\protect\citeauthoryear{Aljbori, Makhlouf, and Fakhfakh}{Aljbori
+  et~al.}{}]{Aljbori2025}
+M.~A. Aljbori, A.~M. Makhlouf,, and A.~Fakhfakh.
+\newblock
+\newblock ``A facial emotion recognition system for children with autism, based
+  on the integration of {3D-CNN} and {LSTM}.''  {\it J Wirel Mob Netw
+  Ubiquitous Comput Dependable Appl\/}~16, no. 3 (2025): 433--452.
+\newblock https://doi.org/10.58346/JOWUA.2025.I3.026.
+
+\bibitem[\protect\citeauthoryear{Rhatassi, Ghali, and Najima}{Rhatassi
+  et~al.}{}]{Rhatassi2025}
+F.~E.~El Rhatassi, B.~El Ghali,, and N.~Najima.
+\newblock
+\newblock ``Hybrid real time facial emotions recognition on autistic
+  individuals.''  {\it Int J Adv Comput Sci Appl\/}~16, no. 9 (2025): 629--635.
+\newblock https://doi.org/10.14569/IJACSA.2025.0160959.
+
+\bibitem[\protect\citeauthoryear{Ramachandran, Malladi, Bellamkonda, and
+  Reddy}{Ramachandran et~al.}{}]{Ramachandran2025}
+R.~Ramachandran, R.~Malladi, S.~Bellamkonda,, and E.~S. Reddy.
+\newblock
+\newblock ``Disorder facial emotion recognition with grey wolf optimized
+  {GEfficient-Net} for autism spectrum.''  {\it Int J Image Graph Signal
+  Process\/}~17, no. 1 (2025): 1--16.
+\newblock https://doi.org/10.5815/ijigsp.2025.01.01.
+
+\bibitem[\protect\citeauthoryear{Hosney, Talaat, El-Gendy, and Saafan}{Hosney
+  et~al.}{}]{Hosney2024}
+R.~Hosney, F.~M. Talaat, E.~M. El-Gendy,, and M.~M. Saafan.
+\newblock
+\newblock ``{AutYOLO-ATT}: an attention-based {YOLOv8} algorithm for early
+  autism diagnosis through facial expression recognition.''  {\it Neural Comput
+  Appl\/}~36, no. 27 (2024): 17199--17219.
+\newblock https://doi.org/10.1007/s00521-024-09966-7.
+
+\bibitem[\protect\citeauthoryear{Nagae and Lee}{Nagae and Lee}{}]{Nagae2022}
+T.~Nagae, and J.~Lee.
+\newblock
+\newblock ``Understanding emotions in children with developmental disabilities
+  during robot therapy using {EDA}.''  {\it Sensors\/}~22, no. 14 (2022): 5116.
+\newblock https://doi.org/10.3390/s22145116.
+
+\bibitem[\protect\citeauthoryear{Papaioannou et~al.}{Papaioannou
+  et~al.}{}]{Papaioannou2021}
+A.~Papaioannou et~al.
+\newblock
+\newblock ``Differences in performance of {ASD} and {ADHD} subjects facing
+  cognitive loads in an innovative reasoning experiment.''  {\it Brain
+  Sci\/}~11, no. 11 (2021): 1531.
+\newblock https://doi.org/10.3390/brainsci11111531.
+
+\bibitem[\protect\citeauthoryear{Dapogny et~al.}{Dapogny
+  et~al.}{}]{Dapogny2019}
+A.~Dapogny et~al.
+\newblock
+\newblock ``On automatically assessing children's facial expressions quality:
+  {A} study, database, and protocol.''  {\it Front Comput Sci\/}1 (2019): 5.
+\newblock https://doi.org/10.3389/fcomp.2019.00005.
+
+\bibitem[\protect\citeauthoryear{Leo et~al.}{Leo et~al.}{}]{Leo2018}
+M.~Leo et~al.
+\newblock
+\newblock ``Computational assessment of facial expression production in {ASD}
+  children.''  {\it Sensors\/}~18, no. 11 (2018): 3993.
+\newblock https://doi.org/10.3390/s18113993.
+
+\bibitem[\protect\citeauthoryear{Akin-Bulbul, Kok, and Ozdemir}{Akin-Bulbul
+  et~al.}{}]{AkinBulbul2024}
+I.~Akin-Bulbul, I.~Kok,, and S.~Ozdemir.
+\newblock
+\newblock ``Otizm belirtilerinin erken tespitinde duygu durumlarina yoneltilen
+  gorsel dikkatin makine ogrenmesi araciligiyla degerlendirilmesi.''  {\it Turk
+  Psikoloji Derg\/}~39, no. SI.
+\newblock https://doi.org/10.31828/turkpsikoloji.1515430.
+
+\bibitem[\protect\citeauthoryear{Xu and Ju}{Xu and Ju}{}]{Xu2023}
+M.-X. Xu, and X.-D. Ju.
+\newblock
+\newblock ``Abnormal brain structure is associated with social and
+  communication deficits in children with autism spectrum disorder: {A}
+  voxel-based morphometry analysis.''  {\it Brain Sci\/}~13, no. 5 (2023): 779.
+\newblock https://doi.org/10.3390/brainsci13050779.
+
+\bibitem[\protect\citeauthoryear{O'Sullivan et~al.}{O'Sullivan
+  et~al.}{}]{OSullivan2023}
+J.~O'Sullivan et~al.
+\newblock
+\newblock ``Automatic speaker diarization for natural conversation analysis in
+  autism clinical trials.''  {\it Sci Rep\/}~13, no. 1 (2023): 10270.
+\newblock https://doi.org/10.1038/s41598-023-36701-4.
+
+\bibitem[\protect\citeauthoryear{Cicceri et~al.}{Cicceri
+  et~al.}{}]{Cicceri2026}
+G.~Cicceri et~al.
+\newblock
+\newblock ``{AI4ASC}: {A} hierarchical multi-level {AI}-driven framework for
+  gesture analysis and monitoring in {ASC} children.''  {\it IEEE Access\/}14
+  (2026): 17885--17904.
+\newblock https://doi.org/10.1109/ACCESS.2026.3659276.
+
+\end{thebibliography}

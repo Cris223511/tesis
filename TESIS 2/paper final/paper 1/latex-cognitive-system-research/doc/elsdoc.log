@@ -1,0 +1,1405 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  26 MAR 2026 19:19
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./elsdoc.tex
+(elsdoc.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/elsarticle\els
+article.cls
+Document Class: elsarticle 2026/01/09, 3.5: Elsevier Ltd
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.s
+ty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3
+.sty
+Package: expl3 2024-01-04 L3 programming layer (loader) 
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3ba
+ckend-pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count187
+\l__pdf_internal_box=\box51
+))
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xpa
+rse\xparse.sty
+Package: xparse 2023-10-10 L3 Experimental document command parser
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etool
+box.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count188
+)
+\@bls=\dimen140
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\article.c
+ls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.cl
+o
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count189
+\c@section=\count190
+\c@subsection=\count191
+\c@subsubsection=\count192
+\c@paragraph=\count193
+\c@subparagraph=\count194
+\c@figure=\count195
+\c@table=\count196
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen141
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graph
+icx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyva
+l.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graph
+ics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.
+sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\g
+raphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\p
+dftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen142
+\Gin@req@width=\dimen143
+)
+\c@tnote=\count197
+\c@fnote=\count198
+\c@cnote=\count199
+\c@ead=\count266
+\c@elsarticle@author=\count267
+\@eadauthor=\toks18
+\c@affn=\count268
+\absbox=\box52
+\elsarticlehighlightsbox=\box53
+\elsarticlegrabsbox=\box54
+\keybox=\box55
+\Columnwidth=\dimen144
+\space@left=\dimen145
+\els@boxa=\box56
+\els@boxb=\box57
+\leftMargin=\dimen146
+\@enLab=\toks19
+\@sep=\skip50
+\@@sep=\skip51
+ (elsdoc.spl)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.
+sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip52
+\bibsep=\skip53
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count269
+)
+\splwrite=\write3
+\openout3 = `elsdoc.spl'.
+
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geome
+try.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex
+.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.
+sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count270
+\Gm@cntv=\count271
+\c@Gm@tempcnt=\count272
+\Gm@bindingoffset=\dimen147
+\Gm@wd@mp=\dimen148
+\Gm@odd@mp=\dimen149
+\Gm@even@mp=\dimen150
+\Gm@layoutwidth=\dimen151
+\Gm@layoutheight=\dimen152
+\Gm@layouthoffset=\dimen153
+\Gm@layoutvoffset=\dimen154
+\Gm@dimlist=\toks20
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geome
+try.cfg))
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\fleqn.clo
+File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
+\mathindent=\skip54
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+)
+\appnamewidth=\dimen155
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\txfont
+s.sty
+Package: txfonts 2008/01/22 v3.2.1
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/txr/m/n on input line 21.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/txr/m/n on input line 21.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/txr/m/n --> OT1/txr/bx/n on input line 22.
+\symitalic=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `italic' in version `bold'
+(Font)                  OT1/txr/m/it --> OT1/txr/bx/it on input line 26.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/txr/bx/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/txr/bx/n on input line 29.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 30.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/txr/m/it on input line 30.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/txr/m/it on input line 30.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/txr/m/it --> OT1/txr/bx/it on input line 31.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 40.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/txss/m/n on input line 40.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/txss/m/n on input line 40.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/txss/m/n --> OT1/txss/b/n on input line 41.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 50.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/txtt/m/n on input line 50.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/txtt/m/n on input line 50.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/txtt/m/n --> OT1/txtt/b/n on input line 51.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 58.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/txmi/m/it on input line 58.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/txmi/m/it on input line 58.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/txmi/m/it --> OML/txmi/bx/it on input line 59.
+\symlettersA=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/txmia/m/it --> U/txmia/bx/it on input line 67.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 77.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/txsy/m/n on input line 77.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/txsy/m/n on input line 77.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/txsy/m/n --> OMS/txsy/bx/n on input line 78.
+\symAMSa=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
+(Font)                  U/txsya/m/n --> U/txsya/bx/n on input line 94.
+\symAMSb=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
+(Font)                  U/txsyb/m/n --> U/txsyb/bx/n on input line 103.
+\symsymbolsC=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/txsyc/m/n --> U/txsyc/bx/n on input line 113.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 120.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/txex/m/n on input line 120.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/txex/m/n on input line 120.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/txex/m/n --> OMX/txex/bx/n on input line 121.
+\symlargesymbolsA=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
+(Font)                  U/txexa/m/n --> U/txexa/bx/n on input line 129.
+LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 164.
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 591.
+LaTeX Info: Redefining \not on input line 1043.
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.
+sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.s
+ty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+txr on input line 11
+2.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\t1txr.
+fd
+File: t1txr.fd 2000/12/15 v3.1
+))
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\bookt
+abs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen156
+\lightrulewidth=\dimen157
+\cmidrulewidth=\dimen158
+\belowrulesep=\dimen159
+\belowbottomsep=\dimen160
+\aboverulesep=\dimen161
+\abovetopsep=\dimen162
+\cmidrulesep=\dimen163
+\cmidrulekern=\dimen164
+\defaultaddspace=\dimen165
+\@cmidla=\count273
+\@cmidlb=\count274
+\@aboverulesep=\dimen166
+\@belowrulesep=\dimen167
+\@thisruleclass=\count275
+\@lastruleclass=\count276
+\@thisrulewidth=\dimen168
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/dblfloatfix\db
+lfloatfix.sty
+Package: dblfloatfix 2012/12/31 v1.0a (JAW)
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\fixltx2e.
+sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+)
+\@dblbotnum=\count277
+\c@dblbotnumber=\count278
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtabl
+e.sty
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count279
+\LTcapwidth=\dimen169
+\LT@head=\box58
+\LT@firsthead=\box59
+\LT@foot=\box60
+\LT@lastfoot=\box61
+\LT@gbox=\box62
+\LT@cols=\count280
+\LT@rows=\count281
+\c@LT@tables=\count282
+\c@LT@chunks=\count283
+\LT@p@ftn=\toks23
+) (elsdoc.aux)
+\openout1 = `elsdoc.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 13.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 
+13.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omltxm
+i.fd
+File: omltxmi.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 
+13.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omstxs
+y.fd
+File: omstxsy.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 
+13.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omxtxe
+x.fd
+File: omxtxex.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 1
+3.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxexa
+.fd
+File: utxexa.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    ... okay on input line 13.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\su
+pp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count284
+\scratchdimen=\dimen170
+\scratchbox=\box63
+\nofMPsegments=\count285
+\nofMParguments=\count286
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count287
+\MPscratchDim=\dimen171
+\MPnumerator=\count288
+\makeMPintoPDFobject=\count289
+\everyMPtoPDFconversion=\toks25
+)
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\e
+pstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epsto
+pdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* vratio: 1:1
+* modes: 
+* h-part:(L,W,R)=(64.75394pt, 468.0pt, 64.75394pt)
+* v-part:(T,H,B)=(111.52342pt, 622.0pt, 111.52342pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=468.0pt
+* \textheight=622.0pt
+* \oddsidemargin=-7.51605pt
+* \evensidemargin=-7.51605pt
+* \topmargin=-22.74657pt
+* \headheight=50.0pt
+* \headsep=12.0pt
+* \topskip=10.0pt
+* \footskip=18.0pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=24.0pt
+* \skip\footins=24.0pt plus 2.0pt minus 12.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Font shape `T1/txr/b/n' in size <10> not available
+(Font)              Font shape `T1/txr/bx/n' tried instead on input line 40.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\ot1txr
+.fd
+File: ot1txr.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxmia
+.fd
+File: utxmia.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsya
+.fd
+File: utxsya.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsyb
+.fd
+File: utxsyb.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsyc
+.fd
+File: utxsyc.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
+6.
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+Underfull \hbox (badness 2119) in paragraph at lines 88--107
+[]\T1/txr/m/n/10 La con-ver-gen-cia de avances en apren-dizaje au-
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/Users/Christopher PS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C
+:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.en
+c}
+
+
+]
+Underfull \hbox (badness 1616) in paragraph at lines 167--179
+\T1/txr/m/n/10 que ar-tic-u-lan mo-ti-va-ciones metodolÛg-i-cas, ori-en-tan
+ []
+
+[2] [3
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/txr/m/n/10 Las ar-qui-tec-turas CNN
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/txr/m/n/10 mues-tran vari-abil-i-dad en
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 197--197
+\T1/txr/m/n/10 ex-ac-ti-tud (72--96%) seg˙n
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/txr/m/n/10 iden-ti-ficar con-fig-u-ra-ciones
+ []
+
+
+Underfull \hbox (badness 1275) in paragraph at lines 197--197
+\T1/txr/m/n/10 de ex-pre-sivi-dad emo-cional
+ []
+
+
+Underfull \hbox (badness 3078) in paragraph at lines 200--200
+[]|\T1/txr/m/n/10 La het-ero-genei-dad en las
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+\T1/txr/m/n/10 mÈtri-cas re-por-tadas (solo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+\T1/txr/m/n/10 pre-cisiÛn vs. F1-score)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+\T1/txr/m/n/10 limita la com-pa-ra-bil-i-dad
+ []
+
+
+Underfull \hbox (badness 4291) in paragraph at lines 200--200
+\T1/txr/m/n/10 en-tre es-tu-dios y di-fi-culta
+ []
+
+
+Underfull \hbox (badness 3668) in paragraph at lines 200--200
+\T1/txr/m/n/10 es-table-cer es-t·n-dares para
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+\T1/txr/m/n/10 her-ramien-tas de apoyo
+ []
+
+
+Underfull \hbox (badness 4048) in paragraph at lines 203--203
+[]|\T1/txr/m/n/10 Los val-ores ab-so-lu-tos de
+ []
+
+
+Underfull \hbox (badness 5667) in paragraph at lines 203--203
+\T1/txr/m/n/10 mÈtri-cas varÌan seg˙n el
+ []
+
+
+Underfull \hbox (badness 3872) in paragraph at lines 203--203
+\T1/txr/m/n/10 rango de edad pedi·trico
+ []
+
+
+Underfull \hbox (badness 4543) in paragraph at lines 203--203
+\T1/txr/m/n/10 cia me-dia vs. ado-les-cen-
+ []
+
+
+Underfull \hbox (badness 1721) in paragraph at lines 203--203
+\T1/txr/m/n/10 cia) y las condi-ciones de
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 203--203
+\T1/txr/m/n/10 eval-u-aciÛn (lab-o-ra-to-rio vs.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+[]|\T1/txr/m/n/10 Caracterizar los ran-gos de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+\T1/txr/m/n/10 rendimiento re-por-ta-dos en la
+ []
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 205--205
+\T1/txr/m/n/10 de eval-u-aciÛn, re-cono-ciendo que
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+\T1/txr/m/n/10 la het-ero-genei-dad metodolÛg-ica
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+\T1/txr/m/n/10 impide com-para-ciones di-rec-tas
+ []
+
+
+Underfull \hbox (badness 6641) in paragraph at lines 206--206
+\T1/txr/m/n/10 pre-sen-tan lim-ita-ciones de
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 206--206
+\T1/txr/m/n/10 quiriendo la iden-ti-fi-caciÛn
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 208--208
+\T1/txr/m/n/10 fenotÌpica rel-e-vante para el con-
+ []
+
+
+Underfull \hbox (badness 5519) in paragraph at lines 209--209
+[]|\T1/txr/m/n/10 Las vari-ables de en-trada
+ []
+
+
+Underfull \hbox (badness 1776) in paragraph at lines 209--209
+\T1/txr/m/n/10 (im-a-gen fa-cial ˙ni-ca-mente
+ []
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 209--209
+\T1/txr/m/n/10 ro-bustez de la predic-ciÛn,
+ []
+
+
+Underfull \hbox (badness 4995) in paragraph at lines 209--209
+\T1/txr/m/n/10 fig-u-ra-ciones Ûp-ti-mas para
+ []
+
+
+Underfull \hbox (badness 5756) in paragraph at lines 209--209
+\T1/txr/m/n/10 im-ple-mentaciÛn mÛvil en
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--212
+[]|\T1/txr/m/n/10 Las apli-ca-ciones mÛviles
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--212
+\T1/txr/m/n/10 tÈc-ni-cos (conec-tivi-dad,
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4
+
+]
+[5]
+Underfull \hbox (badness 1472) in paragraph at lines 220--228
+\T1/txr/m/n/10 to-colo fue reg-istrado de man-era prospec-tiva en el
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 266--267
+\T1/txr/m/it/9 spec-trum" OR "autis-tic") AND ("emo-tion" OR
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 266--267
+\T1/txr/m/it/9 "fa-cial ex-pres-sion" OR "af-fec-tive" OR "so-
+ []
+
+
+Underfull \hbox (badness 5161) in paragraph at lines 266--267
+\T1/txr/m/it/9 cial com-mu-ni-ca-tion") AND ("ma-chine learn-
+ []
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 266--267
+\T1/txr/m/it/9 work" OR "clas-si-fi-ca-tion" OR "recog-ni-tion"))
+ []
+
+
+Underfull \hbox (badness 5563) in paragraph at lines 266--267
+\T1/txr/m/it/9 AND (LIMIT-TO(DOCTYPE,"ar") OR LIMIT-
+ []
+
+[6
+
+]
+<./images/fig_1.jpg, id=27, 772.8875pt x 738.76pt>
+File: ./images/fig_1.jpg Graphic file (type jpg)
+<use ./images/fig_1.jpg>
+Package pdftex.def Info: ./images/fig_1.jpg  used on input line 355.
+(pdftex.def)             Requested size: 222.0pt x 212.19456pt.
+ [7 <./images/fig_1.jpg>]
+Underfull \hbox (badness 5302) in paragraph at lines 447--461
+[]\T1/txr/m/n/10 Para abor-dar la eval-u-aciÛn for-mal de cal-i-dad
+ []
+
+[8] [9
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 506--506
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--507
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 511--511
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 512--512
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 513--513
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--514
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 515--515
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 516--516
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--518
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 519--519
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--520
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 521--521
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--522
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 523--523
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 524--524
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 526--526
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 527--527
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 528--528
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--530
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--531
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 536--536
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 538--538
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 539--539
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+[10
+
+] [11] [12
+
+]
+Underfull \hbox (badness 3271) in paragraph at lines 674--688
+[]\T1/txr/m/n/10 En la Tabla 5[] se re-sumen los cinco de-safÌos
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 674--688
+\T1/txr/m/n/10 Prin-ci-pales (PCA) y MÌn-ima Re-dun-dan-cia M·x-ima
+ []
+
+<./images/fig_2.jpg, id=48, 761.84625pt x 330.48468pt>
+File: ./images/fig_2.jpg Graphic file (type jpg)
+<use ./images/fig_2.jpg>
+Package pdftex.def Info: ./images/fig_2.jpg  used on input line 691.
+(pdftex.def)             Requested size: 468.0pt x 203.01237pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 723--723
+\T1/txr/m/n/10 Im-por-tan-cia de Car-ac-terÌs-ti-cas,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 723--723
+[]\T1/txr/m/n/10 K-Fold Cross-Validation, Grid
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 723--723
+[]\T1/txr/m/n/10 PCA, MRMR, Reg-u-lar-izaciÛn
+ []
+
+
+Underfull \hbox (badness 1852) in paragraph at lines 723--723
+[]\T1/txr/m/n/10 SMOTE, RUS, ROS, ADASYN,
+ []
+
+
+Underfull \hbox (badness 2884) in paragraph at lines 723--723
+\T1/txr/m/n/10 En-sem-ble Learn-ing, Apren-dizaje
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 749--749
+[]\T1/txr/bx/n/10 Criterios de ex-clusiÛn
+ []
+
+
+Overfull \hbox (3.21497pt too wide) in paragraph at lines 751--751
+[]\T1/txr/m/n/10 Arquitecturas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 753--753
+[]\T1/txr/m/n/10 Valores
+ []
+
+
+Overfull \hbox (7.65497pt too wide) in paragraph at lines 755--755
+[]\T1/txr/m/n/10 CaracterÌsticas
+ []
+
+
+Overfull \hbox (1.00496pt too wide) in paragraph at lines 756--756
+[]\T1/txr/m/n/10 Limitaciones| 
+ []
+
+
+Overfull \hbox (5.68971pt too wide) in paragraph at lines 747--771
+ [][] 
+ []
+
+
+Underfull \vbox (badness 2221) has occurred while \output is active []
+
+ [13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14 <./images/fig_2.jpg>]
+Underfull \hbox (badness 2393) in paragraph at lines 830--839
+\T1/txr/m/n/10 fundo (57.9%), que in-cluye trans-fer learn-ing con
+ []
+
+<./images/fig_3.jpg, id=57, 732.48656pt x 396.7322pt>
+File: ./images/fig_3.jpg Graphic file (type jpg)
+<use ./images/fig_3.jpg>
+Package pdftex.def Info: ./images/fig_3.jpg  used on input line 842.
+(pdftex.def)             Requested size: 222.0pt x 120.23735pt.
+<./images/fig_4.jpg, id=58, 972.63374pt x 530.98375pt>
+File: ./images/fig_4.jpg Graphic file (type jpg)
+<use ./images/fig_4.jpg>
+Package pdftex.def Info: ./images/fig_4.jpg  used on input line 859.
+(pdftex.def)             Requested size: 222.0pt x 121.19194pt.
+[15 <./images/fig_3.jpg> <./images/fig_4.jpg>]
+<./images/fig_5.jpg, id=62, 859.2903pt x 860.013pt>
+File: ./images/fig_5.jpg Graphic file (type jpg)
+<use ./images/fig_5.jpg>
+Package pdftex.def Info: ./images/fig_5.jpg  used on input line 903.
+(pdftex.def)             Requested size: 222.0pt x 222.18085pt.
+ [16 <./images/fig_5.jpg>]
+<./images/fig_6.jpg, id=68, 679.03688pt x 406.51875pt>
+File: ./images/fig_6.jpg Graphic file (type jpg)
+<use ./images/fig_6.jpg>
+Package pdftex.def Info: ./images/fig_6.jpg  used on input line 1068.
+(pdftex.def)             Requested size: 222.0pt x 132.9048pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1092--1092
+[]\T1/txr/m/n/10 Kaggle Screen-ing /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1101--1101
+[]\T1/txr/m/n/10 Datos de en-sayo
+ []
+
+[17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<./images/fig_7.jpg, id=72, 983.675pt x 547.04375pt>
+File: ./images/fig_7.jpg Graphic file (type jpg)
+<use ./images/fig_7.jpg>
+Package pdftex.def Info: ./images/fig_7.jpg  used on input line 1152.
+(pdftex.def)             Requested size: 468.0pt x 260.26584pt.
+ [18 <./images/fig_6.jpg>]
+Underfull \hbox (badness 1622) in paragraph at lines 1179--1194
+[]\T1/txr/m/n/10 Los in-ves-ti-gadores han prop-uesto con-jun-tos het-
+ []
+
+<./images/fig_8.jpg, id=76, 991.705pt x 548.0475pt>
+File: ./images/fig_8.jpg Graphic file (type jpg)
+<use ./images/fig_8.jpg>
+Package pdftex.def Info: ./images/fig_8.jpg  used on input line 1268.
+(pdftex.def)             Requested size: 222.0pt x 122.67818pt.
+[19]
+Underfull \hbox (badness 2088) in paragraph at lines 1297--1303
+[]\T1/txr/m/n/10 En los artÌcu-los re-visa-dos sis-tem·ti-ca-mente, los
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 1297--1303
+\T1/txr/m/n/10 au-tores iden-ti-fi-caron ex-plÌci-ta-mente las lim-ita-ciones
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1309--1309
+[]\T1/txr/bx/n/10 LimitaciÛn Iden-ti-fi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1311--1311
+[]\T1/txr/m/n/10 Representatividad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1313--1313
+[]\T1/txr/m/n/10 Inconsistencia en el
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 1314--1314
+[]\T1/txr/m/n/10 Interpretabilidad clÌnica
+ []
+
+[20 <./images/fig_7.jpg> <./images/fig_8.jpg>]
+Underfull \vbox (badness 2418) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+Underfull \hbox (badness 10000) in paragraph at lines 1415--1415
+[]\T1/txr/m/n/10 ValidaciÛn Cruzada
+ []
+
+
+Underfull \hbox (badness 2762) in paragraph at lines 1420--1420
+[]\T1/txr/m/n/10 OptimizaciÛn Meta-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1458--1458
+[]\T1/txr/m/n/10 AumentaciÛn de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1461--1461
+[]\T1/txr/m/n/10 PonderaciÛn de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1462--1462
+[]\T1/txr/m/n/10 Muestreo Es-trat-i-fi-
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 1480--1492
+[]\T1/txr/m/n/10 El re-conocimiento de ex-pre-sivi-dad emo-cional en
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]
+Overfull \hbox (13.57016pt too wide) in paragraph at lines 1519--1544
+ [][] 
+ []
+
+<./images/fig_9.jpg, id=90, 983.17313pt x 462.22687pt>
+File: ./images/fig_9.jpg Graphic file (type jpg)
+<use ./images/fig_9.jpg>
+Package pdftex.def Info: ./images/fig_9.jpg  used on input line 1548.
+(pdftex.def)             Requested size: 468.0pt x 220.02554pt.
+
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+ [23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+Underfull \hbox (badness 2865) in paragraph at lines 1583--1593
+[]\T1/txr/m/n/10 La tesis metodolÛg-ica cen-tral de esta re-visiÛn,
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 1583--1593
+\T1/txr/m/n/10 sostenida por el an·li-sis con-junto de mÈtri-cas de
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+Underfull \hbox (badness 2080) in paragraph at lines 1649--1656
+[]\T1/txr/m/n/10 Las lim-ita-ciones prin-ci-pales iden-ti-fi-cadas en los
+ []
+
+
+Underfull \hbox (badness 1584) in paragraph at lines 1649--1656
+\T1/txr/m/n/10 datasets cor-re-spon-den a rep-re-sen-ta-tivi-dad ecolÛg-ica
+ []
+
+
+Underfull \hbox (badness 2173) in paragraph at lines 1649--1656
+\T1/txr/m/n/10 con-texto real de se-siones ter-apÈu-ti-cas; des-bal-ance
+ []
+
+
+Underfull \vbox (badness 5970) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 1657--1672
+[]\T1/txr/m/n/10 La eval-u-aciÛn de cal-i-dad metodolÛg-ica me-di-ante
+ []
+
+
+Underfull \vbox (badness 5970) has occurred while \output is active []
+
+ [26 <./images/fig_9.jpg>]
+Underfull \hbox (badness 2837) in paragraph at lines 1688--1701
+\T1/txr/m/n/10 (23.5%) y las Modal-i-dades de En-trada de video
+ []
+
+[27]
+Underfull \hbox (badness 1270) in paragraph at lines 1888--1904
+\T1/txr/m/n/10 sin prece-dentes para de-sar-rol-lar in-ter-ven-ciones tec-
+ []
+
+[28]
+Underfull \hbox (badness 1270) in paragraph at lines 1908--1913
+[]\T1/txr/m/n/10 ù. G¸ngˆr, A. Sar-man, and S. Tun-cay, ``Can
+ []
+
+
+Underfull \hbox (badness 1648) in paragraph at lines 1908--1913
+\T1/txr/m/n/10 ar-ti-fi-cial in-tel-li-gence and face recog-ni-tion us-
+ []
+
+
+Underfull \hbox (badness 1062) in paragraph at lines 1908--1913
+\T1/txr/m/n/10 ing deep learn-ing de-tect emo-tions in chil-dren
+ []
+
+
+Underfull \hbox (badness 1242) in paragraph at lines 1908--1913
+\T1/txr/m/n/10 with autism?'' \T1/txr/m/it/10 PLoS ONE\T1/txr/m/n/10 , vol. 20,
+ no. 12,
+ []
+
+
+Underfull \hbox (badness 7415) in paragraph at lines 1915--1920
+[]\T1/txr/m/n/10 G. John-son, V. Ar-gyriou, S. A. Bar-man,
+ []
+
+
+Underfull \hbox (badness 6396) in paragraph at lines 1915--1920
+\T1/txr/m/n/10 and C. Poli-tis, ``As-sis-tive fa-cial ex-pres-sion
+ []
+
+
+Underfull \hbox (badness 2334) in paragraph at lines 1922--1927
+[]\T1/txr/m/n/10 Y. He et al., ``The char-ac-ter-is-tics of in-tel-li-
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 1922--1927
+\T1/txr/m/n/10 gence pro-file and eye gaze in fa-cial emo-tion
+ []
+
+
+Underfull \hbox (badness 3623) in paragraph at lines 1936--1941
+[]\T1/txr/m/n/10 F. Lec-ciso et al., ``Emo-tional ex-pres-sion in
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 1936--1941
+\T1/txr/m/n/10 chil-dren with ASD: A pre-study on a two-
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 1936--1941
+\T1/txr/m/n/10 and computer-based train-ing,'' \T1/txr/m/it/10 Front. Psy-chol.
+\T1/txr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 1957--1962
+[]\T1/txr/m/n/10 F. E. El Rhatassi, B. El Ghali, and N. Na-
+ []
+
+
+Underfull \hbox (badness 4048) in paragraph at lines 1957--1962
+\T1/txr/m/n/10 jima, ``Deep learn-ing ap-proaches for rec-og-
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 1957--1962
+\T1/txr/m/n/10 niz-ing fa-cial emo-tions on autis-tic pa-tients,''
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 1957--1962
+\T1/txr/m/it/10 Int. J. Electr. Com-put. Eng.\T1/txr/m/n/10 , vol. 14, no. 4,
+ []
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 1957--1962
+\T1/txr/m/n/10 pp. 4034--4045, 2024. $\T1/cmtt/m/n/10 https : / / doi . org / 1
+0 .
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 1971--1976
+\T1/txr/m/n/10 de-vel-op-men-tal pe-di-atrics us-ing domain-specific
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 1978--1983
+[]\T1/txr/m/n/10 R. W. Sholikah et al., ``Real-time fa-cial ex-
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 1978--1983
+\T1/txr/m/n/10 pres-sion recog-ni-tion to en-hance emo-tional in-
+ []
+
+
+Underfull \hbox (badness 1803) in paragraph at lines 1978--1983
+\T1/txr/m/n/10 tel-li-gence in autism,'' \T1/txr/m/it/10 Pro-ce-dia Com-put. Sc
+i.\T1/txr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 6876) in paragraph at lines 1985--1990
+[]\T1/txr/m/n/10 L. Levy, A. Am-baw, E. Ben-Itzhak, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+\T1/txr/m/n/10 E. Hold-en-gre-ber, ``A real-time en-vi-ron-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+\T1/txr/m/n/10 men-tal trans-la-tor for emo-tion recog-ni-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+\T1/txr/m/n/10 tion in autism spec-trum dis-or-der,'' \T1/txr/m/it/10 Sci.
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 1985--1990
+\T1/txr/m/it/10 Rep.\T1/txr/m/n/10 , vol. 14, no. 1, 31527, 2024. $\T1/cmtt/m/n
+/10 https :
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 1992--1997
+[]\T1/txr/m/n/10 M. A. Mah-mood et al., ``Lever-ag-ing ar-ti-fi-cial
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 1992--1997
+\T1/txr/m/n/10 in-tel-li-gence for di-ag-no-sis of chil-dren autism
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 1992--1997
+\T1/txr/m/n/10 no. 1, 11945, 2025. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
+.
+ []
+
+
+Underfull \hbox (badness 3942) in paragraph at lines 2006--2011
+[]\T1/txr/m/n/10 E. Sariyanidi et al., ``Be-yond FACS: Data-
+ []
+
+
+Underfull \hbox (badness 1242) in paragraph at lines 2006--2011
+\T1/txr/m/n/10 driven fa-cial ex-pres-sion dic-tio-nar-ies, with ap-
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 2006--2011
+\T1/txr/m/it/10 19th Int. Conf. Au-tom. Face Ges-ture Recog-
+ []
+
+[29]
+Underfull \hbox (badness 1194) in paragraph at lines 2020--2025
+\T1/txr/m/n/10 pre-dic-tion of autism spec-trum dis-or-ders,'' \T1/txr/m/it/10 
+Sci.
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 2027--2032
+\T1/txr/m/n/10 R. W. Pi-card, ``Per-son-al-ized ma-chine learn-ing
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 2041--2046
+[]\T1/txr/m/n/10 L. M. Almeida et al., ``AL-TRI-RAS: A com-
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 2041--2046
+\T1/txr/m/n/10 4384896, 2019. $\T1/cmtt/m/n/10 https : / / doi . org / 10 . 115
+5 /
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 2062--2068
+\T1/txr/m/n/10 3D-CNN and LSTM,'' \T1/txr/m/it/10 J. Wirel. Mob. Netw.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+[]\T1/txr/m/n/10 R. Ra-machan-dran et al., ``Dis-or-der fa-cial
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+\T1/txr/m/n/10 emo-tion recog-ni-tion with grey wolf op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+\T1/txr/m/n/10 ti-mized GEfficient-Net for autism spec-
+ []
+
+
+Underfull \hbox (badness 1867) in paragraph at lines 2076--2081
+\T1/txr/m/n/10 trum,'' \T1/txr/m/it/10 Int. J. Im-age Graph. Sig-nal Pro-cess.\
+T1/txr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 6300) in paragraph at lines 2076--2081
+\T1/txr/m/n/10 vol. 17, no. 1, pp. 1--16, 2025. $\T1/cmtt/m/n/10 https :
+ []
+
+
+Underfull \hbox (badness 6641) in paragraph at lines 2083--2088
+\T1/txr/m/n/10 based YOLOv8 al-go-rithm for early autism
+ []
+
+
+Underfull \hbox (badness 5924) in paragraph at lines 2083--2088
+\T1/txr/m/n/10 di-ag-no-sis through fa-cial ex-pres-sion recog-ni-
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 2090--2095
+\T1/txr/m/n/10 no. 14, 5116, 2022. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
+.
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 2104--2109
+\T1/txr/m/n/10 database, and pro-to-col,'' \T1/txr/m/it/10 Front. Com-put. Sci.
+\T1/txr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 4940) in paragraph at lines 2117--2122
+\T1/txr/m/n/10 yˆneltilen gˆrsel dikkatin makine ˆßren-mesi
+ []
+
+
+Underfull \hbox (badness 4872) in paragraph at lines 2117--2122
+\T1/txr/m/n/10 arac^^Yl^^Yß^^Yyla deßer-lendirilmesi,'' \T1/txr/m/it/10 Turk Ps
+ikoloji
+ []
+
+[30]
+Underfull \hbox (badness 2865) in paragraph at lines 2131--2136
+[]\T1/txr/m/n/10 J. O'Sullivan et al., ``Au-to-matic speaker di-
+ []
+
+
+Underfull \hbox (badness 2828) in paragraph at lines 2131--2136
+\T1/txr/m/n/10 ariza-tion for nat-u-ral con-ver-sa-tion anal-y-sis in
+ []
+
+
+Underfull \hbox (badness 6961) in paragraph at lines 2131--2136
+\T1/txr/m/n/10 autism clin-i-cal tri-als,'' \T1/txr/m/it/10 Sci. Rep.\T1/txr/m/
+n/10 , vol. 13,
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 2131--2136
+\T1/txr/m/n/10 no. 1, 10270, 2023. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
+.
+ []
+
+[31
+
+] [32] (elsdoc.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 5132 strings out of 474485
+ 76737 string characters out of 5739450
+ 1961542 words of memory out of 5000000
+ 27330 multiletter control sequences out of 15000+600000
+ 608158 words of font info for 121 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 72i,11n,79p,635b,423s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Christopher PS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\ectt1000.pk> <C:\Users\Christopher PS\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ectt0800.pk><C:/Users/Christopher PS/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/txfonts/rtxb.pfb><C:/Users/Christopher PS/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/txfonts/rtxi.pfb><C:/Users/Christopher P
+S/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxmi.pfb><C:/Users/
+Christopher PS/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxr.pf
+b><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/type1/public/txf
+onts/txsy.pfb><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/times/utmb8a.pfb><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/f
+onts/type1/urw/times/utmr8a.pfb><C:/Users/Christopher PS/AppData/Local/Programs
+/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on elsdoc.pdf (32 pages, 854477 bytes).
+PDF statistics:
+ 232 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+

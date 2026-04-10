@@ -11,7 +11,6 @@ Necesitamos primero saber qué existe ya en la literatura antes de proponer nues
 ¿Cuáles son los objetivos?
 
 El objetivo general es sintetizar la evidencia sobre herramientas digitales de reconocimiento facial para monitorear expresividad emocional en niños con TEA, identificando qué funciona, qué falta y qué necesitan los terapeutas en contextos con recursos limitados.
-
 Los objetivos específicos son identificar las arquitecturas de inteligencia artificial más efectivas, caracterizar las métricas de evaluación que usan, analizar los conjuntos de datos disponibles y sus limitaciones de representatividad, documentar qué características de entrada funcionan mejor, e identificar las barreras técnicas que impiden implementar estas herramientas en contextos como el nuestro.
 
 ¿Cuál es la solución que brindamos?
@@ -25,7 +24,6 @@ Porque académicamente necesitas justificar que tu solución es necesaria. El Pa
 ¿CUÁL ES NUESTRO ENFOQUE?
 
 El enfoque es proporcionar al terapeuta una herramienta de apoyo para el monitoreo objetivo de la expresividad emocional del niño durante sus intervenciones terapéuticas. No estamos diagnosticando TEA ni determinando su nivel de severidad, estamos dando datos cuantificables sobre cómo el niño expresa emociones sesión tras sesión para que el terapeuta pueda evaluar si sus intervenciones están funcionando y tomar decisiones informadas.
-
 La app registra, cuantifica y visualiza patrones de expresividad emocional a lo largo del tiempo. El terapeuta usa esos datos como complemento a su evaluación clínica integral. Es una herramienta de monitoreo de progreso, no de diagnóstico.
 
 ¿ESTÁ BIEN QUE EL TERAPEUTA ANOTE EL NIVEL DE TEA EN LA CONCLUSIÓN FINAL?

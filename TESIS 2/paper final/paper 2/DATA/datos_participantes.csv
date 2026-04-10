@@ -1,0 +1,80 @@
+﻿ID_Participante;DNI;Nombres;Apellidos;Fecha_Prueba;Edad;Sexo;Nivel_TEA;Institucion;Ciudad;Distrito;Sesion;Sesiones_Completadas;Duracion_Minutos;Emociones_Correctas;Emociones_Incorrectas;Precision_Porcentaje;Tiempo_Respuesta_Promedio_Seg;Nivel_Dificultad;Intentos_Por_Emocion;Porcentaje_Predominante;Emocion_Predominante;Satisfaccion_Usuario;Facilidad_Uso;Continuaria_Usando;Observaciones
+P001;72845123;Carlos José;Ramírez Sánchez;2025-11-15;15;M;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;1;42;15;4;78.95;5.0;Fácil;3.3;60.9;Feliz;4;3;No;Excelente progreso en reconocimiento emocional
+P002;71234567;María Elena;Torres Vega;2025-10-29;5;F;Síndrome de Asperger;Centro TEA Corrales;Tumbes;Corrales;1;1;45;15;8;65.22;4.5;Medio;2.4;69.2;Neutral;5;4;Sí;
+P003;74556789;Jocelyn Luisa;Mendoza Castro;2025-11-05;11;F;TEA Nivel 2;Centro TEA Zarumilla;Tumbes;Zarumilla;1;3;35;8;4;66.67;4.7;Medio;2.7;76.2;Enojado;5;4;No;Muy motivado con el formato de juego
+P003;74556789;Jocelyn Luisa;Mendoza Castro;2025-10-29;15;F;TEA Nivel 2;Centro TEA Zarumilla;Tumbes;Zarumilla;2;3;42;9;8;52.94;6.0;Medio;1.7;62.2;Enojado;4;4;Sí;Mostró gran interés en la actividad
+P003;74556789;Jocelyn Luisa;Mendoza Castro;2025-10-31;14;F;TEA Nivel 2;Centro TEA Zarumilla;Tumbes;Zarumilla;3;3;39;14;8;63.64;5.2;Difícil;1.6;66.5;Feliz;5;5;Sí;Pidió repetir algunos ejercicios
+P004;74567890;Ana Patricia;García Flores;2025-11-05;15;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;2;38;12;3;80.00;5.0;Fácil;1.6;44.8;Enojado;5;3;Sí;Mostró gran interés en la actividad
+P004;74567890;Ana Patricia;García Flores;2025-11-14;5;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;2;2;32;18;2;90.00;8.1;Medio;3.2;49.0;Triste;5;5;Sí;
+P005;72678901;Pedro Andrés;Huamán Ruiz;2025-11-05;11;M;TEA Nivel 3;Centro TEA San Jacinto;Tumbes;San Jacinto;1;1;29;11;13;45.83;4.4;Medio;2.6;73.2;Neutral;4;5;Sí;Pidió repetir algunos ejercicios
+P006;71789012;Lucia Fernanda;Pérez Morales;2025-11-13;3;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;1;40;15;4;78.95;6.4;Medio;1.9;53.9;Enojado;4;4;Sí;Necesita más práctica con emociones sutiles
+P007;73890123;Roberto Carlos;Díaz Quispe;2025-11-03;12;M;TEA Nivel 2;Centro TEA Aguas Verdes;Zarumilla;Aguas Verdes;1;1;39;10;9;52.63;8.1;Medio;2.2;73.7;Disgustado;5;5;Sí;Se distrajo en algunos momentos
+P008;74901234;Carmen Rosa;Velásquez Núñez;2025-10-29;4;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;2;37;16;3;84.21;7.4;Medio;2.4;83.3;Feliz;5;4;No;Buena concentración durante toda la sesión
+P008;74901234;Carmen Rosa;Velásquez Núñez;2025-11-14;11;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;2;2;28;15;4;78.95;8.1;Medio;2.9;85.0;Triste;3;3;Sí;
+P009;72012345;Miguel Ángel;Salazar Gómez;2025-11-13;2;M;TEA Nivel 2;Centro TEA La Cruz;Tumbes;La Cruz;1;2;27;14;7;66.67;4.8;Difícil;3.4;72.2;Disgustado;5;5;Sí;Mostró gran interés en la actividad
+P009;72012345;Miguel Ángel;Salazar Gómez;2025-11-10;3;M;TEA Nivel 2;Centro TEA La Cruz;Tumbes;La Cruz;2;2;28;13;10;56.52;7.0;Difícil;1.5;68.9;Enojado;4;5;Sí;Buena concentración durante toda la sesión
+P010;71123456;Sandra Milena;Rojas Paredes;2025-11-07;3;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;3;41;11;7;61.11;7.5;Medio;2.3;47.6;Enojado;5;5;Sí;
+P010;71123456;Sandra Milena;Rojas Paredes;2025-11-06;13;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;2;3;43;15;5;75.00;6.0;Medio;2.4;52.5;Neutral;3;3;Sí;Mostró gran interés en la actividad
+P010;71123456;Sandra Milena;Rojas Paredes;2025-11-11;11;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;3;3;34;10;3;76.92;5.5;Medio;1.6;83.9;Neutral;5;5;Sí;Pidió repetir algunos ejercicios
+P011;72345677;Daniel Eduardo;Chávez Silupu;2025-11-05;18;M;TEA Nivel 3;Centro TEA Pampas de Hospital;Tumbes;Pampas de Hospital;1;1;38;7;12;36.84;4.6;Difícil;3.5;58.2;Feliz;5;3;Sí;Muy motivado con el formato de juego
+P012;74345678;Gabriela Isabel;Castillo Reyes;2025-10-30;2;F;TEA Nivel 1;Centro TEA Corrales;Tumbes;Corrales;1;2;26;16;2;88.89;5.5;Medio;1.8;53.7;Neutral;4;4;Sí;Muy motivado con el formato de juego
+P012;74345678;Gabriela Isabel;Castillo Reyes;2025-11-11;2;F;TEA Nivel 1;Centro TEA Corrales;Tumbes;Corrales;2;2;34;13;2;86.67;5.7;Fácil;3.2;41.7;Feliz;5;5;No;Pidió repetir algunos ejercicios
+P013;72456789;Fernando José;Vargas Medina;2025-11-09;2;M;TEA Nivel 2;Centro TEA Zarumilla;Tumbes;Zarumilla;1;2;41;10;8;55.56;7.6;Difícil;1.2;53.3;Triste;4;5;No;Necesita más práctica con emociones sutiles
+P013;72456789;Fernando José;Vargas Medina;2025-11-10;16;M;TEA Nivel 2;Centro TEA Zarumilla;Tumbes;Zarumilla;2;2;35;8;8;50.00;4.8;Difícil;2.7;68.6;Enojado;5;3;No;Requirió apoyo adicional del terapeuta
+P014;71567890;Paola Andrea;Martínez Guzmán;2025-11-15;16;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;3;28;15;3;83.33;6.7;Medio;2.0;40.7;Neutral;5;5;No;Requirió apoyo adicional del terapeuta
+P014;71567890;Paola Andrea;Martínez Guzmán;2025-11-03;14;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;2;3;45;13;3;81.25;6.0;Medio;2.2;74.3;Disgustado;5;5;No;Excelente progreso en reconocimiento emocional
+P014;71567890;Paola Andrea;Martínez Guzmán;2025-11-13;18;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;3;3;34;11;6;64.71;6.4;Medio;2.0;74.6;Feliz;4;3;Sí;Mostró gran interés en la actividad
+P015;73678901;Ricardo Manuel;Espinoza León;2025-11-11;10;M;TEA Nivel 1;Centro TEA San Juan de la Virgen;Tumbes;San Juan de la Virgen;1;1;26;17;5;77.27;4.5;Fácil;3.1;43.5;Enojado;5;4;Sí;Excelente progreso en reconocimiento emocional
+P016;74789012;Verónica Esther;Campos Arteaga;2025-11-07;9;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;1;31;8;9;47.06;5.7;Medio;2.7;59.8;Neutral;4;4;Sí;Comprensión clara de las instrucciones
+P017;72890123;Javier Antonio;Bravo Herrera;2025-11-01;12;M;TEA Nivel 3;Centro TEA Zorritos;Contralmirante Villar;Zorritos;1;1;25;7;12;36.84;6.5;Difícil;2.0;41.2;Neutral;3;4;Sí;Dificultad con emociones complejas
+P018;71901234;Mónica Beatriz;Ríos Carrasco;2025-11-02;16;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;2;35;15;6;71.43;5.0;Medio;1.6;65.5;Enojado;5;4;Sí;Pidió repetir algunos ejercicios
+P018;71901234;Mónica Beatriz;Ríos Carrasco;2025-11-15;6;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;2;2;29;15;8;65.22;4.1;Medio;3.4;52.8;Disgustado;4;5;Sí;Buena concentración durante toda la sesión
+P019;73012345;Sergio David;Palacios Soto;2025-10-31;10;M;TEA Nivel 1;Centro TEA Corrales;Tumbes;Corrales;1;1;31;13;6;68.42;3.7;Fácil;2.9;76.3;Triste;5;5;Sí;Necesita más práctica con emociones sutiles
+P020;74123456;Diana Carolina;Cabrera Montoya;2025-11-10;15;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;3;34;12;4;75.00;5.1;Difícil;1.8;66.8;Disgustado;4;5;Sí;Requirió apoyo adicional del terapeuta
+P020;74123456;Diana Carolina;Cabrera Montoya;2025-11-13;4;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;2;3;27;13;9;59.09;5.9;Medio;2.7;53.3;Feliz;5;4;Sí;
+P020;74123456;Diana Carolina;Cabrera Montoya;2025-11-03;5;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;3;3;39;13;9;59.09;6.5;Medio;2.7;48.6;Triste;3;4;No;Buena concentración durante toda la sesión
+P021;72234567;Arturo Enrique;Gutiérrez Ochoa;2025-11-14;5;M;TEA Nivel 1;Centro TEA Zarumilla;Tumbes;Zarumilla;1;3;42;14;5;73.68;7.4;Fácil;1.8;56.0;Triste;4;3;No;Dificultad con emociones complejas
+P021;72234567;Arturo Enrique;Gutiérrez Ochoa;2025-11-14;9;M;TEA Nivel 1;Centro TEA Zarumilla;Tumbes;Zarumilla;2;3;41;18;3;85.71;5.2;Fácil;2.3;63.6;Disgustado;5;4;Sí;Mostró gran interés en la actividad
+P021;72234567;Arturo Enrique;Gutiérrez Ochoa;2025-11-06;3;M;TEA Nivel 1;Centro TEA Zarumilla;Tumbes;Zarumilla;3;3;35;12;3;80.00;5.4;Fácil;1.6;78.6;Neutral;4;4;Sí;Muy motivado con el formato de juego
+P022;71345678;Fiorella Vanessa;Romero Dávila;2025-11-01;17;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;1;39;11;6;64.71;3.8;Medio;2.0;73.1;Enojado;3;5;Sí;Dificultad con emociones complejas
+P023;73456790;Alfredo Santiago;Luna Benites;2025-11-14;12;M;TEA Nivel 3;Centro TEA San Jacinto;Tumbes;San Jacinto;1;2;35;9;9;50.00;7.1;Medio;2.1;62.9;Neutral;3;4;No;Se distrajo en algunos momentos
+P023;73456790;Alfredo Santiago;Luna Benites;2025-11-02;15;M;TEA Nivel 3;Centro TEA San Jacinto;Tumbes;San Jacinto;2;2;34;8;12;40.00;6.7;Difícil;1.5;77.7;Disgustado;5;3;No;Excelente progreso en reconocimiento emocional
+P024;74567891;Claudia Stefany;Jiménez Cruz;2025-10-30;5;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;2;45;14;6;70.00;7.8;Fácil;1.3;78.1;Enojado;3;5;No;Excelente progreso en reconocimiento emocional
+P024;74567891;Claudia Stefany;Jiménez Cruz;2025-11-04;13;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;2;2;37;14;3;82.35;7.5;Medio;3.2;46.5;Neutral;4;4;Sí;Dificultad con emociones complejas
+P025;72678902;Hugo Ramiro;Vásquez Peña;2025-11-03;14;M;TEA Nivel 2;Centro TEA Aguas Verdes;Zarumilla;Aguas Verdes;1;1;32;12;6;66.67;6.0;Difícil;2.3;75.1;Triste;4;4;Sí;Dificultad con emociones complejas
+P026;71789013;Ingrid Melissa;Navarro Quispe;2025-11-15;4;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;1;39;11;7;61.11;6.1;Medio;1.4;47.6;Feliz;4;3;Sí;
+P027;73890124;Oscar Alejandro;Cordero Ramírez;2025-11-10;2;M;TEA Nivel 1;Centro TEA La Cruz;Tumbes;La Cruz;1;2;40;16;2;88.89;5.1;Fácil;3.3;83.1;Neutral;4;3;Sí;Muy motivado con el formato de juego
+P027;73890124;Oscar Alejandro;Cordero Ramírez;2025-11-04;3;M;TEA Nivel 1;Centro TEA La Cruz;Tumbes;La Cruz;2;2;32;12;3;80.00;7.5;Fácil;1.5;52.9;Feliz;5;3;Sí;Comprensión clara de las instrucciones
+P028;74901235;Karina Alejandra;Figueroa Mejía;2025-11-14;3;F;TEA Nivel 2;Centro TEA Corrales;Tumbes;Corrales;1;1;39;10;9;52.63;7.6;Medio;3.0;75.5;Triste;3;5;No;Necesita más práctica con emociones sutiles
+P029;72012346;Raúl Ernesto;Maldonado Soria;2025-11-01;10;M;TEA Nivel 3;Centro TEA Tumbes;Tumbes;Tumbes;1;1;30;11;8;57.89;6.3;Difícil;3.1;70.0;Disgustado;3;3;No;Requirió apoyo adicional del terapeuta
+P030;71123457;Natalia Roxana;Sánchez Villegas;2025-10-29;5;F;Síndrome de Asperger;Centro TEA Pampas de Hospital;Tumbes;Pampas de Hospital;1;2;35;12;4;75.00;6.7;Medio;1.6;69.2;Triste;3;5;Sí;Necesita más práctica con emociones sutiles
+P030;71123457;Natalia Roxana;Sánchez Villegas;2025-11-06;7;F;Síndrome de Asperger;Centro TEA Pampas de Hospital;Tumbes;Pampas de Hospital;2;2;26;13;3;81.25;4.1;Medio;1.9;44.6;Neutral;3;4;Sí;
+P031;72345688;Gonzalo Rafael;Oliva Guevara;2025-11-04;2;M;TEA Nivel 1;Centro TEA Zarumilla;Tumbes;Zarumilla;1;1;40;16;5;76.19;5.4;Fácil;2.2;82.4;Feliz;5;3;Sí;Pidió repetir algunos ejercicios
+P032;74345679;Valeria Sofía;Paredes Muñoz;2025-11-02;16;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;2;26;13;10;56.52;4.7;Medio;1.4;58.9;Enojado;5;3;Sí;
+P032;74345679;Valeria Sofía;Paredes Muñoz;2025-11-15;18;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;2;2;29;12;4;75.00;5.9;Medio;3.1;48.8;Disgustado;3;4;No;Necesita más práctica con emociones sutiles
+P033;72456780;Esteban Martín;Aguilar Salas;2025-11-14;3;M;TEA Nivel 1;Centro TEA Zorritos;Contralmirante Villar;Zorritos;1;1;38;13;3;81.25;8.1;Fácil;1.3;74.7;Enojado;4;3;Sí;Pidió repetir algunos ejercicios
+P034;71567891;Liliana Patricia;Benavides Torres;2025-11-11;8;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;1;2;44;14;8;63.64;6.2;Medio;1.3;46.7;Enojado;5;5;Sí;Requirió apoyo adicional del terapeuta
+P034;71567891;Liliana Patricia;Benavides Torres;2025-11-10;3;F;Síndrome de Asperger;Centro TEA Tumbes;Tumbes;Tumbes;2;2;25;10;4;71.43;5.6;Medio;2.7;52.8;Disgustado;4;4;No;Dificultad con emociones complejas
+P035;73678902;Adrián Sebastián;Coronel Ramos;2025-11-13;18;M;TEA Nivel 3;Centro TEA San Jacinto;Tumbes;San Jacinto;1;1;39;7;13;35.00;6.3;Difícil;3.3;64.4;Feliz;4;5;Sí;Excelente progreso en reconocimiento emocional
+P036;74789013;Brenda Luciana;Ibarra Chávez;2025-11-10;10;F;TEA Nivel 1;Centro TEA Corrales;Tumbes;Corrales;1;1;41;18;2;90.00;4.9;Fácil;1.6;60.6;Enojado;3;5;Sí;Excelente progreso en reconocimiento emocional
+P037;72890124;Rodrigo Jesús;Contreras Moreno;2025-11-14;15;M;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;1;36;12;5;70.59;7.9;Medio;1.2;83.7;Feliz;4;4;Sí;Excelente progreso en reconocimiento emocional
+P038;71901235;Ximena Gabriela;Delgado Ríos;2025-11-09;1;F;Síndrome de Asperger;Centro TEA Aguas Verdes;Zarumilla;Aguas Verdes;1;2;35;10;3;76.92;6.6;Medio;1.8;82.7;Enojado;3;3;Sí;Requirió apoyo adicional del terapeuta
+P038;71901235;Ximena Gabriela;Delgado Ríos;2025-10-30;7;F;Síndrome de Asperger;Centro TEA Aguas Verdes;Zarumilla;Aguas Verdes;2;2;39;11;4;73.33;4.1;Medio;1.3;80.4;Neutral;4;5;Sí;Pidió repetir algunos ejercicios
+P039;73012346;Hernán Felipe;Salinas Cortez;2025-11-15;13;M;TEA Nivel 1;Centro TEA San Juan de la Virgen;Tumbes;San Juan de la Virgen;1;1;35;17;6;73.91;3.8;Fácil;1.4;59.1;Neutral;5;5;Sí;Se distrajo en algunos momentos
+P040;74123457;Yesenia Maribel;Mendoza Vargas;2025-11-10;10;F;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;1;27;8;10;44.44;6.5;Medio;3.0;74.3;Feliz;4;4;Sí;Pidió repetir algunos ejercicios
+P041;73983862;Josué Joel;Prado Zárate;2025-10-30;15;M;TEA Nivel 2;Centro TEA Tumbes;Tumbes;Tumbes;1;1;45;12;10;54.55;7.9;Medio;1.6;43.8;Disgustado;5;4;Sí;Mostró gran interés en la actividad
+P042;02832931;Isabel;Saucedo Andrade;2025-11-16;2;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;2;43;14;6;70.00;3.8;Fácil;1.2;67.2;Enojado;3;3;No;Dificultad con emociones complejas
+P042;02832931;Isabel;Saucedo Andrade;2025-11-16;9;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;2;2;27;16;2;88.89;8.0;Fácil;1.5;75.2;Disgustado;4;3;No;Comprensión clara de las instrucciones
+P043;05640916;Violeta;Ruiz Saavedra;2025-11-10;14;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;3;36;18;5;78.26;7.7;Fácil;1.2;49.0;Neutral;4;5;Sí;Requirió apoyo adicional del terapeuta
+P043;05640916;Violeta;Ruiz Saavedra;2025-11-03;11;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;2;3;38;13;4;76.47;6.0;Medio;3.3;56.6;Triste;5;5;Sí;Excelente progreso en reconocimiento emocional
+P043;05640916;Violeta;Ruiz Saavedra;2025-11-08;11;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;3;3;36;15;4;78.95;7.1;Medio;3.5;45.6;Triste;4;5;Sí;Pidió repetir algunos ejercicios
+P044;77326403;Saúl;Peña Acaro;2025-11-16;7;M;TEA Nivel 3;Centro TEA Tumbes;Tumbes;Tumbes;1;3;35;9;11;45.00;6.7;Difícil;3.4;80.8;Triste;5;3;Sí;
+P044;77326403;Saúl;Peña Acaro;2025-11-04;9;M;TEA Nivel 3;Centro TEA Tumbes;Tumbes;Tumbes;2;3;33;6;12;33.33;3.7;Difícil;2.9;67.9;Feliz;3;5;Sí;Mostró gran interés en la actividad
+P044;77326403;Saúl;Peña Acaro;2025-10-29;3;M;TEA Nivel 3;Centro TEA Tumbes;Tumbes;Tumbes;3;3;44;10;11;47.62;7.3;Medio;2.3;84.5;Disgustado;3;3;Sí;Requirió apoyo adicional del terapeuta
+P045;03371079;Fernando;Jara Ramos;2025-10-31;1;M;TEA Nivel 2;Centro TEA La Cruz;Tumbes;La Cruz;1;3;36;11;9;55.00;4.6;Medio;1.7;74.2;Triste;3;5;No;Dificultad con emociones complejas
+P045;03371079;Fernando;Jara Ramos;2025-11-15;3;M;TEA Nivel 2;Centro TEA La Cruz;Tumbes;La Cruz;2;3;45;13;4;76.47;8.2;Medio;1.5;55.0;Disgustado;3;5;No;Se distrajo en algunos momentos
+P045;03371079;Fernando;Jara Ramos;2025-11-12;12;M;TEA Nivel 2;Centro TEA La Cruz;Tumbes;La Cruz;3;3;35;10;9;52.63;4.7;Medio;2.1;73.4;Neutral;5;5;Sí;Excelente progreso en reconocimiento emocional
+P046;46219639;Ignacio;Ramírez Martínez;2025-11-08;13;M;TEA Nivel 2;Centro TEA Corrales;Tumbes;Corrales;1;1;43;11;8;57.89;8.0;Medio;1.3;49.5;Disgustado;4;3;Sí;Comprensión clara de las instrucciones
+P047;63270651;Deiser;García Velásquez;2025-11-08;4;M;TEA Nivel 1;Centro TEA Zarumilla;Tumbes;Zarumilla;1;1;38;15;6;71.43;3.5;Fácil;3.4;81.6;Neutral;3;3;No;Comprensión clara de las instrucciones
+P048;47454121;Tania;Gonzales Vílchez;2025-11-15;10;F;TEA Nivel 1;Centro TEA Tumbes;Tumbes;Tumbes;1;1;38;15;2;88.24;6.9;Medio;1.8;58.9;Triste;5;3;No;Comprensión clara de las instrucciones
+P049;76490189;Sofía;Vergara Vásquez;2025-11-02;12;F;TEA Nivel 1;Centro TEA Pampas de Hospital;Tumbes;Pampas de Hospital;1;1;44;14;4;77.78;7.4;Fácil;2.0;47.3;Neutral;3;5;Sí;

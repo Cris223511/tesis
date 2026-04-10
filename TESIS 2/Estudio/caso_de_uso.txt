@@ -1,0 +1,25 @@
+Caso de Uso
+
+Imaginemos una sesión terapéutica con un niño con Trastorno del Espectro Autista (TEA). El terapeuta busca trabajar la identificación y expresión de emociones, pero además necesita una forma objetiva de evaluar si el niño realmente está progresando a lo largo del tiempo.
+
+Para ello, utiliza una aplicación móvil diseñada como herramienta de apoyo terapéutico. Antes de iniciar, el terapeuta ya ha registrado al niño en el sistema y ha planificado las sesiones que formarán parte del proceso de intervención.
+
+Durante la sesión, el niño interactúa con un serious game dentro de la aplicación. En este juego se le presentan distintas actividades relacionadas con emociones, como reconocer expresiones faciales o intentar imitarlas.
+
+Mientras el niño participa, la aplicación activa automáticamente el sistema de reconocimiento facial. Este no se limita a tomar una foto, sino que analiza de forma continua la expresividad emocional del niño durante la interacción con el juego.
+
+A medida que avanza la sesión, el sistema:
+
+Detecta las emociones que el niño expresa
+Evalúa si coinciden con las emociones planteadas en el juego
+Registra métricas como precisión, frecuencia y respuesta emocional
+
+Toda esta información se almacena como parte de una sesión terapéutica estructurada.
+
+En las siguientes sesiones, el proceso se repite bajo las mismas condiciones, permitiendo que la aplicación construya un historial de datos. Con el tiempo, esto permite observar patrones, identificar mejoras o detectar dificultades persistentes en la expresividad emocional.
+
+Posteriormente, el terapeuta revisa los resultados desde el sistema, donde puede visualizar métricas y gráficos de evolución. Esta información le sirve como complemento a su evaluación clínica, ayudándole a tomar decisiones más informadas sobre cómo ajustar la intervención.
+
+Es importante aclarar que la aplicación no realiza diagnósticos ni determina el nivel de TEA. Su función es exclusivamente proporcionar datos cuantitativos sobre la expresividad emocional del niño a lo largo de las sesiones.
+
+De esta manera, el terapeuta puede combinar su criterio profesional con evidencia objetiva, mejorando el seguimiento del progreso terapéutico.

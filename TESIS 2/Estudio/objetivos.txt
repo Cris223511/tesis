@@ -1,0 +1,7 @@
+El objetivo es monitorear la expresividad emocional facial del niño con TEA durante sesiones terapéuticas.
+
+Específicamente: la app escanea el rostro del niño mientras interactúa con el serious game, detecta qué emociones expresa, y genera métricas cuantitativas sesión por sesión para que el terapeuta pueda ver si el niño está progresando, identificar patrones y ajustar sus intervenciones.
+
+El niño identifica e imita emociones en el juego. La app registra, cuantifica y visualiza esa expresividad a lo largo del tiempo. El terapeuta interpreta esos datos como complemento a su evaluación clínica.
+
+No diagnostica TEA. No clasifica severidad. Solo mide progreso terapéutico en expresividad emocional.

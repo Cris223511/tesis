@@ -1,0 +1,450 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Optimal-Design-layout.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+The style file: wileyNJD-Chicago.bst
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+Database file #1: wileyNJD-Chicago.bib
+format.lab.names is already a type "wizard-defined" function name
+---line 1627 of file wileyNJD-Chicago.bst
+ : function {format.lab.names
+ :                           }
+author.key.label is already a type "wizard-defined" function name
+---line 1645 of file wileyNJD-Chicago.bst
+ : function {author.key.label
+ :                           }
+author.editor.key.label is already a type "wizard-defined" function name
+---line 1656 of file wileyNJD-Chicago.bst
+ : function {author.editor.key.label
+ :                                  }
+author.key.organization.label is already a type "wizard-defined" function name
+---line 1671 of file wileyNJD-Chicago.bst
+ : function {author.key.organization.label
+ :                                        }
+editor.key.organization.label is already a type "wizard-defined" function name
+---line 1686 of file wileyNJD-Chicago.bst
+ : function {editor.key.organization.label
+ :                                        }
+short.list is an unknown function---line 1716 of file wileyNJD-Chicago.bst
+calc.label is already a type "wizard-defined" function name
+---line 1719 of file wileyNJD-Chicago.bst
+ : function {calc.label
+ :                     }
+label is an unknown function---line 1748 of file wileyNJD-Chicago.bst
+label is an unknown function---line 1777 of file wileyNJD-Chicago.bst
+label is an unknown function---line 1783 of file wileyNJD-Chicago.bst
+label is an unknown function---line 1801 of file wileyNJD-Chicago.bst
+label is an unknown function---line 1801 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ahmad2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ahmad2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry AkinBulbul2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry AkinBulbul2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alam2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alam2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Aljbori2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Aljbori2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Almeida2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Almeida2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alsubai2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alsubai2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Cicceri2026
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Cicceri2026
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Dapogny2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Dapogny2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Gungor2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Gungor2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hassan2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hassan2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry He2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry He2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hosney2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hosney2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hwang2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hwang2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Johnson2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Johnson2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Kumar2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Kumar2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Lecciso2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Lecciso2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Leo2018
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Leo2018
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Levy2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Levy2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Mahmood2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Mahmood2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Nagae2022
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Nagae2022
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry OSullivan2023
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry OSullivan2023
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Papaioannou2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Papaioannou2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Radocaj2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Radocaj2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ramachandran2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ramachandran2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Reed2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Reed2021
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2018
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2018
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2019
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sariyanidi2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sariyanidi2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Shaik2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Shaik2025
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sholikah2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sholikah2024
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Washington2022
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Washington2022
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Xu2023
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Xu2023
+while executing---line 1806 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Xu2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Xu2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Xu2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Washington2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Washington2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Washington2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sholikah2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sholikah2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Sholikah2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Shaik2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Shaik2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Shaik2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sariyanidi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Sariyanidi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Sariyanidi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Rudovic2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rudovic2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Rudovic2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Rhatassi2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Rhatassi2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Rhatassi2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Reed2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Reed2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Reed2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ramachandran2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ramachandran2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Ramachandran2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Radocaj2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Radocaj2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Radocaj2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Papaioannou2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Papaioannou2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Papaioannou2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry OSullivan2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry OSullivan2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry OSullivan2023
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Nagae2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Nagae2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Nagae2022
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Mahmood2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Mahmood2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Mahmood2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Levy2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Levy2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Levy2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Leo2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Leo2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Leo2018
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Lecciso2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Lecciso2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Lecciso2021
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Kumar2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Kumar2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Kumar2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Johnson2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Johnson2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Johnson2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hwang2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hwang2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Hwang2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hosney2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hosney2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Hosney2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry He2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry He2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry He2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hassan2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Hassan2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Hassan2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Gungor2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Gungor2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Gungor2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Dapogny2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Dapogny2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Dapogny2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Cicceri2026
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Cicceri2026
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Cicceri2026
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alsubai2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alsubai2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Alsubai2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Almeida2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Almeida2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Almeida2019
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Aljbori2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Aljbori2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Aljbori2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alam2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alam2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Alam2025
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry AkinBulbul2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry AkinBulbul2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry AkinBulbul2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ahmad2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Ahmad2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+"" is a string literal, not a function, for entry Ahmad2024
+while executing---line 1808 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry He2019
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Reed2021
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Lecciso2021
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Washington2022
+while executing---line 1841 of file wileyNJD-Chicago.bst
+ptr=1, stack=
+
+---the literal stack isn't empty for entry Sariyanidi2025
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Alsubai2025
+while executing---line 1841 of file wileyNJD-Chicago.bst
+ptr=1, stack=
+
+---the literal stack isn't empty for entry Rudovic2019
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Almeida2019
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Papaioannou2021
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Dapogny2019
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Leo2018
+while executing---line 1841 of file wileyNJD-Chicago.bst
+Warning--page numbers missing in AkinBulbul2024
+You can't pop an empty literal stack for entry OSullivan2023
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You can't pop an empty literal stack for entry Cicceri2026
+while executing---line 1841 of file wileyNJD-Chicago.bst
+You've used 34 entries,
+            2960 wiz_defined-function locations,
+            884 strings with 13155 characters,
+and the built_in function-call counts, 15203 in all, are:
+= -- 1157
+> -- 1229
+< -- 1
++ -- 430
+- -- 390
+* -- 1555
+:= -- 2840
+add.period$ -- 133
+call.type$ -- 34
+change.case$ -- 34
+chr.to.int$ -- 34
+cite$ -- 35
+duplicate$ -- 356
+empty$ -- 965
+format.name$ -- 436
+if$ -- 2875
+int.to.chr$ -- 1
+int.to.str$ -- 35
+missing$ -- 34
+newline$ -- 209
+num.names$ -- 170
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 102
+quote$ -- 0
+skip$ -- 253
+stack$ -- 0
+substring$ -- 773
+swap$ -- 141
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 272
+warning$ -- 1
+while$ -- 176
+width$ -- 0
+write$ -- 483
+(There were 195 error messages)
