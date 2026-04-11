@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from app.api import routes
 from app.config import get_settings
+from app.services.analysis_store import analysis_store
 import uvicorn
 from datetime import datetime
 from dotenv import load_dotenv
@@ -59,6 +60,7 @@ async def root():
 
 @app.on_event("startup")
 async def startup_event():
+    analysis_store.init_schema()
     print(f"""
     ========================================
     Emotion ML Service iniciado

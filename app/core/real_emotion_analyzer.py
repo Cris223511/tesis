@@ -21,8 +21,7 @@ class RealEmotionAnalyzer:
 
     def __init__(self):
         self.emotions = [
-            "angry", "disgust", "fear", "happy",
-            "sad", "surprise", "neutral"
+            "angry", "disgust", "fear", "happy", "sad"
         ]
 
         # Cargar el modelo CNN entrenado

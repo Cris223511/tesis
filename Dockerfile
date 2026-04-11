@@ -1,30 +1,20 @@
-# Usar imagen base oficial de Python
-# Force rebuild: 2026-04-08-02
-FROM python:3.11.7-slim-bullseye
+# syntax=docker/dockerfile:1
+# Usar imagen base oficial de Python en linux/amd64
+# Force rebuild: 2026-04-08-03
+FROM --platform=linux/amd64 python:3.11.7-slim-bullseye
 
 # Establecer directorio de trabajo
 WORKDIR /app
 
-# Instalar dependencias del sistema necesarias para OpenCV y ML
+# Instalar solo dependencias esenciales
 RUN apt-get update && apt-get install -y \
     curl \
     libglib2.0-0 \
+    libgl1 \
     libsm6 \
     libxext6 \
-    libxrender-dev \
+    libxrender1 \
     libgomp1 \
-    libgtk-3-0 \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
-    libv4l-dev \
-    libatlas-base-dev \
-    gfortran \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff-dev \
-    libdc1394-22 \
-    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements.txt primero para aprovechar el cache de Docker

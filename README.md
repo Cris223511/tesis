@@ -1,6 +1,14 @@
-# Emotion ML Service
+# SERIOUS GAME ML SERVICE - Emotion Analysis Microservice
+## Real-time Facial Emotion Recognition using Deep Learning
 
-Servicio de análisis de emociones con machine learning usando CNN, integrado con sistema de autenticación JWT y control de acceso basado en roles.
+[![Python](https://img.shields.io/badge/Python-3.11.7-blue.svg)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green.svg)](https://fastapi.tiangolo.com/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15.0-orange.svg)](https://www.tensorflow.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.8.1-blue.svg)](https://opencv.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+High-performance emotion analysis microservice powered by a Convolutional Neural Network (CNN) trained on facial expression datasets. This FastAPI-based service provides real-time emotion detection from images, supporting 5 primary emotions (Happy, Sad, Angry, Fear, Disgust) with enterprise-grade security through JWT authentication and intelligent rate limiting.
 
 ## 🚀 Características
 
@@ -318,10 +326,10 @@ print(f"Confianza: {result['confidence']}")
 
 ```bash
 # Construir imagen
-docker build -t emotion-ml-service .
+docker buildx build --platform linux/amd64 -t devepcam/tesis-ml-clean:v4.0.0-amd64 --push .
 
 # Ejecutar contenedor
-docker run -p 5000:5000 --env-file .env emotion-ml-service
+docker run -p 5000:5000 --env-file .env devepcam/tesis-ml-clean:v4.0.0-amd64
 ```
 
 ## 🔧 Desarrollo
@@ -353,22 +361,9 @@ pytest tests/
 - **Métricas de rate limiting:** Headers `X-RateLimit-*`
 - **Logs:** Configurados para producción
 
-## 🧹 Limpieza y Mantenimiento del Proyecto
 
-### Archivos eliminados durante la última limpieza (2025-09-21)
 
-#### ✅ Archivos duplicados removidos:
-- `./app/middlewares/auth 2.py` - Copia duplicada del middleware de autenticación
-- `./app/api/routes 2.py` - Copia duplicada de las rutas API
-- `./app/api/schemas 2.py` - Copia duplicada de los esquemas Pydantic
 
-#### ✅ Archivos innecesarios del core removidos:
-- `./app/core/model_manager.py` - Manager de pool de modelos (no utilizado)
-- `./app/core/predictor.py` - Predictor con batch processing (no utilizado)
-- `./app/core/preprocessor.py` - Preprocesador con CLAHE (no utilizado)
-
-#### ✅ Archivos del sistema removidos:
-- `.DS_Store` files - Archivos de metadatos de macOS
 
 ### Estructura actual del directorio core:
 ```
@@ -378,16 +373,6 @@ app/core/
 └── emotion_analyzer.py         # ✅ Versión anterior (compatibilidad)
 ```
 
-### ¿Por qué se removieron estos archivos?
-
-1. **Archivos duplicados**: Creados accidentalmente durante el desarrollo, contenían código idéntico o desactualizado
-2. **Módulos no utilizados**: Los archivos `model_manager.py`, `predictor.py` y `preprocessor.py` implementaban funcionalidades avanzadas como:
-   - Pool de modelos para concurrencia
-   - Procesamiento por lotes (batch processing)
-   - Mejoras de iluminación con CLAHE
-   - Test-Time Augmentation (TTA)
-
-   Sin embargo, el servicio actual usa `RealEmotionAnalyzer` que implementa análisis visual directo más efectivo que CNN.
 
 3. **Archivos de sistema**: `.DS_Store` son metadatos de macOS que no deben estar en el repositorio
 
@@ -425,4 +410,3 @@ class EmotionService {
     }
 }
 ```
-

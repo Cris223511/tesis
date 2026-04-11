@@ -6,6 +6,7 @@ class EmotionRequest(BaseModel):
     image: str  # Base64 encoded image - matches Android field name
     description: Optional[str] = None
     child_id: Optional[int] = None
+    session_id: Optional[int] = None
 
 # Emotion scores matching Android format
 class EmotionScores(BaseModel):
@@ -36,6 +37,7 @@ class EmotionAnalysisResponse(BaseModel):
     id: str
     user_id: int
     child_id: Optional[int] = None
+    session_id: Optional[int] = None
     child_name: Optional[str] = None
     image: str
     description: Optional[str] = None
@@ -61,6 +63,34 @@ class RateLimitInfo(BaseModel):
     remaining: int
     reset: Optional[str] = None
     current: int
+
+class PaginationInfo(BaseModel):
+    page: int
+    per_page: int
+    total: int
+    total_pages: int
+    has_next: bool
+    has_prev: bool
+
+class AnalysesListResponse(BaseModel):
+    analyses: List[EmotionAnalysisResponse]
+    pagination: PaginationInfo
+    rate_limit: Optional[RateLimitInfo] = None
+
+class SessionAnalysesRequest(BaseModel):
+    session_ids: List[int]
+
+class SessionAnalysesResponse(BaseModel):
+    analyses: List[EmotionAnalysisResponse]
+
+class DeleteResponse(BaseModel):
+    success: bool
+    message: str
+
+class EditAnalysisResponse(BaseModel):
+    success: bool
+    message: str
+    analysis: EmotionAnalysisResponse
 
 class HealthResponse(BaseModel):
     status: str

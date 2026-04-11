@@ -15,8 +15,7 @@ class EmotionAnalyzer:
 
     def __init__(self):
         self.emotions = [
-            "angry", "disgust", "fear", "happy",
-            "neutral", "sad", "surprise"
+            "angry", "disgust", "fear", "happy", "sad"
         ]
 
         # Cargar el modelo preentrenado
@@ -41,7 +40,7 @@ class EmotionAnalyzer:
             tf.keras.layers.MaxPooling2D(2, 2),
             tf.keras.layers.Flatten(),
             tf.keras.layers.Dense(64, activation='relu'),
-            tf.keras.layers.Dense(7, activation='softmax')
+            tf.keras.layers.Dense(5, activation='softmax')
         ])
         model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
         return model
