@@ -2,12 +2,11 @@ package com.example.serious_game_usil.presentation.ui.terapeuta
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.serious_game_usil.databinding.DashboardTerapeutaBinding
 import com.example.serious_game_usil.guards.AuthManager
-import com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity
-import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.utils.ImageUtils
 import com.example.serious_game_usil.network.RetrofitClient
 import com.seriousgame.app.navigation.RouteNavigator
@@ -39,6 +38,7 @@ class TerapeutaDrawerActivity : AppCompatActivity() {
     private fun setupViews() {
         // Usar el nombre del usuario autenticado
         binding.userName.text = AuthManager.getNombresApellidos()
+        binding.cardManagePatients.visibility = View.GONE
 
         // Cargar foto del usuario si está disponible
         val userPhoto = AuthManager.getFoto()
@@ -59,12 +59,6 @@ class TerapeutaDrawerActivity : AppCompatActivity() {
     }
 
     private fun setupQuickActions() {
-        // Botón de gestionar pacientes
-        binding.cardManagePatients.setOnClickListener {
-            val intent = Intent(this, CaregiversListActivity::class.java)
-            startActivity(intent)
-        }
-
         // Botón de gestionar sesiones
         binding.cardSessionsManagement.setOnClickListener {
             val intent = Intent(this, com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity::class.java)
@@ -73,7 +67,7 @@ class TerapeutaDrawerActivity : AppCompatActivity() {
 
         // Botón de reportes
         binding.cardReports.setOnClickListener {
-            val intent = Intent(this, ProgressDetailActivity::class.java)
+            val intent = Intent(this, TherapyReportsActivity::class.java)
             startActivity(intent)
         }
     }

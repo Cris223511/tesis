@@ -23,12 +23,16 @@ public final class FragmentProgressStatsBinding implements ViewBinding {
   public final TextView avgProgress;
 
   @NonNull
+  public final TextView statsSupportText;
+
+  @NonNull
   public final TextView totalSessions;
 
   private FragmentProgressStatsBinding(@NonNull ScrollView rootView, @NonNull TextView avgProgress,
-      @NonNull TextView totalSessions) {
+      @NonNull TextView statsSupportText, @NonNull TextView totalSessions) {
     this.rootView = rootView;
     this.avgProgress = avgProgress;
+    this.statsSupportText = statsSupportText;
     this.totalSessions = totalSessions;
   }
 
@@ -65,13 +69,20 @@ public final class FragmentProgressStatsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.statsSupportText;
+      TextView statsSupportText = ViewBindings.findChildViewById(rootView, id);
+      if (statsSupportText == null) {
+        break missingId;
+      }
+
       id = R.id.totalSessions;
       TextView totalSessions = ViewBindings.findChildViewById(rootView, id);
       if (totalSessions == null) {
         break missingId;
       }
 
-      return new FragmentProgressStatsBinding((ScrollView) rootView, avgProgress, totalSessions);
+      return new FragmentProgressStatsBinding((ScrollView) rootView, avgProgress, statsSupportText,
+          totalSessions);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

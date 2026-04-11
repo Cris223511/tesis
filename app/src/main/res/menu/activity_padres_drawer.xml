@@ -14,46 +14,15 @@
             android:id="@+id/nav_mis_hijos"
             android:icon="@drawable/ic_child"
             android:title="Mis Pacientes" />
-            
+        <item
+            android:id="@+id/nav_perfil_padre"
+            android:icon="@drawable/ic_person"
+            android:title="Mi Perfil" />
 
+        <item
+            android:id="@+id/nav_contacto"
+            android:icon="@drawable/ic_phone"
+            android:title="Contactar" />
     </group>
-
-    <item android:title="Herramientas">
-        <menu>
-            <item
-                android:id="@+id/nav_emotion_analysis_padre"
-                android:icon="@drawable/ic_info"
-                android:title="Análisis de Emociones" />
-
-            <item
-                android:id="@+id/nav_videos"
-                android:icon="@android:drawable/ic_media_play"
-                android:title="Videos Educativos" />
-
-            <item
-                android:id="@+id/nav_reportes_padre"
-                android:icon="@android:drawable/ic_menu_view"
-                android:title="Mis Reportes" />
-        </menu>
-    </item>
-
-    <item android:title="Cuenta">
-        <menu>
-            <item
-                android:id="@+id/nav_perfil_padre"
-                android:icon="@drawable/ic_person"
-                android:title="Mi Perfil" />
-                
-            <item
-                android:id="@+id/nav_contacto"
-                android:icon="@drawable/ic_phone"
-                android:title="Contactar Soporte" />
-                
-            <item
-                android:id="@+id/nav_logout_padre"
-                android:icon="@drawable/ic_logout"
-                android:title="Cerrar Sesión" />
-        </menu>
-    </item>
 
 </menu>

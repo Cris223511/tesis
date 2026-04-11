@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Progreso de Usuario"
+                android:text="Evolución reciente"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Comparación de últimos 3 meses"
+                        android:text="Comparación de los últimos 3 meses"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -232,7 +232,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Resumen"
+                        android:text="Lectura general"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -241,7 +241,7 @@
                         android:id="@+id/textOverallTrend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="En desarrollo"
+                        android:text="Sin cambios relevantes aún"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -250,7 +250,7 @@
                         android:id="@+id/textTotalSessions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 sesiones en 3 meses"
+                        android:text="0 sesiones registradas en 3 meses"
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp" />
 
@@ -258,7 +258,7 @@
                         android:id="@+id/textAvgSessionTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Promedio: 0 min por sesión"
+                        android:text="Promedio por sesión: 0 min"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -282,7 +282,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Recomendaciones"
+                        android:text="Sugerencias de seguimiento"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />

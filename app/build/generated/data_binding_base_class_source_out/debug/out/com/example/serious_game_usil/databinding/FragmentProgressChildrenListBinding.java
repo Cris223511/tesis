@@ -4,33 +4,76 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentProgressChildrenListBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
-  public final RecyclerView recyclerViewChildren;
+  public final Button btnNextCaregivers;
 
-  private FragmentProgressChildrenListBinding(@NonNull LinearLayout rootView,
-      @NonNull RecyclerView recyclerViewChildren) {
+  @NonNull
+  public final Button btnNextPatients;
+
+  @NonNull
+  public final Button btnPreviousCaregivers;
+
+  @NonNull
+  public final Button btnPreviousPatients;
+
+  @NonNull
+  public final View caregiverDivider;
+
+  @NonNull
+  public final MaterialCardView caregiverSection;
+
+  @NonNull
+  public final RecyclerView recyclerViewCaregivers;
+
+  @NonNull
+  public final RecyclerView recyclerViewPatients;
+
+  @NonNull
+  public final TextView tvCaregiversPageInfo;
+
+  @NonNull
+  public final TextView tvPatientsPageInfo;
+
+  private FragmentProgressChildrenListBinding(@NonNull ScrollView rootView,
+      @NonNull Button btnNextCaregivers, @NonNull Button btnNextPatients,
+      @NonNull Button btnPreviousCaregivers, @NonNull Button btnPreviousPatients,
+      @NonNull View caregiverDivider, @NonNull MaterialCardView caregiverSection,
+      @NonNull RecyclerView recyclerViewCaregivers, @NonNull RecyclerView recyclerViewPatients,
+      @NonNull TextView tvCaregiversPageInfo, @NonNull TextView tvPatientsPageInfo) {
     this.rootView = rootView;
-    this.recyclerViewChildren = recyclerViewChildren;
+    this.btnNextCaregivers = btnNextCaregivers;
+    this.btnNextPatients = btnNextPatients;
+    this.btnPreviousCaregivers = btnPreviousCaregivers;
+    this.btnPreviousPatients = btnPreviousPatients;
+    this.caregiverDivider = caregiverDivider;
+    this.caregiverSection = caregiverSection;
+    this.recyclerViewCaregivers = recyclerViewCaregivers;
+    this.recyclerViewPatients = recyclerViewPatients;
+    this.tvCaregiversPageInfo = tvCaregiversPageInfo;
+    this.tvPatientsPageInfo = tvPatientsPageInfo;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -55,13 +98,70 @@ public final class FragmentProgressChildrenListBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.recyclerViewChildren;
-      RecyclerView recyclerViewChildren = ViewBindings.findChildViewById(rootView, id);
-      if (recyclerViewChildren == null) {
+      id = R.id.btnNextCaregivers;
+      Button btnNextCaregivers = ViewBindings.findChildViewById(rootView, id);
+      if (btnNextCaregivers == null) {
         break missingId;
       }
 
-      return new FragmentProgressChildrenListBinding((LinearLayout) rootView, recyclerViewChildren);
+      id = R.id.btnNextPatients;
+      Button btnNextPatients = ViewBindings.findChildViewById(rootView, id);
+      if (btnNextPatients == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPreviousCaregivers;
+      Button btnPreviousCaregivers = ViewBindings.findChildViewById(rootView, id);
+      if (btnPreviousCaregivers == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPreviousPatients;
+      Button btnPreviousPatients = ViewBindings.findChildViewById(rootView, id);
+      if (btnPreviousPatients == null) {
+        break missingId;
+      }
+
+      id = R.id.caregiverDivider;
+      View caregiverDivider = ViewBindings.findChildViewById(rootView, id);
+      if (caregiverDivider == null) {
+        break missingId;
+      }
+
+      id = R.id.caregiverSection;
+      MaterialCardView caregiverSection = ViewBindings.findChildViewById(rootView, id);
+      if (caregiverSection == null) {
+        break missingId;
+      }
+
+      id = R.id.recyclerViewCaregivers;
+      RecyclerView recyclerViewCaregivers = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerViewCaregivers == null) {
+        break missingId;
+      }
+
+      id = R.id.recyclerViewPatients;
+      RecyclerView recyclerViewPatients = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerViewPatients == null) {
+        break missingId;
+      }
+
+      id = R.id.tvCaregiversPageInfo;
+      TextView tvCaregiversPageInfo = ViewBindings.findChildViewById(rootView, id);
+      if (tvCaregiversPageInfo == null) {
+        break missingId;
+      }
+
+      id = R.id.tvPatientsPageInfo;
+      TextView tvPatientsPageInfo = ViewBindings.findChildViewById(rootView, id);
+      if (tvPatientsPageInfo == null) {
+        break missingId;
+      }
+
+      return new FragmentProgressChildrenListBinding((ScrollView) rootView, btnNextCaregivers,
+          btnNextPatients, btnPreviousCaregivers, btnPreviousPatients, caregiverDivider,
+          caregiverSection, recyclerViewCaregivers, recyclerViewPatients, tvCaregiversPageInfo,
+          tvPatientsPageInfo);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp"
+    android:height="280dp"
+    android:viewportWidth="280"
+    android:viewportHeight="280">
+    <!-- Brain outline -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M140,60 C100,60 70,90 70,130 C70,160 80,180 90,190 C100,200 120,210 140,210 C160,210 180,200 190,190 C200,180 210,160 210,130 C210,90 180,60 140,60 Z" />
+    <!-- Neural connections -->
+    <path
+        android:strokeColor="#64B5F6"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M100,100 Q120,110 140,100 Q160,110 180,100 M110,120 Q130,130 150,120 Q170,130 190,120 M90,140 Q110,150 130,140 Q150,150 170,140 Q190,150 210,140" />
+    <!-- AI scanning effect -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M120,85 L160,85 L160,90 L120,90 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M130,95 L150,95 L150,100 L130,100 Z" />
+    <!-- Face recognition points -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M110,160 C110,155 115,150 120,150 C125,150 130,155 130,160 C130,165 125,170 120,170 C115,170 110,165 110,160 Z M150,160 C150,155 155,150 160,150 C165,150 170,155 170,160 C170,165 165,170 160,170 C155,170 150,165 150,160 Z" />
+    <path
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M120,180 Q140,190 160,180" />
+</vector>

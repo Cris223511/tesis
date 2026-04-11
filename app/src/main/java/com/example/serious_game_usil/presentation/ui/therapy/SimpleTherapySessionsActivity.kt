@@ -229,7 +229,12 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        viewModel.loadAllSessions()
+        val therapistId = if (AuthManager.getUserRoles().any { it.equals("terapeuta", ignoreCase = true) }) {
+            AuthManager.getUserId()
+        } else {
+            null
+        }
+        viewModel.loadAllSessions(therapistId = therapistId)
     }
 
     private fun displaySessions(sessions: List<com.example.serious_game_usil.`interface`.TherapySession>) {
@@ -286,8 +291,17 @@ class SimpleTherapySessionsActivity : AppCompatActivity() {
                 emptySubtitle.text = "No hay sesiones $filterName para mostrar"
             }
             else -> {
-                emptyTitle.text = "No se encontraron sesiones"
-                emptySubtitle.text = "Crea tu primera sesión terapéutica"
+                val isTherapist = AuthManager.getUserRoles().any { it.equals("terapeuta", ignoreCase = true) }
+                emptyTitle.text = if (isTherapist) {
+                    "No tienes sesiones asignadas"
+                } else {
+                    "No se encontraron sesiones"
+                }
+                emptySubtitle.text = if (isTherapist) {
+                    "Aquí verás solo tus pacientes y cuidadores vinculados a tus sesiones"
+                } else {
+                    "Crea tu primera sesión terapéutica"
+                }
             }
         }
     }

@@ -22,9 +22,8 @@ object EmotionRetrofitClient {
 
     private val tokenLock = Any()
 
-    // Base URL para el servicio de emociones (puerto 5001)
-    private const val EMOTION_BASE_URL_DEBUG = "http://10.0.2.2:5001/"
-    private const val EMOTION_BASE_URL_RELEASE = "https://api-emotion.production.com/"
+    private const val EMOTION_BASE_URL_DEBUG = "https://10.0.2.2:5001/"
+    private const val EMOTION_BASE_URL_RELEASE = "https://tesis-ml-clean-latest.onrender.com/"
 
     fun setAuthToken(token: String?) {
         synchronized(tokenLock) {
@@ -51,9 +50,9 @@ object EmotionRetrofitClient {
 
     private fun buildRetrofit(includeAuth: Boolean): Retrofit {
         val clientBuilder = OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS) // Más tiempo para procesamiento ML
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
 
         if (includeAuth) {
             clientBuilder.addInterceptor(EmotionAuthInterceptor {

@@ -27,6 +27,7 @@ import com.example.serious_game_usil.presentation.ui.progress.ThreeMonthComparis
 import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressAlertManager
 import com.example.serious_game_usil.presentation.ui.caregivers.CaregiversListActivity
+import com.example.serious_game_usil.presentation.ui.patients.PatientsListActivity
 
 import com.example.serious_game_usil.repository.ActivityRepository
 import com.example.serious_game_usil.repository.UserRepository
@@ -167,27 +168,23 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     
     private fun showCaregiverManagementOptions() {
-        val options = arrayOf("Gestionar Cuidadores", "Gestionar Sesiones",)
+        val options = arrayOf("Gestionar Pacientes", "Gestionar Sesiones", "Gestionar Cuidadores")
 
         AlertDialog.Builder(this)
-            .setTitle("Gestión de Cuidadores")
+            .setTitle("Gestión clínica")
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> {
-                        // Navegar a lista de cuidadores
-                        val intent = Intent(this, CaregiversListActivity::class.java)
+                        val intent = Intent(this, PatientsListActivity::class.java)
                         startActivity(intent)
                     }
                     1 -> {
-                        // Navegar a gestión de sesiones terapéuticas
                         val intent = Intent(this, com.example.serious_game_usil.presentation.ui.therapy.SimpleTherapySessionsActivity::class.java)
                         startActivity(intent)
                     }
                     2 -> {
-                        Toast.makeText(this, "Registro de sesiones - En desarrollo", Toast.LENGTH_SHORT).show()
-                    }
-                    3 -> {
-                        Toast.makeText(this, "Estadísticas detalladas - En desarrollo", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, CaregiversListActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }
@@ -492,23 +489,17 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_padres_dashboard -> {
                 startActivity(Intent(this, PadresDashboardActivity::class.java))
             }
-            R.id.nav_children_list -> {
-                startActivity(Intent(this, CaregiversListActivity::class.java))
-            }
-            R.id.nav_emotion_analysis -> {
-                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.emotion.EmotionAnalysisActivity::class.java))
-            }
+
+
             R.id.nav_users -> {
                 startActivity(Intent(this, ListUserActivity::class.java))
             }
             R.id.nav_roles -> {
                 startActivity(Intent(this, ListRoles::class.java))
             }
-            R.id.nav_reports -> {
-                Toast.makeText(this, "Reportes - Próximamente", Toast.LENGTH_SHORT).show()
-            }
+
             R.id.nav_settings -> {
-                Toast.makeText(this, "Configuración - Próximamente", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.settings.BiometricSettingsActivity::class.java))
             }
             R.id.nav_logout -> {
                 AuthManager.clearSession()

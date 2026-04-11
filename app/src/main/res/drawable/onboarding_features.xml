@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp"
+    android:height="280dp"
+    android:viewportWidth="280"
+    android:viewportHeight="280">
+    <!-- Grid layout -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M60,60 L130,60 L130,130 L60,130 Z" />
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M150,60 L220,60 L220,130 L150,130 Z" />
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M60,150 L130,150 L130,220 L60,220 Z" />
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M150,150 L220,150 L220,220 L150,220 Z" />
+    <!-- Icons in each quadrant -->
+    <!-- Video icon -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M80,85 L110,85 L110,105 L80,105 Z M105,95 L115,90 L115,100 Z" />
+    <!-- Chart icon -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M170,110 L180,110 L180,120 L170,120 Z M185,105 L195,105 L195,120 L185,120 Z M200,100 L210,100 L210,120 L200,120 Z" />
+    <!-- Game controller icon -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M75,175 C75,175 75,170 80,170 L110,170 C115,170 115,175 115,175 L115,195 C115,200 110,200 110,200 L80,200 C75,200 75,195 75,195 Z M85,180 C85,183 88,183 88,180 C88,177 85,177 85,180 Z M102,180 C102,183 105,183 105,180 C105,177 102,177 102,180 Z" />
+    <!-- Cloud sync icon -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M185,180 C180,180 175,185 175,190 C170,190 165,195 165,200 L205,200 C205,195 200,190 195,190 C195,185 190,180 185,180 Z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M180,195 L185,200 L190,195 M185,185 L185,200" />
+</vector>

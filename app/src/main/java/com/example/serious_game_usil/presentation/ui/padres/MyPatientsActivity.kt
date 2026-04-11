@@ -47,8 +47,7 @@ class MyPatientsActivity : AppCompatActivity() {
                 navigateToPatientSessions(patient)
             },
             onViewReportClick = { patient ->
-                // Navegar a vista de reporte del paciente
-                navigateToPatientReport(patient)
+                navigateToPatientIndividualReports(patient)
             }
         )
 
@@ -171,9 +170,8 @@ class MyPatientsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToPatientReport(patient: PatientListItem) {
-        // Navegar a la actividad de progreso/estadísticas del paciente
-        val intent = Intent(this, com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity::class.java)
+    private fun navigateToPatientIndividualReports(patient: PatientListItem) {
+        val intent = Intent(this, MySessionsActivity::class.java)
         intent.putExtra("patient_id", patient.id)
         intent.putExtra("patient_name", patient.nombresApellidos)
         startActivity(intent)

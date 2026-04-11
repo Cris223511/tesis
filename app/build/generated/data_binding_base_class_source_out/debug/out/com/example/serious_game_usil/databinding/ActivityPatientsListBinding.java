@@ -17,6 +17,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -39,7 +40,7 @@ public final class ActivityPatientsListBinding implements ViewBinding {
   public final FloatingActionButton fabAddPatient;
 
   @NonNull
-  public final LinearLayout paginationControls;
+  public final MaterialCardView paginationControls;
 
   @NonNull
   public final RecyclerView recyclerViewPatients;
@@ -65,7 +66,7 @@ public final class ActivityPatientsListBinding implements ViewBinding {
   private ActivityPatientsListBinding(@NonNull CoordinatorLayout rootView,
       @NonNull MaterialButton btnNext, @NonNull MaterialButton btnPrevious,
       @NonNull LinearLayout emptyStateLayout, @NonNull FloatingActionButton fabAddPatient,
-      @NonNull LinearLayout paginationControls, @NonNull RecyclerView recyclerViewPatients,
+      @NonNull MaterialCardView paginationControls, @NonNull RecyclerView recyclerViewPatients,
       @NonNull SearchView searchView, @NonNull SwipeRefreshLayout swipeRefresh,
       @NonNull Toolbar toolbar, @NonNull TextView tvEmptyMessage, @NonNull TextView tvEmptyTitle,
       @NonNull TextView tvPageInfo) {
@@ -136,7 +137,7 @@ public final class ActivityPatientsListBinding implements ViewBinding {
       }
 
       id = R.id.paginationControls;
-      LinearLayout paginationControls = ViewBindings.findChildViewById(rootView, id);
+      MaterialCardView paginationControls = ViewBindings.findChildViewById(rootView, id);
       if (paginationControls == null) {
         break missingId;
       }

@@ -24,6 +24,7 @@ class TherapySessionViewModel : ViewModel() {
     private val _allSessions = MutableStateFlow<List<TherapySession>>(emptyList())
     var currentFilter: String? = null
     private var currentSearchQuery: String? = null
+    private var currentTherapistScopeId: Int? = null
 
     // Estado para sesiones paginadas
     private val _paginatedSessions = MutableStateFlow<PaginatedSessionsData?>(null)
@@ -69,7 +70,8 @@ class TherapySessionViewModel : ViewModel() {
     private val _selectedStatus = MutableStateFlow<String?>(null)
     val selectedStatus: StateFlow<String?> = _selectedStatus.asStateFlow()
 
-    fun loadAllSessions() {
+    fun loadAllSessions(therapistId: Int? = null) {
+        currentTherapistScopeId = therapistId
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
@@ -77,9 +79,10 @@ class TherapySessionViewModel : ViewModel() {
             repository.getSessions().collect { result ->
                 when (result) {
                     is ApiResult.Success -> {
-                        _allSessions.value = result.data
-                        applyCurrentFilter(result.data)
-                        android.util.Log.d("TherapyViewModel", "Loaded ${result.data.size} sessions")
+                        val scopedSessions = result.data.filterByTherapist(therapistId)
+                        _allSessions.value = scopedSessions
+                        applyCurrentFilter(scopedSessions)
+                        android.util.Log.d("TherapyViewModel", "Loaded ${scopedSessions.size} sessions")
                     }
                     is ApiResult.Error -> {
                         _error.value = result.message
@@ -121,6 +124,7 @@ class TherapySessionViewModel : ViewModel() {
                 val query = currentSearchQuery!!.lowercase()
                 session.paciente.nombresApellidos.lowercase().contains(query) ||
                 session.terapeuta.nombresApellidos.lowercase().contains(query) ||
+                (session.cuidador?.nombresApellidos?.lowercase()?.contains(query) == true) ||
                 session.descripcion?.lowercase()?.contains(query) == true ||
                 session.ubicacion?.lowercase()?.contains(query) == true ||
                 session.tipoSesion?.lowercase()?.contains(query) == true ||
@@ -134,6 +138,10 @@ class TherapySessionViewModel : ViewModel() {
 
     private fun applyCurrentFilter(allSessions: List<TherapySession>) {
         applyFiltersAndSearch(allSessions)
+    }
+
+    private fun List<TherapySession>.filterByTherapist(therapistId: Int?): List<TherapySession> {
+        return if (therapistId == null) this else filter { it.terapeutaId == therapistId }
     }
 
     fun loadPaginatedSessions(
@@ -566,7 +574,7 @@ class TherapySessionViewModel : ViewModel() {
 
         // Si estamos en vista de todas las sesiones, refrescar
         if (_sessions.value.isNotEmpty() && _paginatedSessions.value == null) {
-            loadAllSessions()
+            loadAllSessions(currentTherapistScopeId)
         }
     }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp"
+    android:height="280dp"
+    android:viewportWidth="280"
+    android:viewportHeight="280">
+    <!-- Shield background -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M140,40 L200,80 L200,160 C200,190 180,210 140,230 C100,210 80,190 80,160 L80,80 Z" />
+    <!-- Lock icon -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M120,110 L120,100 C120,90 130,80 140,80 C150,80 160,90 160,100 L160,110 L165,110 C170,110 175,115 175,120 L175,160 C175,165 170,170 165,170 L115,170 C110,170 105,165 105,160 L105,120 C105,115 110,110 115,110 Z M130,100 L130,110 L150,110 L150,100 C150,95 145,90 140,90 C135,90 130,95 130,100 Z" />
+    <!-- Checkmark -->
+    <path
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="4"
+        android:fillColor="#00000000"
+        android:pathData="M120,140 L135,155 L160,130" />
+    <!-- Data dots -->
+    <path
+        android:fillColor="#64B5F6"
+        android:pathData="M90,200 C90,195 95,190 100,190 C105,190 110,195 110,200 C110,205 105,210 100,210 C95,210 90,205 90,200 Z M130,200 C130,195 135,190 140,190 C145,190 150,195 150,200 C150,205 145,210 140,210 C135,210 130,205 130,200 Z M170,200 C170,195 175,190 180,190 C185,190 190,195 190,200 C190,205 185,210 180,210 C175,210 170,205 170,200 Z" />
+</vector>

@@ -3,59 +3,126 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_light">
+    android:background="@color/background_light"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
-        app:titleTextColor="@color/on_primary"
-        app:navigationIconTint="@color/on_primary" />
+        android:background="@android:color/transparent"
+        app:navigationIconTint="@color/text_primary"
+        app:titleTextColor="@color/text_primary" />
 
-    <!-- Progress Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_report_header"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seguimiento clínico"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white_alpha_80"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Progreso terapéutico"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Revisa la evolución, el listado de pacientes y los indicadores clave desde secciones simples y directas."
+                    android:textColor="@color/white_alpha_90"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
         android:visibility="gone" />
 
-    <!-- Error Text -->
     <TextView
         android:id="@+id/errorText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_progress_error"
         android:padding="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/error"
+        android:textSize="14sp"
         android:visibility="gone" />
 
-    <!-- Empty State -->
     <TextView
         android:id="@+id/emptyStateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_progress_state"
+        android:padding="18dp"
         android:textAlignment="center"
-        android:textSize="16sp"
-        android:padding="24dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="15sp"
         android:visibility="gone" />
 
-    <!-- Tab Layout -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
-        app:tabTextColor="@color/on_surface_variant"
-        app:tabSelectedTextColor="@color/primary"
-        app:tabIndicatorColor="@color/primary" />
+        android:background="@color/background_light"
+        android:minHeight="54dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:tabIndicatorColor="@color/primary"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="fixed"
+        app:tabRippleColor="@color/surface_variant"
+        app:tabSelectedTextColor="@color/text_primary"
+        app:tabTextAppearance="@style/TextAppearance.MaterialComponents.Button"
+        app:tabTextColor="@color/text_secondary"
+        app:tabUnboundedRipple="false" />
 
-    <!-- ViewPager2 -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

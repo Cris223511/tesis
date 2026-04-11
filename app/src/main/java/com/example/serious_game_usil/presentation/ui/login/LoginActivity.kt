@@ -8,8 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.data.LoginRequest
@@ -20,6 +24,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import java.util.Calendar
 
 
 
@@ -60,10 +67,17 @@ class LoginActivity : AppCompatActivity() {
     private fun initViews() {
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
-        passwordToggle = findViewById(R.id.passwordToggle)
+        passwordToggle = findViewById(R.id.passwordToggle) ?: ImageView(this)
         loginButton = findViewById(R.id.loginButton)
         registerText = findViewById(R.id.registerText)
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox)
+
+        findViewById<androidx.cardview.widget.CardView>(R.id.biometricLoginCard)?.setOnClickListener {
+            initiateBiometricLogin()
+        }
+
+        // Actualizar el footer con el año actual y la versión
+        updateFooter()
     }
 
     private fun setupUI() {
@@ -337,6 +351,67 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
+    private fun initiateBiometricLogin() {
+        val biometricHelper = BiometricLoginHelper(this)
+
+        if (biometricHelper.isBiometricAvailable()) {
+            val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val savedUsername = prefs.getString(KEY_SAVED_USERNAME, "")
+
+            if (savedUsername.isNullOrEmpty()) {
+                Toast.makeText(this, "Por favor, inicie sesión primero con sus credenciales", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            biometricHelper.showBiometricPromptForLogin(
+                username = savedUsername,
+                onSuccess = { token, refreshToken ->
+                    prefs.edit().apply {
+                        putString("auth_token", token)
+                        putString("refresh_token", refreshToken)
+                        apply()
+                    }
+
+                    Toast.makeText(this, "¡Bienvenido! Acceso autorizado", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this, com.example.serious_game_usil.presentation.ui.main.MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                },
+                onError = { error, remainingAttempts ->
+                    val message = when {
+                        error.contains("bloqueada") -> "Cuenta bloqueada temporalmente"
+                        remainingAttempts != null -> "Error: $error. Intentos restantes: $remainingAttempts"
+                        else -> error
+                    }
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                }
+            )
+        } else {
+            Toast.makeText(this, "Su dispositivo no tiene configurado Face ID o huella digital", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateFooter() {
+        try {
+            val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+
+            val packageInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
+            val versionName = packageInfo.versionName
+            val versionCode = packageInfo.versionCode
+
+            findViewById<TextView>(R.id.copyright_footer)?.let { footerTextView ->
+                footerTextView.text = "© $currentYear Jhafet Canepa\nTodos los derechos reservados\nVersión $versionName"
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+            findViewById<TextView>(R.id.copyright_footer)?.text =
+                "© $currentYear Jhafet Canepa\nTodos los derechos reservados"
+        }
     }
 
     enum class ErrorType {

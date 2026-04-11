@@ -51,9 +51,13 @@ class PatientsAdapter(
                 tvTherapistName.text = therapistText
 
                 // Caregiver info (solo visible para administradores)
-                if (isAdmin && !patient.cuidadorNombre.isNullOrBlank()) {
+                if (isAdmin) {
                     tvCaregiverName.visibility = android.view.View.VISIBLE
-                    tvCaregiverName.text = "Cuidador: ${patient.cuidadorNombre}"
+                    tvCaregiverName.text = if (!patient.cuidadorNombre.isNullOrBlank()) {
+                        "Cuidador: ${patient.cuidadorNombre}"
+                    } else {
+                        "Cuidador: Sin cuidador asignado"
+                    }
                 } else {
                     tvCaregiverName.visibility = android.view.View.GONE
                 }
@@ -156,7 +160,8 @@ class PatientsAdapter(
             originalPatients.filter { patient ->
                 patient.nombresApellidos.contains(query, ignoreCase = true) ||
                 patient.numDocumento.contains(query, ignoreCase = true) ||
-                patient.terapeutaNombre.contains(query, ignoreCase = true)
+                patient.terapeutaNombre.contains(query, ignoreCase = true) ||
+                (patient.cuidadorNombre?.contains(query, ignoreCase = true) == true)
             }
         }
         notifyDataSetChanged()

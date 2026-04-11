@@ -42,6 +42,13 @@
             </intent-filter>
         </activity>
 
+        <!-- Onboarding Activity -->
+        <activity
+            android:name=".presentation.ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
+
         <!-- Login Activity -->
         <activity
             android:name=".presentation.ui.login.LoginActivity"
@@ -209,6 +216,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.administrador.DashboardActivity" />
         </activity>
+
+        <activity
+            android:name=".presentation.ui.terapeuta.TherapyReportsActivity"
+            android:label="Reportes Terapéuticos"
+            android:parentActivityName=".presentation.ui.terapeuta.TerapeutaDrawerActivity"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.ui.terapeuta.TerapeutaDrawerActivity" />
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.terapeuta.GenerateSessionReportActivity"
+            android:label="Reporte de Sesión"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <!-- Parent Dashboard Activity -->
         <activity
@@ -465,6 +489,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.ui.padres.MySessionsActivity" />
         </activity>
+
+        <!-- Biometric Settings Activity -->
+        <activity
+            android:name=".presentation.ui.settings.BiometricSettingsActivity"
+            android:label="Configuración Biométrica"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeriousGameUSIL.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

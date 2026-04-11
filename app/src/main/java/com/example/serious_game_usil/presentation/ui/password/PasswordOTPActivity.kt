@@ -17,6 +17,11 @@ import com.example.serious_game_usil.databinding.ActivityPasswordOtpBinding
 import com.example.serious_game_usil.repository.UserRepository
 
 class PasswordOTPActivity : AppCompatActivity() {
+
+    companion object {
+        private const val OTP_EXPIRATION_MILLIS = 5 * 60 * 1000L
+        private const val RESEND_COOLDOWN_MILLIS = 5 * 60 * 1000L
+    }
     
     private lateinit var binding: ActivityPasswordOtpBinding
     private lateinit var viewModel: PasswordChangeViewModel
@@ -197,7 +202,7 @@ class PasswordOTPActivity : AppCompatActivity() {
     private fun startResendTimer() {
         binding.resendButton.isEnabled = false
         
-        countDownTimer = object : CountDownTimer(60000, 1000) {
+        countDownTimer = object : CountDownTimer(RESEND_COOLDOWN_MILLIS, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
                 binding.resendButton.text = "Reenviar ($seconds s)"
@@ -214,7 +219,7 @@ class PasswordOTPActivity : AppCompatActivity() {
     private fun startExpirationTimer() {
         binding.expirationTimerText.setTextColor(getColor(R.color.primary))
         
-        expirationTimer = object : CountDownTimer(60000, 1000) {
+        expirationTimer = object : CountDownTimer(OTP_EXPIRATION_MILLIS, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
                 val minutes = seconds / 60
@@ -230,13 +235,17 @@ class PasswordOTPActivity : AppCompatActivity() {
             }
             
             override fun onFinish() {
-                binding.expirationTimerText.text = "⏰ Código expirado"
+                clearOTPFields()
+                binding.expirationTimerText.text = "⏰ Código expirado. Generando uno nuevo..."
                 binding.expirationTimerText.setTextColor(getColor(android.R.color.holo_red_dark))
                 binding.verifyButton.isEnabled = false
-                binding.verifyButton.text = "Código Expirado"
-                clearOTPFields()
-                Toast.makeText(this@PasswordOTPActivity, 
-                    "El código ha expirado. Solicita uno nuevo.", Toast.LENGTH_LONG).show()
+                binding.verifyButton.text = "Generando nuevo código..."
+                viewModel.sendPasswordOTP(email)
+                Toast.makeText(
+                    this@PasswordOTPActivity,
+                    "El código expiró y se generó uno nuevo automáticamente.",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         expirationTimer?.start()

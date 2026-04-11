@@ -12,6 +12,9 @@ import com.example.serious_game_usil.`interface`.ApiService
 import kotlinx.coroutines.launch
 import android.util.Log
 import com.example.serious_game_usil.network.RetrofitClient
+import com.example.serious_game_usil.data.PatientListItem
+import com.example.serious_game_usil.data.Caregiver
+import com.example.serious_game_usil.guards.AuthManager
 
 class ProgressViewModel : ViewModel() {
     
@@ -32,6 +35,14 @@ class ProgressViewModel : ViewModel() {
     // LiveData para manejo de errores
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
+
+    // LiveData para pacientes
+    private val _patients = MutableLiveData<List<PatientListItem>>()
+    val patients: LiveData<List<PatientListItem>> = _patients
+
+    // LiveData para cuidadores
+    private val _caregivers = MutableLiveData<List<Caregiver>>()
+    val caregivers: LiveData<List<Caregiver>> = _caregivers
     
     fun loadThreeMonthComparison(childId: Int) {
         viewModelScope.launch {
@@ -47,13 +58,13 @@ class ProgressViewModel : ViewModel() {
                         _threeMonthComparison.value = comparison
                     } else {
                         // Crear estructura vacía con ceros si no hay datos
-                        _threeMonthComparison.value = createEmptyComparison(childId)
+                        _threeMonthComparison.value = createEmptyComparison(buildPlaceholderPatient(childId))
                     }
                 } else {
                     when (response.code()) {
                         404 -> {
                             // No hay datos, mostrar estructura con ceros
-                            _threeMonthComparison.value = createEmptyComparison(childId)
+                            _threeMonthComparison.value = createEmptyComparison(buildPlaceholderPatient(childId))
                         }
                         else -> {
                             _error.value = "Error ${response.code()}: ${response.message()}"
@@ -63,7 +74,7 @@ class ProgressViewModel : ViewModel() {
             } catch (e: Exception) {
                 Log.e("ProgressViewModel", "Error loading progress", e)
                 // En caso de error, mostrar estructura vacía
-                _threeMonthComparison.value = createEmptyComparison(childId)
+                _threeMonthComparison.value = createEmptyComparison(buildPlaceholderPatient(childId))
                 _error.value = "Error de conexión: ${e.message}"
             } finally {
                 _isLoading.value = false
@@ -76,24 +87,37 @@ class ProgressViewModel : ViewModel() {
             try {
                 _isLoading.value = true
                 _error.value = null
-
-                // TODO: Implementar endpoint getAllChildrenProgress en el backend
-                // TEMPORAL: Comentado hasta que esté disponible el endpoint
-                // val response = apiService.getAllChildrenProgress()
-
-                // Por ahora, devolver lista vacía para que compile
-                android.util.Log.w("ProgressViewModel", "getAllChildrenProgress not implemented - returning empty list")
-                _allChildrenProgress.value = emptyList()
-
-                /*
-                if (response.isSuccessful) {
-                    val progressList = response.body() ?: emptyList()
-                    _allChildrenProgress.value = progressList
-                } else {
-                    _error.value = "Error ${response.code()}: ${response.message()}"
+                val patients = fetchPatientsForCurrentUser()
+                if (patients.isEmpty()) {
                     _allChildrenProgress.value = emptyList()
+                    return@launch
                 }
-                */
+
+                val progressList = mutableListOf<ThreeMonthComparison>()
+
+                patients.forEach { patient ->
+                    try {
+                        val response = apiService.getThreeMonthComparison(patient.id)
+                        when {
+                            response.isSuccessful && response.body() != null -> {
+                                progressList += response.body()!!
+                            }
+                            response.code() == 404 -> {
+                                progressList += createEmptyComparison(patient)
+                            }
+                            else -> {
+                                Log.w("ProgressViewModel", "No se pudo cargar progreso para paciente ${patient.id}: ${response.code()}")
+                            }
+                        }
+                    } catch (e: Exception) {
+                        Log.e("ProgressViewModel", "Error loading progress for patient ${patient.id}", e)
+                    }
+                }
+
+                _allChildrenProgress.value = progressList.sortedBy { it.childName.lowercase() }
+                if (progressList.isEmpty()) {
+                    _error.value = "No se pudo recuperar información de progreso en este momento"
+                }
             } catch (e: Exception) {
                 Log.e("ProgressViewModel", "Error loading all children progress", e)
                 _error.value = "Error de conexión: ${e.message}"
@@ -104,16 +128,34 @@ class ProgressViewModel : ViewModel() {
         }
     }
     
-    private fun createEmptyComparison(childId: Int): ThreeMonthComparison {
-        // Crear estructura vacía con todos los valores en 0
+    private suspend fun fetchPatientsForCurrentUser(): List<PatientListItem> {
+        val response = when (getNormalizedRole()) {
+            "administrador", "admin" -> apiService.getPatients(limit = 100)
+            "cuidador", "responsable", "pd" -> apiService.getMyPatients(limit = 100)
+            else -> apiService.getPatients(limit = 100)
+        }
+
+        return if (response.isSuccessful) {
+            response.body()?.patients.orEmpty()
+        } else {
+            _error.value = when (response.code()) {
+                403 -> "No tiene permisos para ver esta información"
+                404 -> "No se encontraron pacientes"
+                else -> "Error cargando pacientes: ${response.code()}"
+            }
+            emptyList()
+        }
+    }
+
+    private fun createEmptyComparison(patient: PatientListItem): ThreeMonthComparison {
         val emptyMonths = listOf(
             createEmptyMonth("Este mes"),
             createEmptyMonth("Mes anterior"), 
             createEmptyMonth("Hace 2 meses")
         )
-        
+
         val emptyMetrics = AutismProgressMetrics(
-            childId = childId,
+            childId = patient.id,
             year = 2024,
             month = 1,
             avgSocialInteraction = 0.0,
@@ -129,8 +171,8 @@ class ProgressViewModel : ViewModel() {
         )
         
         return ThreeMonthComparison(
-            childId = childId,
-            childName = "Usuario",
+            childId = patient.id,
+            childName = patient.nombresApellidos,
             currentMonth = emptyMetrics,
             months = emptyMonths,
             summary = com.example.serious_game_usil.data.ProgressSummary(
@@ -166,7 +208,87 @@ class ProgressViewModel : ViewModel() {
         )
     }
     
+    fun loadPatients() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                _error.value = null
+
+                val response = when(getNormalizedRole()) {
+                    "administrador", "admin" -> apiService.getPatients(limit = 100)
+                    "cuidador", "responsable", "pd" -> apiService.getMyPatients(limit = 100)
+                    else -> apiService.getPatients(limit = 100)
+                }
+
+                if (response.isSuccessful) {
+                    val patientsResponse = response.body()
+                    _patients.value = patientsResponse?.patients ?: emptyList()
+                } else {
+                    when(response.code()) {
+                        403 -> _error.value = "No tiene permisos para ver esta información"
+                        404 -> _error.value = "No se encontraron pacientes"
+                        else -> _error.value = "Error cargando pacientes: ${response.code()}"
+                    }
+                    _patients.value = emptyList()
+                }
+            } catch (e: Exception) {
+                Log.e("ProgressViewModel", "Error loading patients", e)
+                _error.value = "Error de conexión"
+                _patients.value = emptyList()
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun loadCaregivers() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+
+                if (getNormalizedRole() !in setOf("administrador", "admin")) {
+                    _caregivers.value = emptyList()
+                    return@launch
+                }
+
+                val response = apiService.getCaregivers()
+
+                if (response.isSuccessful) {
+                    val caregiversResponse = response.body()
+                    _caregivers.value = caregiversResponse?.caregivers ?: emptyList()
+                } else {
+                    _caregivers.value = emptyList()
+                }
+            } catch (e: Exception) {
+                Log.e("ProgressViewModel", "Error loading caregivers", e)
+                _caregivers.value = emptyList()
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     fun clearError() {
         _error.value = null
+    }
+
+    private fun buildPlaceholderPatient(childId: Int): PatientListItem {
+        return PatientListItem(
+            id = childId,
+            serialId = childId.toString(),
+            nombresApellidos = "Paciente",
+            tipoDocumento = "",
+            numDocumento = "",
+            edad = 0,
+            sexo = "",
+            terapeutaNombre = "",
+            cuidadorNombre = null,
+            activo = true,
+            fotoMovil = null
+        )
+    }
+
+    private fun getNormalizedRole(): String {
+        return AuthManager.getUserRole()?.trim()?.lowercase().orEmpty()
     }
 }

@@ -12,14 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.databinding.ActivityPadresDashboardBinding
 import com.example.serious_game_usil.guards.AuthManager
-import com.example.serious_game_usil.presentation.ui.administrador.DashboardActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressViewModel
-import com.example.serious_game_usil.presentation.ui.progress.ProgressDetailActivity
 import com.example.serious_game_usil.presentation.ui.progress.ProgressAlertManager
 import com.example.serious_game_usil.presentation.ui.patients.PatientDetailActivity
 import com.example.serious_game_usil.utils.ImageUtils
 import com.google.android.material.navigation.NavigationView
-import com.bumptech.glide.Glide
 import com.seriousgame.app.navigation.RouteNavigator
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -199,24 +196,12 @@ class PadresDashboardActivity : AppCompatActivity(), NavigationView.OnNavigation
             R.id.nav_mis_hijos -> {
                 startActivity(Intent(this, MyPatientsActivity::class.java))
             }
-
-            R.id.nav_videos -> {
-                Toast.makeText(this, "Videos educativos - Próximamente", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_reportes_padre -> {
-                Toast.makeText(this, "Mis reportes - Próximamente", Toast.LENGTH_SHORT).show()
-            }
             R.id.nav_perfil_padre -> {
-                Toast.makeText(this, "Mi perfil - Próximamente", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, com.example.serious_game_usil.presentation.ui.administrador.profile.ProfileActivity::class.java))
             }
             R.id.nav_contacto -> {
                 val intent = Intent(this, com.example.serious_game_usil.presentation.ui.administrador.info.InfoActivity::class.java)
                 startActivity(intent)
-            }
-            R.id.nav_logout_padre -> {
-                AuthManager.clearSession()
-                RouteNavigator.navigateToLogin(this)
-                finishAffinity()
             }
         }
         

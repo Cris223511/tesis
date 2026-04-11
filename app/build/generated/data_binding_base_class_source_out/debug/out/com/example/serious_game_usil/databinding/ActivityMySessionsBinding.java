@@ -15,6 +15,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,7 +26,16 @@ public final class ActivityMySessionsBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final MaterialButton btnNextPage;
+
+  @NonNull
+  public final MaterialButton btnPreviousPage;
+
+  @NonNull
   public final LinearLayout emptyStateLayout;
+
+  @NonNull
+  public final MaterialCardView paginationCard;
 
   @NonNull
   public final RecyclerView recyclerViewSessions;
@@ -44,18 +55,32 @@ public final class ActivityMySessionsBinding implements ViewBinding {
   @NonNull
   public final TextView tvEmptyTitle;
 
+  @NonNull
+  public final TextView tvPageIndicator;
+
+  @NonNull
+  public final TextView tvPaginationSummary;
+
   private ActivityMySessionsBinding(@NonNull LinearLayout rootView,
-      @NonNull LinearLayout emptyStateLayout, @NonNull RecyclerView recyclerViewSessions,
-      @NonNull SearchView searchView, @NonNull SwipeRefreshLayout swipeRefresh,
-      @NonNull Toolbar toolbar, @NonNull TextView tvEmptyMessage, @NonNull TextView tvEmptyTitle) {
+      @NonNull MaterialButton btnNextPage, @NonNull MaterialButton btnPreviousPage,
+      @NonNull LinearLayout emptyStateLayout, @NonNull MaterialCardView paginationCard,
+      @NonNull RecyclerView recyclerViewSessions, @NonNull SearchView searchView,
+      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull Toolbar toolbar,
+      @NonNull TextView tvEmptyMessage, @NonNull TextView tvEmptyTitle,
+      @NonNull TextView tvPageIndicator, @NonNull TextView tvPaginationSummary) {
     this.rootView = rootView;
+    this.btnNextPage = btnNextPage;
+    this.btnPreviousPage = btnPreviousPage;
     this.emptyStateLayout = emptyStateLayout;
+    this.paginationCard = paginationCard;
     this.recyclerViewSessions = recyclerViewSessions;
     this.searchView = searchView;
     this.swipeRefresh = swipeRefresh;
     this.toolbar = toolbar;
     this.tvEmptyMessage = tvEmptyMessage;
     this.tvEmptyTitle = tvEmptyTitle;
+    this.tvPageIndicator = tvPageIndicator;
+    this.tvPaginationSummary = tvPaginationSummary;
   }
 
   @Override
@@ -85,9 +110,27 @@ public final class ActivityMySessionsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnNextPage;
+      MaterialButton btnNextPage = ViewBindings.findChildViewById(rootView, id);
+      if (btnNextPage == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPreviousPage;
+      MaterialButton btnPreviousPage = ViewBindings.findChildViewById(rootView, id);
+      if (btnPreviousPage == null) {
+        break missingId;
+      }
+
       id = R.id.emptyStateLayout;
       LinearLayout emptyStateLayout = ViewBindings.findChildViewById(rootView, id);
       if (emptyStateLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.paginationCard;
+      MaterialCardView paginationCard = ViewBindings.findChildViewById(rootView, id);
+      if (paginationCard == null) {
         break missingId;
       }
 
@@ -127,8 +170,21 @@ public final class ActivityMySessionsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMySessionsBinding((LinearLayout) rootView, emptyStateLayout,
-          recyclerViewSessions, searchView, swipeRefresh, toolbar, tvEmptyMessage, tvEmptyTitle);
+      id = R.id.tvPageIndicator;
+      TextView tvPageIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (tvPageIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.tvPaginationSummary;
+      TextView tvPaginationSummary = ViewBindings.findChildViewById(rootView, id);
+      if (tvPaginationSummary == null) {
+        break missingId;
+      }
+
+      return new ActivityMySessionsBinding((LinearLayout) rootView, btnNextPage, btnPreviousPage,
+          emptyStateLayout, paginationCard, recyclerViewSessions, searchView, swipeRefresh, toolbar,
+          tvEmptyMessage, tvEmptyTitle, tvPageIndicator, tvPaginationSummary);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

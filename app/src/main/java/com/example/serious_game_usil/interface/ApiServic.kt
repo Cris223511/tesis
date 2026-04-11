@@ -244,6 +244,23 @@ interface ApiService {
     @GET("api/caregivers")
     suspend fun getCaregivers(@Query("page") page: Int = 1): Response<CaregiverListResponse>
 
+    // Caregiver's own patients
+    @GET("api/caregiver/my-patients")
+    suspend fun getMyPatients(
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10
+    ): Response<PatientsListResponse>
+
+    @GET("api/caregiver/my-patients/{patient_id}/sessions")
+    suspend fun getPatientSessions(
+        @Path("patient_id") patientId: Int,
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10
+    ): Response<TherapySessionsResponse>
+
+    @GET("api/caregiver/my-profile")
+    suspend fun getCaregiverProfile(): Response<CaregiverDetailResponse>
+
     @GET("api/caregivers/search")
     suspend fun searchCaregivers(
         @Query("q") query: String,
@@ -404,6 +421,35 @@ data class TherapistsListResponse(
 data class SessionsListResponse(
     val message: String,
     val data: List<com.example.serious_game_usil.`interface`.TherapySession>
+)
+
+data class TherapySessionsResponse(
+    val message: String,
+    val patient: String? = null,
+    val sessions: List<CaregiverPatientSession> = emptyList(),
+    val total: Int = 0,
+    val page: Int = 1,
+    @SerializedName("total_pages") val totalPages: Int = 1,
+    @SerializedName("has_previous") val hasPrevious: Boolean = false,
+    @SerializedName("has_next") val hasNext: Boolean = false
+)
+
+data class CaregiverPatientSession(
+    val id: Int,
+    @SerializedName("fecha_sesion") val fechaSesion: String,
+    @SerializedName("hora_inicio") val horaInicio: String,
+    @SerializedName("hora_fin") val horaFin: String,
+    val duracion: Int,
+    val estado: String,
+    val ubicacion: String? = null,
+    val direccion: String? = null,
+    val descripcion: String? = null,
+    val objetivos: String? = null,
+    val materiales: String? = null,
+    @SerializedName("notas_terapeuta") val notasTerapeuta: String? = null,
+    @SerializedName("terapeuta_nombre") val terapeutaNombre: String? = null,
+    @SerializedName("tipo_sesion") val tipoSesion: String? = null,
+    val modalidad: String? = null
 )
 
 // Therapist Rating Data Classes

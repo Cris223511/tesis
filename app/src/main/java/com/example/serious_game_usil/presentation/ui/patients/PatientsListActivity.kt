@@ -34,6 +34,7 @@ class PatientsListActivity : AppCompatActivity() {
     private fun setupUI() {
         // Verificar rol del usuario
         val userRoles = AuthManager.getUserRoles()
+        val isAdmin = AuthManager.isAdmin()
         val isTherapist = userRoles.any { it.lowercase() in listOf("terapeuta", "therapist") }
         val canEditPatients = !isTherapist
 
@@ -62,6 +63,7 @@ class PatientsListActivity : AppCompatActivity() {
                 val intent = PatientDetailActivity.newIntent(this, patient.id)
                 startActivity(intent)
             },
+            isAdmin = isAdmin,
             showEditDeleteButtons = canEditPatients
         )
 
@@ -110,7 +112,11 @@ class PatientsListActivity : AppCompatActivity() {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = if (isTherapist) "Mis Pacientes" else "Lista de pacientes"
+        supportActionBar?.title = when {
+            isAdmin -> "Gestión de pacientes"
+            isTherapist -> "Mis pacientes"
+            else -> "Lista de pacientes"
+        }
     }
 
     private fun setupObservers() {
@@ -157,7 +163,7 @@ class PatientsListActivity : AppCompatActivity() {
     }
 
     private fun updatePaginationControls(response: PatientsListResponse) {
-        val hasPagination = (response.total ?: 0) > 10
+        val hasPagination = (response.total ?: 0) > 5
 
         if (hasPagination) {
             binding.paginationControls.visibility = android.view.View.VISIBLE
@@ -187,8 +193,13 @@ class PatientsListActivity : AppCompatActivity() {
                     binding.tvEmptyMessage.text = "No se encontraron pacientes que coincidan con \"${getCurrentSearchQuery()}\""
                 }
                 else -> {
-                    binding.tvEmptyTitle.text = "No hay pacientes registrados"
-                    binding.tvEmptyMessage.text = "Toca el botón + para agregar tu primer paciente"
+                    if (AuthManager.isAdmin()) {
+                        binding.tvEmptyTitle.text = "No hay pacientes disponibles"
+                        binding.tvEmptyMessage.text = "Cuando se registren pacientes, aquí verás su terapeuta y cuidador asignado"
+                    } else {
+                        binding.tvEmptyTitle.text = "No hay pacientes registrados"
+                        binding.tvEmptyMessage.text = "Toca el botón + para agregar tu primer paciente"
+                    }
                 }
             }
         } else {

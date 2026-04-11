@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp"
+    android:height="280dp"
+    android:viewportWidth="280"
+    android:viewportHeight="280">
+    <!-- Central person -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M140,70 C140,60 130,50 120,50 C110,50 100,60 100,70 C100,80 110,90 120,90 C130,90 140,80 140,70 Z" />
+    <path
+        android:fillColor="#64B5F6"
+        android:pathData="M120,100 L100,120 L100,150 L140,150 L140,120 Z" />
+    <!-- Right person -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M200,70 C200,60 190,50 180,50 C170,50 160,60 160,70 C160,80 170,90 180,90 C190,90 200,80 200,70 Z" />
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M180,100 L160,120 L160,150 L200,150 L200,120 Z" />
+    <!-- Left person -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M80,70 C80,60 70,50 60,50 C50,50 40,60 40,70 C40,80 50,90 60,90 C70,90 80,80 80,70 Z" />
+    <path
+        android:fillColor="#FFB74D"
+        android:pathData="M60,100 L40,120 L40,150 L80,150 L80,120 Z" />
+    <!-- Connection lines -->
+    <path
+        android:strokeColor="#E0E0E0"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M80,110 L100,110 M140,110 L160,110" />
+    <!-- Chat bubbles -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M110,170 L130,170 L130,190 L120,190 L115,195 L115,190 L110,190 Z" />
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M150,170 L170,170 L170,190 L165,190 L165,195 L160,190 L150,190 Z" />
+    <!-- Plus symbols for medical -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M117,75 L123,75 L123,81 L117,81 Z M114,78 L126,78 L126,72 L114,72 Z" />
+</vector>

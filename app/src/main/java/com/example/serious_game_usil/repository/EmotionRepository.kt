@@ -34,7 +34,8 @@ class EmotionRepository {
     suspend fun analyzeEmotion(
         imageBase64: String,
         description: String? = null,
-        childId: Int? = null
+        childId: Int? = null,
+        sessionId: Int? = null
     ): Result<EmotionAnalysisResponse> {
         return withContext(Dispatchers.IO) {
             try {
@@ -42,7 +43,8 @@ class EmotionRepository {
                 val request = AnalyzeEmotionRequest(
                     image = imageBase64,
                     description = description,
-                    childId = childId
+                    childId = childId,
+                    sessionId = sessionId
                 )
 
                 val response = apiService.analyzeEmotion(request)
@@ -168,6 +170,32 @@ class EmotionRepository {
         }
     }
 
+    suspend fun getSessionAnalysis(sessionId: Int): Result<EmotionAnalysisResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                syncTokens()
+                val response = apiService.getSessionAnalysis(sessionId)
+                handleResponse(response)
+            } catch (e: Exception) {
+                Log.e(TAG, "Get session analysis error: ${e.message}", e)
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun getSessionAnalyses(sessionIds: List<Int>): Result<SessionAnalysesResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                syncTokens()
+                val response = apiService.getSessionAnalyses(SessionAnalysesRequest(sessionIds))
+                handleResponse(response)
+            } catch (e: Exception) {
+                Log.e(TAG, "Get session analyses error: ${e.message}", e)
+                Result.failure(e)
+            }
+        }
+    }
+
     // Obtener análisis de un usuario específico (para cuidadores ver análisis de sus hijos)
     suspend fun getUserAnalyses(
         userId: Int,
@@ -211,6 +239,25 @@ class EmotionRepository {
     }
 
     companion object {
+        private fun String.normalizedRole(): String = lowercase().trim()
+
+        private fun List<String>.hasEmotionAccessRole(): Boolean {
+            val normalized = map { it.normalizedRole() }
+            return normalized.any {
+                it in listOf(
+                    "admin",
+                    "administrador",
+                    "ad",
+                    "cuidador",
+                    "padre",
+                    "pd",
+                    "responsable",
+                    "terapeuta",
+                    "tr"
+                )
+            }
+        }
+
         @Volatile
         private var instance: EmotionRepository? = null
 
@@ -222,25 +269,22 @@ class EmotionRepository {
 
         // Verificar si el usuario puede editar análisis
         fun canUserEdit(): Boolean {
-            val userRoles = AuthManager.getUserRoles().map { it.lowercase() }
-            return userRoles.any {
-                it in listOf("admin", "administrador", "cuidador", "terapeuta")
-            }
+            return AuthManager.getUserRoles().hasEmotionAccessRole()
         }
 
         // Verificar si el usuario puede eliminar análisis
         fun canUserDelete(): Boolean {
-            val userRoles = AuthManager.getUserRoles().map { it.lowercase() }
+            val userRoles = AuthManager.getUserRoles().map { it.normalizedRole() }
             return userRoles.any {
-                it in listOf("admin", "administrador", "terapeuta")
+                it in listOf("admin", "administrador", "ad", "terapeuta", "tr")
             }
         }
 
         // Verificar si el usuario puede ver todos los análisis
         fun canUserViewAll(): Boolean {
-            val userRoles = AuthManager.getUserRoles().map { it.lowercase() }
+            val userRoles = AuthManager.getUserRoles().map { it.normalizedRole() }
             return userRoles.any {
-                it in listOf("admin", "administrador", "terapeuta")
+                it in listOf("admin", "administrador", "ad", "terapeuta", "tr")
             }
         }
     }

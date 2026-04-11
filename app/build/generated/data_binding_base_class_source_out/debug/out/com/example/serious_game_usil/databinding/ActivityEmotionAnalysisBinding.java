@@ -5,25 +5,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ActivityEmotionAnalysisBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final View animatedBgOverlay;
 
   @NonNull
   public final Button btnAnalyze;
+
+  @NonNull
+  public final MaterialButton btnDeleteAnalysis;
+
+  @NonNull
+  public final Button btnEditImage;
+
+  @NonNull
+  public final Button btnSaveImage;
 
   @NonNull
   public final Button btnSelectGallery;
@@ -32,34 +49,139 @@ public final class ActivityEmotionAnalysisBinding implements ViewBinding {
   public final Button btnTakePhoto;
 
   @NonNull
+  public final FrameLayout cameraFrameGame;
+
+  @NonNull
+  public final LinearLayout emotionBarsContainer;
+
+  @NonNull
+  public final LinearLayout imageActionsContainer;
+
+  @NonNull
   public final ImageView ivSelectedImage;
+
+  @NonNull
+  public final View line1;
+
+  @NonNull
+  public final View line2;
+
+  @NonNull
+  public final ConstraintLayout mainContainer;
 
   @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
+  public final LinearLayout progressSteps;
+
+  @NonNull
+  public final LinearLayout resultActionsContainer;
+
+  @NonNull
+  public final LinearLayout resultSummaryContainer;
+
+  @NonNull
   public final ScrollView scrollView;
+
+  @NonNull
+  public final View step1CircleBg;
+
+  @NonNull
+  public final LinearLayout step1Container;
+
+  @NonNull
+  public final View step2CircleBg;
+
+  @NonNull
+  public final LinearLayout step2Container;
+
+  @NonNull
+  public final View step3CircleBg;
+
+  @NonNull
+  public final LinearLayout step3Container;
+
+  @NonNull
+  public final TextView tvResultActor;
+
+  @NonNull
+  public final TextView tvResultConfidence;
+
+  @NonNull
+  public final TextView tvResultDate;
+
+  @NonNull
+  public final TextView tvResultEmotion;
+
+  @NonNull
+  public final TextView tvResultSession;
+
+  @NonNull
+  public final TextView tvResultStatus;
 
   @NonNull
   public final TextView tvResults;
 
-  private ActivityEmotionAnalysisBinding(@NonNull ScrollView rootView, @NonNull Button btnAnalyze,
-      @NonNull Button btnSelectGallery, @NonNull Button btnTakePhoto,
-      @NonNull ImageView ivSelectedImage, @NonNull ProgressBar progressBar,
-      @NonNull ScrollView scrollView, @NonNull TextView tvResults) {
+  @NonNull
+  public final CardView welcomeGameCard;
+
+  private ActivityEmotionAnalysisBinding(@NonNull ConstraintLayout rootView,
+      @NonNull View animatedBgOverlay, @NonNull Button btnAnalyze,
+      @NonNull MaterialButton btnDeleteAnalysis, @NonNull Button btnEditImage,
+      @NonNull Button btnSaveImage, @NonNull Button btnSelectGallery, @NonNull Button btnTakePhoto,
+      @NonNull FrameLayout cameraFrameGame, @NonNull LinearLayout emotionBarsContainer,
+      @NonNull LinearLayout imageActionsContainer, @NonNull ImageView ivSelectedImage,
+      @NonNull View line1, @NonNull View line2, @NonNull ConstraintLayout mainContainer,
+      @NonNull ProgressBar progressBar, @NonNull LinearLayout progressSteps,
+      @NonNull LinearLayout resultActionsContainer, @NonNull LinearLayout resultSummaryContainer,
+      @NonNull ScrollView scrollView, @NonNull View step1CircleBg,
+      @NonNull LinearLayout step1Container, @NonNull View step2CircleBg,
+      @NonNull LinearLayout step2Container, @NonNull View step3CircleBg,
+      @NonNull LinearLayout step3Container, @NonNull TextView tvResultActor,
+      @NonNull TextView tvResultConfidence, @NonNull TextView tvResultDate,
+      @NonNull TextView tvResultEmotion, @NonNull TextView tvResultSession,
+      @NonNull TextView tvResultStatus, @NonNull TextView tvResults,
+      @NonNull CardView welcomeGameCard) {
     this.rootView = rootView;
+    this.animatedBgOverlay = animatedBgOverlay;
     this.btnAnalyze = btnAnalyze;
+    this.btnDeleteAnalysis = btnDeleteAnalysis;
+    this.btnEditImage = btnEditImage;
+    this.btnSaveImage = btnSaveImage;
     this.btnSelectGallery = btnSelectGallery;
     this.btnTakePhoto = btnTakePhoto;
+    this.cameraFrameGame = cameraFrameGame;
+    this.emotionBarsContainer = emotionBarsContainer;
+    this.imageActionsContainer = imageActionsContainer;
     this.ivSelectedImage = ivSelectedImage;
+    this.line1 = line1;
+    this.line2 = line2;
+    this.mainContainer = mainContainer;
     this.progressBar = progressBar;
+    this.progressSteps = progressSteps;
+    this.resultActionsContainer = resultActionsContainer;
+    this.resultSummaryContainer = resultSummaryContainer;
     this.scrollView = scrollView;
+    this.step1CircleBg = step1CircleBg;
+    this.step1Container = step1Container;
+    this.step2CircleBg = step2CircleBg;
+    this.step2Container = step2Container;
+    this.step3CircleBg = step3CircleBg;
+    this.step3Container = step3Container;
+    this.tvResultActor = tvResultActor;
+    this.tvResultConfidence = tvResultConfidence;
+    this.tvResultDate = tvResultDate;
+    this.tvResultEmotion = tvResultEmotion;
+    this.tvResultSession = tvResultSession;
+    this.tvResultStatus = tvResultStatus;
     this.tvResults = tvResults;
+    this.welcomeGameCard = welcomeGameCard;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -84,9 +206,33 @@ public final class ActivityEmotionAnalysisBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.animated_bg_overlay;
+      View animatedBgOverlay = ViewBindings.findChildViewById(rootView, id);
+      if (animatedBgOverlay == null) {
+        break missingId;
+      }
+
       id = R.id.btn_analyze;
       Button btnAnalyze = ViewBindings.findChildViewById(rootView, id);
       if (btnAnalyze == null) {
+        break missingId;
+      }
+
+      id = R.id.btnDeleteAnalysis;
+      MaterialButton btnDeleteAnalysis = ViewBindings.findChildViewById(rootView, id);
+      if (btnDeleteAnalysis == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_edit_image;
+      Button btnEditImage = ViewBindings.findChildViewById(rootView, id);
+      if (btnEditImage == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_save_image;
+      Button btnSaveImage = ViewBindings.findChildViewById(rootView, id);
+      if (btnSaveImage == null) {
         break missingId;
       }
 
@@ -102,11 +248,43 @@ public final class ActivityEmotionAnalysisBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.camera_frame_game;
+      FrameLayout cameraFrameGame = ViewBindings.findChildViewById(rootView, id);
+      if (cameraFrameGame == null) {
+        break missingId;
+      }
+
+      id = R.id.emotion_bars_container;
+      LinearLayout emotionBarsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (emotionBarsContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.image_actions_container;
+      LinearLayout imageActionsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (imageActionsContainer == null) {
+        break missingId;
+      }
+
       id = R.id.iv_selected_image;
       ImageView ivSelectedImage = ViewBindings.findChildViewById(rootView, id);
       if (ivSelectedImage == null) {
         break missingId;
       }
+
+      id = R.id.line1;
+      View line1 = ViewBindings.findChildViewById(rootView, id);
+      if (line1 == null) {
+        break missingId;
+      }
+
+      id = R.id.line2;
+      View line2 = ViewBindings.findChildViewById(rootView, id);
+      if (line2 == null) {
+        break missingId;
+      }
+
+      ConstraintLayout mainContainer = (ConstraintLayout) rootView;
 
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
@@ -114,7 +292,101 @@ public final class ActivityEmotionAnalysisBinding implements ViewBinding {
         break missingId;
       }
 
-      ScrollView scrollView = (ScrollView) rootView;
+      id = R.id.progress_steps;
+      LinearLayout progressSteps = ViewBindings.findChildViewById(rootView, id);
+      if (progressSteps == null) {
+        break missingId;
+      }
+
+      id = R.id.result_actions_container;
+      LinearLayout resultActionsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (resultActionsContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.result_summary_container;
+      LinearLayout resultSummaryContainer = ViewBindings.findChildViewById(rootView, id);
+      if (resultSummaryContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.scroll_view;
+      ScrollView scrollView = ViewBindings.findChildViewById(rootView, id);
+      if (scrollView == null) {
+        break missingId;
+      }
+
+      id = R.id.step1_circle_bg;
+      View step1CircleBg = ViewBindings.findChildViewById(rootView, id);
+      if (step1CircleBg == null) {
+        break missingId;
+      }
+
+      id = R.id.step1_container;
+      LinearLayout step1Container = ViewBindings.findChildViewById(rootView, id);
+      if (step1Container == null) {
+        break missingId;
+      }
+
+      id = R.id.step2_circle_bg;
+      View step2CircleBg = ViewBindings.findChildViewById(rootView, id);
+      if (step2CircleBg == null) {
+        break missingId;
+      }
+
+      id = R.id.step2_container;
+      LinearLayout step2Container = ViewBindings.findChildViewById(rootView, id);
+      if (step2Container == null) {
+        break missingId;
+      }
+
+      id = R.id.step3_circle_bg;
+      View step3CircleBg = ViewBindings.findChildViewById(rootView, id);
+      if (step3CircleBg == null) {
+        break missingId;
+      }
+
+      id = R.id.step3_container;
+      LinearLayout step3Container = ViewBindings.findChildViewById(rootView, id);
+      if (step3Container == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_actor;
+      TextView tvResultActor = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultActor == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_confidence;
+      TextView tvResultConfidence = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultConfidence == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_date;
+      TextView tvResultDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultDate == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_emotion;
+      TextView tvResultEmotion = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultEmotion == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_session;
+      TextView tvResultSession = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultSession == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_result_status;
+      TextView tvResultStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvResultStatus == null) {
+        break missingId;
+      }
 
       id = R.id.tv_results;
       TextView tvResults = ViewBindings.findChildViewById(rootView, id);
@@ -122,8 +394,20 @@ public final class ActivityEmotionAnalysisBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityEmotionAnalysisBinding((ScrollView) rootView, btnAnalyze, btnSelectGallery,
-          btnTakePhoto, ivSelectedImage, progressBar, scrollView, tvResults);
+      id = R.id.welcome_game_card;
+      CardView welcomeGameCard = ViewBindings.findChildViewById(rootView, id);
+      if (welcomeGameCard == null) {
+        break missingId;
+      }
+
+      return new ActivityEmotionAnalysisBinding((ConstraintLayout) rootView, animatedBgOverlay,
+          btnAnalyze, btnDeleteAnalysis, btnEditImage, btnSaveImage, btnSelectGallery, btnTakePhoto,
+          cameraFrameGame, emotionBarsContainer, imageActionsContainer, ivSelectedImage, line1,
+          line2, mainContainer, progressBar, progressSteps, resultActionsContainer,
+          resultSummaryContainer, scrollView, step1CircleBg, step1Container, step2CircleBg,
+          step2Container, step3CircleBg, step3Container, tvResultActor, tvResultConfidence,
+          tvResultDate, tvResultEmotion, tvResultSession, tvResultStatus, tvResults,
+          welcomeGameCard);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -70,3 +70,34 @@ data class PatientListItem(
     val edad: Int?,
     @SerializedName("foto_movil") val fotoMovil: String?
 )
+
+data class SessionReportRequest(
+    @SerializedName("session_id") val sessionId: Int,
+    @SerializedName("format") val format: String,
+    @SerializedName("include_emotions") val includeEmotions: Boolean = false
+)
+
+data class GeneralReportRequest(
+    @SerializedName("therapist_id") val therapistId: Int? = null,
+    @SerializedName("patient_id") val patientId: Int? = null,
+    @SerializedName("start_date") val startDate: String? = null,
+    @SerializedName("end_date") val endDate: String? = null,
+    @SerializedName("include_statistics") val includeStatistics: Boolean = true
+)
+
+data class ReportResponse(
+    val success: Boolean,
+    val message: String,
+    @SerializedName("file_url") val fileUrl: String?,
+    @SerializedName("report_data") val reportData: ReportData?
+)
+
+data class ReportData(
+    @SerializedName("total_sessions") val totalSessions: Int,
+    @SerializedName("completed_sessions") val completedSessions: Int,
+    @SerializedName("cancelled_sessions") val cancelledSessions: Int,
+    @SerializedName("average_duration") val averageDuration: Int,
+    @SerializedName("unique_patients") val uniquePatients: Int,
+    val conclusions: String?,
+    val recommendations: String?
+)

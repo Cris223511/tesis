@@ -14,6 +14,12 @@ interface EmotionApiService {
     @POST("api/v1/analyze-emotion")
     suspend fun analyzeEmotion(@Body request: AnalyzeEmotionRequest): Response<EmotionAnalysisResponse>
 
+    @GET("api/v1/session/{session_id}/analysis")
+    suspend fun getSessionAnalysis(@Path("session_id") sessionId: Int): Response<EmotionAnalysisResponse>
+
+    @POST("api/v1/sessions/analyses")
+    suspend fun getSessionAnalyses(@Body request: SessionAnalysesRequest): Response<SessionAnalysesResponse>
+
     // Editar análisis (limitado por rol)
     @PUT("api/v1/edit-analysis/{id}")
     suspend fun editAnalysis(

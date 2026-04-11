@@ -1,19 +1,46 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
+fun getVersionCode(): Int {
+    val versionPropsFile = file("../version.properties")
+    val versionCode: Int
+
+    if (versionPropsFile.exists()) {
+        val versionProps = Properties()
+        versionProps.load(FileInputStream(versionPropsFile))
+        versionCode = (versionProps["VERSION_CODE"] as String).toInt()
+
+        versionProps["VERSION_CODE"] = (versionCode + 1).toString()
+        versionProps.store(versionPropsFile.outputStream(), null)
+    } else {
+        val versionProps = Properties()
+        versionCode = 1
+        versionProps["VERSION_CODE"] = "2"
+        versionProps.store(versionPropsFile.outputStream(), null)
+    }
+
+    return versionCode
+}
+
 android {
     namespace = "com.example.serious_game_usil"
     compileSdk = 34
+
+    val appVersionCode = getVersionCode()
+    val appVersionName = "1.${appVersionCode}"
 
     defaultConfig {
         applicationId = "com.example.serious_game_usil"
         minSdk = 30
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,9 +69,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "API_BASE_URL", "\"https://api.production.com\"")
-            buildConfigField("String", "RP_ORIGIN", "\"https://api.production.com\"")
-            buildConfigField("String", "RP_ID", "\"api.production.com\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://tesis-backend-latest.onrender.com/\"")
+            buildConfigField("String", "RP_ORIGIN", "\"https://tesis-backend-latest.onrender.com\"")
+            buildConfigField("String", "RP_ID", "\"tesis-backend-latest.onrender.com\"")
             buildConfigField("String", "RP_NAME", "\"SERIOUS_GAME\"")
         }
     }
@@ -157,5 +184,11 @@ dependencies {
 
     // Descarga de archivos
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // Biometric authentication
+    implementation("androidx.biometric:biometric:1.1.0")
+
+    // ViewPager2 for onboarding carousel
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
 }

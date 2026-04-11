@@ -13,5 +13,5 @@
     <item
         android:id="@+id/action_view_report"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Ver reporte" />
+        android:title="Reporte individual" />
 </menu>

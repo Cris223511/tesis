@@ -78,16 +78,8 @@ class TherapySessionAdapter(
 
         holder.tvTherapist.text = session.terapeuta.nombresApellidos
 
-        // Caregiver info (show only if exists)
-        android.util.Log.d("TherapySessionAdapter", "Session ${session.id}: Checking caregiver data")
-        if (session.cuidador != null) {
-            android.util.Log.d("TherapySessionAdapter", "Session ${session.id}: Caregiver found - ${session.cuidador.nombresApellidos}")
-            holder.layoutCaregiver.visibility = View.VISIBLE
-            holder.tvCaregiver.text = session.cuidador.nombresApellidos
-        } else {
-            android.util.Log.d("TherapySessionAdapter", "Session ${session.id}: No caregiver data found")
-            holder.layoutCaregiver.visibility = View.GONE
-        }
+        holder.layoutCaregiver.visibility = View.VISIBLE
+        holder.tvCaregiver.text = session.cuidador?.nombresApellidos ?: "Sin cuidador asignado"
 
         if (!session.descripcion.isNullOrEmpty()) {
             holder.tvDescription.visibility = View.VISIBLE

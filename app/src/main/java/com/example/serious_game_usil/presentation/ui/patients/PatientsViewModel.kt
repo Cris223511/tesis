@@ -35,7 +35,7 @@ class PatientsViewModel(
 
     private var currentPage = 1
     private var currentSearch: String? = null
-    private val pageSize = 10
+    private val pageSize = 5
 
     fun loadPatients(page: Int = 1, search: String? = null) {
         currentPage = page

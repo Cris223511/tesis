@@ -37,6 +37,10 @@ object RetrofitClient {
 
     fun getApiServiceNoAuth(): ApiService = getRetrofitNoAuth().create(ApiService::class.java)
 
+    fun getBiometricService(): BiometricApiService = getRetrofitWithAuth().create(BiometricApiService::class.java)
+
+    fun getBiometricServiceNoAuth(): BiometricApiService = getRetrofitNoAuth().create(BiometricApiService::class.java)
+
     private fun getRetrofitWithAuth(): Retrofit {
         return retrofitWithAuth ?: synchronized(this) {
             retrofitWithAuth ?: buildRetrofit(true).also { retrofitWithAuth = it }
@@ -92,6 +96,7 @@ class AuthInterceptor(
             "/api/otp/resend",
             "/api/login/finish",
             "/api/login/begin",
+            "/api/fingerprint/auth"
         )
     }
 

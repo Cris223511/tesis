@@ -4,43 +4,72 @@ package com.example.serious_game_usil.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ActivityPreloaderBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final TextView appName;
+
+  @NonNull
+  public final CircularProgressIndicator circularProgress;
+
+  @NonNull
+  public final View gradientBackground;
+
+  @NonNull
+  public final LinearLayout loadingContainer;
 
   @NonNull
   public final TextView loadingText;
 
   @NonNull
+  public final FrameLayout logoContainer;
+
+  @NonNull
   public final ImageView logoPreloader;
 
   @NonNull
-  public final ProgressBar progressHorizontal;
+  public final View pulseCircle;
 
-  private ActivityPreloaderBinding(@NonNull RelativeLayout rootView, @NonNull TextView loadingText,
-      @NonNull ImageView logoPreloader, @NonNull ProgressBar progressHorizontal) {
+  @NonNull
+  public final TextView versionText;
+
+  private ActivityPreloaderBinding(@NonNull ConstraintLayout rootView, @NonNull TextView appName,
+      @NonNull CircularProgressIndicator circularProgress, @NonNull View gradientBackground,
+      @NonNull LinearLayout loadingContainer, @NonNull TextView loadingText,
+      @NonNull FrameLayout logoContainer, @NonNull ImageView logoPreloader,
+      @NonNull View pulseCircle, @NonNull TextView versionText) {
     this.rootView = rootView;
+    this.appName = appName;
+    this.circularProgress = circularProgress;
+    this.gradientBackground = gradientBackground;
+    this.loadingContainer = loadingContainer;
     this.loadingText = loadingText;
+    this.logoContainer = logoContainer;
     this.logoPreloader = logoPreloader;
-    this.progressHorizontal = progressHorizontal;
+    this.pulseCircle = pulseCircle;
+    this.versionText = versionText;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -65,9 +94,39 @@ public final class ActivityPreloaderBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.app_name;
+      TextView appName = ViewBindings.findChildViewById(rootView, id);
+      if (appName == null) {
+        break missingId;
+      }
+
+      id = R.id.circular_progress;
+      CircularProgressIndicator circularProgress = ViewBindings.findChildViewById(rootView, id);
+      if (circularProgress == null) {
+        break missingId;
+      }
+
+      id = R.id.gradient_background;
+      View gradientBackground = ViewBindings.findChildViewById(rootView, id);
+      if (gradientBackground == null) {
+        break missingId;
+      }
+
+      id = R.id.loading_container;
+      LinearLayout loadingContainer = ViewBindings.findChildViewById(rootView, id);
+      if (loadingContainer == null) {
+        break missingId;
+      }
+
       id = R.id.loading_text;
       TextView loadingText = ViewBindings.findChildViewById(rootView, id);
       if (loadingText == null) {
+        break missingId;
+      }
+
+      id = R.id.logo_container;
+      FrameLayout logoContainer = ViewBindings.findChildViewById(rootView, id);
+      if (logoContainer == null) {
         break missingId;
       }
 
@@ -77,14 +136,21 @@ public final class ActivityPreloaderBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.progress_horizontal;
-      ProgressBar progressHorizontal = ViewBindings.findChildViewById(rootView, id);
-      if (progressHorizontal == null) {
+      id = R.id.pulse_circle;
+      View pulseCircle = ViewBindings.findChildViewById(rootView, id);
+      if (pulseCircle == null) {
         break missingId;
       }
 
-      return new ActivityPreloaderBinding((RelativeLayout) rootView, loadingText, logoPreloader,
-          progressHorizontal);
+      id = R.id.version_text;
+      TextView versionText = ViewBindings.findChildViewById(rootView, id);
+      if (versionText == null) {
+        break missingId;
+      }
+
+      return new ActivityPreloaderBinding((ConstraintLayout) rootView, appName, circularProgress,
+          gradientBackground, loadingContainer, loadingText, logoContainer, logoPreloader,
+          pulseCircle, versionText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

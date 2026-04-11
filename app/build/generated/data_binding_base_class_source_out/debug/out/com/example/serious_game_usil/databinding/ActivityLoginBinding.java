@@ -5,17 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.serious_game_usil.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -24,10 +24,19 @@ import java.lang.String;
 
 public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final ImageView appLogo;
+
+  @NonNull
+  public final ImageView biometricIcon;
+
+  @NonNull
+  public final CardView biometricLoginCard;
+
+  @NonNull
+  public final TextView copyrightFooter;
 
   @NonNull
   public final TextInputEditText emailEditText;
@@ -36,7 +45,13 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final TextInputLayout emailInputLayout;
 
   @NonNull
+  public final TextView forgotPasswordText;
+
+  @NonNull
   public final MaterialButton loginButton;
+
+  @NonNull
+  public final CardView loginCard;
 
   @NonNull
   public final TextInputEditText passwordEditText;
@@ -45,10 +60,7 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final TextInputLayout passwordInputLayout;
 
   @NonNull
-  public final ImageView passwordToggle;
-
-  @NonNull
-  public final ProgressBar progressBar;
+  public final LinearProgressIndicator progressBar;
 
   @NonNull
   public final TextView registerText;
@@ -56,32 +68,34 @@ public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
   public final MaterialCheckBox rememberMeCheckBox;
 
-  @NonNull
-  public final LinearLayout topLogoArea;
-
-  private ActivityLoginBinding(@NonNull RelativeLayout rootView, @NonNull ImageView appLogo,
-      @NonNull TextInputEditText emailEditText, @NonNull TextInputLayout emailInputLayout,
-      @NonNull MaterialButton loginButton, @NonNull TextInputEditText passwordEditText,
-      @NonNull TextInputLayout passwordInputLayout, @NonNull ImageView passwordToggle,
-      @NonNull ProgressBar progressBar, @NonNull TextView registerText,
-      @NonNull MaterialCheckBox rememberMeCheckBox, @NonNull LinearLayout topLogoArea) {
+  private ActivityLoginBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView appLogo,
+      @NonNull ImageView biometricIcon, @NonNull CardView biometricLoginCard,
+      @NonNull TextView copyrightFooter, @NonNull TextInputEditText emailEditText,
+      @NonNull TextInputLayout emailInputLayout, @NonNull TextView forgotPasswordText,
+      @NonNull MaterialButton loginButton, @NonNull CardView loginCard,
+      @NonNull TextInputEditText passwordEditText, @NonNull TextInputLayout passwordInputLayout,
+      @NonNull LinearProgressIndicator progressBar, @NonNull TextView registerText,
+      @NonNull MaterialCheckBox rememberMeCheckBox) {
     this.rootView = rootView;
     this.appLogo = appLogo;
+    this.biometricIcon = biometricIcon;
+    this.biometricLoginCard = biometricLoginCard;
+    this.copyrightFooter = copyrightFooter;
     this.emailEditText = emailEditText;
     this.emailInputLayout = emailInputLayout;
+    this.forgotPasswordText = forgotPasswordText;
     this.loginButton = loginButton;
+    this.loginCard = loginCard;
     this.passwordEditText = passwordEditText;
     this.passwordInputLayout = passwordInputLayout;
-    this.passwordToggle = passwordToggle;
     this.progressBar = progressBar;
     this.registerText = registerText;
     this.rememberMeCheckBox = rememberMeCheckBox;
-    this.topLogoArea = topLogoArea;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -112,6 +126,24 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.biometricIcon;
+      ImageView biometricIcon = ViewBindings.findChildViewById(rootView, id);
+      if (biometricIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.biometricLoginCard;
+      CardView biometricLoginCard = ViewBindings.findChildViewById(rootView, id);
+      if (biometricLoginCard == null) {
+        break missingId;
+      }
+
+      id = R.id.copyright_footer;
+      TextView copyrightFooter = ViewBindings.findChildViewById(rootView, id);
+      if (copyrightFooter == null) {
+        break missingId;
+      }
+
       id = R.id.emailEditText;
       TextInputEditText emailEditText = ViewBindings.findChildViewById(rootView, id);
       if (emailEditText == null) {
@@ -124,9 +156,21 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.forgotPasswordText;
+      TextView forgotPasswordText = ViewBindings.findChildViewById(rootView, id);
+      if (forgotPasswordText == null) {
+        break missingId;
+      }
+
       id = R.id.loginButton;
       MaterialButton loginButton = ViewBindings.findChildViewById(rootView, id);
       if (loginButton == null) {
+        break missingId;
+      }
+
+      id = R.id.login_card;
+      CardView loginCard = ViewBindings.findChildViewById(rootView, id);
+      if (loginCard == null) {
         break missingId;
       }
 
@@ -142,14 +186,8 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.passwordToggle;
-      ImageView passwordToggle = ViewBindings.findChildViewById(rootView, id);
-      if (passwordToggle == null) {
-        break missingId;
-      }
-
       id = R.id.progressBar;
-      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      LinearProgressIndicator progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
         break missingId;
       }
@@ -166,15 +204,10 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.top_logo_area;
-      LinearLayout topLogoArea = ViewBindings.findChildViewById(rootView, id);
-      if (topLogoArea == null) {
-        break missingId;
-      }
-
-      return new ActivityLoginBinding((RelativeLayout) rootView, appLogo, emailEditText,
-          emailInputLayout, loginButton, passwordEditText, passwordInputLayout, passwordToggle,
-          progressBar, registerText, rememberMeCheckBox, topLogoArea);
+      return new ActivityLoginBinding((ConstraintLayout) rootView, appLogo, biometricIcon,
+          biometricLoginCard, copyrightFooter, emailEditText, emailInputLayout, forgotPasswordText,
+          loginButton, loginCard, passwordEditText, passwordInputLayout, progressBar, registerText,
+          rememberMeCheckBox);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

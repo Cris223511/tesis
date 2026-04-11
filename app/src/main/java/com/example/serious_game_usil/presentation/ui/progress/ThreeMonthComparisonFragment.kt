@@ -24,6 +24,7 @@ class ThreeMonthComparisonFragment : Fragment() {
     private lateinit var viewModel: ProgressViewModel
     private lateinit var monthsAdapter: MonthlyProgressAdapter
     private lateinit var areasAdapter: ProgressAreasAdapter
+    private var requestedChildId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,15 +42,16 @@ class ThreeMonthComparisonFragment : Fragment() {
         setupRecyclerViews()
         setupObservers()
         
-        // Obtener ID del niño desde argumentos
-        val childId = arguments?.getInt("child_id") ?: 0
-        if (childId > 0) {
-            viewModel.loadThreeMonthComparison(childId)
+        requestedChildId = arguments?.getInt("child_id") ?: 0
+        if (requestedChildId > 0) {
+            viewModel.loadThreeMonthComparison(requestedChildId)
+        } else {
+            viewModel.loadAllChildrenProgress()
         }
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[ProgressViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ProgressViewModel::class.java]
     }
 
     private fun setupRecyclerViews() {
@@ -76,6 +78,16 @@ class ThreeMonthComparisonFragment : Fragment() {
         viewModel.threeMonthComparison.observe(viewLifecycleOwner) { comparison ->
             comparison?.let {
                 updateUI(it)
+            }
+        }
+
+        viewModel.allChildrenProgress.observe(viewLifecycleOwner) { progressList ->
+            if (requestedChildId == 0) {
+                val bestCandidate = progressList.firstOrNull { comparison ->
+                    comparison.summary.totalSessions3M > 0 || comparison.months.any { month -> month.totalSessions > 0 }
+                } ?: progressList.firstOrNull()
+
+                bestCandidate?.let { updateUI(it) }
             }
         }
 
@@ -110,71 +122,111 @@ class ThreeMonthComparisonFragment : Fragment() {
     private fun updateMonthsComparison(months: List<MonthlyProgress>) {
         if (months.isEmpty() || months.all { it.totalSessions == 0 }) {
             binding.textNoData.visibility = View.VISIBLE
-            binding.layoutComparison.visibility = View.VISIBLE // Mostrar layout con 0s
+            binding.textNoData.text = "No hay datos suficientes para comparar.\nSe necesitan al menos 2 meses con sesiones registradas."
+            binding.layoutComparison.visibility = View.GONE
         } else {
             binding.textNoData.visibility = View.GONE
             binding.layoutComparison.visibility = View.VISIBLE
         }
 
-        // Actualizar adapter
         monthsAdapter.updateMonths(months)
 
-        // Crear cards para los 3 meses (máximo)
         val monthCards = listOf(
             binding.cardMonth1,
-            binding.cardMonth2, 
+            binding.cardMonth2,
             binding.cardMonth3
         )
 
-        months.take(3).forEachIndexed { index, month ->
+        val relevantMonths = months.filter { it.totalSessions > 0 }.take(3)
+
+        relevantMonths.forEachIndexed { index, month ->
             updateMonthCard(monthCards[index], month, index == 0, index)
         }
 
-        // Ocultar cards no utilizadas
-        for (i in months.size until monthCards.size) {
+        for (i in relevantMonths.size until monthCards.size) {
             monthCards[i].visibility = View.GONE
+        }
+
+        if (relevantMonths.size >= 2) {
+            showComparisonAnalysis(relevantMonths)
+        }
+    }
+
+    private fun showComparisonAnalysis(months: List<MonthlyProgress>) {
+        if (months.size >= 2) {
+            val currentMonth = months[0]
+            val previousMonth = months[1]
+
+            val improvement = currentMonth.overallScore - previousMonth.overallScore
+            val improvementText = when {
+                improvement > 10f -> "Mejora significativa (+${improvement.toInt()}%)"
+                improvement > 0f -> "Mejora moderada (+${improvement.toInt()}%)"
+                kotlin.math.abs(improvement) < 0.01f -> "Sin cambios"
+                improvement > -10f -> "Leve descenso (${improvement.toInt()}%)"
+                else -> "Descenso importante (${improvement.toInt()}%)"
+            }
+
+            binding.textOverallTrend.text = improvementText
+            binding.textOverallTrend.visibility = View.VISIBLE
         }
     }
 
     private fun updateMonthCard(card: MaterialCardView, month: MonthlyProgress, isCurrentMonth: Boolean, position: Int = 0) {
         card.visibility = View.VISIBLE
-        
-        // Configurar colores según el progreso y si es el mes actual
+
         val backgroundColor = when {
-            isCurrentMonth -> R.color.primary
-            month.totalSessions == 0 -> android.R.color.darker_gray // Color gris para sin datos
-            month.overallScore >= 80 -> R.color.green_500
-            month.overallScore >= 60 -> R.color.orange
-            else -> R.color.red_500
+            isCurrentMonth -> R.color.primary_light
+            month.overallScore >= 75 -> R.color.success_color
+            month.overallScore >= 50 -> R.color.warning_color
+            else -> R.color.error_color
         }
-        
+
         card.setCardBackgroundColor(ContextCompat.getColor(requireContext(), backgroundColor))
-        
-        // Encontrar TextViews dentro de la card (esto dependería del layout)
+        card.strokeWidth = if (isCurrentMonth) 3 else 1
+        card.strokeColor = ContextCompat.getColor(requireContext(), R.color.primary)
+
         val monthText = card.findViewById<android.widget.TextView>(R.id.textMonth)
         val scoreText = card.findViewById<android.widget.TextView>(R.id.textScore)
         val sessionsText = card.findViewById<android.widget.TextView>(R.id.textSessions)
-        val trendIcon = card.findViewById<android.widget.ImageView>(R.id.iconTrend)
-        
-        monthText?.text = month.month
-        scoreText?.text = if (month.totalSessions == 0) "Sin datos" else "${month.overallScore}"
-        sessionsText?.text = if (month.totalSessions == 0) "0 sesiones" else "${month.totalSessions} sesiones"
-        
-        // Configurar icono de tendencia
-        val trendIconRes = when(month.trend) {
-            "improving" -> android.R.drawable.arrow_up_float
-            "declining" -> android.R.drawable.arrow_down_float  
-            else -> android.R.drawable.ic_menu_view
+        val progressBar: LinearProgressIndicator? = null
+
+        monthText?.text = formatMonthName(month.month)
+
+        scoreText?.text = String.format("%.1f%%", month.overallScore)
+        scoreText?.textSize = if (isCurrentMonth) 20f else 18f
+
+        sessionsText?.text = when(month.totalSessions) {
+            0 -> "Sin sesiones"
+            1 -> "1 sesión"
+            else -> "${month.totalSessions} sesiones"
         }
-        trendIcon?.setImageResource(trendIconRes)
-        
-        // Animación del card
+
+        progressBar?.progress = month.overallScore.toInt()
+
+        card.scaleX = 0.9f
+        card.scaleY = 0.9f
         card.alpha = 0f
         card.animate()
+            .scaleX(1f)
+            .scaleY(1f)
             .alpha(1f)
-            .setDuration(300)
-            .setStartDelay(position * 100L)
+            .setDuration(400)
+            .setStartDelay(position * 150L)
+            .setInterpolator(DecelerateInterpolator())
             .start()
+    }
+
+    private fun formatMonthName(monthString: String): String {
+        return try {
+            val parts = monthString.split(" ")
+            if (parts.size >= 2) {
+                "${parts[0].take(3).uppercase()} ${parts[1]}"
+            } else {
+                monthString
+            }
+        } catch (e: Exception) {
+            monthString
+        }
     }
 
     private fun updateAreasProgress(currentMonth: AutismProgressMetrics?) {
@@ -228,14 +280,14 @@ class ThreeMonthComparisonFragment : Fragment() {
 
     private fun updateSummary(summary: ProgressSummary) {
         binding.textOverallTrend.text = when(summary.overallTrend) {
-            "improving" -> "¡Progreso excelente!"
-            "stable" -> "Progreso constante"
-            "declining" -> "Requiere atención"
-            else -> "En desarrollo"
+            "improving" -> "Progreso destacado"
+            "stable" -> "Avance constante"
+            "declining" -> "Necesita refuerzo"
+            else -> "Seguimiento en curso"
         }
 
         binding.textTotalSessions.text = "${summary.totalSessions3M} sesiones en 3 meses"
-        binding.textAvgSessionTime.text = "Promedio: ${summary.avgSessionTime} min por sesión"
+        binding.textAvgSessionTime.text = "Promedio por sesión: ${summary.avgSessionTime} min"
 
         // Configurar color del trend
         val trendColor = when(summary.overallTrend) {

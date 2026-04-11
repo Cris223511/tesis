@@ -357,6 +357,67 @@ class TherapySessionRepository {
         }
     }
 
+    // Los siguientes métodos están preparados para cuando el backend tenga los endpoints de reportes
+    // Por ahora usamos los métodos existentes de exportación
+    /*
+    fun generateSessionReport(
+        sessionId: Int,
+        format: String,
+        includeEmotions: Boolean = false
+    ): Flow<ApiResult<ReportResponse>> = flow {
+        try {
+            android.util.Log.d("TherapySessionRepository", "Generating session report: $sessionId, format: $format")
+            val request = SessionReportRequest(sessionId, format, includeEmotions)
+            val response = apiService.generateSessionReport(request)
+
+            if (response.isSuccessful) {
+                response.body()?.let { reportResponse ->
+                    android.util.Log.d("TherapySessionRepository", "Report generated successfully")
+                    emit(ApiResult.Success(reportResponse))
+                } ?: emit(ApiResult.Error(400, "No response received"))
+            } else {
+                android.util.Log.e("TherapySessionRepository", "Error response: ${response.errorBody()?.string()}")
+                emit(ApiResult.Error(response.code(), "Error generating report"))
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("TherapySessionRepository", "Exception: ${e.message}", e)
+            emit(ApiResult.NetworkError(e))
+        }
+    }
+
+    fun generateGeneralReport(
+        therapistId: Int? = null,
+        patientId: Int? = null,
+        startDate: String? = null,
+        endDate: String? = null
+    ): Flow<ApiResult<ReportResponse>> = flow {
+        try {
+            android.util.Log.d("TherapySessionRepository", "Generating general report")
+            val request = GeneralReportRequest(
+                therapistId = therapistId,
+                patientId = patientId,
+                startDate = startDate,
+                endDate = endDate,
+                includeStatistics = true
+            )
+            val response = apiService.generateGeneralReport(request)
+
+            if (response.isSuccessful) {
+                response.body()?.let { reportResponse ->
+                    android.util.Log.d("TherapySessionRepository", "General report generated successfully")
+                    emit(ApiResult.Success(reportResponse))
+                } ?: emit(ApiResult.Error(400, "No response received"))
+            } else {
+                android.util.Log.e("TherapySessionRepository", "Error response: ${response.errorBody()?.string()}")
+                emit(ApiResult.Error(response.code(), "Error generating general report"))
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("TherapySessionRepository", "Exception: ${e.message}", e)
+            emit(ApiResult.NetworkError(e))
+        }
+    }
+    */
+
     private fun convertToTherapySession(sessionDetailResponse: com.example.serious_game_usil.data.SessionDetailResponse): TherapySession {
         val sessionDetail = sessionDetailResponse.session
         return TherapySession(

@@ -38,6 +38,7 @@ import kotlinx.coroutines.withContext
 import com.example.serious_game_usil.R
 import com.example.serious_game_usil.network.RetrofitClient
 import kotlinx.coroutines.delay
+import org.json.JSONObject
 
 
 class OtpVerificationActivity : AppCompatActivity() {
@@ -62,12 +63,12 @@ class OtpVerificationActivity : AppCompatActivity() {
         private const val KEY_LAST_RESEND = "last_resend_"
         private const val KEY_FAILED_OTP_ATTEMPTS = "failed_otp_attempts_"
         private const val KEY_OTP_BLOCK_TIME = "otp_block_time_"
-        private const val MAX_RESEND_ATTEMPTS = 3
-        private const val MAX_OTP_ATTEMPTS = 3
+        private const val MAX_RESEND_ATTEMPTS = 9999
+        private const val MAX_OTP_ATTEMPTS = 5
         private const val BLOCK_DURATION = 24 * 60 * 60 * 1000L
         private const val OTP_BLOCK_DURATION = 30 * 60 * 1000L
-        private const val RESEND_COOLDOWN = 60 * 1000L
-        private const val CODE_VALIDITY_DURATION = 10 * 60 * 1000L // 10 minutos
+        private const val RESEND_COOLDOWN = 5 * 60 * 1000L
+        private const val CODE_VALIDITY_DURATION = 5 * 60 * 1000L
         private const val SMS_RETRIEVER_REQUEST_CODE = 1001
     }
 
@@ -531,27 +532,7 @@ class OtpVerificationActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                binding.timerText.visibility = View.GONE
-                binding.resendText.isEnabled = true
-                binding.resendText.alpha = 1.0f
-                binding.resendText.text = "Reenviar código"
-                binding.resendText.setTextColor(
-                    ContextCompat.getColor(this@OtpVerificationActivity, R.color.resend_enabled)
-                )
-
-                try {
-                    val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-                    if (vibrator.hasVibrator()) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
-                        } else {
-                            @Suppress("DEPRECATION")
-                            vibrator.vibrate(100)
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("OTP", "Error al vibrar: ${e.message}")
-                }
+                resendCode(isAutomatic = true)
             }
         }.start()
     }
@@ -669,45 +650,48 @@ class OtpVerificationActivity : AppCompatActivity() {
                 } else {
                     when (otpResponse.code()) {
                         400, 401 -> {
-                            incrementFailedOtpAttempts()
+                            val errorPayload = parseErrorPayload(otpResponse.errorBody()?.string())
                             clearOtpFields()
 
-                            // DETENER EL CONTADOR ACTUAL
-                            countDownTimer?.cancel()
-
-                            // HABILITAR INMEDIATAMENTE EL BOTÓN DE REENVIAR
-                            binding.resendText.apply {
-                                isEnabled = true
-                                alpha = 1.0f
-                                text = "Reenviar código"
-                                setTextColor(ContextCompat.getColor(this@OtpVerificationActivity, R.color.resend_enabled))
-                            }
-
-                            // OCULTAR EL TIMER
-                            binding.timerText.visibility = View.GONE
-
-                            if (failedOtpAttempts >= MAX_OTP_ATTEMPTS) {
+                            if (errorPayload.autoResent) {
+                                saveLastResendTime()
+                                startCountDownTimer(RESEND_COOLDOWN)
                                 showErrorDialog(
-                                    "Cuenta bloqueada",
-                                    "Has excedido el número máximo de intentos. Por favor espera 30 minutos antes de intentar nuevamente."
+                                    "Código renovado",
+                                    errorPayload.message.ifBlank {
+                                        "El código expiró. Se generó y envió uno nuevo automáticamente."
+                                    }
                                 )
-                                checkOtpAttemptsStatus()
                             } else {
-                                val attemptsLeft = MAX_OTP_ATTEMPTS - failedOtpAttempts
-                                showErrorDialog(
-                                    "Código incorrecto",
-                                    "El código ingresado no es válido. Te quedan $attemptsLeft intento${if (attemptsLeft > 1) "s" else ""}.\n\nPuedes solicitar un nuevo código."
-                                )
+                                incrementFailedOtpAttempts()
+                                if (failedOtpAttempts >= MAX_OTP_ATTEMPTS) {
+                                    showErrorDialog(
+                                        "Cuenta bloqueada",
+                                        errorPayload.message.ifBlank {
+                                            "Has excedido el número máximo de intentos. Por favor espera 30 minutos antes de intentar nuevamente."
+                                        }
+                                    )
+                                    checkOtpAttemptsStatus()
+                                } else {
+                                    val attemptsLeft = MAX_OTP_ATTEMPTS - failedOtpAttempts
+                                    showErrorDialog(
+                                        "Código incorrecto",
+                                        errorPayload.message.ifBlank {
+                                            "El código ingresado no es válido. Te quedan $attemptsLeft intento${if (attemptsLeft > 1) "s" else ""}."
+                                        }
+                                    )
+                                }
                             }
-
-                            // NO iniciar un nuevo timer, permitir reenvío inmediato
-                            // saveLastResendTime() // COMENTADO
-                            // startCountDownTimer(RESEND_COOLDOWN) // COMENTADO
                         }
                         403 -> {
+                            val errorPayload = parseErrorPayload(otpResponse.errorBody()?.string())
                             showErrorDialog(
-                                "Demasiados intentos",
-                                "Has excedido el número de intentos. Intenta más tarde."
+                                if (errorPayload.message.contains("deshabilitada", ignoreCase = true)) {
+                                    "Cuenta deshabilitada"
+                                } else {
+                                    "Cuenta bloqueada"
+                                },
+                                errorPayload.message.ifBlank { "Has excedido el número de intentos. Intenta más tarde." }
                             )
                         }
                         else -> {
@@ -779,29 +763,25 @@ class OtpVerificationActivity : AppCompatActivity() {
 
     private fun canResendCode(): Boolean {
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        val blockTime = prefs.getLong(KEY_BLOCK_TIME + userEmail, 0)
+        val lastResend = prefs.getLong(KEY_LAST_RESEND + userEmail, 0)
+        val elapsed = System.currentTimeMillis() - lastResend
 
-        if (resendAttempts >= MAX_RESEND_ATTEMPTS) {
-            val currentTime = System.currentTimeMillis()
-            if (currentTime - blockTime < BLOCK_DURATION) {
-                val remainingMillis = BLOCK_DURATION - (currentTime - blockTime)
-                val remainingMinutes = (remainingMillis / 1000 / 60).toInt()
-                val remainingHours = remainingMinutes / 60
-
-                val message = when {
-                    remainingHours >= 1 -> "Reenvío bloqueado. Intenta en $remainingHours hora${if (remainingHours > 1) "s" else ""}"
-                    remainingMinutes >= 1 -> "Reenvío bloqueado. Intenta en $remainingMinutes minuto${if (remainingMinutes > 1) "s" else ""}"
-                    else -> "Reenvío bloqueado. Intenta en menos de 1 minuto"
-                }
-
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-                return false
-            }
+        if (lastResend > 0 && elapsed < RESEND_COOLDOWN) {
+            val remainingMillis = RESEND_COOLDOWN - elapsed
+            val remainingSeconds = (remainingMillis / 1000).toInt()
+            val minutes = remainingSeconds / 60
+            val seconds = remainingSeconds % 60
+            Toast.makeText(
+                this,
+                String.format("Espera %02d:%02d para reenviar", minutes, seconds),
+                Toast.LENGTH_LONG
+            ).show()
+            return false
         }
         return true
     }
 
-    private fun resendCode() {
+    private fun resendCode(isAutomatic: Boolean = false) {
         if (!canResendCode()) {
             return
         }
@@ -814,38 +794,30 @@ class OtpVerificationActivity : AppCompatActivity() {
                 val response = apiService.resendOtp(ResendOTPRequest(userId))
 
                 if (response.isSuccessful) {
-                    resendAttempts++
-                    saveResendAttempt()
                     saveLastResendTime()
-
-                    // Resetear tiempo de solicitud para el nuevo código
                     otpRequestTime = System.currentTimeMillis()
-                    lastProcessedCode = null // Permitir códigos nuevos
+                    lastProcessedCode = null
 
                     response.body()?.let { baseResponse ->
-                        val message = if (baseResponse.reenviosRestantes != null) {
-                            "Código enviado. Reenvíos restantes: ${baseResponse.reenviosRestantes}"
+                        val message = if (isAutomatic) {
+                            "El código expiró y se envió uno nuevo automáticamente."
                         } else {
-                            "Código reenviado a $userEmail"
+                            baseResponse.message.ifBlank { "Código reenviado. Válido por 5 minutos." }
                         }
                         Toast.makeText(this@OtpVerificationActivity, message, Toast.LENGTH_LONG).show()
                     }
 
-                    if (resendAttempts >= MAX_RESEND_ATTEMPTS) {
-                        binding.resendText.text = "Bloqueado por 24 horas"
-                        binding.resendText.isEnabled = false
-                    } else {
-                        startCountDownTimer(RESEND_COOLDOWN)
-                    }
+                    clearOtpFields()
+                    startCountDownTimer(RESEND_COOLDOWN)
                 } else {
                     when (response.code()) {
                         403 -> {
+                            val errorPayload = parseErrorPayload(response.errorBody()?.string())
                             Toast.makeText(
                                 this@OtpVerificationActivity,
-                                "Has alcanzado el límite de reenvíos",
+                                errorPayload.message.ifBlank { "No se puede reenviar el código en este momento." },
                                 Toast.LENGTH_SHORT
                             ).show()
-                            binding.resendText.text = "Bloqueado por 24 horas"
                             binding.resendText.isEnabled = false
                         }
                         429 -> {
@@ -854,7 +826,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                                 "Espera un momento antes de reenviar",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            binding.resendText.isEnabled = true
+                            binding.resendText.isEnabled = !isAutomatic
                         }
                         else -> {
                             Toast.makeText(
@@ -862,7 +834,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                                 "Error al reenviar el código",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            binding.resendText.isEnabled = true
+                            binding.resendText.isEnabled = !isAutomatic
                         }
                     }
                 }
@@ -872,7 +844,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                     "Error de conexión",
                     Toast.LENGTH_SHORT
                 ).show()
-                binding.resendText.isEnabled = true
+                binding.resendText.isEnabled = !isAutomatic
             }
         }
     }
@@ -907,6 +879,22 @@ class OtpVerificationActivity : AppCompatActivity() {
             apply()
         }
     }
+
+    private fun parseErrorPayload(raw: String?): OtpErrorPayload {
+        if (raw.isNullOrBlank()) return OtpErrorPayload()
+        return runCatching {
+            val json = JSONObject(raw)
+            OtpErrorPayload(
+                message = json.optString("error"),
+                autoResent = json.optBoolean("auto_resent", false)
+            )
+        }.getOrDefault(OtpErrorPayload(message = raw))
+    }
+
+    private data class OtpErrorPayload(
+        val message: String = "",
+        val autoResent: Boolean = false
+    )
 
     private fun showErrorDialog(title: String, message: String) {
         AlertDialog.Builder(this)

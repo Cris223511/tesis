@@ -14,7 +14,8 @@ class MySessionsAdapter(
     private val onItemClick: (TherapySession) -> Unit,
     private val onAnalyzeEmotionsClick: (TherapySession) -> Unit,
     private val onGenerateReportClick: (TherapySession) -> Unit,
-    private val onRateTherapistClick: (TherapySession) -> Unit
+    private val onRateTherapistClick: (TherapySession) -> Unit,
+    private val canAnalyzeEmotions: (TherapySession) -> Boolean
 ) : RecyclerView.Adapter<MySessionsAdapter.SessionViewHolder>() {
 
     private var sessions = listOf<TherapySession>()
@@ -143,6 +144,10 @@ class MySessionsAdapter(
             binding.btnAnalyzeEmotions.setOnClickListener {
                 onAnalyzeEmotionsClick(session)
             }
+
+            val analysisEnabled = canAnalyzeEmotions(session)
+            binding.btnAnalyzeEmotions.isEnabled = analysisEnabled
+            binding.btnAnalyzeEmotions.alpha = if (analysisEnabled) 1f else 0.45f
 
             binding.btnGenerateReport.setOnClickListener {
                 onGenerateReportClick(session)

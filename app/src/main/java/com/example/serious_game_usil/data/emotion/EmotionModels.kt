@@ -14,7 +14,9 @@ data class AnalyzeEmotionRequest(
     val image: String,  // Base64 encoded image
     val description: String? = null,
     @SerializedName("child_id")
-    val childId: Int? = null  // ID del niño si es análisis para hijo
+    val childId: Int? = null,
+    @SerializedName("session_id")
+    val sessionId: Int? = null
 )
 
 // Response de análisis de emociones
@@ -24,6 +26,8 @@ data class EmotionAnalysisResponse(
     val userId: Int,
     @SerializedName("child_id")
     val childId: Int?,
+    @SerializedName("session_id")
+    val sessionId: Int?,
     @SerializedName("child_name")
     val childName: String?,
     val image: String,
@@ -60,9 +64,7 @@ data class EmotionScores(
     val disgust: Float,
     val fear: Float,
     val happy: Float,
-    val neutral: Float,
-    val sad: Float,
-    val surprise: Float
+    val sad: Float
 )
 
 // Ubicación del rostro en la imagen
@@ -76,6 +78,15 @@ data class FaceLocation(
 // Request para editar análisis
 data class EditAnalysisRequest(
     val description: String
+)
+
+data class SessionAnalysesRequest(
+    @SerializedName("session_ids")
+    val sessionIds: List<Int>
+)
+
+data class SessionAnalysesResponse(
+    val analyses: List<EmotionAnalysisResponse>
 )
 
 // Response de eliminación
@@ -122,13 +133,19 @@ enum class EmotionType(val displayName: String, val color: String) {
     DISGUST("Disgusto", "#9C27B0"),
     FEAR("Miedo", "#FF9800"),
     HAPPY("Feliz", "#4CAF50"),
-    NEUTRAL("Neutral", "#607D8B"),
     SAD("Triste", "#2196F3"),
-    SURPRISE("Sorpresa", "#FFEB3B");
+    UNKNOWN("Sin predominio claro", "#607D8B");
 
     companion object {
         fun fromString(value: String): EmotionType {
-            return values().find { it.name.equals(value, ignoreCase = true) } ?: NEUTRAL
+            return when (value.lowercase()) {
+                "happy" -> HAPPY
+                "sad" -> SAD
+                "angry" -> ANGRY
+                "fear" -> FEAR
+                "disgust" -> DISGUST
+                else -> UNKNOWN
+            }
         }
     }
 }
