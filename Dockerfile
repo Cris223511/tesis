@@ -1,5 +1,5 @@
 # Usar imagen oficial de Go como base
-FROM golang:1.21-alpine AS builder
+FROM --platform=linux/amd64 golang:1.23-alpine AS builder
 
 # Instalar dependencias del sistema
 RUN apk add --no-cache git ca-certificates tzdata
@@ -20,7 +20,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 # Etapa final - imagen mínima
-FROM alpine:latest
+FROM --platform=linux/amd64 alpine:latest
 
 # Instalar ca-certificates para HTTPS
 RUN apk --no-cache add ca-certificates tzdata
@@ -33,9 +33,6 @@ COPY --from=builder /app/main .
 
 # Copiar archivos de configuración si existen
 COPY --from=builder /app/.env* ./
-
-# Crear directorio para archivos públicos
-COPY --from=builder /app/public ./public/
 
 # Exponer puerto
 EXPOSE 8080

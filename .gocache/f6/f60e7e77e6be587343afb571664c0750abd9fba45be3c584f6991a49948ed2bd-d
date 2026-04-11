@@ -1,0 +1,5 @@
+./biometric_dto.go
+./patient_dto.go
+./register.dto.go
+./report_dto.go
+./therapy_dto.go

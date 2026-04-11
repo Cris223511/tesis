@@ -1,6 +1,14 @@
-# 🔒 Backend Usuarios - API REST con Go + Gin
+# SERIOUS GAME BACKEND - User Management & Authentication Service
+## RESTful API for Therapeutic Session Management
 
-Sistema completo de autenticación, gestión de usuarios y sesiones terapéuticas desarrollado en Go. Proporciona APIs REST seguras con autenticación JWT, autenticación biométrica, gestión de roles avanzada y análisis de estadísticas para el ecosistema de análisis de emociones.
+[![Go Version](https://img.shields.io/badge/Go-1.23.4-blue.svg)](https://go.dev/)
+[![Gin Framework](https://img.shields.io/badge/Gin-1.9.1-green.svg)](https://gin-gonic.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+
+High-performance RESTful API backend service built with Go and Gin framework, designed for user management, authentication, and therapeutic session control. This microservice implements JWT-based authentication with biometric support (WebAuthn/FIDO2), comprehensive role-based access control (RBAC), and advanced rate limiting mechanisms for enterprise-grade security.
 
 ## 📋 Tabla de Contenidos
 - [🚀 Características](#-características)
@@ -758,4 +766,4 @@ go tool pprof http://localhost:8080/debug/pprof/profile
 
 ---
 
-*Última actualización: Septiembre 2025*
+*Última actualización: April 2026*

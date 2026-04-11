@@ -13,7 +13,7 @@ import (
 	"usuarios/docs"
 	"usuarios/models"
 	"usuarios/routes"
-	"usuarios/service"
+	services "usuarios/service"
 	"usuarios/utils"
 
 	"github.com/gin-gonic/gin"
@@ -21,20 +21,15 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-
-
-
-
-
 type RateLimiter struct {
-	mu             sync.Mutex
-	dailyCounts    map[uint][]time.Time
-	moduleCounts   map[string][]time.Time
-	moduleBlocked  map[string]time.Time
-	dailyLimit     int
-	repeatLimit    int
-	repeatWindow   time.Duration
-	blockDuration  time.Duration
+	mu            sync.Mutex
+	dailyCounts   map[uint][]time.Time
+	moduleCounts  map[string][]time.Time
+	moduleBlocked map[string]time.Time
+	dailyLimit    int
+	repeatLimit   int
+	repeatWindow  time.Duration
+	blockDuration time.Duration
 }
 
 func NewRateLimiter(dailyLimit, repeatLimit int, repeatWindow, blockDuration time.Duration) *RateLimiter {
@@ -79,7 +74,7 @@ func (rl *RateLimiter) Middleware() gin.HandlerFunc {
 
 func (rl *RateLimiter) checkDailyLimit(c *gin.Context, uid uint, now time.Time) bool {
 	startOfDay := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
-	
+
 	var validRequests []time.Time
 	for _, t := range rl.dailyCounts[uid] {
 		if t.After(startOfDay) {
@@ -122,7 +117,7 @@ func (rl *RateLimiter) checkModuleLimit(c *gin.Context, key string, now time.Tim
 	}
 
 	validRequests = append(validRequests, now)
-	
+
 	if len(validRequests) > rl.repeatLimit {
 		rl.moduleBlocked[key] = now
 		delete(rl.moduleCounts, key)
@@ -140,9 +135,9 @@ func (rl *RateLimiter) checkModuleLimit(c *gin.Context, key string, now time.Tim
 
 func initializeApp() (*gin.Engine, error) {
 	utils.LoadEnv()
-	
+
 	config.InitializeDatabase()
-	
+
 	if err := migrateDatabase(); err != nil {
 		return nil, fmt.Errorf("database migration failed: %w", err)
 	}
@@ -153,7 +148,7 @@ func initializeApp() (*gin.Engine, error) {
 	}
 
 	controllers := initializeControllers(services)
-	
+
 	return setupRouter(controllers), nil
 }
 
@@ -163,6 +158,8 @@ func migrateDatabase() error {
 		&models.Role{},
 		&models.UserUnblockCooldown{},
 		&models.BiometricCredential{},
+		&models.BiometricAttempt{},
+		&models.BiometricLockout{},
 		&models.UserDeviceIP{},
 		&models.LoginHistory{},
 		&models.SecurityLog{},
@@ -178,6 +175,7 @@ func migrateDatabase() error {
 		&models.TherapySession{},
 		&models.TherapistRating{},
 		&models.TherapistDisqualification{},
+		&models.Report{},
 	)
 }
 
@@ -188,6 +186,8 @@ func initializeServices() (*serviceContainer, error) {
 	deviceIPRepo := services.NewDeviceIPRepo(config.DB)
 	patientService := services.NewPatientService(config.DB)
 	therapyService := services.NewTherapyService(config.DB)
+	emotionMLService := services.NewEmotionMLService()
+	reportService := services.NewReportService(config.DB, emotionMLService)
 
 	bioService, err := services.NewBioService(
 		config.DB,
@@ -201,24 +201,28 @@ func initializeServices() (*serviceContainer, error) {
 	}
 
 	return &serviceContainer{
-		user:    userService,
-		role:    roleService,
-		bio:     *bioService,
-		otp:     otpService,
+		user:     userService,
+		role:     roleService,
+		bio:      *bioService,
+		otp:      otpService,
 		deviceIP: *deviceIPRepo,
-		patient: patientService,
-		therapy: therapyService,
+		patient:  patientService,
+		therapy:  therapyService,
+		report:   reportService,
 	}, nil
 }
 
 func initializeControllers(services *serviceContainer) *controllerContainer {
 	return &controllerContainer{
-		user:    controllers.NewUserController(services.user, services.otp, services.deviceIP),
-		role:    controllers.NewRoleController(services.role),
-		auth:    controllers.NewAuthController(),
-		bio:     controllers.NewBioController(&services.bio),
-		patient: controllers.NewPatientController(services.patient),
-		therapy: controllers.NewTherapyController(services.therapy),
+		user:              controllers.NewUserController(services.user, services.otp, services.deviceIP),
+		role:              controllers.NewRoleController(services.role),
+		auth:              controllers.NewAuthController(),
+		bio:               controllers.NewBioController(&services.bio),
+		patient:           controllers.NewPatientController(services.patient),
+		therapy:           controllers.NewTherapyController(services.therapy),
+		report:            controllers.NewReportController(services.report),
+		caregiver:         controllers.NewCaregiverController(config.DB),
+		caregiverPatients: controllers.NewCaregiverPatientsController(config.DB),
 	}
 }
 
@@ -230,7 +234,11 @@ func setupRouter(controllers *controllerContainer) *gin.Engine {
 		controllers.bio,
 		controllers.patient,
 		controllers.therapy,
+		controllers.caregiver,
+		controllers.caregiverPatients,
 	)
+
+	routes.SetupReportRoutes(r, controllers.report)
 
 	rateLimiter := NewRateLimiter(50, 20, 20*time.Minute, 20*time.Minute)
 	r.Use(rateLimiter.Middleware())
@@ -264,15 +272,19 @@ type serviceContainer struct {
 	deviceIP services.DeviceIPRepo
 	patient  *services.PatientService
 	therapy  *services.TherapyService
+	report   *services.ReportService
 }
 
 type controllerContainer struct {
-	user    *controllers.UserController
-	role    *controllers.RoleController
-	auth    *controllers.AuthController
-	bio     *controllers.BioController
-	patient *controllers.PatientController
-	therapy *controllers.TherapyController
+	user              *controllers.UserController
+	role              *controllers.RoleController
+	auth              *controllers.AuthController
+	bio               *controllers.BioController
+	patient           *controllers.PatientController
+	therapy           *controllers.TherapyController
+	report            *controllers.ReportController
+	caregiver         *controllers.CaregiverController
+	caregiverPatients *controllers.CaregiverPatientsController
 }
 
 func main() {
@@ -281,10 +293,8 @@ func main() {
 		log.Fatalf("Failed to initialize application: %v", err)
 	}
 
-	// Arreglar serial_ids faltantes después de las migraciones
 	if err := models.FixMissingSerialIDs(config.DB); err != nil {
 		log.Printf("Warning: Could not fix missing serial IDs: %v", err)
-		// No es fatal, continuamos
 	}
 
 	initialToken, err := utils.GenerateInitialAuthToken()
@@ -299,7 +309,7 @@ func main() {
 
 	port := getPort()
 	log.Printf("Server starting on port %s", port)
-	
+
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}

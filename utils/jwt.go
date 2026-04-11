@@ -22,7 +22,6 @@ func LoadEnv() {
 	}
 }
 
-
 var jwtKey = []byte(os.Getenv("JWT_SECRET"))
 
 // Claims personalizados para el token "normal"
@@ -74,7 +73,6 @@ func GenerateToken(user *models.Usuarios) (string, string, error) {
 
 	return tokenString, refreshTokenString, nil
 }
-
 
 func RefreshToken(refreshTokenString string) (string, string, error) {
 	claims := &jwt.StandardClaims{}
@@ -150,11 +148,25 @@ func GenerateInitialAuthToken() (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString(jwtKey)
-	
+
 	if err != nil {
 		return "", err
 	}
-	
+
 	fmt.Println("Generated token (first 20 chars):", tokenString[:20])
 	return tokenString, err
+}
+
+func GenerateServiceToken(userID uint, roles string, duration time.Duration) (string, error) {
+	expirationTime := time.Now().Add(duration)
+	claims := &Claims{
+		UserID: userID,
+		Roles:  roles,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString(jwtKey)
 }

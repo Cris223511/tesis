@@ -1,0 +1,9 @@
+./auth_controller.go
+./biometric_controller.go
+./caregiver_controller.go
+./caregiver_my_patients_controller.go
+./patient_controller.go
+./report_controller.go
+./role_controller.go
+./therapy_controller.go
+./user_controller.go

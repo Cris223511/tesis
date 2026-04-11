@@ -23,82 +23,80 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 type UserController struct {
-	UserService services.UserService
-	OTPService  services.OTPService
-	 DeviceIPRepo services.DeviceIPRepo 
+	UserService  services.UserService
+	OTPService   services.OTPService
+	DeviceIPRepo services.DeviceIPRepo
 }
 
-
-
-func NewUserController(userService services.UserService, otpService services.OTPService,  deviceIPRepo services.DeviceIPRepo) *UserController {
-    return &UserController{
-        UserService: userService,
-        OTPService:  otpService,  
+func NewUserController(userService services.UserService, otpService services.OTPService, deviceIPRepo services.DeviceIPRepo) *UserController {
+	return &UserController{
+		UserService:  userService,
+		OTPService:   otpService,
 		DeviceIPRepo: deviceIPRepo,
-    }
+	}
 }
 
 func (ctrl *UserController) Login(c *gin.Context) {
-    var loginRequest struct {
-        NombreUsuario string `json:"usuario" binding:"required"`
-        Password      string `json:"contrasena" binding:"required"`  
-    }
-    
-    if err := c.ShouldBindJSON(&loginRequest); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Debe proporcionar nombre de usuario y contraseña"})
-        return
-    }
+	var loginRequest struct {
+		NombreUsuario string `json:"usuario" binding:"required"`
+		Password      string `json:"contrasena" binding:"required"`
+	}
 
-    clientIP := getClientIP(c)
-    userAgent := c.GetHeader("User-Agent")
+	if err := c.ShouldBindJSON(&loginRequest); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Debe proporcionar nombre de usuario y contraseña"})
+		return
+	}
 
-    user, err := ctrl.UserService.LoginUser(loginRequest.NombreUsuario, loginRequest.Password, clientIP, userAgent)
+	clientIP := getClientIP(c)
+	userAgent := c.GetHeader("User-Agent")
 
-    if err != nil {
-        errMsg := err.Error()
-        
-        switch {
-        case errMsg == "credenciales inválidas":
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario o contraseña incorrectos"})
-        case errMsg == "cuenta desactivada":
-            c.JSON(http.StatusForbidden, gin.H{"error": "La cuenta se encuentra desactivada"})
-        case strings.HasPrefix(errMsg, "cuenta bloqueada, intente en"):
-            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
-        case errMsg == "contraseña expirada, debe actualizarla":
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "Tu contraseña ha expirado, debes actualizarla"})
-        case errMsg == "demasiados intentos, intente más tarde":
-            c.JSON(http.StatusTooManyRequests, gin.H{"error": "Demasiados intentos fallidos"})
-        case errMsg == "acceso denegado desde esta ubicación":
-            c.JSON(http.StatusForbidden, gin.H{"error": "Acceso bloqueado desde esta ubicación"})
-        case errMsg == "solicitud inválida":
-            c.JSON(http.StatusBadRequest, gin.H{"error": "Solicitud inválida"})
-        default:
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Error en el servidor"})
-        }
-        return
-    }
+	user, err := ctrl.UserService.LoginUser(loginRequest.NombreUsuario, loginRequest.Password, clientIP, userAgent)
 
-    // Usar OTPService en lugar de otpCache
-    _, err = ctrl.OTPService.GenerateOTP(user.ID)
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{
-            "error": "Error al generar código de verificación",
-        })
-        return
-    }
+	if err != nil {
+		errMsg := err.Error()
 
-    c.JSON(http.StatusOK, gin.H{
-        "message": "Credenciales válidas. Se envió un código OTP a tu correo.",
-        "user": gin.H{
-			"user_id":           user.ID,
-            "userId":           user.ID,
-            "usuario":          user.Usuario,
-            "correo":           user.Correo,
-            "nombresApellidos": user.Nombres_Apellidos,
-        },
-    })
+		switch {
+		case errMsg == "credenciales inválidas":
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Usuario o contraseña incorrectos"})
+		case errMsg == "cuenta desactivada":
+			c.JSON(http.StatusForbidden, gin.H{"error": "La cuenta se encuentra desactivada"})
+		case strings.HasPrefix(errMsg, "cuenta bloqueada, intente en"):
+			c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+		case errMsg == "contraseña expirada, debe actualizarla":
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Tu contraseña ha expirado, debes actualizarla"})
+		case errMsg == "demasiados intentos, intente más tarde":
+			c.JSON(http.StatusTooManyRequests, gin.H{"error": "Demasiados intentos fallidos"})
+		case errMsg == "acceso denegado desde esta ubicación":
+			c.JSON(http.StatusForbidden, gin.H{"error": "Acceso bloqueado desde esta ubicación"})
+		case errMsg == "solicitud inválida":
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Solicitud inválida"})
+		default:
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error en el servidor"})
+		}
+		return
+	}
+
+	// Usar OTPService en lugar de otpCache
+	_, err = ctrl.OTPService.GenerateOTP(user.ID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Error al generar código de verificación",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":            "Credenciales válidas. Se envió un código OTP a tu correo.",
+		"expires_in_minutes": 5,
+		"user": gin.H{
+			"user_id":          user.ID,
+			"userId":           user.ID,
+			"usuario":          user.Usuario,
+			"correo":           user.Correo,
+			"nombresApellidos": user.Nombres_Apellidos,
+		},
+	})
 }
 
 func (ctrl *UserController) ValidateOTP(c *gin.Context) {
@@ -113,7 +111,13 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 	if err := ctrl.OTPService.VerifyOTP(req.UserID, req.OTP); err != nil {
 		switch {
 		case strings.Contains(err.Error(), "expirado"):
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "OTP expirado"})
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"error":              err.Error(),
+				"auto_resent":        true,
+				"expires_in_minutes": 5,
+			})
+		case strings.Contains(err.Error(), "deshabilitada"):
+			c.JSON(http.StatusForbidden, gin.H{"error": err.Error()})
 		case strings.Contains(err.Error(), "incorrecto"):
 			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		case strings.Contains(err.Error(), "bloqueado"):
@@ -141,7 +145,7 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 			ctrl.DeviceIPRepo.TrimOldest(user.ID, device)
 		}
 	}
-	go sendLoginNotificationEmail(user.Correo, user.Nombres_Apellidos, device, ip,(ip))
+	go sendLoginNotificationEmail(user.Correo, user.Nombres_Apellidos, device, ip, (ip))
 	var roles []string
 	for _, r := range user.Roles {
 		roles = append(roles, r.Name)
@@ -153,18 +157,18 @@ func (ctrl *UserController) ValidateOTP(c *gin.Context) {
 		"bearer_token":  token,
 		"refresh_token": refreshToken,
 		"user": gin.H{
-	
-			"id":                user.ID,
-			"usuario":           user.Usuario,
-			"nombresApellidos":  user.Nombres_Apellidos,
-			"correo":            user.Correo,
-			"telefono":          user.Telefono,
-			"tipo_documento":     user.Tipo_Documento,
-			"num_documento":   user.Num_Documento,
-			"sexo":              user.Sexo,
-			"activo":            user.Activo,
-			"foto_movil":        user.FotoMovil,
-			"fechaNacimiento":   user.FechaNacimiento,
+
+			"id":               user.ID,
+			"usuario":          user.Usuario,
+			"nombresApellidos": user.Nombres_Apellidos,
+			"correo":           user.Correo,
+			"telefono":         user.Telefono,
+			"tipo_documento":   user.Tipo_Documento,
+			"num_documento":    user.Num_Documento,
+			"sexo":             user.Sexo,
+			"activo":           user.Activo,
+			"foto_movil":       user.FotoMovil,
+			"fechaNacimiento":  user.FechaNacimiento,
 		},
 	})
 }
@@ -194,155 +198,140 @@ func sendLoginNotificationEmail(to, name, device, ip, location string) {
 	_ = sendEmail(to, subject, body)
 }
 
-
 func (ctrl *UserController) ResendOTP(c *gin.Context) {
-    var req struct {
-        UserID uint `json:"user_id" binding:"required"`
-    }
-    
-    if err := c.ShouldBindJSON(&req); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
-        return
-    }
+	var req struct {
+		UserID uint `json:"user_id" binding:"required"`
+	}
 
-    // Verificar que el usuario existe
-    user, err := ctrl.UserService.GetUserByID(req.UserID)
-    if err != nil {
-        c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
-        return
-    }
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
 
-    // Usar OTPService para reenviar
-    err = ctrl.OTPService.ResendOTP(user.ID)
-    if err != nil {
-        errMsg := err.Error()
-        
-        switch {
-        case strings.Contains(errMsg, "bloqueado"):
-            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
-        case strings.Contains(errMsg, "espera"):
-            c.JSON(http.StatusTooManyRequests, gin.H{"error": errMsg})
-        case strings.Contains(errMsg, "límite"):
-            c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
-        default:
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al reenviar código"})
-        }
-        return
-    }
+	// Verificar que el usuario existe
+	user, err := ctrl.UserService.GetUserByID(req.UserID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+		return
+	}
 
-    // Obtener información de reenvíos restantes
-    var resendRecord models.OTPResend
-    ctrl.UserService.DB().Where("user_id = ?", user.ID).First(&resendRecord)
-    reenviosRestantes := 3 - resendRecord.ResendCount
+	// Usar OTPService para reenviar
+	err = ctrl.OTPService.ResendOTP(user.ID)
+	if err != nil {
+		errMsg := err.Error()
 
-    c.JSON(http.StatusOK, gin.H{
-        "message": "Nuevo código OTP enviado",
-        "reenviosRestantes": reenviosRestantes,
-    })
+		switch {
+		case strings.Contains(errMsg, "bloqueado"):
+			c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+		case strings.Contains(errMsg, "espera"):
+			c.JSON(http.StatusTooManyRequests, gin.H{"error": errMsg})
+		case strings.Contains(errMsg, "límite"):
+			c.JSON(http.StatusForbidden, gin.H{"error": errMsg})
+		default:
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al reenviar código"})
+		}
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":            "Nuevo código OTP enviado. Válido por 5 minutos",
+		"reenviosRestantes":  nil,
+		"expires_in_minutes": 5,
+	})
 }
 
-
-
-
-
-
-
 func (ctrl *UserController) Register(c *gin.Context) {
-    var req dto.RegisterRequest
-    if err := c.ShouldBindJSON(&req); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos: " + err.Error()})
-        return
-    }
+	var req dto.RegisterRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos: " + err.Error()})
+		return
+	}
 
 	log.Printf("RegisterRequest recibido: %+v", req)
 
-    // Convertir a models.Usuarios
-    user := models.Usuarios{
-        Nombres_Apellidos: req.NombresApellidos,
-        Tipo_Documento:   req.TipoDocumento,
-        Num_Documento:    req.NumDocumento,
-        Sexo:             req.Sexo,
-        Telefono:         req.Telefono,
-        Correo:           req.Correo,
-        RoleIDs:          req.RoleIDs,
-		
-		
-    }
+	// Convertir a models.Usuarios
+	user := models.Usuarios{
+		Nombres_Apellidos: req.NombresApellidos,
+		Tipo_Documento:    req.TipoDocumento,
+		Num_Documento:     req.NumDocumento,
+		Sexo:              req.Sexo,
+		Telefono:          req.Telefono,
+		Correo:            req.Correo,
+		RoleIDs:           req.RoleIDs,
+	}
 
 	log.Printf("Usuario antes de CreateUser: Nombres_Apellidos='%s'", user.Nombres_Apellidos)
-    log.Printf("Usuario completo: %+v", user)
+	log.Printf("Usuario completo: %+v", user)
 
 	tempPassword, err := ctrl.UserService.CreateUser(&user)
-    if err != nil {
-        log.Printf("Error detallado al crear usuario: %v", err)
-        c.JSON(http.StatusBadRequest, gin.H{
-            "error": err.Error(),
-            "debug": fmt.Sprintf("%+v", err), 
-        })
-        return
-    }
+	if err != nil {
+		log.Printf("Error detallado al crear usuario: %v", err)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+			"debug": fmt.Sprintf("%+v", err),
+		})
+		return
+	}
 
-    c.JSON(http.StatusCreated, gin.H{
-        "message": "Usuario registrado exitosamente",
-        "user": gin.H{
-            "id":               user.ID,
-            "usuario":          user.Usuario,
-            "correo":           user.Correo,
-            "password_temporal": tempPassword,
-        },
-    })
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "Usuario registrado exitosamente",
+		"user": gin.H{
+			"id":                user.ID,
+			"usuario":           user.Usuario,
+			"correo":            user.Correo,
+			"password_temporal": tempPassword,
+		},
+	})
 }
-
 
 func parseFecha(fechaStr string) sql.NullTime {
-    layout := "2006-01-02"
-    fecha, err := time.Parse(layout, fechaStr)
-    if err != nil {
-        return sql.NullTime{Valid: false}
-    }
-    return sql.NullTime{
-        Time:  fecha,
-        Valid: true,
-    }
+	layout := "2006-01-02"
+	fecha, err := time.Parse(layout, fechaStr)
+	if err != nil {
+		return sql.NullTime{Valid: false}
+	}
+	return sql.NullTime{
+		Time:  fecha,
+		Valid: true,
+	}
 }
 
-
 func (ctrl *UserController) List(c *gin.Context) {
-    page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-    perPage, _ := strconv.Atoi(c.DefaultQuery("per_page", "5"))  // Cambiado a 5 usuarios por página
-    
-    // Obtener todos los usuarios para contar
-    var total int64
-    ctrl.UserService.DB().Model(&models.Usuarios{}).Count(&total)
-    
-    // Calcular offset
-    offset := (page - 1) * perPage
-    
-    // Obtener usuarios paginados
-    var users []models.Usuarios
-    err := ctrl.UserService.DB().
-        Preload("Roles").
-        Limit(perPage).
-        Offset(offset).
-        Find(&users).Error
-        
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener usuarios"})
-        return
-    }
-    
-    totalPages := int(total) / perPage
-    if int(total)%perPage > 0 {
-        totalPages++
-    }
-    
-    c.JSON(http.StatusOK, gin.H{
-        "users":       users,
-        "total":       total,
-        "page":        page,
-        "per_page":    perPage,
-        "total_pages": totalPages,
-    })
+	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+	perPage, _ := strconv.Atoi(c.DefaultQuery("per_page", "5")) // Cambiado a 5 usuarios por página
+
+	// Obtener todos los usuarios para contar
+	var total int64
+	ctrl.UserService.DB().Model(&models.Usuarios{}).Count(&total)
+
+	// Calcular offset
+	offset := (page - 1) * perPage
+
+	// Obtener usuarios paginados
+	var users []models.Usuarios
+	err := ctrl.UserService.DB().
+		Preload("Roles").
+		Limit(perPage).
+		Offset(offset).
+		Find(&users).Error
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener usuarios"})
+		return
+	}
+
+	totalPages := int(total) / perPage
+	if int(total)%perPage > 0 {
+		totalPages++
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"users":       users,
+		"total":       total,
+		"page":        page,
+		"per_page":    perPage,
+		"total_pages": totalPages,
+	})
 }
 
 func (ctrl *UserController) GetByID(c *gin.Context) {
@@ -357,7 +346,7 @@ func (ctrl *UserController) GetByID(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
 		return
 	}
-	
+
 	c.JSON(http.StatusOK, user)
 }
 
@@ -459,7 +448,6 @@ func (ctrl *UserController) Delete(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Usuario eliminado exitosamente"})
 }
 
-
 func (ctrl *UserController) UploadPhoto(c *gin.Context) {
 	authHeader := c.GetHeader("Authorization")
 	if authHeader == "" {
@@ -505,7 +493,7 @@ func (ctrl *UserController) UploadPhoto(c *gin.Context) {
 	}
 
 	log.Printf("Actualizando foto para usuario %d, tamaño de datos: %d bytes", claims.UserID, len(req.Photo))
-	
+
 	if err := ctrl.UserService.UpdateUserPhoto(claims.UserID, req.Photo); err != nil {
 		log.Printf("Error al actualizar foto: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar la foto"})
@@ -513,9 +501,9 @@ func (ctrl *UserController) UploadPhoto(c *gin.Context) {
 	}
 
 	log.Printf("Foto actualizada exitosamente para usuario %d", claims.UserID)
-	
+
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Foto actualizada correctamente",
+		"message":           "Foto actualizada correctamente",
 		"changes_remaining": 2 - (changeCount + 1),
 	})
 }
@@ -565,7 +553,7 @@ func (ctrl *UserController) UploadBanner(c *gin.Context) {
 	}
 
 	log.Printf("Actualizando banner para usuario %d, tamaño de datos: %d bytes", claims.UserID, len(req.Banner))
-	
+
 	if err := ctrl.UserService.UpdateUserBanner(claims.UserID, req.Banner); err != nil {
 		log.Printf("Error al actualizar banner: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar el banner"})
@@ -573,9 +561,9 @@ func (ctrl *UserController) UploadBanner(c *gin.Context) {
 	}
 
 	log.Printf("Banner actualizado exitosamente para usuario %d", claims.UserID)
-	
+
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Banner actualizado correctamente",
+		"message":           "Banner actualizado correctamente",
 		"changes_remaining": 2 - (changeCount + 1),
 	})
 }
@@ -606,9 +594,9 @@ func (ctrl *UserController) GetBannerChanges(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"changes_used": count,
+		"changes_used":      count,
 		"changes_remaining": 2 - count,
-		"max_changes": 2,
+		"max_changes":       2,
 	})
 }
 
@@ -638,9 +626,9 @@ func (ctrl *UserController) GetPhotoChanges(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"changes_used": count,
+		"changes_used":      count,
 		"changes_remaining": 2 - count,
-		"max_changes": 2,
+		"max_changes":       2,
 	})
 }
 
@@ -654,7 +642,7 @@ func (ctrl *UserController) ChangeAccountStatus(c *gin.Context) {
 	var req struct {
 		Activo bool `json:"activo"`
 	}
-	
+
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos: " + err.Error()})
 		return
@@ -673,10 +661,9 @@ func (ctrl *UserController) ChangeAccountStatus(c *gin.Context) {
 	if req.Activo {
 		status = "activada"
 	}
-	
+
 	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("Cuenta %s exitosamente", status)})
 }
-
 
 func (ctrl *UserController) UnlockAccount(c *gin.Context) {
 	userID, err := utils.ParseID(c.Param("id"))
@@ -686,7 +673,7 @@ func (ctrl *UserController) UnlockAccount(c *gin.Context) {
 	}
 
 	adminID := c.GetUint("userID")
-	
+
 	if err := ctrl.UserService.UnlockAccount(userID, adminID); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -718,7 +705,7 @@ func (ctrl *UserController) RefreshToken(c *gin.Context) {
 	var req struct {
 		RefreshToken string `json:"refresh_token" binding:"required"`
 	}
-	
+
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Token de refresco requerido"})
 		return
@@ -736,62 +723,58 @@ func (ctrl *UserController) RefreshToken(c *gin.Context) {
 	})
 }
 
-
 func (ctrl *UserController) Search(c *gin.Context) {
-    // Cambiar de "search" a "q"
-    q := c.Query("q")
-    limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5"))  // Cambiado a 5 usuarios por búsqueda
+	// Cambiar de "search" a "q"
+	q := c.Query("q")
+	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5")) // Cambiado a 5 usuarios por búsqueda
 
-    var users []models.Usuarios
-    query := ctrl.UserService.DB().Preload("Roles")
+	var users []models.Usuarios
+	query := ctrl.UserService.DB().Preload("Roles")
 
-    if q != "" {
-        // Si hay término de búsqueda, filtrar
-        searchPattern := "%" + q + "%"
-        query = query.Where("nombres_apellidos LIKE ? OR num_documento LIKE ? OR correo LIKE ?",
-            searchPattern, searchPattern, searchPattern)
-    }
+	if q != "" {
+		// Si hay término de búsqueda, filtrar
+		searchPattern := "%" + q + "%"
+		query = query.Where("nombres_apellidos LIKE ? OR num_documento LIKE ? OR correo LIKE ?",
+			searchPattern, searchPattern, searchPattern)
+	}
 
-    err := query.
-        Limit(limit).
-        Order("created_at DESC").
-        Find(&users).Error
-        
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al buscar usuarios"})
-        return
-    }
-    
-    // IMPORTANTE: Devolver solo el array de usuarios, no un objeto
-    c.JSON(http.StatusOK, users)
+	err := query.
+		Limit(limit).
+		Order("created_at DESC").
+		Find(&users).Error
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al buscar usuarios"})
+		return
+	}
+
+	// IMPORTANTE: Devolver solo el array de usuarios, no un objeto
+	c.JSON(http.StatusOK, users)
 }
-
-
-
 
 func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 	var userID uint
 	var err error
-	
+
 	if idParam := c.Param("id"); idParam != "" {
 		userID, err = utils.ParseID(idParam)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "ID inválido"})
 			return
 		}
-		
+
 		claimsInterface, exists := c.Get("user")
 		if !exists {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
 			return
 		}
-		
+
 		claims, ok := claimsInterface.(*utils.Claims)
 		if !ok {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
 			return
 		}
-		
+
 		requesterID := claims.UserID
 		roles := strings.Split(claims.Roles, ",")
 		isAdmin := false
@@ -801,7 +784,7 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 				break
 			}
 		}
-		
+
 		if requesterID != userID && !isAdmin {
 			c.JSON(http.StatusForbidden, gin.H{"error": "No tienes permisos para ver este perfil"})
 			return
@@ -812,49 +795,49 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
 			return
 		}
-		
+
 		claims, ok := claimsInterface.(*utils.Claims)
 		if !ok {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
 			return
 		}
-		
+
 		userID = claims.UserID
 		fmt.Printf("[DEBUG] GetUserProfile: userID extraído del token: %d\n", userID)
 	}
-	
+
 	fmt.Printf("[DEBUG] GetUserProfile: Buscando usuario con ID: %d\n", userID)
 	var user models.Usuarios
 	err = ctrl.UserService.DB().
 		Preload("Roles").
 		First(&user, userID).Error
-	
+
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
 		return
 	}
-	
+
 	var childrenCount int64
 	var parentInfo []gin.H
 	var roleNames []string
-	
+
 	for _, role := range user.Roles {
 		roleNames = append(roleNames, role.Name)
-		
+
 		if role.Name == "Padre" {
 			ctrl.UserService.DB().
 				Model(&models.UserRelationship{}).
 				Where("parent_id = ?", userID).
 				Count(&childrenCount)
 		}
-		
+
 		if role.Name == "Hijo" {
 			var relationships []models.UserRelationship
 			ctrl.UserService.DB().
 				Preload("Parent").
 				Where("child_id = ?", userID).
 				Find(&relationships)
-			
+
 			for _, rel := range relationships {
 				parentInfo = append(parentInfo, gin.H{
 					"id":                rel.Parent.ID,
@@ -865,13 +848,13 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 			}
 		}
 	}
-	
+
 	fotoSize := 0
 	if user.FotoMovil != "" {
 		fotoSize = len(user.FotoMovil)
 	}
 	log.Printf("GetUserProfile - Usuario %d: tiene foto? %v (tamaño: %d bytes)", user.ID, user.FotoMovil != "", fotoSize)
-	
+
 	profileData := gin.H{
 		"id":                user.ID,
 		"usuario":           user.Usuario,
@@ -892,11 +875,9 @@ func (ctrl *UserController) GetUserProfile(c *gin.Context) {
 		"last_login_at":     user.LastLoginAt,
 		"roles":             roleNames,
 	}
-	
+
 	c.JSON(http.StatusOK, profileData)
 }
-
-
 
 func (ctrl *UserController) GetCurrentUser(c *gin.Context) {
 	claimsInterface, exists := c.Get("user")
@@ -904,21 +885,21 @@ func (ctrl *UserController) GetCurrentUser(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
 		return
 	}
-	
+
 	claims, ok := claimsInterface.(*utils.Claims)
 	if !ok {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
 		return
 	}
-	
+
 	userID := claims.UserID
-	
+
 	user, err := ctrl.UserService.GetUserByID(userID)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
 		return
 	}
-	
+
 	c.JSON(http.StatusOK, user)
 }
 
@@ -928,34 +909,34 @@ func (ctrl *UserController) GetUserChildren(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "No autorizado"})
 		return
 	}
-	
+
 	claims, ok := claimsInterface.(*utils.Claims)
 	if !ok {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al procesar token"})
 		return
 	}
-	
+
 	userID := claims.UserID
-	
+
 	var relationships []models.UserRelationship
 	err := ctrl.UserService.DB().
 		Preload("Child").
 		Preload("Child.Roles").
 		Where("parent_id = ?", userID).
 		Find(&relationships).Error
-	
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener hijos"})
 		return
 	}
-	
+
 	var children []gin.H
 	for _, rel := range relationships {
 		var roleNames []string
 		for _, role := range rel.Child.Roles {
 			roleNames = append(roleNames, role.Name)
 		}
-		
+
 		children = append(children, gin.H{
 			"id":                rel.Child.ID,
 			"usuario":           rel.Child.Usuario,
@@ -968,7 +949,7 @@ func (ctrl *UserController) GetUserChildren(c *gin.Context) {
 			"roles":             roleNames,
 		})
 	}
-	
+
 	c.JSON(http.StatusOK, gin.H{
 		"total":    len(children),
 		"children": children,
@@ -996,7 +977,7 @@ func getClientIP(c *gin.Context) string {
 		"CF-Connecting-IP",
 		"True-Client-IP",
 	}
-	
+
 	for _, header := range headers {
 		ip := c.GetHeader(header)
 		if ip != "" {
@@ -1004,10 +985,9 @@ func getClientIP(c *gin.Context) string {
 			return strings.TrimSpace(ips[0])
 		}
 	}
-	
+
 	return c.ClientIP()
 }
-
 
 func SendLoginNotificationEmail(to, name, device, ip string) error {
 	subject := "Inicio de Sesión Exitoso - Serious Game"
@@ -1132,8 +1112,9 @@ func (ctrl *UserController) SendPasswordChangeOTP(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Código de verificación generado",
-		"otp_code": otp,
+		"message":            "Código de verificación generado. Válido por 5 minutos",
+		"otp_code":           otp,
+		"expires_in_minutes": 5,
 	})
 }
 
@@ -1244,7 +1225,7 @@ Has solicitado cambiar tu contraseña. Tu código de verificación es:
 
 %s
 
-Este código expira en 1 minuto.
+Este código expira en 5 minutos.
 
 Si no solicitaste este cambio, ignora este correo.
 
@@ -1388,20 +1369,20 @@ func (ctrl *UserController) UpdateProfile(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"id":                 updatedUser.ID,
-		"usuario":            updatedUser.Usuario,
-		"nombres_apellidos":  updatedUser.Nombres_Apellidos,
-		"correo":             updatedUser.Correo,
-		"telefono":           updatedUser.Telefono,
-		"tipo_documento":     updatedUser.Tipo_Documento,
-		"num_documento":      updatedUser.Num_Documento,
-		"fecha_nacimiento":   updatedUser.FechaNacimiento,
-		"sexo":               updatedUser.Sexo,
-		"activo":             updatedUser.Activo,
-		"foto_movil":         updatedUser.FotoMovil,
-		"banner_movil":       updatedUser.BannerMovil,
-		"descripcion":        updatedUser.Descripcion,
-		"roles":              roles,
+		"id":                updatedUser.ID,
+		"usuario":           updatedUser.Usuario,
+		"nombres_apellidos": updatedUser.Nombres_Apellidos,
+		"correo":            updatedUser.Correo,
+		"telefono":          updatedUser.Telefono,
+		"tipo_documento":    updatedUser.Tipo_Documento,
+		"num_documento":     updatedUser.Num_Documento,
+		"fecha_nacimiento":  updatedUser.FechaNacimiento,
+		"sexo":              updatedUser.Sexo,
+		"activo":            updatedUser.Activo,
+		"foto_movil":        updatedUser.FotoMovil,
+		"banner_movil":      updatedUser.BannerMovil,
+		"descripcion":       updatedUser.Descripcion,
+		"roles":             roles,
 	})
 }
 

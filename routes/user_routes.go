@@ -14,6 +14,8 @@ func SetupRouter(
 	bioController *controllers.BioController,
 	patientController *controllers.PatientController,
 	therapyController *controllers.TherapyController,
+	caregiverController *controllers.CaregiverController,
+	caregiverPatientsController *controllers.CaregiverPatientsController,
 ) *gin.Engine {
 
 	r := gin.Default()
@@ -21,7 +23,6 @@ func SetupRouter(
 
 	r.GET("/auth/gett", authController.GetToken)
 
-	// ---------- RUTAS PÚBLICAS ----------
 	public := r.Group("/api")
 	{
 		public.POST("/login", userController.Login)
@@ -49,21 +50,17 @@ func SetupRouter(
 		public.POST("/otp/resend", userController.ResendOTP)
 		public.POST("/login/begin", bioController.BeginLogin)
 		public.POST("/login/finish", bioController.FinishLogin)
-		
-		// ---------- CAMBIO DE CONTRASEÑA ----------
+		public.POST("/fingerprint/auth", bioController.AuthFingerprint)
 		public.POST("/password/validate-email", userController.ValidateEmailForPasswordChange)
 		public.POST("/password/send-otp", userController.SendPasswordChangeOTP)
 		public.POST("/password/verify-otp", userController.VerifyPasswordOTP)
 		public.POST("/password/change-with-otp", userController.ChangePasswordWithOTP)
 
-
 	}
 
-	// ---------- RUTAS PROTEGIDAS ----------
 	protected := r.Group("/api")
 	protected.Use(middlewares.AuthMiddleware())
 	{
-		// ============== USUARIOS ==============
 		protected.GET("/users", userController.List)
 		protected.POST("/register", userController.Register)
 		protected.GET("/users/search", userController.Search)
@@ -87,19 +84,12 @@ func SetupRouter(
 		protected.POST("/users/banner", userController.UploadBanner)
 		protected.GET("/users/banner/changes", userController.GetBannerChanges)
 		
-	
-
-
-		
-
 
 		// ============== ROLES ==============
 		protected.POST("/roles", roleController.CreateRole)
 		protected.GET("/roles", roleController.GetAllRoles)
 		protected.PUT("/roles/:id", roleController.UpdateRole)
 		protected.DELETE("/roles/:id", roleController.DeleteRole)
-
-
 
 		// ============== BIOMETRÍA ==============
 		protected.GET("/capabilities", bioController.CheckBiometricCapabilities)
@@ -109,16 +99,24 @@ func SetupRouter(
 		protected.DELETE("/device", bioController.DeleteDevice)
 		protected.PUT("/device/rename", bioController.RenameDevice)
 
-		// ============== PACIENTES ==============
+		protected.POST("/fingerprint/register", bioController.RegisterFingerprint)
+		protected.DELETE("/fingerprint/:finger_index", bioController.DeleteFingerprint)
+		protected.GET("/fingerprint/status", bioController.GetFingerprintStatus)
+
 		protected.POST("/patients", patientController.CreatePatient)
 		protected.GET("/patients", patientController.GetPatients)
-		// Estadísticas de pacientes (debe ir antes de :id para evitar conflictos)
 		protected.GET("/patients/:id/stats", therapyController.GetPatientStats)
 		protected.GET("/patients/:id", patientController.GetPatient)
 		protected.PUT("/patients/:id", patientController.UpdatePatient)
 		protected.DELETE("/patients/:id", patientController.DeletePatient)
-
-		// ============== SESIONES TERAPÉUTICAS ==============
+		protected.GET("/caregivers", caregiverController.GetCaregivers)
+		protected.GET("/caregivers/:id", caregiverController.GetCaregiver)
+		protected.POST("/caregivers", caregiverController.CreateCaregiver)
+		protected.PUT("/caregivers/:id", caregiverController.UpdateCaregiver)
+		protected.DELETE("/caregivers/:id", caregiverController.DeleteCaregiver)
+		protected.GET("/caregiver/my-patients", caregiverPatientsController.GetMyPatients)
+		protected.GET("/caregiver/my-patients/:patient_id/sessions", caregiverPatientsController.GetPatientSessions)
+		protected.GET("/caregiver/my-profile", caregiverPatientsController.GetMyProfile)
 		protected.POST("/sessions", therapyController.Create)
 		protected.GET("/sessions", therapyController.GetAll)
 		protected.GET("/sessions/paginated", therapyController.GetPaginated)
@@ -130,8 +128,6 @@ func SetupRouter(
 		protected.DELETE("/sessions/:id", therapyController.Delete)
 		protected.GET("/sessions/:id/export/pdf", therapyController.ExportToPDF)
 		protected.GET("/sessions/:id/export/jpg", therapyController.ExportToJPG)
-
-		// ============== CALIFICACIONES DE TERAPEUTAS ==============
 		protected.POST("/therapist-ratings", therapyController.CreateTherapistRating)
 		protected.GET("/therapist-ratings/:therapist_id", therapyController.GetTherapistRatings)
 		protected.GET("/sessions/rating/:session_id", therapyController.GetSessionRating)

@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+	"golang.org/x/crypto/bcrypt"
+)
+
+func main() {
+	fmt.Println("DefaultCost:", bcrypt.DefaultCost)
+
+	// Test hash para Admin123!
+	hash1, _ := bcrypt.GenerateFromPassword([]byte("Admin123!"), bcrypt.DefaultCost)
+	fmt.Println("Hash para Admin123!:", string(hash1))
+
+	// Verificar si coincide
+	err := bcrypt.CompareHashAndPassword(hash1, []byte("Admin123!"))
+	fmt.Println("Verificación:", err == nil)
+}

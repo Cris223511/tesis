@@ -4,8 +4,8 @@ import (
 	"crypto/rand"
 	"fmt"
 	"log"
+	"usuarios/models"
 	"gorm.io/gorm"
-	"github.com/tu-proyecto/models"
 )
 
 // FixExistingPatientSerialIDs genera serial_ids para pacientes existentes

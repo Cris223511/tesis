@@ -129,7 +129,7 @@ func (s *userService) LoginUser(username, password, clientIP, userAgent string) 
 	var user models.Usuarios
 	err := s.db.Preload("Roles").Preload("BiometricCreds").
 		Where("(usuario = ? OR correo = ? OR num_documento = ?) AND activo = ?",
-			username, username, username, false).
+			username, username, username, true).
 		First(&user).Error
 
 	if err != nil {
@@ -191,20 +191,20 @@ func (s *userService) checkIPRateLimit(ip string) error {
 }
 
 func (s *userService) checkAccountLockStatus(user *models.Usuarios) error {
-	if user.Activo {  
-        return errors.New("cuenta desactivada")
-    }
+	if !user.Activo {
+		return errors.New("cuenta desactivada")
+	}
 
 	key := fmt.Sprintf("user_%d", user.ID)
-    if val, ok := s.loginAttempts.Load(key); ok {
-        attempt := val.(*loginAttempt)
-        if attempt.lockedAt != nil && time.Since(*attempt.lockedAt) < 30*time.Minute {
-            remainingTime := 30*time.Minute - time.Since(*attempt.lockedAt)
-            return fmt.Errorf("cuenta bloqueada, intente en %d minutos", int(remainingTime.Minutes()))
-        }
-    }
+	if val, ok := s.loginAttempts.Load(key); ok {
+		attempt := val.(*loginAttempt)
+		if attempt.lockedAt != nil && time.Since(*attempt.lockedAt) < 30*time.Minute {
+			remainingTime := 30*time.Minute - time.Since(*attempt.lockedAt)
+			return fmt.Errorf("cuenta bloqueada, intente en %d minutos", int(remainingTime.Minutes()))
+		}
+	}
 
-    return nil
+	return nil
 }
 func (s *userService) handleFailedLogin(user *models.Usuarios, ip string) {
 	key := fmt.Sprintf("user_%d", user.ID)

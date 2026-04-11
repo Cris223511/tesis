@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 
+	"usuarios/models"
 	"usuarios/service"
 	"usuarios/utils"
 
@@ -314,27 +315,143 @@ func (bc *BioController) DeleteDevice(c *gin.Context) {
 
 func (bc *BioController) RenameDevice(c *gin.Context) {
     userID := c.MustGet("uid").(uint)
-    
+
     var req struct {
         CredentialID string `json:"credential_id" binding:"required"`
         Name         string `json:"name" binding:"required"`
     }
-    
+
     if err := c.ShouldBindJSON(&req); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Datos incompletos"})
         return
     }
-    
+
     credID, err := base64.StdEncoding.DecodeString(req.CredentialID)
     if err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "ID de credencial inválido"})
         return
     }
-    
+
     if err := bc.svc.RenameDevice(userID, credID, req.Name); err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }
-    
+
     c.JSON(http.StatusOK, gin.H{"message": "Dispositivo renombrado correctamente"})
+}
+
+func (bc *BioController) RegisterFingerprint(c *gin.Context) {
+    userID := c.MustGet("uid").(uint)
+
+    var req struct {
+        FingerprintData string `json:"fingerprint_data" binding:"required"`
+        DeviceID        string `json:"device_id" binding:"required"`
+        DeviceName      string `json:"device_name"`
+        FingerIndex     int    `json:"finger_index" binding:"required,min=1,max=2"`
+    }
+
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    err := bc.svc.RegisterFingerprint(userID, req.FingerprintData, req.DeviceID, req.DeviceName, req.FingerIndex)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{
+        "success": true,
+        "message": "Huella registrada exitosamente",
+    })
+}
+
+func (bc *BioController) DeleteFingerprint(c *gin.Context) {
+    userID := c.MustGet("uid").(uint)
+    fingerIndex := c.Param("finger_index")
+
+    index, err := strconv.Atoi(fingerIndex)
+    if err != nil || index < 1 || index > 2 {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Indice de huella invalido"})
+        return
+    }
+
+    err = bc.svc.DB.Model(&models.BiometricCredential{}).
+        Where("usuarios_id_usuario = ? AND finger_index = ?", userID, index).
+        Update("is_active", false).Error
+
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al eliminar huella"})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{
+        "success": true,
+        "message": "Huella eliminada exitosamente",
+    })
+}
+
+func (bc *BioController) AuthFingerprint(c *gin.Context) {
+    var req struct {
+        Username        string `json:"username" binding:"required"`
+        FingerprintData string `json:"fingerprint_data" binding:"required"`
+        DeviceID        string `json:"device_id" binding:"required"`
+    }
+
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    users, err := bc.svc.UserRepo.SearchUserByField("usuario", req.Username)
+    if err != nil || len(users) == 0 {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Usuario no encontrado"})
+        return
+    }
+
+    user := users[0]
+    ipAddress := c.ClientIP()
+
+    success, err := bc.svc.AuthenticateFingerprint(user.ID, req.FingerprintData, req.DeviceID, ipAddress)
+
+    if err != nil {
+        status, _ := bc.svc.GetUserBiometricStatus(user.ID)
+        c.JSON(http.StatusUnauthorized, gin.H{
+            "error":              err.Error(),
+            "remaining_attempts": status["remaining_attempts"],
+            "is_locked":         status["is_locked"],
+        })
+        return
+    }
+
+    if success {
+        token, refresh, err := utils.GenerateToken(&user)
+        if err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Error generando token"})
+            return
+        }
+
+        c.JSON(http.StatusOK, gin.H{
+            "success":       true,
+            "bearer_token":  token,
+            "refresh_token": refresh,
+            "user": gin.H{
+                "id":                user.ID,
+                "nombres_apellidos": user.Nombres_Apellidos,
+            },
+        })
+    }
+}
+
+func (bc *BioController) GetFingerprintStatus(c *gin.Context) {
+    userID := c.MustGet("uid").(uint)
+
+    status, err := bc.svc.GetUserBiometricStatus(userID)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, status)
 }
