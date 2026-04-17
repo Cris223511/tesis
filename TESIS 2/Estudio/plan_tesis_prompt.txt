@@ -1,0 +1,1700 @@
+BASE:
+
+¿Qué tal? Buenas. Como verás, en anteriores conversaciones hemos estado haciendo sobre el paper número uno y el paper número dos de mi plan de tesis, que es sobre el reconocimiento facial de los niños con DEA y todo eso. Te voy a pasar toda la información de lo que yo tengo. Primero te voy a pasar el paper uno completo final, luego te voy a pasar el paper dos completo final y lo que vamos a hacer nosotros es crear el plan de tesis. El plan de tesis ya lo tengo avanzado. ya lo tengo avanzado. Solamente yo te voy a dar primero los párrafos, las cosas y vamos a tener nosotros que modificar varias cosas, ¿OK? Las cosas que se van a modificar, pues es que esté conforme a los papers, obviamente que este es un plan de tesis. Fíjate de que esté en pasado o futuro, creo, porque es algo que todavía no se da. No me acuerdo muy bien, pero como está ahorita el verbo, esos verbos manténlos, ¿OK? No lo tienes que cambiar los verbos. Déjalo como estaba. No sé si era pasado o futuro, no me acuerdo, pero manténlo ahí, ¿OK? Yo te voy a pasar las transcripciones de toda la información que nosotros tenemos. Primero te voy a pasar el paper uno, luego el paper 2 y luego te voy a pasar toda la información que yo tengo recopilada de toda mi investigación. Cabe resaltar que el plan de tesis no tiene que basarse para nada de decir de que tenemos ya dos papers, no. Es un plan de tesis, o sea, es como que si no existiera el paper 1 ni el paper 2. Solamente el paper 1 y el paper 2 es para que tú te retroalimentes toda la información y colecciones y recopiles toda la información y me digas qué cosas se tendría que modificar. Párrafo tal, se tiene que cambiar por tal. Así que este párrafo se cambia porque tal. Me tienes que justificar por qué se cambió, ¿OK? y al final me haces un resumen de cambios de todo lo que se hizo. Te voy a pasar primero el título, bueno, los nombres. Acá el título no es necesario que sea igual a los papers, o sea, tiene que ser un título bien, obviamente. un buen título. Obviamente que todo tiene que ser en español. Aquí también hay información que se está poniendo como los los, como hay algunas tablas que se mencionan sobre cómo es que se ha ido trabajando, si se necesitó una laptop, un lapicero, un celular para hacer las pruebas, para programar las versiones, etcétera. um de repente hay algunas versiones que no cuadran con el paper, um pues entonces ahí lo cambias en el en el en el plan de tesis. OK, lo vas a tener que cambiar. Y también otra cosa que vamos a hacer es que ya no va a haber una plataforma web, ¿ya? Solamente vamos a hacer de la plataforma móvil, nada más. OK. um los JSON web token, eso se va a mantener, el login, um también se va a mantener el Figma, obviamente que el Figma sí se va a mantener para hacer las las vistas del móvil, ¿no? Todo lo que tenga que ver con móvil, nada más, ¿no? Con móvil. lo que tenga que ver con plataforma web, eso no hay que hacerlo todavía, ¿no? Eso hay que quitarlo. Yo no hay que hacer plataforma web. Ya, eso es lo que vamos a hacer ahora. Eso es solamente el aplicativo móvil y ya está. Ya, acá te voy a pasar toda la información y eso es lo que necesito que recopiles y que me ayudes a cambiar y actualizar mi plan de tesis, ya que mi plan de tesis está totalmente desactualizado. en si el índice estará todo igual, solo que voy a quitar todo referente a la plataforma web, aviso, ya no habrá web, solo nos concentraremos en el móvil. OK?
+
+Así que por favor, que no se te vaya a escapar ningún dato numérico, ninguna suma, ninguna mención ni nada. De repente hay algo que no se está mencionando en alguna sección del índice del plan de tesis y pues, tú solamente menciónalo donde tú creas correspondiente. Eso también te lo encuentro. um y pues bueno, esa es toda la metodología que nosotros estamos utilizando. Ahí te voy a pasar toda la información. Quiero que lo repases exhaustivamente bien. Ahí te paso también toda la información de los de el plan de investigación que hemos creado de todos los de todas las referencias y todo eso. Ahora, ¿qué vamos a hacer con las referencias que ya están en el plan de tesis? um Como te comento, um no es necesario que estén que estén todas las referencias tal cual en en nuestro plan de tesis. Quizás nos podemos quedar con las mismas referencias del plan de tesis o quizás vamos a tener que integrar algunas referencias del paper 1 y el paper 2. o quizás también se va a tener que cambiar um algunas referencias o bueno, se va a tener que quitar algunas referencias del plan de tesis. Quizás, no lo sé. Como te comento, el plan de tesis ya está terminado, pero está totalmente desactualizado. Hemos actualizado mucho el Readme del GitHub de los del del de la aplicación móvil que hemos estado utilizando. también ya no vamos a utilizar nada del de la plataforma web, ya no va a haber eso, solamente vamos a enfocarnos en el aplicativo móvil. y cómo es que se desarrolló los primeros pasos del Figma y todo eso. um los casos de uso, pues todo eso va a estar bien, obviamente, no no se va a tener que modificar, ni cambiar, ni quitar, ni nada. y y pues eso, ¿no? Quizás también se quizás también se tenga que cambiar el título, no lo sé. Y pues eso, recuerda que es en niños, no es adultos ni nada, es en niños, ahí en el paper, no me acuerdo si es en el paper 1 o 2, ahí tenemos ya la población y muestra de qué edad a qué edad es, y eso quiero que lo tengas muy en cuenta, ¿no? Y pues, como yo te comenté, ¿no? Las referencias, como te digo, el plan de tesis ya tiene sus referencias, pero como te digo, puede que algunas se queden, puede que algunas se vayan o puede que agreguemos algunas referencias del paper 1 y el paper 2. Eso yo te voy a mandar la información que yo ya he investigado de las referencias del paper 1 y las referencias del paper 2. ¿OK? Te voy a pasar toda la investigación que se ha hecho de las de ambas referencias, perdón, de ambos papers y quiero que eso lo tengas muy en cuenta, ¿no? Si en el plan de tesis se van a utilizar algunas referencias del paper 1 y el paper 2 o de que se va a tener que eliminar alguna referencia del plan de tesis. ¿OK? Eso quiero que tú lo hagas. Entonces, primero lo que quiero que hagas es, me des las referencias finales, quiero que me digas cuáles van a ser las referencias finales y la enumeración final. Bueno, la enumeración final, pues, ¿no? del plan de tesis. Recuerda que aquí no vamos a poner el entre paréntesis el número 1, entre paréntesis el número 2 de la cita, no. Tú solamente menciona el nombre del autor y ya está, eso es suficiente. y me vas a mandar primero cuáles son las referencias finales, vas a querer ahí tu plan de investigación y me vas a enumerar, pues como en el formato en el que está el plan de tesis. Y después vamos a ir comenzando corrigiendo cada parte del plan de tesis, ¿OK? Pero primero vamos a hacer eso. Me vas a dar las referencias finales para el plan de tesis. Solamente dame eso. Haces tu investigación, tu tablita, todo eso así bien bonito y haces tu creas tu artefacto, tu plan de investigación y me vas a dar las referencias finales para el plan de tesis. ¿Ya? Me vas a decir que se eliminó, que se agregó del paper tal, que se agregó del paper tal al plan de tesis, por qué tal Justifiques y eso es importante, ¿ok? Vamos.
+
+OK, lo primero que vas a hacer es eso de las referencias. Me vas a dar para hacer tu investigación, tu primera investigación y todo eso. Recuerda que algunas veces se ha mencionado sobre las métricas y las datasets de algunos autores que han estado haciendo, pero no sé si eso sería relevante para el plan de tesis que estamos haciendo ahora, ya que aquí se va a demostrar el plan, o sea, es un plan. No sé si es en pasado o futuro, pero es un plan. Eso te lo voy a aclarar después. Pero acá haz como que si nunca hubiésemos hecho el paper uno y el paper dos. O sea, es un plan. es algo que ya se hizo o creo que ya se ha hecho o creo que se hará. O sea que no se hizo, pero se va a hacer. es un plan. Eso eso del sentido te lo voy a pasar en breves y te lo voy a confirmar, ¿OK? um para que pero no quiero que cambies los verbos de cómo está. Y pues bueno, ¿no? um Va a haber algunos autores que se están mencionando y quizás se cambien, no lo sé. Eso tú me vas a decir. y ya. Eso. ya, primero vamos a ir con las referencias. Investiga todo bien bonito y me dices qué es lo que se ha hecho, qué cambios se han hecho y me das las referencias finales. finales. Las referencias finales me lo das, ¿OK? Y pues bueno, um y luego te yo te voy a ir pasando um cada capítulo, cada todo eso, te voy a ir pasando y vamos a ir modificando, ¿OK? Primero comencemos con las referencias, ¿ya? Me dices se modificó tal, por tal, reemplazar tal por tal y por qué me tienes que decir, obviamente. Ya, pero hazlo bien bonito.
+
+acá te paso la información.
+
+INFORMACIÓN:
+
+mira este es el paper 1 y paper 2 te paso en PDF. go. mira las imagenes y todo porfavor.
+
+el PDF 1 es el paper 1.
+el word es el paper 2 (aún no está en latex) ok?...
+
+aver go...
+
+esta es la info del paper 1, las referencias y PRISMA. que es lo que hicimos ps.
+
+recuerda q primero tuvimos a toda la data:
+SCOPUS (935)
+Web Of Science (942)
+IEEE (38)
+luego en IDENTIFICATION P. borramos los repetidos y eso p
+SCOPUS (642)
+Web Of Science (258)
+IEEE (13)
+y en SELECTION los que son accesibles a sus datos por lo menos, y los que son relevantes en nuestro tempa p eso etc
+SCOPUS (60)
+Web Of Science (17)
+IEEE (8)
+y en ELEGIBLIITY los que tienen datasets metricas etc esos datos relevantes p
+SCOPUS (25)
+Web Of Science (7)
+IEEE (2)
+y en INCLUSION es los nuevos papers q incluímos por nuestra cuenta, pero no lo hemos echo, por la cual está igual a ELEGIBILITY, ok? todo claro?...
+dime necesitas saber algo más? si no, CONTINUA.
+y me dices p lo q hiciste etc... ok? go.
+ah y la data p.. .q hicimos:
+Revisión Sistemática — Extracción de Datos de 34 Papers
+Reconocimiento de Emociones mediante Machine Learning en Niños con Trastorno del Espectro Autista
+Total de papers: 34 (25 Scopus + 7 Web of Science + 2 IEEE)
+Distribución por tipo:
+Papers con métricas cuantitativas ML/DL: 22
+Papers clínicos/conductuales/psicométricos sin modelo ML: 8
+Papers de diseño de sistemas o conceptuales: 2
+Papers retractados o con problemas graves de integridad: 3 (incluidos en el conteo anterior pero flaggeados)
+Rango de accuracy reportados: 53% — 99% (con clara inflación en papers que usan datasets Kaggle éticamente comprometidos)
+Accesibilidad: Solo 8 de 34 ofrecen algún nivel de acceso a datos o código. Ninguno comparte simultáneamente dataset completo + código fuente.
+Tabla Principal: Extracción Sistemática de los 34 Papers
+SCOPUS (25 papers)
+Paper 1 — Güngör, Sarman & Tuncay (2025) ⚠️ RETRACTADO
+Título: Can artificial intelligence and face recognition using deep learning detect emotions in children with autism?
+Fuente: PLOS ONE, Vol. 20(12), Art. e0338701
+DOI: 10.1371/journal.pone.0338701
+Afiliación: Hacettepe University / Bingöl University, Turquía
+Métricas reportadas: ACC: 75.8%; Sensibilidad: 74.3%; Especificidad: 76.2%; F1 por clase
+Dataset(s): Kaggle "Autistic Children Emotions" + FERAC — Público (problemas éticos: imágenes de menores sin consentimiento verificado ni diagnóstico clínico confirmado)
+Tipo de modelo: No ensamblado — AutismEfficientNet (CNN híbrida MobileNetV3 + EfficientNetV2)
+Accesibilidad: SÍ (Kaggle) pero éticamente comprometido; sin código
+Estado: ⚠️ RETRACTADO — Uso de imágenes de menores de dataset no curado, sin consentimiento parental documentado
+Paper 2 — Johnson, Argyriou, Barman & Politis (2025)
+Título: Assistive facial expression recognition for children with autism using re-enactment
+Fuente: Computers in Human Behavior Reports, Vol. 20, Art. 100800
+DOI: 10.1016/j.chbr.2025.100800
+Afiliación: Kingston University, Reino Unido
+Métricas reportadas: ACC: 67.83% (7 expresiones), 64.65% (8 expresiones)
+Dataset(s): AffectNet (~450K imágenes, semi-público, requiere permiso) + Cohorte clínica (N=48, privado)
+Tipo de modelo: No ensamblado — EfficientNet-v2 + modelo generativo de re-enactment facial
+Accesibilidad: PARCIAL — AffectNet requiere permiso; datos clínicos disponibles bajo solicitud
+Paper 3 — Mahmood, Menzli, Alturki & Tawfeek (2025) ⚠️ RETRACTADO
+Título: Leveraging artificial intelligence for diagnosis of children autism through facial expressions
+Fuente: Scientific Reports, Vol. 15(1), Art. 11945
+DOI: 10.1038/s41598-025-96014-6
+Afiliación: Jouf University / Princess Nourah Bint Abdulrahman University, Arabia Saudita
+Métricas reportadas: ACC: 91.33% (ResNet152+ViT); comparaciones: VGG16 84.66%, MobileNet 84.67%, EfficientNetB0 87.9%
+Dataset(s): Kaggle ASD facial images — Público (problemas éticos)
+Tipo de modelo: No ensamblado — Híbrido ResNet152 + Vision Transformer (ViT)
+Accesibilidad: SÍ (Kaggle) pero éticamente comprometido; sin código
+Estado: ⚠️ RETRACTADO — Imágenes de menores recopiladas de internet sin consentimiento ni diagnóstico verificado
+Paper 4 — Shaik, Shekhar & Shelke (2025)
+Título: Hybrid Deep Learning Framework for Autism Detection in Children Using Facial Emotion Recognition
+Fuente: Ingenierie des Systemes d'Information, Vol. 30(10), pp. 2595-2607
+DOI: 10.18280/isi.301007
+Afiliación: Alliance University, Bengaluru, India
+Métricas reportadas: ACC: 84.00%; AUC: 92.29%; Precision: 84.83%; Recall: 86.17%; F1: >81.9%; Kappa: >63%; MCC: >63%
+Dataset(s): Kaggle ASD Dataset + ASD Emotion Dataset (833 imágenes, 6 emociones) — Público
+Tipo de modelo: Ensamblado — Soft-voting (SVC + Gradient Boosting + MLP) sobre features de EfficientNetB0 + ResNet50 + MobileNetV3Small
+Accesibilidad: SÍ — Datasets públicos en Kaggle
+Paper 5 — El Rhatassi, El Ghali & Najima (2025)
+Título: Hybrid Real Time Facial Emotions Recognition on Autistic Individuals
+Fuente: International Journal of Advanced Computer Science and Applications, Vol. 16(9), pp. 629-635
+DOI: 10.14569/IJACSA.2025.0160959
+Afiliación: School of Information Sciences / ENSIAS, Rabat, Marruecos
+Métricas reportadas: ACC entrenamiento: 94.5%; ACC validación: 53.03% (CK+)
+Dataset(s): CK+ (123 sujetos, semi-público, requiere permiso) + Kaggle Autistic Children Emotions — Parcial
+Tipo de modelo: Ensamblado (fusión de features) — Híbrido CNN×3 (EfficientNetB0 + ResNet50 + MobileNetV2) + LSTM temporal
+Accesibilidad: PARCIAL — CK+ requiere permiso; Kaggle dataset público
+Paper 6 — Aljbori, Makhlouf & Fakhfakh (2025)
+Título: A Facial Emotion Recognition System for Children with Autism, Based on The Integration of 3D-CNN and LSTM
+Fuente: Journal of Wireless Mobile Networks, Ubiquitous Computing, and Dependable Applications, Vol. 16(3), pp. 433-452
+DOI: 10.58346/JOWUA.2025.I3.026
+Afiliación: ENET'Com / University of Sfax, Túnez
+Métricas reportadas: ACC: 99.01%; Precision: 98.54%; Recall: 98.72%; F1: 98.63%; AUC: 0.9912; Kappa: 0.961
+Dataset(s): Kaggle "Autistic Children Emotions" (6 categorías) — Público
+Tipo de modelo: No ensamblado — Híbrido 3D-CNN + LSTM + Autoencoder
+Accesibilidad: SÍ — Dataset público en Kaggle
+Nota: Accuracy extremadamente alto (99.01%) probablemente inflado por overfitting en dataset pequeño y éticamente cuestionable
+Paper 7 — Ramachandran, Malladi, Bellamkonda & Reddy (2025)
+Título: Disorder Facial Emotion Recognition with Grey Wolf Optimized Gefficient-Net for Autism Spectrum
+Fuente: International Journal of Image, Graphics and Signal Processing, Vol. 17(1), pp. 1-16
+DOI: 10.5815/ijigsp.2025.01.01
+Afiliación: Vasireddy Venkatadri Institute of Technology / KL University / IIIT Gwalior / Acharya Nagarjuna University, India
+Métricas reportadas: ACC: 96.54%; F1: 0.9635; Sensibilidad: 0.9615; Especificidad: 0.9648; AUC: 0.9678; G-Mean: 0.9632
+Dataset(s): Kaggle Autism Children Facial (2,936 imgs) + Kaggle FER (35,887 imgs) — Público
+Tipo de modelo: Ensamblado (híbrido) — GWO-GEfficientNet: EfficientNet + GoogleNet con Grey Wolf Optimization; features VGG-16
+Accesibilidad: SÍ — Ambos datasets públicos en Kaggle
+Paper 8 — Sariyanidi, Yankowitz, Schultz, Herrington, Tunç & Cohn (2025)
+Título: Beyond FACS: Data-driven Facial Expression Dictionaries, with Application to Predicting Autism
+Fuente: 2025 IEEE 19th International Conference on Automatic Face and Gesture Recognition (FG 2025)
+DOI: 10.1109/FG61629.2025.11099288
+Afiliación: Children's Hospital of Philadelphia / University of Pennsylvania / University of Pittsburgh, EE.UU.
+Métricas reportadas: ACC F2F: ~83–85%; ACC R2R: ~77–80% (valores de gráficas, no tablas exactas)
+Dataset(s): CK+ y MMI (públicos, para diccionario) + CHOP clínico F2F (N=42) y R2R (N=97) — Parcial
+Tipo de modelo: No ensamblado — Facial Basis (Dictionary Learning) + SVM lineal
+Accesibilidad: SÍ — Código en GitHub: github.com/sariyanidi/FacialBasis; CK+ y MMI públicos; datos clínicos privados
+Nota: Único paper con código abierto verificado en GitHub
+Paper 9 — Kumar, Kumar & Jayakody (2024) ⚠️ RETRACTADO
+Título: Ambiguous facial expression detection for Autism Screening using enhanced YOLOv7-tiny model
+Fuente: Scientific Reports, Vol. 14(1), Art. 28501
+DOI: 10.1038/s41598-024-77549-6
+Afiliación: Bennett University, India / Universidade Autónoma de Lisboa, Portugal / SLIIT, Sri Lanka
+Métricas reportadas: mAP: 79.56% (detección)
+Dataset(s): Self-annotated face images de internet — Privado (éticamente comprometido)
+Tipo de modelo: No ensamblado — Enhanced YOLOv7-tiny (dilated convolutions + detection head adicional)
+Accesibilidad: SÍ (Google Drive, pre-retracción) pero éticamente comprometido
+Estado: ⚠️ RETRACTADO — Imágenes de menores recopiladas de internet sin consentimiento documentado ni supervisión ética institucional
+Paper 10 — Radočaj & Martinović (2025)
+Título: Emotion Recognition in Autistic Children Through Facial Expressions Using Advanced Deep Learning Architectures
+Fuente: Applied Sciences (Switzerland), Vol. 15(17), Art. 9555
+DOI: 10.3390/app15179555
+Afiliación: Inspecto d.o.o. / Sveučilište Josipa Jurja Strossmayera u Osijeku, Croacia
+Métricas reportadas: ACC: 0.80; F1: 0.7889 (Swin Transformer, mejor modelo). CNNs no detectaron clase "fear". 8 modelos evaluados
+Dataset(s): FERAC (Facial Expression Recognition in Autistic Children) — 4 emociones, Ma Shishu Hospital, Bangladesh. Disponible en Kaggle. Público
+Tipo de modelo: No ensamblado — Comparación individual de 4 CNNs (InceptionV3, InceptionResNetV2, DenseNet201, ResNet152V2) y 4 Transformers (ViT, ViT-DeiT, CvT, Swin Transformer)
+Accesibilidad: SÍ — OA (CC BY, MDPI). Dataset FERAC en Kaggle
+Paper 11 — Alam, Rashid, Bin Haja Mohideen, Alahi, Kchaou & Alharthi (2025)
+Título: Robust Autism Spectrum Disorder Screening Based on Facial Images (For Disability Diagnosis): A Domain-Adaptive Deep Ensemble Approach
+Fuente: Diagnostics, Vol. 15(13), Art. 1601
+DOI: 10.3390/diagnostics15131601
+Afiliación: International Islamic University Malaysia / Northern University Bangladesh / Walailak University / University of Bisha, Arabia Saudita
+Métricas reportadas: ACC: 96.0%, AUC: 0.990 (conjunto combinado T1+T2); ACC: 90.6%, AUC: 0.930 (datos no vistos T3/UIFID); Xception sola: 83%
+Dataset(s): (1) Kaggle ASD (~2,940 imgs) ⚠️ ético; (2) YTUIA (YouTube, público en Kaggle); (3) UIFID (N=130, 51 sujetos, privado)
+Tipo de modelo: Ensamblado — ASD-UANet: Xception + ResNet50V2 con FPPR weighted voting. Transfer learning con domain adaptation
+Accesibilidad: SÍ pero éticamente comprometido — OA (CC BY). Kaggle y YTUIA públicos; UIFID privado
+Paper 12 — Levy, Ambaw, Ben-Itzhak & Holdengreber (2024)
+Título: A real-time environmental translator for emotion recognition in autism spectrum disorder
+Fuente: Scientific Reports, Vol. 14(1), Art. 31527
+DOI: 10.1038/s41598-024-83229-2
+Afiliación: Ariel University, Israel
+Métricas reportadas: No reporta métricas ML del CNN. Diseño de sistema wearable (gafas inteligentes + retroalimentación vibrotáctil). CNN proporciona distribución de probabilidad sobre 7 emociones
+Dataset(s): FER2013 (35,888 imágenes, 7 emociones) — Público
+Tipo de modelo: No ensamblado — CNN simple (Keras/Python) para FER. Innovación en hardware, no en modelo
+Accesibilidad: SÍ — OA (Scientific Reports). FER2013 público
+Paper 13 — Hosney, Talaat, El-Gendy & Saafan (2024)
+Título: AutYOLO-ATT: an attention-based YOLOv8 algorithm for early autism diagnosis through facial expression recognition
+Fuente: Neural Computing and Applications, Vol. 36(27), pp. 17199-17219
+DOI: 10.1007/s00521-024-09966-7
+Afiliación: Mansoura University / Kafr el-Sheikh University, Egipto
+Métricas reportadas: ACC: 97.2%; Precision: 93.97%; Recall: 97.5%; F1: 92.99%
+Dataset(s): Kaggle "Autistic Children Emotions" (Dr. Fatma M. Talaat) ⚠️ Co-autora creó el dataset — conflicto de interés. 6 emociones. Público pero éticamente cuestionable
+Tipo de modelo: No ensamblado — AutYOLO-ATT: YOLOv8 + mecanismo de atención (DCNN)
+Accesibilidad: SÍ pero éticamente comprometido — OA. Dataset Kaggle público pero cuestionable (co-autora creadora del dataset)
+Paper 14 — El Rhatassi, El Ghali & Najima (2024)
+Título: Deep learning approaches for recognizing facial emotions on autistic patients
+Fuente: International Journal of Electrical and Computer Engineering, Vol. 14(4), pp. 4034-4045
+DOI: 10.11591/ijece.v14i4.pp4034-4045
+Afiliación: LyRica Lab, ITQAN Team / ENSIAS, Rabat, Marruecos
+Métricas reportadas: ACC: 74% (CNN en FER2013), 69% (ViT en FER2013), 65% (CNN en dataset autism). Sin precision/recall/F1/AUC
+Dataset(s): FER2013 (público) + dataset combinado de autism (privado, tamaño no especificado)
+Tipo de modelo: No ensamblado — Comparación CNN vs. ViT. Parte de proyecto chatbot
+Accesibilidad: SÍ — OA (CC BY-SA, IJECE). Dataset autism privado/poco descrito
+Nota: Mismos autores que Paper 5. Al aplicar CNN entrenado en FER2013 (74%) a datos de personas autistas, la accuracy cae a 65%, evidenciando la brecha de dominio
+Paper 15 — Ahmad, Rashid, Faheem, Akram, Khan & Ul Amin (2024)
+Título: Autism spectrum disorder detection using facial images: A performance comparison of pretrained convolutional neural networks
+Fuente: Healthcare Technology Letters, Vol. 11(4), pp. 227-239
+DOI: 10.1049/htl2.12073
+Afiliación: Beihang University, China / University of Okara, Pakistan / University of Vaasa, Finlandia
+Métricas reportadas: ACC: 92% (ResNet50 a 248×248); VGG19: ~80%, VGG16: ~78%, AlexNet: ~76%, MobileNetV2: ~78%, ResNet34: ~79%. ROC curves reportadas
+Dataset(s): Kaggle ASD (2,940 imgs, cihan063) ⚠️ ético — Público pero comprometido
+Tipo de modelo: No ensamblado — Comparación de 6 CNNs pre-entrenadas (ResNet34/50, AlexNet, MobileNetV2, VGG16/19). Transfer learning
+Accesibilidad: SÍ pero éticamente comprometido — OA (CC BY 4.0, PMC). Nota: detecta ASD (binario), NO reconoce emociones
+Paper 16 — Sholikah, Ginardi, Nugroho, Ghozali & Indrawanti (2024)
+Título: Real-time Facial Expression Recognition to Enhance Emotional Intelligence in Autism
+Fuente: Procedia Computer Science, Vol. 234, pp. 222-229
+DOI: 10.1016/j.procs.2024.02.169
+Afiliación: Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia
+Métricas reportadas: ACC: 0.91 (91%); F1: 0.91. Probado cualitativamente con 3 individuos con ASD
+Dataset(s): FER-2013 (~35,000 imgs, 7 emociones) — Público. N cualitativo = 3 ASD
+Tipo de modelo: No ensamblado — VGG-16 (transfer learning). App móvil en tiempo real
+Accesibilidad: SÍ — OA (Procedia Computer Science). FER2013 público. Sin GitHub
+Paper 17 — Nagae & Lee (2022)
+Título: Understanding Emotions in Children with Developmental Disabilities during Robot Therapy Using EDA
+Fuente: Sensors, Vol. 22(14), Art. 5116
+DOI: 10.3390/s22145116
+Afiliación: Chubu University, Kasugai, Japón
+Métricas reportadas: No reporta métricas ML estándar. Estudio piloto de intervención (robot + EDA). Tasas de reconocimiento emocional por emoción. Matrices de confusión para datos raw vs. wavelet
+Dataset(s): N=11 niños con discapacidades del desarrollo. Videos + EDA. 4 emociones — Privado
+Tipo de modelo: N/A — Estudio clínico/intervención. Robot NAO con reconocimiento facial + análisis EDA con wavelet
+Accesibilidad: SÍ — OA (CC BY 4.0, MDPI Sensors). Datos clínicos no públicos
+Paper 18 — Washington, Kalantarian, Kent, Husic, Kline, Leblanc, Hou, Mutlu, Dunlap, Penev, Varma, Stockham, Chrisman, Paskov, Sun, Jung, Voss, Haber & Wall (2022)
+Título: Improved Digital Therapy for Developmental Pediatrics Using Domain-Specific Artificial Intelligence: Machine Learning Study
+Fuente: JMIR Pediatrics and Parenting, Vol. 5(2), Art. e26760
+DOI: 10.2196/26760
+Afiliación: Stanford University, Stanford, CA, EE.UU.
+Métricas reportadas: Balanced ACC: 66.9% (CAFE full), 79.1% (CAFE Subset A ≥60% acuerdo); F1: 67.4% / 78.0%. >10% superior a clasificadores CAFE previos
+Dataset(s): Entrenamiento: GuessWhat/HollywoodSquares (2,155 videos, 39,968 frames, privado Stanford) + JAFFE, AffectNet, CK+ (públicos). Test: CAFE (público)
+Tipo de modelo: No ensamblado — ResNet-152 (mejor de varios: VGG-16, ResNet-18/50). Transfer learning
+Accesibilidad: SÍ — OA (CC BY, JMIR). arXiv disponible. Datos GuessWhat privados; CAFE público
+Paper 19 — Papaioannou, Kalantzi, Papageorgiou, Korobili, Bokou, Pehlivanidis, Papageorgiou & Papaioannou (2021)
+Título: Differences in performance of ASD and ADHD subjects facing cognitive loads in an innovative reasoning experiment
+Fuente: Brain Sciences, Vol. 11(11), Art. 1531
+DOI: 10.3390/brainsci11111531
+Afiliación: Eginition Hospital, Athens / University of Patras, Grecia
+Métricas reportadas: No reporta métricas ML de clasificación. Estudio de neurociencia clínica. MSE (Multiscale Entropy), ANOVA, PLSC, medidas de conectividad grafos
+Dataset(s): EEG de 63 adultos (21 ASD + 21 ADHD + 21 control). 14 electrodos — Privado (Hospital Eginition, Atenas)
+Tipo de modelo: N/A — Estudio neurocientífico (MSE + PLSC + teoría de grafos). Sin modelo de clasificación
+Accesibilidad: SÍ — OA (CC BY 4.0, MDPI Brain Sciences, PMC). Datos clínicos EEG no públicos
+Paper 20 — Reed, Mahedy, Jackson, Davey Smith, Penton-Voak, Attwood & Munafo (2021)
+Título: Examining the bidirectional association between emotion recognition and social autistic traits using observational and genetic analyses
+Fuente: Journal of Child Psychology and Psychiatry, Vol. 62(11), pp. 1330-1338
+DOI: 10.1111/jcpp.13395
+Afiliación: University of Bristol / NIHR Bristol Biomedical Research Centre / Cardiff Metropolitan University, Reino Unido
+Métricas reportadas: No reporta métricas ML. Estudio epidemiológico longitudinal + genético. b = −0.18 (rasgos sociales → ERT); b = −0.04 (DANVA → rasgos sociales); PRS ASD → ERT: b = 0.40
+Dataset(s): ALSPAC (N=3,562 / 9,071) — Semi-público (acceso gestionado por solicitud)
+Tipo de modelo: N/A — Regresión lineal, PRS, correlación genética LDSC. Sin ML
+Accesibilidad: PARCIAL — OA (CC BY 4.0, PMC). ALSPAC datos por solicitud gestionada
+Paper 21 — Lecciso, Levante, Fabio, Caprì, Leo, Carcagnì, Distante, Mazzeo, Spagnolo & Petrocchi (2021)
+Título: Emotional Expression in Children With ASD: A Pre-Study on a Two-Group Pre-Post-Test Design Comparing Robot-Based and Computer-Based Training
+Fuente: Frontiers in Psychology, Vol. 12, Art. 678052
+DOI: 10.3389/fpsyg.2021.678052
+Afiliación: Università del Salento / Università di Messina / CNR-ISASI / Università della Svizzera Italiana, Italia y Suiza
+Métricas reportadas: No reporta métricas ML. Estudio de intervención (pre-post). Hedges's g: 0.52 (robot), 0.44 (computadora). ANOVA no paramétrica
+Dataset(s): N=24 niños ASC (12 robot + 12 computadora) — Privado. OpenFace usado para evaluar producción facial (no clasificación)
+Tipo de modelo: N/A — Estudio de intervención. OpenFace para medición (no clasificación ML)
+Accesibilidad: SÍ — OA (CC BY 4.0, Frontiers). Datos no compartidos públicamente
+Paper 22 — Rudovic, Zhang, Schuller & Picard (2019)
+Título: Multi-modal active learning from human data: A deep reinforcement learning approach
+Fuente: ICMI 2019 — Proceedings of the 2019 International Conference on Multimodal Interaction, pp. 6-15
+DOI: 10.1145/3340555.3353742
+Afiliación: MIT / Imperial College London
+Métricas reportadas: ACC y F1 para estimación de engagement (3 niveles), no emociones. Valores en figuras. MMQL supera baselines (RND, UNC) en B=10. Personalización por niño
+Dataset(s): ~35 niños con autismo, terapia con robot. 4 modalidades: facial (OpenFace), corporal (OpenPose), fisiológica (E4 wristband), audio (OpenSMILE) — Privado (MIT Media Lab)
+Tipo de modelo: Ensamblado — 4 LSTMs modality-specific (64 hidden states) + majority voting (model-level fusion) + Deep RL (Q-function) para selección activa de datos
+Accesibilidad: PARCIAL — arXiv OA. Datos privados (clínicos). Sin código público
+Paper 23 — Dapogny, Grossard, Hun, Serret, Grynszpan, Dubuisson, Cohen & Bailly (2019)
+Título: On Automatically Assessing Children's Facial Expressions Quality: A Study, Database, and Protocol
+Fuente: Frontiers in Computer Science, Vol. 1, Art. 5
+DOI: 10.3389/fcomp.2019.00005
+Afiliación: Sorbonne Université / AP-HP / Cognition Behavior Technology, Francia
+Métricas reportadas: ACC FE: ~82% (4 clases: neutral, happiness, anger, sadness); ICC inter-rater: 0.82–0.93 (TD), 0.79–0.82 (ASD). Regresión de calidad (escala 0-10)
+Dataset(s): JEMImE DB: 3,568 imgs de 157 niños TD (6-11 años); JEMImE-Paris (1,458/63 niños) + JEMImE-Nice (2,110/94 niños). También CK+, FG-NET — Semi-público (bajo solicitud)
+Tipo de modelo: No ensamblado — Random Forests (RF) con features heterogéneas (geométricas + apariencia). PCRF en integración JEMImE game
+Accesibilidad: PARCIAL — Paper OA (Frontiers, CC BY). JEMImE DB bajo solicitud al autor. CK+/FG-NET públicos. Sin código
+Paper 24 — He, Su, Wang, He, Tan, Zhang, Ng, Yan & Chen (2019)
+Título: The characteristics of intelligence profile and eye gaze in facial emotion recognition in mild and moderate preschoolers with autism spectrum disorder
+Fuente: Frontiers in Psychiatry, Vol. 10(JUN), Art. 402
+DOI: 10.3389/fpsyt.2019.00402
+Afiliación: Xi'an Jiaotong University / Shenzhen Institutes of Advanced Technology / University of Hong Kong, China y Hong Kong
+Métricas reportadas: No reporta métricas ML. Estudio clínico con eye-tracking. FDT cara-GQ: r = 0.619, p = .006 (tristeza en ASD). ASD inferior a TD en reconocimiento emocional. MANOVA con medidas repetidas
+Dataset(s): N=21 ASD + 21 TD (emparejados), 46-83 meses, Xi'an, China. 20 escenas de película — Privado
+Tipo de modelo: N/A — Estudio clínico conductual con eye-tracking. MATLAB + SPSS. Sin ML
+Accesibilidad: SÍ — OA (Frontiers, CC BY). Datos clínicos y estímulos no públicos
+Paper 25 — Almeida, da Silva, Theodório, Silva, Rodrigues, Scardovelli, Silva & Bissaco (2019)
+Título: ALTRIRAS: A Computer Game for Training Children with Autism Spectrum Disorder in the Recognition of Basic Emotions
+Fuente: International Journal of Computer Games Technology, Vol. 2019, Art. 4384896
+DOI: 10.1155/2019/4384896
+Afiliación: Universidade de Mogi das Cruzes, Brasil
+Métricas reportadas: No reporta métricas ML. Diseño de juego/usabilidad. Evaluación ISO/IEC 9126 y 14598 por panel de expertos
+Dataset(s): N/A — Sin dataset ML. Juego RPG para niños ASD 6-12 años. 4 emociones (alegría, tristeza, rabia, sorpresa). Prototipo sin ensayo clínico
+Tipo de modelo: N/A — Juego RPG educativo (ALTRIRAS). Sin componente ML/IA
+Accesibilidad: SÍ — OA (CC BY, Hindawi). Sin código ni binario del juego publicado
+WEB OF SCIENCE (7 papers)
+Paper 26 — Rudovic, Lee, Dai, Schuller & Picard (2018)
+Título: Personalized machine learning for robot perception of affect and engagement in autism therapy
+Fuente: Science Robotics, Vol. 3(19), Art. eaao6760
+DOI: 10.1126/scirobotics.aao6760
+Afiliación: MIT Media Lab / Chubu University, Japón / Imperial College London / University of Augsburg
+Métricas reportadas: ICC: ~60% (valence, arousal, engagement); supera correlación inter-evaluadores humanos (50-55%). Framework de ML personalizado
+Dataset(s): Privado — 35 niños ASD (3-13 años), ~500K datapoints, 2 culturas (Japón/Serbia). Audio, video, autonomic physiology
+Tipo de modelo: No ensamblado — PPA-net: red neuronal profunda personalizada jerárquica (multitarea: Valence/Arousal/Engagement)
+Accesibilidad: PARCIAL — Código parcialmente disponible (MIT Media Lab EngageME); datos privados
+Paper 27 — Hwang, Yu, Kim, Lee, Park & Kim (2024)
+Título: A Study on the Screening of Children at Risk for Developmental Disabilities Using Facial Landmarks Derived From a Mobile-Based Application
+Fuente: Psychiatry Investigation, Vol. 21(5), pp. 496-505
+DOI: 10.30773/pi.2023.0315
+Afiliación: Yonsei University / Ulsan University College of Medicine / Asan Medical Center, Corea del Sur
+Métricas reportadas: ACC: 0.88 (rango 0.78-1.00); Precision: 0.91; F1: 0.80; SHAP: pitch nodding más importante como variable
+Dataset(s): Privado — 89 niños (33 DD + 56 TD), 34-77 meses, aplicación móvil
+Tipo de modelo: No ensamblado — LSTM con features de 2D-FAN (68 facial landmarks) + head pose (OpenCV)
+Accesibilidad: NO — Explícitamente no disponible (datos faciales sensibles de menores); disponible bajo solicitud
+Paper 28 — Leo, Carcagnì, Distante, Spagnolo, Mazzeo, Rosato, Petrocchi, Pellegrino, Levante, De Lumè & Lecciso (2018)
+Título: Computational Assessment of Facial Expression Production in ASD Children
+Fuente: Sensors, Vol. 18(11), Art. 3993
+DOI: 10.3390/s18113993
+Afiliación: CNR — Institute of Applied Sciences and Intelligent Systems / Università del Salento / USI Lugano, Italia y Suiza
+Métricas reportadas: TP Rate: 84.4%; TN Rate: 90%; FP Rate: 10%; FN Rate: 15% (validación en CK+). No reporta ACC/F1/AUC estándar
+Dataset(s): CK+ (593 videos, Público); 17 niños ASD (Privado); DISFA, SEMAINE, BP4D (Públicos)
+Tipo de modelo: No ensamblado — Pipeline multietapa: HOG + CLNF + SVM/SVR + CNN para AU intensity y regularización temporal/geométrica
+Accesibilidad: PARCIAL — CK+ y datasets de entrenamiento son públicos; datos de niños ASD son privados; código no disponible
+Paper 29 — Akin-Bulbul, Kök & Özdemir (2024)
+Título: Otizm Belirtilerinin Erken Tespitinde Duygu Durumlarına Yöneltilen Görsel Dikkatin Makine Öğrenmesi Aracılığıyla Değerlendirilmesi
+Fuente: Turk Psikoloji Dergisi, Vol. 39 (Special Issue, Nov 2024)
+DOI: 10.31828/turkpsikoloji.1515430
+Afiliación: Hacettepe University / Ankara University, Turquía
+Métricas reportadas: ACC: 81.45% (KNN, emoción neutral). Otros algoritmos evaluados (Decision Tree, Naive Bayes) sin valores exactos publicados en abstract
+Dataset(s): Eye-tracking propio, niños 18-36 meses, ASD + TD — Privado (posiblemente disponible en aiot.cs.hacettepe.edu.tr/etjasd/)
+Tipo de modelo: No ensamblado — Clasificadores ML individuales: KNN, Decision Tree, Naive Bayes con selección de features (filter + wrapper)
+Accesibilidad: PARCIAL — Datos posiblemente disponibles en URL del proyecto TÜBİTAK asociado; código no disponible
+Paper 30 — Alsubai (2025)
+Título: MDNCT: a multi-domain neurocognitive transformer architecture approach for early prediction of autism spectrum disorders
+Fuente: Scientific Reports, Vol. 15(1), Art. 26378
+DOI: 10.1038/s41598-025-09862-7
+Afiliación: Prince Sattam bin Abdulaziz University / King Salman Center for Disability Research, Arabia Saudita
+Métricas reportadas: MDNCT: ACC 94.7%, Precision 94.2%, Recall 93.8%, F1 94.0%, ROC-AUC 93.9%, MAE 5.3%. Baselines: CNN ACC 90.0%, RF 89.2-89.7%, SVM 88.7-89.1%, LR 87.3-88.0% en 3 datasets
+Dataset(s): Dataset-I: Tweets learning disabilities (Público, Kaggle); Dataset-II: Dementia Prediction, N=150 (Público, Kaggle); Dataset-III: ASD Screening Toddlers 12-36m (Público, Kaggle)
+Tipo de modelo: No ensamblado — Transformer (MDNCT): multi-head self-attention, residual connections, cross-attention layers, domain-specific preprocessing
+Accesibilidad: SÍ — Los 3 datasets son públicos en Kaggle; código no reportado
+Nota: Usa datos tabulares de cuestionarios de screening (Q-CHAT-10), NO reconocimiento facial
+Paper 31 — Xu & Ju (2023)
+Título: Abnormal Brain Structure Is Associated with Social and Communication Deficits in Children with Autism Spectrum Disorder: A Voxel-Based Morphometry Analysis
+Fuente: Brain Sciences, Vol. 13(5), Art. 779
+DOI: 10.3390/brainsci13050779
+Afiliación: Northeast Normal University, Changchun / Jilin Provincial Key Lab of Cognitive Neuroscience & Brain Development, China
+Métricas reportadas: No reporta métricas ML. Análisis VBM: t-tests (p<.001, cluster>100 voxels, GRF correction). Regresión: GMV hipocampo izquierdo correlacionado con ADOS comunicación y socialización
+Dataset(s): ABIDE: 203 niños (98 ASD + 105 TD), 8-12 años — Público (fcon_1000.projects.nitrc.org/indi/abide/)
+Tipo de modelo: N/A — Análisis VBM de neuroimagen. SPM12 + CAT12. Sin modelo ML
+Accesibilidad: SÍ — Dataset ABIDE es público; herramientas de análisis (SPM12, CAT12) son de libre acceso
+Paper 32 — O'Sullivan, Bogaarts, Schoenenberger, Tillmann, Slater, Mesgarani, Eule, Kilchenmann, Murtagh, Hipp, Lindemann, Lipsmeier, Cheng, Nobbs & Chatham (2023)
+Título: Automatic speaker diarization for natural conversation analysis in autism clinical trials
+Fuente: Scientific Reports, Vol. 13(1), Art. 10270
+DOI: 10.1038/s41598-023-36701-4
+Afiliación: Hoffmann-La Roche / Columbia University, Suiza y EE.UU.
+Métricas reportadas: Correlación UD predicho vs real: r=0.81 (p=3×10⁻⁹). UD vs VABS comunicación expresiva: r=0.51 (p=7×10⁻⁵). Precision/Recall/F1 por participante (distribuciones, no agregados)
+Dataset(s): 72 participantes (54 ASD + 18 NTC), 5-45 años, 652 conversaciones — Privado (ensayo clínico Roche NCT03611075); VoxCeleb (Público, para preentrenamiento)
+Tipo de modelo: No ensamblado — Pipeline de diarización: Pyannote v2 + ECAPA-TDNN (x-vector, 192-dim embeddings). Cosine distance (umbral 0.75) para ID de hablante
+Accesibilidad: PARCIAL — Datos clínicos privados (Roche); herramientas de diarización open-source (Pyannote en GitHub, ECAPA-TDNN en HuggingFace)
+IEEE (2 papers)
+Paper 33 — Hassan, Nahid, Islam, Hossain, Schuller & Ahad (2025)
+Título: Automated Autism Assessment With Multimodal Data and Ensemble Learning: A Scalable and Consistent Robot-Enhanced Therapy Framework
+Fuente: IEEE Transactions on Neural Systems and Rehabilitation Engineering, Vol. 33, pp. 1191-1201
+DOI: 10.1109/TNSRE.2025.3546519
+Afiliación: Kyushu Institute of Technology / Ahsanullah University of Science and Technology / University of East London / Technical University of Munich
+Métricas reportadas: ACC: 95.59% (ASD level prediction, 3D biomarker); F1: 92.75%; RMSE: 1.78; R²: 0.74 (ADOS score). Con saliency maps: ACC: 97.36%; F1: 95.56%
+Dataset(s): DREAM Dataset — 61 niños ASD, >3,000 sesiones, >300h de terapia — Público
+Tipo de modelo: Ensamblado — Majority voting de Random Forest + XGBoost + Extra Trees; features de skeleton 3D + gaze + head movement
+Accesibilidad: PARCIAL — DREAM dataset público; código no disponible
+Nota: DREAM dataset es el recurso público más robusto identificado en toda la revisión
+Paper 34 — Cicceri, Maisano, Tripodi, Tartarisco, Vitabile, Pioggia, Ruta & Distefano (2026)
+Título: AI4ASC: A Hierarchical Multi-Level AI-Driven Framework for Gesture Analysis and Monitoring in ASC Children
+Fuente: IEEE Access, Vol. 14, pp. 17885-17904
+DOI: 10.1109/ACCESS.2026.3659276
+Afiliación: University of Palermo / University of Messina / CNR-IRIB, Italia
+Métricas reportadas: mAP detección niño: 88.6%; Precision mano: 95.7%; Precision gesto pointing: 97.4%
+Dataset(s): Privado — Videos clínicos de niños autistas (N no especificado)
+Tipo de modelo: Jerárquico multi-nivel — Framework de 4 niveles: detección niño → detección manos → clasificación gestos pointing → clustering
+Accesibilidad: PARCIAL — Herramienta con GUI para terapeutas; datos clínicos privados
+Resumen de Papers con Datos ACCESIBLES
+#PaperTipo de accesoRecurso principal4Shaik et al., 2025SÍ — Kaggle públicoKaggle ASD Dataset + ASD Emotion Dataset6Aljbori et al., 2025SÍ — Kaggle públicoKaggle "Autistic Children Emotions"7Ramachandran et al., 2025SÍ — Kaggle públicoKaggle Autism Facial + Kaggle FER8Sariyanidi et al., 2025SÍ — GitHub + públicosgithub.com/sariyanidi/FacialBasis; CK+; MMI10Radočaj & Martinović, 2025SÍ — Kaggle FERACDataset FERAC en Kaggle12Levy et al., 2024SÍ — FER2013 públicoFER2013 (35,888 imágenes)16Sholikah et al., 2024SÍ — FER2013 públicoFER-201318Washington et al., 2022SÍ — CAFE públicoCAFE + JAFFE + AffectNet + CK+ (test)30Alsubai, 2025SÍ — 3 datasets KaggleASD Screening Toddlers + otros31Xu & Ju, 2023SÍ — ABIDE públicoABIDE (fcon_1000.projects.nitrc.org)33Hassan et al., 2025PARCIAL — DREAM públicoDREAM Dataset (61 niños, >3000 sesiones)2Johnson et al., 2025PARCIAL — bajo solicitudAffectNet (permiso) + clínicos5El Rhatassi et al., 2025PARCIAL — CK+ + KaggleCK+ (permiso) + Kaggle20Reed et al., 2021PARCIAL — solicitud gestionadaALSPAC23Dapogny et al., 2019PARCIAL — bajo solicitudJEMImE DB26Rudovic et al., 2018PARCIAL — código parcial MITEngageME27Hwang et al., 2024PARCIAL — bajo solicitudDatos faciales sensibles28Leo et al., 2018PARCIAL — CK+ públicoCK+ + DISFA + SEMAINE + BP4D29Akin-Bulbul et al., 2024PARCIAL — URL proyectoaiot.cs.hacettepe.edu.tr/etjasd/32O'Sullivan et al., 2023PARCIAL — herramientas OSPyannote + ECAPA-TDNN open-source34Cicceri et al., 2026PARCIAL — GUI disponibleFramework AI4ASC
+Resumen de Papers SIN Datos Accesibles
+#PaperRazón1Güngör et al., 2025⚠️ RETRACTADO — Dataset Kaggle éticamente comprometido3Mahmood et al., 2025⚠️ RETRACTADO — Dataset Kaggle éticamente comprometido9Kumar et al., 2024⚠️ RETRACTADO — Imágenes de internet sin consentimiento11Alam et al., 2025Usa Kaggle ASD ⚠️ éticamente comprometido; UIFID privado13Hosney et al., 2024Dataset Kaggle con conflicto de interés (co-autora creadora)14El Rhatassi et al., 2024Dataset autism privado/poco descrito15Ahmad et al., 2024Kaggle ASD ⚠️ éticamente comprometido17Nagae & Lee, 2022Datos clínicos de menores, privados19Papaioannou et al., 2021Datos EEG clínicos no públicos21Lecciso et al., 2021Datos de intervención no compartidos22Rudovic et al., 2019Datos de MIT Media Lab, privados24He et al., 2019Datos clínicos de eye-tracking, privados25Almeida et al., 2019Sin código ni binario del juego
+Análisis Transversal
+Tres papers retractados exponen vulnerabilidades éticas críticas
+Los papers de Güngör et al. (2025), Mahmood et al. (2025) y Kumar et al. (2024) fueron retractados entre diciembre 2024 y diciembre 2025. Los tres compartían un mismo problema fundamental: utilizaron datasets de Kaggle con imágenes de menores recopiladas de internet sin diagnóstico verificado de ASD, sin consentimiento documentado y sin supervisión ética institucional. Los datasets de Kaggle de "Autistic Children Emotions" (Dr. Fatma M. Talaat) aparecen en múltiples papers de esta revisión y su validez clínica es cuestionable.
+Distribución de arquitecturas
+De los papers con métricas ML cuantitativas:
+No ensamblados (mayoría): CNNs pre-entrenadas individuales (ResNet, VGG, Xception, MobileNet, EfficientNet) con transfer learning. Híbridos CNN+LSTM para features espaciotemporales. SVM como clasificador en contextos de muestras pequeñas. Vision Transformers en papers recientes (2024-2025): Swin Transformer, ViT, CvT
+Ensamblados (5 papers): Soft-voting con CNN features (Paper 4), fusión CNN×3 + LSTM (Paper 5), GWO-GEfficientNet (Paper 7), 4 LSTMs + majority voting + Deep RL (Paper 22), Majority voting RF+XGBoost+ExtraTrees (Paper 33)
+La paradoja accuracy-calidad
+Los rendimientos más altos (>96% accuracy) provienen frecuentemente de datasets de Kaggle cuya validez clínica está comprometida (Papers 6, 7, 11, 13) o de estudios con muestras muy pequeñas. Los enfoques con datos clínicos genuinos reportan rendimientos más realistas: 60-85% para expresiones faciales, 81-88% para clasificación con eye-tracking, 86-96% para fusión multimodal.
+Crisis de reproducibilidad
+28 de 34 papers trabajan con datasets completamente o parcialmente privados. El único paper con código abierto verificado en GitHub es Sariyanidi et al. (2025, Paper 8). El DREAM dataset (Paper 33) es el recurso público más robusto identificado (61 niños, >300h de terapia). El toolkit FacialBasis es la única herramienta de código abierto validada en predicción de autismo.
+Brecha de dominio evidenciada
+El Paper 14 (El Rhatassi et al., 2024) es revelador: al aplicar un CNN entrenado en FER2013 (74% accuracy) a datos de personas autistas, la accuracy cae a 65%, demostrando que las expresiones faciales atípicas en autismo no son capturadas por modelos entrenados en población neurotípica.
+Conclusión
+Esta revisión de 34 papers revela tres hallazgos principales:
+Crisis de reproducibilidad: Solo 8 papers de 34 ofrecen acceso legítimo a datos o código, y el único repositorio de código verificado es el de Sariyanidi et al. en GitHub.
+Contaminación ética de datasets: Los rendimientos más altos (>96%) provienen de datasets de Kaggle cuya validez clínica está comprometida — tres retractaciones en un año lo confirman. Los datasets "Autistic Children Emotions" de Kaggle están presentes en al menos 7 papers de esta revisión.
+Promesa multimodal: Los enfoques multimodales con datos clínicos genuinos (biosignals + facial, EEG + eye-tracking, skeleton + gaze) ofrecen el balance más prometedor entre rendimiento realista (85-96%) y validez clínica, aunque sus datos permanecen cerrados.
+Para futuros trabajos, el DREAM dataset (Paper 33) emerge como el recurso público más completo disponible, y el toolkit FacialBasis (Paper 8) como la única herramienta de código abierto validada en contexto de predicción de autismo.CompartirArtefactosDescargar todoReviewCódigo · HTML
+
+esta es la info del paper 2, las referencias:
+
+# PAPER 2 — BORRADOR COMPLETO
+## Plan de Investigación, Referencias, Sección 1 y Análisis de Figuras
+---
+# PARTE 1: PLAN DE INVESTIGACIÓN — NUEVAS REFERENCIAS
+Las siguientes son las referencias NUEVAS que investigué (no están en el Paper 1) y que son relevantes para el Paper 2 porque tratan sobre: apps móviles para niños con TEA, serious games, reconocimiento emocional facial con CNN, EfficientNet, TensorFlow Lite, y/o monitoreo terapéutico.
+## Nuevas referencias investigadas
+### REF-NUEVA-1: Penev et al. (2021) — GuessWhat mobile game
+- **Título:** A Mobile Game Platform for Improving Social Communication in Children with Autism: A Feasibility Study
+- **Fuente:** Applied Clinical Informatics, Vol. 12(5), pp. 1030-1040
+- **DOI:** 10.1055/s-0041-1736626
+- **Afiliación:** Stanford University
+- **Relevancia:** Es la referencia MÁS directamente comparable a nuestra app. GuessWhat es un serious game móvil (iOS/Android) para niños con TEA de 3-12 años que usa charadas con reconocimiento facial para mejorar comunicación social. Validado con 72 niños con TEA durante 4 semanas. Mejoras significativas en SRS-2 (p<0.001) y VABS-II (p=0.002). Demuestra viabilidad de juegos móviles como herramienta terapéutica para reconocimiento emocional en niños con TEA en entornos domésticos.
+- **Diferencia con nuestra app:** GuessWhat es cloud-dependent, no genera métricas de monitoreo sesión a sesión para el terapeuta, y no tiene arquitectura offline-first.
+### REF-NUEVA-2: Bosurgi et al. (2025) — EmoPal AI Framework
+- **Título:** A New AI Framework to Support Social-Emotional Skills and Emotion Awareness in Children with Autism Spectrum Disorder
+- **Fuente:** Computers, Vol. 14(7), Art. 292
+- **DOI:** 10.3390/computers14070292
+- **Afiliación:** Bournemouth University, UK
+- **Relevancia:** Usa Jetpack Compose (mismo framework que nuestra app) + Google Cloud Vision API para reconocimiento emocional en niños con TEA. Implementa serious game con diario emocional donde el niño se toma fotos y la app categoriza emociones. Modelo offline entrenado en FER2013. Directamente comparable a nuestra arquitectura Android + ML.
+### REF-NUEVA-3: Almars, Gad & Atlam (2025) — IIENM EfficientNet para niños autistas
+- **Título:** Unlocking autistic emotions: developing an interpretable IoT-based EfficientNet model for emotion recognition in children with autism
+- **Fuente:** Neural Computing and Applications, Vol. 37(21), pp. 17129-17148
+- **DOI:** 10.1007/s00521-025-11290-7
+- **Relevancia:** Usa EfficientNet (misma familia de arquitectura que la nuestra EfficientNetB1) específicamente para reconocimiento emocional en niños con autismo. Incluye interpretabilidad con LIME/SHAP/Grad-CAM. Valida que EfficientNet es apropiado para esta tarea clínica específica en población pediátrica con TEA.
+### REF-NUEVA-4: Vasconcelos et al. (2024) — Serious Games para habilidades sociales en niños TEA
+- **Título:** Serious Games for Developing Social Skills in Children and Adolescents with Autism Spectrum Disorder: A Systematic Review
+- **Fuente:** Behavioral Sciences, Vol. 14(3), Art. 209
+- **DOI:** 10.3390/bs14030209
+- **PMC:** PMC10931397
+- **Relevancia:** Revisión sistemática (PRISMA) de serious games para habilidades sociales en niños y adolescentes con TEA. Incluye regulación emocional, reconocimiento de emociones, atención conjunta. Valida que serious games son efectivos para mejorar habilidades sociales en esta población. Fundamenta por qué elegimos el formato de serious game.
+### REF-NUEVA-5: Mahmoudi et al. (2024) — Gamificación en apps móviles para niños con discapacidades
+- **Título:** Gamification in Mobile Apps for Children With Disabilities: Scoping Review
+- **Fuente:** JMIR Serious Games, Vol. 12, Art. e49029
+- **DOI:** 10.2196/49029
+- **PMC:** PMC11415723
+- **Relevancia:** Scoping review sobre gamificación en apps móviles para niños con discapacidades (incluye TEA). Identifica elementos de gamificación efectivos (feedback, puntos, historias) y principios de diseño centrado en el usuario para apps de salud infantil. Fundamenta nuestras decisiones de diseño UX/UI.
+### REF-NUEVA-6: Toma et al. (2024) — Apps móviles XR para terapia de niños con TEA
+- **Título:** Extended Reality–Based Mobile App Solutions for the Therapy of Children With Autism Spectrum Disorders: Systematic Literature Review
+- **Fuente:** JMIR Serious Games, Vol. 12(1), Art. e49906
+- **DOI:** 10.2196/49906
+- **Relevancia:** Revisión sistemática de apps móviles (VR/AR/XR) para terapia en niños con TEA. Analiza tecnologías de desarrollo, habilidades objetivo (comunicación social, reconocimiento emocional), y tendencias. Contextualiza nuestra app dentro del panorama de tecnologías móviles para intervención en TEA.
+### REF-NUEVA-7: Debnath et al. (2022) — CNN 4 capas en FER2013
+- **Título:** Four-layer ConvNet to facial emotion recognition with minimal epochs and the significance of data diversity
+- **Fuente:** Scientific Reports, Vol. 12, Art. 6991
+- **DOI:** 10.1038/s41598-022-11173-0
+- **Relevancia:** Implementa CNN compacta de 4 capas en FER2013 con accuracy de 91.01%. Documenta técnicas de data augmentation y análisis de matrices de confusión. Referencia técnica para comparar con nuestro modelo EfficientNetB1.
+### REF-NUEVA-8: Qian et al. (2025) — Benchmark de 10 arquitecturas CNN en FER2013
+- **Título:** Application of multiple deep learning architectures for emotion classification based on facial expressions
+- **Fuente:** Sensors, Vol. 25(5), Art. 1478
+- **DOI:** 10.3390/s25051478
+- **Relevancia:** Compara 10 arquitecturas CNN (incluyendo EfficientNet V2, MobileNet, ResNet) en FER2013 con protocolo estandarizado. EfficientNet V2 obtuvo mejor balance accuracy-eficiencia (68.7%). Justifica nuestra elección de EfficientNetB1 como arquitectura óptima.
+### REF-NUEVA-9: Khaireddin & Chen (2021) — Estado del arte en FER2013
+- **Título:** Facial emotion recognition: State of the Art Performance on FER2013
+- **Fuente:** arXiv preprint arXiv:2105.03588
+- **Relevancia:** Documenta el estado del arte en FER2013, contextualizando los rangos de accuracy esperables (71-78% en SOTA). Permite comparar nuestro rendimiento de 95.8% en producción con el SOTA del dataset.
+### REF-NUEVA-10: Tan & Le (2019) — EfficientNet
+- **Título:** EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
+- **Fuente:** Proc. 36th ICML, pp. 6105-6114
+- **DOI/URL:** https://arxiv.org/abs/1905.11946
+- **Relevancia:** Paper fundacional de la arquitectura EfficientNet que usamos. Describe el compound scaling method que escala profundidad, ancho y resolución de forma balanceada. Fundamenta por qué EfficientNetB1 es óptimo para aplicaciones con restricciones computacionales.
+### REF-NUEVA-11: Goodfellow et al. (2015) — FER2013
+- **Título:** Challenges in Representation Learning: A report on three machine learning contests
+- **Fuente:** Neural Networks, Vol. 64, pp. 59-63
+- **DOI:** 10.1016/j.neunet.2014.09.005
+- **Relevancia:** Paper original del dataset FER2013 que usamos para entrenar nuestro modelo. 35,887 imágenes en 7 emociones. Referencia obligatoria al describir nuestro dataset de entrenamiento.
+### REF-NUEVA-12: Ekman & Friesen (1978) — FACS
+- **Título:** Facial Action Coding System: A Technique for the Measurement of Facial Movement
+- **Fuente:** Consulting Psychologists Press, Palo Alto, CA
+- **Relevancia:** Sistema fundacional de codificación de acciones faciales. Fundamenta teóricamente por qué las configuraciones musculares faciales son la base del reconocimiento emocional automático. Referencia obligatoria en cualquier paper de FER.
+### REF-NUEVA-13: Viola & Jones (2004) — Haar Cascade
+- **Título:** Robust real-time face detection
+- **Fuente:** International Journal of Computer Vision, Vol. 57(2), pp. 137-154
+- **DOI:** 10.1023/B:VISI.0000013087.49260.fb
+- **Relevancia:** Algoritmo de detección facial que usamos en nuestra app con OpenCV. Referencia técnica obligatoria al describir nuestro pipeline de detección facial.
+### REF-NUEVA-14: Sandler et al. (2018) — MobileNetV2
+- **Título:** MobileNetV2: Inverted Residuals and Linear Bottlenecks
+- **Fuente:** Proc. IEEE CVPR, pp. 4510-4520
+- **DOI:** 10.1109/CVPR.2018.00474
+- **Relevancia:** Arquitectura de referencia para aplicaciones móviles. Contexto comparativo con nuestra elección de EfficientNetB1.
+### REF-NUEVA-15: Vermeir et al. (2020) — Meta-análisis gamificación
+- **Título:** The Effects of Gamification on Computerized Cognitive Training: Systematic Review and Meta-Analysis
+- **Fuente:** JMIR Serious Games, Vol. 8(3), Art. e18644
+- **DOI:** 10.2196/18644
+- **Relevancia:** Meta-análisis de 31 estudios (N=2,486) demostrando que intervenciones gamificadas producen tamaños de efecto significativamente superiores (d=0.37) y mayor adherencia (OR=2.14). Fundamenta nuestro enfoque de serious game.
+### REF-NUEVA-16: APA (2013) — DSM-5
+- **Título:** Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition
+- **Fuente:** American Psychiatric Association, Arlington, VA
+- **DOI:** 10.1176/appi.books.9780890425596
+- **Relevancia:** Definición oficial de TEA. Referencia obligatoria al definir la población objetivo y los niveles de severidad.
+---
+# PARTE 2: REFERENCIAS RESCATADAS DEL PAPER 1
+Las siguientes 15 referencias provienen del Paper 1 (revisión sistemática) y son directamente relevantes para el Paper 2 porque tratan sobre reconocimiento emocional facial en NIÑOS con TEA, apps móviles, serious games, o monitoreo terapéutico.
+| # | Ref Paper 1 | Autores | Por qué es relevante para Paper 2 |
+|---|---|---|---|
+| 1 | [P1-2] | Johnson et al. 2025 | Usa EfficientNet-v2 para FER en niños con TEA. Misma familia de arquitectura que nuestra app. ACC 67.8% en condiciones ecológicas. |
+| 2 | [P1-3] | He et al. 2019 | Documenta patrones de eye gaze en preescolares con TEA. Fundamenta la importancia del reconocimiento facial en población pediátrica temprana. |
+| 3 | [P1-5] | Lecciso et al. 2021 | Intervención terapéutica robot vs computadora en niños con TEA (N=24). Usa OpenFace para medir expresividad facial. Hedges' g=0.52. Valida el enfoque de monitoreo de expresividad durante intervenciones. |
+| 4 | [P1-9] | Radočaj & Martinović 2025 | FER en niños autistas con dataset FERAC clínico. Swin Transformer ACC 80%. Referencia para comparar rendimiento con datos clínicos de niños TEA. |
+| 5 | [P1-10] | Washington et al. 2022 | App de terapia digital para pediatría (Stanford). ResNet-152 en dataset CAFE pediátrico. Balanced ACC 79.1%. Referencia directa más relevante por ser app + ML + niños. |
+| 6 | [P1-11] | Sholikah et al. 2024 | App móvil en tiempo real con VGG-16 + FER2013 para TEA. ACC 91%. Probada con 3 individuos con TEA. Más cercano a nuestro enfoque técnico. |
+| 7 | [P1-12] | Levy et al. 2024 | Traductor ambiental en tiempo real para reconocimiento emocional en TEA. Wearable + CNN + FER2013. Fundamenta necesidad de herramientas en tiempo real. |
+| 8 | [P1-16] | Hassan et al. 2025 | Monitoreo terapéutico con robot. ACC 95.6% en DREAM dataset (61 niños, >3000 sesiones). Referencia clave para monitoreo terapéutico objetivo en niños TEA. |
+| 9 | [P1-18] | Rudovic et al. 2018 | ML personalizado para percepción de afecto en terapia con robot en niños TEA (N=35). ICC ~60%. Fundamenta personalización del monitoreo por niño. |
+| 10 | [P1-19] | Cicceri et al. 2026 | Framework AI4ASC para análisis de gestos en niños con TEA. mAP 88.6%. Framework jerárquico multi-nivel, comparable a nuestra arquitectura. |
+| 11 | [P1-20] | Rudovic et al. 2019 | Active learning multimodal con Deep RL para selección de datos durante sesiones terapéuticas. Fundamenta la fusión multimodal para monitoreo. |
+| 12 | [P1-21] | Almeida et al. 2019 | ALTRIRAS: serious game RPG para entrenar niños TEA (6-12 años) en reconocimiento de emociones. Sin ML pero valida el formato de serious game para esta población. |
+| 13 | [P1-23] | Hwang et al. 2024 | App móvil con 68 landmarks faciales + LSTM para screening de niños (34-77 meses). ACC 88%. Directamente comparable a nuestro uso de landmarks + app móvil. |
+| 14 | [P1-30] | Dapogny et al. 2019 | JEMImE: serious game para evaluar expresiones faciales de niños 6-11 años. ACC ~82% con Random Forests. Valida serious games + FER en población pediátrica. |
+| 15 | [P1-31] | Leo et al. 2018 | Evaluación computacional de producción de expresiones faciales en niños con TEA (N=17). HOG+SVM+CNN. TP 84.4%. Fundamenta viabilidad de evaluación automatizada en niños TEA. |
+---
+# PARTE 3: BORRADOR PAPER 2 — TÍTULO, AUTORES, ABSTRACT Y SECCIÓN 1
+---
+## TÍTULO
+**Aplicación Móvil con Serious Game para el Monitoreo de Expresividad Emocional Facial en Niños con Trastorno del Espectro Autista: Sistema Basado en CNN con Arquitectura de Microservicios**
+## AUTORES
+Jhafet Martín Cánepa Maceda ¹*, Christopher Antonio Pillihuamán Santiago ¹*, Jorge Eduardo Castañeda Alban ¹,², Jomark Pablo Noriega Zapata ³, Juan Orlando Salazar Campos ³, Kenny Disney Neira Neira ⁴
+¹ Facultad de Ingeniería, Universidad San Ignacio de Loyola, Lima, Perú
+² Programa de Doctorado en Informática, Universidad Complutense de Madrid, Madrid, España
+³ Facultad de Ingeniería de Sistemas e Informática, Universidad Nacional Mayor de San Marcos, Lima, Perú
+⁴ Escuela de Posgrado, Universidad Tecnológica del Perú, Lima, Perú
+*Correspondencia: jhafet.canepa@usil.pe; c.pillihuaman@usil.pe
+## KEYWORDS
+Trastorno del Espectro Autista, Reconocimiento de Emociones Faciales, Niños, Serious Game, Aplicación Móvil Android, Redes Neuronales Convolucionales, EfficientNet, TensorFlow, OpenCV, Monitoreo Terapéutico, Aprendizaje Automático
+---
+## RESUMEN (ABSTRACT)
+Los déficits en el reconocimiento y la expresividad emocional facial constituyen una de las manifestaciones centrales del Trastorno del Espectro Autista (TEA) en población pediátrica, y su monitoreo objetivo durante las intervenciones terapéuticas permanece como una necesidad clínica insatisfecha. Los métodos convencionales de evaluación dependen de la observación directa del terapeuta, carecen de retroalimentación cuantitativa y no generan métricas de progreso longitudinal que permitan ajustar las estrategias de intervención basándose en evidencia objetiva. Este estudio presenta el desarrollo, implementación y validación de una aplicación móvil Android tipo serious game que integra reconocimiento emocional facial automatizado mediante redes neuronales convolucionales (CNN) para el monitoreo terapéutico de la expresividad emocional en niños con TEA de 0 a 18 años. El sistema emplea un modelo basado en EfficientNetB1 entrenado sobre el dataset FER2013, complementado con extracción de 68 landmarks faciales mediante dlib, alcanzando una precisión promedio de 95.8%, sensibilidad de 95.4% y especificidad de 96.2% en la clasificación de cinco emociones básicas (enojo, disgusto, neutral, feliz, triste) con un tiempo de inferencia promedio de 187 milisegundos. La arquitectura de microservicios integra un backend de gestión de usuarios y sesiones terapéuticas desarrollado en Go 1.21 (framework Gin) con un servicio especializado de Machine Learning en Python 3.11 (FastAPI), conectados a una aplicación Android nativa en Kotlin 1.9 con Jetpack Compose. El sistema fue validado en campo con niños diagnosticados con TEA en centros de atención de Perú entre octubre de 2025 y enero de 2026, procesando análisis faciales en tiempo real bajo condiciones variables de iluminación y dispositivos de gama media. El 36.7% de las sesiones se ejecutó en modo offline, validando la funcionalidad de la arquitectura en contextos con conectividad limitada. La aplicación no realiza diagnóstico de TEA ni clasifica su nivel de severidad; su función es exclusivamente proporcionar al terapeuta datos cuantitativos sobre la expresividad emocional del niño sesión a sesión, como complemento a su evaluación clínica integral.
+**Datasets:** FER2013 para entrenamiento del modelo CNN. Datos de validación en campo disponibles bajo solicitud.
+---
+## 1. INTRODUCCIÓN
+El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo que afecta aproximadamente al 1% de la población mundial, caracterizada por déficits persistentes en la comunicación social recíproca y patrones restrictivos de comportamiento [1]. Según el DSM-5 [2], el TEA se clasifica en tres niveles de severidad según el grado de apoyo requerido, y sus manifestaciones incluyen dificultades significativas en la interpretación y producción de expresiones emocionales faciales. Entre las manifestaciones centrales del TEA en población pediátrica, las dificultades en la expresividad emocional facial constituyen uno de los predictores más robustos de desafíos en el desarrollo social, afectando resultados educativos, relaciones con pares y dinámica familiar [3]. Investigaciones con tecnologías de seguimiento ocular documentan que niños con TEA exhiben patrones diferenciales en el procesamiento de rostros emocionales, caracterizados por fijaciones reducidas en la región ocular y procesamiento fragmentado de la configuración facial [4], alteraciones que correlacionan significativamente con déficits en reconocimiento emocional y teoría de la mente [4,5,6].
+A pesar de la evidencia acumulada sobre estos déficits, las intervenciones terapéuticas para niños con TEA enfrentan una limitación fundamental: la ausencia de herramientas que permitan al terapeuta monitorear de forma objetiva y cuantitativa el progreso en expresividad emocional del niño a lo largo de las sesiones de intervención. Los métodos convencionales, basados predominantemente en la observación directa del profesional y en instrumentos como tarjetas ilustradas estáticas, carecen de retroalimentación cuantificable, introducen sesgos subjetivos inherentes a la variabilidad entre evaluadores y no generan métricas de progreso longitudinal que permitan ajustar las estrategias terapéuticas basándose en evidencia objetiva [7,8]. Esta carencia es particularmente pronunciada en contextos con recursos limitados como el latinoamericano, donde la escasez de profesionales especializados, las barreras geográficas y las limitaciones de infraestructura tecnológica restringen aún más el acceso a evaluaciones frecuentes y estandarizadas [9,10].
+La convergencia de avances en aprendizaje automático, particularmente en Redes Neuronales Convolucionales (CNN), y la ubicuidad de dispositivos móviles han generado oportunidades para desarrollar herramientas de monitoreo terapéutico objetivas y escalables para poblaciones pediátricas con TEA. Modelos de transfer learning que emplean arquitecturas como EfficientNet [11] han demostrado capacidad para adaptarse a tareas de reconocimiento emocional facial con muestras pequeñas mediante ajuste fino, mientras que frameworks como TensorFlow Lite permiten la ejecución de modelos CNN directamente en dispositivos móviles con latencias inferiores a 200 milisegundos [12]. Sin embargo, una revisión sistemática reciente de la literatura [13] identificó que la mayoría de estudios se enfoca en el diagnóstico binario o la clasificación de severidad del TEA, tarea clínicamente distinta del monitoreo terapéutico sesión a sesión de la expresividad emocional. Adicionalmente, los estudios con datos clínicos genuinos de niños con TEA reportan rangos de exactitud entre 67.8% y 88.0% [3,14,15], valores más modestos que los reportados con datasets de laboratorio pero más representativos de las condiciones reales de uso terapéutico.
+Los serious games constituyen aplicaciones digitales que integran mecánicas lúdicas con objetivos terapéuticos específicos, y han demostrado efectividad para mejorar habilidades sociales y reconocimiento emocional en niños con TEA. Una revisión sistemática de serious games para habilidades sociales en esta población [16] documentó efectos positivos en regulación emocional, reconocimiento de emociones y atención conjunta. El meta-análisis de Vermeir et al. [17] demostró que las intervenciones gamificadas producen tamaños de efecto significativamente superiores respecto a versiones no gamificadas para resultados cognitivos (d=0.37, IC 95%: 0.21-0.53) y adherencia terapéutica (OR=2.14, IC 95%: 1.67-2.74). Implementaciones previas incluyen GuessWhat, un juego móvil desarrollado por Stanford University para niños con TEA de 3 a 12 años que demostró mejoras significativas en comunicación social tras 4 semanas de uso en 72 familias [18]; ALTRIRAS, un serious game RPG para entrenamiento en reconocimiento de emociones básicas en niños con TEA de 6 a 12 años [19]; y JEMImE, un sistema de evaluación automática de calidad de expresiones faciales en niños de 6 a 11 años mediante Random Forests con accuracy de aproximadamente 82% [20]. Estas implementaciones validan el formato de serious game como vehículo efectivo para intervenciones en reconocimiento emocional en población pediátrica con TEA, aunque ninguna de ellas integra monitoreo terapéutico cuantitativo sesión a sesión interpretable por el terapeuta.
+Para los fines de este estudio, el monitoreo terapéutico se define operativamente como el seguimiento longitudinal y cuantitativo de la expresividad emocional facial de un niño con TEA a lo largo de sesiones de intervención, mediante el registro automatizado de patrones emocionales sesión a sesión. Este seguimiento permite al terapeuta detectar cambios intraindividuales en la frecuencia, intensidad y variabilidad de expresiones emocionales, evaluar la respuesta a intervenciones específicas y ajustar las estrategias terapéuticas basándose en datos objetivos y reproducibles como complemento a su evaluación clínica integral. El monitoreo terapéutico se distingue explícitamente del diagnóstico de TEA: la aplicación desarrollada no determina ni clasifica el nivel de severidad del trastorno, sino que proporciona métricas de progreso terapéutico interpretables por el profesional clínico. El terapeuta puede registrar manualmente el nivel de TEA del niño como parte de su conclusión clínica, pero esa determinación corresponde exclusivamente al profesional mediante instrumentos validados, no a un output automático de la aplicación.
+A pesar de los avances descritos, persisten brechas que esta investigación aborda directamente. En primer lugar, no se identificaron publicaciones que documenten la implementación de un sistema completo de monitoreo terapéutico basado en reconocimiento emocional facial para niños con TEA en el contexto latinoamericano [13]. En segundo lugar, la mayoría de implementaciones móviles existentes requieren conectividad constante a internet, resultando inaccesibles en regiones con infraestructura no confiable que caracterizan gran parte de los centros de atención en Latinoamérica [9]. En tercer lugar, los sistemas publicados no integran gestión de sesiones terapéuticas, registros de progreso longitudinal y reportes cuantitativos interpretables directamente por el terapeuta en una única plataforma [21,22,23]. En cuarto lugar, la documentación técnica de las implementaciones existentes es insuficiente para garantizar reproducibilidad: ningún trabajo analizado documenta exhaustivamente la arquitectura de microservicios implementada, incluyendo stack tecnológico con versiones, métricas de desempeño y código fuente verificable [13].
+Este estudio presenta el desarrollo, implementación y validación de una aplicación móvil Android tipo serious game que integra reconocimiento emocional facial automatizado mediante un modelo CNN basado en EfficientNetB1 [11] entrenado sobre el dataset FER2013 [24], complementado con extracción de 68 landmarks faciales mediante dlib y procesamiento de imágenes con OpenCV [25], dentro de una arquitectura de microservicios que combina un backend de gestión en Go 1.21 (framework Gin), un servicio de Machine Learning en Python 3.11 (FastAPI) y una aplicación Android nativa en Kotlin 1.9 con Jetpack Compose, con funcionalidad offline-first mediante caché Redis local y sincronización diferida a MySQL remoto. Las contribuciones específicas de este trabajo son: (1) una herramienta de monitoreo terapéutico cuantitativo diseñada específicamente para que el terapeuta evalúe el progreso en expresividad emocional de niños con TEA sesión a sesión; (2) una arquitectura técnica offline-first completa, validada en contextos con conectividad limitada de Perú; (3) un modelo CNN con accuracy de 95.8% en producción real, sensibilidad de 95.4% y especificidad de 96.2% con tiempo de inferencia de 187 ms; y (4) documentación técnica exhaustiva del sistema para facilitar reproducibilidad y transferencia a contextos similares en Latinoamérica.
+La estructura de este artículo es la siguiente: la Sección 2 revisa trabajos relacionados sobre aplicaciones móviles de reconocimiento emocional y serious games para niños con TEA; la Sección 3 detalla la metodología del sistema incluyendo arquitectura técnica, diseño del modelo CNN y stack tecnológico; la Sección 4 presenta el diseño del estudio de validación en campo; la Sección 5 expone resultados cuantitativos; la Sección 6 discute hallazgos y limitaciones; y la Sección 7 concluye con direcciones futuras de investigación.
+---
+# PARTE 4: REFERENCIAS COMPLETAS RENUMERADAS
+A continuación se presenta la lista completa de referencias para el Paper 2, incluyendo las rescatadas del Paper 1 y las nuevas investigadas. Total: 40 referencias.
+**Leyenda:** [R] = Rescatada del Paper 1 | [N] = Nueva investigada | [B] = Del borrador original (técnica, se mantiene)
+[1] [R] — I. Güngör, A. Sarman, and S. Tuncay, "Can artificial intelligence and face recognition using deep learning detect emotions in children with autism?" *PLoS ONE*, vol. 20, no. 12, e0338701, 2025. https://doi.org/10.1371/journal.pone.0338701 ⚠️ RETRACTADO — citado como evidencia de vulnerabilidades éticas.
+[2] [N] — American Psychiatric Association, *Diagnostic and Statistical Manual of Mental Disorders*, 5th ed. Arlington, VA: APA, 2013. https://doi.org/10.1176/appi.books.9780890425596
+[3] [R] — G. Johnson, V. Argyriou, S. A. Barman, and C. Politis, "Assistive facial expression recognition for children with autism using re-enactment," *Comput. Hum. Behav. Rep.*, vol. 20, 100800, 2025. https://doi.org/10.1016/j.chbr.2025.100800
+[4] [R] — Y. He et al., "The characteristics of intelligence profile and eye gaze in facial emotion recognition in mild and moderate preschoolers with autism spectrum disorder," *Front. Psychiatry*, vol. 10, 402, 2019. https://doi.org/10.3389/fpsyt.2019.00402
+[5] [R] — F. Lecciso et al., "Emotional expression in children with ASD: A pre-study on a two-group pre-post-test design comparing robot-based and computer-based training," *Front. Psychol.*, vol. 12, 678052, 2021. https://doi.org/10.3389/fpsyg.2021.678052
+[6] [R] — Z. E. Reed et al., "Examining the bidirectional association between emotion recognition and social autistic traits using observational and genetic analyses," *J. Child Psychol. Psychiatry*, vol. 62, no. 11, pp. 1330–1338, 2021. https://doi.org/10.1111/jcpp.13395
+[7] [R] — R. W. Sholikah et al., "Real-time facial expression recognition to enhance emotional intelligence in autism," *Procedia Comput. Sci.*, vol. 234, pp. 222–229, 2024. https://doi.org/10.1016/j.procs.2024.02.169
+[8] [R] — L. Levy, A. Ambaw, E. Ben-Itzhak, and E. Holdengreber, "A real-time environmental translator for emotion recognition in autism spectrum disorder," *Sci. Rep.*, vol. 14, no. 1, 31527, 2024. https://doi.org/10.1038/s41598-024-83229-2
+[9] [R] — P. Washington et al., "Improved digital therapy for developmental pediatrics using domain-specific artificial intelligence: Machine learning study," *JMIR Pediatr. Parent.*, vol. 5, no. 2, e26760, 2022. https://doi.org/10.2196/26760
+[10] [R] — P. Radočaj and G. Martinović, "Emotion recognition in autistic children through facial expressions using advanced deep learning architectures," *Appl. Sci.*, vol. 15, no. 17, 9555, 2025. https://doi.org/10.3390/app15179555
+[11] [N] — M. Tan and Q. V. Le, "EfficientNet: Rethinking model scaling for convolutional neural networks," in *Proc. 36th Int. Conf. Machine Learning (ICML)*, Long Beach, CA, USA, Jun. 2019, pp. 6105–6114. https://arxiv.org/abs/1905.11946
+[12] [N] — M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen, "MobileNetV2: Inverted residuals and linear bottlenecks," in *Proc. IEEE CVPR*, Salt Lake City, UT, USA, Jun. 2018, pp. 4510–4520. https://doi.org/10.1109/CVPR.2018.00474
+[13] [R] — J. E. Castañeda Alban, C. A. Pillihuamán Santiago, J. M. Cánepa Maceda, J. P. Noriega Zapata, J. O. Salazar Campos, and K. D. Neira Neira, "Reconocimiento emocional facial mediante aprendizaje automático para el monitoreo terapéutico en niños con trastorno del espectro autista: Una revisión sistemática," 2026. *(Paper 1 de esta serie)*
+[14] [R] — I. Hassan et al., "Automated autism assessment with multimodal data and ensemble learning: A scalable and consistent robot-enhanced therapy framework," *IEEE Trans. Neural Syst. Rehabil. Eng.*, vol. 33, pp. 1191–1201, 2025. https://doi.org/10.1109/TNSRE.2025.3546519
+[15] [R] — S. H. Hwang et al., "A study on the screening of children at risk for developmental disabilities using facial landmarks derived from a mobile-based application," *Psychiatry Investig.*, vol. 21, no. 5, pp. 496–505, 2024. https://doi.org/10.30773/pi.2023.0315
+[16] [N] — P. Vasconcelos, G. P. Dias, and L. Conceição, "Serious games for developing social skills in children and adolescents with autism spectrum disorder: A systematic review," *Behav. Sci.*, vol. 14, no. 3, 209, 2024. https://doi.org/10.3390/bs14030209
+[17] [N] — J. F. Vermeir, M. J. White, D. Johnson, G. Crombez, and D. M. L. Van Ryckeghem, "The effects of gamification on computerized cognitive training: Systematic review and meta-analysis," *JMIR Serious Games*, vol. 8, no. 3, e18644, 2020. https://doi.org/10.2196/18644
+[18] [N] — Y. Penev et al., "A mobile game platform for improving social communication in children with autism: A feasibility study," *Appl. Clin. Inform.*, vol. 12, no. 5, pp. 1030–1040, 2021. https://doi.org/10.1055/s-0041-1736626
+[19] [R] — L. M. Almeida et al., "ALTRIRAS: A computer game for training children with autism spectrum disorder in the recognition of basic emotions," *Int. J. Comput. Game Technol.*, vol. 2019, 4384896, 2019. https://doi.org/10.1155/2019/4384896
+[20] [R] — A. Dapogny et al., "On automatically assessing children's facial expressions quality: A study, database, and protocol," *Front. Comput. Sci.*, vol. 1, 5, 2019. https://doi.org/10.3389/fcomp.2019.00005
+[21] [R] — O. Rudovic, J. Lee, M. Dai, B. Schuller, and R. W. Picard, "Personalized machine learning for robot perception of affect and engagement in autism therapy," *Sci. Robot.*, vol. 3, no. 19, eaao6760, 2018. https://doi.org/10.1126/scirobotics.aao6760
+[22] [R] — O. Rudovic, M. Zhang, B. W. Schuller, and R. Picard, "Multi-modal active learning from human data: A deep reinforcement learning approach," in *Proc. 2019 Int. Conf. Multimodal Interact.*, 2019, pp. 6–15. https://doi.org/10.1145/3340555.3353742
+[23] [R] — G. Cicceri et al., "AI4ASC: A hierarchical multi-level AI-driven framework for gesture analysis and monitoring in ASC children," *IEEE Access*, vol. 14, pp. 17885–17904, 2026. https://doi.org/10.1109/ACCESS.2026.3659276
+[24] [N] — I. J. Goodfellow et al., "Challenges in representation learning: A report on three machine learning contests," *Neural Networks*, vol. 64, pp. 59–63, 2015. https://doi.org/10.1016/j.neunet.2014.09.005
+[25] [N] — P. Viola and M. J. Jones, "Robust real-time face detection," *Int. J. Comput. Vis.*, vol. 57, no. 2, pp. 137–154, 2004. https://doi.org/10.1023/B:VISI.0000013087.49260.fb
+[26] [N] — P. Ekman and W. V. Friesen, *Facial Action Coding System: A Technique for the Measurement of Facial Movement*. Palo Alto, CA: Consulting Psychologists Press, 1978.
+[27] [N] — T. Debnath, M. M. Reza, A. Rahman et al., "Four-layer ConvNet to facial emotion recognition with minimal epochs and the significance of data diversity," *Sci. Rep.*, vol. 12, 6991, 2022. https://doi.org/10.1038/s41598-022-11173-0
+[28] [N] — C. Qian, J. A. Lobo Marques, A. R. de Alexandria, and S. J. Fong, "Application of multiple deep learning architectures for emotion classification based on facial expressions," *Sensors*, vol. 25, no. 5, 1478, 2025. https://doi.org/10.3390/s25051478
+[29] [N] — Y. Khaireddin and Z. Chen, "Facial emotion recognition: State of the art performance on FER2013," *arXiv preprint arXiv:2105.03588*, 2021. https://arxiv.org/abs/2105.03588
+[30] [R] — M. Leo et al., "Computational assessment of facial expression production in ASD children," *Sensors*, vol. 18, no. 11, 3993, 2018. https://doi.org/10.3390/s18113993
+[31] [N] — E. S. Agung, A. P. Rifai, and T. Wijayanto, "Image-based facial emotion recognition using convolutional neural network on emognition dataset," *Sci. Rep.*, vol. 14, 14429, 2024. https://doi.org/10.1038/s41598-024-65276-x
+[32] [N] — R. A. Elsheikh, M. A. Mohamed, A. M. Abou-Taleb et al., "Improved facial emotion recognition model based on a novel deep convolutional structure," *Sci. Rep.*, vol. 14, 29050, 2024. https://doi.org/10.1038/s41598-024-79167-8
+[33] [N] — E. Mahmoudi, P. Y. Yoo, A. Chandra et al., "Gamification in mobile apps for children with disabilities: Scoping review," *JMIR Serious Games*, vol. 12, e49029, 2024. https://doi.org/10.2196/49029
+[34] [N] — M.-V. Toma, C. E. Turcu, C. O. Turcu, S. Vlad, D. E. Tiliute, and P. Pascu, "Extended reality–based mobile app solutions for the therapy of children with autism spectrum disorders: Systematic literature review," *JMIR Serious Games*, vol. 12(1), e49906, 2024. https://doi.org/10.2196/49906
+[35] [N] — A. Bosurgi, "A new AI framework to support social-emotional skills and emotion awareness in children with autism spectrum disorder," *Computers*, vol. 14, no. 7, 292, 2025. https://doi.org/10.3390/computers14070292
+[36] [N] — A. M. Almars, I. Gad, and E. Atlam, "Unlocking autistic emotions: developing an interpretable IoT-based EfficientNet model for emotion recognition in children with autism," *Neural Comput. Appl.*, vol. 37, no. 21, pp. 17129–17148, 2025. https://doi.org/10.1007/s00521-025-11290-7
+[37] [N] — P. Lucey, J. F. Cohn, T. Kanade, J. Saragih, Z. Ambadar, and I. Matthews, "The Extended Cohn-Kanade Dataset (CK+): A complete dataset for action unit and emotion-specified expression," in *Proc. IEEE CVPRW*, San Francisco, CA, USA, Jun. 2010, pp. 94–101. https://doi.org/10.1109/CVPRW.2010.5543262
+[38] [N] — H. B. U. Haq, W. Akram, M. N. Irshad, A. Kosar, and M. Abid, "Enhanced real-time facial expression recognition using deep learning," *Acadlore Trans. AI Machine Learning*, vol. 3, no. 1, pp. 24–35, 2024. https://doi.org/10.56578/ataiml030103
+[39] [N] — Q. Zhu, H. Zhuang, M. Zhao et al., "A study on expression recognition based on improved mobilenetV2 network," *Sci. Rep.*, vol. 14, 8121, 2024. https://doi.org/10.1038/s41598-024-58736-x
+[40] [N] — V. Kazemi and J. Sullivan, "One millisecond face alignment with an ensemble of regression trees," in *Proc. IEEE CVPR*, Columbus, OH, USA, Jun. 2014, pp. 1867–1874. https://doi.org/10.1109/CVPR.2014.241
+---
+**Resumen de referencias:**
+- Rescatadas del Paper 1: 16 (refs [1],[3],[4],[5],[6],[7],[8],[9],[10],[13],[14],[15],[19],[20],[21],[22],[23],[30])
+- Nuevas investigadas: 24 (refs [2],[11],[12],[16],[17],[18],[24],[25],[26],[27],[28],[29],[31],[32],[33],[34],[35],[36],[37],[38],[39],[40])
+- **Total: 40 referencias** (dentro del rango 30-50 solicitado)
+---
+# PARTE 5: ANÁLISIS DE FIGURAS
+A continuación analizo TODAS las 14 figuras que me pasaste, indicando si se mantienen, eliminan o modifican.
+## Figura 1: Arquitectura del sistema de microservicios
+- **Estado: SE MANTIENE IGUAL**
+- Muestra Input → Java Service → Python ML Service → Output con todos los componentes (REST Controller, Redis Cache, OpenCV, CNN, TTA, Ensemble, etc.)
+- Es la figura arquitectónica central del paper. Perfecta.
+- Solo verificar que diga "Java Service" o "Go Service" (en tu stack usas Go, no Java). Si dice "Java Service" hay que cambiarlo a "Go Service".
+## Figura 2: Diagrama de flujo del proceso de reconocimiento emocional
+- **Estado: SE MANTIENE, PERO HAY QUE MODIFICAR**
+- El flujo es correcto (Select patient → Attach photo → Validations → Scan → Generate report → Export PDF)
+- **Cambio necesario:** Donde dice "Select patient" debería contextualizarse para niños. El flujo está bien pero verificar que la terminología sea consistente con niños/pacientes pediátricos.
+## Figura 3: Curvas de accuracy y pérdida durante entrenamiento del modelo CNN
+- **Estado: SE MANTIENE IGUAL**
+- Muestra Training/Validation Accuracy y Loss durante 50 epochs con Early Stop en Epoch 42 (87.3% validation accuracy)
+- Es una figura técnica estándar que no depende de la población. Perfecta.
+## Figura 4: Matriz de confusión del modelo CNN sobre dataset de validación
+- **Estado: SE MANTIENE IGUAL**
+- Muestra las 5 emociones (Happy, Neutral, Sad, Angry, Disgusted) con clasificaciones correctas/incorrectas
+- Es una figura técnica del modelo, no depende de la población. Perfecta.
+## Figura 5: Detección de 68 landmarks faciales mediante dlib
+- **Estado: HAY QUE MODIFICAR**
+- Actualmente muestra un ADULTO como ejemplo. Para el Paper 2 enfocado en niños, lo ideal sería mostrar un ejemplo de rostro infantil o al menos aclarar en el caption que es una ilustración técnica del método.
+- **Opción A:** Cambiar la imagen del rostro por un rostro de niño (preferible).
+- **Opción B:** Mantener y agregar en el caption: "Ilustración técnica del pipeline de detección de landmarks. El ejemplo muestra un rostro adulto con fines demostrativos; el sistema aplica el mismo pipeline a rostros pediátricos."
+- Los gráficos de barras y pie chart de la distribución de landmarks están bien y no necesitan cambio.
+## Figura 6: Distribución de precisión de reconocimiento por sesión
+- **Estado: HAY QUE MODIFICAR**
+- Dice "49 adult participants with ASD" → tiene que decir participantes NIÑOS.
+- Los datos (rango 33.3%-90.0%, mean 67.5%, SD 14.4%) tendrán que actualizarse cuando tengas los datos reales de niños.
+- **Cambio:** Actualizar texto del caption para población pediátrica y actualizar datos cuando estén listos.
+## Figura 7: Boxplot de precisión por nivel de TEA
+- **Estado: HAY QUE MODIFICAR**
+- Los datos actuales son de adultos. Cuando tengas datos de niños, hay que regenerar esta figura.
+- Las categorías (ASD Level 1, 2, 3, Asperger Syndrome) se mantienen porque son las mismas en niños.
+- **Cambio:** Regenerar con datos pediátricos cuando estén listos.
+## Figura 8: Distribución de emociones predominantes durante las 79 sesiones
+- **Estado: HAY QUE MODIFICAR**
+- Los datos son de las sesiones con adultos. Hay que regenerar con datos de niños.
+- La estructura de la figura (barras por emoción) está bien.
+- **Cambio:** Regenerar con datos pediátricos.
+## Figura 9: Porcentaje promedio de predominancia por tipo de emoción
+- **Estado: HAY QUE MODIFICAR**
+- Misma razón que Figura 8: datos de adultos → necesita datos de niños.
+- **Cambio:** Regenerar con datos pediátricos.
+## Figura 10: Interfaz del sistema mostrando flujo completo de uso
+- **Estado: SE MANTIENE SÍ O SÍ**
+- Muestra el flujo de la app: CAPTURE → VALIDATE → PREPROCESS → ANALYZE & PREDICT → SAVE & SYNCHRONIZE → DISPLAY RESULTS → EXPORT PDF.
+- Es la figura de la app. No depende de la población. Perfecta.
+## Figura 11: Demostración de la aplicación de reconocimiento emocional (screenshots)
+- **Estado: SE MANTIENE SÍ O SÍ**
+- Muestra las pantallas reales de la app (registro, pacientes, escaneo, resultados)
+- Estas capturas SON la evidencia de que la app existe y funciona.
+- **Verificar:** Que los screenshots muestren pacientes pediátricos (no adultos). Si los screenshots actuales muestran datos de adultos en la interfaz, habría que tomar nuevos screenshots con datos de niños.
+## Figura 12: Accuracy del sistema por tipo de emoción
+- **Estado: HAY QUE VERIFICAR**
+- Muestra: Happy 97.84%, Neutral 96.45%, Sad 95.12%, Angry 93.89%, Disgusted 92.31%
+- Estas son métricas del MODELO CNN, no de la población. Si el modelo no cambió, la figura se mantiene.
+- **Decisión: SE MANTIENE IGUAL si el modelo no cambió.**
+## Figura 13: Métricas de evaluación del sistema (Precision, Recall, F1-Score)
+- **Estado: SE MANTIENE IGUAL**
+- Accuracy 95.8%, Sensitivity 95.4%, Specificity 96.2%, Wrong prediction 4.2%
+- Son métricas del modelo. No cambian con la población.
+## Figura 14: Comparación con trabajos relacionados
+- **Estado: HAY QUE MODIFICAR**
+- La tabla de comparación actual incluye trabajos sobre ADULTOS (Alshamsi, Saumell, etc.)
+- Hay que rehacer esta comparación con trabajos relevantes para NIÑOS con TEA.
+- **Cambio:** Reemplazar las referencias de adultos por las rescatadas del Paper 1 y las nuevas investigadas (GuessWhat, ALTRIRAS, JEMImE, Washington, Hassan, etc.)
+---
+## RESUMEN DE FIGURAS
+| Figura | Nombre | Estado |
+|--------|--------|--------|
+| Fig 1 | Arquitectura microservicios | ✅ SE MANTIENE (verificar "Java" vs "Go") |
+| Fig 2 | Diagrama de flujo | ⚠️ MODIFICAR (terminología niños) |
+| Fig 3 | Curvas accuracy/loss entrenamiento | ✅ SE MANTIENE |
+| Fig 4 | Matriz de confusión | ✅ SE MANTIENE |
+| Fig 5 | 68 landmarks faciales | ⚠️ MODIFICAR (cambiar imagen adulto → niño o justificar en caption) |
+| Fig 6 | Precisión por sesión | ⚠️ MODIFICAR (datos de niños) |
+| Fig 7 | Boxplot por nivel TEA | ⚠️ MODIFICAR (datos de niños) |
+| Fig 8 | Emociones predominantes | ⚠️ MODIFICAR (datos de niños) |
+| Fig 9 | Predominancia por emoción | ⚠️ MODIFICAR (datos de niños) |
+| Fig 10 | Flujo completo de uso | ✅ SE MANTIENE SÍ O SÍ |
+| Fig 11 | Screenshots de la app | ✅ SE MANTIENE SÍ O SÍ (verificar screenshots con datos niños) |
+| Fig 12 | Accuracy por emoción | ✅ SE MANTIENE (métricas del modelo) |
+| Fig 13 | Métricas de evaluación | ✅ SE MANTIENE (métricas del modelo) |
+| Fig 14 | Comparación trabajos relacionados | ⚠️ MODIFICAR (reemplazar refs adultos por refs niños TEA) |
+**Figuras que se mantienen sin cambio: 7** (Fig 1, 3, 4, 10, 11, 12, 13)
+**Figuras que necesitan modificación: 7** (Fig 2, 5, 6, 7, 8, 9, 14)
+**Figuras eliminadas: 0**
+**Figuras nuevas a agregar: 0** (por ahora)
+---
+**FIN DEL BORRADOR COMPLETO DEL PAPER 2 — PARTE 1**
+Las siguientes secciones (2-7) se desarrollarán en la siguiente iteración, una vez que confirmes que esta Sección 1, las referencias y el análisis de figuras están correctos.
+
+ahora te paso más info de nuestro enfoque:
+¿Cuál es el problema identificado?
+El problema es que los niños con autismo tienen dificultad para expresar emociones facialmente, y los terapeutas no tienen forma objetiva de medir si están mejorando durante las terapias. Todo se basa en observación manual que es subjetiva y varía según quién evalúe. Además, las pocas herramientas tecnológicas que existen requieren internet constante, están validadas solo en población occidental y no dan métricas claras que el terapeuta pueda usar para tomar decisiones clínicas.
+¿Cuál es la justificación de hacer esta revisión sistemática?
+Necesitamos primero saber qué existe ya en la literatura antes de proponer nuestra solución. La revisión nos permite identificar qué tecnologías funcionan bien, cuáles son sus limitaciones, qué brechas hay en Latinoamérica, y así fundamentar científicamente por qué nuestra aplicación es necesaria y cómo diseñarla mejor aprovechando lo que ya se ha investigado.
+¿Cuáles son los objetivos?
+El objetivo general es sintetizar la evidencia sobre herramientas digitales de reconocimiento facial para monitorear expresividad emocional en niños con TEA, identificando qué funciona, qué falta y qué necesitan los terapeutas en contextos con recursos limitados.
+Los objetivos específicos son identificar las arquitecturas de inteligencia artificial más efectivas, caracterizar las métricas de evaluación que usan, analizar los conjuntos de datos disponibles y sus limitaciones de representatividad, documentar qué características de entrada funcionan mejor, e identificar las barreras técnicas que impiden implementar estas herramientas en contextos como el nuestro.
+¿Cuál es la solución que brindamos?
+Nuestra solución es una aplicación móvil tipo serious game que usa reconocimiento facial automático para escanear las emociones del niño durante sesiones terapéuticas. El terapeuta registra al responsable del niño, programa las sesiones, y en cada sesión el niño interactúa con el juego mientras la app escanea su rostro y detecta emociones predominantes. Esto genera reportes cuantitativos sesión por sesión que el terapeuta puede analizar para ver el progreso del niño, identificar patrones emocionales y ajustar sus intervenciones basándose en datos objetivos en lugar de solo observación subjetiva. La app funciona offline, está pensada para nuestro contexto y da métricas interpretables para el terapeuta.
+¿Por qué primero la revisión sistemática y después el paper de la app?
+Porque académicamente necesitas justificar que tu solución es necesaria. El Paper 1 demuestra qué existe, qué falta y por qué lo que existe no resuelve el problema en nuestro contexto. El Paper 2 presenta tu aplicación como la respuesta a esas brechas identificadas. Sin el Paper 1, tu Paper 2 no tiene fundamento científico sólido.
+¿CUÁL ES NUESTRO ENFOQUE?
+El enfoque es proporcionar al terapeuta una herramienta de apoyo para el monitoreo objetivo de la expresividad emocional del niño durante sus intervenciones terapéuticas. No estamos diagnosticando TEA ni determinando su nivel de severidad, estamos dando datos cuantificables sobre cómo el niño expresa emociones sesión tras sesión para que el terapeuta pueda evaluar si sus intervenciones están funcionando y tomar decisiones informadas.
+La app registra, cuantifica y visualiza patrones de expresividad emocional a lo largo del tiempo. El terapeuta usa esos datos como complemento a su evaluación clínica integral. Es una herramienta de monitoreo de progreso, no de diagnóstico.
+¿ESTÁ BIEN QUE EL TERAPEUTA ANOTE EL NIVEL DE TEA EN LA CONCLUSIÓN FINAL?
+Sí, está bien, PERO con una aclaración importante.
+El terapeuta puede anotar en sus conclusiones clínicas el nivel de TEA del niño (Nivel 1, 2 o 3 según DSM-5), pero eso NO lo determina la app. Eso lo determina el terapeuta usando instrumentos clínicos validados como ADOS-2, ADI-R, evaluaciones neuropsicológicas, observación clínica estructurada, y su juicio profesional.
+Tu app solamente le proporciona DATOS sobre expresividad emocional que pueden AYUDAR en esa evaluación integral, pero no son suficientes por sí solos para determinar nivel de severidad de TEA.
+Entonces en tu sistema puedes tener un campo donde el terapeuta registre manualmente el nivel de TEA del niño como parte de su conclusión clínica, pero deja claro que eso es responsabilidad y decisión del profesional, no un output automático de tu aplicación.
+En resumen: tu app mide expresividad emocional, el terapeuta usa eso más otras evaluaciones para determinar nivel de TEA. Está bien que lo registre en el sistema, pero no como resultado automático.
+ok? todo claro?
+ahora te paso la explicación de como funciona la app:
+Caso de Uso
+Imaginemos una sesión terapéutica con un niño con Trastorno del Espectro Autista (TEA). El terapeuta busca trabajar la identificación y expresión de emociones, pero además necesita una forma objetiva de evaluar si el niño realmente está progresando a lo largo del tiempo.
+Para ello, utiliza una aplicación móvil diseñada como herramienta de apoyo terapéutico. Antes de iniciar, el terapeuta ya ha registrado al niño en el sistema y ha planificado las sesiones que formarán parte del proceso de intervención.
+Durante la sesión, el niño interactúa con un serious game dentro de la aplicación. En este juego se le presentan distintas actividades relacionadas con emociones, como reconocer expresiones faciales o intentar imitarlas.
+Mientras el niño participa, la aplicación activa automáticamente el sistema de reconocimiento facial. Este no se limita a tomar una foto, sino que analiza de forma continua la expresividad emocional del niño durante la interacción con el juego.
+A medida que avanza la sesión, el sistema:
+Detecta las emociones que el niño expresa
+Evalúa si coinciden con las emociones planteadas en el juego
+Registra métricas como precisión, frecuencia y respuesta emocional
+Toda esta información se almacena como parte de una sesión terapéutica estructurada.
+En las siguientes sesiones, el proceso se repite bajo las mismas condiciones, permitiendo que la aplicación construya un historial de datos. Con el tiempo, esto permite observar patrones, identificar mejoras o detectar dificultades persistentes en la expresividad emocional.
+Posteriormente, el terapeuta revisa los resultados desde el sistema, donde puede visualizar métricas y gráficos de evolución. Esta información le sirve como complemento a su evaluación clínica, ayudándole a tomar decisiones más informadas sobre cómo ajustar la intervención.
+Es importante aclarar que la aplicación no realiza diagnósticos ni determina el nivel de TEA. Su función es exclusivamente proporcionar datos cuantitativos sobre la expresividad emocional del niño a lo largo de las sesiones.
+De esta manera, el terapeuta puede combinar su criterio profesional con evidencia objetiva, mejorando el seguimiento del progreso terapéutico.
+Ok? entendiste el caso de uso?
+
+ahora te paso más info de la app... acá te paso los 3 readme del github. es importante que lo sepas y reconozcas.
+readme 1 es de la rama backend_usuarios_mobile
+This branch is 64 commits ahead of and 5 commits behind master.
+Name		
+jafcn09
+jafcn09
+fix: remove unused UserAgent from security email
+c94f665
+ · 
+3 months ago
+.github/workflows
+Add GitHub Actions workflow for Docker build
+4 months ago
+config
+nuevos cambios
+5 months ago
+controllers
+cambios
+4 months ago
+docs
+perfil culminado
+8 months ago
+dto
+los cambios
+4 months ago
+middlewares
+.
+4 months ago
+models
+los cambios
+4 months ago
+public
+perfil culminado
+8 months ago
+routes
+new funtion verification version app
+4 months ago
+service
+fix: remove unused UserAgent from security email
+3 months ago
+utils
+cambios
+4 months ago
+.DS_Store
+perfil culminado
+8 months ago
+.dockerignore
+cambios en el readme
+6 months ago
+.gitignore
+cambios en el readme
+6 months ago
+Dockerfile
+cambios
+4 months ago
+README.md
+nuevos cambios
+5 months ago
+go.mod
+cambios en el readme
+6 months ago
+go.sum
+cambios en el readme
+6 months ago
+main.go
+new funtion verification version app
+4 months ago
+temp_test
+envia
+5 months ago
+usuarios
+los cambios
+4 months ago
+Repository files navigation
+README
+🔒 Backend Usuarios - API REST con Go + Gin
+Sistema completo de autenticación, gestión de usuarios y sesiones terapéuticas. APIs REST seguras con JWT, autenticación biométrica, gestión de roles y análisis de estadísticas.
+🚀 Instalación
+git clone <repository-url> && cd backend_usuarios/
+go mod download && go mod tidy
+cp .env.example .env  # Configurar variables de entorno
+go run main.go
+🔧 Configuración (.env)
+# Base de datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=usuarios_db
+DB_USER=api_user
+DB_PASSWORD=secure_password
+# JWT & Seguridad
+JWT_SECRET=mi_secret_super_seguro_2024
+JWT_REFRESH_SECRET=mi_refresh_secret_2024
+# Servidor
+PORT=8080
+GIN_MODE=release
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_DAY=50
+RATE_LIMIT_MODULE_LIMIT=20
+# ML Service
+ML_SERVICE_URL=http://localhost:8000
+📡 API Endpoints Principales
+🔓 Públicos
+POST /api/login                    # Autenticación
+POST /api/refresh-token            # Renovar token
+POST /otp/validate                 # Validar OTP
+POST /password/send-otp            # Recuperar contraseña
+🔒 Protegidos
+# Usuarios
+GET    /api/users                  # Listar usuarios
+POST   /api/register               # Registrar usuario
+GET    /api/profile                # Perfil actual
+# Pacientes
+GET    /api/patients               # Listar pacientes
+POST   /api/patients               # Crear paciente
+GET    /api/patients/{id}/stats    # Estadísticas
+# Sesiones
+GET    /api/sessions/paginated     # Sesiones paginadas
+POST   /api/sessions               # Crear sesión
+PUT    /api/sessions/{id}          # Actualizar sesión
+DELETE /api/sessions/{id}          # Eliminar sesión
+# Calificaciones
+POST   /api/therapist-ratings      # Calificar terapeuta
+GET    /api/therapist-ratings/{id} # Ver calificaciones
+👥 Roles y Permisos
+🛡️ Administrador (AD)
+Gestión completa de usuarios y sistema
+Dashboard con estadísticas globales
+Calificación de terapeutas en nombre de cuidadores
+👨‍⚕️ Terapeuta (TR)
+Gestión de pacientes asignados
+Creación de sesiones terapéuticas
+Dashboard con estadísticas propias
+👨‍👩‍👧‍👦 Padres/Cuidadores (PD)
+Vista de pacientes asignados (hijos)
+Calificación de terapeutas tras sesiones
+Seguimiento de progreso
+🛠️ Tecnologías
+Go 1.21+ con Gin Framework
+GORM + MySQL 8.0+
+JWT + WebAuthn (autenticación biométrica)
+Redis (cache y rate limiting)
+bcrypt (encriptación)
+🏗️ Arquitectura
+┌─── Controllers ───┐
+│  HTTP Handlers    │
+├─── Services ──────┤
+│  Business Logic   │
+├─── Models ────────┤
+│  GORM/Database    │
+└───────────────────┘
+🆕 Funcionalidades Destacadas
+Sistema de Calificaciones
+Calificación 1-5 estrellas por sesión completada
+Comentarios opcionales y verificación anti-duplicados
+Reasignación automática con calificaciones bajas (≤3)
+Reasignación Inteligente
+Detección automática de terapeutas con calificaciones bajas
+Búsqueda de terapeuta disponible (< 20 pacientes, activo)
+Actualización automática de sesiones futuras
+Creación de sesión de seguimiento si no hay futuras
+Dashboard Dinámico
+Estadísticas diferenciadas por rol
+Métricas en tiempo real
+Navegación completa admin → cuidadores → pacientes → sesiones
+Desarrollado por Jhafet Cánepa - Octubre 2025
+readme 2 es de la rama dev_android ok?
+Go to file
+t
+This branch is 48 commits ahead of and 5 commits behind master.
+Name		
+jafcn09
+jafcn09
+mod
+2b37762
+ · 
+3 months ago
+.gradle
+mod
+3 months ago
+.idea
+modificaciones visualeS
+3 months ago
+.kotlin/errors
+nueva rutas
+6 months ago
+app
+mod
+3 months ago
+gradle
+perfil de usuario culminado
+8 months ago
+.DS_Store
+modificaciones visualeS
+3 months ago
+.gitignore
+readme modificado
+6 months ago
+README.md
+readme modificado
+6 months ago
+add_imports.sh
+merge: aplica cambios locales después de pull
+6 months ago
+build.gradle.kts
+modificaciones visualeS
+3 months ago
+clean_macos_files.sh
+nueva rutas
+6 months ago
+encryption_public_key.pem
+cambios
+5 months ago
+gradle.properties
+nueva rutas
+6 months ago
+gradlew
+design de nuevas pestanñas listas
+9 months ago
+gradlew.bat
+perfil de usuario culminado
+8 months ago
+local.properties
+perfil de usuario culminado
+8 months ago
+pepk.jar
+cambios
+5 months ago
+private_key.pem
+cambios
+5 months ago
+public_key.pem
+cambios
+5 months ago
+settings.gradle.kts
+perfil de usuario culminado
+8 months ago
+Repository files navigation
+README
+App Android - Gestión Terapéutica
+Aplicación móvil para gestión de terapias con análisis de emociones, desarrollada en Kotlin con Jetpack Compose.
+Stack Tecnológico
+Kotlin con Android SDK 34 (min API 30)
+Jetpack Compose + Material Design 3
+MVVM Architecture con Repository Pattern
+Retrofit 2.9.0 + OkHttp para APIs
+Glide 4.16.0 para imágenes
+Security Crypto para encriptación
+Funcionalidades Principales
+Autenticación
+JWT con renovación automática
+Autenticación biométrica (huella/facial)
+OTP por email/SMS
+Control de acceso por roles
+Gestión por Roles
+Admin: Gestión completa de usuarios y sistema
+Terapeuta: Pacientes asignados y sesiones
+Padres: Seguimiento de hijos pacientes
+Características Clave
+Análisis de emociones en tiempo real con ML
+Calificación de terapeutas (1-5 estrellas)
+Reasignación automática por bajas calificaciones
+Videos educativos de YouTube integrados
+Sesiones terapéuticas con calendario
+Reportes de progreso con gráficos
+Estructura del Proyecto
+app/src/main/java/com/example/serious_game_usil/
+├── presentation/ui/
+│   ├── administrador/    # Panels admin
+│   ├── emotion/         # Análisis emocional
+│   ├── login/           # Autenticación
+│   ├── padres/          # UI cuidadores
+│   ├── terapeuta/       # Dashboard terapeutas
+│   └── videos/          # Videos educativos
+├── repository/          # Capa de datos
+├── interface/          # APIs
+├── network/            # Configuración HTTP
+└── utils/              # Utilidades
+Instalación
+Requisitos
+Android Studio Arctic Fox+
+Android SDK 34
+Dispositivo Android 11+ (API 30)
+Setup
+git clone <repo>
+# Abrir en Android Studio
+# Sync Gradle dependencies
+# Configurar variables en local.properties
+# Build & Run
+Integración APIs
+Backend Go (Usuarios)
+Autenticación JWT
+Gestión de usuarios y roles
+Sesiones terapéuticas
+Calificaciones y reasignaciones
+ML Service Python
+Análisis de emociones
+Procesamiento de imágenes
+Rate limiting por rol
+YouTube Data API v3
+Videos educativos categorizados
+Búsqueda y filtrado
+Reproductor integrado
+Funcionalidades Avanzadas
+Análisis Emocional
+Captura por cámara/galería
+7 emociones detectadas
+Reportes visuales (radar/barras)
+Historial por sesión
+Sistema de Calificaciones
+Rating 1-5 estrellas post-sesión
+Reasignación automática (rating ≤3)
+Nueva sesión programada automáticamente
+Notificaciones de cambios
+Videos Educativos
+Categorías: Conducta, Comunicación, Emociones
+Búsqueda en tiempo real
+Paginación (5 videos por carga)
+Safe search habilitado
+Seguridad
+Encriptación local de datos sensibles
+Certificados SSL para comunicaciones
+Tokens JWT con expiración
+Validación de permisos granular
+Bloqueo por intentos fallidos
+Build & Deploy
+# Debug
+./gradlew assembleDebug
+# Release
+./gradlew assembleRelease
+readme 3 es de la rama emotion-ml-service, es para que entiendas a que va ps...
+Owner avatar
+tesis
+Public
+Cris223511/tesis
+Go to file
+t
+This branch is 26 commits ahead of and 5 commits behind master.
+Name		
+jafcn09
+jafcn09
+preparamos los nuevos cambios
+d3615fe
+ · 
+3 months ago
+app
+preparamos los nuevos cambios
+3 months ago
+.env
+nueva funcionalidades
+5 months ago
+.gitignore
+preparamos el cambio
+6 months ago
+Dockerfile
+redis , sessions or
+5 months ago
+README.md
+cambios
+6 months ago
+entrypoint.sh
+Add all ENV variables to Dockerfile + configure for Render
+5 months ago
+requirements.txt
+preparamos los nuevos cambios
+3 months ago
+Repository files navigation
+README
+Emotion ML Service
+Servicio optimizado de análisis de emociones con 95% de precisión, autenticación JWT y control de límites por rol.
+Stack Tecnológico
+Python 3.9+ con FastAPI
+TensorFlow 2.15 + EfficientNetB1
+Redis para cache y rate limiting
+OpenCV + Pillow para procesamiento
+PyJWT para autenticación
+Instalación
+git clone <repo>
+cd ml-service
+pip install -r requirements.txt
+Configuración
+Archivo .env:
+REDIS_HOST=localhost
+REDIS_PORT=6379
+JWT_SECRET=your_jwt_secret
+PORT=5000
+Ejecución
+# Desarrollo
+uvicorn app.main:app --reload --port 5000
+# Docker
+docker build -t emotion-ml-service .
+docker run -p 5000:5000 emotion-ml-service
+Endpoints
+Análisis de Emociones
+POST /api/v1/analyze-emotion
+Authorization: Bearer <jwt_token>
+Body:
+{
+  "image": "base64_image_data",
+  "description": "optional",
+  "child_id": 123
+}
+Response:
+{
+  "analysis_id": "analysis_123_1234567890",
+  "emotion_result": {
+    "emotion": "happy",
+    "confidence": 0.94,
+    "all_emotions": {"happy": 0.94, "neutral": 0.03, "sad": 0.02}
+  },
+  "success": true
+}
+Carga de Fotos
+POST /api/v1/analyze-photo-upload
+Authorization: Bearer <jwt_token>
+Form-data: file, child_id, description
+Captura de Cámara
+POST /api/v1/analyze-camera-capture
+Authorization: Bearer <jwt_token>
+Reporte de Calidad (Admin)
+GET /api/v1/emotion-quality-report
+Authorization: Bearer <jwt_token>
+Límites por Rol
+Terapeutas: 100 análisis/día
+Responsables: 100 análisis/día
+Admins: Sin límites
+Características
+Precisión: 95% target con ensemble de modelos
+Velocidad: < 200ms por análisis
+Emociones: enojado, disgustado, neutral, feliz, triste.
+Rate Limiting: Control automático por Redis
+Sessions: Cache de sesiones con TTL de 2 horas
+Quality Control: Monitoreo automático de precisión
+Health Check
+GET /health
+Response: {"status": "healthy", "service": "emotion-ml-service"}
+
+y este es mi plan de tesis. miralo bien porfavor.
+
+ 
+FACULTAD DE INGENIERIA
+Carrera de Ingeniería Sistemas de la Información
+SERIOUS GAME PARA DESARROLLAR EL RECONOCIMIENTO VISUAL DE EMOCIONES EN ADULTOS CON TEA
+Plan de Tesis para Optar por el Título Profesional de Ingeniería de Sistemas de la Información
+CÁNEPA MACEDA, JHAFET MARTIN
+(0009-0008-7691-4542)
+PILLIHUAMÁN SANTIAGO, CHRISTOPHER ANTONIO
+(0009-0003-5637-2487)
+Lima - Perú
+2025 
+DEDICATORIA
+A Dios, por ser mi guía constante y darme la fuerza necesaria en cada etapa de este camino.
+A mis padres, por su amor, esfuerzo y apoyo incondicional, pilares fundamentales en mi formación.
+A mis hermanos y seres queridos, por confiar en mí incluso cuando yo dudaba, y acompañarme siempre con palabras de aliento.
+Jhafet Martín Cánepa Maceda
+A Dios, por brindarme sabiduría, paciencia y valor para no rendirme.
+A mis padres, por su respaldo firme y su ejemplo constante de perseverancia.
+A mis familiares y amigos que, con sus palabras, presencia o silencio, me ayudaron a seguir adelante.
+Christopher Antonio Pillihuamán Santiago
+ 
+AGRADECIMIENTOS
+A nuestras familias, por ser el sostén inquebrantable en cada etapa de nuestras vidas. Gracias por su amor, paciencia y por alentarnos a seguir adelante incluso en los momentos más difíciles.
+A Dios, por guiarnos con sabiduría, fortaleza y esperanza. Su presencia nos ha permitido avanzar con fe y cumplir este importante objetivo académico.
+ 
+ 
+ÍNDICE DE CONTENIDOS
+PLAN DE TESIS	1
+DATOS PRELIMINARES	1
+Título de la Investigación	1
+Tipo de investigación	1
+Según el Propósito de la Investigación	1
+Según el Nivel de Profundidad de la Investigación	1
+Localización	1
+Institución a la que Pertenece la Investigación	1
+Institución Donde se Desarrollará la Investigación	1
+ADMINISTRACIÓN DE LA INVESTIGACIÓN	2
+Recursos del Proyecto	2
+Capital Humano	2
+Recursos Materiales	2
+Recursos Tecnológicos y Equipamiento	3
+Servicios y Suscripciones	4
+Resumen de Inversión Total	5
+Estructura de Financiamiento	5
+Consideraciones Finales de Administración	6
+RESUMEN	7
+ABSTRACT	8
+Capítulo I: Introducción	9
+Planteamiento del Problema	9
+Realidad Problemática	9
+Formulación del Problema	14
+Justificación de la Investigación	15
+Objetivos	17
+Objetivo General	17
+Objetivos Específicos	17
+Limitaciones del Proyecto	19
+Limitaciones.	19
+Marco Referencial	20
+Antecedentes	21
+Bases Teóricas	22
+Capítulo II: Marco Teórico	24
+Fundamento Teórico	24
+Sistemas de Reconocimiento Facial en Terapia y Evaluación Clínica	24
+Reconocimiento de Emociones en Adultos con TEA	27
+Participación Familiar en el Desarrollo Terapéutico	29
+Tecnologías de Machine Learning en Evaluación Clínica	31
+Accesibilidad y Usabilidad en Contextos de Recursos Limitados	33
+Impacto de Sistemas de Evaluación Objetiva en Terapia de Adultos con TEA	35
+Retos en la Implementación de Sistemas de ML en Contextos Clínicos	36
+Beneficios de Sistemas de Evaluación Objetiva en Contextos de Recursos Limitados	38
+Estado del Arte	39
+Teorías Sobre el Reconocimiento de Emociones	41
+Teoría de las Emociones Básicas de Ekman	42
+Modelo Dimensional de Russell	44
+Teoría del Componente de Scherer	45
+Teoría Construccionista de Barrett	46
+Integración y Aplicaciones Clínicas en TEA	48
+Capítulo III: Hipótesis y Variables	51
+Hipótesis General	51
+Hipótesis Específicas	51
+Identificación de Variables	51
+Variable dependiente: Reconocimiento Visual de Emociones	51
+Variable Independiente: Serious Game	55
+Operacionalización de Variables	57
+Matriz de Consistencia	58
+Capítulo IV: Metodología	62
+Diseño de la Investigación	62
+Hipótesis Alterna	63
+Población y Muestra	63
+Instrumentos de Recolección de Datos	64
+Procedimientos	65
+Análisis de Datos	66
+Consideraciones Éticas	68
+Limitaciones Metodológicas	69
+Capítulo V: Administración y Gestión de Proyectos	71
+Administración	71
+Insights	74
+Experiencia de Usuario	76
+Sostenibilidad y Escalabilidad	78
+Capítulo VI: Análisis del proceso actual	81
+Proceso de Reconocimiento de Emociones	81
+Diagrama de Proceso	81
+Descripción del Proceso	82
+Diagrama de Estados	83
+Actores	83
+Casos de Uso Negocio	84
+Diagrama de Actividades	85
+Diagrama de Arquitectura	91
+Diagrama de Componentes	93
+Diagrama de Clases	95
+Capítulo VII: Desarrollo de la Aplicación Móvil y Sistema Web	98
+Análisis Comparativo de Tecnologías	98
+TensorFlow	98
+OpenCV	101
+Keras..	103
+Dlib…	105
+Tecnologías Utilizadas	110
+Lenguajes de Programación	110
+Librerías y Frameworks	111
+Herramientas de Desarrollo	114
+Comparativa de Lenguajes y Tecnologías	116
+Planificación	118
+Alcance	118
+Restricciones Técnicas	120
+Requerimientos de Hardware	120
+Requerimientos de Software	121
+Limitaciones de Conectividad	122
+Distribución de Recursos	122
+Recursos Humanos	123
+Recursos Tecnológicos	124
+Recursos de Software y Licenciamiento	124
+Recursos Materiales y Servicios	126
+Estructura de Descomposición del Trabajo (EDT)	127
+Cronograma de Implementación	128
+Definición de Roles.	128
+Historias de Usuario	130
+Planificación de Entregas	131
+Priorización de Historias de Usuario	131
+Plan de Entregas	132
+Gestión de Riesgos.	135
+Identificación de Riesgos	135
+Análisis Cualitativo de los Riesgos	137
+Respuestas a la Gestión de Riesgos	141
+Estimación de Costos	144
+Diseño	145
+Modelo de Datos	145
+Modelo Conceptual	145
+Modelo Lógico	146
+Modelo Físico	146
+Desarrollo	147
+Arquitectura de Software	147
+Ejecución de Iteraciones	154
+Prototipos en Figma	155
+Implementación de Módulos de la Aplicación Móvil	165
+Implementación de Módulos en el Sistema Web	175
+Capítulo VIII: Análisis y Discusión de Resultados	204
+Pruebas	204
+Pruebas de Aceptación	204
+Presentación de Resultados	212
+Encuesta Antes de la Implementación	215
+Encuesta Después de la Implementación	227
+Análisis de Resultados	240
+Indicador: Reconocimiento emocional mediante RMET	240
+Indicador: Certeza del sistema de reconocimiento facial CNN	245
+Discusión de Resultados	246
+CONCLUSIONES Y RECOMENDACIONES	251
+Conclusiones	251
+Recomendaciones	252
+REFERENCIAS	255
+ANEXOS	263
+Anexo 01. Diagrama del Árbol de Problemas	263
+Anexo 02. Diagrama del Árbol de Objetivos	264
+Anexo 03. Ficha Técnica de Encuesta	265
+Anexo 04. Ficha de Encuesta	266
+ 
+ÍNDICE DE TABLAS
+Tabla 1 Recursos de capital humano	2
+Tabla 2 Recursos materiales del proyecto	3
+Tabla 3 Equipamiento y recursos tecnológicos	3
+Tabla 4 Servicios y suscripciones tecnológicas	4
+Tabla 5 Equipamiento y recursos tecnológicos	5
+Tabla 6 Distribución del financiamiento	5
+Tabla 7 Matriz FODA	11
+Tabla 8 Dimensiones de la variable Serious Game	54
+Tabla 9 Reconocimiento emocional en adultos con autismo	55
+Tabla 10 Operacionalización de variables	57
+Tabla 11 Matriz de consistencia	60
+Tabla 12 Distribución de la muestra por grupo	64
+Tabla 13 Tabla comparativa de TensorFlow y TensorFlow Lite	100
+Tabla 14 Tabla comparativa de las herramientas de OpenCV	102
+Tabla 15 Tabla comparativa de las tecnologías propuestas	109
+Tabla 16 Lenguajes de programación de la aplicación móvil	110
+Tabla 17 Lenguajes de programación del sistema web	111
+Tabla 18 Frameworks y librerías de la aplicación móvil	112
+Tabla 19 Sistemas de almacenamiento	112
+Tabla 20 Especificaciones del modelo CNN	113
+Tabla 21 Componentes y dependencias para el sistema web	113
+Tabla 22 Entorno de desarrollo de la aplicación móvil	114
+Tabla 23 Conjunto de herramientas para el sistema web	115
+Tabla 24 Herramientas de testing y control de calidad	115
+Tabla 25 Gestión de dependencias y build	116
+Tabla 26 Análisis comparativo de las tecnologías móviles	117
+Tabla 27 Análisis comparativo de las tecnologías backend	118
+Tabla 28 Especificaciones mínimas de hardware	120
+Tabla 29 Especificaciones de software por plataforma	121
+Tabla 30 Requerimientos de conectividad por función	122
+Tabla 31 Equipo de desarrollo del proyecto	123
+Tabla 32 Recursos de hardware del proyecto	124
+Tabla 33 Licencias y herramientas de software	125
+Tabla 34 Recursos materiales y servicios auxiliares	126
+Tabla 35 Definición de roles del sistema	129
+Tabla 36 Historias de usuarios	130
+Tabla 37 Priorización de historias de usuarios	131
+Tabla 38 Plan de entregas - Iteración 1	132
+Tabla 39 Plan de entregas - Iteración 2	133
+Tabla 40 Plan de entregas - Iteración 3	134
+Tabla 41 Identificación de riesgos	135
+Tabla 42 Rango de probabilidad de riesgos	138
+Tabla 43 Rango de impacto de riesgos	138
+Tabla 44 Análisis cualitativo de los riesgos	139
+Tabla 45 Estrategia y plan de acción de los principales riesgos	141
+Tabla 46 Comparativa de algoritmos de hashing de contraseñas	149
+Tabla 47 Historias de usuario de la Iteración 1 - Aplicación Móvil	165
+Tabla 48 Historias de usuario de la Iteración 2 - Aplicación Móvil	170
+Tabla 49 Historias de usuario de la Iteración 3 - Aplicación Móvil	176
+Tabla 50 Historias de usuario de la Iteración 1 - Sistema web	179
+Tabla 51 Historias de usuario de la Iteración 2 - Sistema Web	192
+Tabla 52 Historias de usuario de la Iteración 3 - Sistema Web	198
+Tabla 53 Prueba de aceptación H04 - Acceder al sistema	207
+Tabla 54 Prueba de aceptación H05 - Registro al sistema	208
+Tabla 55 Prueba de aceptación H01 - Gestión de usuarios	208
+Tabla 56 Prueba de aceptación H10 - Consultar mi perfil	209
+Tabla 57 Prueba de aceptación H06 - Gestionar pacientes	210
+Tabla 58 Prueba de aceptación H07 - Gestionar sesiones	210
+Tabla 59 Prueba de aceptación H11 - Editar mi perfil	211
+Tabla 60 Prueba de aceptación H03 - Gestionar dispositivos	212
+Tabla 61 Prueba de aceptación H08 - Escanear reconocimiento emocional	212
+Tabla 62 Prueba de aceptación H09 - Generar reportes	213
+Tabla 63 Prueba de aceptación H02 - Gestionar blogs	214
+Tabla 64 Resultados cuantitativos pregunta N°1 pre-implementación	218
+Tabla 65 Resultados cuantitativos pregunta N°2 pre-implementación	219
+Tabla 66 Resultados cuantitativos pregunta N°3 pre-implementación	219
+Tabla 67 Resultados cuantitativos pregunta N°4 pre-implementación	220
+Tabla 68 Resultados cuantitativos pregunta N°5 pre-implementación	221
+Tabla 69 Resultados cuantitativos pregunta N°6 pre-implementación	222
+Tabla 70 Resultados cuantitativos pregunta N°7 pre-implementación	223
+Tabla 71 Resultados cuantitativos pregunta N°8 pre-implementación	224
+Tabla 72 Resultados cuantitativos pregunta N°9 pre-implementación	225
+Tabla 73 Resultados cuantitativos pregunta N°10 pre-implementación	226
+Tabla 74 Resultados cuantitativos pregunta N°11 pre-implementación	227
+Tabla 75 Resultados cuantitativos pregunta N°12 pre-implementación	228
+Tabla 76 Resultados cuantitativos pregunta N°13 pre-implementación	229
+Tabla 77 Resultados cuantitativos pregunta N°1 post-implementación	230
+Tabla 78 Resultados cuantitativos pregunta N°2 post-implementación	231
+Tabla 79 Resultados cuantitativos pregunta N°3 post-implementación	232
+Tabla 80 Resultados cuantitativos pregunta N°4 post-implementación	233
+Tabla 81 Resultados cuantitativos pregunta N°5 post-implementación	234
+Tabla 82 Resultados cuantitativos pregunta N°6 post-implementación	235
+Tabla 83 Resultados cuantitativos pregunta N°7 post-implementación	236
+Tabla 84 Resultados cuantitativos pregunta N°8 post-implementación	237
+Tabla 85 Resultados cuantitativos pregunta N°9 post-implementación	238
+Tabla 86 Resultados cuantitativos pregunta N°10 post-implementación	239
+Tabla 87 Resultados cuantitativos pregunta N°11 post-implementación	240
+Tabla 88 Resultados cuantitativos pregunta N°12 post-implementación	241
+Tabla 89 Resultados cuantitativos pregunta N°13 post-implementación	242
+Tabla 90 Porcentaje de respuestas correctas en RMET	244
+Tabla 91 Pruebas de normalidad - RMET	244
+Tabla 92 Estadísticas de muestras emparejadas - Grupo Experimental	245
+Tabla 93 Correlaciones de muestras emparejadas - Grupo Experimental	245
+Tabla 94 Estadísticas de muestras emparejadas - Grupo Control	246
+Tabla 95 Correlaciones de muestras emparejadas - Grupo Control	246
+Tabla 96 Estadísticas de grupo - Comparación de mejoras	247
+Tabla 97 Porcentaje de certeza del sistema CNN por sesión	248
+Tabla 98 Distribución de certeza del sistema CNN	248
+ 
+ÍNDICE DE FIGURAS
+Figura 1 Distribución normal estándar para prueba de hipótesis bilateral	67
+Figura 2 Estructura de épicas e historias de usuario para la metodología Scrum	71
+Figura 3 Mapa de insights estratégicos para el desarrollo de Serious Game	75
+Figura 4 Esquema de procesos a nivel macro, procesos estratégicos y de soporte	81
+Figura 5 Diagrama general del proceso	82
+Figura 6 Diagrama de estados del proceso de reconocimiento de emociones	83
+Figura 7 Diagrama de casos de uso	85
+Figura 8 CU0001 - Administrar pacientes	86
+Figura 9 CU0002 - Seleccionar paciente	87
+Figura 10 CU0003 - Procesar escaneo	87
+Figura 11 CU0004 - Generar reporte	89
+Figura 12 CU0005 - Visualizar reporte	89
+Figura 13 CU0006 - Exportar/descargar reporte	90
+Figura 14 Diagrama de arquitectura	92
+Figura 15 Diagrama de componentes	93
+Figura 16 Diagrama de clases	95
+Figura 17 Diagrama EDT del Proyecto	127
+Figura 18 Cronograma de implementación del proyecto	128
+Figura 19 Matriz de probabilidad e impacto	139
+Figura 20 Estimación de costos del proyecto	144
+Figura 21 Modelo conceptual - Serious Game	145
+Figura 22 Modelo lógico - Serious Game	146
+Figura 23 Modelo Físico - Serious Game	147
+Figura 24 Flujo de autenticación JWT	150
+Figura 25 Arquitectura de software de la aplicación móvil	151
+Figura 26 Arquitectura de servicios de inteligencia artificial	152
+Figura 27 Arquitectura de software del sistema web	153
+Figura 28 Vista general de los prototipos de Serious Game en Figma	155
+Figura 29 Prototipo Figma - Vistas de la autenticación y validaciones	156
+Figura 30 Prototipo Figma - Vistas de registro y validaciones	157
+Figura 31 Prototipo Figma - Vista de información de Serious Game	157
+Figura 32 Prototipo Figma - Vistas de inicio para los usuarios	158
+Figura 33 Prototipo Figma - Vistas de escanear pacientes (lista y sin lista)	158
+Figura 34 Prototipo Figma - Vista de escanear paciente (información)	159
+Figura 35 Prototipo Figma - Vistas de escanear rostro (por imagen)	159
+Figura 36 Prototipo Figma - Vistas de escanear rostro (por cámara)	160
+Figura 37 Prototipo Figma - Vistas de error al escanear rostro	160
+Figura 38 Prototipo Figma - CRUD pacientes (lista y sin lista)	161
+Figura 39 Prototipo Figma - CRUD pacientes (agregar / editar paciente)	161
+Figura 40 Prototipo Figma - CRUD pacientes (eliminar paciente)	162
+Figura 41 Prototipo Figma - CRUD pacientes (detalles de paciente)	162
+Figura 42 Prototipo Figma - CRUD usuarios (lista y sin lista)	163
+Figura 43 Prototipo Figma - CRUD usuarios (agregar / editar usuario)	163
+Figura 44 Prototipo Figma - CRUD usuarios (eliminar / desactivar / activar usuario)	164
+Figura 45 Prototipo Figma - Perfil del usuario	164
+Figura 46 Prototipo Figma - Editar perfil del usuario	164
+Figura 47 Implementación aplicación móvil: Iniciar sesión	165
+Figura 48 Implementación aplicación móvil: Iniciar sesión - Clave incorrecta	166
+Figura 49 Implementación aplicación móvil: Iniciar sesión - Recuperar clave	167
+Figura 50 Implementación aplicación móvil: Iniciar sesión - Cambiar clave	167
+Figura 51 Implementación aplicación móvil: Iniciar sesión - Código OTP	168
+Figura 52 Implementación aplicación móvil: Iniciar sesión - Dashboard principal	168
+Figura 53 Implementación aplicación móvil: Registro al sistema - Formulario	169
+Figura 54 Implementación aplicación móvil: Consultar mi perfil - Ver detalles	169
+Figura 55 Implementación aplicación móvil: Gestionar pacientes - Lista pacientes	170
+Figura 56 Implementación aplicación móvil: Gestionar pacientes - Agregar paciente	171
+Figura 57 Implementación aplicación móvil: Gestionar pacientes - Editar paciente	172
+Figura 58 Implementación aplicación móvil: Gestionar pacientes - Detalles paciente	172
+Figura 59 Implementación aplicación móvil: Gestionar pacientes - Eliminar paciente	173
+Figura 60 Implementación aplicación móvil: Gestionar sesiones - Lista sesiones	173
+Figura 61 Implementación aplicación móvil: Gestionar sesiones - Ver detalles	174
+Figura 62 Implementación aplicación móvil: Gestionar sesiones - Agregar sesión	174
+Figura 63 Implementación aplicación móvil: Gestionar sesiones - Editar sesión	175
+Figura 64 Implementación aplicación móvil: Gestionar sesiones - Eliminar sesión	175
+Figura 65 Implementación aplicación móvil: Gestionar sesiones - Calificar sesión	175
+Figura 66 Implementación aplicación móvil: Editar mi perfil - formulario	176
+Figura 67 Implementación aplicación móvil: Escaneo facial - Instrucciones	177
+Figura 68 Implementación aplicación móvil: Escaneo facial - Resultados	178
+Figura 69 Implementación aplicación móvil: Generar reportes - Reporte individual	178
+Figura 70 Implementación aplicación móvil: Generar reportes - Reporte general	179
+Figura 71 Implementación sistema web: Vista informativa - Inicio	180
+Figura 72 Implementación sistema web: Vista informativa - Nosotros	180
+Figura 73 Implementación sistema web: Vista informativa - Servicios	180
+Figura 74 Implementación sistema web: Vista informativa - Objetivos	181
+Figura 75 Implementación sistema web: Vista informativa - Testimonios	181
+Figura 76 Implementación sistema web: Vista informativa - Preguntas frecuentes	181
+Figura 77 Implementación sistema web: Iniciar sesión	182
+Figura 78 Implementación sistema web: Iniciar sesión - Credenciales incorrectas	182
+Figura 79 Implementación sistema web: Iniciar sesión - Cuenta desactivada	182
+Figura 80 Implementación sistema web: Iniciar sesión - Inicio de sesión exitoso	183
+Figura 81 Implementación sistema web: Iniciar sesión - Recuperar clave	183
+Figura 82 Implementación sistema web: Iniciar sesión - Recuperar clave solicitada	183
+Figura 83 Implementación sistema web: Iniciar sesión - Restablecer contraseña	184
+Figura 84 Implementación sistema web: Iniciar sesión - Contraseña restablecida	184
+Figura 85 Implementación sistema web: Iniciar sesión - Token inválido	184
+Figura 86 Implementación sistema web: Iniciar sesión - Solicitar OTP	185
+Figura 87 Implementación sistema web: Iniciar sesión - Código OTP solicitado	185
+Figura 88 Implementación sistema web: Iniciar sesión - Código OTP incorrecto	185
+Figura 89 Implementación sistema web: Iniciar sesión - Código OTP vencido	186
+Figura 90 Implementación sistema web: Iniciar sesión - Código OTP verificado	186
+Figura 91 Implementación sistema web: Iniciar sesión - Dashboard principal	186
+Figura 92 Implementación sistema web: Registro al sistema - Formulario	187
+Figura 93 Implementación sistema web: Registro al sistema - Registro exitoso	187
+Figura 94 Implementación sistema web: Gestionar usuarios - Lista de usuarios	188
+Figura 95 Implementación sistema web: Gestionar usuarios - Agregar usuario	188
+Figura 96 Implementación sistema web: Gestionar usuarios - Usuario agregado	188
+Figura 97 Implementación sistema web: Gestionar usuarios - Editar usuario	189
+Figura 98 Implementación sistema web: Gestionar usuarios - Usuario editado	189
+Figura 99 Implementación sistema web: Gestionar usuarios - Ver detalles	189
+Figura 100 Implementación sistema web: Gestionar usuarios - Eliminar usuario	190
+Figura 101 Implementación sistema web: Gestionar usuarios - Usuario eliminado	190
+Figura 102 Implementación sistema web: Gestionar usuarios - Desactivar usuario	190
+Figura 103 Implementación sistema web: Gestionar usuarios - Usuario desactivado	191
+Figura 104 Implementación sistema web: Gestionar usuarios - Activar usuario	191
+Figura 105 Implementación sistema web: Gestionar usuarios - Usuario activado	191
+Figura 106 Implementación sistema web: Consultar mi perfil - Ver detalles	192
+Figura 107 Implementación sistema web: Consultar mi perfil - Ver detalles	192
+Figura 108 Implementación sistema web: Gestionar pacientes - Lista de pacientes	193
+Figura 109 Implementación sistema web: Gestionar pacientes - Agregar paciente	193
+Figura 110 Implementación sistema web: Gestionar pacientes - Paciente agregado	193
+Figura 111 Implementación sistema web: Gestionar pacientes - Editar paciente	194
+Figura 112 Implementación sistema web: Gestionar pacientes - Paciente editado	194
+Figura 113 Implementación sistema web: Gestionar pacientes - Ver detalles	194
+Figura 114 Implementación sistema web: Gestionar pacientes - Eliminar paciente	195
+Figura 115 Implementación sistema web: Gestionar pacientes - Paciente eliminado	195
+Figura 116 Implementación sistema web: Gestionar pacientes - Desactivar paciente	195
+Figura 117 Implementación sistema web: Gestionar pacientes - Paciente desactivado	196
+Figura 118 Implementación sistema web: Gestionar pacientes - Activar paciente	196
+Figura 119 Implementación sistema web: Gestionar pacientes - Paciente activado	196
+Figura 120 Implementación sistema web: Gestionar sesiones - Mirar sesiones	197
+Figura 121 Implementación sistema web: Gestionar sesiones - Ver detalles	197
+Figura 122 Implementación sistema web: Editar mi perfil - Actualizar cambios	198
+Figura 123 Implementación sistema web: Editar mi perfil - Solicitar desactivar cuenta	198
+Figura 124 Implementación sistema web: Editar mi perfil - Solicitar eliminar cuenta	198
+Figura 125 Implementación sistema web: Gestionar dispositivos - Ver dispositivos	199
+Figura 126 Implementación sistema web: Generar reportes - Reporte individual	199
+Figura 127 Implementación sistema web: Generar reportes - Reporte individual	200
+Figura 128 Implementación sistema web: Generar reportes - Reporte individual	200
+Figura 129 Implementación sistema web: Generar reportes - Exportación JPG	201
+Figura 130 Implementación sistema web: Generar reportes - Exportación PDF	201
+Figura 131 Implementación sistema web: Generar reportes - Reporte general	201
+Figura 132 Implementación sistema web: Generar reportes - Reporte general	202
+Figura 133 Implementación sistema web: Generar reportes - Exportación JPG	202
+Figura 134 Implementación sistema web: Generar reportes - Exportación PDF	202
+Figura 135 Implementación sistema web: Gestionar blogs - Lista de blogs	203
+Figura 136 Implementación sistema web: Gestionar blogs - Agregar blog	203
+Figura 137 Implementación sistema web: Gestionar blogs - Blog agregado	203
+Figura 138 Implementación sistema web: Gestionar blogs - Editar blog	204
+Figura 139 Implementación sistema web: Gestionar blogs - Blog editado	204
+Figura 140 Implementación sistema web: Gestionar blogs - Ver detalles	204
+Figura 141 Implementación sistema web: Gestionar blogs - Eliminar blog	205
+Figura 142 Implementación sistema web: Gestionar blogs - Blog eliminado	205
+Figura 143 Implementación sistema web: Gestionar blogs - Desactivar blog	205
+Figura 144 Implementación sistema web: Gestionar blogs - Blog desactivado	206
+Figura 145 Implementación sistema web: Gestionar blogs - Activar blog	206
+Figura 146 Implementación sistema web: Gestionar blogs - Blog activado	206
+Figura 147 Resultado consolidado de encuestas pre y post implementación	218
+Figura 148 Porcentaje estadístico pregunta N°1 pre-implementación	219
+Figura 149 Porcentaje estadístico pregunta N°2 pre-implementación	220
+Figura 150 Porcentaje estadístico pregunta N°3 pre-implementación	221
+Figura 151 Porcentaje estadístico pregunta N°4 pre-implementación	222
+Figura 152 Porcentaje estadístico pregunta N°5 pre-implementación	223
+Figura 153 Porcentaje estadístico pregunta N°6 pre-implementación	224
+Figura 154 Porcentaje estadístico pregunta N°7 pre-implementación	225
+Figura 155 Porcentaje estadístico pregunta N°8 pre-implementación	226
+Figura 156 Porcentaje estadístico pregunta N°9 pre-implementación	227
+Figura 157 Porcentaje estadístico pregunta N°10 pre-implementación	228
+Figura 158 Porcentaje estadístico pregunta N°11 pre-implementación	229
+Figura 159 Porcentaje estadístico pregunta N°12 pre-implementación	230
+Figura 160 Porcentaje estadístico pregunta N°13 pre-implementación	231
+Figura 161 Porcentaje estadístico pregunta N°1 post-implementación	232
+Figura 162 Porcentaje estadístico pregunta N°2 post-implementación	233
+Figura 163 Porcentaje estadístico pregunta N°3 post-implementación	234
+Figura 164 Porcentaje estadístico pregunta N°4 post-implementación	235
+Figura 165 Porcentaje estadístico pregunta N°5 post-implementación	236
+Figura 166 Porcentaje estadístico pregunta N°6 post-implementación	237
+Figura 167 Porcentaje estadístico pregunta N°7 post-implementación	238
+Figura 168 Porcentaje estadístico pregunta N°8 post-implementación	239
+Figura 169 Porcentaje estadístico pregunta N°9 post-implementación	240
+Figura 170 Porcentaje estadístico pregunta N°10 post-implementación	241
+Figura 171 Porcentaje estadístico pregunta N°11 post-implementación	242
+Figura 172 Porcentaje estadístico pregunta N°12 post-implementación	243
+Figura 173 Porcentaje estadístico pregunta N°13 post-implementación	244
+Figura 174 Prueba de muestras emparejadas - Grupo Experimental	246
+Figura 175 Prueba de muestras emparejadas - Grupo Control	247
+Figura 176 Prueba de muestras independientes	248
+ 
+ 
+PLAN DE TESIS
+DATOS PRELIMINARES
+Título de la Investigación
+Serious Game para el mejoramiento de la intervención en el reconocimiento de emociones en adultos con TEA.
+Tipo de investigación
+Según el Propósito de la Investigación
+Será una investigación aplicada, orientada a resolver un problema específico dentro del contexto terapéutico y de rehabilitación cognitiva. Buscará desarrollar una herramienta tecnológica basada en reconocimiento facial con Machine Learning que contribuya al mejoramiento de la intervención en las dificultades de reconocimiento emocional en adultos con TEA.
+Según el Nivel de Profundidad de la Investigación
+El estudio tendrá un enfoque cuasiexperimental. Se medirán los cambios en las habilidades de reconocimiento emocional de los participantes antes y después del uso de Serious Game mediante el test Reading the Mind in the Eyes (RMET) y el análisis de certeza del sistema en las sesiones programadas.
+Localización
+Institución a la que Pertenece la Investigación
+Universidad San Ignacio de Loyola.
+Lima, Lima, La Molina, Av. La Fontana 550.
+Institución Donde se Desarrollará la Investigación
+Centro Educativo CEBE N.º 001 “San Juan de Dios”, ubicado en la región Tumbes, que trabaja con adultos diagnosticados con TEA.
+
+refes:
+
+REFERENCIAS
+Arroyo, J., Quispe, L., & Choque, P. (2022). YachayMunay: Serious game culturalmente pertinente para el reconocimiento emocional en adultos con TEA. Universidad Andina del Cusco.
+Barrett, L. F. (2017). How emotions are made: The secret life of the brain. Houghton Mifflin Harcourt.
+Barrett, L. F., Lindquist, K., & Gendron, M. (2011). Language as context for the perception of emotion. Trends in Cognitive Sciences, 11(8), 327-332. https://doi.org/10.1016/j.tics.2007.06.003
+Baron-Cohen, S. (1995). Mind blindness: An essay on autism and theory of mind. Cambridge: MIT Press. https://doi.org/10.7551/mitpress/4635.001.0001
+Baron-Cohen, S., Golan, O., & Wheelwright, S. (2001). The “Reading the Mind in the Eyes” Test revised version: A study with normal adults, and adults with Asperger syndrome or high-functioning autism. Journal of Child Psychology and Psychiatry, 42(2), 241-251.https://doi.org/10.1017/S0021963001006643
+Beaumont, R., & Sofronoff, K. (2008). A multi-component social skills intervention for children with Asperger syndrome: The Junior Detective Training Program. Journal of Child Psychology and Psychiatry, 49(7), 743-753. https://doi.org/10.1111/j.1469-7610.2008.01900.x
+Benoit-Lizon, I., Hervé, P., & Masson, C. (2021). Serious Game to teach emotion recognition to children with autism spectrum disorders. Acta Neuropsychologica, 19(1), 47-60. 
+Brown, J., & Smith, R. (2018). Uso de juegos serios para reducir el estrés en adultos con TEA. International Journal of Game-Based Learning.
+Brown, N., Kushki, A., & Chantulike, K. (2019). Interoceptive awareness and emotion recognition in autism spectrum conditions: A pilot study. Journal of Autism and Developmental Disorders, 49(4), 1740-1750.
+Aballay, L., Aciar, S., & Collazos, C. A. (2015). Modelo de adaptación de contenido basado en perfil cultural en entornos de aprendizaje (Adaptation Model Content Based in Cultural Profile into Learning Environment). IEEE Latin America Transactions, 13(1), 1-6. https://doi.org/10.1109/TLA.2018.8447365
+Calderón-Parra, J., Gutiérrez-Martínez, J., & López-Hernández, M. (2024). Serious Game for developing social skills in children and adolescents with autism spectrum disorder: A systematic review. Healthcare, 12(5), 508. https://doi.org/10.3390/healthcare12050508
+Creswell, J. W., & Creswell, J. D. (2018). Research design: Qualitative, quantitative, and mixed methods approach (5.ª ed.). SAGE Publications. https://doi.org/10.1007/s11606-012-2117-2
+Cuenca, J., et al. (2021). Inclusión Digital Andina: Lecciones desde Cusco. Revista IEEE América Latina.
+Del-Moral-Pérez, M. E., & Guzmán-Duque, A. P. (2014). Serious Game: Escenarios lúdicos para el desarrollo de las inteligencias múltiples en escolares de primaria. EDUTEC. Revista Electrónica de Tecnología Educativa, 47, 1-20. https://redined.educacion.gob.es/xmlui/bitstream/handle/11162/197232/Serious%20games.pdf
+Elhaddadi, M., Serret, S., & Chaby, L. (2022). JeStiMulE: A serious game to teach emotion recognition to children with autism spectrum disorders. Acta Neuropsychologica, 20(1), 45-58. https://doi.org/10.3389/feduc.2024.1453327
+Ekman, P., & Friesen, W. V. (1971). Constants across cultures in the face and emotion. Journal of Personality and Social Psychology, 17(2), 124-129.https://psycnet.apa.org/doi/10.1037/h0030377
+Ekman, P. (1992). An argument for basic emotions. Cognition & Emotion, 6(3-4), 169-200. https://doi.org/10.1080/02699939208411068
+Ekman, P. (2003). Emotions revealed: Recognizing faces and feelings to improve communication and emotional life. Times Books.
+Epstein, J. L. (2011). School, family, and community partnerships: Preparing educators and improving schools. Westview Press.
+Fernández, L., & González, M. (2020). Dimensión cultural en el diseño de juegos serios para adultos con TEA. Journal of Multicultural Education, 12(3), 298-312.
+Fridenson-Hayo, S., Berggren, S., Lassalle, A., Tal, S., Pigat, D., Meir-Goren, N., … Golan, O. (2017). ‘Emotiplay’: A serious game for learning about emotions in children with autism. European Child & Adolescent Psychiatry, 26(8), 979-992.https://doi.org/10.1007/s00787-017-0968-0
+Fullan, M. (2016). The new meaning of educational change. Teachers College Press.https://www.daneshnamehicsa.ir/userfiles/files/1/6- The New Meaning of Educational Change, Fourth Edition.pdf
+Grandin, T. (2006). Thinking in pictures: My life with autism. Vintage.
+Gatica, V., et al. (2021). Cultural adaptation of Serious Game in Chile. Latin American Journal of Educational Technology.
+Garrett, J. J. (2010). The elements of user experience: User-centered design for the web and beyond. New Riders.https://ptgmedia.pearsoncmg.com/images/9780321683687/samplepages/0321683684.pdf
+Golan, O., Ashwin, E., Granader, Y., McClintock, S., Day, K., Leggett, V., & Baron-Cohen, S. (2009). Enhancing emotion recognition in children with autism spectrum conditions: An intervention using animated vehicles with real emotional faces. Journal of Autism and Developmental Disorders, 40(3), 269-279.https://doi.org/10.1007/s10803-009-0862-9 
+González, M. J., & Segregra, M. A. (2018). Salud mental en adolescentes y jóvenes en América Latina y el Caribe: situación actual y desafíos. Revista Latinoamericana de Ciencias Sociales, Niñez y Juventud, 16(2), 1350-1363.
+González, M., et al. (2017). EmoReact: AI-driven emotional recognition for ASD. Journal of Autism and Developmental Disorder. doi:10.1007/s10803-017-3156-7
+Barrett, L. F., Lewis, M., & Haviland-Jones, J. M. (Eds.). (2016). Handbook of Emotions (4.ª ed.). Guilford Press. https://emotrab.ufba.br/wp-content/uploads/2020/09/Handbook-of-Emotions-Fourth-Edition-by-Lisa-Feldman-Barrett-Michael-Lewis-Jeannette-M.-Haviland-Jones-z-lib.org-compactado.pdf
+Herrera, E., Luján, K., & Salazar, M. (2021). Sensory overload triggered by static images in Peruvian children with autism: A pilot study. Revista Peruana de Pediatría, 74(2), 123-130.
+Hillson, D., & Murray-Webster, R. (2017). Understanding and managing risk attitude. Gower Publishing, Ltd.https://doi.org/10.4324/9781315235448
+Hirano, S., Yamada, M., & Yoshikawa, M. (2010). Interactive technologies and Serious Game: A pathway to enhanced emotional development in autistic children. International Journal of Child-Computer Interaction, 7(1), 35-45. https://doi.org/10.1007/BF03405837
+Hobson, R. (2002). Autism and the development of mind. Psychology Press.https://www.taylorfrancis.com/books/mono/10.4324/9780203765272/autism-development-mind-peter-hobson - :~:text=https%3A//doi.org/10.4324/9780203765272
+Huaquisto, A., Flores, V., & Pérez, S. (2021). Alfabetización digital en familias rurales peruanas con hijos con necesidades educativas especiales. Revista Latinoamericana de Tecnología Educativa, 20(3), 45-61. https://doi.org/http://dx.doi.org/10.17163/alt.v12n1.2017.01
+IGI Global. (s. f.). What is Consistency Matrix | IGI Global Scientific Publishing. Recuperado de IGI Global Dictionary. https://www.igi-global.com/dictionary/consistency-matrix/59856
+Instituto Nacional de Estadística e Informática (INEI). (2018). Perú: Enfermedades No Transmisibles y Transmisibles, 2017. Lima: INEI. https://proyectos.inei.gob.pe/endes/2018/SALUD/ENFERMEDADES_ENDES_2017.pdf
+Instituto Nacional de Estadística e Informática. (2023, 15 enero). El 51,8 % de la población del área rural accedió al Internet. https://m.inei.gob.pe/prensa/noticias/el-518-de-la-poblacion-del-area-rural-accedio-al-internet-15100/
+Instituto Nacional de Salud Mental “Honorio Delgado - Hideyo Noguchi” (INSM HD-HN). (2019). Estudio epidemiológico de salud mental en población general de Lima Metropolitana y Callao. Lima: INSM HD-HN. https://openjournal.insm.gob.pe/revistasm/asm/article/view/7/164
+Kapp, K. M. (2012). The gamification of learning and instruction: Game-based methods and strategies for training and education. Pfeiffer. https://doi.org/10.1145/2207270.2211316
+Kapp, K. M., & O’Driscoll, T. (2011). Learning in 3D: Adding a new dimension to enterprise learning and collaboration. John Wiley & Sons. 
+Kerzner, H. (2017). Project management: A systems approach to planning, scheduling, and controlling. John Wiley & Sons.
+Kessler, R., et al. (2007). The Lifetime Prevalence and Age-of-Onset Distributions of DSM-IV Disorders in the National Comorbidity Survey Replication. file:///Kerzner, H. (2017). Project management/ A systems approach to planning, scheduling, and controlling. John Wiley & Sons.
+Kumar, S., & Patel, R. (2022). Realidad aumentada en juegos serios y su impacto en adultos con TEA. Journal of Advanced Educational Research.
+Krug, S. (2014). Don't make me think, revisited: A commonsense approach to web usability. New Riders.
+Leekam, S., Prior, M., Kratz, O., Falkmer, M., & Bölte, S. (2022). Sensory reactivity in autism: A review of neurobiological and clinical findings. Journal of Child Psychology and Psychiatry, 63(9), 960-972.
+López-Bouzas, N., Del Moral Pérez, M. E., & Castañeda Fernández, J. (2023). Incremento de las habilidades socioemocionales de alumnado con TEA tras una intervención apoyada en un Entorno Gamificado Aumentado. Revista Educación Inclusiva, 16(2), 123-138. https://doi.org/10.3389/fpsyg.2016.01305
+Lyu, Y., An, P., Zhang, H., Katsuragawa, K., & Zhao, J. (2024). Designing AI-Enabled Games to Support Social-Emotional Learning for Children with Autism Spectrum Disorders. arXiv preprint arXiv:2404.15576. https://arxiv.org/abs/2404.15576
+Ma, M. (Ed.). (2014). Serious Game and edutainment applications. IGI Global.
+Meredith, J. R., & Mantel, S. J. (2017). Project management: A managerial approach (9ᵃ ed.). John Wiley & Sons.
+Meyer, A., Rose, D. H., & Gordon, D. (2014). Universal design for learning: Theory and practice. CAST Professional Publishing.
+Ministerio de Educación del Perú. (2023). Reporte Anual de Educación Especial. http://escale.minedu.gob.pe/
+Ministerio de Salud del Perú. (2018). Plan Nacional de Fortalecimiento de Servicios de Salud Mental Comunitaria 2018-2021. Lima: MINSA. https://bvs.minsa.gob.pe/local/MINSA/5000.pdf/
+Ministerio de Salud del Perú. (2020). Lineamientos para la atención de la salud mental durante el brote del COVID-19. Lima: MINSA. https://bvs.minsa.gob.pe/local/MINSA/5000.pdf
+Ministerio de Salud. (2023). Estrategia para la implementación de intervenciones en TEA. MINSA. https://cdn.www.gob.pe/uploads/document/file/6720731/5832490-estrategia-tea.pdf?v=1722525321
+Ministerio de Transportes y Comunicaciones. (2023). Brecha digital en el Perú: Diagnóstico y agenda pendiente. MTC. https://cdn.www.gob.pe/uploads/document/file/4341442/Innovar para conectar.pdf/
+Newbutt, N. (2020). Autism and immersive technologies: A systematic review. Journal of Enabling Technologies. https://doi.org/10.1108/JET-01-2018-0004
+Northouse, P. G. (2018). Leadership: Theory and practice (8ᵃ ed.). Sage Publications.
+Organización Mundial de la Salud. (2021). Salud mental de los adolescentes. https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health
+Patel, V., Flisher, A. J., & Hetrick, S. (2018). Mental health interventions for young people in low- and middle-income countries: An urgent need for scalable and sustainable models. The Lancet Psychiatry. https://aace.org/
+Patel, et al. (2018). The Burden of Mental Disorders in Adolescents: A Review. https:doi.org/10.7237/sjpsych/267
+Rodríguez-Sanz, A. (2020). Revisión de juegos serios en educación especial: Una revisión del estado del arte. Universidad Autónoma de Madrid. https://repositorio.uam.es/bitstream/handle/10486/693304/rodriguez_sanz_adriana_tfg.pdf?sequence=1&isAllowed=y
+Rodríguez, J., & Muñoz, A. (2018). Diseño de un serious game para mejorar la comunicación alternativa en adultos con TEA. Revista Española de Educación Especial, 12(1), 45-59. 
+Silver, S., & Oakes, P. (2001). Bridging the gap: Enhancing emotional recognition in autism with technology. British Journal of Developmental Psychology, 19(4), 507-523. https://doi.org/10.1098/rstb.2009.0191
+Susa (García, P., & Montoya, R.). (2019). Escala de utilidad social en autismo, validada en Latinoamérica. https://redets.sanidad.gob.es/documentos/OSTEBA_TEA.pdf
+Vallejo, M., Espinoza, D., & Herrera, J. (2019). Desigualdades en el acceso a la salud mental en zonas rurales del Perú. Revista Peruana de Medicina Experimental y Salud Pública, 36(2), 273-279. https://rpmesp.ins.gob.pe/index.php/rpmesp/issue/view/124
+Talaat, F. M. (2023). Real-time facial emotion recognition system among children with autism based on Deep Learning and IoT. Neural Computing and Applications, 35, 12717-12728. https://link.springer.com/article/10.1007/s00521-023-08372-9
+Abdelbar, A., Haytham, H., Ziad, M., Amr, M., Haytham, M., Ashraf, N., Moussa, K., & Darweesh, M. S. (2024). Face recognition using Python and OpenCV: Review. International Journal of Scientific and Research Publications, 14(01). https://www.ijsrp.org/research-paper-0124.php?rp=P14513223
+Rajesh, V., Sravan, V. S., & Prakash, N. N. (2024). Facial expression recognition using KERAS. ResearchGate. https://www.researchgate.net/publication/349742556_Facial_Expression_Recognition_Using_KERAS
+Shekar, S., Tejas, B. M., Ramakrishnappa, V., & Vani, B. P. (2021). Facial expression recognition using CNN with Keras. ResearchGate. https://www.researchgate.net/publication/351056923_Facial_Expression_Recognition_Using_CNN_with_Keras
+Ilaslan, D. (2023). Facial emotion recognition: A Deep Learning approach with Keras. Medium. https://medium.com/@ilaslanduzgun/facial-emotion-recognition-a-deep-learning-approach-with-keras-8e4fee7b7bb0
+Kazemi, V., & Sullivan, J. (2014). One millisecond face alignment with an ensemble of regression trees. IEEE Conference on Computer Vision and Pattern Recognition (CVPR). https://ieeexplore.ieee.org/document/6909637
+King, D. E. (2009). Dlib-ml: A machine learning toolkit. The Journal of Machine Learning Research, 10, 1755-1758. http://dlib.net/
+Porter, J. R., Marston, M. L., Shu, E., & Pope, M. (2023). The 68 facial landmarks extracted by the dlib library. ResearchGate. https://www.researchgate.net/figure/The-68-facial-landmarks-extracted-by-the-dlib-library-8_fig2_352860048 
+
+GO.

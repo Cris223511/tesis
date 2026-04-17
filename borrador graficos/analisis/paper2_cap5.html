@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Figures 12, 13, 14 - Emotion Recognition Paper</title>
+    <title>Figures 8, 9, 14 - Emotion Recognition Paper</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
@@ -108,17 +108,18 @@
 <body>
     <div class="container">
         <div class="figure">
-            <div class="figure-title">Figure 12. Summary of accuracy results by emotion type</div>
-            <div class="figure-caption">CNN model performance for each of the 5 basic emotions during validation phase.
-                Metrics obtained from model evaluation on validation dataset.</div>
+            <div class="figure-title">Figure 8. Summary of accuracy results by emotion type</div>
+            <div class="figure-caption">CNN model performance for each of the 5 basic emotions detected during real-time
+                validation with 1,200 inferences across 79 therapeutic sessions.</div>
             <div class="chart-wrapper">
                 <canvas id="emotionAccuracyChart"></canvas>
             </div>
         </div>
         <div class="figure">
-            <div class="figure-title">Figure 13. Summary of evaluation metrics of the emotion recognition system</div>
+            <div class="figure-title">Figure 9. Summary of evaluation metrics of the emotion recognition system</div>
             <div class="figure-caption">Overall system performance metrics (Precision, Recall, F1-Score) evaluated on
-                validation dataset. Overall accuracy of 95.8% achieved across all emotion categories.</div>
+                real-time inferences during field validation. Overall accuracy of 95.8% achieved across all emotion
+                categories.</div>
             <div class="metrics-grid">
                 <div class="chart-wrapper" style="height: 450px;">
                     <canvas id="metricsChart"></canvas>
@@ -146,17 +147,18 @@
         <div class="figure">
             <div class="figure-title">Figure 14. Graphical representation of related works performance and proposed
                 method</div>
-            <div class="figure-caption">Comparative analysis of CNN-based facial emotion recognition systems as
-                indicated in Table 15. Horizontal line indicates 95% accuracy threshold objective.</div>
-            <div class="chart-wrapper">
+            <div class="figure-caption">Comparative analysis of facial emotion recognition systems relevant to pediatric
+                ASD population as indicated in Table 15. Dashed line indicates 95% accuracy threshold objective.</div>
+            <div class="chart-wrapper" style="height: 550px;">
                 <canvas id="comparisonChart"></canvas>
             </div>
         </div>
     </div>
     <script>
         Chart.register(ChartDataLabels);
-        const fig12ctx = document.getElementById('emotionAccuracyChart');
-        new Chart(fig12ctx, {
+        // Figure 8 - Accuracy by emotion
+        const fig8ctx = document.getElementById('emotionAccuracyChart');
+        new Chart(fig8ctx, {
             type: 'bar',
             data: {
                 labels: ['Happy', 'Neutral', 'Sad', 'Angry', 'Disgusted'],
@@ -196,8 +198,9 @@
                 }
             }
         });
-        const fig13ctx = document.getElementById('metricsChart');
-        new Chart(fig13ctx, {
+        // Figure 9 - Precision/Recall/F1
+        const fig9ctx = document.getElementById('metricsChart');
+        new Chart(fig9ctx, {
             type: 'bar',
             data: {
                 labels: ['Happy', 'Neutral', 'Sad', 'Angry', 'Disgusted'],
@@ -226,9 +229,7 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: { position: 'top', labels: { font: { size: 13, weight: '600' }, padding: 15, usePointStyle: true } },
-                    datalabels: {
-                        display: false
-                    }
+                    datalabels: { display: false }
                 },
                 scales: {
                     x: {
@@ -239,40 +240,41 @@
                         title: { display: true, text: 'Score', font: { size: 14, weight: 'bold' } },
                         min: 0.9,
                         max: 1.0,
-                        ticks: {
-                            callback: v => v.toFixed(2),
-                            stepSize: 0.02
-                        },
+                        ticks: { callback: v => v.toFixed(2), stepSize: 0.02 },
                         grid: { color: 'rgba(0,0,0,0.05)' }
                     }
                 }
             }
         });
+        // Figure 14 - Comparison with related works (CORRECTED for pediatric ASD)
         const fig14ctx = document.getElementById('comparisonChart');
         new Chart(fig14ctx, {
             type: 'bar',
             data: {
                 labels: [
-                    'Alshamsi [1]\nCNN cloud',
-                    'Saumell [2]\nSVM',
-                    'Zhu et al. [3]\nI-MobileNetV2',
-                    'Nan et al. [4]\nA-MobileNet',
-                    'Haq et al. [5]\nMobileNet-V1',
-                    'Agung et al. [7]\nInception-V3',
-                    'Elsheikh et al. [8]\nAA-DCN',
-                    'Debnath et al. [9]\nCNN 4-layer',
-                    'This study (2025)\nEfficientNetB1'
+                    'Washington et al. [9]\nResNet-152',
+                    'Radočaj & Mart. [10]\nSwin Transformer',
+                    'Hwang et al. [15]\nLSTM+2D-FAN',
+                    'Sholikah et al. [7]\nVGG-16',
+                    'Debnath et al. [27]\nCNN 4-layer',
+                    'Hassan et al. [14]\nRF+XGBoost',
+                    'Zhu et al. [39]\nI-MobileNetV2',
+                    'Haq et al. [38]\nMobileNet-V1',
+                    'Elsheikh et al. [32]\nAA-DCN',
+                    'This study (2026)\nEfficientNetB1'
                 ],
                 datasets: [{
                     label: 'Accuracy (%)',
-                    data: [97.26, 90.5, 95.96, 88.11, 97.9, 96.0, 99.26, 91.01, 95.8],
+                    data: [79.10, 80.00, 88.00, 91.00, 91.01, 95.60, 95.96, 97.90, 99.26, 95.80],
                     backgroundColor: [
-                        '#e74c3c', '#3498db', '#f39c12', '#1abc9c',
-                        '#9b59b6', '#e67e22', '#e91e63', '#95a5a6', '#27ae60'
+                        '#3498db', '#1abc9c', '#9b59b6', '#e67e22',
+                        '#95a5a6', '#e91e63', '#f39c12', '#8e44ad',
+                        '#e74c3c', '#27ae60'
                     ],
                     borderColor: [
-                        '#c0392b', '#2980b9', '#e67e22', '#16a085',
-                        '#8e44ad', '#d35400', '#c2185b', '#7f8c8d', '#229954'
+                        '#2980b9', '#16a085', '#8e44ad', '#d35400',
+                        '#7f8c8d', '#c2185b', '#e67e22', '#6c3483',
+                        '#c0392b', '#229954'
                     ],
                     borderWidth: 2
                 }]
@@ -315,17 +317,14 @@
                 scales: {
                     x: {
                         title: { display: true, text: 'Accuracy (%)', font: { size: 14, weight: 'bold' } },
-                        min: 85,
+                        min: 70,
                         max: 100,
                         ticks: { callback: v => v + '%' },
                         grid: { color: 'rgba(0,0,0,0.05)' }
                     },
                     y: {
                         title: { display: true, text: 'Reference / Method', font: { size: 14, weight: 'bold' } },
-                        ticks: {
-                            font: { size: 10 },
-                            autoSkip: false
-                        },
+                        ticks: { font: { size: 10 }, autoSkip: false },
                         grid: { display: false }
                     }
                 }

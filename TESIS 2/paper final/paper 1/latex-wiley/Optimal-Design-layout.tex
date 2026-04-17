@@ -7,7 +7,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{booktabs}
 \usepackage{listings}
-
+\usepackage{graphicx}
+\setkeys{Gin}{draft=false}
 \graphicspath{{./images/}}
 \specialissue{}
 \articletype{REVISIÓN SISTEMÁTICA}
@@ -51,7 +52,12 @@
 			Perú, }%
 		\orgaddress{\state{Lima, }\country{Perú}}}
 	
-	\corres{Jorge Eduardo Castañeda Alban (\email{jorge.castaneda@usil.edu.pe})}
+	\corres{Jorge Eduardo Castañeda Alban (\email{jorge.castanedaa@usil.pe});
+		Christopher Antonio Pillihuamán Santiago (\email{c.pillihuaman@usil.pe});
+		Jhafet Martín Cánepa Maceda (\email{jhafet.canepa@usil.pe});
+		Jomark Pablo Noriega Zapata (\email{jnoriegaz@usil.edu.pe});
+		Juan Orlando Salazar Campos (\email{jsalazarc@usil.edu.pe});
+		Kenny Disney Neira Neira (\email{kneira@usil.edu.pe})}
 	\editor{}
 	\presentaddress{}
 	
@@ -68,7 +74,7 @@
 		de reconocimiento de expresividad emocional facial basados en aprendizaje automático
 		para el monitoreo terapéutico en niños con TEA. Siguiendo PRISMA 2020, se
 		identificaron 1{,}915 registros en Scopus, Web of Science e IEEE Xplore;
-		34 estudios publicados entre 2018 y 2025 fueron incluidos. Las arquitecturas CNN
+		34 estudios publicados entre 2018 y 2026 fueron incluidos. Las arquitecturas CNN
 		predominan, con accuracy entre 67.8\% y 88.0\% en datos clínicos genuinos y hasta
 		99.0\% en datasets de Kaggle sin validez clínica verificada. Las limitaciones
 		críticas incluyen representatividad ecológica limitada (11/34, 32.4\%), desbalance
@@ -76,11 +82,13 @@
 		revisión establece fundamentos para desarrollar herramientas digitales accesibles
 		y culturalmente adaptadas.%
 		\par\smallskip\noindent\textbf{Datasets:} No aplicable (revisión sistemática).
+		Todos los datos extraídos están disponibles en el repositorio público GitHub:
+		https://github.com/Cris223511/systematic-review-data-analysis.
 		\textbf{Licencia del Dataset:} No aplicable.}
 	
 	\transabstract[ABSTRACT]{Deficits in facial emotion recognition constitute a
 		critical barrier for therapeutic monitoring in children with Autism Spectrum
-		Disorder (ASD). Following PRISMA 2020, 34 studies published between 2018 and 2025
+		Disorder (ASD). Following PRISMA 2020, 34 studies published between 2018 and 2026
 		were selected from 1{,}915 records across Scopus, Web of Science, and IEEE Xplore.
 		CNN architectures predominate, reporting accuracy between 67.8\%--88.0\% in
 		genuine clinical data versus inflated values up to 99.0\% in Kaggle datasets
@@ -173,30 +181,22 @@
 	constante a Internet, permaneciendo inaccesibles en regiones con infraestructura
 	no confiable \cite{Levy2024}. Más aún, el 88\% (30 de 34 estudios) se concentra en
 	poblaciones pediátricas menores de 12 años, reflejando un énfasis desproporcionado
-	en intervención temprana \cite{Washington2022}. Críticamente, tres estudios fueron
-	retractados entre diciembre 2024 y diciembre 2025 debido al uso de datasets de
-	Kaggle con imágenes de menores recopiladas de internet sin consentimiento parental
-	documentado ni diagnóstico clínico verificado \cite{Gungor2025,Mahmood2025,Kumar2024},
-	exponiendo vulnerabilidades éticas fundamentales en la validación de tecnologías
-	para TEA. Además, solo 8 de 34 estudios identificados ofrecen algún nivel de
-	acceso a datos o código \cite{Sariyanidi2025,Hassan2025}, y ninguno comparte
-	simultáneamente dataset completo y código fuente, revelando una crisis de
-	reproducibilidad que obstaculiza el progreso científico acumulativo.
+	en intervención temprana \cite{Washington2022}. Un hallazgo particularmente grave es que tres estudios fueron retractados entre diciembre 2024 y diciembre 2025 debido al uso de datasets de	Kaggle con imágenes de menores recopiladas de internet sin consentimiento parental documentado ni diagnóstico clínico verificado \cite{Gungor2025,Mahmood2025,Kumar2024}, exponiendo vulnerabilidades éticas fundamentales en la validación de tecnologías para TEA. Además, solo 8 de 34 estudios identificados ofrecen algún nivel de acceso a datos o código \cite{Sariyanidi2025,Hassan2025}, y ninguno comparte
+	simultáneamente dataset completo y código fuente, revelando una crisis de reproducibilidad que obstaculiza el progreso científico acumulativo.
 	
 	La brecha más significativa es la ausencia de herramientas diseñadas para el
-	monitoreo terapéutico objetivo: la mayoría de estudios se enfoca en diagnóstico
-	binario o clasificación de severidad \cite{Alsubai2025}, enfoque explícitamente
-	distinto del monitoreo de progreso terapéutico que constituye el objeto de esta
-	revisión, no en métricas de progreso terapéutico sesión a sesión; la evidencia
-	específica sobre monitoreo terapéutico de expresividad emocional en TEA es escasa
-	dentro del corpus identificado, lo que motiva esta revisión como mapeo del
-	panorama existente. Esta brecha es especialmente pronunciada en América Latina,
+	monitoreo terapéutico objetivo. La mayoría de estudios se enfoca en diagnóstico
+	binario o clasificación de severidad \cite{Alsubai2025}, tarea clínicamente distinta
+	del seguimiento sesión a sesión de la expresividad emocional que constituye el objeto
+	de esta revisión. La evidencia específica sobre monitoreo de progreso terapéutico en
+	TEA es escasa dentro del corpus identificado, lo que motiva esta revisión como mapeo
+	del panorama existente. Esta brecha es especialmente pronunciada en América Latina,
 	donde no existe evidencia de datasets validados culturalmente ni aplicaciones
 	adaptadas a contextos con conectividad limitada \cite{Lecciso2021,Rudovic2018}. Esta
-	revisión sistemática aborda esta brecha sintetizando arquitecturas ML, métricas
-	de rendimiento, características de datasets y limitaciones metodológicas de la
-	literatura existente, con el objetivo de establecer fundamentos para herramientas
-	de monitoreo terapéutico culturalmente adaptadas al contexto latinoamericano.
+	revisión sistemática aborda esta brecha sintetizando arquitecturas ML, métricas de
+	rendimiento, características de datasets y limitaciones metodológicas de la
+	literatura existente, con el objetivo de establecer fundamentos para herramientas de
+	monitoreo terapéutico culturalmente adaptadas al contexto latinoamericano.
 	
 	%%=============================================================
 	\section{Materiales y Métodos}\label{sec2}
@@ -258,28 +258,33 @@
 	\subsection{Protocolo y Registro}\label{sec2b}
 	
 	Esta revisión sistemática fue conducida en conformidad con las directrices PRISMA
-	2020 para la presentación integral de revisiones sistemáticas. El protocolo fue
-	registrado de manera prospectiva en el Registro Internacional Prospectivo de
-	Revisiones Sistemáticas (PROSPERO) bajo el número de registro CRD420251248821.
-	Los datos, código y materiales suplementarios están disponibles a través de
-	Zenodo (DOI: 10.5281/zenodo.17900467). Se incluyó una lista de verificación
-	PRISMA 2020 completa como material suplementario para facilitar la replicación y
-	la evaluación metodológica.
+	2020 para la presentación integral de revisiones sistemáticas. Los datos, código
+	y materiales suplementarios están disponibles públicamente en el repositorio
+	GitHub: https://github.com/Cris223511/systematic-review-data-analysis. Se incluyó
+	una lista de verificación PRISMA 2020 completa como material suplementario para
+	facilitar la replicación y la evaluación metodológica.
 	
 	\subsection{Fuentes de Información y Estrategia de Búsqueda}\label{sec2c}
 	
 	Se realizaron búsquedas exhaustivas en tres bases de datos indexadas de
 	referencia: IEEE Xplore Digital Library, Scopus y Web of Science Core Collection.
-	El período de búsqueda abarcó desde 2019 hasta 2025, incluyendo artículos de
-	revista y actas de congresos en las áreas de ciencias de la computación,
-	ingeniería biomédica e informática médica. El alcance se restringió a
-	publicaciones de acceso abierto con el fin de mejorar la reproducibilidad y
-	accesibilidad de los estudios incluidos. Se reconoce que este criterio introduce
-	un potencial sesgo de publicación hacia estudios con financiamiento institucional
-	para costos de acceso abierto. Las fuentes de literatura gris (preprints, informes
-	técnicos y disertaciones) no fueron exploradas sistemáticamente debido a
-	restricciones de recursos y consideraciones de control de calidad, lo que podría
-	limitar la incorporación de hallazgos emergentes no publicados.
+	El período de búsqueda abarcó desde 2019 hasta 2025 para los registros recuperados
+	mediante la cadena automatizada. Los estudios publicados en 2018 incluidos en el
+	corpus corresponden a trabajos identificados durante el cribado cuyas fechas de
+	publicación oficial preceden al límite inferior de la cadena pero que fueron
+	recuperados porque sus registros indexados en Scopus, WoS e IEEE contenían los
+	términos de búsqueda dentro del período definido; el estudio de 2026 (Cicceri et al.\
+	\cite{Cicceri2026}) fue incorporado porque su indexación se completó antes de la
+	fecha de ejecución de la búsqueda el 15 de febrero de 2026. La búsqueda incluyó
+	artículos de revista y actas de congresos en las áreas de ciencias de la computación,
+	ingeniería biomédica e informática médica. El alcance se restringió a publicaciones
+	de acceso abierto con el fin de mejorar la reproducibilidad y accesibilidad de los
+	estudios incluidos. Se reconoce que este criterio introduce un potencial sesgo de
+	publicación hacia estudios con financiamiento institucional para costos de acceso
+	abierto. Las fuentes de literatura gris (preprints, informes técnicos y
+	disertaciones) no fueron exploradas sistemáticamente debido a restricciones de
+	recursos y consideraciones de control de calidad, lo que podría limitar la
+	incorporación de hallazgos emergentes no publicados.
 	
 	La estrategia de búsqueda fue desarrollada mediante un proceso iterativo que
 	incluyó búsquedas piloto. La cadena prioriza los términos centrales del dominio
@@ -311,7 +316,8 @@
 	Esta cadena fue ejecutada con operadores booleanos equivalentes y códigos de
 	campo en IEEE Xplore y Web of Science el 15 de febrero de 2026. Las cadenas de
 	búsqueda específicas por plataforma se proporcionan en el Material Suplementario
-	S1 (disponible en Zenodo, DOI: 10.5281/zenodo.17900467).
+	S1 (disponible en el repositorio GitHub:
+	https://github.com/Cris223511/systematic-review-data-analysis).
 	
 	\subsection{Criterios de Elegibilidad}\label{sec2d}
 	
@@ -320,7 +326,7 @@
 	media (6--11 años) y adolescencia (12--18 años).
 	
 	\begin{table}[!ht]
-		\caption{Aplicación de Criterios de Inclusión y Exclusión.\label{tab2}}
+		\caption{Rangos de Edad de la Población Pediátrica.\label{tab2}}
 		\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}
 			\toprule
 			\textbf{Categoría} & \textbf{Rango de Edad} \\
@@ -416,7 +422,10 @@
 	completa, 18 sin reporte de dataset, 12 sin métricas cuantitativas, 4 con tamaño
 	de muestra insuficiente, y 2 con PDF incompleto o corrupto. Finalmente, 34 estudios
 	cumplieron todos los criterios de inclusión y fueron retenidos para la síntesis
-	cualitativa. La Tabla~\ref{tab3} presenta un resumen cuantitativo de la aplicación
+	cualitativa. No se realizaron búsquedas adicionales mediante rastreo de citas o
+	consulta de expertos, por lo que el conjunto de estudios incluidos en la fase de
+	elegibilidad coincide con el total de estudios incorporados a la síntesis
+	(N\,=\,34). La Tabla~\ref{tab3} presenta un resumen cuantitativo de la aplicación
 	de los criterios de inclusión y exclusión en todas las fases.
 	
 	\begin{table*}[!ht]
@@ -438,7 +447,7 @@
 			Sin métricas cuantitativas                    & Excluidos & 12      & 0.63\%  \\
 			Tamaño de muestra insuficiente                & Excluidos & 4       & 0.21\%  \\
 			PDF incompleto o corrupto                     & Excluidos & 2       & 0.10\%  \\
-			\textbf{Subtotal excluidos} & & \textbf{1{,}881} & \textbf{98.22\%} \\
+			\textbf{Subtotal excluidos} & & \textbf{1{,}881} & \textbf{98.23\%} \\
 			\midrule
 			\textbf{Total de estudios incluidos en la revisión sistemática} & &
 			\textbf{34} & \textbf{1.78\%} \\
@@ -455,7 +464,7 @@
 			son por tanto mutuamente excluyentes y su suma es trazable al total de 51 estudios
 			excluidos en texto completo. Esta jerarquización garantiza consistencia en la
 			aplicación del protocolo y permite replicar el proceso de selección a partir de
-			la información reportada.
+			la información reportada. Estas razones operacionales complementan los criterios de exclusión formales definidos en la Sección~\ref{sec2d} y responden a la evaluación práctica de la calidad y completitud documental durante la revisión de texto completo.
 		\end{tablenotes}
 	\end{table*}
 	
@@ -526,44 +535,44 @@
 		\caption{Evaluación de Calidad Metodológica mediante MMAT.\label{tab4}}
 		\resizebox{\textwidth}{!}{%
 			\begin{tabular*}{\textwidth}{@{\extracolsep\fill}clllcccccl@{\extracolsep\fill}}
-			\toprule
-			\textbf{\#} & \textbf{Referencia} & \textbf{Tipo} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Score} & \textbf{Estado} \\
-			\midrule
-			1  & Güngör et al.\ \cite{Gungor2025}            & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
-			2  & Johnson et al.\ \cite{Johnson2025}           & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
-			3  & He et al.\ \cite{He2019}                     & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
-			4  & Reed et al.\ \cite{Reed2021}                 & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
-			5  & Lecciso et al.\ \cite{Lecciso2021}           & Mixto                   & S  & S  & S  & ND & S  & 4/5 & --- \\
-			6  & Shaik et al.\ \cite{Shaik2025}               & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
-			7  & Ahmad et al.\ \cite{Ahmad2024}               & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
-			8  & El Rhatassi et al.\ \cite{Rhatassi2024}    & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
-			9  & Radočaj \& Martinović \cite{Radocaj2025}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			10 & Washington et al.\ \cite{Washington2022}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			11 & Sholikah et al.\ \cite{Sholikah2024}         & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
-			12 & Levy et al.\ \cite{Levy2024}                 & Diseño de sistemas      & ND & S  & ND & ND & ND & 2/5 & --- \\
-			13 & Mahmood et al.\ \cite{Mahmood2025}           & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
-			14 & Kumar et al.\ \cite{Kumar2024}               & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
-			15 & Sariyanidi et al.\ \cite{Sariyanidi2025}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			16 & Hassan et al.\ \cite{Hassan2025}             & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			17 & Alsubai \cite{Alsubai2025}                   & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
-			18 & Rudovic et al.\ \cite{Rudovic2018}           & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			19 & Rudovic et al.\ \cite{Rudovic2019}           & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			20 & Almeida et al.\ \cite{Almeida2019}           & Diseño de sistemas      & ND & S  & ND & ND & ND & 2/5 & --- \\
-			21 & Alam et al.\ \cite{Alam2025}                 & Cuant.\ no aleatorizado & ND & S  & N  & N  & S  & 3/5 & --- \\
-			22 & Hwang et al.\ \cite{Hwang2024}               & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			23 & Aljbori et al.\ \cite{Aljbori2025}           & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
-			24 & El Rhatassi et al.\ \cite{Rhatassi2025}    & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
-			25 & Ramachandran et al.\ \cite{Ramachandran2025} & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
-			26 & Hosney et al.\ \cite{Hosney2024}             & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
-			27 & Nagae \& Lee \cite{Nagae2022}                & Cuant.\ descriptivo     & S  & S  & S  & ND & S  & 4/5 & --- \\
-			28 & Papaioannou et al.\ \cite{Papaioannou2021}   & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
-			29 & Dapogny et al.\ \cite{Dapogny2019}          & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
-			30 & Leo et al.\ \cite{Leo2018}                   & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			31 & Akin-Bulbul et al.\ \cite{AkinBulbul2024}   & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
-			32 & Xu \& Ju \cite{Xu2023}                       & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
-			33 & O'Sullivan et al.\ \cite{OSullivan2023}      & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
-			34 & Cicceri et al.\ \cite{Cicceri2026}           & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
-			\bottomrule
+				\toprule
+				\textbf{\#} & \textbf{Referencia} & \textbf{Tipo} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Score} & \textbf{Estado} \\
+				\midrule
+				1  & Güngör et al.\ \cite{Gungor2025}            & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
+				2  & Johnson et al.\ \cite{Johnson2025}           & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
+				3  & He et al.\ \cite{He2019}                     & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
+				4  & Reed et al.\ \cite{Reed2021}                 & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
+				5  & Lecciso et al.\ \cite{Lecciso2021}           & Mixto                   & S  & S  & S  & ND & S  & 4/5 & --- \\
+				6  & Shaik et al.\ \cite{Shaik2025}               & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
+				7  & Ahmad et al.\ \cite{Ahmad2024}               & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
+				8  & El Rhatassi et al.\ \cite{Rhatassi2024}    & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
+				9  & Radočaj \& Martinović \cite{Radocaj2025}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				10 & Washington et al.\ \cite{Washington2022}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				11 & Sholikah et al.\ \cite{Sholikah2024}         & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
+				12 & Levy et al.\ \cite{Levy2024}                 & Diseño de sistemas      & ND & S  & ND & ND & ND & 2/5 & --- \\
+				13 & Mahmood et al.\ \cite{Mahmood2025}           & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
+				14 & Kumar et al.\ \cite{Kumar2024}               & Cuant.\ no aleatorizado & N  & N  & N  & N  & N  & 0/5 & Retractado \\
+				15 & Sariyanidi et al.\ \cite{Sariyanidi2025}     & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				16 & Hassan et al.\ \cite{Hassan2025}             & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				17 & Alsubai \cite{Alsubai2025}                   & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
+				18 & Rudovic et al.\ \cite{Rudovic2018}           & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				19 & Rudovic et al.\ \cite{Rudovic2019}           & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				20 & Almeida et al.\ \cite{Almeida2019}           & Diseño de sistemas      & ND & S  & ND & ND & ND & 2/5 & --- \\
+				21 & Alam et al.\ \cite{Alam2025}                 & Cuant.\ no aleatorizado & ND & S  & N  & N  & S  & 3/5 & --- \\
+				22 & Hwang et al.\ \cite{Hwang2024}               & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				23 & Aljbori et al.\ \cite{Aljbori2025}           & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
+				24 & El Rhatassi et al.\ \cite{Rhatassi2025}    & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
+				25 & Ramachandran et al.\ \cite{Ramachandran2025} & Cuant.\ no aleatorizado & ND & S  & ND & N  & S  & 3/5 & --- \\
+				26 & Hosney et al.\ \cite{Hosney2024}             & Cuant.\ no aleatorizado & N  & S  & N  & N  & S  & 2/5 & --- \\
+				27 & Nagae \& Lee \cite{Nagae2022}                & Cuant.\ descriptivo     & S  & S  & S  & ND & S  & 4/5 & --- \\
+				28 & Papaioannou et al.\ \cite{Papaioannou2021}   & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
+				29 & Dapogny et al.\ \cite{Dapogny2019}          & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
+				30 & Leo et al.\ \cite{Leo2018}                   & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				31 & Akin-Bulbul et al.\ \cite{AkinBulbul2024}   & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
+				32 & Xu \& Ju \cite{Xu2023}                       & Cuant.\ descriptivo     & S  & S  & S  & S  & S  & 5/5 & --- \\
+				33 & O'Sullivan et al.\ \cite{OSullivan2023}      & Cuant.\ no aleatorizado & S  & S  & S  & S  & S  & 5/5 & --- \\
+				34 & Cicceri et al.\ \cite{Cicceri2026}           & Cuant.\ no aleatorizado & S  & S  & S  & ND & S  & 4/5 & --- \\
+				\bottomrule
 		\end{tabular*}}
 		\begin{tablenotes}
 			\item {\it Nota:} S\,=\,Sí; N\,=\,No; ND\,=\,No Determinable. Score indica el
@@ -585,8 +594,7 @@
 	
 	La heterogeneidad del corpus hace necesaria una clasificación funcional explícita
 	que rija toda la síntesis. Esta clasificación no es un artificio posterior a la
-	selección sino el marco estructural que determina qué estudios constituye
-	evidencia primaria para cada pregunta de investigación, qué estudios aportan
+	selección sino el marco estructural que determina qué estudios constituyen evidencia primaria para cada pregunta de investigación, qué estudios aportan
 	contexto comparativo y qué estudios informan el diseño de herramientas
 	terapéuticas. Los 34 estudios se clasifican en cuatro categorías: (1)
 	reconocimiento emocional facial en TEA mediante ML, categoría de evidencia
@@ -614,7 +622,7 @@
 	(Tabla~\ref{tab1}). Para cada pregunta, los hallazgos fueron sintetizados mediante
 	descripciones narrativas complementadas con tablas resumen y estadísticas
 	descriptivas (frecuencias, rangos, medianas según corresponda). Al reportar
-	métricas de rendimiento (PI3), se señalaron explícitamente las diferencias en las
+	métricas de rendimiento (RQ3), se señalaron explícitamente las diferencias en las
 	condiciones de evaluación (características del Dataset, tamaños de muestra y
 	enfoques de validación) para contextualizar las comparaciones y evitar implicar
 	equivalencia directa entre estudios conducidos bajo condiciones heterogéneas.
@@ -685,30 +693,27 @@
 	particularmente evidente en el desarrollo acelerado de aplicaciones móviles y
 	dispositivos portátiles que permiten procesamiento en tiempo real, operación sin
 	conexión en contextos de conectividad limitada, y continuidad terapéutica fuera de
-	entornos clínicos controlados \cite{Levy2024}. Las proyecciones del sector sugieren
-	un crecimiento exponencial en sistemas de aprendizaje profundo personalizado y
-	visión por computador entre 2025 y 2030, impulsado por la maduración de marcos de
-	trabajo optimizados para edge computing como TensorFlow Lite y PyTorch Mobile, y la
-	proliferación de smartphones con unidades de procesamiento neuronal dedicadas
-	\cite{Levy2024}.
+	entornos clínicos controlados \cite{Levy2024}. La proliferación de smartphones con chips de procesamiento neuronal dedicado y la maduración de frameworks como TensorFlow Lite y PyTorch Mobile sugieren que esta tendencia se intensificará en los próximos años \cite{Levy2024}.
 	
 	La base de evidencia para aplicaciones de ML en el contexto de TEA se concentra
 	predominantemente en población infantil. Del total de estudios analizados, el 88\%
 	(30 de 34 estudios) se enfocó en niños menores de 12 años, mientras que el 12\%
-	restante (4 de 34) incluyó a niños de hasta 18 años. Esta concentración refleja
-	tanto el énfasis clínico en la intervención temprana como la disponibilidad de
-	protocolos estandarizados de evaluación del desarrollo pediátrico. Los marcos
-	metodológicos, los datasets de validación y los benchmarks de rendimiento
-	documentados emergen de contextos de investigación enfocados exclusivamente en el
-	reconocimiento de expresividad emocional en niños con TEA \cite{Washington2022}.
+	restante (4 de 34) incluyó participantes fuera del rango de infancia primaria, con
+	algunos estudios extendiendo la muestra a adolescentes o adultos con TEA. Esta
+	concentración refleja tanto el énfasis clínico en la intervención temprana como la
+	disponibilidad de protocolos estandarizados de evaluación del desarrollo pediátrico.
+	Los marcos metodológicos y los benchmarks de rendimiento documentados provienen de
+	contextos de investigación heterogéneos que incluyen tanto reconocimiento de
+	expresividad emocional como detección de TEA, lo que requiere la clasificación
+	funcional adoptada en la Sección~\ref{sec2g} para interpretar correctamente los
+	resultados \cite{Washington2022}.
 	
-	Diversas investigaciones han abordado los desafíos relevantes de este dominio
-	mediante distintos enfoques de ML para la interpretación y toma de decisiones
-	\cite{Sariyanidi2025}. Sin embargo, persisten dificultades con los modelos
-	implementados \cite{Radocaj2025}, que generalmente siguen paradigmas de caja negra
-	con interpretabilidad clínica limitada \cite{Rhatassi2024}. Estos modelos presentan
-	problemas particularmente en cuanto a la generalización con muestras pequeñas, el
-	desbalance de clases, la multicolinealidad en datos multimodales y la traducción a
+	Distintos grupos de investigación han abordado estos desafíos mediante enfoques de ML que combinan modelos de clasificación con técnicas de interpretabilidad para aproximar
+	sus predicciones al razonamiento clínico \cite{Sariyanidi2025}. Sin embargo,
+	persisten dificultades con los modelos implementados \cite{Radocaj2025}, que generalmente
+	siguen paradigmas de caja negra con interpretabilidad clínica limitada \cite{Rhatassi2024}.
+	Estos modelos presentan problemas particularmente en cuanto a la generalización con muestras
+	pequeñas, el desbalance de clases, la multicolinealidad en datos multimodales y la traducción a
 	entornos clínicos con recursos limitados \cite{Alam2025}. El desafío radica en
 	desarrollar sistemas que equilibren el poder predictivo con la transparencia,
 	accesibilidad y adaptación cultural necesarias para contextos como el latinoamericano
@@ -878,7 +883,7 @@
 				hacia soluciones basadas en transfer learning para el reconocimiento de
 				expresividad emocional en contextos con muestras pequeñas.}\label{fig3}}
 	\end{figure}
-
+	
 	
 	Entre los modelos no ensamblados, CNN / Aprendizaje Profundo domina con el
 	42.1\%, donde el transfer learning desde ImageNet es la estrategia predominante
@@ -961,7 +966,7 @@
 				\textbf{It.} & \textbf{Métrica} & \textbf{N} & \textbf{\%} & \textbf{Autores} \\
 				\midrule
 				1 & ACC          & 12 & 92\% & \cite{Johnson2025,Shaik2025,Radocaj2025,Washington2022,Sholikah2024,Sariyanidi2025,Hassan2025,Hwang2024,Aljbori2025,Rhatassi2025,Ramachandran2025,Hosney2024} \\
-				2 & Precisión    & 6  & 46\% & \cite{Shaik2025,Hwang2024,Aljbori2025,Ramachandran2025,Hosney2024,Cicceri2026} \\
+				2 & Precisión    & 6  & 46\% & \cite{Shaik2025,Cicceri2026,Hwang2024,Aljbori2025,Ramachandran2025,Hosney2024} \\
 				3 & F1-score     & 9  & 69\% & \cite{Shaik2025,Radocaj2025,Washington2022,Sholikah2024,Hassan2025,Hwang2024,Aljbori2025,Ramachandran2025,Hosney2024} \\
 				4 & Recall       & 4  & 31\% & \cite{Shaik2025,Aljbori2025,Ramachandran2025,Hosney2024} \\
 				5 & AUC          & 3  & 23\% & \cite{Shaik2025,Aljbori2025,Ramachandran2025} \\
@@ -1289,14 +1294,14 @@
 		\end{tablenotes}
 	\end{table}
 	
-	\begin{figure}[htb]
-		\centerline{\includegraphics[width=\columnwidth]{fig_8.jpg}}
+	\begin{figure*}[htb]
+		\centerline{\includegraphics[width=\linewidth]{fig_8.jpg}}
 		\caption{Grupos de Características Utilizadas.\\
 			\textit{Nota: La figura presenta la distribución de los grupos de características
 				identificados en los 34 estudios incluidos en el corpus, evidenciando la
 				predominancia de las características faciales como modalidad principal para el
 				reconocimiento de expresividad emocional en niños con TEA.}\label{fig8}}
-	\end{figure}
+	\end{figure*}
 	
 	La marcada preferencia por las características faciales para el monitoreo de
 	expresividad emocional en población con TEA se fundamenta en que estas modalidades
@@ -1406,7 +1411,7 @@
 	evaluación comprehensiva del progreso terapéutico corresponde necesariamente a la
 	integración sinérgica de múltiples señales complementarias incluyendo expresiones
 	faciales dinámicas, patrones de movimiento corporal atípicos y contexto situacional
-	de la interacción terapéutica \cite{Rudovic2019,Cicceri2026}.
+	de la interacción terapéutica \cite{Cicceri2026,Rudovic2019}.
 	
 	%%=============================================================
 	\section{Hallazgos Adicionales}\label{sec5}
@@ -1442,7 +1447,7 @@
 				1 & \parbox[t]{2.2cm}{Validación Cruzada K-Fold} & 8  & 23.5\% & \cite{Shaik2025,Ahmad2024,Radocaj2025,Washington2022,Hassan2025,Alam2025,Rhatassi2025,Ramachandran2025} \\[12pt]
 				2 & Grid Search                       & 3  & 8.8\%  & \cite{Radocaj2025,Ramachandran2025,AkinBulbul2024} \\
 				3 & Ajuste Manual                     & 4  & 11.8\% & \cite{Johnson2025,Sholikah2024,Aljbori2025,Hosney2024} \\
-				4 & Hold-out Validation               & 4  & 11.8\% & \cite{Shaik2025,Sariyanidi2025,Hwang2024,Cicceri2026} \\
+				4 & Hold-out Validation               & 4  & 11.8\% & \cite{Shaik2025,Sariyanidi2025,Cicceri2026,Hwang2024} \\
 				5 & \parbox[t]{2.2cm}{Optim. Metaheurística (GWO)} & 1 & 2.9\% & \cite{Ramachandran2025} \\[6pt]
 				6 & No especificado                   & 14 & 41.2\% & -- \\
 				& \textbf{Total}                    & \textbf{34} & \textbf{100.0\%} & \\
@@ -1502,10 +1507,9 @@
 	
 	El reconocimiento de expresividad emocional en TEA puede conceptualizarse como un
 	problema de clasificación supervisada con muestras inherentemente desbalanceadas.
-	Dado que la prevalencia del TEA es aproximadamente 1 de cada 36 niños, los estudios
-	de monitoreo basados en población inevitablemente generan datasets desbalanceados
-	donde la clase mayoritaria (desarrollo típico) supera significativamente a la clase
-	minoritaria (TEA) en proporciones que frecuentemente superan 10:1 \cite{Shaik2025}.
+	Dado que la prevalencia del TEA ronda 1 de cada 36 niños, los estudios con muestras
+	de base poblacional generan inevitablemente datasets donde los casos de desarrollo
+	típico superan a los casos TEA en proporciones que con frecuencia exceden 10:1 \cite{Shaik2025}.
 	En este contexto, las técnicas de preprocesamiento documentadas en esta revisión
 	constituyen una línea base metodológica para nuevas investigaciones orientadas al
 	monitoreo terapéutico, considerando que la selección apropiada de técnicas de
@@ -1589,7 +1593,7 @@
 	Un patrón descriptivo que emerge del análisis del corpus es que los estudios que
 	emplean arquitecturas híbridas CNN-LSTM en configuraciones multimodales reportan
 	valores de F1-score entre 8\% y 15\% superiores a los reportados por estudios que
-	emplean CNNs individuales \cite{Rhatassi2025,Rudovic2019}. Sin embargo, dado que
+	emplean CNNs individuales \cite{Rudovic2019,Rhatassi2025}. Sin embargo, dado que
 	estos estudios difieren en dataset, población, entorno de evaluación y protocolo
 	de validación, esta diferencia numérica no puede interpretarse como evidencia de
 	superioridad arquitectónica; refleja únicamente que distintas combinaciones de
@@ -1682,7 +1686,7 @@
 	polarizada en el corpus analizado. Los estudios con mayor rigor metodológico
 	(puntuación 5/5) corresponden predominantemente a investigaciones clínicas con
 	datos propios, muestras clínicamente validadas y protocolos de evaluación
-	controlados (\cite{He2019,Reed2021,Hwang2024,Radocaj2025,Washington2022,Sariyanidi2025,Hassan2025,Rudovic2018,Papaioannou2021,Rudovic2019,Dapogny2019,Leo2018,Xu2023,OSullivan2023}).
+	controlados (\cite{He2019,Reed2021,Radocaj2025,Washington2022,Sariyanidi2025,Hassan2025,Rudovic2018,Rudovic2019,Hwang2024,Papaioannou2021,Dapogny2019,Leo2018,Xu2023,OSullivan2023}).
 	En contraste, los estudios con puntuaciones bajas (0--2/5) corresponden a los tres
 	retractados y a estudios que emplean datasets de Kaggle sin representatividad
 	clínica verificada, sin control de factores de confusión y con sesgos de selección
@@ -1694,7 +1698,7 @@
 	refuerza la necesidad de estándares de reporte más rigurosos en la literatura sobre
 	ML aplicado a TEA.
 	
-	Esta distribución de calidad tiene implicancias directas para la interpretación de
+	Esta distribución de calidad incide directamente en la interpretación de
 	los hallazgos de esta revisión. Los resultados de estudios con puntuación 5/5, como
 	Hwang et al.\ \cite{Hwang2024}, Washington et al.\ \cite{Washington2022}, Hassan
 	et al.\ \cite{Hassan2025} y Rudovic et al.\ \cite{Rudovic2018,Rudovic2019}, ofrecen
@@ -1719,8 +1723,7 @@
 	Sin embargo, las señales fisiológicas complementarias (8.8\%) y las características
 	contextuales permanecen subutilizadas a pesar de su potencial para capturar
 	manifestaciones autonómicas de estados emocionales no visibles en expresiones
-	faciales, aspecto particularmente relevante en TEA donde puede existir disociación
-	entre la experiencia emocional interna y la expresión facial externa
+	faciales, lo cual es especialmente relevante en TEA, donde la expresión facial no siempre refleja el estado emocional interno del niño
 	\cite{Rudovic2018,Rudovic2019}.
 	
 	Las limitaciones metodológicas fundamentales identificadas, incluyendo
@@ -1773,7 +1776,7 @@
 				{[25]} & Ramachandran et al.\ & Recon. emocional   & Kaggle             & Niños           & Lab.       & GWO-GEfficientNet     & ACC 96.5\%     & 3/5 \\
 				{[26]} & Hosney et al.\      & Detección TEA       & Kaggle (co-autora) & Niños           & Lab.       & YOLOv8+DCNN           & ACC 97.2\%     & 2/5 \\
 				{[27]} & Nagae \& Lee        & Terapia+EDA         & Privado (N=11)     & Niños DD        & T. robot   & EDA+wavelet           & Conf. matrix   & 4/5 \\
-				{[28]} & Papaioannou et al.\ & Carga cogn. EEG     & EEG (N=63)         & ASD+ADHD        & Clínico    & MSE+grafos            & ANOVA          & 5/5 \\
+				{[28]} & Papaioannou et al.\ & Carga cogn. EEG     & EEG (N=63)         & ASD+ADHD & Clínico    & MSE+grafos            & ANOVA          & 5/5 \\
 				{[29]} & Dapogny et al.\     & Expr. facial        & JEMImE (N=157)     & Niños 6--11     & Juego clín.& Rand. Forests+PCRF    & ACC $\sim$82\% & 5/5 \\
 				{[30]} & Leo et al.\         & Prod. facial ASD    & CK++clínico (N=17) & Niños TEA       & Clínico    & HOG+SVM+CNN           & TP 84.4\%      & 5/5 \\
 				{[31]} & Akin-Bulbul et al.\ & Screening ET        & ET privado         & Bebés 18--36m   & Clínico    & KNN+features          & ACC 81.45\%    & 4/5 \\
@@ -1794,7 +1797,7 @@
 			su tipo de dataset y entorno de evaluación.
 		\end{tablenotes}
 	\end{table*}
-
+	
 	%%=============================================================
 	\section{Conclusiones y Líneas Futuras de Investigación}\label{sec7}
 	%%=============================================================
@@ -1912,22 +1915,14 @@
 	pueden capturar patrones sutiles de expresividad emocional que permanecen
 	indetectables mediante análisis unimodales tradicionales \cite{Washington2022}.
 	
-	La convergencia de la computación móvil ubicua, el avance de las arquitecturas ML
-	y el reconocimiento creciente de la neurodiversidad han creado oportunidades sin
-	precedentes para desarrollar intervenciones tecnológicas accesibles, escalables y
-	culturalmente adaptadas que aborden la brecha global de atención para poblaciones
-	con TEA. Sin embargo, realizar este potencial requiere esfuerzos colaborativos
-	sostenidos que vinculen la innovación técnica con la validación clínica rigurosa,
-	el desarrollo de marcos éticos para abordar el sesgo algorítmico y la protección
-	de la privacidad de datos de menores, y la participación significativa de
-	comunidades terapéuticas para asegurar que las tecnologías se alineen con las
-	necesidades auténticas de los niños con TEA y sus redes de apoyo. La investigación
-	futura debería priorizar la utilidad práctica para el terapeuta, la pertinencia
-	cultural y la accesibilidad equitativa sobre la sofisticación tecnológica. El
-	contexto latinoamericano, caracterizado por recursos tecnológicos limitados y
-	ausencia de datasets clínicamente validados, representa una brecha de investigación
-	con potencial relevancia clínica significativa, sujeta a validación empírica en
-	estudios futuros.
+	Concretar este potencial exige articular innovación técnica con validación clínica
+	rigurosa, marcos éticos para la protección de datos de menores y participación
+	directa de terapeutas y familias en el diseño de las herramientas. La prioridad
+	no debería ser la sofisticación del modelo sino su utilidad práctica para el
+	profesional que trabaja con el niño. En el contexto latinoamericano, donde no
+	existe ningún dataset clínicamente validado y los recursos son limitados, estas
+	brechas representan una oportunidad de investigación con relevancia clínica
+	directa para los niños con TEA y sus equipos terapéuticos.
 	
 	\bmsubsection*{Contribuciones de los Autores}
 	J.E.C.A.: conceptualización, metodología, supervisión, redacción---revisión y

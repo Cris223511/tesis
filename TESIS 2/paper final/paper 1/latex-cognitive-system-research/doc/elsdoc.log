@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  26 MAR 2026 19:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  16 APR 2026 12:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -273,6 +273,29 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count276
 \@thisrulewidth=\dimen168
 )
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx
+.sty
+Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
+
+(C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.st
+y
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen169
+\ar@mcellbox=\box58
+\extrarowheight=\dimen170
+\NC@list=\toks23
+\extratabsurround=\skip55
+\backup@length=\skip56
+\ar@cellbox=\box59
+)
+\TX@col@width=\dimen171
+\TX@old@table=\dimen172
+\TX@old@col=\dimen173
+\TX@target=\dimen174
+\TX@delta=\dimen175
+\TX@cols=\count277
+\TX@ftn=\toks24
+)
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -293,88 +316,88 @@ Package fixltx2e Warning: fixltx2e is not required with releases after 2015
 
 Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
-\@dblbotnum=\count277
-\c@dblbotnumber=\count278
+\@dblbotnum=\count278
+\c@dblbotnumber=\count279
 )
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtabl
 e.sty
 Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
-\LTleft=\skip55
-\LTright=\skip56
-\LTpre=\skip57
-\LTpost=\skip58
-\LTchunksize=\count279
-\LTcapwidth=\dimen169
-\LT@head=\box58
-\LT@firsthead=\box59
-\LT@foot=\box60
-\LT@lastfoot=\box61
-\LT@gbox=\box62
-\LT@cols=\count280
-\LT@rows=\count281
-\c@LT@tables=\count282
-\c@LT@chunks=\count283
-\LT@p@ftn=\toks23
+\LTleft=\skip57
+\LTright=\skip58
+\LTpre=\skip59
+\LTpost=\skip60
+\LTchunksize=\count280
+\LTcapwidth=\dimen176
+\LT@head=\box60
+\LT@firsthead=\box61
+\LT@foot=\box62
+\LT@lastfoot=\box63
+\LT@gbox=\box64
+\LT@cols=\count281
+\LT@rows=\count282
+\c@LT@tables=\count283
+\c@LT@chunks=\count284
+\LT@p@ftn=\toks25
 ) (elsdoc.aux)
 \openout1 = `elsdoc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 13.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 14.
 LaTeX Font Info:    Trying to load font information for OML+txmi on input line 
-13.
+14.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omltxm
 i.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 14.
 LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 
-13.
+14.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omstxs
 y.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 14.
 LaTeX Font Info:    Trying to load font information for OMX+txex on input line 
-13.
+14.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\omxtxe
 x.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 14.
 LaTeX Font Info:    Trying to load font information for U+txexa on input line 1
-3.
+4.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxexa
 .fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    ... okay on input line 14.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\su
 pp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count284
-\scratchdimen=\dimen170
-\scratchbox=\box63
-\nofMPsegments=\count285
-\nofMParguments=\count286
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count287
-\MPscratchDim=\dimen171
-\MPnumerator=\count288
-\makeMPintoPDFobject=\count289
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count285
+\scratchdimen=\dimen177
+\scratchbox=\box65
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen178
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks27
 )
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\e
 pstopdf-base.sty
@@ -423,49 +446,49 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Font shape `T1/txr/b/n' in size <10> not available
-(Font)              Font shape `T1/txr/bx/n' tried instead on input line 40.
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 6
-6.
+(Font)              Font shape `T1/txr/bx/n' tried instead on input line 46.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\ot1txr
 .fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxmia
 .fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsya
 .fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsyb
 .fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\utxsyc
 .fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 7
+3.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-Underfull \hbox (badness 2119) in paragraph at lines 88--107
+Underfull \hbox (badness 2119) in paragraph at lines 95--114
 []\T1/txr/m/n/10 La con-ver-gen-cia de avances en apren-dizaje au-
  []
 
@@ -478,174 +501,174 @@ c}
 
 
 ]
-Underfull \hbox (badness 1616) in paragraph at lines 167--179
+Underfull \hbox (badness 1616) in paragraph at lines 171--183
 \T1/txr/m/n/10 que ar-tic-u-lan mo-ti-va-ciones metodolÛg-i-cas, ori-en-tan
  []
 
 [2] [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/txr/m/n/10 Las ar-qui-tec-turas CNN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/txr/m/n/10 mues-tran vari-abil-i-dad en
  []
 
 
-Underfull \hbox (badness 2809) in paragraph at lines 197--197
+Underfull \hbox (badness 2809) in paragraph at lines 201--201
 \T1/txr/m/n/10 ex-ac-ti-tud (72--96%) seg˙n
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/txr/m/n/10 iden-ti-ficar con-fig-u-ra-ciones
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 197--197
+Underfull \hbox (badness 1275) in paragraph at lines 201--201
 \T1/txr/m/n/10 de ex-pre-sivi-dad emo-cional
  []
 
 
-Underfull \hbox (badness 3078) in paragraph at lines 200--200
+Underfull \hbox (badness 3078) in paragraph at lines 204--204
 []|\T1/txr/m/n/10 La het-ero-genei-dad en las
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 \T1/txr/m/n/10 mÈtri-cas re-por-tadas (solo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 \T1/txr/m/n/10 pre-cisiÛn vs. F1-score)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 \T1/txr/m/n/10 limita la com-pa-ra-bil-i-dad
  []
 
 
-Underfull \hbox (badness 4291) in paragraph at lines 200--200
+Underfull \hbox (badness 4291) in paragraph at lines 204--204
 \T1/txr/m/n/10 en-tre es-tu-dios y di-fi-culta
  []
 
 
-Underfull \hbox (badness 3668) in paragraph at lines 200--200
+Underfull \hbox (badness 3668) in paragraph at lines 204--204
 \T1/txr/m/n/10 es-table-cer es-t·n-dares para
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 \T1/txr/m/n/10 her-ramien-tas de apoyo
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 203--203
+Underfull \hbox (badness 4048) in paragraph at lines 207--207
 []|\T1/txr/m/n/10 Los val-ores ab-so-lu-tos de
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 203--203
+Underfull \hbox (badness 5667) in paragraph at lines 207--207
 \T1/txr/m/n/10 mÈtri-cas varÌan seg˙n el
  []
 
 
-Underfull \hbox (badness 3872) in paragraph at lines 203--203
+Underfull \hbox (badness 3872) in paragraph at lines 207--207
 \T1/txr/m/n/10 rango de edad pedi·trico
  []
 
 
-Underfull \hbox (badness 4543) in paragraph at lines 203--203
+Underfull \hbox (badness 4543) in paragraph at lines 207--207
 \T1/txr/m/n/10 cia me-dia vs. ado-les-cen-
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 203--203
+Underfull \hbox (badness 1721) in paragraph at lines 207--207
 \T1/txr/m/n/10 cia) y las condi-ciones de
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 203--203
+Underfull \hbox (badness 1490) in paragraph at lines 207--207
 \T1/txr/m/n/10 eval-u-aciÛn (lab-o-ra-to-rio vs.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 209--209
 []|\T1/txr/m/n/10 Caracterizar los ran-gos de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 209--209
 \T1/txr/m/n/10 rendimiento re-por-ta-dos en la
  []
 
 
-Underfull \hbox (badness 1377) in paragraph at lines 205--205
+Underfull \hbox (badness 1377) in paragraph at lines 209--209
 \T1/txr/m/n/10 de eval-u-aciÛn, re-cono-ciendo que
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 209--209
 \T1/txr/m/n/10 la het-ero-genei-dad metodolÛg-ica
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 209--209
 \T1/txr/m/n/10 impide com-para-ciones di-rec-tas
  []
 
 
-Underfull \hbox (badness 6641) in paragraph at lines 206--206
+Underfull \hbox (badness 6641) in paragraph at lines 210--210
 \T1/txr/m/n/10 pre-sen-tan lim-ita-ciones de
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 206--206
+Underfull \hbox (badness 2538) in paragraph at lines 210--210
 \T1/txr/m/n/10 quiriendo la iden-ti-fi-caciÛn
  []
 
 
-Underfull \hbox (badness 1248) in paragraph at lines 208--208
+Underfull \hbox (badness 1248) in paragraph at lines 212--212
 \T1/txr/m/n/10 fenotÌpica rel-e-vante para el con-
  []
 
 
-Underfull \hbox (badness 5519) in paragraph at lines 209--209
+Underfull \hbox (badness 5519) in paragraph at lines 213--213
 []|\T1/txr/m/n/10 Las vari-ables de en-trada
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 209--209
+Underfull \hbox (badness 1776) in paragraph at lines 213--213
 \T1/txr/m/n/10 (im-a-gen fa-cial ˙ni-ca-mente
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 209--209
+Underfull \hbox (badness 1565) in paragraph at lines 213--213
 \T1/txr/m/n/10 ro-bustez de la predic-ciÛn,
  []
 
 
-Underfull \hbox (badness 4995) in paragraph at lines 209--209
+Underfull \hbox (badness 4995) in paragraph at lines 213--213
 \T1/txr/m/n/10 fig-u-ra-ciones Ûp-ti-mas para
  []
 
 
-Underfull \hbox (badness 5756) in paragraph at lines 209--209
+Underfull \hbox (badness 5756) in paragraph at lines 213--213
 \T1/txr/m/n/10 im-ple-mentaciÛn mÛvil en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
 []|\T1/txr/m/n/10 Las apli-ca-ciones mÛviles
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
 \T1/txr/m/n/10 tÈc-ni-cos (conec-tivi-dad,
  []
 
@@ -656,162 +679,87 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 [5]
-Underfull \hbox (badness 1472) in paragraph at lines 220--228
-\T1/txr/m/n/10 to-colo fue reg-istrado de man-era prospec-tiva en el
+Underfull \hbox (badness 1515) in paragraph at lines 224--230
+[]\T1/txr/m/n/10 Esta re-visiÛn sis-tem·tica fue con-ducida en con-
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 266--267
+Underfull \hbox (badness 3240) in paragraph at lines 224--230
+\T1/txr/m/n/10 formi-dad con las di-rec-tri-ces PRISMA 2020 para
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 224--230
+\T1/txr/m/n/10 la pre-sentaciÛn in-te-gral de re-vi-siones sis-tem·ti-cas.
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 224--230
+\T1/txr/m/n/10 disponibles p˙bli-ca-mente en el repos-i-to-rio GitHub:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--230
+\T1/txr/m/n/10 https://github.com/Cris223511/systematic-review-data-
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 224--230
+\T1/txr/m/n/10 2020 com-pleta como ma-te-rial su-ple-men-tario para
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 275--276
 \T1/txr/m/it/9 spec-trum" OR "autis-tic") AND ("emo-tion" OR
  []
 
 
-Underfull \hbox (badness 7221) in paragraph at lines 266--267
+Underfull \hbox (badness 7221) in paragraph at lines 275--276
 \T1/txr/m/it/9 "fa-cial ex-pres-sion" OR "af-fec-tive" OR "so-
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 266--267
+Underfull \hbox (badness 5161) in paragraph at lines 275--276
 \T1/txr/m/it/9 cial com-mu-ni-ca-tion") AND ("ma-chine learn-
  []
 
 
-Underfull \hbox (badness 3428) in paragraph at lines 266--267
+Underfull \hbox (badness 3428) in paragraph at lines 275--276
 \T1/txr/m/it/9 work" OR "clas-si-fi-ca-tion" OR "recog-ni-tion"))
  []
 
 
-Underfull \hbox (badness 5563) in paragraph at lines 266--267
+Underfull \hbox (badness 5563) in paragraph at lines 275--276
 \T1/txr/m/it/9 AND (LIMIT-TO(DOCTYPE,"ar") OR LIMIT-
  []
 
 [6
 
 ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 <./images/fig_1.jpg, id=27, 772.8875pt x 738.76pt>
 File: ./images/fig_1.jpg Graphic file (type jpg)
 <use ./images/fig_1.jpg>
-Package pdftex.def Info: ./images/fig_1.jpg  used on input line 355.
+Package pdftex.def Info: ./images/fig_1.jpg  used on input line 365.
 (pdftex.def)             Requested size: 222.0pt x 212.19456pt.
  [7 <./images/fig_1.jpg>]
-Underfull \hbox (badness 5302) in paragraph at lines 447--461
+Underfull \hbox (badness 1189) in paragraph at lines 411--411
+[]|\T1/txr/m/n/10 Excluidos por tÌ-tulo y re-sumen (ir-rel-e-
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 462--476
 []\T1/txr/m/n/10 Para abor-dar la eval-u-aciÛn for-mal de cal-i-dad
  []
 
-[8] [9
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 506--506
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
 []|\T1/txr/m/n/10 Cuant. no aleator-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--507
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 511--511
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 512--512
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 513--513
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 514--514
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 515--515
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 516--516
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 518--518
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 519--519
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 520--520
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 521--521
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 522--522
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--523
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 524--524
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 526--526
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--527
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 528--528
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 530--530
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 535--535
-[]|\T1/txr/m/n/10 Cuant. no aleator-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 536--536
+Underfull \hbox (badness 10000) in paragraph at lines 534--534
 []|\T1/txr/m/n/10 Cuant. no aleator-
  []
 
@@ -825,566 +773,689 @@ Underfull \hbox (badness 10000) in paragraph at lines 539--539
 []|\T1/txr/m/n/10 Cuant. no aleator-
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 540--540
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 541--541
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 542--542
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--543
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 546--546
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 547--547
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 548--548
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--549
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 550--550
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 551--551
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--553
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 554--554
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--555
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--556
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 557--557
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 558--558
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--562
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--565
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--566
+[]|\T1/txr/m/n/10 Cuant. no aleator-
+ []
+
 [10
 
-] [11] [12
+] [11]
+Underfull \hbox (badness 1454) in paragraph at lines 594--608
+\T1/txr/m/n/10 eval-u-aciÛn (car-ac-terÌs-ti-cas del Dataset, tamaÒos de
+ []
+
+[12
 
 ]
-Underfull \hbox (badness 3271) in paragraph at lines 674--688
+Underfull \hbox (badness 3271) in paragraph at lines 699--713
 []\T1/txr/m/n/10 En la Tabla 5[] se re-sumen los cinco de-safÌos
  []
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 674--688
+Underfull \hbox (badness 1112) in paragraph at lines 699--713
 \T1/txr/m/n/10 Prin-ci-pales (PCA) y MÌn-ima Re-dun-dan-cia M·x-ima
  []
 
 <./images/fig_2.jpg, id=48, 761.84625pt x 330.48468pt>
 File: ./images/fig_2.jpg Graphic file (type jpg)
 <use ./images/fig_2.jpg>
-Package pdftex.def Info: ./images/fig_2.jpg  used on input line 691.
+Package pdftex.def Info: ./images/fig_2.jpg  used on input line 716.
 (pdftex.def)             Requested size: 468.0pt x 203.01237pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 723--723
+Underfull \hbox (badness 10000) in paragraph at lines 748--748
 \T1/txr/m/n/10 Im-por-tan-cia de Car-ac-terÌs-ti-cas,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 723--723
-[]\T1/txr/m/n/10 K-Fold Cross-Validation, Grid
+Underfull \hbox (badness 10000) in paragraph at lines 748--748
+[]|\T1/txr/m/n/10 K-Fold Cross-Validation, Grid
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 723--723
-[]\T1/txr/m/n/10 PCA, MRMR, Reg-u-lar-izaciÛn
+Underfull \hbox (badness 10000) in paragraph at lines 748--748
+[]|\T1/txr/m/n/10 PCA, MRMR, Reg-u-lar-izaciÛn
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 723--723
-[]\T1/txr/m/n/10 SMOTE, RUS, ROS, ADASYN,
+Underfull \hbox (badness 1852) in paragraph at lines 748--748
+[]|\T1/txr/m/n/10 SMOTE, RUS, ROS, ADASYN,
  []
 
 
-Underfull \hbox (badness 2884) in paragraph at lines 723--723
+Underfull \hbox (badness 2884) in paragraph at lines 748--748
 \T1/txr/m/n/10 En-sem-ble Learn-ing, Apren-dizaje
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 749--749
-[]\T1/txr/bx/n/10 Criterios de ex-clusiÛn
+Underfull \hbox (badness 10000) in paragraph at lines 774--774
+[]|\T1/txr/bx/n/10 Estudios
  []
 
 
-Overfull \hbox (3.21497pt too wide) in paragraph at lines 751--751
-[]\T1/txr/m/n/10 Arquitecturas
+Overfull \hbox (3.21497pt too wide) in paragraph at lines 776--776
+[]|\T1/txr/m/n/10 Arquitecturas
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 753--753
-[]\T1/txr/m/n/10 Valores
+Underfull \hbox (badness 10000) in paragraph at lines 778--778
+[]|\T1/txr/m/n/10 Valores
  []
 
 
-Overfull \hbox (7.65497pt too wide) in paragraph at lines 755--755
-[]\T1/txr/m/n/10 CaracterÌsticas
+Underfull \hbox (badness 10000) in paragraph at lines 778--778
+[]|\T1/txr/m/n/10 Solo es-tu-dios con
  []
 
 
-Overfull \hbox (1.00496pt too wide) in paragraph at lines 756--756
-[]\T1/txr/m/n/10 Limitaciones| 
+Underfull \hbox (badness 10000) in paragraph at lines 778--778
+\T1/txr/m/n/10 mÈtri-cas su-per-visadas
  []
 
 
-Overfull \hbox (5.68971pt too wide) in paragraph at lines 747--771
+Overfull \hbox (7.65497pt too wide) in paragraph at lines 780--780
+[]|\T1/txr/m/n/10 CaracterÌsticas
+ []
+
+
+Overfull \hbox (1.00496pt too wide) in paragraph at lines 781--781
+[]|\T1/txr/m/n/10 Limitaciones| 
+ []
+
+
+Overfull \hbox (5.68971pt too wide) in paragraph at lines 772--796
  [][] 
  []
 
-
-Underfull \vbox (badness 2221) has occurred while \output is active []
-
- [13]
+[13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./images/fig_2.jpg>]
-Underfull \hbox (badness 2393) in paragraph at lines 830--839
+Underfull \hbox (badness 2393) in paragraph at lines 853--862
 \T1/txr/m/n/10 fundo (57.9%), que in-cluye trans-fer learn-ing con
  []
 
 <./images/fig_3.jpg, id=57, 732.48656pt x 396.7322pt>
 File: ./images/fig_3.jpg Graphic file (type jpg)
 <use ./images/fig_3.jpg>
-Package pdftex.def Info: ./images/fig_3.jpg  used on input line 842.
+Package pdftex.def Info: ./images/fig_3.jpg  used on input line 865.
 (pdftex.def)             Requested size: 222.0pt x 120.23735pt.
 <./images/fig_4.jpg, id=58, 972.63374pt x 530.98375pt>
 File: ./images/fig_4.jpg Graphic file (type jpg)
 <use ./images/fig_4.jpg>
-Package pdftex.def Info: ./images/fig_4.jpg  used on input line 859.
+Package pdftex.def Info: ./images/fig_4.jpg  used on input line 882.
 (pdftex.def)             Requested size: 222.0pt x 121.19194pt.
 [15 <./images/fig_3.jpg> <./images/fig_4.jpg>]
 <./images/fig_5.jpg, id=62, 859.2903pt x 860.013pt>
 File: ./images/fig_5.jpg Graphic file (type jpg)
 <use ./images/fig_5.jpg>
-Package pdftex.def Info: ./images/fig_5.jpg  used on input line 903.
+Package pdftex.def Info: ./images/fig_5.jpg  used on input line 926.
 (pdftex.def)             Requested size: 222.0pt x 222.18085pt.
  [16 <./images/fig_5.jpg>]
 <./images/fig_6.jpg, id=68, 679.03688pt x 406.51875pt>
 File: ./images/fig_6.jpg Graphic file (type jpg)
 <use ./images/fig_6.jpg>
-Package pdftex.def Info: ./images/fig_6.jpg  used on input line 1068.
+Package pdftex.def Info: ./images/fig_6.jpg  used on input line 1094.
 (pdftex.def)             Requested size: 222.0pt x 132.9048pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1092--1092
-[]\T1/txr/m/n/10 Kaggle Screen-ing /
+Underfull \hbox (badness 10000) in paragraph at lines 1118--1118
+[]|\T1/txr/m/n/10 Kaggle Screen-ing /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1101--1101
-[]\T1/txr/m/n/10 Datos de en-sayo
+Underfull \hbox (badness 10000) in paragraph at lines 1127--1127
+[]|\T1/txr/m/n/10 Datos de en-sayo
  []
 
 [17]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5847) has occurred while \output is active []
 
 <./images/fig_7.jpg, id=72, 983.675pt x 547.04375pt>
 File: ./images/fig_7.jpg Graphic file (type jpg)
 <use ./images/fig_7.jpg>
-Package pdftex.def Info: ./images/fig_7.jpg  used on input line 1152.
+Package pdftex.def Info: ./images/fig_7.jpg  used on input line 1178.
 (pdftex.def)             Requested size: 468.0pt x 260.26584pt.
  [18 <./images/fig_6.jpg>]
-Underfull \hbox (badness 1622) in paragraph at lines 1179--1194
+Underfull \hbox (badness 1622) in paragraph at lines 1205--1216
 []\T1/txr/m/n/10 Los in-ves-ti-gadores han prop-uesto con-jun-tos het-
  []
 
 <./images/fig_8.jpg, id=76, 991.705pt x 548.0475pt>
 File: ./images/fig_8.jpg Graphic file (type jpg)
 <use ./images/fig_8.jpg>
-Package pdftex.def Info: ./images/fig_8.jpg  used on input line 1268.
-(pdftex.def)             Requested size: 222.0pt x 122.67818pt.
+Package pdftex.def Info: ./images/fig_8.jpg  used on input line 1290.
+(pdftex.def)             Requested size: 468.0pt x 258.62767pt.
 [19]
-Underfull \hbox (badness 2088) in paragraph at lines 1297--1303
+Underfull \hbox (badness 2088) in paragraph at lines 1319--1325
 []\T1/txr/m/n/10 En los artÌcu-los re-visa-dos sis-tem·ti-ca-mente, los
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 1297--1303
+Underfull \hbox (badness 1226) in paragraph at lines 1319--1325
 \T1/txr/m/n/10 au-tores iden-ti-fi-caron ex-plÌci-ta-mente las lim-ita-ciones
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1309--1309
-[]\T1/txr/bx/n/10 LimitaciÛn Iden-ti-fi-
+Underfull \hbox (badness 10000) in paragraph at lines 1331--1331
+[]|\T1/txr/bx/n/10 LimitaciÛn Iden-ti-fi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1311--1311
-[]\T1/txr/m/n/10 Representatividad
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1333
+[]|\T1/txr/m/n/10 Representatividad
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1313--1313
-[]\T1/txr/m/n/10 Inconsistencia en el
+Underfull \hbox (badness 6364) in paragraph at lines 1335--1335
+[]|\T1/txr/m/n/10 Inconsistencia en reg-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 1314--1314
-[]\T1/txr/m/n/10 Interpretabilidad clÌnica
- []
-
-[20 <./images/fig_7.jpg> <./images/fig_8.jpg>]
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1415--1415
-[]\T1/txr/m/n/10 ValidaciÛn Cruzada
+Underfull \hbox (badness 10000) in paragraph at lines 1335--1335
+\T1/txr/m/n/10 istro y an-o-taciÛn de
  []
 
 
-Underfull \hbox (badness 2762) in paragraph at lines 1420--1420
-[]\T1/txr/m/n/10 OptimizaciÛn Meta-
+Underfull \hbox (badness 1590) in paragraph at lines 1336--1336
+[]|\T1/txr/m/n/10 Interpretabilidad clÌnica
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1458--1458
-[]\T1/txr/m/n/10 AumentaciÛn de
+Underfull \hbox (badness 2050) in paragraph at lines 1338--1338
+[]|\T1/txr/m/n/10 Adaptabilidad en proc.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1461--1461
-[]\T1/txr/m/n/10 PonderaciÛn de
+Underfull \hbox (badness 10000) in paragraph at lines 1338--1338
+\T1/txr/m/n/10 es-truc-turado/no es-truc-
+ []
+
+[20 <./images/fig_7.jpg>]
+Underfull \vbox (badness 1776) has occurred while \output is active []
+
+ [21 <./images/fig_8.jpg>]
+Underfull \vbox (badness 8170) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1437--1437
+[]|\T1/txr/m/n/10 ValidaciÛn Cruzada
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1462--1462
-[]\T1/txr/m/n/10 Muestreo Es-trat-i-fi-
+Underfull \hbox (badness 10000) in paragraph at lines 1480--1480
+[]|\T1/txr/m/n/10 AumentaciÛn de
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 1480--1492
+Underfull \hbox (badness 10000) in paragraph at lines 1483--1483
+[]|\T1/txr/m/n/10 PonderaciÛn de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1484--1484
+[]|\T1/txr/m/n/10 Muestreo Es-trat-i-fi-
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 1502--1511
 []\T1/txr/m/n/10 El re-conocimiento de ex-pre-sivi-dad emo-cional en
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-Overfull \hbox (13.57016pt too wide) in paragraph at lines 1519--1544
+[22]
+Overfull \hbox (13.57016pt too wide) in paragraph at lines 1538--1563
  [][] 
  []
 
 <./images/fig_9.jpg, id=90, 983.17313pt x 462.22687pt>
 File: ./images/fig_9.jpg Graphic file (type jpg)
 <use ./images/fig_9.jpg>
-Package pdftex.def Info: ./images/fig_9.jpg  used on input line 1548.
+Package pdftex.def Info: ./images/fig_9.jpg  used on input line 1567.
 (pdftex.def)             Requested size: 468.0pt x 220.02554pt.
 
-Underfull \vbox (badness 1231) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [24]
-Underfull \hbox (badness 2865) in paragraph at lines 1583--1593
+Underfull \hbox (badness 2865) in paragraph at lines 1602--1612
 []\T1/txr/m/n/10 La tesis metodolÛg-ica cen-tral de esta re-visiÛn,
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 1583--1593
+Underfull \hbox (badness 2096) in paragraph at lines 1602--1612
 \T1/txr/m/n/10 sostenida por el an·li-sis con-junto de mÈtri-cas de
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-Underfull \hbox (badness 2080) in paragraph at lines 1649--1656
+ [24 <./images/fig_9.jpg>]
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 1668--1675
 []\T1/txr/m/n/10 Las lim-ita-ciones prin-ci-pales iden-ti-fi-cadas en los
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 1649--1656
+Underfull \hbox (badness 1584) in paragraph at lines 1668--1675
 \T1/txr/m/n/10 datasets cor-re-spon-den a rep-re-sen-ta-tivi-dad ecolÛg-ica
  []
 
 
-Underfull \hbox (badness 2173) in paragraph at lines 1649--1656
+Underfull \hbox (badness 2173) in paragraph at lines 1668--1675
 \T1/txr/m/n/10 con-texto real de se-siones ter-apÈu-ti-cas; des-bal-ance
  []
 
 
-Underfull \vbox (badness 5970) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1102) in paragraph at lines 1657--1672
+Underfull \hbox (badness 1102) in paragraph at lines 1676--1691
 []\T1/txr/m/n/10 La eval-u-aciÛn de cal-i-dad metodolÛg-ica me-di-ante
  []
 
+[25]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Underfull \vbox (badness 5970) has occurred while \output is active []
 
- [26 <./images/fig_9.jpg>]
-Underfull \hbox (badness 2837) in paragraph at lines 1688--1701
+Underfull \hbox (badness 1102) in paragraph at lines 1692--1704
+\T1/txr/m/n/10 la in-ter-pretaciÛn de los hal-laz-gos de esta re-visiÛn.
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26]
+Underfull \hbox (badness 2837) in paragraph at lines 1707--1719
 \T1/txr/m/n/10 (23.5%) y las Modal-i-dades de En-trada de video
  []
 
-[27]
-Underfull \hbox (badness 1270) in paragraph at lines 1888--1904
-\T1/txr/m/n/10 sin prece-dentes para de-sar-rol-lar in-ter-ven-ciones tec-
- []
+[27] [28
 
-[28]
-Underfull \hbox (badness 1270) in paragraph at lines 1908--1913
+] [29
+
+]
+Underfull \hbox (badness 1270) in paragraph at lines 1920--1925
 []\T1/txr/m/n/10 ù. G¸ngˆr, A. Sar-man, and S. Tun-cay, ``Can
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 1908--1913
+Underfull \hbox (badness 1648) in paragraph at lines 1920--1925
 \T1/txr/m/n/10 ar-ti-fi-cial in-tel-li-gence and face recog-ni-tion us-
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 1908--1913
+Underfull \hbox (badness 1062) in paragraph at lines 1920--1925
 \T1/txr/m/n/10 ing deep learn-ing de-tect emo-tions in chil-dren
  []
 
 
-Underfull \hbox (badness 1242) in paragraph at lines 1908--1913
+Underfull \hbox (badness 1242) in paragraph at lines 1920--1925
 \T1/txr/m/n/10 with autism?'' \T1/txr/m/it/10 PLoS ONE\T1/txr/m/n/10 , vol. 20,
  no. 12,
  []
 
 
-Underfull \hbox (badness 7415) in paragraph at lines 1915--1920
+Underfull \hbox (badness 7415) in paragraph at lines 1927--1932
 []\T1/txr/m/n/10 G. John-son, V. Ar-gyriou, S. A. Bar-man,
  []
 
 
-Underfull \hbox (badness 6396) in paragraph at lines 1915--1920
+Underfull \hbox (badness 6396) in paragraph at lines 1927--1932
 \T1/txr/m/n/10 and C. Poli-tis, ``As-sis-tive fa-cial ex-pres-sion
  []
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 1922--1927
+Underfull \hbox (badness 2334) in paragraph at lines 1934--1939
 []\T1/txr/m/n/10 Y. He et al., ``The char-ac-ter-is-tics of in-tel-li-
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 1922--1927
+Underfull \hbox (badness 1237) in paragraph at lines 1934--1939
 \T1/txr/m/n/10 gence pro-file and eye gaze in fa-cial emo-tion
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 1936--1941
+Underfull \hbox (badness 3623) in paragraph at lines 1948--1953
 []\T1/txr/m/n/10 F. Lec-ciso et al., ``Emo-tional ex-pres-sion in
  []
 
 
-Underfull \hbox (badness 2790) in paragraph at lines 1936--1941
+Underfull \hbox (badness 2790) in paragraph at lines 1948--1953
 \T1/txr/m/n/10 chil-dren with ASD: A pre-study on a two-
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 1936--1941
+Underfull \hbox (badness 1077) in paragraph at lines 1948--1953
 \T1/txr/m/n/10 and computer-based train-ing,'' \T1/txr/m/it/10 Front. Psy-chol.
 \T1/txr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 1957--1962
+Underfull \hbox (badness 1448) in paragraph at lines 1969--1974
 []\T1/txr/m/n/10 F. E. El Rhatassi, B. El Ghali, and N. Na-
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 1957--1962
+Underfull \hbox (badness 4048) in paragraph at lines 1969--1974
 \T1/txr/m/n/10 jima, ``Deep learn-ing ap-proaches for rec-og-
  []
 
 
-Underfull \hbox (badness 5091) in paragraph at lines 1957--1962
+Underfull \hbox (badness 5091) in paragraph at lines 1969--1974
 \T1/txr/m/n/10 niz-ing fa-cial emo-tions on autis-tic pa-tients,''
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 1957--1962
+Underfull \hbox (badness 1502) in paragraph at lines 1969--1974
 \T1/txr/m/it/10 Int. J. Electr. Com-put. Eng.\T1/txr/m/n/10 , vol. 14, no. 4,
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 1957--1962
+Underfull \hbox (badness 1028) in paragraph at lines 1969--1974
 \T1/txr/m/n/10 pp. 4034--4045, 2024. $\T1/cmtt/m/n/10 https : / / doi . org / 1
 0 .
  []
 
-
-Underfull \hbox (badness 1072) in paragraph at lines 1971--1976
+[30]
+Underfull \hbox (badness 1072) in paragraph at lines 1983--1988
 \T1/txr/m/n/10 de-vel-op-men-tal pe-di-atrics us-ing domain-specific
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 1978--1983
+Underfull \hbox (badness 1902) in paragraph at lines 1990--1995
 []\T1/txr/m/n/10 R. W. Sholikah et al., ``Real-time fa-cial ex-
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 1978--1983
+Underfull \hbox (badness 1226) in paragraph at lines 1990--1995
 \T1/txr/m/n/10 pres-sion recog-ni-tion to en-hance emo-tional in-
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 1978--1983
+Underfull \hbox (badness 1803) in paragraph at lines 1990--1995
 \T1/txr/m/n/10 tel-li-gence in autism,'' \T1/txr/m/it/10 Pro-ce-dia Com-put. Sc
 i.\T1/txr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 6876) in paragraph at lines 1985--1990
+Underfull \hbox (badness 6876) in paragraph at lines 1997--2002
 []\T1/txr/m/n/10 L. Levy, A. Am-baw, E. Ben-Itzhak, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+Underfull \hbox (badness 10000) in paragraph at lines 1997--2002
 \T1/txr/m/n/10 E. Hold-en-gre-ber, ``A real-time en-vi-ron-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+Underfull \hbox (badness 10000) in paragraph at lines 1997--2002
 \T1/txr/m/n/10 men-tal trans-la-tor for emo-tion recog-ni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1985--1990
+Underfull \hbox (badness 10000) in paragraph at lines 1997--2002
 \T1/txr/m/n/10 tion in autism spec-trum dis-or-der,'' \T1/txr/m/it/10 Sci.
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 1985--1990
+Underfull \hbox (badness 2119) in paragraph at lines 1997--2002
 \T1/txr/m/it/10 Rep.\T1/txr/m/n/10 , vol. 14, no. 1, 31527, 2024. $\T1/cmtt/m/n
 /10 https :
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 1992--1997
+Underfull \hbox (badness 1087) in paragraph at lines 2004--2009
 []\T1/txr/m/n/10 M. A. Mah-mood et al., ``Lever-ag-ing ar-ti-fi-cial
  []
 
 
-Underfull \hbox (badness 3260) in paragraph at lines 1992--1997
+Underfull \hbox (badness 3260) in paragraph at lines 2004--2009
 \T1/txr/m/n/10 in-tel-li-gence for di-ag-no-sis of chil-dren autism
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 1992--1997
+Underfull \hbox (badness 2846) in paragraph at lines 2004--2009
 \T1/txr/m/n/10 no. 1, 11945, 2025. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
 .
  []
 
 
-Underfull \hbox (badness 3942) in paragraph at lines 2006--2011
+Underfull \hbox (badness 3942) in paragraph at lines 2018--2023
 []\T1/txr/m/n/10 E. Sariyanidi et al., ``Be-yond FACS: Data-
  []
 
 
-Underfull \hbox (badness 1242) in paragraph at lines 2006--2011
+Underfull \hbox (badness 1242) in paragraph at lines 2018--2023
 \T1/txr/m/n/10 driven fa-cial ex-pres-sion dic-tio-nar-ies, with ap-
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 2006--2011
+Underfull \hbox (badness 2134) in paragraph at lines 2018--2023
 \T1/txr/m/it/10 19th Int. Conf. Au-tom. Face Ges-ture Recog-
  []
 
-[29]
-Underfull \hbox (badness 1194) in paragraph at lines 2020--2025
+
+Underfull \hbox (badness 1194) in paragraph at lines 2032--2037
 \T1/txr/m/n/10 pre-dic-tion of autism spec-trum dis-or-ders,'' \T1/txr/m/it/10 
 Sci.
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 2027--2032
+Underfull \hbox (badness 1077) in paragraph at lines 2039--2044
 \T1/txr/m/n/10 R. W. Pi-card, ``Per-son-al-ized ma-chine learn-ing
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 2041--2046
+Underfull \hbox (badness 1496) in paragraph at lines 2053--2058
 []\T1/txr/m/n/10 L. M. Almeida et al., ``AL-TRI-RAS: A com-
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 2041--2046
+Underfull \hbox (badness 2134) in paragraph at lines 2053--2058
 \T1/txr/m/n/10 4384896, 2019. $\T1/cmtt/m/n/10 https : / / doi . org / 10 . 115
 5 /
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 2062--2068
+Underfull \hbox (badness 3039) in paragraph at lines 2074--2080
 \T1/txr/m/n/10 3D-CNN and LSTM,'' \T1/txr/m/it/10 J. Wirel. Mob. Netw.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+Underfull \hbox (badness 10000) in paragraph at lines 2088--2093
 []\T1/txr/m/n/10 R. Ra-machan-dran et al., ``Dis-or-der fa-cial
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+Underfull \hbox (badness 10000) in paragraph at lines 2088--2093
 \T1/txr/m/n/10 emo-tion recog-ni-tion with grey wolf op-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2076--2081
+Underfull \hbox (badness 10000) in paragraph at lines 2088--2093
 \T1/txr/m/n/10 ti-mized GEfficient-Net for autism spec-
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 2076--2081
+Underfull \hbox (badness 1867) in paragraph at lines 2088--2093
 \T1/txr/m/n/10 trum,'' \T1/txr/m/it/10 Int. J. Im-age Graph. Sig-nal Pro-cess.\
 T1/txr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 2076--2081
+Underfull \hbox (badness 6300) in paragraph at lines 2088--2093
 \T1/txr/m/n/10 vol. 17, no. 1, pp. 1--16, 2025. $\T1/cmtt/m/n/10 https :
  []
 
-
-Underfull \hbox (badness 6641) in paragraph at lines 2083--2088
+[31]
+Underfull \hbox (badness 6641) in paragraph at lines 2095--2100
 \T1/txr/m/n/10 based YOLOv8 al-go-rithm for early autism
  []
 
 
-Underfull \hbox (badness 5924) in paragraph at lines 2083--2088
+Underfull \hbox (badness 5924) in paragraph at lines 2095--2100
 \T1/txr/m/n/10 di-ag-no-sis through fa-cial ex-pres-sion recog-ni-
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 2090--2095
+Underfull \hbox (badness 2846) in paragraph at lines 2102--2107
 \T1/txr/m/n/10 no. 14, 5116, 2022. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
 .
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 2104--2109
+Underfull \hbox (badness 1701) in paragraph at lines 2116--2121
 \T1/txr/m/n/10 database, and pro-to-col,'' \T1/txr/m/it/10 Front. Com-put. Sci.
 \T1/txr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 4940) in paragraph at lines 2117--2122
+Underfull \hbox (badness 4940) in paragraph at lines 2129--2134
 \T1/txr/m/n/10 yˆneltilen gˆrsel dikkatin makine ˆßren-mesi
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 2117--2122
+Underfull \hbox (badness 4872) in paragraph at lines 2129--2134
 \T1/txr/m/n/10 arac^^Yl^^Yß^^Yyla deßer-lendirilmesi,'' \T1/txr/m/it/10 Turk Ps
 ikoloji
  []
 
-[30]
-Underfull \hbox (badness 2865) in paragraph at lines 2131--2136
+
+Underfull \hbox (badness 2865) in paragraph at lines 2143--2148
 []\T1/txr/m/n/10 J. O'Sullivan et al., ``Au-to-matic speaker di-
  []
 
 
-Underfull \hbox (badness 2828) in paragraph at lines 2131--2136
+Underfull \hbox (badness 2828) in paragraph at lines 2143--2148
 \T1/txr/m/n/10 ariza-tion for nat-u-ral con-ver-sa-tion anal-y-sis in
  []
 
 
-Underfull \hbox (badness 6961) in paragraph at lines 2131--2136
+Underfull \hbox (badness 6961) in paragraph at lines 2143--2148
 \T1/txr/m/n/10 autism clin-i-cal tri-als,'' \T1/txr/m/it/10 Sci. Rep.\T1/txr/m/
 n/10 , vol. 13,
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 2131--2136
+Underfull \hbox (badness 2846) in paragraph at lines 2143--2148
 \T1/txr/m/n/10 no. 1, 10270, 2023. $\T1/cmtt/m/n/10 https : / / doi . org / 10 
 .
  []
 
-[31
-
-] [32] (elsdoc.aux)
+[32] (elsdoc.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5132 strings out of 474485
- 76737 string characters out of 5739450
- 1961542 words of memory out of 5000000
- 27330 multiletter control sequences out of 15000+600000
+ 5253 strings out of 474485
+ 78641 string characters out of 5739450
+ 1967542 words of memory out of 5000000
+ 27446 multiletter control sequences out of 15000+600000
  608158 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,11n,79p,635b,423s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,11n,79p,628b,423s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Christopher PS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
 i600\ectt1000.pk> <C:\Users\Christopher PS\AppData\Local\MiKTeX\fonts/pk/ljfour
 /jknappen/ec/dpi600\ectt0800.pk><C:/Users/Christopher PS/AppData/Local/Programs
@@ -1397,9 +1468,9 @@ onts/txsy.pfb><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/times/utmb8a.pfb><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/f
 onts/type1/urw/times/utmr8a.pfb><C:/Users/Christopher PS/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on elsdoc.pdf (32 pages, 854477 bytes).
+Output written on elsdoc.pdf (32 pages, 858080 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
+ 237 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

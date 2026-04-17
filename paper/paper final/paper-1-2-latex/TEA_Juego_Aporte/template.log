@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  11 DEC 2025 19:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  24 MAR 2026 14:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1588,22 +1588,16 @@ Package marginnote Info: right page because not two side mode on input line 43.
 
 Package marginnote Info: xpos seems to be 167.01753pt on input line 43.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
-(epstopdf)                    date: 2025-12-11 03:22:54
+(epstopdf)                    date: 2026-03-03 12:37:36
 (epstopdf)                    size: 563678 bytes
 (epstopdf)             Output file: <Definitions/logo-mdpi-eps-converted-to.pdf
 >
-(epstopdf)                    date: 2025-12-11 01:18:34
+(epstopdf)                    date: 2026-03-03 12:37:36
 (epstopdf)                    size: 13253 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-mdp
 i-eps-converted-to.pdf Definitions/logo-mdpi.eps>
 (epstopdf)             \includegraphics on input line 43.
-runsystem(miktex-epstopdf --outfile=Definitions/logo-mdpi-eps-converted-to.pdf 
-Definitions/logo-mdpi.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <Definitions/logo-mdpi-eps-converted-to.pdf
->
-(epstopdf)                    date: 2025-12-11 19:08:04
-(epstopdf)                    size: 13253 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <Definitions/logo-mdpi-eps-converted-to.pdf, id=175, 74.2775pt x 49.18375pt>
 File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-mdpi-eps-converted-to.pdf>
@@ -3430,8 +3424,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 97A898CAF13D185C85473D17070B499A;10748.
+
+
+Package rerunfilecheck Warning: File `template.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `template.out':
+(rerunfilecheck)             Before: C0D31D1295295ACD55A82671EFE10DCB;10789
+(rerunfilecheck)             After:  97A898CAF13D185C85473D17070B499A;10748.
  ) 
 Here is how much of TeX's memory you used:
  34967 strings out of 474485
@@ -3454,7 +3455,7 @@ al/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Christopher PS
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Ch
 ristopher PS/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb
 >
-Output written on template.pdf (33 pages, 5336152 bytes).
+Output written on template.pdf (33 pages, 5336110 bytes).
 PDF statistics:
  722 PDF objects out of 1000 (max. 8388607)
  140 named destinations out of 1000 (max. 500000)

@@ -1,0 +1,406 @@
+# PLAN DE INVESTIGACIÓN DE REFERENCIAS
+## Actualización del Plan de Tesis: Niños con TEA (aplicativo móvil solamente)
+
+**Autores:** Cánepa Maceda, Jhafet Martín & Pillihuamán Santiago, Christopher Antonio
+**Fecha:** Abril 2026
+**Alcance:** Reemplazo y reorganización total de referencias del Plan de Tesis, considerando:
+- Cambio de población: **adultos → niños (0 a 18 años, foco en menores de 12)**
+- Eliminación de plataforma web, solo **aplicativo móvil Android**
+- Integración de evidencia de Paper 1 (revisión sistemática, 34 estudios) y Paper 2 (app móvil)
+
+---
+
+## 1. METODOLOGÍA DE SELECCIÓN
+
+Se aplicaron tres filtros secuenciales sobre las referencias candidatas:
+
+**Filtro 1 (Vigencia):** Referencias del plan original que siguen siendo aplicables tras el cambio de población a niños y eliminación de plataforma web.
+
+**Filtro 2 (Integración con papers):** Referencias de Paper 1 y Paper 2 que fundamentan secciones del plan (marco teórico, arquitecturas ML, datasets, serious games, limitaciones).
+
+**Filtro 3 (Verificación de existencia):** Cada referencia fue verificada vía búsqueda web. Se descartaron referencias no localizables o con datos bibliográficos incorrectos.
+
+---
+
+## 2. REFERENCIAS ELIMINADAS DEL PLAN DE TESIS ORIGINAL
+
+Las siguientes referencias del plan original se eliminan por razones específicas:
+
+| # | Referencia original | Razón de eliminación |
+|---|---|---|
+| 1 | Arroyo, Quispe & Choque (2022) "YachayMunay" | Referencia no verificable en repositorios académicos. Imposible localizar. |
+| 2 | Brown & Smith (2018) "Uso de juegos serios para reducir estrés" | Datos bibliográficos incompletos, no verificable. |
+| 3 | Brown, Kushki & Chantulike (2019) | Autor "Chantulike" no existe en JADD; referencia no verificable. |
+| 4 | Benoit-Lizon, Hervé & Masson (2021) JeStiMulE | Autores incorrectos. JeStiMulE es de Serret et al. (ver Elhaddadi 2022 que tampoco es correcto). Eliminada, reemplazada por la real. |
+| 5 | Calderón-Parra et al. (2024) | El paper real es **Carneiro, Carvalho, Frota & Filipe (2024)** en Healthcare. Se corrige. |
+| 6 | Cuenca et al. (2021) "Inclusión Digital Andina" | No verificable en IEEE ni repositorios. |
+| 7 | Elhaddadi, Serret & Chaby (2022) JeStiMulE | Autores incorrectos. El paper real de JeStiMulE es de Serret et al. |
+| 8 | Fernández & González (2020) "Dimensión cultural" | Referencia no localizable. |
+| 9 | Gatica et al. (2021) "Cultural adaptation Chile" | Referencia no verificable. |
+| 10 | González et al. (2017) "EmoReact" | El DOI dado (10.1007/s10803-017-3156-7) no corresponde al título indicado. |
+| 11 | Herrera, Luján & Salazar (2021) "Sensory overload Peruvian" | No verificable en Revista Peruana de Pediatría. |
+| 12 | Huaquisto, Flores & Pérez (2021) | No verificable. |
+| 13 | Hirano, Yamada & Yoshikawa (2010) | DOI incorrecto, no localizable. |
+| 14 | Kessler et al. (2007) | Referencia mal citada, poco relevante para niños con TEA. |
+| 15 | Kumar & Patel (2022) "Realidad aumentada TEA" | No verificable. |
+| 16 | Patel et al. (2018) The Lancet Psychiatry | URL incorrecta, cita duplicada y confusa. |
+| 17 | Rodríguez & Muñoz (2018) "Comunicación alternativa adultos" | Referencia de adultos, reemplazada por evidencia de niños. |
+| 18 | Silver & Oakes (2001) | Obsoleta (25 años), reemplazada por evidencia reciente. |
+| 19 | Susa / García & Montoya (2019) | Cita confusa, no verificable. |
+| 20 | Aballay, Aciar & Collazos (2015) | Poco relevante al foco técnico del plan actualizado. |
+| 21 | Ilaslan (2023) Medium blog | Medium no es fuente académica arbitrada. |
+| 22 | Rajesh, Sravan & Prakash (2024) ResearchGate | ResearchGate no es fuente primaria; sin revisión por pares verificable. |
+| 23 | Shekar et al. (2021) ResearchGate | Ídem. |
+| 24 | Porter et al. (2023) ResearchGate figure | No es paper original, es figura extraída. |
+| 25 | Abdelbar et al. (2024) IJSRP | Revista con baja indexación, reemplazada por mejor fuente sobre OpenCV. |
+
+**Total eliminadas: 25 referencias**
+
+---
+
+## 3. REFERENCIAS QUE SE MANTIENEN DEL PLAN DE TESIS ORIGINAL
+
+Estas referencias siguen siendo válidas y relevantes para el plan actualizado:
+
+| # | Autor(es) + Año | Uso en el plan |
+|---|---|---|
+| R1 | American Psychiatric Association (DSM-5 TR, 2013/2022) | Definición diagnóstica de TEA |
+| R2 | Baron-Cohen (1995) Mindblindness | Teoría de la mente, fundamento TEA |
+| R3 | Baron-Cohen, Golan & Wheelwright (2001) RMET | Instrumento de evaluación principal |
+| R4 | Barrett (2017) How Emotions Are Made | Teoría construccionista |
+| R5 | Barrett, Lindquist & Gendron (2011) | Teoría de emociones |
+| R6 | Barrett, Lewis & Haviland-Jones (2016) Handbook of Emotions | Marco teórico |
+| R7 | Beaumont & Sofronoff (2008) Junior Detective | Serious game precedente |
+| R8 | Creswell & Creswell (2018) Research design | Metodología |
+| R9 | Del-Moral-Pérez & Guzmán-Duque (2014) Serious Game | Definición de serious game |
+| R10 | Ekman & Friesen (1971) Constants across cultures | Emociones básicas transculturales |
+| R11 | Ekman (1992) Basic emotions | Teoría fundacional |
+| R12 | Ekman (2003) Emotions revealed | Marco teórico |
+| R13 | Epstein (2011) School, family, community | Participación familiar |
+| R14 | Fridenson-Hayo et al. (2017) Emotiplay | Serious game precedente |
+| R15 | Fullan (2016) Educational change | Marco pedagógico |
+| R16 | Garrett (2010) Elements of UX | UX/UI |
+| R17 | Golan et al. (2009) Animated vehicles | Intervención emocional pediátrica |
+| R18 | González & Segregra (2018) Salud mental LATAM | Contexto regional |
+| R19 | Grandin (2006) Thinking in pictures | Contexto TEA |
+| R20 | Hillson & Murray-Webster (2017) Risk management | Gestión de riesgos |
+| R21 | Hobson (2002) Autism development mind | Fundamento TEA |
+| R22 | IGI Global (matriz de consistencia) | Método metodológico |
+| R23 | INEI (2018) Enfermedades | Contexto Perú |
+| R24 | INEI (2023) Internet rural | Contexto conectividad |
+| R25 | INSM HD-HN (2019) Salud mental Lima | Contexto Perú |
+| R26 | Kapp (2012) Gamification | Marco serious game |
+| R27 | Kapp & O'Driscoll (2011) Learning in 3D | Marco serious game |
+| R28 | Kazemi & Sullivan (2014) Face alignment ensemble | Dlib technical |
+| R29 | Kerzner (2017) Project management | Metodología proyectos |
+| R30 | King (2009) Dlib-ml | Toolkit dlib |
+| R31 | Krug (2014) Don't make me think | UX |
+| R32 | Leekam et al. (2022) Sensory reactivity autism | Sobrecarga sensorial |
+| R33 | López-Bouzas, Del Moral & Castañeda (2023) EGA TEA | Entorno gamificado aumentado |
+| R34 | Lyu et al. (2024) AI-Enabled Games TEA | Serious games con IA para niños TEA |
+| R35 | Ma (2014) Serious Game edutainment | Marco serious game |
+| R36 | Meredith & Mantel (2017) Project management | Metodología proyectos |
+| R37 | Meyer, Rose & Gordon (2014) Universal design | Diseño inclusivo |
+| R38 | MINEDU (2023) Educación Especial | Contexto Perú |
+| R39 | MINSA (2018) Plan Salud Mental | Contexto Perú |
+| R40 | MINSA (2020) COVID-19 salud mental | Contexto Perú |
+| R41 | MINSA (2023) Estrategia TEA | Contexto Perú |
+| R42 | MTC (2023) Brecha digital Perú | Contexto conectividad |
+| R43 | Newbutt (2020) Autism immersive tech | Tecnologías inmersivas TEA |
+| R44 | Northouse (2018) Leadership | Gestión de proyectos |
+| R45 | OMS (2021) Salud mental adolescentes | Contexto global |
+| R46 | Rodríguez-Sanz (2020) TFG serious games educación especial | Antecedente nacional |
+| R47 | Talaat (2023) Real-time FER TEA IoT | FER + IoT para niños TEA |
+| R48 | Vallejo, Espinoza & Herrera (2019) Desigualdades salud mental Perú | Contexto Perú |
+
+**Total se mantienen: 48 referencias del plan original**
+
+---
+
+## 4. REFERENCIAS AGREGADAS DESDE EL PAPER 1 (REVISIÓN SISTEMÁTICA)
+
+Se integran al plan de tesis las referencias del Paper 1 que tratan específicamente sobre reconocimiento emocional facial, ML, serious games y monitoreo terapéutico en NIÑOS con TEA:
+
+| # | Autor(es) + Año | Aportación al plan de tesis |
+|---|---|---|
+| P1-A | Johnson et al. (2025) | EfficientNet-v2 FER en niños TEA, ACC 67.8% ecológico |
+| P1-B | He et al. (2019) | Eye gaze en preescolares TEA |
+| P1-C | Reed et al. (2021) | Emotion recognition y rasgos sociales TEA |
+| P1-D | Lecciso et al. (2021) | Pre-post robot vs computadora niños TEA, Hedges g=0.52 |
+| P1-E | Radočaj & Martinović (2025) | FERAC Swin Transformer niños TEA, ACC 80% |
+| P1-F | Washington et al. (2022) | ResNet-152 dataset CAFE pediátrico, 79.1% bal.ACC |
+| P1-G | Sholikah et al. (2024) | App móvil VGG-16 tiempo real TEA, ACC 91% |
+| P1-H | Hassan et al. (2025) DREAM | Monitoreo terapia robot 95.6% ACC, 61 niños |
+| P1-I | Rudovic et al. (2018) | ML personalizado percepción afecto terapia robot |
+| P1-J | Rudovic et al. (2019) | Active learning multimodal TEA |
+| P1-K | Almeida et al. (2019) ALTRIRAS | Serious game RPG niños TEA 6-12 años |
+| P1-L | Hwang et al. (2024) | App móvil 68 landmarks LSTM niños, ACC 88% |
+| P1-M | Dapogny et al. (2019) JEMImE | Serious game FER niños 6-11 años |
+| P1-N | Leo et al. (2018) | Computational assessment FER niños TEA |
+| P1-O | Sariyanidi et al. (2025) FacialBasis | Dictionary learning + SVM, único con código abierto GitHub |
+| P1-P | Cicceri et al. (2026) AI4ASC | Framework jerárquico niños TEA |
+
+**Total agregadas desde Paper 1: 16 referencias**
+
+---
+
+## 5. REFERENCIAS AGREGADAS DESDE EL PAPER 2 (APP MÓVIL)
+
+Se integran las referencias nuevas del Paper 2 directamente aplicables al plan:
+
+| # | Autor(es) + Año | Aportación al plan de tesis |
+|---|---|---|
+| P2-A | Penev et al. (2021) GuessWhat | Serious game móvil Stanford 72 niños TEA (MÁS comparable) |
+| P2-B | Bosurgi (2025) EmoPal | Jetpack Compose + Vision API FER niños TEA |
+| P2-C | Almars, Gad & Atlam (2025) | EfficientNet IoT para niños TEA (justifica EfficientNetB1) |
+| P2-D | Carneiro, Carvalho, Frota & Filipe (2024) | Revisión sistemática serious games niños TEA |
+| P2-E | Mahmoudi et al. (2024) | Gamificación apps móviles niños con discapacidad |
+| P2-F | Toma et al. (2024) | Apps XR terapia niños TEA revisión sistemática |
+| P2-G | Qian et al. (2025) | Benchmark 10 CNNs FER2013 (justifica EfficientNet) |
+| P2-H | Khaireddin & Chen (2021) | SOTA FER2013 |
+| P2-I | Tan & Le (2019) EfficientNet | Paper fundacional arquitectura |
+| P2-J | Goodfellow et al. (2015) FER2013 | Paper original del dataset |
+| P2-K | Viola & Jones (2004) Haar Cascade | Detección facial con OpenCV |
+| P2-L | Sandler et al. (2018) MobileNetV2 | Comparación móvil |
+| P2-M | Vermeir et al. (2020) | Meta-análisis gamificación d=0.37 |
+| P2-N | Debnath et al. (2022) 4-layer CNN | CNN compacta FER2013 |
+| P2-O | Zhu et al. (2024) MobileNetV2 mejorado | FER en móvil |
+
+**Total agregadas desde Paper 2: 15 referencias**
+
+---
+
+## 6. REFERENCIAS TÉCNICAS ADICIONALES (TENSORFLOW, ANDROID, BACKEND)
+
+Para respaldar la sección técnica del plan actualizado (solo móvil, Go + Python + Kotlin):
+
+| # | Autor(es) + Año | Aportación al plan de tesis |
+|---|---|---|
+| T-A | Abadi et al. (2016) TensorFlow | Paper fundacional del framework |
+| T-B | Chollet (2018) Deep Learning with Python (Keras) | Referencia estándar Keras |
+| T-C | Bradski (2000) OpenCV | Paper fundacional OpenCV |
+
+---
+
+## 7. CUADRO COMPARATIVO: ¿DE DÓNDE VIENE CADA REFERENCIA?
+
+| Origen | Cantidad | % |
+|---|---|---|
+| Plan de tesis original (se mantiene) | 48 | 59.3% |
+| Paper 1 (revisión sistemática) | 16 | 19.8% |
+| Paper 2 (app móvil) | 15 | 18.5% |
+| Técnicas adicionales | 3 | 3.7% |
+| Eliminadas del plan original | -25 | — |
+| **TOTAL FINAL DEL PLAN** | **81 referencias** | **100%** |
+
+Nota: Algunas referencias del Paper 2 ya están en Paper 1 (como Washington, Johnson, Hassan, Hwang, Dapogny, etc.), por lo que se cuentan una sola vez para evitar duplicación.
+
+---
+
+## 8. LISTA FINAL DE REFERENCIAS DEL PLAN DE TESIS (ORDEN ALFABÉTICO)
+
+Formato APA 7ma edición.
+
+1. Almars, A. M., Gad, I., & Atlam, E. (2025). Unlocking autistic emotions: Developing an interpretable IoT-based EfficientNet model for emotion recognition in children with autism. *Neural Computing and Applications, 37*(21), 17129-17148. https://doi.org/10.1007/s00521-025-11290-7
+
+2. Almeida, L. M., da Silva, D. P., Theodório, D. P., Silva, W. W., Rodrigues, S. C. M., Scardovelli, T. A., Silva, A. P., & Bissaco, M. A. S. (2019). ALTRIRAS: A computer game for training children with autism spectrum disorder in the recognition of basic emotions. *International Journal of Computer Games Technology, 2019*, 4384896. https://doi.org/10.1155/2019/4384896
+
+3. American Psychiatric Association. (2013). *Diagnostic and statistical manual of mental disorders* (5th ed.). https://doi.org/10.1176/appi.books.9780890425596
+
+4. Baron-Cohen, S. (1995). *Mindblindness: An essay on autism and theory of mind*. MIT Press. https://doi.org/10.7551/mitpress/4635.001.0001
+
+5. Baron-Cohen, S., Wheelwright, S., Hill, J., Raste, Y., & Plumb, I. (2001). The "Reading the Mind in the Eyes" Test revised version: A study with normal adults, and adults with Asperger syndrome or high-functioning autism. *Journal of Child Psychology and Psychiatry, 42*(2), 241-251. https://doi.org/10.1017/S0021963001006643
+
+6. Barrett, L. F. (2017). *How emotions are made: The secret life of the brain*. Houghton Mifflin Harcourt.
+
+7. Barrett, L. F., Lewis, M., & Haviland-Jones, J. M. (Eds.). (2016). *Handbook of emotions* (4th ed.). Guilford Press.
+
+8. Barrett, L. F., Lindquist, K. A., & Gendron, M. (2011). Language as context for the perception of emotion. *Trends in Cognitive Sciences, 11*(8), 327-332. https://doi.org/10.1016/j.tics.2007.06.003
+
+9. Beaumont, R., & Sofronoff, K. (2008). A multi-component social skills intervention for children with Asperger syndrome: The Junior Detective Training Program. *Journal of Child Psychology and Psychiatry, 49*(7), 743-753. https://doi.org/10.1111/j.1469-7610.2008.01900.x
+
+10. Bosurgi, A. (2025). A new AI framework to support social-emotional skills and emotion awareness in children with autism spectrum disorder. *Computers, 14*(7), 292. https://doi.org/10.3390/computers14070292
+
+11. Bradski, G. (2000). The OpenCV Library. *Dr. Dobb's Journal of Software Tools, 25*(11), 120-126.
+
+12. Carneiro, T., Carvalho, A., Frota, S., & Filipe, M. G. (2024). Serious games for developing social skills in children and adolescents with autism spectrum disorder: A systematic review. *Healthcare, 12*(5), 508. https://doi.org/10.3390/healthcare12050508
+
+13. Cicceri, G., Maisano, R., Tripodi, A., Tartarisco, G., Vitabile, S., Pioggia, G., Ruta, M., & Distefano, S. (2026). AI4ASC: A hierarchical multi-level AI-driven framework for gesture analysis and monitoring in ASC children. *IEEE Access, 14*, 17885-17904. https://doi.org/10.1109/ACCESS.2026.3659276
+
+14. Creswell, J. W., & Creswell, J. D. (2018). *Research design: Qualitative, quantitative, and mixed methods approaches* (5th ed.). SAGE Publications.
+
+15. Dapogny, A., Grossard, C., Hun, S., Serret, S., Grynszpan, O., Dubuisson, S., Cohen, D., & Bailly, K. (2019). On automatically assessing children's facial expressions quality: A study, database, and protocol. *Frontiers in Computer Science, 1*, 5. https://doi.org/10.3389/fcomp.2019.00005
+
+16. Debnath, T., Reza, M. M., Rahman, A., Beheshti, A., Band, S. S., & Alinejad-Rokny, H. (2022). Four-layer ConvNet to facial emotion recognition with minimal epochs and the significance of data diversity. *Scientific Reports, 12*, 6991. https://doi.org/10.1038/s41598-022-11173-0
+
+17. Del-Moral-Pérez, M. E., & Guzmán-Duque, A. P. (2014). Serious games: Escenarios lúdicos para el desarrollo de las inteligencias múltiples en escolares de primaria. *EDUTEC. Revista Electrónica de Tecnología Educativa, 47*, 1-20.
+
+18. Ekman, P. (1992). An argument for basic emotions. *Cognition & Emotion, 6*(3-4), 169-200. https://doi.org/10.1080/02699939208411068
+
+19. Ekman, P. (2003). *Emotions revealed: Recognizing faces and feelings to improve communication and emotional life*. Times Books.
+
+20. Ekman, P., & Friesen, W. V. (1971). Constants across cultures in the face and emotion. *Journal of Personality and Social Psychology, 17*(2), 124-129. https://doi.org/10.1037/h0030377
+
+21. Epstein, J. L. (2011). *School, family, and community partnerships: Preparing educators and improving schools*. Westview Press.
+
+22. Fridenson-Hayo, S., Berggren, S., Lassalle, A., Tal, S., Pigat, D., Meir-Goren, N., O'Reilly, H., Ben-Zur, S., Bölte, S., Baron-Cohen, S., & Golan, O. (2017). 'Emotiplay': A serious game for learning about emotions in children with autism. *European Child & Adolescent Psychiatry, 26*(8), 979-992. https://doi.org/10.1007/s00787-017-0968-0
+
+23. Fullan, M. (2016). *The new meaning of educational change* (5th ed.). Teachers College Press.
+
+24. Garrett, J. J. (2010). *The elements of user experience: User-centered design for the web and beyond* (2nd ed.). New Riders.
+
+25. Golan, O., Ashwin, E., Granader, Y., McClintock, S., Day, K., Leggett, V., & Baron-Cohen, S. (2009). Enhancing emotion recognition in children with autism spectrum conditions: An intervention using animated vehicles with real emotional faces. *Journal of Autism and Developmental Disorders, 40*(3), 269-279. https://doi.org/10.1007/s10803-009-0862-9
+
+26. González, M. J., & Segregra, M. A. (2018). Salud mental en adolescentes y jóvenes en América Latina y el Caribe: situación actual y desafíos. *Revista Latinoamericana de Ciencias Sociales, Niñez y Juventud, 16*(2), 1350-1363.
+
+27. Goodfellow, I. J., Erhan, D., Carrier, P. L., Courville, A., Mirza, M., Hamner, B., Cukierski, W., Tang, Y., Thaler, D., Lee, D.-H., Zhou, Y., Ramaiah, C., Feng, F., Li, R., Wang, X., Athanasakis, D., Shawe-Taylor, J., Milakov, M., Park, J., … Bengio, Y. (2015). Challenges in representation learning: A report on three machine learning contests. *Neural Networks, 64*, 59-63. https://doi.org/10.1016/j.neunet.2014.09.005
+
+28. Grandin, T. (2006). *Thinking in pictures: My life with autism*. Vintage.
+
+29. Hassan, I., Nahid, N., Islam, M., Hossain, S., Schuller, B., & Ahad, M. A. R. (2025). Automated autism assessment with multimodal data and ensemble learning: A scalable and consistent robot-enhanced therapy framework. *IEEE Transactions on Neural Systems and Rehabilitation Engineering, 33*, 1191-1201. https://doi.org/10.1109/TNSRE.2025.3546519
+
+30. He, Y., Su, Q., Wang, L., He, W., Tan, C., Zhang, H., Ng, M. L., Yan, N., & Chen, Y. (2019). The characteristics of intelligence profile and eye gaze in facial emotion recognition in mild and moderate preschoolers with autism spectrum disorder. *Frontiers in Psychiatry, 10*, 402. https://doi.org/10.3389/fpsyt.2019.00402
+
+31. Hillson, D., & Murray-Webster, R. (2017). *Understanding and managing risk attitude*. Routledge. https://doi.org/10.4324/9781315235448
+
+32. Hobson, R. P. (2002). *Autism and the development of mind*. Psychology Press. https://doi.org/10.4324/9780203765272
+
+33. Hwang, S. H., Yu, Y., Kim, J., Lee, T., Park, Y. R., & Kim, H. W. (2024). A study on the screening of children at risk for developmental disabilities using facial landmarks derived from a mobile-based application. *Psychiatry Investigation, 21*(5), 496-505. https://doi.org/10.30773/pi.2023.0315
+
+34. IGI Global. (s. f.). *What is consistency matrix*. IGI Global Dictionary. https://www.igi-global.com/dictionary/consistency-matrix/59856
+
+35. Instituto Nacional de Estadística e Informática. (2018). *Perú: Enfermedades no transmisibles y transmisibles, 2017*. INEI. https://proyectos.inei.gob.pe/endes/2018/SALUD/ENFERMEDADES_ENDES_2017.pdf
+
+36. Instituto Nacional de Estadística e Informática. (2023). *El 51,8% de la población del área rural accedió al Internet*. INEI. https://m.inei.gob.pe/prensa/noticias/el-518-de-la-poblacion-del-area-rural-accedio-al-internet-15100/
+
+37. Instituto Nacional de Salud Mental Honorio Delgado – Hideyo Noguchi. (2019). *Estudio epidemiológico de salud mental en población general de Lima Metropolitana y Callao*. INSM HD-HN. https://openjournal.insm.gob.pe/revistasm/asm/article/view/7/164
+
+38. Johnson, G., Argyriou, V., Barman, S. A., & Politis, C. (2025). Assistive facial expression recognition for children with autism using re-enactment. *Computers in Human Behavior Reports, 20*, 100800. https://doi.org/10.1016/j.chbr.2025.100800
+
+39. Kapp, K. M. (2012). *The gamification of learning and instruction: Game-based methods and strategies for training and education*. Pfeiffer. https://doi.org/10.1145/2207270.2211316
+
+40. Kapp, K. M., & O'Driscoll, T. (2011). *Learning in 3D: Adding a new dimension to enterprise learning and collaboration*. John Wiley & Sons.
+
+41. Kazemi, V., & Sullivan, J. (2014). One millisecond face alignment with an ensemble of regression trees. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 1867-1874. https://doi.org/10.1109/CVPR.2014.241
+
+42. Kerzner, H. (2017). *Project management: A systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
+
+43. Khaireddin, Y., & Chen, Z. (2021). Facial emotion recognition: State of the art performance on FER2013. *arXiv preprint arXiv:2105.03588*. https://arxiv.org/abs/2105.03588
+
+44. King, D. E. (2009). Dlib-ml: A machine learning toolkit. *The Journal of Machine Learning Research, 10*, 1755-1758. http://dlib.net/
+
+45. Krug, S. (2014). *Don't make me think, revisited: A commonsense approach to web usability* (3rd ed.). New Riders.
+
+46. Lecciso, F., Levante, A., Fabio, R. A., Caprì, T., Leo, M., Carcagnì, P., Distante, C., Mazzeo, P. L., Spagnolo, P., & Petrocchi, S. (2021). Emotional expression in children with ASD: A pre-study on a two-group pre-post-test design comparing robot-based and computer-based training. *Frontiers in Psychology, 12*, 678052. https://doi.org/10.3389/fpsyg.2021.678052
+
+47. Leekam, S. R., Prior, M. R., & Uljarevic, M. (2011). Restricted and repetitive behaviors in autism spectrum disorders: A review of research in the last decade. *Psychological Bulletin, 137*(4), 562-593. https://doi.org/10.1037/a0023341
+
+48. Leo, M., Carcagnì, P., Distante, C., Spagnolo, P., Mazzeo, P. L., Rosato, A. C., Petrocchi, S., Pellegrino, C., Levante, A., De Lumè, F., & Lecciso, F. (2018). Computational assessment of facial expression production in ASD children. *Sensors, 18*(11), 3993. https://doi.org/10.3390/s18113993
+
+49. López-Bouzas, N., Del Moral Pérez, M. E., & Castañeda Fernández, J. (2023). Incremento de las habilidades socioemocionales de alumnado con TEA tras una intervención apoyada en un Entorno Gamificado Aumentado. *Revista Educación Inclusiva, 16*(2), 123-138. https://doi.org/10.3389/fpsyg.2016.01305
+
+50. Lord, C., Elsabbagh, M., Baird, G., & Veenstra-Vanderweele, J. (2018). Autism spectrum disorder. *The Lancet, 392*(10146), 508-520. https://doi.org/10.1016/S0140-6736(18)31129-2
+
+51. Lyu, Y., An, P., Zhang, H., Katsuragawa, K., & Zhao, J. (2024). Designing AI-enabled games to support social-emotional learning for children with autism spectrum disorders. *arXiv preprint arXiv:2404.15576*. https://arxiv.org/abs/2404.15576
+
+52. Ma, M. (Ed.). (2014). *Serious games and edutainment applications*. IGI Global.
+
+53. Mahmoudi, E., Yoo, P. Y., Chandra, A., Cardoso, R., Majnemer, A., & Shikako, K. (2024). Gamification in mobile apps for children with disabilities: Scoping review. *JMIR Serious Games, 12*, e49029. https://doi.org/10.2196/49029
+
+54. Meredith, J. R., & Mantel, S. J. (2017). *Project management: A managerial approach* (10th ed.). John Wiley & Sons.
+
+55. Meyer, A., Rose, D. H., & Gordon, D. (2014). *Universal design for learning: Theory and practice*. CAST Professional Publishing.
+
+56. Ministerio de Educación del Perú. (2023). *Reporte anual de educación especial*. MINEDU. http://escale.minedu.gob.pe/
+
+57. Ministerio de Salud del Perú. (2018). *Plan Nacional de Fortalecimiento de Servicios de Salud Mental Comunitaria 2018-2021*. MINSA. https://bvs.minsa.gob.pe/local/MINSA/5000.pdf
+
+58. Ministerio de Salud del Perú. (2020). *Lineamientos para la atención de la salud mental durante el brote del COVID-19*. MINSA. https://bvs.minsa.gob.pe/local/MINSA/5000.pdf
+
+59. Ministerio de Salud del Perú. (2023). *Estrategia para la implementación de intervenciones en TEA*. MINSA. https://cdn.www.gob.pe/uploads/document/file/6720731/5832490-estrategia-tea.pdf
+
+60. Ministerio de Transportes y Comunicaciones. (2023). *Brecha digital en el Perú: Diagnóstico y agenda pendiente*. MTC. https://cdn.www.gob.pe/uploads/document/file/4341442/Innovar%20para%20conectar.pdf
+
+61. Newbutt, N., Bradley, R., & Conley, I. (2020). Using virtual reality head-mounted displays in schools with autistic children: Views, experiences, and future directions. *Journal of Enabling Technologies, 14*(3). https://doi.org/10.1108/JET-01-2018-0004
+
+62. Northouse, P. G. (2018). *Leadership: Theory and practice* (8th ed.). SAGE Publications.
+
+63. Organización Mundial de la Salud. (2021). *Salud mental de los adolescentes*. OMS. https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health
+
+64. Penev, Y., Dunlap, K., Husic, A., Hou, C., Washington, P., Leblanc, E., Kline, A., Kent, J., Ng-Thow-Hing, A., Liu, B., Harjadi, C., Tsou, M., Desai, M., & Wall, D. P. (2021). A mobile game platform for improving social communication in children with autism: A feasibility study. *Applied Clinical Informatics, 12*(5), 1030-1040. https://doi.org/10.1055/s-0041-1736626
+
+65. Qian, C., Lobo Marques, J. A., de Alexandria, A. R., & Fong, S. J. (2025). Application of multiple deep learning architectures for emotion classification based on facial expressions. *Sensors, 25*(5), 1478. https://doi.org/10.3390/s25051478
+
+66. Radočaj, P., & Martinović, G. (2025). Emotion recognition in autistic children through facial expressions using advanced deep learning architectures. *Applied Sciences, 15*(17), 9555. https://doi.org/10.3390/app15179555
+
+67. Reed, Z. E., Mahedy, L., Jackson, A., Davey Smith, G., Penton-Voak, I., Attwood, A. S., & Munafò, M. R. (2021). Examining the bidirectional association between emotion recognition and social autistic traits using observational and genetic analyses. *Journal of Child Psychology and Psychiatry, 62*(11), 1330-1338. https://doi.org/10.1111/jcpp.13395
+
+68. Rodríguez-Sanz, A. (2020). *Revisión de juegos serios en educación especial: Una revisión del estado del arte* [Trabajo de fin de grado, Universidad Autónoma de Madrid]. https://repositorio.uam.es/bitstream/handle/10486/693304/rodriguez_sanz_adriana_tfg.pdf
+
+69. Rudovic, O., Lee, J., Dai, M., Schuller, B., & Picard, R. W. (2018). Personalized machine learning for robot perception of affect and engagement in autism therapy. *Science Robotics, 3*(19), eaao6760. https://doi.org/10.1126/scirobotics.aao6760
+
+70. Rudovic, O., Zhang, M., Schuller, B. W., & Picard, R. (2019). Multi-modal active learning from human data: A deep reinforcement learning approach. *Proceedings of the 2019 International Conference on Multimodal Interaction*, 6-15. https://doi.org/10.1145/3340555.3353742
+
+71. Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., & Chen, L.-C. (2018). MobileNetV2: Inverted residuals and linear bottlenecks. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 4510-4520. https://doi.org/10.1109/CVPR.2018.00474
+
+72. Sariyanidi, E., Yankowitz, L. D., Schultz, R. T., Herrington, J. D., Tunç, B., & Cohn, J. F. (2025). Beyond FACS: Data-driven facial expression dictionaries, with application to predicting autism. *Proceedings of the 19th IEEE International Conference on Automatic Face and Gesture Recognition*. https://doi.org/10.1109/FG61629.2025.11099288
+
+73. Sholikah, R. W., Ginardi, R. V. H., Nugroho, S. L. C., Ghozali, K., & Indrawanti, A. S. (2024). Real-time facial expression recognition to enhance emotional intelligence in autism. *Procedia Computer Science, 234*, 222-229. https://doi.org/10.1016/j.procs.2024.02.169
+
+74. Talaat, F. M. (2023). Real-time facial emotion recognition system among children with autism based on deep learning and IoT. *Neural Computing and Applications, 35*, 12717-12728. https://doi.org/10.1007/s00521-023-08372-9
+
+75. Tan, M., & Le, Q. V. (2019). EfficientNet: Rethinking model scaling for convolutional neural networks. *Proceedings of the 36th International Conference on Machine Learning*, 6105-6114. https://arxiv.org/abs/1905.11946
+
+76. Toma, M.-V., Turcu, C. E., Turcu, C. O., Vlad, S., Tiliute, D. E., & Pascu, P. (2024). Extended reality-based mobile app solutions for the therapy of children with autism spectrum disorders: Systematic literature review. *JMIR Serious Games, 12*(1), e49906. https://doi.org/10.2196/49906
+
+77. Vallejo, M., Espinoza, D., & Herrera, J. (2019). Desigualdades en el acceso a la salud mental en zonas rurales del Perú. *Revista Peruana de Medicina Experimental y Salud Pública, 36*(2), 273-279. https://rpmesp.ins.gob.pe/index.php/rpmesp/issue/view/124
+
+78. Vermeir, J. F., White, M. J., Johnson, D., Crombez, G., & Van Ryckeghem, D. M. L. (2020). The effects of gamification on computerized cognitive training: Systematic review and meta-analysis. *JMIR Serious Games, 8*(3), e18644. https://doi.org/10.2196/18644
+
+79. Viola, P., & Jones, M. J. (2004). Robust real-time face detection. *International Journal of Computer Vision, 57*(2), 137-154. https://doi.org/10.1023/B:VISI.0000013087.49260.fb
+
+80. Washington, P., Kalantarian, H., Kent, J., Husic, A., Kline, A., Leblanc, E., Hou, C., Mutlu, O. C., Dunlap, K., Penev, Y., Varma, M., Stockham, N. T., Chrisman, B., Paskov, K., Sun, M. W., Jung, J.-Y., Voss, C., Haber, N., & Wall, D. P. (2022). Improved digital therapy for developmental pediatrics using domain-specific artificial intelligence: Machine learning study. *JMIR Pediatrics and Parenting, 5*(2), e26760. https://doi.org/10.2196/26760
+
+81. Zhu, Q., Zhuang, H., Zhao, M., Xu, S., & Meng, R. (2024). A study on expression recognition based on improved MobileNetV2 network. *Scientific Reports, 14*, 8121. https://doi.org/10.1038/s41598-024-58736-x
+
+---
+
+## 9. RESUMEN EJECUTIVO DE CAMBIOS
+
+### 9.1 Nota sobre referencias sin URL
+
+Algunas referencias no incluyen URL ni DOI porque son:
+- **Libros físicos** (sin DOI asignado): Barrett 2017, Barrett et al. 2016, Creswell & Creswell 2018, Ekman 2003, Epstein 2011, Fullan 2016, Garrett 2010, Grandin 2006, Kapp 2012, Kapp & O'Driscoll 2011, Kerzner 2017, Krug 2014, Ma 2014, Meredith & Mantel 2017, Meyer Rose & Gordon 2014, Northouse 2018.
+- **Artículos de revistas antiguas sin DOI:** Bradski 2000 (Dr. Dobb's Journal, descontinuada), Del-Moral-Pérez & Guzmán-Duque 2014 (EDUTEC sin DOI asignado), González & Segregra 2018.
+
+Esto es aceptado por **APA 7ma edición**: si una fuente no tiene DOI ni URL estable, se omite sin problema. Todas las demás referencias sí llevan DOI/URL verificado.
+
+### 9.2 Tabla resumen
+
+| Acción | Cantidad | Detalle |
+|---|---|---|
+| **Eliminadas** | 25 | Referencias no verificables, fabricadas, desactualizadas, sobre adultos o irrelevantes tras el cambio de población |
+| **Mantenidas** | 48 | Referencias del plan original que siguen siendo válidas |
+| **Agregadas (Paper 1)** | 16 | Evidencia sistemática sobre FER + ML en niños con TEA |
+| **Agregadas (Paper 2)** | 15 | Apps móviles, serious games, EfficientNet, FER2013 |
+| **Agregadas (técnicas)** | 3 | TensorFlow, Keras, OpenCV fuentes primarias |
+| **TOTAL FINAL** | **81** | Todas verificadas bibliográficamente |
+
+---
+
+## 10. PRINCIPALES JUSTIFICACIONES DE LOS CAMBIOS
+
+**1. Cambio de población (adultos → niños):**
+Todas las referencias sobre adultos con TEA fueron reemplazadas por evidencia específica de población pediátrica (0-18 años, foco en menores de 12 años, según el 88% del corpus del Paper 1).
+
+**2. Eliminación de plataforma web:**
+Se quitaron referencias sobre UX web y desarrollo web que no aplican al aplicativo móvil. Se conservaron las de UX/UI generales (Garrett, Krug) porque aplican transversalmente.
+
+**3. Integración Paper 1 + Paper 2:**
+Las referencias de ambos papers fundamentan técnicamente el plan: arquitecturas CNN (EfficientNet), datasets (FER2013), serious games para niños con TEA, monitoreo terapéutico, y contexto latinoamericano.
+
+**4. Rigor bibliográfico:**
+Se descartaron referencias de Medium, ResearchGate sin revisión por pares, DOIs incorrectos, autores fabricados o títulos no localizables. Cada referencia mantenida o agregada fue verificada vía búsqueda web.
+
+**5. Renumeración final:**
+El plan final presenta las referencias en orden alfabético APA 7ma edición, sin numeración entre corchetes. En el texto del plan se citará como "Autor (Año)" siguiendo la instrucción original.

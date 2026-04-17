@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  26 MAR 2026 01:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.12.9)  16 APR 2026 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1567,42 +1567,42 @@ LaTeX Warning: Unused global option(s):
 (Optimal-Design-layout.aux)
 \openout1 = `Optimal-Design-layout.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for LS1/stix2/m/n on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for LS1/stix2/m/n on input line 24.
 LaTeX Font Info:    Trying to load font information for LS1+stix2 on input line
- 23.
+ 24.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 1stix2.fd
 File: ls1stix2.fd 2018/04/02 v2.0.0-latex stix2 LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for LS2/stix2/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for LS2/stix2/m/n on input line 24.
 LaTeX Font Info:    Trying to load font information for LS2+stix2 on input line
- 23.
+ 24.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 2stix2.fd
 File: ls2stix2.fd 2018/04/02 v2.0.0-latex stix2 LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    ... okay on input line 24.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\su
 pp-pdf.mkii
@@ -1638,7 +1638,7 @@ G,.JBIG2,.JB2,.eps]
 pdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 23.
+Package hyperref Info: Link coloring ON on input line 24.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
@@ -1647,13 +1647,13 @@ Package caption Info: End \AtBeginDocument code.
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen364
 \MT@vwid@rightmargin=\dimen365
-LaTeX Info: Redefining \microtypecontext on input line 23.
-Package microtype Info: Applying patch `item' on input line 23.
-Package microtype Info: Applying patch `toc' on input line 23.
-Package microtype Info: Applying patch `eqnum' on input line 23.
-Package microtype Info: Applying patch `footnote' on input line 23.
-Package microtype Info: Applying patch `verbatim' on input line 23.
-LaTeX Info: Redefining \microtypesetup on input line 23.
+LaTeX Info: Redefining \microtypecontext on input line 24.
+Package microtype Info: Applying patch `item' on input line 24.
+Package microtype Info: Applying patch `toc' on input line 24.
+Package microtype Info: Applying patch `eqnum' on input line 24.
+Package microtype Info: Applying patch `footnote' on input line 24.
+Package microtype Info: Applying patch `verbatim' on input line 24.
+LaTeX Info: Redefining \microtypesetup on input line 24.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1700,8 +1700,8 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Command `\dddot' is already robust on input line 23.
-LaTeX Info: Command `\ddddot' is already robust on input line 23.
+LaTeX Info: Command `\dddot' is already robust on input line 24.
+LaTeX Info: Command `\ddddot' is already robust on input line 24.
 \c@lstlisting=\count470
 Package epstopdf Info: Source file: <./images/Wiley_logo.eps>
 (epstopdf)                    date: 2025-02-03 14:23:07
@@ -1711,7 +1711,7 @@ Package epstopdf Info: Source file: <./images/Wiley_logo.eps>
 (epstopdf)                    size: 10191 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=./images/Wiley_logo-
 eps-converted-to.pdf ./images/Wiley_logo.eps>
-(epstopdf)             \includegraphics on input line 100.
+(epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1721,7 +1721,7 @@ DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: ./images/Wiley_logo-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/Wiley_logo-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Wiley_logo-eps-converted-to.pdf  used on inpu
-t line 100.
+t line 108.
 (pdftex.def)             Requested size: 75.3998pt x 15.72246pt.
 Package epstopdf Info: Source file: <./images/allergy.eps>
 (epstopdf)                    date: 2025-02-03 14:23:05
@@ -1731,13 +1731,13 @@ Package epstopdf Info: Source file: <./images/allergy.eps>
 (epstopdf)                    size: 32515 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=./images/allergy-eps
 -converted-to.pdf ./images/allergy.eps>
-(epstopdf)             \includegraphics on input line 100.
+(epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 <./images/allergy-eps-converted-to.pdf, id=7, 159.59625pt x 33.12375pt>
 File: ./images/allergy-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/allergy-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/allergy-eps-converted-to.pdf  used on input l
-ine 100.
+ine 108.
 (pdftex.def)             Requested size: 159.33542pt x 33.06956pt.
 Package epstopdf Info: Source file: <images/openaccess.eps>
 (epstopdf)                    date: 2025-02-03 14:23:06
@@ -1747,7 +1747,7 @@ Package epstopdf Info: Source file: <images/openaccess.eps>
 (epstopdf)                    size: 14007 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/openaccess-ep
 s-converted-to.pdf images/openaccess.eps>
-(epstopdf)             \includegraphics on input line 100.
+(epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1757,17 +1757,17 @@ DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: images/openaccess-eps-converted-to.pdf Graphic file (type pdf)
 <use images/openaccess-eps-converted-to.pdf>
 Package pdftex.def Info: images/openaccess-eps-converted-to.pdf  used on input 
-line 100.
+line 108.
 (pdftex.def)             Requested size: 50.58878pt x 11.67497pt.
 LaTeX Font Info:    Trying to load font information for LS1+stix2scr on input l
-ine 100.
+ine 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 1stix2scr.fd
 File: ls1stix2scr.fd 2018/04/02 v2.0.0-latex stix2 script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stix2ex on input li
-ne 100.
+ne 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 2stix2ex.fd
@@ -1775,7 +1775,7 @@ File: ls2stix2ex.fd 2018/04/02 v2.0.0-latex stix2 extentions LS2 font definitio
 ns
 )
 LaTeX Font Info:    Trying to load font information for LS1+stix2frak on input 
-line 100.
+line 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 1stix2frak.fd
@@ -1783,7 +1783,7 @@ File: ls1stix2frak.fd 2018/04/02 v2.0.0-latex stix2 fraktur LS1 font definition
 s
 )
 LaTeX Font Info:    Trying to load font information for LS1+stix2bb on input li
-ne 100.
+ne 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 1stix2bb.fd
@@ -1791,7 +1791,7 @@ File: ls1stix2bb.fd 2018/04/02 v2.0.0-latex stix2 blackboard LS1 font definitio
 ns
 )
 LaTeX Font Info:    Trying to load font information for LS2+stix2cal on input l
-ine 100.
+ine 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 2stix2cal.fd
@@ -1799,7 +1799,7 @@ File: ls2stix2cal.fd 2018/04/02 v2.0.0-latex stix2 calligraphic LS2 font defini
 tions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stix2sf on input li
-ne 100.
+ne 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 1stix2sf.fd
@@ -1807,14 +1807,14 @@ File: ls1stix2sf.fd 2018/04/02 v2.0.0-latex stix2 sans-serif LS1 font definitio
 ns
 )
 LaTeX Font Info:    Trying to load font information for LS2+stix2tt on input li
-ne 100.
+ne 108.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls
 2stix2tt.fd
 File: ls2stix2tt.fd 2018/04/02 v2.0.0-latex stix2 typewriter LS2 font definitio
 ns
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 100
+LaTeX Font Info:    Trying to load font information for U+msa on input line 108
 .
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.
@@ -1825,7 +1825,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 sa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 100
+LaTeX Font Info:    Trying to load font information for U+msb on input line 108
 .
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.
@@ -1836,9 +1836,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 sb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 100.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 108.
 
-Underfull \hbox (badness 1028) in paragraph at lines 106--123
+Underfull \hbox (badness 1028) in paragraph at lines 114--131
 \T1/stix2/m/n/9.03374 en-tre la necesi-dad de mon-i-toreo ob-je-tivo y las her-
 ramien-tas
  []
@@ -1858,7 +1858,7 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 Overfull \vbox (49.76738pt too high) has occurred while \output is active []
 
 LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line
- 143.
+ 151.
 
 (C:\Users\Christopher PS\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ts
 1stix2.fd
@@ -1964,21 +1964,30 @@ Overfull \hbox (0.54092pt too wide) in alignment at lines 223--246
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 260--268
+Underfull \hbox (badness 1067) in paragraph at lines 260--266
 \T1/stix2/m/n/9.03374 Esta re-visión sis-temática fue con-ducida en con-formi-d
 ad con
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 260--268
-\T1/stix2/m/n/9.03374 siones Sis-temáti-cas (PROS-PERO) bajo el número de reg-i
-stro
+Underfull \hbox (badness 1052) in paragraph at lines 260--266
+\T1/stix2/m/n/9.03374 re-vi-siones sis-temáti-cas. Los datos, código y ma-te-ri
+-ales su-ple-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 3271) in paragraph at lines 260--266
+\T1/stix2/m/n/9.03374 men-tar-ios es-tán disponibles públi-ca-mente en el repos
+-i-to-rio
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
  \T1/stix2/b/n/10 2.3 | []|  Fuentes de In-for-ma-ción y Es-trate-gia de
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -1988,34 +1997,29 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 [2
 
 ]
-Underfull \hbox (badness 3482) in paragraph at lines 308--308
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3482) in paragraph at lines 313--313
 \T1/stix2/m/it/9.03374 TITLE-ABS-KEY(("autism" OR "ASD" OR "autism spec-
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 308--308
+Underfull \hbox (badness 1558) in paragraph at lines 313--313
 \T1/stix2/m/it/9.03374 trum" OR "autis-tic") AND ("emo-tion" OR "fa-cial ex-pre
 s-
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 308--308
+Underfull \hbox (badness 2293) in paragraph at lines 313--313
 \T1/stix2/m/it/9.03374 chine learn-ing" OR "deep learn-ing" OR "ar-ti-fi-cial i
 n-tel-
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 308--308
+Underfull \hbox (badness 1681) in paragraph at lines 313--313
 \T1/stix2/m/it/9.03374 li-gence" OR "com-puter vi-sion" OR "neu-ral net-work" O
 R
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) detected at line 323
-[]
  []
 
 
@@ -2027,12 +2031,50 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [3]
-LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 376
+Underfull \hbox (badness 2452) in paragraph at lines 316--321
+[]\T1/stix2/m/n/9.03374 Esta ca-dena fue eje-cu-tada con op-er-adores booleanos
+ equiv-
+ []
+
+
+Underfull \hbox (badness 7759) in paragraph at lines 316--321
+\T1/stix2/m/n/9.03374 a-lentes y códi-gos de campo en IEEE Xplore y Web of
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 316--321
+\T1/stix2/m/n/9.03374 Sci-ence el 15 de febrero de 2026. Las ca-de-nas de búsqu
+eda
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--321
+\T1/stix2/m/n/9.03374 es-pecí-fi-cas por plataforma se pro-por-cio-nan en el Ma
+-te-
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 316--321
+\T1/stix2/m/n/9.03374 rial Su-ple-men-tario S1 (disponible en el repos-i-to-rio
+ GitHub:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--321
+\T1/stix2/m/n/9.03374 https://github.com/Cris223511/systematic-review-data-
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 329
+[]
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 382
 .
-<./images/fig_1.jpg, id=104, 772.8875pt x 738.76pt>
+<./images/fig_1.jpg, id=111, 772.8875pt x 738.76pt>
 File: ./images/fig_1.jpg Graphic file (type jpg)
 <use ./images/fig_1.jpg>
-Package pdftex.def Info: ./images/fig_1.jpg  used on input line 393.
+Package pdftex.def Info: ./images/fig_1.jpg  used on input line 399.
 (pdftex.def)             Requested size: 244.69371pt x 233.88297pt.
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2042,26 +2084,29 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 [4{C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-
 type1/stix2-mathit.enc}{C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/f
 onts/enc/dvips/stix2-type1/stix2-mathrm.enc} <./images/fig_1.jpg>]
-Underfull \hbox (badness 10000) detected at line 423
+Underfull \hbox (badness 10000) detected at line 432
 []
  []
 
 
-Underfull \hbox (badness 2529) in paragraph at lines 485--499
+Underfull \hbox (badness 2529) in paragraph at lines 494--508
 []\T1/stix2/m/n/9.03374 Para abor-dar la eval-u-ación for-mal de cal-i-dad meto
 dológ-ica
  []
 
 
-Underfull \hbox (badness 3668) in paragraph at lines 485--499
+Underfull \hbox (badness 3668) in paragraph at lines 494--508
 \T1/stix2/m/n/9.03374 re-querida en re-vi-siones sis-temáti-cas rig-urosas, se 
 aplicó el
  []
 
 
-Underfull \hbox (badness 10000) detected at line 526
+Underfull \hbox (badness 10000) detected at line 535
 []
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2069,18 +2114,10 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [5]
-
-LaTeX Warning: Text page 6 contains only floats.
-
-
-Overfull \vbox (25.33612pt too high) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-LaTeX Warning: Text page 6 contains only floats.
-
-
-Overfull \vbox (25.33612pt too high) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2088,142 +2125,151 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [6]
+Underfull \hbox (badness 1092) in paragraph at lines 698--710
+\T1/stix2/m/n/9.03374 adul-tos con TEA. Esta con-cen-tración re-fleja tanto el 
+én-fa-sis
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 []| 
  []
 
 [7]
-<./images/fig_2.jpg, id=219, 761.84625pt x 330.48468pt>
+Underfull \hbox (badness 1448) in paragraph at lines 711--721
+\T1/stix2/m/n/9.03374 con téc-ni-cas de in-ter-pretabil-i-dad para aprox-i-mar 
+sus predic-
+ []
+
+<./images/fig_2.jpg, id=226, 761.84625pt x 330.48468pt>
 File: ./images/fig_2.jpg Graphic file (type jpg)
 <use ./images/fig_2.jpg>
-Package pdftex.def Info: ./images/fig_2.jpg  used on input line 733.
+Package pdftex.def Info: ./images/fig_2.jpg  used on input line 738.
 (pdftex.def)             Requested size: 506.45908pt x 219.69894pt.
 
-Underfull \hbox (badness 10000) detected at line 742
+Underfull \hbox (badness 10000) detected at line 747
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 748--748
+Underfull \hbox (badness 10000) in paragraph at lines 753--753
 []\T1/stix2/m/n/8 Incertidumbre en clasi-
  []
 
 
-Underfull \hbox (badness 7888) in paragraph at lines 748--748
+Underfull \hbox (badness 7888) in paragraph at lines 753--753
 \T1/stix2/m/n/8 fi-cación y baja ro-bustez
  []
 
 
-Underfull \hbox (badness 5696) in paragraph at lines 749--749
+Underfull \hbox (badness 5696) in paragraph at lines 754--754
 []\T1/stix2/m/n/8 CNN, Apren-dizaje Pro-fundo Per-son-al-izado,
  []
 
 
-Underfull \hbox (badness 5345) in paragraph at lines 751--751
+Underfull \hbox (badness 5345) in paragraph at lines 756--756
 []\T1/stix2/m/n/8 Interpretabilidad lim-i-tada
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--754
+Underfull \hbox (badness 10000) in paragraph at lines 759--759
 []\T1/stix2/m/n/8 Pobre gen-er-al-ización en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 757--757
+Underfull \hbox (badness 10000) in paragraph at lines 762--762
 \T1/stix2/m/n/8 mul-ti-modales cor-rela-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 761--761
+Underfull \hbox (badness 10000) in paragraph at lines 766--766
 []\T1/stix2/m/n/8 SMOTE, RUS, ROS, ADASYN, En-sem-ble
  []
 
 
-Underfull \hbox (badness 10000) detected at line 780
+Underfull \hbox (badness 10000) detected at line 785
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 788--788
+Underfull \hbox (badness 10000) in paragraph at lines 793--793
 []\T1/stix2/m/n/8 Solo es-tu-dios con
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 788--788
+Underfull \hbox (badness 10000) in paragraph at lines 793--793
 \T1/stix2/m/n/8 métri-cas su-per-visadas
  []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 811--834
+Underfull \hbox (badness 1137) in paragraph at lines 816--839
 \T1/stix2/m/n/9.03374 ti-fi-ca-ble rev-eló que los au-tores em-plean pre-dom-i-
 nan-te-mente
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 844--844
+Underfull \hbox (badness 10000) in paragraph at lines 849--849
 []\T1/stix2/m/n/8 CNN /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 844--844
+Underfull \hbox (badness 10000) in paragraph at lines 849--849
 \T1/stix2/m/n/8 Apren-dizaje
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 846--846
+Underfull \hbox (badness 10000) in paragraph at lines 851--851
 []\T1/stix2/m/n/8 Visión por
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 846--846
+Underfull \hbox (badness 10000) in paragraph at lines 851--851
 \T1/stix2/m/n/8 Comp. / Eye-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 853--860
+Underfull \hbox (badness 10000) in paragraph at lines 858--865
 []\T1/stix2/m/it/7 Nota: \T1/stix2/m/n/7 Ens=Ensamblados; N-E=No En-sam-bla-dos
 ; Tot.=Total; E%=Ens%;
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 853--860
+Underfull \hbox (badness 1142) in paragraph at lines 858--865
 \T1/stix2/m/n/7 fun-da-men-tales en com-ple-ji-dad com-puta-cional y es-trate-g
 ias de predic-ción. Los
  []
 
-<./images/fig_3.jpg, id=265, 732.48656pt x 396.7322pt>
+<./images/fig_3.jpg, id=272, 732.48656pt x 396.7322pt>
 File: ./images/fig_3.jpg Graphic file (type jpg)
 <use ./images/fig_3.jpg>
-Package pdftex.def Info: ./images/fig_3.jpg  used on input line 874.
+Package pdftex.def Info: ./images/fig_3.jpg  used on input line 879.
 (pdftex.def)             Requested size: 244.69371pt x 132.52623pt.
 
-Underfull \hbox (badness 1082) in paragraph at lines 883--889
+Underfull \hbox (badness 1082) in paragraph at lines 888--894
 \T1/stix2/m/n/9.03374 dom-ina con el 42.1%, donde el trans-fer learn-ing desde 
 Im-a-
  []
 
-<./images/fig_4.jpg, id=269, 972.63374pt x 530.98375pt>
+<./images/fig_4.jpg, id=276, 972.63374pt x 530.98375pt>
 File: ./images/fig_4.jpg Graphic file (type jpg)
 <use ./images/fig_4.jpg>
-Package pdftex.def Info: ./images/fig_4.jpg  used on input line 891.
+Package pdftex.def Info: ./images/fig_4.jpg  used on input line 896.
 (pdftex.def)             Requested size: 244.69371pt x 133.58012pt.
 
-Underfull \hbox (badness 1389) in paragraph at lines 896--896
+Underfull \hbox (badness 1389) in paragraph at lines 901--901
 \T1/stix2/m/it/8 Nota: La figura de-talla las con-fig-u-ra-ciones en-sam-bladas
  iden-ti-fi-cadas,
  []
 
 
-Underfull \hbox (badness 2582) in paragraph at lines 911--925
+Underfull \hbox (badness 2582) in paragraph at lines 916--930
 \T1/stix2/m/n/9.03374 cuente-mente re-por-tado en la lit-er-atura re-visada par
 a el re-
  []
 
-<./images/fig_5.jpg, id=278, 859.2903pt x 860.013pt>
-File: ./images/fig_5.jpg Graphic file (type jpg)
-<use ./images/fig_5.jpg>
-Package pdftex.def Info: ./images/fig_5.jpg  used on input line 934.
-(pdftex.def)             Requested size: 244.69371pt x 244.89629pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2233,7 +2279,13 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [8]
-Underfull \hbox (badness 10000) detected at line 957
+<./images/fig_5.jpg, id=293, 859.2903pt x 860.013pt>
+File: ./images/fig_5.jpg Graphic file (type jpg)
+<use ./images/fig_5.jpg>
+Package pdftex.def Info: ./images/fig_5.jpg  used on input line 939.
+(pdftex.def)             Requested size: 244.69371pt x 244.89629pt.
+
+Underfull \hbox (badness 10000) detected at line 962
 []
  []
 
@@ -2246,12 +2298,9 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [9 <./images/fig_2.jpg>]
-Underfull \hbox (badness 10000) detected at line 1014
+Underfull \hbox (badness 10000) detected at line 1019
 []
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2259,18 +2308,17 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [10 <./images/fig_3.jpg> <./images/fig_4.jpg>]
-<./images/fig_6.jpg, id=396, 679.03688pt x 406.51875pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<./images/fig_6.jpg, id=404, 679.03688pt x 406.51875pt>
 File: ./images/fig_6.jpg Graphic file (type jpg)
 <use ./images/fig_6.jpg>
-Package pdftex.def Info: ./images/fig_6.jpg  used on input line 1098.
+Package pdftex.def Info: ./images/fig_6.jpg  used on input line 1103.
 (pdftex.def)             Requested size: 244.69371pt x 146.4893pt.
 
-Underfull \hbox (badness 10000) detected at line 1109
+Underfull \hbox (badness 10000) detected at line 1114
 []
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2281,10 +2329,10 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [11]
-<./images/fig_7.jpg, id=415, 983.675pt x 547.04375pt>
+<./images/fig_7.jpg, id=422, 983.675pt x 547.04375pt>
 File: ./images/fig_7.jpg Graphic file (type jpg)
 <use ./images/fig_7.jpg>
-Package pdftex.def Info: ./images/fig_7.jpg  used on input line 1181.
+Package pdftex.def Info: ./images/fig_7.jpg  used on input line 1186.
 (pdftex.def)             Requested size: 506.45908pt x 281.65137pt.
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2292,40 +2340,43 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [12 <./images/fig_5.jpg> <./images/fig_6.jpg>]
-Underfull \hbox (badness 10000) detected at line 1223
+Underfull \hbox (badness 10000) detected at line 1228
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1266
+Underfull \hbox (badness 10000) detected at line 1271
 []
  []
 
-<./images/fig_8.jpg, id=428, 991.705pt x 548.0475pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<./images/fig_8.jpg, id=435, 991.705pt x 548.0475pt>
 File: ./images/fig_8.jpg Graphic file (type jpg)
 <use ./images/fig_8.jpg>
-Package pdftex.def Info: ./images/fig_8.jpg  used on input line 1293.
-(pdftex.def)             Requested size: 244.69371pt x 135.22195pt.
+Package pdftex.def Info: ./images/fig_8.jpg  used on input line 1298.
+(pdftex.def)             Requested size: 506.45908pt x 279.8852pt.
 
-Underfull \hbox (badness 1728) in paragraph at lines 1301--1318
+Underfull \hbox (badness 1728) in paragraph at lines 1306--1323
 \T1/stix2/m/n/9.03374 com-ple-men-tarse con ar-qui-tec-turas CNN ade-cuadas que
  cap-
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (261.76537pt too wide) has occurred while \output is active
+[]| 
+ []
 
-
-Underfull \hbox (badness 10000) detected at line 1331
+[13 <./images/fig_7.jpg>]
+Underfull \hbox (badness 10000) detected at line 1336
 []
  []
 
 
-Overfull \hbox (261.76537pt too wide) has occurred while \output is active
-[]| 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13 <./images/fig_7.jpg> <./images/fig_8.jpg>]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2333,48 +2384,41 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 []| 
  []
 
-[14]
-Underfull \hbox (badness 1365) in paragraph at lines 1399--1410
+[14 <./images/fig_8.jpg>]
+Underfull \hbox (badness 1365) in paragraph at lines 1404--1415
 \T1/stix2/m/n/9.03374 paci-dad téc-nica de los mod-e-los para proce-sar e in-te
 -grar co-
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1436
+Underfull \hbox (badness 10000) detected at line 1441
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1442--1442
+Underfull \hbox (badness 10000) in paragraph at lines 1447--1447
 []\T1/stix2/m/n/8 Validación
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1446--1446
+Underfull \hbox (badness 10000) in paragraph at lines 1451--1451
 []\T1/stix2/m/n/8 Optim. Meta-
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 1464--1475
+Underfull \hbox (badness 1442) in paragraph at lines 1469--1480
 \T1/stix2/m/n/9.03374 Clases y Muestreo Es-trat-i-fi-cado, tal como se pre-sent
 a en la
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 1464--1475
+Underfull \hbox (badness 1005) in paragraph at lines 1469--1480
 \T1/stix2/m/n/9.03374 Tabla [][]15[][]. La Au-mentación de Datos gen-era ejem-p
 -los sin-téti-
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1478
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1488--1488
-[]\T1/stix2/m/n/8 Submuestreo
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2382,39 +2426,25 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [15]
-Underfull \hbox (badness 10000) detected at line 1543
+Underfull \hbox (badness 10000) detected at line 1483
 []
  []
 
-<./images/fig_9.jpg, id=517, 983.17313pt x 462.22687pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 1493--1493
+[]\T1/stix2/m/n/8 Submuestreo
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1547
+[]
+ []
+
+<./images/fig_9.jpg, id=524, 983.17313pt x 462.22687pt>
 File: ./images/fig_9.jpg Graphic file (type jpg)
 <use ./images/fig_9.jpg>
-Package pdftex.def Info: ./images/fig_9.jpg  used on input line 1572.
+Package pdftex.def Info: ./images/fig_9.jpg  used on input line 1576.
 (pdftex.def)             Requested size: 506.45908pt x 238.10239pt.
-
-Underfull \hbox (badness 2401) in paragraph at lines 1659--1672
-\T1/stix2/m/n/9.03374 i-dación de nuevas ar-qui-tec-turas me-di-ante com-para-c
-ión con
- []
-
-
-Underfull \hbox (badness 3612) in paragraph at lines 1659--1672
-\T1/stix2/m/n/9.03374 ref-er-en-cias de rendimiento es-table-ci-das. Los datase
-ts pri-va-
- []
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 1659--1672
-\T1/stix2/m/n/9.03374 conocimiento a través de apli-ca-ciones en es-ce-nar-ios 
-clíni-cos
- []
-
-
-Underfull \hbox (badness 1616) in paragraph at lines 1659--1672
-\T1/stix2/m/n/9.03374 es-pecí-fi-cos que re-fle-jan het-ero-genei-dad real de l
-a población
- []
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2435,48 +2465,54 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [17 <./images/fig_9.jpg>]
-Underfull \hbox (badness 10000) detected at line 1741
+Underfull \hbox (badness 2401) in paragraph at lines 1663--1676
+\T1/stix2/m/n/9.03374 i-dación de nuevas ar-qui-tec-turas me-di-ante com-para-c
+ión con
+ []
+
+
+Underfull \hbox (badness 3612) in paragraph at lines 1663--1676
+\T1/stix2/m/n/9.03374 ref-er-en-cias de rendimiento es-table-ci-das. Los datase
+ts pri-va-
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 1663--1676
+\T1/stix2/m/n/9.03374 conocimiento a través de apli-ca-ciones en es-ce-nar-ios 
+clíni-cos
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 1663--1676
+\T1/stix2/m/n/9.03374 es-pecí-fi-cos que re-fle-jan het-ero-genei-dad real de l
+a población
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 1701--1713
+[]\T1/stix2/m/n/9.03374 Esta dis-tribu-ción de cal-i-dad in-cide di-rec-ta-ment
+e en la in-ter-
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1744
 []
  []
 
 
-Underfull \hbox (badness 3514) in paragraph at lines 1804--1813
+Underfull \hbox (badness 3514) in paragraph at lines 1807--1816
 \T1/stix2/m/n/9.03374 Esta re-visión sis-temática sin-te-tiza ex-clu-si-va-ment
 e ev-i-den-cia
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 1804--1813
+Underfull \hbox (badness 1558) in paragraph at lines 1807--1816
 \T1/stix2/m/n/9.03374 so-bre tec-nologías de apren-dizaje au-tomático apli-cada
 s al re-
  []
-
-
-Underfull \hbox (badness 1168) in paragraph at lines 1839--1847
-\T1/stix2/m/n/9.03374 (5.9%) per-miten la val-i-dación es-tandarizada de ar-qui
--tec-turas.
- []
-
-
-Underfull \hbox (badness 1303) in paragraph at lines 1839--1847
-\T1/stix2/m/n/9.03374 Los datasets pri-va-dos (50.0%) gen-eran conocimiento en 
-con-
- []
-
-
-Underfull \hbox (badness 1558) in paragraph at lines 1839--1847
-\T1/stix2/m/n/9.03374 tex-tos clíni-cos es-pecí-fi-cos con mayor validez ecológ
--ica. Una
- []
-
-
-Underfull \hbox (badness 1337) in paragraph at lines 1848--1855
-[]\T1/stix2/b/n/9.03374 Características de En-trada. \T1/stix2/m/n/9.03374 Las 
-car-ac-terís-ti-cas fa-ciales (15
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
@@ -2487,9 +2523,21 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 1901--1907
-[]\T1/stix2/b/n/9.03374 Intervenciones adap-ta-ti-vas per-son-al-izadas. \T1/st
-ix2/m/n/9.03374 Im-ple-men-tar
+Underfull \hbox (badness 1168) in paragraph at lines 1842--1850
+\T1/stix2/m/n/9.03374 (5.9%) per-miten la val-i-dación es-tandarizada de ar-qui
+-tec-turas.
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 1842--1850
+\T1/stix2/m/n/9.03374 Los datasets pri-va-dos (50.0%) gen-eran conocimiento en 
+con-
+ []
+
+
+Underfull \hbox (badness 1558) in paragraph at lines 1842--1850
+\T1/stix2/m/n/9.03374 tex-tos clíni-cos es-pecí-fi-cos con mayor validez ecológ
+-ica. Una
  []
 
 
@@ -2501,18 +2549,38 @@ Overfull \hbox (261.76537pt too wide) has occurred while \output is active
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 1933--1938
+Underfull \hbox (badness 1337) in paragraph at lines 1851--1858
+[]\T1/stix2/b/n/9.03374 Características de En-trada. \T1/stix2/m/n/9.03374 Las 
+car-ac-terís-ti-cas fa-ciales (15
+ []
+
+
+Underfull \hbox (badness 4242) in paragraph at lines 1904--1910
+[]\T1/stix2/b/n/9.03374 Intervenciones adap-ta-ti-vas per-son-al-izadas. \T1/st
+ix2/m/n/9.03374 Im-ple-men-tar
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1928--1933
 \T1/stix2/m/n/9.03374 J.E.C.A.: con-cep-tu-al-ización, metodología, su-per-visi
 ón,
  []
 
 
-Underfull \hbox (badness 1910) in paragraph at lines 1933--1938
+Underfull \hbox (badness 1910) in paragraph at lines 1928--1933
 \T1/stix2/m/n/9.03374 datos, análi-sis for-mal, redacción---borrador orig-i-nal
 . J.P.N.Z.:
  []
 
 (Optimal-Design-layout.bbl
+Overfull \hbox (261.76537pt too wide) has occurred while \output is active
+[]| 
+ []
+
+[20]
 Underfull \hbox (badness 1014) in paragraph at lines 79--85
 []\T1/stix2/m/n/8.5 P. Rado£aj, and G. Mar-ti-novi¢.   ``Emo-tion recog-ni-tion
  in
@@ -2606,11 +2674,6 @@ ot \T1/stix2/m/n/8.5 3, no. 19 (2018):
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (261.76537pt too wide) has occurred while \output is active
-[]| 
- []
-
-[20]
 Underfull \hbox (badness 7256) in paragraph at lines 182--189
 []\T1/stix2/m/n/8.5 M. S. Alam, M. M. Rashid, A. J. Bin Haja Mo-hideen,
  []
@@ -2738,9 +2801,6 @@ Underfull \hbox (badness 2932) in paragraph at lines 292--298
 ix2/m/n/8.5 14 (2026): 17885--17904.
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 )
 Overfull \hbox (261.76537pt too wide) has occurred while \output is active
 []| 
@@ -2754,8 +2814,8 @@ L3 programming layer <2024-01-04>
  ) 
 Here is how much of TeX's memory you used:
  36831 strings out of 474485
- 673146 string characters out of 5739450
- 1982542 words of memory out of 5000000
+ 673224 string characters out of 5739450
+ 1981542 words of memory out of 5000000
  58337 multiletter control sequences out of 15000+600000
  784111 words of font info for 203 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
@@ -2767,9 +2827,9 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-BoldItalic.pf
 b><C:/Users/Christopher PS/AppData/Local/Programs/MiKTeX/fonts/type1/public/sti
 x2-type1/STIX2Text-Italic.pfb><C:/Users/Christopher PS/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb>
-Output written on Optimal-Design-layout.pdf (21 pages, 1702350 bytes).
+Output written on Optimal-Design-layout.pdf (21 pages, 1704809 bytes).
 PDF statistics:
- 756 PDF objects out of 1000 (max. 8388607)
+ 764 PDF objects out of 1000 (max. 8388607)
  108 named destinations out of 1000 (max. 500000)
  12073 words of extra memory for PDF output out of 14400 (max. 10000000)
 
